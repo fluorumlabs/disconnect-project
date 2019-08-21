@@ -43,67 +43,8 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
             Files.createDirectory(new File(root, "src").toPath());
         }
 
-        writeRollupConfig();
-        writeBabelRc();
         writeAppJs();
         writePackageJson();
-    }
-
-    private void writeRollupConfig() throws IOException {
-        try (PrintWriter printWriter = new PrintWriter(new FileWriter(new File(root, "rollup.config.js")))) {
-            // language=js
-            printWriter.print("import {terser} from 'rollup-plugin-terser';\n" +
-                    "import babel from 'rollup-plugin-babel';\n" +
-                    "import replace from 'rollup-plugin-replace';\n" +
-                    "import resolve from 'rollup-plugin-node-resolve';\n" +
-                    "import commonjs from 'rollup-plugin-commonjs';\n" +
-                    "\n" +
-                    "import {resolve as pathResolve} from 'path';\n" +
-                    "import fs from 'fs';\n" +
-                    "\n" +
-                    "const { PRODUCTION } = process.env\n" +
-                    "\n" +
-                    "function includeFile(id, target) {\n" +
-                    "    let file = pathResolve(id, '../', target);\n" +
-                    "    try {\n" +
-                    "        return fs.readFileSync(file, {encoding: 'utf8'});\n" +
-                    "        return content;\n" +
-                    "    } catch (err) {\n" +
-                    "        throw new Error('[disconnect-rollup-config] can not readFile: ' + file)\n" +
-                    "    }\n" +
-                    "}\n" +
-                    "\n" +
-                    "export default {\n" +
-                    "    input: 'src/app.js',\n" +
-                    "    output: {\n" +
-                    "        file: 'js/app.js',\n" +
-                    "        format: 'iife'\n" +
-                    "    },\n" +
-                    "    plugins: [\n" +
-                    "        replace({\n" +
-                    "            'process.env.NODE_ENV': JSON.stringify('production'),\n" +
-                    "            'import_teavm_classes_js': fs.readFileSync('./teavm/classes.js', {encoding: 'utf8'})\n" +
-                    "        }),\n" +
-                    "        resolve(),\n" +
-                    "        commonjs(),\n" +
-                    "        babel({\n" +
-                    "            exclude: 'node_modules/**'\n" +
-                    "        }),\n" +
-                    "        terser()\n" +
-                    "    ]\n" +
-                    "}"
-            );
-        }
-    }
-
-    private void writeBabelRc() throws IOException {
-        try (PrintWriter printWriter = new PrintWriter(new FileWriter(new File(root, ".babelrc")))) {
-            // language=json
-            printWriter.print("{\n" +
-                    "  \"presets\": [\"@babel/preset-env\"]\n" +
-                    "}"
-            );
-        }
     }
 
     private void writeAppJs() throws IOException {
