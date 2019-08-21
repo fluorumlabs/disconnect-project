@@ -65,7 +65,9 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
                 .forEach(annotationReader -> {
                     String module = annotationReader.getValue("module").getString();
                     boolean object = annotationReader.getValue("object") != null && annotationReader.getValue("object").getBoolean();
-                    List<AnnotationValue> symbols = annotationReader.getValue("symbols").getList();
+                    List<AnnotationValue> symbols = Optional.ofNullable(annotationReader.getValue("symbols"))
+                            .map(AnnotationValue::getList)
+                            .orElse(Collections.emptyList());
 
                     for (AnnotationValue symbol : symbols) {
                         String symbolName = symbol.getString();

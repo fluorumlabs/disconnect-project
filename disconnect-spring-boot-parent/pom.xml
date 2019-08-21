@@ -67,6 +67,39 @@
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <id>development</id>
+            <properties>
+                <activatedProperties>development</activatedProperties>
+                <teavm.optimizationLevel>ADVANCED</teavm.optimizationLevel>
+                <teavm.debugInfo>true</teavm.debugInfo>
+                <NODE_ENV>development</NODE_ENV>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <activatedProperties>production</activatedProperties>
+                <teavm.optimizationLevel>FULL</teavm.optimizationLevel>
+                <teavm.debugInfo>false</teavm.debugInfo>
+                <NODE_ENV>production</NODE_ENV>
+            </properties>
+        </profile>
+        <profile>
+            <id>production-ie11</id>
+            <properties>
+                <activatedProperties>production</activatedProperties>
+                <teavm.optimizationLevel>FULL</teavm.optimizationLevel>
+                <teavm.debugInfo>false</teavm.debugInfo>
+                <NODE_ENV>production-ie11</NODE_ENV>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -89,11 +122,11 @@
                                 <targetDirectory>${project.build.directory}/frontend/teavm</targetDirectory>
                                 <mainClass>com.github.fluorumlabs.disconnect.client.GeneratedEntryPoint</mainClass>
                                 <minifying>false</minifying>
-                                <debugInformationGenerated>true</debugInformationGenerated>
-                                <sourceMapsGenerated>true</sourceMapsGenerated>
-                                <sourceFilesCopied>true</sourceFilesCopied>
+                                <debugInformationGenerated>${teavm.debugInfo}</debugInformationGenerated>
+                                <sourceMapsGenerated>${teavm.debugInfo}</sourceMapsGenerated>
+                                <sourceFilesCopied>${teavm.debugInfo}</sourceFilesCopied>
 
-                                <optimizationLevel>FULL</optimizationLevel>
+                                <optimizationLevel>${teavm.optimizationLevel}</optimizationLevel>
                                 <targetType>JAVASCRIPT</targetType>
 
                                 <stopOnErrors>true</stopOnErrors>
@@ -134,6 +167,7 @@
                         <environmentVariables>
                             <!-- Avoid certificates issues, needed behind a corporate proxy -->
                             <NODE_TLS_REJECT_UNAUTHORIZED>0</NODE_TLS_REJECT_UNAUTHORIZED>
+                            <NODE_ENV>${NODE_ENV}</NODE_ENV>
                         </environmentVariables>
                     </configuration>
 

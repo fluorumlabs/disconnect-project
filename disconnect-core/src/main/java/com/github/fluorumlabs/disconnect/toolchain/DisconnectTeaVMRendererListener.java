@@ -9,15 +9,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Artem Godin on 8/20/2019.
  */
 public class DisconnectTeaVMRendererListener implements RendererListener {
     private final Set<String> packages = new HashSet<>();
-    private final Set<String> imports = new HashSet<>();
+    private final List<String> imports = new ArrayList<>();
     private File root;
 
     public void addPackage(String packageJsonRow) {
@@ -25,7 +28,9 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
     }
 
     public void addImport(String importRow) {
-        imports.add(importRow);
+        if (!imports.contains(importRow)) {
+            imports.add(importRow);
+        }
     }
 
     @Override
@@ -64,14 +69,17 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
             // language=json
             printWriter.print("{\n" +
                     "    \"dependencies\": {\n" +
-                    "" + String.join(",\n", packages) + "\n" +
-                    "    },\n" +
-                    "    \"devDependencies\": {\n" +
+                    "" +
+                    packages.stream()
+                            .distinct()
+                            .collect(Collectors.joining(",\n")) + ",\n" +
                     "        \"@babel/core\": \"^7.5.5\",\n" +
                     "        \"@babel/preset-env\": \"^7.5.5\",\n" +
+                    "        \"core-js\": \"^3.2.1\",\n" +
                     "        \"rollup\": \"^1.19.4\",\n" +
                     "        \"rollup-plugin-babel\": \"^4.3.3\",\n" +
                     "        \"rollup-plugin-commonjs\": \"^10.0.2\",\n" +
+                    "        \"rollup-plugin-ignore\": \"^1.0.5\",\n" +
                     "        \"rollup-plugin-node-resolve\": \"^5.2.0\",\n" +
                     "        \"rollup-plugin-replace\": \"^2.2.0\",\n" +
                     "        \"rollup-plugin-terser\": \"^5.1.1\"\n" +

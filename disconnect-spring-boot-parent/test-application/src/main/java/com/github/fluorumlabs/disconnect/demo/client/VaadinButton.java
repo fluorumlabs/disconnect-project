@@ -9,7 +9,7 @@ import com.github.fluorumlabs.disconnect.vue.client.Elements;
  * Created by Artem Godin on 8/21/2019.
  */
 @NpmPackage(name = "@vaadin/vaadin-button", version = "latest")
-@Import(symbols = {}, module = "@vaadin/vaadin-button")
+@Import(module = "@vaadin/vaadin-button")
 public interface VaadinButton extends ElementPrototype<VaadinButton> {
     static String tagName() {
         return "vaadin-button";
