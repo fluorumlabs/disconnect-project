@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.7.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.fluorumlabs</groupId>
+    <artifactId>disconnect-spring-boot-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>test-application</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <resource.delimiter>@</resource.delimiter>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <disconnect.version>1.0-SNAPSHOT</disconnect.version>
+
+        <teavm.version>0.6.0-dev-816</teavm.version>
+        <flavour.version>0.2.0-dev-70</flavour.version>
+        <spring.version>5.1.9.RELEASE</spring.version>
+        <jackson.version>2.9.9</jackson.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <commons-io.version>2.6</commons-io.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>teavm-dev</id>
+            <url>https://dl.bintray.com/konsoletyper/teavm</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>teavm-dev</id>
+            <url>https://dl.bintray.com/konsoletyper/teavm</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.fluorumlabs</groupId>
+                <artifactId>disconnect-core</artifactId>
+                <version>${disconnect.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.fluorumlabs</groupId>
+                <artifactId>disconnect-vue</artifactId>
+                <version>${disconnect.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.teavm</groupId>
+                    <artifactId>teavm-maven-plugin</artifactId>
+                    <version>${teavm.version}</version>
+                    <executions>
+                        <execution>
+                            <id>web-client</id>
+                            <goals>
+                                <goal>compile</goal>
+                            </goals>
+                            <phase>process-classes</phase>
+                            <configuration>
+                                <properties>
+                                    <frontend.directory>${project.build.directory}/frontend</frontend.directory>
+                                </properties>
+
+                                <targetDirectory>${project.build.directory}/frontend/teavm</targetDirectory>
+                                <mainClass>com.github.fluorumlabs.disconnect.client.GeneratedEntryPoint</mainClass>
+                                <minifying>false</minifying>
+                                <debugInformationGenerated>true</debugInformationGenerated>
+                                <sourceMapsGenerated>true</sourceMapsGenerated>
+                                <sourceFilesCopied>true</sourceFilesCopied>
+
+                                <optimizationLevel>FULL</optimizationLevel>
+                                <targetType>JAVASCRIPT</targetType>
+
+                                <stopOnErrors>true</stopOnErrors>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
+                    <version>1.8.0</version>
+
+                    <configuration>
+                        <workingDirectory>${project.build.directory}/frontend</workingDirectory>
+                        <environmentVariables>
+                            <!-- Avoid certificates issues, needed behind a corporate proxy -->
+                            <NODE_TLS_REJECT_UNAUTHORIZED>0</NODE_TLS_REJECT_UNAUTHORIZED>
+                        </environmentVariables>
+                    </configuration>
+
+                    <executions>
+
+                        <execution>
+                            <id>install node and npm</id>
+                            <goals>
+                                <goal>install-node-and-npm</goal>
+                            </goals>
+                            <phase>prepare-package</phase>
+                            <configuration>
+                                <!-- See https://nodejs.org/en/download/ for latest node and npm (lts) versions -->
+                                <nodeVersion>v10.16.3</nodeVersion>
+                                <npmVersion>6.9.0</npmVersion>
+                            </configuration>
+                        </execution>
+
+                        <execution>
+                            <id>npm install</id>
+                            <goals>
+                                <goal>npm</goal>
+                            </goals>
+                            <phase>prepare-package</phase>
+                            <!-- Optional configuration which provides for running any npm command -->
+                            <configuration>
+                                <arguments>install</arguments>
+                            </configuration>
+                        </execution>
+
+                        <execution>
+                            <id>rollup</id>
+                            <goals>
+                                <goal>npm</goal>
+                            </goals>
+                            <phase>prepare-package</phase>
+                            <!-- Optional configuration which provides for running any npm command -->
+                            <configuration>
+                                <arguments>run rollup</arguments>
+                            </configuration>
+                        </execution>
+
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-resources</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}/classes/static/js</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.build.directory}/frontend/js</directory>
+                                        <includes>
+                                            <include>*</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
