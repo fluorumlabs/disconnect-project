@@ -103,6 +103,27 @@
                 </plugin>
 
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>unpack frontend dependencies</id>
+                            <goals>
+                                <goal>unpack-dependencies</goal>
+                            </goals>
+                            <phase>prepare-package</phase>
+                            <configuration>
+                                <includes>frontend/**</includes>
+                                <outputDirectory>${project.build.directory}</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <silent>true</silent>
+                    </configuration>
+                </plugin>
+
+                <plugin>
                     <groupId>com.github.eirslett</groupId>
                     <artifactId>frontend-maven-plugin</artifactId>
                     <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->

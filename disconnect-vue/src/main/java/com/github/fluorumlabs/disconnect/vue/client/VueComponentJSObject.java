@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.vue.client;
 
+import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.vue.client.internals.RenderFunction;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSObject;
@@ -9,6 +10,7 @@ import org.teavm.platform.PlatformObject;
 /**
  * Created by Artem Godin on 8/15/2019.
  */
+@Import(symbols = "renderElementPrototype", module = "./disconnect-vue/render-elementprototype.js", object = true)
 public abstract class VueComponentJSObject implements JSObject {
     @JSBody(script = "return this.$options.data")
     public native JSObject getModel();
@@ -27,18 +29,7 @@ public abstract class VueComponentJSObject implements JSObject {
     public native void registerMethod(String name, VueComponent.VoidVarArgs method);
 
     @JSBody(params = {"renderer"}, script = "this.$options.render = function (createElement) {\n" +
-            "    //TODO extract\n" +
-            "    function _createElement(h, proto) {\n" +
-            "        if (proto[0] === '#text') {\n" +
-            "            return proto[1].domProps.textContent;\n" +
-            "        } else {\n" +
-            "            return h(proto[0], proto[1], proto[2].map(function (x) {\n" +
-            "                return _createElement(h, x)\n" +
-            "            }));\n" +
-            "        }\n" +
-            "    }\n" +
-            "\n" +
-            "    return _createElement(createElement, renderer());\n" +
+            "    return renderElementPrototype(createElement, renderer());\n" +
             "}")
     public native void registerRender(RenderFunction renderer);
 

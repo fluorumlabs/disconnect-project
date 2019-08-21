@@ -15,6 +15,7 @@ import java.util.function.Supplier;
  */
 @NpmPackage(name = "vue", version = "2.6.10")
 @Import(symbols = "Vue", module = "vue")
+@Import(symbols = "renderElementPrototype", module = "./disconnect-vue/render-elementprototype.js", object = true)
 public abstract class Vue implements JSObject {
     @JSBody(params = {"tagName", "definition"},
             script = "Vue.component(tagName, definition)")
@@ -58,18 +59,7 @@ public abstract class Vue implements JSObject {
     public static native void run(String selector);
 
     @JSBody(params = {"selector", "renderFunction"}, script = "new Vue({ el: selector, render: function (createElement) {\n" +
-            "    //TODO extract\n" +
-            "    function _createElement(h, proto) {\n" +
-            "        if (proto[0] === '#text') {\n" +
-            "            return proto[1].domProps.textContent;\n" +
-            "        } else {\n" +
-            "            return h(proto[0], proto[1], proto[2].map(function (x) {\n" +
-            "                return _createElement(h, x)\n" +
-            "            }));\n" +
-            "        }\n" +
-            "    }\n" +
-            "\n" +
-            "    return _createElement(createElement, renderFunction());\n" +
+            "    return renderElementPrototype(createElement, renderFunction());\n" +
             "}})")
     public static native void run(String selector, RenderFunction renderFunction);
 
