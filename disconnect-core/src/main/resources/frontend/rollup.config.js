@@ -4,29 +4,33 @@ import ignore from 'rollup-plugin-ignore';
 import replace from 'rollup-plugin-replace';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import fs from 'fs';
+import {readFileSync} from 'fs';
 
 import enableWebComponents from './build.config.js';
 
 const importEs5Adapter = '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
 const importWebComponents = '@webcomponents/webcomponentsjs/webcomponents-bundle.js';
 
-const developmentBuild= [
-    ignore([importEs5Adapter, !enableWebComponents && importWebComponents]),
-    replace({
-        'process.env.NODE_ENV': JSON.stringify("development"),
-        'import_teavm_classes_js': fs.readFileSync('./teavm/classes.js', {encoding: 'utf8'})
-    }),
+const es5IgnoreSettings = enableWebComponents ? [] : [importEs5Adapter, importWebComponents];
+const es6IgnoreSettings = enableWebComponents ? [importEs5Adapter] : [importEs5Adapter, importWebComponents];
+
+function replaceSettings(mode) {
+    return {
+        'process.env.NODE_ENV': JSON.stringify(mode),
+        'import_teavm_classes_js': readFileSync('./teavm/classes.js', {encoding: 'utf8'})
+    }
+};
+
+const developmentEs6Build= [
+    ignore(es6IgnoreSettings),
+    replace(replaceSettings("development")),
     resolve(),
     commonjs()
 ];
 
-const es5Build = [
-    ignore([!enableWebComponents && importEs5Adapter, !enableWebComponents && importWebComponents]),
-    replace({
-        'process.env.NODE_ENV': JSON.stringify("production"),
-        'import_teavm_classes_js': fs.readFileSync('./teavm/classes.js', {encoding: 'utf8'})
-    }),
+const productionEs5Build = [
+    ignore(es5IgnoreSettings),
+    replace(replaceSettings("production")),
     resolve(),
     commonjs(),
     babel({
@@ -46,12 +50,9 @@ const es5Build = [
     terser()
 ];
 
-const es6Build = [
-    ignore([importEs5Adapter, !enableWebComponents && importWebComponents]),
-    replace({
-        'process.env.NODE_ENV': JSON.stringify("production"),
-        'import_teavm_classes_js': fs.readFileSync('./teavm/classes.js', {encoding: 'utf8'})
-    }),
+const productionEs6Build = [
+    ignore(es6IgnoreSettings),
+    replace(replaceSettings("production")),
     resolve(),
     commonjs(),
     terser()
@@ -67,7 +68,7 @@ if (process.env.NODE_ENV==='production') {
             format: 'esm',
             sourceMap: 'inline'
         },
-        plugins: es6Build
+        plugins: productionEs6Build
     });
     config.push({
         input: 'src/app.js',
@@ -76,7 +77,7 @@ if (process.env.NODE_ENV==='production') {
             format: 'iife',
             sourceMap: 'inline'
         },
-        plugins: es5Build
+        plugins: productionEs5Build
     });
 } else {
     config.push({
@@ -86,7 +87,7 @@ if (process.env.NODE_ENV==='production') {
             format: 'esm',
             sourceMap: 'inline'
         },
-        plugins: developmentBuild
+        plugins: developmentEs6Build
     });
 }
 
