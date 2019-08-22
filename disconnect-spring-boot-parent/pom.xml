@@ -89,15 +89,6 @@
                 <NODE_ENV>production</NODE_ENV>
             </properties>
         </profile>
-        <profile>
-            <id>production-ie11</id>
-            <properties>
-                <activatedProperties>production</activatedProperties>
-                <teavm.optimizationLevel>FULL</teavm.optimizationLevel>
-                <teavm.debugInfo>false</teavm.debugInfo>
-                <NODE_ENV>production-ie11</NODE_ENV>
-            </properties>
-        </profile>
     </profiles>
 
     <build>
@@ -229,7 +220,7 @@
                                     <resource>
                                         <directory>${project.build.directory}/frontend/js</directory>
                                         <includes>
-                                            <include>*</include>
+                                            <include>**/*</include>
                                         </includes>
                                     </resource>
                                 </resources>

@@ -3,7 +3,9 @@ package com.github.fluorumlabs.disconnect.toolchain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.core.client.RPC;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.teavm.backend.javascript.TeaVMJavaScriptHost;
 import org.teavm.flavour.json.JsonPersistable;
@@ -39,6 +41,27 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
         }
 
         AnnotationContainer annotations = cls.getAnnotations();
+
+        Optional<AnnotationHolder> webComponentAnnotation = Optional.ofNullable(annotations.get(WebComponent.class.getName()));
+        webComponentAnnotation.ifPresent(annotationHolder -> {
+            rendererListener.setEnableWebComponents(true);
+        });
+        webComponentAnnotation
+                .map(annotation -> annotation.getValue("tagName"))
+                .map(AnnotationValue::getList)
+                .ifPresent(list -> {
+                    for (AnnotationValue annotationValue : list) {
+                        rendererListener.addIgnoredWebComponent(annotationValue.getString());
+                    }
+                });
+
+        webComponentAnnotation
+                .map(annotation -> annotation.getValue("regEx"))
+                .map(AnnotationValue::getString)
+                .filter(StringUtils::isNotEmpty)
+                .ifPresent(regex -> {
+                    rendererListener.addIgnoredWebComponentRegEx(regex);
+                });
 
         Stream.concat(
                 Optional.ofNullable((AnnotationReader) annotations.get(NpmPackage.class.getName()))

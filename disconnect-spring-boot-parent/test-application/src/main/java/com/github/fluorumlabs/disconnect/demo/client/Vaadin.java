@@ -9,9 +9,6 @@ import org.teavm.jso.core.JSRegExp;
 /**
  * Created by Artem Godin on 8/21/2019.
  */
-@NpmPackage(name = "@webcomponents/webcomponentsjs", version = "latest")
-@Import(module = "@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js")
-@Import(module = "@webcomponents/webcomponentsjs/webcomponents-bundle.js")
 public class Vaadin {
     static {
         Vue.registerWebComponents(JSRegExp.create("^vaadin-"));

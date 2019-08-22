@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.toolchain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.teavm.backend.javascript.rendering.RenderingManager;
 import org.teavm.vm.BuildTarget;
 import org.teavm.vm.spi.RendererListener;
@@ -21,7 +22,18 @@ import java.util.stream.Collectors;
 public class DisconnectTeaVMRendererListener implements RendererListener {
     private final Set<String> packages = new HashSet<>();
     private final List<String> imports = new ArrayList<>();
+    private final List<String> ignoredWebComponents = new ArrayList<>();
     private File root;
+    private boolean enableWebComponents = false;
+
+    public void setEnableWebComponents(boolean enableWebComponents) {
+        if (!this.enableWebComponents && enableWebComponents) {
+            addPackage("        \"@webcomponents/webcomponentsjs\": \"latest\"");
+            addImport("import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';");
+            addImport("import '@webcomponents/webcomponentsjs/webcomponents-bundle.js';");
+        }
+        this.enableWebComponents = enableWebComponents;
+    }
 
     public void addPackage(String packageJsonRow) {
         packages.add(packageJsonRow);
@@ -31,6 +43,14 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
         if (!imports.contains(importRow)) {
             imports.add(importRow);
         }
+    }
+
+    public void addIgnoredWebComponent(String importRow) {
+        ignoredWebComponents.add("    '"+importRow+"'");
+    }
+
+    public void addIgnoredWebComponentRegEx(String importRow) {
+        ignoredWebComponents.add("    /"+importRow+"/");
     }
 
     @Override
@@ -48,13 +68,20 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
             Files.createDirectory(new File(root, "src").toPath());
         }
 
+        writeBuildConfigJs();
         writeAppJs();
         writePackageJson();
     }
 
     private void writeAppJs() throws IOException {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(new File(root, "src/app.js")))) {
-            printWriter.print(String.join("\n", imports));
+            printWriter.println(String.join("\n", imports));
+            if (!ignoredWebComponents.isEmpty()) {
+                printWriter.println("Vue.config.ignoredElements = [\n" +
+                        "    ...(Vue.config.ignoredElements||[]), \n" +
+                        String.join(",\n", ignoredWebComponents) + "\n" +
+                        "];");
+            }
             // language=js
             printWriter.print("\n" +
                     "import_teavm_classes_js\n" +
@@ -88,6 +115,17 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
                     "        \"rollup\": \"rollup -c rollup.config.js\"\n" +
                     "    }\n" +
                     "}\n");
+        }
+    }
+
+    private void writeBuildConfigJs() throws IOException {
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(new File(root, "build.config.js")))) {
+            String[] tokens = new String[]{"$enableWebComponents"};
+            String[] values = new String[]{Boolean.toString(enableWebComponents)};
+
+            printWriter.print(StringUtils.replaceEach("export default {\n" +
+                    "    enableWebComponents: $enableWebComponents\n" +
+                    "}\n", tokens, values));
         }
     }
 }
