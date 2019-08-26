@@ -11,7 +11,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.fluorumlabs</groupId>
+    <groupId>org.vaadin.disconnect</groupId>
     <artifactId>disconnect-spring-boot-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -54,14 +54,14 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.github.fluorumlabs</groupId>
+                <groupId>org.vaadin.disconnect</groupId>
                 <artifactId>disconnect-core</artifactId>
                 <version>${disconnect.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.github.fluorumlabs</groupId>
-                <artifactId>disconnect-vue</artifactId>
+                <groupId>org.vaadin.disconnect</groupId>
+                <artifactId>disconnect-preact</artifactId>
                 <version>${disconnect.version}</version>
             </dependency>
         </dependencies>
@@ -222,16 +222,34 @@
                     <version>3.1.0</version>
                     <executions>
                         <execution>
+                            <id>pre-copy-resources</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}/frontend/static</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.basedir}/src/main/resources/static</directory>
+                                        <includes>
+                                            <include>**/*</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                        <execution>
                             <id>copy-resources</id>
                             <phase>prepare-package</phase>
                             <goals>
                                 <goal>copy-resources</goal>
                             </goals>
                             <configuration>
-                                <outputDirectory>${project.build.directory}/classes/static/js</outputDirectory>
+                                <outputDirectory>${project.build.directory}/classes/static</outputDirectory>
                                 <resources>
                                     <resource>
-                                        <directory>${project.build.directory}/frontend/js</directory>
+                                        <directory>${project.build.directory}/frontend/static</directory>
                                         <includes>
                                             <include>**/*</include>
                                         </includes>

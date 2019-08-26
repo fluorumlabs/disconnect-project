@@ -21,6 +21,11 @@ public class DemoApplication {
         return "forward:/static/index.html";
     }
 
+    @GetMapping("/sw.js")
+    public String serviceWorker() {
+        return "forward:/static/bin/sw.js";
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }

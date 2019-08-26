@@ -3,8 +3,7 @@ package com.github.fluorumlabs.disconnect.demo.client;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
-import com.github.fluorumlabs.disconnect.vue.client.ElementPrototype;
-import com.github.fluorumlabs.disconnect.vue.client.Elements;
+import com.github.fluorumlabs.disconnect.preact.client.ElementPrototype;
 
 /**
  * Created by Artem Godin on 8/21/2019.

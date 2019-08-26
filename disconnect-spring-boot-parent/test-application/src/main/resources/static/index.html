@@ -2,7 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Whatever</title>
+
+    <link rel="manifest" href="/static/manifest.json">
+
+    <link rel="stylesheet" href="/static/bin/app.css">
+
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/sw.js')
+                .then(function() { console.log("Service Worker Registered"); });
+        }
+    </script>
 
     <!-- polyfill `nomodule` in Safari 10.1: -->
     <script type="module">
@@ -10,10 +22,10 @@
     </script>
 
     <!-- 90+% of browsers: -->
-    <script src="/static/js/app.js" type="module"></script>
+    <script src="/static/bin/app.js" type="module"></script>
 
     <!-- IE, Edge <16, Safari <10.1, old desktop: -->
-    <script src="/static/js/app.nomodule.js" nomodule async defer></script>
+    <script src="/static/bin/app.nomodule.js" nomodule async defer></script>
 </head>
 <body>
     <div id="app-root"></div>

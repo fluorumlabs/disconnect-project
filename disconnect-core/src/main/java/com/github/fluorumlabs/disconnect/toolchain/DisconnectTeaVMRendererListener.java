@@ -99,17 +99,22 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
                     "" +
                     packages.stream()
                             .distinct()
-                            .collect(Collectors.joining(",\n")) + ",\n" +
+                            .collect(Collectors.joining(",\n")) + (packages.isEmpty()?"":",\n") +
                     "        \"@babel/core\": \"^7.5.5\",\n" +
                     "        \"@babel/preset-env\": \"^7.5.5\",\n" +
                     "        \"core-js\": \"^3.2.1\",\n" +
+                    "        \"postcss-copy\": \"^7.1.0\",\n" +
+                    "        \"postcss-import\": \"^12.0.1\",\n" +
                     "        \"rollup\": \"^1.19.4\",\n" +
                     "        \"rollup-plugin-babel\": \"^4.3.3\",\n" +
                     "        \"rollup-plugin-commonjs\": \"^10.0.2\",\n" +
                     "        \"rollup-plugin-ignore\": \"^1.0.5\",\n" +
+                    "        \"rollup-plugin-postcss\": \"^2.0.3\",\n" +
                     "        \"rollup-plugin-node-resolve\": \"^5.2.0\",\n" +
                     "        \"rollup-plugin-replace\": \"^2.2.0\",\n" +
-                    "        \"rollup-plugin-terser\": \"^5.1.1\"\n" +
+                    "        \"rollup-plugin-terser\": \"^5.1.1\",\n" +
+                    "        \"rollup-plugin-workbox-build\": \"^0.2.0\",\n" +
+                    "        \"workbox-window\": \"^4.3.1\"\n" +
                     "    },\n" +
                     "    \"scripts\": {\n" +
                     "        \"rollup\": \"rollup -c rollup.config.js\"\n" +

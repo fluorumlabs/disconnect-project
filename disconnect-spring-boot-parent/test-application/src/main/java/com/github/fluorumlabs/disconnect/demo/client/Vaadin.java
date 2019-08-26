@@ -1,9 +1,7 @@
 package com.github.fluorumlabs.disconnect.demo.client;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vue.client.Elements;
-import com.github.fluorumlabs.disconnect.vue.client.Vue;
+import com.github.fluorumlabs.disconnect.preact.client.Elements;
+import com.github.fluorumlabs.disconnect.preact.client.Vue;
 import org.teavm.jso.core.JSRegExp;
 
 /**
