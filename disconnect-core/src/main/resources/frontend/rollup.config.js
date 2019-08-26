@@ -19,6 +19,53 @@ const importWebComponents = '@webcomponents/webcomponentsjs/webcomponents-bundle
 const es5IgnoreSettings = enableWebComponents ? [] : [importEs5Adapter, importWebComponents];
 const es6IgnoreSettings = enableWebComponents ? [importEs5Adapter] : [importEs5Adapter, importWebComponents];
 
+const namedExports = {
+    'node_modules/react/index.js': [
+        'Component',
+        'Children',
+        'Fragment',
+        'cloneElement',
+        'createElement',
+        'createContext',
+        'PropTypes',
+        'isValidElement',
+        'useContext',
+        'useState',
+        'useCallback',
+        'useRef',
+        'useMemo',
+        'useEffect',
+        'useLayoutEffect',
+        'useDebugValue',
+        'memo',
+        'forwardRef',
+    ],
+    'node_modules/react-is/index.js': [
+        'isValidElementType',
+        'ForwardRef'
+    ],
+    'node_modules/prop-types/index.js': [
+        'element',
+        'elementType',
+        'func',
+        'oneOfType',
+        'oneOf',
+        'node',
+        'object',
+        'string',
+        'bool',
+        'number',
+        'instanceOf',
+        'any',
+        'arrayOf'
+    ],
+};
+
+const commonJsOptions = {
+    include: 'node_modules/**',
+    namedExports: namedExports
+};
+
 function replaceSettings(mode) {
     return {
         'process.env.NODE_ENV': JSON.stringify(mode),
@@ -42,14 +89,7 @@ const developmentEs6Build= [
     ignore(es6IgnoreSettings),
     replace(replaceSettings("development")),
     resolve(),
-    commonjs({
-        include: 'node_modules/**',
-        namedExports: {
-            'node_modules/react/index.js': ['Children','cloneElement','PropTypes','isValidElement'],
-            'node_modules/react-is/index.js': ['ForwardRef'],
-            'node_modules/prop-types/index.js': ['element', 'elementType'],
-        },
-    }),
+    commonjs(commonJsOptions),
     workbox({
         mode: 'injectManifest',
         options: workboxConfig
@@ -72,14 +112,7 @@ const productionEs5Build = [
     ignore(es5IgnoreSettings),
     replace(replaceSettings("production")),
     resolve(),
-    commonjs({
-        include: 'node_modules/**',
-        namedExports: {
-            'node_modules/react/index.js': ['Children','cloneElement','PropTypes','isValidElement'],
-            'node_modules/react-is/index.js': ['ForwardRef', 'isForwardRef', 'isValidElementType'],
-            'node_modules/prop-types/index.js': ['element'],
-        },
-    }),
+    commonjs(commonJsOptions),
     babel({
         exclude: ['node_modules/@babel/**', 'node_modules/core-js/**'],
         extensions: ['.js', '.mjs', '.html'],
@@ -113,15 +146,12 @@ const productionEs6Build = [
     ignore(es6IgnoreSettings),
     replace(replaceSettings("production")),
     resolve(),
-    commonjs({
-        include: 'node_modules/**',
-        namedExports: {
-            'node_modules/react/index.js': ['Children','cloneElement','PropTypes','isValidElement'],
-            'node_modules/react-is/index.js': ['ForwardRef', 'isForwardRef', 'isValidElementType'],
-            'node_modules/prop-types/index.js': ['element', 'elementType'],
-        },
-    }),
-    terser()
+    commonjs(commonJsOptions),
+    terser(),
+    workbox({
+        mode: 'injectManifest',
+        options: workboxConfig
+    })
 ];
 
 let config = [];

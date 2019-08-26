@@ -58,12 +58,6 @@
                 <artifactId>disconnect-core</artifactId>
                 <version>${disconnect.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>org.vaadin.disconnect</groupId>
-                <artifactId>disconnect-preact</artifactId>
-                <version>${disconnect.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -26,11 +26,6 @@
             <groupId>org.vaadin.disconnect</groupId>
             <artifactId>disconnect-core</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.vaadin.disconnect</groupId>
-            <artifactId>disconnect-preact</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

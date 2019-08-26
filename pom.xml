@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>disconnect-core</module>
-        <module>disconnect-preact</module>
         <module>disconnect-spring-boot-parent</module>
     </modules>
 
