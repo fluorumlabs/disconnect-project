@@ -44,6 +44,9 @@ const namedExports = {
         'isValidElementType',
         'ForwardRef'
     ],
+    'node_modules/react-dom/index.js': [
+        'findDOMNode'
+    ],
     'node_modules/prop-types/index.js': [
         'element',
         'elementType',
@@ -77,6 +80,7 @@ const developmentEs6Build= [
     postcss({
         extract: 'static/bin/app.css',
         minimize: false,
+        modules: true,
         plugins: [
             postcssimport(),
             postcsscopy({
@@ -100,6 +104,7 @@ const productionEs5Build = [
     postcss({
         extract: 'static/bin/app.css',
         minimize: true,
+        modules: true,
         plugins: [
             postcssimport(),
             postcsscopy({
@@ -134,6 +139,7 @@ const productionEs6Build = [
     postcss({
         extract: 'static/bin/app.css',
         minimize: true,
+        modules: true,
         plugins: [
             postcssimport(),
             postcsscopy({

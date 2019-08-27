@@ -2,6 +2,7 @@ package org.vaadin.disconnect.toolchain;
 
 import org.vaadin.disconnect.core.client.Convert;
 import org.vaadin.disconnect.core.client.Component;
+import org.vaadin.disconnect.core.client.HasStyleModule;
 import org.vaadin.disconnect.core.client.internals.AccessorBase;
 import org.apache.commons.lang3.StringUtils;
 import org.teavm.common.OptionalPredicate;
@@ -26,6 +27,10 @@ public class DisconnectReactClassTransformer implements ClassHolderTransformer {
     public void transformClass(ClassHolder cls, ClassHolderTransformerContext context) {
         OptionalPredicate<String> isReactComponent = context.getHierarchy().getSuperclassPredicate(Component.class.getName());
         OptionalPredicate<String> isRWMapper = context.getHierarchy().getSuperclassPredicate(AccessorBase.class.getName());
+
+        if (cls.getInterfaces().contains(HasStyleModule.class.getName())) {
+            overrideGetClassName(cls);
+        }
 
         // Add Model interface
         if (isReactComponent.test(cls.getName(), false)
@@ -64,6 +69,35 @@ public class DisconnectReactClassTransformer implements ClassHolderTransformer {
                         methodHolder.getModifiers().remove(ElementModifier.ABSTRACT);
                     });
         }
+    }
+
+    private void overrideGetClassName(ClassHolder cls) {
+        MethodHolder newMethod = new MethodHolder("getClassName", new ValueType.Object(String.class.getName()), new ValueType.Object(String.class.getName()));
+        newMethod.setLevel(AccessLevel.PROTECTED);
+
+        Program program = new Program();
+        Variable that = program.createVariable(); //this
+
+        Variable className = program.createVariable();
+        Variable result = program.createVariable();
+
+        BasicBlock block = program.createBasicBlock();
+
+        InvokeInstruction invokeInstruction = new InvokeInstruction();
+        invokeInstruction.setType(InvocationType.SPECIAL);
+        invokeInstruction.setMethod(new MethodReference(cls.getName()+"$Style", "get", new ValueType.Object(String.class.getName()), new ValueType.Object(String.class.getName())));
+        invokeInstruction.setArguments(className);
+        invokeInstruction.setReceiver(result);
+
+        ExitInstruction exitInstruction = new ExitInstruction();
+        exitInstruction.setValueToReturn(result);
+
+        block.add(invokeInstruction);
+        block.add(exitInstruction);
+
+        newMethod.setProgram(program);
+
+        cls.addMethod(newMethod);
     }
 
     private void addGetterImplementation(String property, MethodHolder methodHolder) {

@@ -9,6 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <full-artifact-name>target/${project.artifactId}-${project.version}.jar</full-artifact-name>
+    </properties>
+
     <artifactId>test-application</artifactId>
 
     <dependencies>
@@ -47,6 +51,22 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>2.0.8</version>
+                <configuration>
+                    <appName>disconnect-demo</appName>
+                    <includeTarget>false</includeTarget>
+                    <includes>
+                        <include>${basedir}/${full-artifact-name}</include>
+                    </includes>
+                    <jdkVersion>1.8</jdkVersion>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -jar ${full-artifact-name}</web>
+                    </processTypes>
+                </configuration>
             </plugin>
         </plugins>
     </build>

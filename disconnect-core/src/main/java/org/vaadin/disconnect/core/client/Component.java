@@ -52,7 +52,7 @@ public abstract class Component<P extends NoProperties, S extends NoState> {
         return readOnlyState(instance.getState());
     }
 
-    public void setState(StateUpdater updater) {
+    public void setState(StateUpdater<S,P> updater) {
         instance.setState((state, props) -> {
             JSObject newState = JSObjects.create();
             updater.update(readWriteState(state, newState), readOnlyProperties(props));
@@ -65,8 +65,8 @@ public abstract class Component<P extends NoProperties, S extends NoState> {
     }
 
     @FunctionalInterface
-    public interface StateUpdater {
-        void update(NoState state, NoProperties props);
+    public interface StateUpdater<S extends NoState, P extends NoProperties> {
+        void update(S state, P props);
     }
 
     @SuppressWarnings("unchecked")

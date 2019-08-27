@@ -234,6 +234,25 @@
                             </configuration>
                         </execution>
                         <execution>
+                            <id>pre-copy-development-resources</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}/frontend/src</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.basedir}/src/main/resources/src
+                                        </directory>
+                                        <includes>
+                                            <include>**/*</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                        <execution>
                             <id>copy-resources</id>
                             <phase>prepare-package</phase>
                             <goals>

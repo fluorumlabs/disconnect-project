@@ -27,6 +27,20 @@ public interface ElementPrototype<T extends ElementPrototype> extends JSObject {
     @JSBody(params = {"property", "value"}, script = "this[1][property] = value; return this;")
     T with(String property, JSObject value);
 
+    @JSBody(params = {"property", "value"}, script = "this[1][property] = value; return this;")
+    T with(String property, EventListener<?> value);
+
+    @JSBody(params = {"_className"},
+            script = "this[1].className = (this[1].className?(this[1].className + ' '):'') + _className; return this;")
+    T className(String _className);
+
+    default T key(String key) {
+        return with("key", key);
+    }
+
+    default T id(String id) {
+        return with("id", id);
+    }
 
     /*default void setClassName(String className) {
         setProperty("className", className);
@@ -152,7 +166,7 @@ public interface ElementPrototype<T extends ElementPrototype> extends JSObject {
         return (T)this;
     }
 */
-    @JSBody(params = {"child"}, script = "this[2].push(child); return this;")
+    @JSBody(params = {"child"}, script = "child && this[2].push(child); return this;")
     T add(ElementPrototype child);
 
     default T text(String text) {
@@ -163,6 +177,6 @@ public interface ElementPrototype<T extends ElementPrototype> extends JSObject {
         for (ElementPrototype child : children) {
             add(child);
         }
-        return (T)this;
+        return (T) this;
     }
 }

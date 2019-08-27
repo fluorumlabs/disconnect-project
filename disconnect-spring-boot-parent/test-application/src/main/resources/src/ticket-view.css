@@ -1,0 +1,11 @@
+button.clear-button {
+    margin-right: 16px;
+}
+
+.title {
+    flex-grow: 1;
+}
+
+div.grid-item-padding {
+    padding: 24px;
+}

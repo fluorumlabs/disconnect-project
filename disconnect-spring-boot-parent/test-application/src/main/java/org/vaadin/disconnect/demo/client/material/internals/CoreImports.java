@@ -10,7 +10,7 @@ import org.vaadin.disconnect.core.client.Constructor;
 /**
  * Created by Artem Godin on 8/26/2019.
  */
-@NpmPackage(name = "@material-ui/core", version = "latest")
+@NpmPackage(name = "@material-ui/core", version = "4.1.2")
 @NpmPackage(name = "typeface-roboto", version = "latest")
 @Import(module = "typeface-roboto")
 @Import(symbols = "* as MaterialUI", module = "@material-ui/core")

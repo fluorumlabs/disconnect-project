@@ -1,5 +1,6 @@
 package org.vaadin.disconnect.demo.client.material;
 
+import org.teavm.jso.dom.events.EventListener;
 import org.vaadin.disconnect.core.client.ElementPrototype;
 import org.vaadin.disconnect.core.client.Elements;
 import org.vaadin.disconnect.demo.client.material.internals.CoreImports;
@@ -12,7 +13,7 @@ public interface IconButton extends ElementPrototype<IconButton> {
         return Elements.create(CoreImports.imports().get("IconButton"));
     }
 
-    static IconButton create(String name) {
+    static IconButton create(Icon.Material name) {
         return create().add(Icon.create(name));
     }
 
@@ -22,6 +23,10 @@ public interface IconButton extends ElementPrototype<IconButton> {
 
     default IconButton edge(Edge edge) {
         return with("edge", edge.getValue());
+    }
+
+    default IconButton onClick(EventListener<?> eventListener) {
+        return with("onClick", eventListener);
     }
 
     enum Edge {

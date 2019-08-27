@@ -17,17 +17,4 @@ public interface GridItem extends ElementPrototype<GridItem> {
         return with(breakpoint.getValue(), size);
     }
 
-    enum Breakpoint {
-        LG("lg"), MD("md"), SM("sm"), XL("xl"), XS("xs");
-
-        private final String value;
-
-        Breakpoint(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-    }
 }
