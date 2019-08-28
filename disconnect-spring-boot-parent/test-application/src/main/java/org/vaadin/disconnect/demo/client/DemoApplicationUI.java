@@ -1,5 +1,8 @@
 package org.vaadin.disconnect.demo.client;
 
+import org.teavm.jso.core.JSObjects;
+import org.teavm.jso.dom.events.Event;
+import org.teavm.jso.dom.events.EventListener;
 import org.vaadin.disconnect.core.annotations.EntryPoint;
 import org.vaadin.disconnect.core.annotations.ImportStyleModule;
 import org.vaadin.disconnect.core.client.Elements;
@@ -37,7 +40,7 @@ public class DemoApplicationUI implements Runnable, HasStyleModule {
             return Router.create(
                     Elements.create("div").className(getClassName("main-area")).add(
                             Switch.create(
-                                    Route.create("/", TicketView.CONSTRUCTOR).exact(),
+                                    Route.create(TicketView.CONSTRUCTOR).path("/", "/static/index.html").exact(),
                                     // If nothing matches
                                     Route.create(NotImplementedView.CONSTRUCTOR)
                             )

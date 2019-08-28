@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class DisconnectTeaVMRendererListener implements RendererListener {
     private final Set<String> packages = new HashSet<>();
     private final List<String> imports = new ArrayList<>();
-    private final List<String> ignoredWebComponents = new ArrayList<>();
+    private final List<String> rpcRouteConfigs = new ArrayList<>();
     private File root;
     private boolean enableWebComponents = false;
 
@@ -39,18 +39,14 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
         packages.add(packageJsonRow);
     }
 
+    public void addRPCRouteConfig(String rpcRouteConfig) {
+        rpcRouteConfigs.add(rpcRouteConfig);
+    }
+
     public void addImport(String importRow) {
         if (!imports.contains(importRow)) {
             imports.add(importRow);
         }
-    }
-
-    public void addIgnoredWebComponent(String importRow) {
-        ignoredWebComponents.add("    '"+importRow+"'");
-    }
-
-    public void addIgnoredWebComponentRegEx(String importRow) {
-        ignoredWebComponents.add("    /"+importRow+"/");
     }
 
     @Override
@@ -70,24 +66,35 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
 
         writeBuildConfigJs();
         writeAppJs();
+        writeSwConfigJs();
         writePackageJson();
     }
 
     private void writeAppJs() throws IOException {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(new File(root, "src/app.js")))) {
             printWriter.println(String.join("\n", imports));
-            if (!ignoredWebComponents.isEmpty()) {
-                printWriter.println("Vue.config.ignoredElements = [\n" +
-                        "    ...(Vue.config.ignoredElements||[]), \n" +
-                        String.join(",\n", ignoredWebComponents) + "\n" +
-                        "];");
-            }
+            printWriter.println("import {Workbox} from 'workbox-window';\n" +
+                    "\n" +
+                    "if ('serviceWorker' in navigator) {\n" +
+                    "  const wb = new Workbox('/sw.js');\n" +
+                    "\n" +
+                    "  wb.register();\n" +
+                    "}");
             // language=js
             printWriter.print("\n" +
                     "import_teavm_classes_js\n" +
                     "\n" +
                     "main();\n"
             );
+        }
+    }
+
+    private void writeSwConfigJs() throws IOException {
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(new File(root, "src/sw.config.js")))) {
+            printWriter.println("import registerRPCStrategy from './disconnect/workbox-util.js';");
+            printWriter.println("export default function registerRoutes(workbox) {");
+            printWriter.println(String.join("\n", rpcRouteConfigs));
+            printWriter.println("}");
         }
     }
 
@@ -99,22 +106,7 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
                     "" +
                     packages.stream()
                             .distinct()
-                            .collect(Collectors.joining(",\n")) + (packages.isEmpty()?"":",\n") +
-                    "        \"@babel/core\": \"^7.5.5\",\n" +
-                    "        \"@babel/preset-env\": \"^7.5.5\",\n" +
-                    "        \"core-js\": \"^3.2.1\",\n" +
-                    "        \"postcss-copy\": \"^7.1.0\",\n" +
-                    "        \"postcss-import\": \"^12.0.1\",\n" +
-                    "        \"rollup\": \"^1.19.4\",\n" +
-                    "        \"rollup-plugin-babel\": \"^4.3.3\",\n" +
-                    "        \"rollup-plugin-commonjs\": \"^10.0.2\",\n" +
-                    "        \"rollup-plugin-ignore\": \"^1.0.5\",\n" +
-                    "        \"rollup-plugin-postcss\": \"^2.0.3\",\n" +
-                    "        \"rollup-plugin-node-resolve\": \"^5.2.0\",\n" +
-                    "        \"rollup-plugin-replace\": \"^2.2.0\",\n" +
-                    "        \"rollup-plugin-terser\": \"^5.1.1\",\n" +
-                    "        \"rollup-plugin-workbox-build\": \"^0.2.0\",\n" +
-                    "        \"workbox-window\": \"^4.3.1\"\n" +
+                            .collect(Collectors.joining(",\n")) + "\n" +
                     "    },\n" +
                     "    \"scripts\": {\n" +
                     "        \"rollup\": \"rollup -c rollup.config.js\"\n" +

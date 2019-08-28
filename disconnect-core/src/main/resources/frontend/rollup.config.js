@@ -189,6 +189,7 @@ if (process.env.NODE_ENV==='production') {
             sourceMap: 'inline'
         },
         plugins: [
+            replace(replaceSettings("production")),
             resolve(),
             commonjs(),
             terser()
@@ -212,6 +213,7 @@ if (process.env.NODE_ENV==='production') {
             sourceMap: 'inline'
         },
         plugins: [
+            replace(replaceSettings("development")),
             resolve(),
             commonjs()
         ]

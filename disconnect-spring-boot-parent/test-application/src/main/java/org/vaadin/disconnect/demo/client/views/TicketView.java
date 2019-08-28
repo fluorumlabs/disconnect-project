@@ -2,7 +2,10 @@ package org.vaadin.disconnect.demo.client.views;
 
 import org.vaadin.disconnect.core.annotations.ImportStyleModule;
 import org.vaadin.disconnect.core.client.*;
+import org.vaadin.disconnect.demo.backend.ExampleService;
 import org.vaadin.disconnect.demo.client.material.*;
+
+import javax.annotation.Resource;
 
 import static org.vaadin.disconnect.demo.client.material.Typography.Variant.H6;
 
@@ -44,12 +47,17 @@ public class TicketView extends Component<NoProperties, TicketView.State> implem
         return container.add(itemLeft, itemRight);
     }
 
+    @Resource
+    private ExampleService exampleService;
+
     private Container renderForm(State state) {
         Container container = Container.create();
 
         Switch locationSwitch = Switch.create();
         locationSwitch.checked(state.getUseLocation());
         locationSwitch.onChange((evt) -> {
+            exampleService.showState(getState().getUseLocation());
+            System.out.println(exampleService.getCurrentDate());
             setState((s, p) -> s.setUseLocation(!s.getUseLocation()));
         });
 

@@ -1,10 +1,6 @@
 package org.vaadin.disconnect.toolchain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.vaadin.disconnect.core.annotations.Import;
-import org.vaadin.disconnect.core.annotations.NpmPackage;
-import org.vaadin.disconnect.core.annotations.WebComponent;
-import org.vaadin.disconnect.core.client.RPC;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.teavm.backend.javascript.TeaVMJavaScriptHost;
@@ -12,10 +8,14 @@ import org.teavm.flavour.json.JsonPersistable;
 import org.teavm.model.*;
 import org.teavm.model.instructions.*;
 import org.teavm.vm.spi.TeaVMHost;
+import org.vaadin.disconnect.core.annotations.*;
+import org.vaadin.disconnect.core.client.RPC;
+import org.vaadin.disconnect.core.server.RPCHandler;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -46,22 +46,6 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
         webComponentAnnotation.ifPresent(annotationHolder -> {
             rendererListener.setEnableWebComponents(true);
         });
-        webComponentAnnotation
-                .map(annotation -> annotation.getValue("tagName"))
-                .map(AnnotationValue::getList)
-                .ifPresent(list -> {
-                    for (AnnotationValue annotationValue : list) {
-                        rendererListener.addIgnoredWebComponent(annotationValue.getString());
-                    }
-                });
-
-        webComponentAnnotation
-                .map(annotation -> annotation.getValue("regEx"))
-                .map(AnnotationValue::getString)
-                .filter(StringUtils::isNotEmpty)
-                .ifPresent(regex -> {
-                    rendererListener.addIgnoredWebComponentRegEx(regex);
-                });
 
         Stream.concat(
                 Optional.ofNullable((AnnotationReader) annotations.get(NpmPackage.class.getName()))
@@ -121,7 +105,15 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
                     .forEach(fieldHolder -> fieldHolder.getAnnotations().add(new AnnotationHolder(JsonIgnore.class.getName())));
         }
 
-        if (cls.getAnnotations().get(Service.class.getName()) != null) {
+        AnnotationHolder serviceAnnotation = cls.getAnnotations().get(Service.class.getName());
+        if (serviceAnnotation != null) {
+            String serviceName;
+            AnnotationValue value = serviceAnnotation.getValue("value");
+            if (value != null && !value.getString().isEmpty()) {
+                serviceName = value.getString();
+            } else {
+                serviceName = StringUtils.uncapitalize(cls.getName().replaceAll("[a-z0-9_]+\\.", ""));
+            }
             // That's a service. Let's fuck things up!
             // 1. Remove all fields (make it true stateless)
             new ArrayList<>(cls.getFields()).forEach(cls::removeField);
@@ -132,8 +124,9 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
                     .forEach(cls::removeMethod);
             // 3. Replace body of all remaining methods with call
             // to RPC helper
-            cls.getMethods().forEach(methodHolder -> {
-                methodHolder.setProgram(createRPCDelegator(methodHolder));
+            cls.getMethods().stream().filter(methodHolder -> methodHolder.getAnnotations().get(AllowClientCalls.class.getName()) != null).forEach(methodHolder -> {
+                setupCaching(serviceName, methodHolder, context);
+                methodHolder.setProgram(createRPCDelegator(serviceName, methodHolder));
             });
 
             // 4. Create default constructor
@@ -146,6 +139,139 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
                 addInitializer(cls, fieldHolder);
             }
         });
+    }
+
+    private void setupCaching(String serviceName, MethodHolder methodHolder, ClassHolderTransformerContext context) {
+        String methodName = methodHolder.getName();
+
+        AnnotationHolder allowClientCalls = methodHolder.getAnnotations().get(AllowClientCalls.class.getName());
+        AnnotationHolder enableCache = methodHolder.getAnnotations().get(EnableCache.class.getName());
+        AnnotationHolder enableBgSync = methodHolder.getAnnotations().get(EnableBackgroundSync.class.getName());
+
+        String method = "POST";
+        String cachingStrategy = null;
+        Long maxAge = 24 * 60 * 60L;
+        Integer maxEntries = null;
+        Long retentionTime = 24 * 60L;
+
+        if (allowClientCalls != null) {
+            if (allowClientCalls.getValue("method") != null) {
+                AllowClientCalls.Method value = AllowClientCalls.Method.valueOf(allowClientCalls.getValue("method").getEnumValue().getFieldName());
+                switch (value) {
+                    case GET:
+                        method = "GET";
+                        break;
+                    case POST:
+                    default:
+                        method = "POST";
+                        break;
+                }
+            }
+        }
+
+        if (enableBgSync != null) {
+            cachingStrategy = "workbox.strategies.NetworkOnly";
+
+            TimeUnit unit = TimeUnit.MINUTES;
+
+            if (enableBgSync.getValue("unit") != null) {
+                unit = TimeUnit.valueOf(enableBgSync.getValue("unit").getEnumValue().getFieldName());
+            }
+            if (enableBgSync.getValue("maxRetentionTime") != null) {
+                int value = enableBgSync.getValue("maxRetentionTime").getInt();
+                if (value > 0) {
+                    retentionTime = unit.toMinutes(value);
+                }
+            }
+        }
+
+        if (enableCache != null) {
+            cachingStrategy = "workbox.strategies.NetworkFirst";
+
+            TimeUnit unit = TimeUnit.MINUTES;
+
+            if (enableCache.getValue("strategy") != null) {
+                EnableCache.CachingStrategy strategy = EnableCache.CachingStrategy.valueOf(enableCache.getValue("strategy").getEnumValue().getFieldName());
+                switch (strategy) {
+                    case STALE_WHILE_REVALIDATE:
+                        cachingStrategy = "workbox.strategies.CacheWhileRevalidate";
+                        break;
+                    case CACHE_ONLY:
+                        cachingStrategy = "workbox.strategies.CacheOnly";
+                        break;
+                    case CACHE_FIRST:
+                        cachingStrategy = "workbox.strategies.CacheFirst";
+                        break;
+                    case NETWORK_ONLY:
+                        cachingStrategy = "workbox.strategies.NetworkOnly";
+                        break;
+                    case NETWORK_FIRST:
+                        cachingStrategy = "workbox.strategies.NetworkFirst";
+                        break;
+                }
+            }
+
+            if (enableCache.getValue("unit") != null) {
+                unit = TimeUnit.valueOf(enableCache.getValue("unit").getEnumValue().getFieldName());
+            }
+            if (enableCache.getValue("maxAge") != null) {
+                int value = enableCache.getValue("maxAge").getInt();
+                if (value > 0) {
+                    maxAge = unit.toSeconds(value);
+                }
+            }
+            if (enableCache.getValue("maxEntries") != null) {
+                int value = enableCache.getValue("maxEntries").getInt();
+                if (value > 0) {
+                    maxEntries = value;
+                }
+            }
+        }
+
+        if (enableBgSync != null && enableCache == null) {
+            context.getDiagnostics().warning(null, "Missing @EnableCache annotation for {{c0}}." + methodName + "; will use @EnableCache(strategy = EnableCache.Strategy.NETWORK_ONLY)", methodHolder.getOwnerName());
+        }
+        if (enableBgSync != null && methodHolder.getResultType() != ValueType.VOID) {
+            context.getDiagnostics().error(null, "{{c0}}." + methodName + " is annotated with @EnableBackgroundSync, but has non-void return type", methodHolder.getOwnerName());
+        }
+
+        if (cachingStrategy == null) {
+            return;
+        }
+
+        StringBuilder configLine = new StringBuilder();
+        configLine.append("    registerRPCStrategy(workbox, '").append(method).append("', '/rpc/");
+        configLine.append(RPCHandler.toKebabCase(serviceName));
+        configLine.append("/");
+        configLine.append(RPCHandler.toKebabCase(methodName));
+        configLine.append("', ");
+        configLine.append(cachingStrategy);
+        configLine.append(", ");
+
+        if (enableCache != null || enableBgSync != null) {
+            configLine.append("{ purgeOnQuotaError: true");
+            if (maxAge != null) {
+                configLine.append(", maxAgeSeconds: ").append(maxAge);
+            }
+            if (maxEntries != null) {
+                configLine.append(", maxEntries: ").append(maxEntries);
+            }
+            configLine.append(" }, ");
+        } else {
+            configLine.append("null, ");
+        }
+
+        if (enableBgSync != null) {
+            configLine.append("{ queueName: '").append(serviceName).append("_").append(methodName).append("'");
+            if (retentionTime != null) {
+                configLine.append(", maxRetentionTime: ").append(retentionTime);
+            }
+            configLine.append(" }");
+        } else {
+            configLine.append("null");
+        }
+        configLine.append(");");
+        rendererListener.addRPCRouteConfig(configLine.toString());
     }
 
     private void addInitializer(ClassHolder cls, FieldHolder fieldHolder) {
@@ -180,7 +306,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
                 });
     }
 
-    private Program createRPCDelegator(MethodHolder method) {
+    private Program createRPCDelegator(String serviceName, MethodHolder method) {
         Program program = new Program();
         program.createVariable(); // this
 
@@ -190,13 +316,11 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
             argumentList.add(program.createVariable());
         }
 
-        Variable serviceVar = program.createVariable();
-        Variable methodVar = program.createVariable();
+        Variable endpointVar = program.createVariable();
         Variable typeVar = program.createVariable();
 
         BasicBlock block = program.createBasicBlock();
-        block.add(createStringConstantInstruction(serviceVar, method.getOwnerName()));
-        block.add(createStringConstantInstruction(methodVar, method.getName()));
+        block.add(createStringConstantInstruction(endpointVar, RPC.ENDPOINT + "/" + RPCHandler.toKebabCase(serviceName) + "/" + RPCHandler.toKebabCase(method.getName())));
         block.add(createClassConstantInstruction(typeVar, method.getResultType()));
 
         // Create argument array
@@ -214,25 +338,63 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
             block.add(createPutElementInstruction(argumentsUnwrapped, index, argumentList.get(i), ArrayElementType.OBJECT));
         }
 
-        Variable result = program.createVariable();
+        AnnotationValue methodValue = method.getAnnotations().get(AllowClientCalls.class.getName()).getValue("method");
 
-        InvokeInstruction invokeInstruction = new InvokeInstruction();
-        invokeInstruction.setType(InvocationType.SPECIAL);
-        invokeInstruction.setReceiver(result);
-        invokeInstruction.setArguments(serviceVar, methodVar, typeVar, arguments);
-        invokeInstruction.setMethod(new MethodReference(RPC.class, "call", String.class, String.class, Class.class, Object[].class, Serializable.class));
-        block.add(invokeInstruction);
+        String methodPrefix;
+        if (methodValue != null) {
+            AllowClientCalls.Method value = AllowClientCalls.Method.valueOf(methodValue.getEnumValue().getFieldName());
+            switch (value) {
+                case POST:
+                    methodPrefix = "callPost";
+                    break;
+                case GET:
+                default:
+                    methodPrefix = "callGet";
+                    break;
+            }
+        } else {
+            methodPrefix = "callPost";
+        }
 
-        Variable convertedResult = program.createVariable();
-        CastInstruction castInstruction = new CastInstruction();
-        castInstruction.setTargetType(method.getResultType());
-        castInstruction.setValue(result);
-        castInstruction.setReceiver(convertedResult);
-        block.add(castInstruction);
+        if (method.getAnnotations().get(EnableBackgroundSync.class.getName()) != null) {
+            InvokeInstruction invokeInstruction = new InvokeInstruction();
+            invokeInstruction.setType(InvocationType.SPECIAL);
+            invokeInstruction.setArguments(endpointVar, arguments);
+            invokeInstruction.setMethod(new MethodReference(RPC.class, methodPrefix + "Ignore", String.class, Object[].class, void.class));
+            block.add(invokeInstruction);
 
-        ExitInstruction exitInstruction = new ExitInstruction();
-        exitInstruction.setValueToReturn(convertedResult);
-        block.add(exitInstruction);
+            ExitInstruction exitInstruction = new ExitInstruction();
+            block.add(exitInstruction);
+        } else if (method.getResultType() == ValueType.VOID) {
+            InvokeInstruction invokeInstruction = new InvokeInstruction();
+            invokeInstruction.setType(InvocationType.SPECIAL);
+            invokeInstruction.setArguments(endpointVar, arguments);
+            invokeInstruction.setMethod(new MethodReference(RPC.class, methodPrefix, String.class, Object[].class, void.class));
+            block.add(invokeInstruction);
+
+            ExitInstruction exitInstruction = new ExitInstruction();
+            block.add(exitInstruction);
+        } else {
+            Variable result = program.createVariable();
+
+            InvokeInstruction invokeInstruction = new InvokeInstruction();
+            invokeInstruction.setType(InvocationType.SPECIAL);
+            invokeInstruction.setReceiver(result);
+            invokeInstruction.setArguments(endpointVar, typeVar, arguments);
+            invokeInstruction.setMethod(new MethodReference(RPC.class, methodPrefix, String.class, Class.class, Object[].class, Serializable.class));
+            block.add(invokeInstruction);
+
+            Variable convertedResult = program.createVariable();
+            CastInstruction castInstruction = new CastInstruction();
+            castInstruction.setTargetType(method.getResultType());
+            castInstruction.setValue(result);
+            castInstruction.setReceiver(convertedResult);
+            block.add(castInstruction);
+
+            ExitInstruction exitInstruction = new ExitInstruction();
+            exitInstruction.setValueToReturn(convertedResult);
+            block.add(exitInstruction);
+        }
 
         return program;
     }

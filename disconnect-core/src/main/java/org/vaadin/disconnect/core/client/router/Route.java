@@ -1,6 +1,8 @@
 package org.vaadin.disconnect.core.client.router;
 
 import org.teavm.jso.JSObject;
+import org.teavm.jso.core.JSArray;
+import org.teavm.jso.core.JSString;
 import org.vaadin.disconnect.core.client.Constructor;
 import org.vaadin.disconnect.core.client.ElementPrototype;
 import org.vaadin.disconnect.core.client.Elements;
@@ -24,6 +26,10 @@ public interface Route extends ElementPrototype<Route> {
 
     default Route path(String path) {
         return with("path", path);
+    }
+
+    default Route path(String... paths) {
+        return with("path", paths);
     }
 
     default Route exact() {

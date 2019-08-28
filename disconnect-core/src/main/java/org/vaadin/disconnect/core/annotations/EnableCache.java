@@ -11,10 +11,20 @@ import java.util.concurrent.TimeUnit;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AllowClientCalls {
-    Method method() default Method.POST;
+public @interface EnableCache {
+    CachingStrategy strategy() default CachingStrategy.NETWORK_FIRST;
 
-    enum Method {
-        GET, POST
+    int maxEntries() default -1;
+
+    int maxAge() default 24;
+
+    TimeUnit unit() default TimeUnit.HOURS;
+
+    enum CachingStrategy {
+        STALE_WHILE_REVALIDATE,
+        CACHE_FIRST,
+        NETWORK_FIRST,
+        CACHE_ONLY,
+        NETWORK_ONLY
     }
 }

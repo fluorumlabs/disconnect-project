@@ -13,6 +13,9 @@ public interface ElementPrototype<T extends ElementPrototype> extends JSObject {
     T with(String property, String value);
 
     @JSBody(params = {"property", "value"}, script = "this[1][property] = value; return this;")
+    T with(String property, String[] value);
+
+    @JSBody(params = {"property", "value"}, script = "this[1][property] = value; return this;")
     T with(String property, boolean value);
 
     @JSBody(params = {"property", "value"}, script = "this[1][property] = value; return this;")
@@ -27,7 +30,7 @@ public interface ElementPrototype<T extends ElementPrototype> extends JSObject {
     @JSBody(params = {"property", "value"}, script = "this[1][property] = value; return this;")
     T with(String property, JSObject value);
 
-    @JSBody(params = {"property", "value"}, script = "this[1][property] = value; return this;")
+    @JSBody(params = {"property", "value"}, script = "this[1][property] = $rtd_wrapThread(value); return this;")
     T with(String property, EventListener<?> value);
 
     @JSBody(params = {"_className"},

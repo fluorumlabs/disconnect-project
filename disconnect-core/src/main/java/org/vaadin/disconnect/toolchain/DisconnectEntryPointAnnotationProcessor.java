@@ -70,6 +70,7 @@ public class DisconnectEntryPointAnnotationProcessor extends AbstractProcessor {
                     "\n" +
                     "class GeneratedEntryPoint {\n" +
                     "    public static void main(String[] args) {\n" +
+                    "        org.vaadin.disconnect.core.client.internals.DisconnectInitializer.init();\n" +
                     "        CLASS entryPoint = new CLASS();\n" +
                     "        entryPoint.run();\n" +
                     "    }\n" +
