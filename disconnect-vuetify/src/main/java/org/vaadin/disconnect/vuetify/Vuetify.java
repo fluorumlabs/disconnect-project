@@ -1,0 +1,28 @@
+package org.vaadin.disconnect.vuetify;
+
+import org.teavm.jso.JSBody;
+import org.teavm.jso.JSObject;
+import org.vaadin.disconnect.core.annotations.ImportObject;
+import org.vaadin.disconnect.core.annotations.NpmPackage;
+import org.vaadin.disconnect.vue.client.ui.Vue;
+
+/**
+ * Created by Artem Godin on 9/25/2019.
+ */
+@NpmPackage(name = "vuetify")
+public abstract class Vuetify {
+    @ImportObject(module = "vuetify/lib/framework")
+    private static JSObject INSTANCE;
+
+    static {
+        Vue.use(INSTANCE);
+    }
+
+    public static JSObject configure(VuetifyConfiguration configuration) {
+        return createInstance(INSTANCE, configuration);
+    }
+
+    @JSBody(params = {"instance", "configuration"}, script = "return new instance(configuration)")
+    private static native JSObject createInstance(JSObject instance, VuetifyConfiguration configuration);
+
+}

@@ -11,7 +11,7 @@ import org.vaadin.disconnect.core.client.internals.dependencies.RuntimeDependenc
  * Created by Artem Godin on 8/28/2019.
  */
 @NpmPackage(name = "fast-memoize", version = "latest")
-@Import(symbols = {"$rtd_wrapThread", "$rtd_setThreadStarter"}, module = "./disconnect/thread-wrapper.js", object = true)
+@Import(symbols = {"$rtd_wrapThread", "$rtd_setThreadStarter"}, module = "./disconnect/thread-wrapper.js")
 public abstract class DisconnectInitializer implements JSObject {
     @JSBody(script = "$rtd_setThreadStarter($rt_threadStarter)")
     private static native void initThreadStarter();

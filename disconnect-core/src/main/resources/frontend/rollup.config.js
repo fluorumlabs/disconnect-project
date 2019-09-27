@@ -9,59 +9,18 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import workbox from 'rollup-plugin-workbox-build';
 import {readFileSync} from 'fs';
+import path from 'path';
 
-import enableWebComponents from './build.config.js';
+import buildConfig from './build.config.js';
 import workboxConfig from './workbox.config.js';
 
 const importEs5Adapter = '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
 const importWebComponents = '@webcomponents/webcomponentsjs/webcomponents-bundle.js';
 
-const es5IgnoreSettings = enableWebComponents ? [] : [importEs5Adapter, importWebComponents];
-const es6IgnoreSettings = enableWebComponents ? [importEs5Adapter] : [importEs5Adapter, importWebComponents];
+const es5IgnoreSettings = buildConfig.enableWebComponents ? [] : [importEs5Adapter, importWebComponents];
+const es6IgnoreSettings = buildConfig.enableWebComponents ? [importEs5Adapter] : [importEs5Adapter, importWebComponents];
 
 const namedExports = {
-    'node_modules/react/index.js': [
-        'Component',
-        'Children',
-        'Fragment',
-        'cloneElement',
-        'createElement',
-        'createContext',
-        'PropTypes',
-        'isValidElement',
-        'useContext',
-        'useState',
-        'useCallback',
-        'useRef',
-        'useMemo',
-        'useEffect',
-        'useLayoutEffect',
-        'useDebugValue',
-        'memo',
-        'forwardRef',
-    ],
-    'node_modules/react-is/index.js': [
-        'isValidElementType',
-        'ForwardRef'
-    ],
-    'node_modules/react-dom/index.js': [
-        'findDOMNode'
-    ],
-    'node_modules/prop-types/index.js': [
-        'element',
-        'elementType',
-        'func',
-        'oneOfType',
-        'oneOf',
-        'node',
-        'object',
-        'string',
-        'bool',
-        'number',
-        'instanceOf',
-        'any',
-        'arrayOf'
-    ],
 };
 
 const commonJsOptions = {
@@ -78,9 +37,13 @@ function replaceSettings(mode) {
 
 const developmentEs6Build= [
     postcss({
+        use: [
+            ['sass', {
+                includePaths: [path.resolve('node_modules')]
+            }]
+        ],
         extract: 'static/bin/app.css',
         minimize: false,
-        modules: true,
         plugins: [
             postcssimport(),
             postcsscopy({
@@ -102,9 +65,13 @@ const developmentEs6Build= [
 
 const productionEs5Build = [
     postcss({
+        use: [
+            ['sass', {
+                includePaths: [path.resolve('node_modules')]
+            }]
+        ],
         extract: 'static/bin/app.css',
         minimize: true,
-        modules: true,
         plugins: [
             postcssimport(),
             postcsscopy({
@@ -137,9 +104,13 @@ const productionEs5Build = [
 
 const productionEs6Build = [
     postcss({
+        use: [
+            ['sass', {
+                includePaths: [path.resolve('node_modules')]
+            }]
+        ],
         extract: 'static/bin/app.css',
         minimize: true,
-        modules: true,
         plugins: [
             postcssimport(),
             postcsscopy({
@@ -170,7 +141,8 @@ if (process.env.NODE_ENV==='production') {
             format: 'esm',
             sourceMap: 'inline'
         },
-        plugins: productionEs6Build
+        plugins: productionEs6Build,
+        context: 'window'
     });
     config.push({
         input: 'src/app.js',
@@ -179,7 +151,8 @@ if (process.env.NODE_ENV==='production') {
             format: 'iife',
             sourceMap: 'inline'
         },
-        plugins: productionEs5Build
+        plugins: productionEs5Build,
+        context: 'window'
     });
     config.push({
         input: 'src/sw.js',
@@ -203,7 +176,8 @@ if (process.env.NODE_ENV==='production') {
             format: 'esm',
             sourceMap: 'inline'
         },
-        plugins: developmentEs6Build
+        plugins: developmentEs6Build,
+        context: 'window'
     });
     config.push({
         input: 'src/sw.js',

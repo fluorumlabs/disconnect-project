@@ -30,7 +30,7 @@
 
         <disconnect.version>1.0-SNAPSHOT</disconnect.version>
 
-        <teavm.version>0.6.0-dev-816</teavm.version>
+        <teavm.version>0.6.0</teavm.version>
         <flavour.version>0.2.0-dev-70</flavour.version>
         <spring.version>5.1.9.RELEASE</spring.version>
         <jackson.version>2.9.9</jackson.version>
@@ -56,6 +56,16 @@
             <dependency>
                 <groupId>org.vaadin.disconnect</groupId>
                 <artifactId>disconnect-core</artifactId>
+                <version>${disconnect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.vaadin.disconnect</groupId>
+                <artifactId>disconnect-vue</artifactId>
+                <version>${disconnect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.vaadin.disconnect</groupId>
+                <artifactId>disconnect-vuetify</artifactId>
                 <version>${disconnect.version}</version>
             </dependency>
         </dependencies>
@@ -125,6 +135,7 @@
                                 <sourceFilesCopied>${teavm.debugInfo}</sourceFilesCopied>
 
                                 <optimizationLevel>${teavm.optimizationLevel}</optimizationLevel>
+                                <incremental>false</incremental>
                                 <targetType>JAVASCRIPT</targetType>
 
                                 <stopOnErrors>true</stopOnErrors>

@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * Created by Artem Godin on 8/20/2019.
  */
-@Target(ElementType.TYPE)
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Repeatable(Import.Container.class)
 public @interface Import {
@@ -13,18 +13,12 @@ public @interface Import {
 
     String module();
 
-    boolean object() default false;
+    boolean defaultExport() default false;
 
-    @Target(ElementType.TYPE)
+    @Target({ElementType.TYPE})
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Container {
 
-        /**
-         * Internally used to enable use of multiple {@link UrlParameterMapping}
-         * annotations.
-         *
-         * @return an array of the UrlParameterMapping annotations
-         */
         Import[] value();
     }
 

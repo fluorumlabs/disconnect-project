@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 public @interface NpmPackage {
     String name();
 
-    String version();
+    String version() default "LATEST";
 
     @Target(ElementType.TYPE)
     @Retention(RetentionPolicy.RUNTIME)

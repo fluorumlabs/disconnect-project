@@ -30,7 +30,17 @@
             <groupId>org.vaadin.disconnect</groupId>
             <artifactId>disconnect-core</artifactId>
         </dependency>
-    </dependencies>
+
+        <dependency>
+            <groupId>org.vaadin.disconnect</groupId>
+            <artifactId>disconnect-vue</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.vaadin.disconnect</groupId>
+            <artifactId>disconnect-vuetify</artifactId>
+        </dependency>
+     </dependencies>
 
     <build>
         <plugins>

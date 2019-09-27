@@ -73,7 +73,7 @@ public abstract class Convert implements JSObject {
         throw new RuntimeException("Long is not supported in JavaScript");
     }
 
-    public static int toByte(JSObject arg) {
+    public static byte toByte(JSObject arg) {
         return ((JSNumber) arg).byteValue();
     }
 
