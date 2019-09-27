@@ -64,7 +64,9 @@ public class TestView extends Component {
     }
 
     private void logMessage(String message, boolean fromServer) {
-        String formattedMessage = (fromServer ? "⯇ " : "⯈ ") + JSDate.create().toISOString() + " " + message;
+        String formattedMessage = (fromServer ? "⯇ " : "⯈ ")
+                + JSDate.create().toISOString() + " "
+                + message;
         log.insert(Element.of("pre").setText(formattedMessage));
     }
 
