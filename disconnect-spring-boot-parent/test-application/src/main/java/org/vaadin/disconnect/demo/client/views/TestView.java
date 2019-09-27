@@ -63,18 +63,18 @@ public class TestView extends Component {
         return verticalLayout;
     }
 
-    private void logMessage(String message, boolean fromServer) {
-        String formattedMessage = (fromServer ? "⯇ " : "⯈ ")
-                + JSDate.create().toISOString() + " "
-                + message;
-        log.insert(Element.of("pre").setText(formattedMessage));
-    }
-
     private String getUserName() {
         return userName;
     }
 
     private void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    private void logMessage(String message, boolean fromServer) {
+        String formattedMessage = (fromServer ? "⯇ " : "⯈ ")
+                + JSDate.create().toISOString() + " "
+                + message;
+        log.insert(Element.of("pre").setText(formattedMessage));
     }
 }
