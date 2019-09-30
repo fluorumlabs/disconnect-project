@@ -13,7 +13,7 @@ import org.teavm.platform.PlatformObject;
  */
 public interface StoreDefinition extends JSObject {
     @JSProperty
-    void setState(PlatformObject object);
+    void setState(JSObject object);
 
     @JSProperty
     void setMutations(JSMapLike<JSObject> actions);
@@ -23,6 +23,6 @@ public interface StoreDefinition extends JSObject {
 
     @JSFunctor
     interface Handler extends JSObject{
-        void handle(PlatformObject state, JSArray<PlatformObject> payload);
+        void handle(JSObject state, JSArray<JSObject> payload);
     }
 }

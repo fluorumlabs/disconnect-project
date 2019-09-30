@@ -28,7 +28,7 @@ public abstract class ComponentInstance implements JSObject {
     public native void forceUpdate();
 
     @JSBody(params = {"callback", "callbackFunction"}, script = "this['__'+callback] = callbackFunction;")
-    public native void registerCallback(String callback, CallbackFunction callbackFunction);
+    public native void registerCallback(String callback, VoidCallbackFunction callbackFunction);
 
     @JSIndexer
     public native void set(String name, JSObject value);
@@ -39,22 +39,19 @@ public abstract class ComponentInstance implements JSObject {
     @JSBody(params = {"observeFunction", "computeFunction"}, script = "this.$watch(observeFunction, computeFunction, { deep: true, immediate: true })")
     public native void watch(ObserveFunction observeFunction, CallbackFunction computeFunction);
 
-    @JSBody(params = {"instance", "computeFunction"}, script = "vue_enqueue_watch(instance, computeFunction, function(){}, true)")
-    public static native void enqueueCompute(PlatformObject instance, CallbackFunction computeFunction);
-
-    @JSBody(params = {"instance", "watchFunction", "actionFunction", "_immediate"}, script = "vue_enqueue_watch(instance, watchFunction, actionFunction, _immediate)")
-    public static native void enqueueWatch(PlatformObject instance, WatchFunction watchFunction, CallbackFunction actionFunction, boolean _immediate);
-
-    @JSBody(params = {"instance", "vueInstance"}, script = "vue_register_watches(instance, vueInstance)")
-    public static native void registerWatches(PlatformObject instance, ComponentInstance vueInstance);
-
     @JSFunctor
     public interface ObserveFunction extends JSObject {
-        PlatformObject observe();
+        JSObject observe();
     }
 
     @JSFunctor
     public interface CallbackFunction extends JSObject {
+        void callback(JSObject object);
+    }
+
+
+    @JSFunctor
+    public interface VoidCallbackFunction extends JSObject {
         void callback();
     }
 

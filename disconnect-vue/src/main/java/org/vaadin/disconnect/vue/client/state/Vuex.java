@@ -3,10 +3,9 @@ package org.vaadin.disconnect.vue.client.state;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.core.JSArray;
-import org.teavm.platform.Platform;
-import org.teavm.platform.PlatformObject;
 import org.vaadin.disconnect.core.annotations.ImportObject;
 import org.vaadin.disconnect.core.annotations.NpmPackage;
+import org.vaadin.disconnect.core.client.internals.DisconnectUtils;
 import org.vaadin.disconnect.vue.client.internals.ComponentInstance;
 import org.vaadin.disconnect.vue.client.internals.StoreDefinition;
 import org.vaadin.disconnect.vue.client.internals.StoreInstance;
@@ -52,41 +51,41 @@ public abstract class Vuex implements JSObject {
     }
 
     @JSBody(params = {"store", "observeFunction", "computeFunction"}, script = "store.watch(observeFunction, $rtd_wrapThread(computeFunction), { deep: true, immediate: true })")
-    private static native void watch(StoreInstance store, ComponentInstance.ObserveFunction observeFunction, ComponentInstance.CallbackFunction computeFunction);
+    private static native void watch(StoreInstance store, ComponentInstance.ObserveFunction observeFunction, ComponentInstance.VoidCallbackFunction computeFunction);
 
-    public static void watch(ComponentInstance.ObserveFunction observeFunction, ComponentInstance.CallbackFunction computeFunction) {
+    public static void watch(ComponentInstance.ObserveFunction observeFunction, ComponentInstance.VoidCallbackFunction computeFunction) {
         watch(store, observeFunction, computeFunction);
     }
 
-    public static JSArray<PlatformObject> convertPayload(Object... objects) {
-        JSArray<PlatformObject> platformObjects = JSArray.create();
+    public static JSArray<JSObject> convertPayload(Object... objects) {
+        JSArray<JSObject> platformObjects = JSArray.create();
         for (Object object : objects) {
-            platformObjects.push(Platform.getPlatformObject(object));
+            platformObjects.push(DisconnectUtils.asJsObject(object));
         }
         return platformObjects;
     }
 
-    public static Object[] convertPayload(JSArray<PlatformObject> platformObjects) {
+    public static Object[] convertPayload(JSArray<JSObject> platformObjects) {
         Object[] objects = new Object[platformObjects.getLength()];
 
         for (int i = 0; i < platformObjects.getLength(); i++) {
-            objects[i] = platformObjects.get(i);
+            objects[i] = DisconnectUtils.asJavaObject(platformObjects.get(i));
         }
 
         return objects;
     }
 
     @JSBody(params = {"instance", "id", "payload"}, script = "instance.dispatch(id, payload)")
-    private static native void dispatch(StoreInstance instance, String id, JSArray<PlatformObject> payload);
+    private static native void dispatch(StoreInstance instance, String id, JSArray<JSObject> payload);
 
-    public static void dispatch(String id, JSArray<PlatformObject> payload) {
+    public static void dispatch(String id, JSArray<JSObject> payload) {
         dispatch(store, id, payload);
     }
 
     @JSBody(params = {"instance", "id", "payload"}, script = "instance.commit(id, payload)")
-    private static native void commit(StoreInstance instance, String id, JSArray<PlatformObject> payload);
+    private static native void commit(StoreInstance instance, String id, JSArray<JSObject> payload);
 
-    public static void commit(String id, JSArray<PlatformObject> payload) {
+    public static void commit(String id, JSArray<JSObject> payload) {
         commit(store, id, payload);
     }
 }

@@ -71,7 +71,7 @@ public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
             formatLine(out, "static {");
             formatLine(out, "%s instance = new %s();", typedElement.getSimpleName().toString(), typedElement.getSimpleName().toString());
             formatLine(out, "StoreDefinition definition = JSObjects.create();");
-            formatLine(out, "definition.setState(Platform.getPlatformObject(instance));");
+            formatLine(out, "definition.setState(DisconnectUtils.asJsObject(instance));");
             formatLine(out, "definition.setMutations(JSObjects.create());");
 
             formatMutatorRegistrations(out, typedElement, roundEnv);
@@ -79,14 +79,9 @@ public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
             formatLine(out, "Vuex.registerModule(\"%s\", definition);", typedElement.getSimpleName());
             formatLine(out, "}");
 
-            formatLine(out, "public static %s getInstance() { return instanceConvert(Vuex.getState(\"%s\")); }", typedElement.getSimpleName(), typedElement.getSimpleName());
+            formatLine(out, "public static %s getInstance() { return DisconnectUtils.asJavaObject(Vuex.getState(\"%s\")); }", typedElement.getSimpleName(), typedElement.getSimpleName());
 
             formatMethods(out, typedElement, roundEnv);
-
-            formatLine(out, "private static %s instanceConvert(JSObject state) { ((Mirror)Platform.getPlatformObject(MIRROR)).setValue(state); return MIRROR.%s; }", typedElement.getSimpleName().toString(), mirrorName);
-            formatLine(out, "private static final MirrorHelper MIRROR = new MirrorHelper();");
-            formatLine(out, "private interface Mirror extends JSObject { @JSBody(params = \"object\", script = \"this.$%s = object;\") void setValue(JSObject object); }", mirrorName);
-            formatLine(out, "private static class MirrorHelper { %s %s = new %s(); }", typedElement.getSimpleName().toString(), mirrorName, typedElement.getSimpleName().toString());
 
             formatLine(out, "}");
         }
@@ -117,8 +112,8 @@ public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
                     formatLine(out, "));");
                     formatLine(out, "}");
 
-                    formatLine(out, "public static void _%s(PlatformObject state, JSArray<PlatformObject> args) {", ee.getSimpleName());
-                    formatLine(out, "%s instance = instanceConvert(state);", typedElement.getSimpleName().toString());
+                    formatLine(out, "public static void _%s(JSObject state, JSArray<JSObject> args) {", ee.getSimpleName());
+                    formatLine(out, "%s instance = DisconnectUtils.asJavaObject(state);", typedElement.getSimpleName().toString());
 
                     if (!ee.getParameters().isEmpty()) {
                         formatLine(out, "Object[] arguments = Vuex.convertPayload(args);");
@@ -126,15 +121,7 @@ public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
                         for (int i = 0; i < ee.getParameters().size(); i++) {
                             String type = ee.getParameters().get(i).asType().toString();
                             String name = ee.getParameters().get(i).getSimpleName().toString();
-                            format(out, "%s %s = ", type, name);
-                            switch (type) {
-                                case "java.lang.Integer":
-                                    formatLine(out, "new %s(0);", type);
-                                    break;
-                                default:
-                                    formatLine(out, "new %s();", type);
-                            }
-                            formatLine(out, "DisconnectUtils.shallowClone(%s,arguments[%d]);", ee.getParameters().get(i).getSimpleName().toString(), i);
+                            formatLine(out, "%s %s = (%s)arguments[%d];", type, name, type, i);
                         }
 
                     }

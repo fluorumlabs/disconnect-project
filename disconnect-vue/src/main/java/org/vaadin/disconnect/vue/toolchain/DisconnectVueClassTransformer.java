@@ -68,23 +68,15 @@ public class DisconnectVueClassTransformer implements ClassHolderTransformer {
                 InvokeInstruction invokeInstruction = (InvokeInstruction)instruction;
                 if ( states.values().contains(invokeInstruction.getMethod().getClassName()+"$$Store") ) {
                     MethodReader method = context.getHierarchy().resolve(invokeInstruction.getMethod());
-                    if (method.getAnnotations().get(Mutation.class.getName())!=null) {
-                        invokeInstruction.setType(InvocationType.SPECIAL);
-                        invokeInstruction.setInstance(null);
-                        invokeInstruction.setMethod(new MethodReference(
-                                method.getOwnerName()+"$$Store", method.getName(), ValueType.VOID
-                        ));
-                    } else {
-                        invokeInstruction.setType(InvocationType.SPECIAL);
-                        invokeInstruction.setInstance(null);
+                    invokeInstruction.setType(InvocationType.SPECIAL);
+                    invokeInstruction.setInstance(null);
 
-                        ValueType[] signature = Stream.concat(Arrays.stream(method.getParameterTypes()),
-                                Stream.of(method.getResultType())).toArray(ValueType[]::new);
+                    ValueType[] signature = Stream.concat(Arrays.stream(method.getParameterTypes()),
+                            Stream.of(method.getResultType())).toArray(ValueType[]::new);
 
-                        invokeInstruction.setMethod(new MethodReference(
-                                method.getOwnerName()+"$$Store", method.getName(), signature
-                        ));
-                    }
+                    invokeInstruction.setMethod(new MethodReference(
+                            method.getOwnerName()+"$$Store", method.getName(), signature
+                    ));
                 }
             }
             instruction = instruction.getNext();
