@@ -3,6 +3,7 @@ package org.vaadin.disconnect.core.client;
 import org.teavm.interop.Async;
 import org.teavm.interop.AsyncCallback;
 import org.teavm.jso.ajax.XMLHttpRequest;
+import org.vaadin.disconnect.core.client.internals.DisconnectConfig;
 import org.vaadin.disconnect.core.client.internals.DisconnectUtils;
 
 import java.io.IOException;
@@ -76,7 +77,7 @@ public class RPC {
 
     private static void callPostBackend(String endpoint, String payload, AsyncCallback<String> callback) {
         XMLHttpRequest xhr = XMLHttpRequest.create();
-        xhr.open("post", endpoint);
+        xhr.open("post", DisconnectConfig.getRpcHost() + endpoint);
         xhr.setOnReadyStateChange(() -> {
             if (xhr.getReadyState() != XMLHttpRequest.DONE) {
                 return;
@@ -125,7 +126,7 @@ public class RPC {
 
     private static void callGetBackend(String endpoint, String payload, AsyncCallback<String> callback) {
         XMLHttpRequest xhr = XMLHttpRequest.create();
-        xhr.open("get", endpoint + "?payload=" + payload);
+        xhr.open("get", DisconnectConfig.getRpcHost() + endpoint + "?payload=" + payload);
         xhr.setOnReadyStateChange(() -> {
             if (xhr.getReadyState() != XMLHttpRequest.DONE) {
                 return;

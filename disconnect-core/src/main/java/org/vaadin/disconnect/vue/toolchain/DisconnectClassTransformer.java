@@ -12,6 +12,7 @@ import org.teavm.model.instructions.*;
 import org.teavm.vm.spi.TeaVMHost;
 import org.vaadin.disconnect.core.annotations.*;
 import org.vaadin.disconnect.core.client.RPC;
+import org.vaadin.disconnect.core.client.internals.DisconnectConfig;
 import org.vaadin.disconnect.core.client.internals.DisconnectSymbols;
 import org.vaadin.disconnect.core.server.RPCHandler;
 
