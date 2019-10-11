@@ -30,7 +30,7 @@ public class TestView extends Component {
         Button button = new Button("Test validation").setEnabled(false);
 
         observe(() -> Objects.equals(details.getPassword(), details.getConfirmPassword()))
-                .map(eq -> eq ? null : "passwords must match")
+                .map(equals -> equals ? null : "passwords must match")
                 .then(confirmPassword::setErrorMessage);
 
         observe(binder::isValid).then(button::setEnabled);
