@@ -21,6 +21,11 @@ public final class Button extends Element<Button> implements HasChildElements<Bu
         setText(title);
     }
 
+    public Button setEnabled(boolean enabled) {
+        data().properties().set("disabled", !enabled);
+        return this;
+    }
+
     @Override
     public Button onClick(VoidEventListener listener) {
         data().eventListeners().set("click", listener);

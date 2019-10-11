@@ -24,6 +24,7 @@ public abstract class Element<T extends Element<T>> implements ElementBase {
         getOverlay().setDefinition(JSString.valueOf(text));
         getOverlay().setChildren(JSArray.create());
         getOverlay().setData(JSObjects.create());
+        getOverlay().getData().setVisible(true);
 
         key(generateUniqueKey());
     }
@@ -32,6 +33,7 @@ public abstract class Element<T extends Element<T>> implements ElementBase {
         getOverlay().setDefinition(definition);
         getOverlay().setChildren(JSArray.create());
         getOverlay().setData(JSObjects.create());
+        getOverlay().getData().setVisible(true);
 
         key(generateUniqueKey());
     }
@@ -90,6 +92,15 @@ public abstract class Element<T extends Element<T>> implements ElementBase {
 
     public final String getRef() {
         return getOverlay().getData().getRef();
+    }
+
+    public final T setVisible(boolean visible) {
+        getOverlay().getData().setVisible(visible);
+        return (T) this;
+    }
+
+    public final boolean isVisible() {
+        return getOverlay().getData().isVisible();
     }
 
     public final void markAsDirty() {

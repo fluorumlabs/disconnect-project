@@ -3,6 +3,7 @@ package org.vaadin.disconnect.vue.client.validation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Artem Godin on 10/10/2019.
@@ -42,5 +43,21 @@ public class ValidationResult {
 
     public static ValidationResult of(String... errors) {
         return new ValidationResult(errors);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ValidationResult that = (ValidationResult) o;
+
+        return Objects.equals(validationErrors, that.validationErrors);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return validationErrors != null ? validationErrors.hashCode() : 0;
     }
 }

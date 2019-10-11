@@ -14,7 +14,6 @@ import org.vaadin.disconnect.vue.client.utils.EnumeratedString;
  * Created by Artem Godin on 9/26/2019.
  */
 public interface ElementData extends JSObject {
-
     @JSBody(script = "this.class = this.class||{}; return this.class;")
     Classes classes();
 
@@ -56,6 +55,12 @@ public interface ElementData extends JSObject {
 
     @JSProperty
     String getRef();
+
+    @JSProperty
+    void setVisible(boolean visible);
+
+    @JSProperty
+    boolean isVisible();
 
     interface Classes extends JSObject {
         @JSIndexer

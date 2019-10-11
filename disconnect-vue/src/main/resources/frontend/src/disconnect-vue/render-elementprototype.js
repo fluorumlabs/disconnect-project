@@ -23,7 +23,7 @@ export default function renderElementPrototype(h, proto) {
     if (proto.definition === '#text') {
         return proto.data.domProps.textContent;
     } else {
-        return h(proto.definition, cloneData(proto.data), proto.children.filter(x => x !== null).map(function (x) {
+        return h(proto.definition, cloneData(proto.data), proto.children.filter(x => x !== null && x.data.visible).map(function (x) {
             return renderElementPrototype(h, x)
         }));
     }
