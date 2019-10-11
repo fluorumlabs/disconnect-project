@@ -7,6 +7,7 @@ import org.teavm.jso.JSObject;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.platform.PlatformObject;
 import org.vaadin.disconnect.core.annotations.Import;
+import org.vaadin.disconnect.vue.client.router.Route;
 
 /**
  * Created by Artem Godin on 9/20/2019.
@@ -16,7 +17,7 @@ import org.vaadin.disconnect.core.annotations.Import;
 @Import(symbols = "register as vue_register_watches", module = "./disconnect-vue/defer-watches.js")
 public abstract class ComponentInstance implements JSObject {
     @JSBody(params = "instance", script = "this.$options.data = function() { return instance };")
-    public native void setJavaInstance(PlatformObject instance);
+    public native void setJavaInstance(JSObject instance);
 
     @JSBody(params = "rf", script = "this.$options.render = function(h) { return renderElementPrototype(h, rf()) };")
     public native void setRenderMethod(RenderFunction rf);
@@ -36,7 +37,11 @@ public abstract class ComponentInstance implements JSObject {
     @JSIndexer
     public native JSObject get(String name);
 
-    @JSBody(params = {"observeFunction", "computeFunction"}, script = "this.$watch(observeFunction, computeFunction, { deep: true, immediate: true })")
+    public Route getRoute() {
+        return get("$route").cast();
+    }
+
+    @JSBody(params = {"observeFunction", "computeFunction"}, script = "this.$watch(observeFunction, $rtd_wrapThread(computeFunction), { deep: true, immediate: true })")
     public native void watch(ObserveFunction observeFunction, CallbackFunction computeFunction);
 
     @JSFunctor

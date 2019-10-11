@@ -1,31 +1,50 @@
 package org.vaadin.disconnect.demo.client.views;
 
-import org.teavm.jso.core.JSDate;
-import org.vaadin.disconnect.demo.backend.GreeterService;
 import org.vaadin.disconnect.demo.client.LoadingState;
+import org.vaadin.disconnect.vue.annotations.Route;
 import org.vaadin.disconnect.vue.annotations.State;
 import org.vaadin.disconnect.vue.annotations.VueComponent;
 import org.vaadin.disconnect.vue.client.elements.Element;
 import org.vaadin.disconnect.vue.client.elements.HtmlElement;
+import org.vaadin.disconnect.vue.client.elements.RouterView;
 import org.vaadin.disconnect.vue.client.ui.Component;
+import org.vaadin.disconnect.vue.client.validation.Validation;
+import org.vaadin.disconnect.vue.client.validation.ValidationResult;
 import org.vaadin.disconnect.vuetify.elements.Button;
 import org.vaadin.disconnect.vuetify.elements.inputs.TextField;
-import org.vaadin.disconnect.vuetify.elements.transitions.FadeTransition;
 import org.vaadin.disconnect.vuetify.elements.wrappers.VerticalLayout;
 
-import javax.annotation.Resource;
+import javax.validation.Constraint;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+import java.util.Objects;
+
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Created by Artem Godin on 9/27/2019.
  */
 @VueComponent
+@Route("test")
+@TestView.PasswordsMatch
 public class TestView extends Component {
-    private FadeTransition log;
 
-    private String userName = "";
+    @NotNull
+    @NotBlank
+    @Size(min = 8, max = 50)
+    private String password = null;
 
-    @Resource
-    private GreeterService greeter;
+    @NotNull
+    @NotBlank
+    @Size(min = 8, max = 50)
+    private String confirmPassword = null;
 
     @State
     private LoadingState loadingState;
@@ -34,47 +53,73 @@ public class TestView extends Component {
     public Element init() {
         VerticalLayout verticalLayout = new VerticalLayout();
 
-        TextField textField = new TextField("Enter your name");
-        textField.bind(this::getUserName, this::setUserName, true);
+        TextField passwordField = new TextField("Type password");
+        passwordField.bind(this::getPassword, this::setPassword, true);
+
+        TextField confirmPasswordField = new TextField("Type password again");
+        confirmPasswordField.bind(this::getConfirmPassword, this::setConfirmPassword, true);
 
         HtmlElement div = Element.of("div");
-        observe(this::getUserName)
-                .then((userName) -> div.setText("You typed: " + userName));
 
-        Button button = new Button("Send to server");
+        Button button = new Button("Test validation");
+
+        observe(() -> Objects.equals(password, confirmPassword))
+                .map(eq -> eq ? null : "passwords must match")
+                .then(confirmPasswordField::setErrorMessage);
+
         button.onClick(() -> {
-            logMessage("Hello server, my name is " + userName, false);
-
-            try {
-                loadingState.beginRequest();
-
-                String greeting = greeter.hello(userName);
-                logMessage(greeting, true);
-            } finally {
-                loadingState.endRequest();
+            ValidationResult validationResult = Validation.validate(this);
+            if (validationResult.isValid()) {
+                div.setText("");
+            } else {
+                div.setText(validationResult.first());
+                passwordField.revalidate();
+                confirmPasswordField.revalidate();
             }
         });
 
-        log = new FadeTransition();
-        log.setGroup(true);
-
-        verticalLayout.add(textField, div, button, log);
+        verticalLayout.add(div, passwordField, confirmPasswordField, button, new RouterView());
 
         return verticalLayout;
     }
 
-    private String getUserName() {
-        return userName;
+    public String getPassword() {
+        return password;
     }
 
-    private void setUserName(String userName) {
-        this.userName = userName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    private void logMessage(String message, boolean fromServer) {
-        String formattedMessage = (fromServer ? "⯇ " : "⯈ ")
-                + JSDate.create().toISOString() + " "
-                + message;
-        log.insert(Element.of("pre").setText(formattedMessage));
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+
+    @Constraint(validatedBy = {PasswordMatchingValidator.class})
+    @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
+    @Retention(RUNTIME)
+    public @interface PasswordsMatch {
+        String message() default "passwords must match";
+
+        Class<?>[] groups() default {};
+
+        Class<? extends Payload>[] payload() default {};
+    }
+
+    public static class PasswordMatchingValidator implements ConstraintValidator<PasswordsMatch, TestView> {
+        @Override
+        public boolean isValid(TestView value, ConstraintValidatorContext context) {
+            return value.getPassword() != null && value.getPassword().equals(value.getConfirmPassword());
+        }
+
+        @Override
+        public void initialize(PasswordsMatch constraintAnnotation) {
+
+        }
     }
 }

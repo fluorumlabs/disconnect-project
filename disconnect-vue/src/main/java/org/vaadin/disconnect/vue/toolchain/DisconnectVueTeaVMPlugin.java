@@ -13,6 +13,7 @@ import org.teavm.vm.spi.TeaVMPlugin;
 public class DisconnectVueTeaVMPlugin implements TeaVMPlugin {
     @Override
     public void install(TeaVMHost host) {
-        host.add(new DisconnectVueClassTransformer());
+        host.add(new DisconnectVueClassTransformer(host.getClassLoader()));
+        host.add(new DisconnectValidationClassTransformer(host.getClassLoader()));
     }
 }

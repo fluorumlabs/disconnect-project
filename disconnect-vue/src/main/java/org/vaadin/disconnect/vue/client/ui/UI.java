@@ -4,6 +4,7 @@ import org.teavm.jso.JSObject;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.vaadin.disconnect.vue.client.internals.ComponentDefinition;
 import org.vaadin.disconnect.vue.client.internals.ComponentDefinitionAccessor;
+import org.vaadin.disconnect.vue.client.router.VueRouter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +24,8 @@ public class UI {
     }
 
     public static void run(ComponentDefinition component) {
+        addConfiguration("router", VueRouter.getRouterInstance());
+
         ComponentDefinition componentDefinition = component.clone();
 
         for (Map.Entry<String, JSObject> stringJSObjectEntry : extraConfiguration.entrySet()) {

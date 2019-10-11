@@ -40,6 +40,12 @@
             <groupId>org.vaadin.disconnect</groupId>
             <artifactId>disconnect-vuetify</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <scope>provided</scope>
+        </dependency>
      </dependencies>
 
     <build>

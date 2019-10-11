@@ -34,6 +34,7 @@
         <flavour.version>0.2.0-dev-70</flavour.version>
         <spring.version>5.1.9.RELEASE</spring.version>
         <jackson.version>2.9.9</jackson.version>
+        <auto-service.version>1.0-rc6</auto-service.version>
         <commons-lang3.version>3.8.1</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
     </properties>
@@ -68,6 +69,12 @@
                 <artifactId>disconnect-vuetify</artifactId>
                 <version>${disconnect.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.google.auto.service</groupId>
+                <artifactId>auto-service</artifactId>
+                <version>${auto-service.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -78,6 +85,7 @@
                 <activatedProperties>development</activatedProperties>
                 <teavm.optimizationLevel>ADVANCED</teavm.optimizationLevel>
                 <teavm.debugInfo>true</teavm.debugInfo>
+                <teavm.minify>false</teavm.minify>
                 <NODE_ENV>development</NODE_ENV>
             </properties>
             <activation>
@@ -90,6 +98,7 @@
                 <activatedProperties>production</activatedProperties>
                 <teavm.optimizationLevel>FULL</teavm.optimizationLevel>
                 <teavm.debugInfo>false</teavm.debugInfo>
+                <teavm.minify>true</teavm.minify>
                 <NODE_ENV>production</NODE_ENV>
             </properties>
         </profile>
@@ -129,7 +138,7 @@
 
                                 <targetDirectory>${project.build.directory}/frontend/teavm</targetDirectory>
                                 <mainClass>com.github.fluorumlabs.disconnect.client.GeneratedEntryPoint</mainClass>
-                                <minifying>false</minifying>
+                                <minifying>${teavm.minify}</minifying>
                                 <debugInformationGenerated>${teavm.debugInfo}</debugInformationGenerated>
                                 <sourceMapsGenerated>${teavm.debugInfo}</sourceMapsGenerated>
                                 <sourceFilesCopied>${teavm.debugInfo}</sourceFilesCopied>

@@ -2,7 +2,6 @@ package org.vaadin.disconnect.demo.client;
 
 import org.vaadin.disconnect.core.annotations.EntryPoint;
 import org.vaadin.disconnect.demo.client.views.DemoApplicationShell;
-import org.vaadin.disconnect.vue.client.state.Vuex;
 import org.vaadin.disconnect.vue.client.ui.UI;
 import org.vaadin.disconnect.vuetify.Vuetify;
 import org.vaadin.disconnect.vuetify.VuetifyConfiguration;

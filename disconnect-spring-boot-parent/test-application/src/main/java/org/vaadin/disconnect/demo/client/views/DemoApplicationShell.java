@@ -4,6 +4,7 @@ import org.vaadin.disconnect.demo.client.LoadingState;
 import org.vaadin.disconnect.vue.annotations.State;
 import org.vaadin.disconnect.vue.annotations.VueComponent;
 import org.vaadin.disconnect.vue.client.elements.Element;
+import org.vaadin.disconnect.vue.client.elements.RouterView;
 import org.vaadin.disconnect.vue.client.ui.Component;
 import org.vaadin.disconnect.vuetify.elements.ApplicationShell;
 import org.vaadin.disconnect.vuetify.elements.ProgressIndicator;
@@ -41,7 +42,7 @@ public class DemoApplicationShell extends Component {
 
         appShell.setAppBar(appBar);
 
-        appShell.add(Element.of(TestView.class));
+        appShell.add(new RouterView().set("defaultName", "XpeHoBa"));
 
         return appShell;
     }

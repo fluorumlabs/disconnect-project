@@ -1,25 +1,24 @@
 package org.vaadin.disconnect.vue.toolchain;
 
 import com.google.auto.service.AutoService;
+import org.apache.commons.lang3.StringUtils;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSObject;
+import org.vaadin.disconnect.vue.annotations.Property;
 import org.vaadin.disconnect.vue.client.internals.ComponentDefinition;
 import org.vaadin.disconnect.vue.client.internals.ComponentInstance;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.PackageElement;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.TypeKind;
-import javax.lang.model.type.TypeMirror;
+import javax.lang.model.element.*;
+import javax.lang.model.util.ElementFilter;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Artem Godin on 8/19/2019.
@@ -76,8 +75,11 @@ public class DisconnectVueComponentAnnotationProcessor extends AbstractProcessor
         format(out, "@%s(script=\"return {", JSBody.class.getName());
 
         formatName(out, typedElement, roundEnv);
+        formatProps(out, typedElement, roundEnv);
         formatData(out, typedElement, roundEnv);
         formatBeforeCreateMethod(out, typedElement, roundEnv);
+        formatBeforeRouteEnterMethod(out, typedElement, roundEnv);
+        formatBeforeRouteUpdateMethod(out, typedElement, roundEnv);
         formatCallbackMethod(out, "created", typedElement, roundEnv);
         formatCallbackMethod(out, "beforeMount", typedElement, roundEnv);
         formatCallbackMethod(out, "mounted", typedElement, roundEnv);
@@ -92,10 +94,51 @@ public class DisconnectVueComponentAnnotationProcessor extends AbstractProcessor
         formatLine(out, "public static native %s getComponentDefinition();", ComponentDefinition.class.getName());
     }
 
+    private void formatProps(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv) {
+        format(out, ", props: [");
+
+        format(out, "%s", ElementFilter.methodsIn(typedElement.getEnclosedElements()).stream()
+                .filter(methodElement -> methodElement.getModifiers().contains(Modifier.NATIVE))
+                .filter(methodElement -> methodElement.getAnnotation(Property.class) != null)
+                .map(methodElement -> {
+                    String name = methodElement.getSimpleName().toString();
+                    if (name.startsWith("get")) {
+                        name = StringUtils.uncapitalize(StringUtils.removeStart(name, "get"));
+                    } else if (name.startsWith("is")) {
+                        name = StringUtils.uncapitalize(StringUtils.removeStart(name, "is"));
+                    }
+
+                    if (!methodElement.getAnnotation(Property.class).value().isEmpty()) {
+                        name = methodElement.getAnnotation(Property.class).value();
+                    }
+
+                    return "'" + name + "'";
+                })
+                .collect(Collectors.joining(",")));
+
+        format(out, "]");
+
+    }
+
     private void formatBeforeCreateMethod(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv) {
         //TODO REMOVE format(out,", created: function() {");
         format(out, ", beforeCreate: function() {");
         format(out, "javaMethods.get('%s').invoke(this)", getMethodSignature(typedElement.getQualifiedName().toString() + "$$Generated", "instantiate", void.class, ComponentInstance.class));
+        format(out, "}");
+    }
+
+    private void formatBeforeRouteEnterMethod(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv) {
+        //TODO REMOVE format(out,", created: function() {");
+        format(out, ", beforeRouteEnter: function(to, from, next) {");
+        format(out, "next(function(vm) {vm.__beforeEnter();});");
+        format(out, "}");
+    }
+
+    private void formatBeforeRouteUpdateMethod(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv) {
+        //TODO REMOVE format(out,", created: function() {");
+        format(out, ", beforeRouteUpdate: function(to, from, next) {");
+        format(out, "this.__beforeEnter();");
+        format(out, "next();");
         format(out, "}");
     }
 

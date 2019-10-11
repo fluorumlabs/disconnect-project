@@ -80,31 +80,31 @@ public interface ElementData extends JSObject {
         void set(String key, String value);
 
         @JSIndexer
-        void set(String key, String[] value);
+        void set(String key, @JSByRef String[] value);
 
         @JSIndexer
         void set(String key, boolean value);
 
         @JSIndexer
-        void set(String key, boolean[] value);
+        void set(String key, @JSByRef boolean[] value);
 
         @JSIndexer
         void set(String key, int value);
 
         @JSIndexer
-        void set(String key, int[] value);
+        void set(String key, @JSByRef int[] value);
 
         @JSIndexer
         void set(String key, double value);
 
         @JSIndexer
-        void set(String key, double[] value);
+        void set(String key, @JSByRef double[] value);
 
         @JSIndexer
         void set(String key, JSObject value);
 
         @JSIndexer
-        void set(String key, JSObject[] value);
+        void set(String key, @JSByRef JSObject[] value);
 
         default void set(String key, EnumeratedString value) {
             set(key, value.value());

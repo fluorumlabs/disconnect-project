@@ -25,4 +25,12 @@ public abstract class DisconnectUtils implements JSObject {
     public static <T> T asJavaObject(JSObject that) {
         return (T)(Object)that;
     }
+
+    @JSBody(params = "result", script = "return;")
+    private static native void ensure(JSObject result);
+
+    public static void ensure(Object x) {
+        ensure(Platform.getPlatformObject(x));
+    }
+
 }

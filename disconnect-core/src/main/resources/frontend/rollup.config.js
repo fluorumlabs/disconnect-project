@@ -8,6 +8,7 @@ import postcssimport from 'postcss-import';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import workbox from 'rollup-plugin-workbox-build';
+import visualizer from 'rollup-plugin-visualizer';
 import {readFileSync} from 'fs';
 import path from 'path';
 
@@ -35,7 +36,15 @@ function replaceSettings(mode) {
     }
 };
 
+function visualizerSettings() {
+    return visualizer({
+        template: 'sunburst',
+        bundlesRelative: false
+    });
+}
+
 const developmentEs6Build= [
+    visualizerSettings(),
     postcss({
         use: [
             ['sass', {
@@ -60,7 +69,7 @@ const developmentEs6Build= [
     workbox({
         mode: 'injectManifest',
         options: workboxConfig
-    })
+    }),
 ];
 
 const productionEs5Build = [
@@ -128,7 +137,7 @@ const productionEs6Build = [
     workbox({
         mode: 'injectManifest',
         options: workboxConfig
-    })
+    }),
 ];
 
 let config = [];
