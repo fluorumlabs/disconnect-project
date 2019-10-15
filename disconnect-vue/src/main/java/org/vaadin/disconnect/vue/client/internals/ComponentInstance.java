@@ -19,7 +19,13 @@ public abstract class ComponentInstance implements JSObject {
     @JSBody(params = "instance", script = "this.$options.data = function() { return instance };")
     public native void setJavaInstance(JSObject instance);
 
-    @JSBody(params = "rf", script = "this.$options.render = function(h) { return renderElementPrototype(h, rf()) };")
+    @JSBody(params = "rf", script = "var that = this;\n" +
+            "this.$options.render = function(h) {\n" +
+            "    that.$$marker = 1;\n" +
+            "    let result = renderElementPrototype(h, rf());\n" +
+            "    that.$$marker = 0;\n" +
+            "    return result; \n" +
+            "};")
     public native void setRenderMethod(RenderFunction rf);
 
     @JSBody(script = "this.$mount(); return this.$el;")
@@ -41,12 +47,13 @@ public abstract class ComponentInstance implements JSObject {
         return get("$route").cast();
     }
 
-    @JSBody(params = {"observeFunction", "computeFunction"}, script = "this.$watch(observeFunction, $rtd_wrapThread(computeFunction), { deep: true, immediate: true })")
-    public native void watch(ObserveFunction observeFunction, CallbackFunction computeFunction);
+    @JSBody(params = {"observeFunction", "computeFunction"}, script = "var that = this;\n" +
+            "window.requestAnimationFrame(function() { that.$watch(observeFunction, $rtd_wrapThread(computeFunction), { deep: true, immediate: true })});")
+    public native void watch(ObserveFunction observeFunction, VoidCallbackFunction computeFunction);
 
     @JSFunctor
     public interface ObserveFunction extends JSObject {
-        JSObject observe();
+        int observe();
     }
 
     @JSFunctor

@@ -8,6 +8,7 @@ import org.teavm.platform.PlatformObject;
 import org.vaadin.disconnect.core.client.Convert;
 import org.vaadin.disconnect.core.client.internals.DisconnectUtils;
 import org.vaadin.disconnect.vue.client.Observer;
+import org.vaadin.disconnect.vue.client.WrappedSupplier;
 import org.vaadin.disconnect.vue.client.elements.Element;
 import org.vaadin.disconnect.vue.client.elements.Text;
 import org.vaadin.disconnect.vue.client.internals.ComponentInstance;
@@ -103,7 +104,8 @@ public abstract class Component {
 
     public final <V> Observer<V> observe(Supplier<V> getter) {
         Observer<V> observer = new Observer<>();
-        instance.watch(() -> DisconnectUtils.asJsObject(getter.get()), (that) -> observer.accept(DisconnectUtils.asJavaObject(that)));
+        WrappedSupplier<V> wrappedSupplier = WrappedSupplier.of(getter);
+        instance.watch(wrappedSupplier::get, () -> observer.accept(wrappedSupplier.getValue()));
         return observer;
     }
 
@@ -113,10 +115,16 @@ public abstract class Component {
     }
 
     public final void markAsDirty() {
-        changeCounter++;
+        if (!Internals.isRendering(instance)) {
+            changeCounter++;
+        }
     }
 
     public static class Internals {
+
+        @JSBody(params = {"component"}, script = "return component.$$marker && component.$$marker > 0")
+        private static native boolean isRendering(JSObject component);
+
         private static <V> V getOrDefault(Supplier<JSObject> supplier, Function<JSObject,V> mapper, V defaultValue) {
             JSObject value = supplier.get();
             if (!JSObjects.isUndefined(value) && value!=null ) {

@@ -27,7 +27,7 @@ public class TestView extends Component {
     public Element init() {
         Binder<UserDetails> binder = Binder.bind(details,this);
 
-        Button button = new Button("Test validation").setEnabled(false);
+        Button button = new Button("Test validation");
 
         observe(() -> Objects.equals(details.getPassword(), details.getConfirmPassword()))
                 .map(equals -> equals ? null : "passwords must match")

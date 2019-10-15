@@ -20,8 +20,7 @@ public abstract class ElementContainer<T extends ElementContainer<T>> extends El
 
     public final T add(Element... elements) {
         for (Element element : elements) {
-            children().add(element);
-            element.setParentElement(this);
+            children().add(element, this);
         }
         return (T) this;
     }
@@ -29,13 +28,11 @@ public abstract class ElementContainer<T extends ElementContainer<T>> extends El
     public final T remove(Element...elements) {
         for (Element element : elements) {
             children().remove(element);
-            element.setParentElement(null);
         }
         return (T) this;
     }
 
     public final T removeByKey(String...keys) {
-        // Note: does not detach from parent
         for (String key : keys) {
             children().removeByKey(key);
         }
@@ -43,7 +40,6 @@ public abstract class ElementContainer<T extends ElementContainer<T>> extends El
     }
 
     public final T removeAll() {
-        // Note: does not detach from parent
         children().removeAll();
         return (T) this;
     }

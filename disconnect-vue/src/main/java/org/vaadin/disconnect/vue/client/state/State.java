@@ -2,6 +2,7 @@ package org.vaadin.disconnect.vue.client.state;
 
 import org.teavm.platform.Platform;
 import org.vaadin.disconnect.vue.client.Observer;
+import org.vaadin.disconnect.vue.client.WrappedSupplier;
 
 import java.util.function.Supplier;
 
@@ -11,8 +12,9 @@ import java.util.function.Supplier;
 public abstract class State {
     public final <V> Observer<V> observe(Supplier<V> getter) {
         Observer<V> observer = new Observer<>();
+        WrappedSupplier<V> wrappedSupplier = WrappedSupplier.of(getter);
         // Double evaluation, but no hardcore tricks
-        Vuex.watch(() -> Platform.getPlatformObject(getter.get()), () -> observer.accept(getter.get()));
+        Vuex.watch(wrappedSupplier::get, () -> observer.accept(wrappedSupplier.getValue()));
         return observer;
     }
 

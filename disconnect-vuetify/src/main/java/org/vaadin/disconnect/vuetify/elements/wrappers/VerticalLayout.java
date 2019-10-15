@@ -22,7 +22,8 @@ public final class VerticalLayout extends VuetifyElement<VerticalLayout> impleme
     @Override
     public final VerticalLayout add(Element... elements) {
         for (Element element : elements) {
-            children().add(new Container.Row(new Container.Col(element)).key(element.getKey()));
+            Container.Row row = new Container.Row(new Container.Col(element)).key(element.getKey());
+            children().add(row, this);
         }
         return this;
     }
@@ -31,7 +32,10 @@ public final class VerticalLayout extends VuetifyElement<VerticalLayout> impleme
     public final VerticalLayout insert(Element<?>... elements) {
         int pos = 0;
         for (Element element : elements) {
-            children().insertAt(pos, new Container.Row(new Container.Col(element)).key(element.getKey()));
+            Container.Row row = new Container.Row(new Container.Col(element)).key(element.getKey());
+
+            children().insertAt(pos, row, this);
+
             pos++;
         }
         return this;

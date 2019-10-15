@@ -24,7 +24,7 @@ public final class HorizontalLayout extends VuetifyElement<HorizontalLayout> imp
     @Override
     public final HorizontalLayout add(Element... elements) {
         for (Element element : elements) {
-            children().add(new Container.Col(element).key(element.getKey()));
+            children().add(new Container.Col(element).key(element.getKey()), this);
         }
         return this;
     }
@@ -33,7 +33,7 @@ public final class HorizontalLayout extends VuetifyElement<HorizontalLayout> imp
     public final HorizontalLayout insert(Element<?>... elements) {
         int pos = 0;
         for (Element element : elements) {
-            children().insertAt(pos, new Container.Row(new Container.Col(element)).key(element.getKey()));
+            children().insertAt(pos, new Container.Row(new Container.Col(element)).key(element.getKey()), this);
             pos++;
         }
         return this;

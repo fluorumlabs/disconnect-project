@@ -16,36 +16,36 @@ public final class ApplicationShell extends VuetifyElement<ApplicationShell> imp
     public ApplicationShell() {
         super(ApplicationShell.class);
         content = new Content();
-        children().add(content.key(getKey()+"-c"));
+        children().add(content.key(getKey()+"-c"), this);
     }
 
     public ApplicationShell setNavigationDrawer(NavigationDrawer drawer) {
         children().removeByKey(getKey() + "-nd");
-        children().add(drawer.key(getKey()+"-nd").setApplicationShell());
+        children().add(drawer.key(getKey()+"-nd").setApplicationShell(), this);
         return this;
     }
 
     public ApplicationShell setAppBar(AppBar appBar) {
         children().removeByKey(getKey() + "-ab");
-        children().add(appBar.key(getKey() + "-ab").setApplicationShell());
+        children().add(appBar.key(getKey() + "-ab").setApplicationShell(), this);
         return this;
     }
 
     public ApplicationShell setSystemBar(SystemBar systemBar) {
         children().removeByKey(getKey()+"-sb");
-        children().add(systemBar.key(getKey() + "-sb").setApplicationShell());
+        children().add(systemBar.key(getKey() + "-sb").setApplicationShell(),this);
         return this;
     }
 
     public ApplicationShell setBottomNavigation(BottomNavigation navBar) {
         children().removeByKey(getKey() + "-bn");
-        children().add(navBar.key(getKey() + "-bn").setApplicationShell());
+        children().add(navBar.key(getKey() + "-bn").setApplicationShell(),this);
         return this;
     }
 
     public ApplicationShell setFooter(Footer footer) {
         children().removeByKey(getKey() + "-ab");
-        children().add(footer.key(getKey() + "-ab").setApplicationShell());
+        children().add(footer.key(getKey() + "-ab").setApplicationShell(),this);
         return this;
     }
 
@@ -71,13 +71,11 @@ public final class ApplicationShell extends VuetifyElement<ApplicationShell> imp
     }
 
     public ApplicationShell removeByKey(String...keys) {
-        // Note: does not detach from parent
         content.removeByKey(keys);
         return this;
     }
 
     public ApplicationShell removeAll() {
-        // Note: does not detach from parent
         content.removeAll();
         return this;
     }

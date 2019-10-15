@@ -50,7 +50,7 @@ public abstract class Vuex implements JSObject {
         return store;
     }
 
-    @JSBody(params = {"store", "observeFunction", "computeFunction"}, script = "store.watch(observeFunction, $rtd_wrapThread(computeFunction), { deep: true, immediate: true })")
+    @JSBody(params = {"store", "observeFunction", "computeFunction"}, script = "window.requestAnimationFrame(function() { store.watch(observeFunction, $rtd_wrapThread(computeFunction), { deep: true, immediate: true })});\n")
     private static native void watch(StoreInstance store, ComponentInstance.ObserveFunction observeFunction, ComponentInstance.VoidCallbackFunction computeFunction);
 
     public static void watch(ComponentInstance.ObserveFunction observeFunction, ComponentInstance.VoidCallbackFunction computeFunction) {

@@ -2,8 +2,12 @@ package org.vaadin.disconnect.vue.client.elements;
 
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSObject;
+import org.teavm.jso.core.JSArray;
 import org.teavm.platform.Platform;
 import org.teavm.platform.PlatformObject;
+import org.vaadin.disconnect.core.client.internals.DisconnectUtils;
+
+import java.util.stream.Stream;
 
 /**
  * Created by Artem Godin on 9/26/2019.
@@ -12,40 +16,75 @@ public abstract class ElementChildren implements JSObject {
     private ElementChildren() {
     }
 
-    @JSBody(script = "return []")
-    public static native ElementChildren create();
-
-    @JSBody(params = "element", script = "this.push(element);")
-    private native void add(PlatformObject element);
-
-    @JSBody(params = {"element"}, script = "this.unshift(element);")
-    private native void insertAt0(PlatformObject element);
-
-    @JSBody(params = {"index","element"}, script = "this.splice(index, 0, element);")
-    private native void insertAt(int index, PlatformObject element);
-
-    public void add(Element element) {
-        add(Platform.getPlatformObject(element));
+    public final void add(Element element, ElementBase owner) {
+        JSArray<JSObject> children = this.cast();
+        children.push(DisconnectUtils.asJsObject(element));
+        element.setParentElement(owner);
     }
 
-    public void insertAt(int index, Element element) {
+    public final void insertAt(int index, Element element, ElementBase owner) {
+        JSArray<JSObject> children = this.cast();
         if ( index == 0 ) {
-            insertAt0(Platform.getPlatformObject(element));
+            children.unshift(DisconnectUtils.asJsObject(element));
         } else {
-            insertAt(index, Platform.getPlatformObject(element));
+            children.splice(index, 0, DisconnectUtils.asJsObject(element));
+        }
+        element.setParentElement(owner);
+    }
+
+    @JSBody(params = "element", script = "return this.findIndex(function(e){return e.data.key === element.data.key;});")
+    private native int findIndex(JSObject element);
+
+    @JSBody(params = "_key", script = "return this.findIndex(function(e){return e.data.key === _key;});")
+    private native int findIndex(String _key);
+
+    public final void removeByKey(String _key) {
+        int index = findIndex(_key);
+        if ( index >= 0 ) {
+            JSArray<JSObject> children = this.cast();
+            Element removed = DisconnectUtils.asJavaObject(children.get(index));
+            children.splice(index,1);
+            removed.setParentElement(null);
         }
     }
 
-    @JSBody(params = "element", script = "var index = this.findIndex(function(e){return e.data.key === element.data.key;}); if (index > -1) { this.splice(index, 1); }")
-    private native void remove(PlatformObject element);
-
-    @JSBody(params = "_key", script = "var index = this.findIndex(function(e){return e.data.key === _key;}); if (index > -1) { this.splice(index, 1); }")
-    public native void removeByKey(String _key);
-
-    public void remove(Element element) {
-        remove(Platform.getPlatformObject(element));
+    public final void remove(Element element) {
+        int index = findIndex(DisconnectUtils.asJsObject(element));
+        if ( index >= 0 ) {
+            JSArray<JSObject> children = this.cast();
+            Element removed = DisconnectUtils.asJavaObject(children.get(index));
+            children.splice(index,1);
+            removed.setParentElement(null);
+        }
     }
 
-    @JSBody(script = "this.splice(0, this.length);")
-    public final native void removeAll();
+    public final Element get(int index) {
+        JSArray<JSObject> children = this.cast();
+        return DisconnectUtils.asJavaObject(children.get(index));
+    }
+
+
+    public final Element[] getElements() {
+        JSArray<JSObject> children = this.cast();
+
+        int length = children.getLength();
+        Element[] elements = new Element[length];
+
+        for ( int i = 0; i < length; i++ ) {
+            elements[i] = DisconnectUtils.asJavaObject(children.get(i));
+        }
+
+        return elements;
+    }
+
+    public final void removeAll() {
+        Element[] removed = getElements();
+
+        JSArray<JSObject> children = this.cast();
+        children.splice(0, children.getLength());
+
+        for (Element element : removed) {
+            element.setParentElement(null);
+        }
+    }
 }

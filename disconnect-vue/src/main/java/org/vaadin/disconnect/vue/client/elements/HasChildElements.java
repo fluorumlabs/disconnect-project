@@ -6,8 +6,7 @@ package org.vaadin.disconnect.vue.client.elements;
 public interface HasChildElements<T extends HasChildElements<T, E>, E extends Element<?>> extends ElementBase {
     default T add(E... elements) {
         for (Element element : elements) {
-            children().add(element);
-            element.setParentElement(this);
+            children().add(element, this);
         }
         return (T) this;
     }
@@ -15,8 +14,7 @@ public interface HasChildElements<T extends HasChildElements<T, E>, E extends El
     default T insert(E... elements) {
         int pos = 0;
         for (Element element : elements) {
-            children().insertAt(pos, element);
-            element.setParentElement(this);
+            children().insertAt(pos, element, this);
             pos++;
         }
         return (T) this;
@@ -29,13 +27,11 @@ public interface HasChildElements<T extends HasChildElements<T, E>, E extends El
     default T remove(E... elements) {
         for (Element element : elements) {
             children().remove(element);
-            element.setParentElement(null);
         }
         return (T) this;
     }
 
     default T removeByKey(String... keys) {
-        // Note: does not detach from parent
         for (String key : keys) {
             children().removeByKey(key);
         }
@@ -43,7 +39,6 @@ public interface HasChildElements<T extends HasChildElements<T, E>, E extends El
     }
 
     default T removeAll() {
-        // Note: does not detach from parent
         children().removeAll();
         return (T) this;
     }
