@@ -1,5 +1,6 @@
 package org.vaadin.disconnect.demo.client.views;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -9,6 +10,11 @@ import javax.validation.constraints.Size;
  */
 @PasswordsMatch
 class UserDetails {
+    @NotNull
+    @NotBlank
+    @Email
+    private String email;
+
     @NotNull
     @NotBlank
     @Size(min = 8, max = 50)
@@ -33,5 +39,13 @@ class UserDetails {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -1,18 +1,23 @@
 package org.vaadin.disconnect.vue.client.validation;
 
+import org.apache.commons.lang3.StringUtils;
 import org.teavm.metaprogramming.*;
 import org.teavm.metaprogramming.reflect.ReflectField;
 import org.teavm.metaprogramming.reflect.ReflectMethod;
+import org.teavm.platform.Platform;
 import org.vaadin.disconnect.vue.client.internals.ValidationException;
 import org.vaadin.disconnect.vue.client.internals.ValidatorRegistry;
 
 import javax.validation.*;
+import javax.validation.constraints.Pattern;
 import javax.validation.metadata.ConstraintDescriptor;
 import javax.validation.metadata.ValidateUnwrappedValue;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
+import java.time.Clock;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static org.teavm.metaprogramming.Metaprogramming.*;
 
@@ -25,30 +30,30 @@ public class Validation {
 
     public static ValidationResult runValidation(Runnable runnable) {
         try {
-            Internal.VALIDATION_ENABLED = true;
-            Internal.VALIDATION_RESULT = new ValidationResult();
+            Internals.VALIDATION_ENABLED = true;
+            Internals.VALIDATION_RESULT = new ValidationResult();
             runnable.run();
-            return Internal.VALIDATION_RESULT;
+            return Internals.VALIDATION_RESULT;
         } finally {
-            Internal.VALIDATION_ENABLED = false;
-            Internal.VALIDATION_RESULT = new ValidationResult();
+            Internals.VALIDATION_ENABLED = false;
+            Internals.VALIDATION_RESULT = new ValidationResult();
         }
     }
 
     public static <T> ValidationResult validate(T x) {
         try {
-            Internal.VALIDATION_ENABLED = true;
-            Internal.VALIDATION_RESULT = new ValidationResult();
+            Internals.VALIDATION_ENABLED = true;
+            Internals.VALIDATION_RESULT = new ValidationResult();
             validate((Class<T>)x.getClass(), x, null);
-            return Internal.VALIDATION_RESULT;
+            return Internals.VALIDATION_RESULT;
         } finally {
-            Internal.VALIDATION_ENABLED = false;
-            Internal.VALIDATION_RESULT = new ValidationResult();
+            Internals.VALIDATION_ENABLED = false;
+            Internals.VALIDATION_RESULT = new ValidationResult();
         }
     }
 
     private static <T> void validate(Class<T> cls, T instance, String fieldName) {
-        if (Internal.VALIDATION_ENABLED) {
+        if (Internals.VALIDATION_ENABLED) {
             validate_(cls, instance, fieldName);
         }
     }
@@ -180,17 +185,17 @@ public class Validation {
         int key = annotation.hashCode();
 
         emit(() -> {
-            ConstraintValidator<A, T> validator = Internal.VALIDATORS.get(key);
+            ConstraintValidator<A, T> validator = Internals.VALIDATORS.get(key);
 
             if (validator == null) {
                 validator = (ConstraintValidator<A, T>) method.construct();
                 validator.initialize(annotationProxy.get());
 
-                Internal.VALIDATORS.put(key, validator);
+                Internals.VALIDATORS.put(key, validator);
             }
 
-            if (shouldEmit.get() && !validator.isValid(o.get(), null)) {
-                Internal.VALIDATION_RESULT.addError(message);
+            if (shouldEmit.get() && !validator.isValid(o.get(), Internals.CONSTRAINT_VALIDATOR_CONTEXT)) {
+                Internals.VALIDATION_RESULT.addError(message);
             }
         });
     }
@@ -200,7 +205,41 @@ public class Validation {
 
         return proxy(aClass, (proxy, method, args) -> {
             String name = method.getName();
-            if (method.getReturnType().isArray() && method.getReturnType().getComponentType().isAssignableFrom(Class.class)) {
+            if (method.getReturnType().isArray() && method.getReturnType().getComponentType().isEnum()) {
+                Enum[] result = (Enum[]) annotation.get(name);
+                String collectedEnumValues = Arrays.stream(result).map(Enum::name).collect(Collectors.joining(","));
+
+                String enumName = method.getReturnType().getComponentType().getName();
+
+                Value<Enum[]> patternFlags = lazy(Pattern.Flag::values);
+                Value<Enum[]> randomEnums = lazy(() -> Platform.getEnumConstants(Platform.lookupClass(enumName)));
+
+                Value<Enum[]> enums;
+
+                if (enumName.equals(Pattern.Flag.class.getName())) {
+                    enums = patternFlags;
+                } else {
+                    enums = randomEnums;
+                }
+
+                exit(() -> {
+                    String[] split = StringUtils.split(collectedEnumValues, ',');
+                    Enum[] actualEnums = new Enum[split.length];
+                    Enum[] allEnums = enums.get();
+
+                    for (int i = 0; i < split.length; i++) {
+                        String key = split[i];
+                        for (Enum allEnum : allEnums) {
+                            if (allEnum.name().equals(key)) {
+                                actualEnums[i] = allEnum;
+                                break;
+                            }
+                        }
+                    }
+
+                    return actualEnums;
+                });
+            } else if (method.getReturnType().isArray() && method.getReturnType().getComponentType().isAssignableFrom(Class.class)) {
                 exit(() -> null);
             } else {
                 Object result = annotation.get(name);
@@ -225,11 +264,309 @@ public class Validation {
         }
     }
 
-    private static class Internal {
+    private static class Internals {
         static Boolean VALIDATION_ENABLED = false;
         static ValidationResult VALIDATION_RESULT = new ValidationResult();
 
         static Map<Integer, ConstraintValidator> VALIDATORS = new HashMap<>();
+
+        private final static ConstraintValidatorContext CONSTRAINT_VALIDATOR_CONTEXT = new InternalConstraintValidatorContext();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder CONSTRAINT_VIOLATION_BUILDER = new InternalConstraintViolationBuilder();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderDefinedContext NODE_BUILDER_DEFINED_CONTEXT = new InternalNodeBuilderDefinedContext();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext NODE_BUILDER_CUSTOMIZABLE_CONTEXT = new InternalNodeBuilderCustomizableContext();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT = new InternalLeafNodeBuilderCustomizableContext();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderCustomizableContext CONTAINER_ELEMENT_NODE_BUILDER_CUSTOMIZABLE_CONTEXT = new InternalContainerElementNodeBuilderCustomizableContext();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.NodeContextBuilder NODE_CONTEXT_BUILDER = new InternalNodeContextBuilder();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeContextBuilder LEAF_NODE_CONTEXT_BUILDER = new InternalLeafNodeContextBuilder();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeContextBuilder CONTAINER_ELEMENT_NODE_CONTEXT_BUILDER = new InternalContainerElementNodeContextBuilder();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderDefinedContext LEAF_NODE_BUILDER_DEFINED_CONTEXT = new InternalLeafNodeBuilderDefinedContext();
+        private final static ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderDefinedContext CONTAINER_ELEMENT_NODE_BUILDER_DEFINED_CONTEXT = new InternalContainerElementNodeBuilderDefinedContext();
+
+        private static final class InternalConstraintValidatorContext implements ConstraintValidatorContext {
+            @Override
+            public void disableDefaultConstraintViolation() {
+            }
+
+            /**
+             * @return the current un-interpolated default message
+             */
+            @Override
+            public String getDefaultConstraintMessageTemplate() {
+                return "";
+            }
+
+            @Override
+            public ClockProvider getClockProvider() {
+                return null;
+            }
+
+            @Override
+            public ConstraintViolationBuilder buildConstraintViolationWithTemplate(String messageTemplate) {
+                return Internals.CONSTRAINT_VIOLATION_BUILDER;
+            }
+
+            @Override
+            public <T> T unwrap(Class<T> type) {
+                return (T) type;
+            }
+        }
+
+        private final static class InternalConstraintViolationBuilder implements ConstraintValidatorContext.ConstraintViolationBuilder {
+            @Override
+            public NodeBuilderDefinedContext addNode(String name) {
+                return NODE_BUILDER_DEFINED_CONTEXT;
+            }
+
+            @Override
+            public NodeBuilderCustomizableContext addPropertyNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public LeafNodeBuilderCustomizableContext addBeanNode() {
+                return LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ContainerElementNodeBuilderCustomizableContext addContainerElementNode(String name, Class<?> containerType, Integer typeArgumentIndex) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public NodeBuilderDefinedContext addParameterNode(int index) {
+                return NODE_BUILDER_DEFINED_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+        private static final class InternalNodeBuilderDefinedContext implements ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderDefinedContext {
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addPropertyNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext addBeanNode() {
+                return LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderCustomizableContext addContainerElementNode(String name, Class<?> containerType, Integer typeArgumentIndex) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+        private static final class InternalNodeBuilderCustomizableContext implements ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext {
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeContextBuilder inIterable() {
+                return NODE_CONTEXT_BUILDER;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext inContainer(Class<?> containerClass, Integer typeArgumentIndex) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addPropertyNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext addBeanNode() {
+                return LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderCustomizableContext addContainerElementNode(String name, Class<?> containerType, Integer typeArgumentIndex) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+        private static final class InternalLeafNodeBuilderCustomizableContext implements ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext {
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeContextBuilder inIterable() {
+                return LEAF_NODE_CONTEXT_BUILDER;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext inContainer(Class<?> containerClass, Integer typeArgumentIndex) {
+                return LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+        private static final class InternalContainerElementNodeBuilderCustomizableContext implements ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderCustomizableContext {
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeContextBuilder inIterable() {
+                return CONTAINER_ELEMENT_NODE_CONTEXT_BUILDER;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addPropertyNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext addBeanNode() {
+                return LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderCustomizableContext addContainerElementNode(String name, Class<?> containerType, Integer typeArgumentIndex) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+        private static final class InternalNodeContextBuilder implements ConstraintValidatorContext.ConstraintViolationBuilder.NodeContextBuilder {
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderDefinedContext atKey(Object key) {
+                return NODE_BUILDER_DEFINED_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderDefinedContext atIndex(Integer index) {
+                return NODE_BUILDER_DEFINED_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addPropertyNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext addBeanNode() {
+                return LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderCustomizableContext addContainerElementNode(String name, Class<?> containerType, Integer typeArgumentIndex) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+
+        private static final class InternalLeafNodeContextBuilder implements ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeContextBuilder {
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderDefinedContext atKey(Object key) {
+                return LEAF_NODE_BUILDER_DEFINED_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderDefinedContext atIndex(Integer index) {
+                return LEAF_NODE_BUILDER_DEFINED_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+        private static final class InternalContainerElementNodeContextBuilder implements ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeContextBuilder {
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderDefinedContext atKey(Object key) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_DEFINED_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderDefinedContext atIndex(Integer index) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_DEFINED_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addPropertyNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext addBeanNode() {
+                return LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderCustomizableContext addContainerElementNode(String name, Class<?> containerType, Integer typeArgumentIndex) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+        private static final class InternalLeafNodeBuilderDefinedContext implements ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderDefinedContext {
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
+        private static final class InternalContainerElementNodeBuilderDefinedContext implements ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderDefinedContext {
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.NodeBuilderCustomizableContext addPropertyNode(String name) {
+                return NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.LeafNodeBuilderCustomizableContext addBeanNode() {
+                return LEAF_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext.ConstraintViolationBuilder.ContainerElementNodeBuilderCustomizableContext addContainerElementNode(String name, Class<?> containerType, Integer typeArgumentIndex) {
+                return CONTAINER_ELEMENT_NODE_BUILDER_CUSTOMIZABLE_CONTEXT;
+            }
+
+            @Override
+            public ConstraintValidatorContext addConstraintViolation() {
+                return CONSTRAINT_VALIDATOR_CONTEXT;
+            }
+        }
+
     }
 
     private static class InternalContext implements MessageInterpolator.Context {
@@ -257,7 +594,7 @@ public class Validation {
 
     private static class InternalConstraintDescriptor<T extends Annotation> implements ConstraintDescriptor<T> {
         private T annotation;
-        private Map<String, Object> attributes = new HashMap<>();
+        private Map<String, Object> attributes;
         private Class<? extends ConstraintValidator<T, ?>> validatorClass;
 
         private InternalConstraintDescriptor(AnnotationDescriptor annotationDescriptor, Class<? extends ConstraintValidator<T, ?>> validatorClass) {
@@ -351,6 +688,11 @@ public class Validation {
                         }
                         try {
                             attributes.put(override.name().isEmpty() ? declaredMethod.getName() : override.name(), declaredMethod.invoke(parent));
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                        }
+                    } else if (declaredMethod.getName().equals("message")) {
+                        try {
+                            attributes.put(declaredMethod.getName(), declaredMethod.invoke(parent));
                         } catch (IllegalAccessException | InvocationTargetException e) {
                         }
                     }

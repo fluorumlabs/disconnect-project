@@ -20,6 +20,7 @@ public class TestView extends Component {
 
     private UserDetails details = new UserDetails();
 
+    private TextField email = new TextField("Email address");
     private TextField password = new TextField("Type password");
     private TextField confirmPassword = new TextField("Type password again");
 
@@ -35,6 +36,6 @@ public class TestView extends Component {
 
         observe(binder::isValid).then(button::setEnabled);
 
-        return new VerticalLayout(password, confirmPassword, button);
+        return new VerticalLayout(email, password, confirmPassword, button);
     }
 }

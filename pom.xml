@@ -24,7 +24,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-        <teavm.version>0.6.0</teavm.version>
+        <teavm.version>0.6.1</teavm.version>
         <flavour.version>0.2.0-dev-70</flavour.version>
         <auto-service.version>1.0-rc6</auto-service.version>
         <spring.version>5.1.9.RELEASE</spring.version>
