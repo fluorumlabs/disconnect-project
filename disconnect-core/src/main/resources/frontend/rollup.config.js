@@ -165,6 +165,7 @@ const productionEs6Build = [
         mode: 'injectManifest',
         options: workboxConfig
     }),
+    visualizerSettings(),
 ];
 
 let config = [];
