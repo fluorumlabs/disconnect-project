@@ -136,7 +136,7 @@
                                     <frontend.directory>${project.build.directory}/frontend</frontend.directory>
                                 </properties>
 
-                                <targetDirectory>${project.build.directory}/frontend/teavm</targetDirectory>
+                                <targetDirectory>${project.build.directory}/frontend/src</targetDirectory>
                                 <mainClass>com.github.fluorumlabs.disconnect.client.GeneratedEntryPoint</mainClass>
                                 <minifying>${teavm.minify}</minifying>
                                 <debugInformationGenerated>${teavm.debugInfo}</debugInformationGenerated>

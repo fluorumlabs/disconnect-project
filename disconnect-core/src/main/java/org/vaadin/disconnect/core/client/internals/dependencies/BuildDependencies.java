@@ -21,6 +21,7 @@ import org.vaadin.disconnect.core.annotations.NpmPackage;
 @NpmPackage(name = "rollup-plugin-terser", version = "^5.1.1")
 @NpmPackage(name = "rollup-plugin-workbox-build", version = "^0.2.0")
 @NpmPackage(name = "rollup-plugin-visualizer", version = "^2.6.0")
+@NpmPackage(name = "rollup-plugin-sourcemaps", version = "^0.4.2")
 public interface BuildDependencies {
     static void init() {
 

@@ -1,6 +1,7 @@
 package org.vaadin.disconnect.vue.toolchain;
 
 import org.apache.commons.lang3.StringUtils;
+import org.teavm.backend.javascript.codegen.SourceWriter;
 import org.teavm.backend.javascript.rendering.RenderingManager;
 import org.teavm.vm.BuildTarget;
 import org.teavm.vm.spi.RendererListener;
@@ -26,6 +27,7 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
     private final List<String> rpcRouteConfigs = new ArrayList<>();
     private File root;
     private boolean enableWebComponents = false;
+    private SourceWriter sourceWriter;
 
     public void setEnableWebComponents(boolean enableWebComponents) {
         if (!this.enableWebComponents && enableWebComponents) {
@@ -59,6 +61,26 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
     @Override
     public void begin(RenderingManager context, BuildTarget buildTarget) throws IOException {
         root = new File(context.getProperties().getProperty("frontend.directory"));
+        sourceWriter = context.getWriter();
+
+        writeImports();
+    }
+
+    private void writeImports() throws IOException {
+        sourceWriter.append(String.join("\n", imports)).newLine();
+        sourceWriter.append("import {Workbox} from 'workbox-window';\n" +
+                "\n" +
+                "if ('serviceWorker' in navigator) {\n" +
+                "  const wb = new Workbox('/sw.js');\n" +
+                "\n" +
+                "  wb.register();\n" +
+                "}\n" +
+                "\n" +
+                "var __this__ = {};\n").newLine();
+
+        sourceWriter.append(importedSymbols.stream()
+                .map(s -> "__this__."+s+" = "+s+";\n")
+                .collect(Collectors.joining())).newLine();
     }
 
     @Override
@@ -72,35 +94,8 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
         }
 
         writeBuildConfigJs();
-        writeAppJs();
         writeSwConfigJs();
         writePackageJson();
-    }
-
-    private void writeAppJs() throws IOException {
-        try (PrintWriter printWriter = new PrintWriter(new FileWriter(new File(root, "src/app.js")))) {
-            printWriter.println(String.join("\n", imports));
-            printWriter.println("import {Workbox} from 'workbox-window';\n" +
-                    "\n" +
-                    "if ('serviceWorker' in navigator) {\n" +
-                    "  const wb = new Workbox('/sw.js');\n" +
-                    "\n" +
-                    "  wb.register();\n" +
-                    "}\n" +
-                    "\n" +
-                    "var __this__ = {};\n");
-
-            importedSymbols.stream()
-                    .map(s -> "__this__."+s+" = "+s+"\n")
-                    .forEach(printWriter::println);
-
-            // language=js
-            printWriter.print("\n" +
-                    "import_teavm_classes_js\n" +
-                    "\n" +
-                    "main();\n"
-            );
-        }
     }
 
     private void writeSwConfigJs() throws IOException {
