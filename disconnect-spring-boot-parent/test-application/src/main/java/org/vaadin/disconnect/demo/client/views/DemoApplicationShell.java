@@ -42,7 +42,7 @@ public class DemoApplicationShell extends Component {
 
         appShell.setAppBar(appBar);
 
-        appShell.add(new RouterView().set("defaultName", "XpeHoBa"));
+        appShell.add(new RouterView());
 
         return appShell;
     }

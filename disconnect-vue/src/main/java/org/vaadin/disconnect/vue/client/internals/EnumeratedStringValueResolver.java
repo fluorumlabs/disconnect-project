@@ -15,7 +15,7 @@ public class EnumeratedStringValueResolver {
 
     public static JSString getValue(EnumeratedString enumeratedString) {
         JSString value = ENUM_VALUES.get(Platform.getPlatformObject(enumeratedString));
-        if (value != null) {
+        if (!JSObjects.isUndefined(value)) {
             return value;
         }
 

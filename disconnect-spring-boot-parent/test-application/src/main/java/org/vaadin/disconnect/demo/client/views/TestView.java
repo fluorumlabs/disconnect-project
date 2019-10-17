@@ -8,8 +8,10 @@ import org.vaadin.disconnect.vue.client.binding.Binder;
 import org.vaadin.disconnect.vue.client.elements.Element;
 import org.vaadin.disconnect.vue.client.ui.Component;
 import org.vaadin.disconnect.vuetify.elements.Button;
+import org.vaadin.disconnect.vuetify.elements.Icon;
 import org.vaadin.disconnect.vuetify.elements.inputs.TextField;
 import org.vaadin.disconnect.vuetify.elements.wrappers.VerticalLayout;
+import org.vaadin.disconnect.vuetify.icons.MDI;
 
 import java.util.Objects;
 
@@ -43,6 +45,6 @@ public class TestView extends Component {
 
         button.onClick(() -> testState.setEmailAddress(details.getEmail()));
 
-        return new VerticalLayout(email, password, confirmPassword, button);
+        return new VerticalLayout(new Icon(MDI.LAN_DISCONNECT), email, password, confirmPassword, button);
     }
 }

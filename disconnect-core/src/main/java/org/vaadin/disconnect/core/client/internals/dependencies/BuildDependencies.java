@@ -10,7 +10,7 @@ import org.vaadin.disconnect.core.annotations.NpmPackage;
 @NpmPackage(name = "core-js", version = "^3.2.1")
 @NpmPackage(name = "postcss-copy", version = "^7.1.0")
 @NpmPackage(name = "postcss-import", version = "^12.0.1")
-@NpmPackage(name = "rollup", version = "^1.19.4")
+@NpmPackage(name = "rollup", version = "1.23.1") // 1.24.0 breaks meta breaks
 @NpmPackage(name = "sass", version = "^1.22.12")
 @NpmPackage(name = "rollup-plugin-babel", version = "^4.3.3")
 @NpmPackage(name = "rollup-plugin-commonjs", version = "^10.0.2")

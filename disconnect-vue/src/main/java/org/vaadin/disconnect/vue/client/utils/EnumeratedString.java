@@ -9,6 +9,8 @@ import org.vaadin.disconnect.vue.client.internals.EnumeratedStringValueResolver;
 public interface EnumeratedString {
     String name();
 
+    default String prefix() { return ""; }
+
     default JSString value() {
         return EnumeratedStringValueResolver.getValue(this);
     }

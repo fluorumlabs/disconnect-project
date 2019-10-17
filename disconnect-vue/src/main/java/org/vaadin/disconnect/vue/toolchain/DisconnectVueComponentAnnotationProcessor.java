@@ -75,6 +75,7 @@ public class DisconnectVueComponentAnnotationProcessor extends AbstractProcessor
         format(out, "@%s(script=\"return {", JSBody.class.getName());
 
         formatName(out, typedElement, roundEnv);
+        formatDummyRender(out, typedElement, roundEnv);
         formatProps(out, typedElement, roundEnv);
         formatData(out, typedElement, roundEnv);
         formatBeforeCreateMethod(out, typedElement, roundEnv);
@@ -92,6 +93,10 @@ public class DisconnectVueComponentAnnotationProcessor extends AbstractProcessor
 
         formatLine(out, "}\")");
         formatLine(out, "public static native %s getComponentDefinition();", ComponentDefinition.class.getName());
+    }
+
+    private void formatDummyRender(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv) {
+        format(out, ", render: function() { return ''; }");
     }
 
     private void formatProps(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv) {
