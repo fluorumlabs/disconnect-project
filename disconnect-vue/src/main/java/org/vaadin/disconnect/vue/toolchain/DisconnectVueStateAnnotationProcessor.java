@@ -2,6 +2,7 @@ package org.vaadin.disconnect.vue.toolchain;
 
 import com.google.auto.service.AutoService;
 import org.vaadin.disconnect.vue.annotations.Mutation;
+import org.vaadin.disconnect.vue.annotations.PersistToLocalStorage;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
  * Created by Artem Godin on 8/19/2019.
  */
 @SupportedAnnotationTypes(
-        "org.vaadin.disconnect.vue.annotations.VueState")
+        "org.vaadin.disconnect.vue.annotations.VuexState")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @AutoService(Processor.class)
 public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
@@ -55,6 +56,8 @@ public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
         JavaFileObject builderFile = processingEnv.getFiler()
                 .createSourceFile(packageName + "." + generatedClassName);
 
+        boolean hasLocalStorage = typedElement.getAnnotation(PersistToLocalStorage.class) != null;
+
         try (PrintWriter out = new PrintWriter(builderFile.openWriter())) {
             formatLine(out, "package %s;", packageName);
             formatLine(out, "import org.teavm.jso.JSBody;");
@@ -65,11 +68,20 @@ public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
             formatLine(out, "import org.teavm.platform.PlatformObject;");
             formatLine(out, "import org.vaadin.disconnect.core.client.internals.DisconnectUtils;");
             formatLine(out, "import org.vaadin.disconnect.vue.client.state.Vuex;");
+            formatLine(out, "import org.vaadin.disconnect.vue.client.state.VuexPersist;");
+            formatLine(out, "import org.vaadin.disconnect.vue.client.internals.StatePersistence;");
             formatLine(out, "import org.vaadin.disconnect.vue.client.internals.StoreDefinition;");
             formatLine(out, "import org.vaadin.disconnect.vue.client.internals.StoreInstance;");
             formatLine(out, "public class %s {", generatedClassName);
             formatLine(out, "static {");
-            formatLine(out, "%s instance = new %s();", typedElement.getSimpleName().toString(), typedElement.getSimpleName().toString());
+            if (hasLocalStorage) {
+                formatLine(out, "%s instance = StatePersistence.read(%s.class, \"%s\");", typedElement.getSimpleName().toString(), typedElement.getSimpleName().toString(), typedElement.getSimpleName().toString());
+                formatLine(out, "if (instance == null) {");
+                formatLine(out, "instance = new %s();", typedElement.getSimpleName().toString());
+                formatLine(out, "}");
+            } else {
+                formatLine(out, "%s instance = new %s();", typedElement.getSimpleName().toString(), typedElement.getSimpleName().toString());
+            }
             formatLine(out, "StoreDefinition definition = JSObjects.create();");
             formatLine(out, "definition.setState(DisconnectUtils.asJsObject(instance));");
             formatLine(out, "definition.setMutations(JSObjects.create());");
@@ -81,18 +93,18 @@ public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
 
             formatLine(out, "public static %s getInstance() { return DisconnectUtils.asJavaObject(Vuex.getState(\"%s\")); }", typedElement.getSimpleName(), typedElement.getSimpleName());
 
-            formatMethods(out, typedElement, roundEnv);
+            formatMethods(out, typedElement, roundEnv, hasLocalStorage);
 
             formatLine(out, "}");
         }
     }
 
-    private void formatMethods(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv) {
-        formatMethods(out, typedElement, roundEnv, Mutation.class, "commit");
+    private void formatMethods(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv, boolean hasLocalStorage) {
+        formatMethods(out, typedElement, roundEnv, Mutation.class, "commit", hasLocalStorage);
         formatNormalMethods(out, typedElement, roundEnv);
     }
 
-    private void formatMethods(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv, Class<? extends Annotation> annotation, String method) {
+    private void formatMethods(PrintWriter out, TypeElement typedElement, RoundEnvironment roundEnv, Class<? extends Annotation> annotation, String method, boolean hasLocalStorage) {
         ElementFilter.methodsIn(typedElement.getEnclosedElements()).stream()
                 .filter(ee -> ee.getAnnotation(annotation) != null)
                 .forEach(ee -> {
@@ -136,6 +148,9 @@ public class DisconnectVueStateAnnotationProcessor extends AbstractProcessor {
                     }
 
                     formatLine(out, ");");
+                    if (hasLocalStorage) {
+                        formatLine(out, "StatePersistence.write(%s.class, \"%s\", instance);", typedElement.getSimpleName().toString(), typedElement.getSimpleName().toString());
+                    }
                     formatLine(out, "}");
                 });
 

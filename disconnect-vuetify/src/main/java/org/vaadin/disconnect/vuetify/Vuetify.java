@@ -2,6 +2,7 @@ package org.vaadin.disconnect.vuetify;
 
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSObject;
+import org.vaadin.disconnect.core.annotations.Import;
 import org.vaadin.disconnect.core.annotations.ImportObject;
 import org.vaadin.disconnect.core.annotations.NpmPackage;
 import org.vaadin.disconnect.vue.client.ui.Vue;
@@ -10,6 +11,8 @@ import org.vaadin.disconnect.vue.client.ui.Vue;
  * Created by Artem Godin on 9/25/2019.
  */
 @NpmPackage(name = "vuetify")
+@NpmPackage(name = "@mdi/font")
+@Import(module = "@mdi/font/css/materialdesignicons.css")
 public abstract class Vuetify {
     @ImportObject(module = "vuetify/lib/framework")
     private static JSObject INSTANCE;

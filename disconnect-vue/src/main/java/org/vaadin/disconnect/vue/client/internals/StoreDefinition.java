@@ -16,6 +16,9 @@ public interface StoreDefinition extends JSObject {
     void setState(JSObject object);
 
     @JSProperty
+    void setPlugins(JSArray<JSObject> plugins);
+
+    @JSProperty
     void setMutations(JSMapLike<JSObject> actions);
 
     @JSBody(params = {"id","handler"}, script = "this.mutations[id] = handler;")

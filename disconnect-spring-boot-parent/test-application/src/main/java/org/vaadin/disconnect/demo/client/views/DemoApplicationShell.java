@@ -1,7 +1,7 @@
 package org.vaadin.disconnect.demo.client.views;
 
 import org.vaadin.disconnect.demo.client.LoadingState;
-import org.vaadin.disconnect.vue.annotations.State;
+import org.vaadin.disconnect.vue.annotations.InjectState;
 import org.vaadin.disconnect.vue.annotations.VueComponent;
 import org.vaadin.disconnect.vue.client.elements.Element;
 import org.vaadin.disconnect.vue.client.elements.RouterView;
@@ -16,7 +16,7 @@ import org.vaadin.disconnect.vuetify.elements.bars.ToolbarTitle;
  */
 @VueComponent
 public class DemoApplicationShell extends Component {
-    @State
+    @InjectState
     private LoadingState loadingState;
 
     @Override

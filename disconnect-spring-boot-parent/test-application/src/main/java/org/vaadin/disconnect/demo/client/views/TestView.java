@@ -1,6 +1,8 @@
 package org.vaadin.disconnect.demo.client.views;
 
+import org.vaadin.disconnect.demo.client.TestState;
 import org.vaadin.disconnect.vue.annotations.Route;
+import org.vaadin.disconnect.vue.annotations.InjectState;
 import org.vaadin.disconnect.vue.annotations.VueComponent;
 import org.vaadin.disconnect.vue.client.binding.Binder;
 import org.vaadin.disconnect.vue.client.elements.Element;
@@ -24,17 +26,22 @@ public class TestView extends Component {
     private TextField password = new TextField("Type password");
     private TextField confirmPassword = new TextField("Type password again");
 
+    @InjectState
+    private TestState testState;
+
     @Override
     public Element init() {
         Binder<UserDetails> binder = Binder.bind(details,this);
 
         Button button = new Button("Test validation");
 
+        observe(() -> testState.getEmailAddress()).then(details::setEmail);
         observe(() -> Objects.equals(details.getPassword(), details.getConfirmPassword()))
                 .map(equals -> equals ? null : "passwords must match")
                 .then(confirmPassword::setErrorMessage);
-
         observe(binder::isValid).then(button::setEnabled);
+
+        button.onClick(() -> testState.setEmailAddress(details.getEmail()));
 
         return new VerticalLayout(email, password, confirmPassword, button);
     }

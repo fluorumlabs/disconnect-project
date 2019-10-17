@@ -96,7 +96,7 @@ public class DisconnectVueClassTransformer implements ClassHolderTransformer {
         Map<String, String> states = new HashMap<>();
 
         for (FieldHolder field : cls.getFields()) {
-            if (field.getAnnotations().get(State.class.getName()) != null && field.getType() instanceof ValueType.Object) {
+            if (field.getAnnotations().get(InjectState.class.getName()) != null && field.getType() instanceof ValueType.Object) {
                 states.put(field.getName(), ((ValueType.Object)field.getType()).getClassName() + "$$Store");
             }
         }
