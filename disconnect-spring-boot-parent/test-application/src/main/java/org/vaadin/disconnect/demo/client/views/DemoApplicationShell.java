@@ -10,6 +10,7 @@ import org.vaadin.disconnect.vuetify.elements.ApplicationShell;
 import org.vaadin.disconnect.vuetify.elements.ProgressIndicator;
 import org.vaadin.disconnect.vuetify.elements.bars.AppBar;
 import org.vaadin.disconnect.vuetify.elements.bars.ToolbarTitle;
+import org.vaadin.disconnect.vuetify.theme.MaterialColors;
 
 /**
  * Created by Artem Godin on 9/20/2019.
@@ -30,14 +31,14 @@ public class DemoApplicationShell extends Component {
         loadingIndicator.setQuery(true);
         loadingIndicator.setTop(true);
         loadingIndicator.setIndeterminate(true);
-        loadingIndicator.setColor("yellow");
+        loadingIndicator.setColor(MaterialColors.LIME);
         loadingIndicator.setActive(false);
 
         observe(() -> loadingState.hasActiveRequests())
                 .then(loadingIndicator::setActive);
 
         AppBar appBar = new AppBar(toolbarTitle, loadingIndicator);
-        appBar.setColor("primary");
+        appBar.setColor(MaterialColors.BLUE_GREY.darken(2));
         appBar.dark();
 
         appShell.setAppBar(appBar);
