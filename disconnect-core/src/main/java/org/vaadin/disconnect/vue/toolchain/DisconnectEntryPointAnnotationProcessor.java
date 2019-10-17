@@ -66,7 +66,7 @@ public class DisconnectEntryPointAnnotationProcessor extends AbstractProcessor {
                 .createSourceFile(packageName + "." + simpleClassName);
 
         try (PrintWriter out = new PrintWriter(builderFile.openWriter())) {
-            out.println(StringUtils.replace("package com.github.fluorumlabs.disconnect.client;\n" +
+            out.println(StringUtils.replace("package org.vaadin.disconnect.client;\n" +
                     "\n" +
                     "class GeneratedEntryPoint {\n" +
                     "    public static void main(String[] args) {\n" +

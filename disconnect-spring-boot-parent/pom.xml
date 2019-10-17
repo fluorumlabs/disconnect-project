@@ -137,7 +137,7 @@
                                 </properties>
 
                                 <targetDirectory>${project.build.directory}/frontend/src</targetDirectory>
-                                <mainClass>com.github.fluorumlabs.disconnect.client.GeneratedEntryPoint</mainClass>
+                                <mainClass>org.vaadin.disconnect.client.GeneratedEntryPoint</mainClass>
                                 <minifying>${teavm.minify}</minifying>
                                 <debugInformationGenerated>${teavm.debugInfo}</debugInformationGenerated>
                                 <sourceMapsGenerated>${teavm.debugInfo}</sourceMapsGenerated>
