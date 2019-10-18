@@ -1,6 +1,7 @@
 package org.vaadin.disconnect.demo.client.views;
 
 import org.vaadin.disconnect.demo.client.LoadingState;
+import org.vaadin.disconnect.demo.client.VaadinThemeColors;
 import org.vaadin.disconnect.vue.annotations.InjectState;
 import org.vaadin.disconnect.vue.annotations.VueComponent;
 import org.vaadin.disconnect.vue.client.elements.Element;
@@ -10,7 +11,8 @@ import org.vaadin.disconnect.vuetify.elements.ApplicationShell;
 import org.vaadin.disconnect.vuetify.elements.ProgressIndicator;
 import org.vaadin.disconnect.vuetify.elements.bars.AppBar;
 import org.vaadin.disconnect.vuetify.elements.bars.ToolbarTitle;
-import org.vaadin.disconnect.vuetify.theme.MaterialColors;
+import org.vaadin.disconnect.vuetify.theme.MaterialColor;
+import org.vaadin.disconnect.vuetify.theme.VuetifyColor;
 
 /**
  * Created by Artem Godin on 9/20/2019.
@@ -31,15 +33,14 @@ public class DemoApplicationShell extends Component {
         loadingIndicator.setQuery(true);
         loadingIndicator.setTop(true);
         loadingIndicator.setIndeterminate(true);
-        loadingIndicator.setColor(MaterialColors.LIME);
+        loadingIndicator.setColor(MaterialColor.LIME);
         loadingIndicator.setActive(false);
 
         observe(() -> loadingState.hasActiveRequests())
                 .then(loadingIndicator::setActive);
 
         AppBar appBar = new AppBar(toolbarTitle, loadingIndicator);
-        appBar.setColor(MaterialColors.BLUE_GREY.darken(2));
-        appBar.dark();
+        appBar.setColor(VaadinThemeColors.GRAPHITE.lighten(4)).useDarkTheme();
 
         appShell.setAppBar(appBar);
 

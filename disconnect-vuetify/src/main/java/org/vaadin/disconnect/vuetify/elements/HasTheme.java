@@ -7,22 +7,23 @@ import org.vaadin.disconnect.vuetify.theme.Color;
  * Created by Artem Godin on 9/26/2019.
  */
 public interface HasTheme<T extends HasTheme<T>> extends ElementBase {
-    default T setColor(String color) {
-        data().properties().set("color", color);
-        return (T) this;
-    }
-
-    default T setColor(Color color) {
-        data().properties().set("color", color);
-        return (T) this;
-    }
-
-    default T dark(boolean dark) {
+    default T useDarkTheme(boolean dark) {
         data().properties().set("dark", dark);
+        data().properties().set("light", !dark);
         return (T) this;
     }
 
-    default T dark() {
-        return dark(true);
+    default T useLightTheme(boolean light) {
+        data().properties().set("dark", !light);
+        data().properties().set("light", light);
+        return (T) this;
+    }
+
+    default T useDarkTheme() {
+        return useDarkTheme(true);
+    }
+
+    default T useLightTheme() {
+        return useLightTheme(true);
     }
 }

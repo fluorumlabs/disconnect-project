@@ -7,7 +7,8 @@ import org.vaadin.disconnect.vue.annotations.ImportComponent;
  */
 @ImportComponent(module = "vuetify/lib/components/VSystemBar")
 public final class SystemBar extends VuetifyElement<SystemBar> implements
-        HasTheme<SystemBar> {
+        HasTheme<SystemBar>,
+        HasColor<SystemBar> {
 
     public SystemBar() {
         super(NavigationDrawer.class);

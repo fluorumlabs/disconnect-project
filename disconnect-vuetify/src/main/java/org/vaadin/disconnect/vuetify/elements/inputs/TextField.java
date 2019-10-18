@@ -8,6 +8,7 @@ import org.vaadin.disconnect.vue.client.elements.HasImmediateBinding;
 import org.vaadin.disconnect.vue.client.elements.HasReadonlyBinding;
 import org.vaadin.disconnect.vue.client.validation.Validation;
 import org.vaadin.disconnect.vue.client.validation.ValidationResult;
+import org.vaadin.disconnect.vuetify.elements.HasColor;
 import org.vaadin.disconnect.vuetify.elements.HasTheme;
 import org.vaadin.disconnect.vuetify.elements.VuetifyElement;
 
@@ -20,6 +21,7 @@ import java.util.function.Supplier;
 @ImportComponent(module = "vuetify/lib/components/VTextField")
 public final class TextField extends VuetifyElement<TextField> implements
         HasTheme<TextField>,
+        HasColor<TextField>,
         HasBinding<TextField, String>,
         HasReadonlyBinding<TextField, String>,
         HasImmediateBinding<TextField, String> {

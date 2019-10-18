@@ -12,6 +12,7 @@ import org.vaadin.disconnect.vuetify.elements.Icon;
 import org.vaadin.disconnect.vuetify.elements.inputs.TextField;
 import org.vaadin.disconnect.vuetify.elements.wrappers.VerticalLayout;
 import org.vaadin.disconnect.vuetify.icons.MDI;
+import org.vaadin.disconnect.vuetify.theme.MaterialColor;
 
 import java.util.Objects;
 

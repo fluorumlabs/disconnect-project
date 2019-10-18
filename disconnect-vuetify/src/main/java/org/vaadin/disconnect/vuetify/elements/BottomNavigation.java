@@ -7,7 +7,8 @@ import org.vaadin.disconnect.vue.annotations.ImportComponent;
  */
 @ImportComponent(module = "vuetify/lib/components/VBottomNavigation")
 public final class BottomNavigation extends VuetifyElement<BottomNavigation> implements
-    HasTheme<BottomNavigation>
+    HasTheme<BottomNavigation>,
+    HasColor<BottomNavigation>
 {
     public BottomNavigation() {
         super(BottomNavigation.class);

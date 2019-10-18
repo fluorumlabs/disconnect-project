@@ -7,7 +7,9 @@ import org.vaadin.disconnect.vue.annotations.ImportComponent;
  */
 @ImportComponent(module = "vuetify/lib/components/VNavigationDrawer")
 public final class NavigationDrawer extends VuetifyElement<NavigationDrawer> implements
-        HasTheme<NavigationDrawer> {
+        HasTheme<NavigationDrawer>,
+        HasColor<BottomNavigation>
+{
     public NavigationDrawer() {
         super(NavigationDrawer.class);
     }

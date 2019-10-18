@@ -14,7 +14,9 @@ public final class ProgressIndicator {
      */
     @ImportComponent(module = "vuetify/lib/components/VProgressLinear")
     public static final class Linear extends VuetifyElement<Linear> implements
-            HasTheme<Linear> {
+            HasTheme<Linear>,
+            HasColor<Linear>
+    {
         public Linear() {
             super(Linear.class);
         }
