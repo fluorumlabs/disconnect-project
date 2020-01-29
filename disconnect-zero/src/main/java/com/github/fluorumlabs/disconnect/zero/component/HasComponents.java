@@ -3,6 +3,8 @@ package com.github.fluorumlabs.disconnect.zero.component;
 import js.web.dom.Element;
 import js.web.dom.Node;
 
+import javax.annotation.Untainted;
+
 
 public interface HasComponents<E extends Element, T extends HasComponents<E, T, C>, C extends Component<?>> extends ComponentBase<E> {
     default T add(C component) {
@@ -60,8 +62,10 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
     }
 
     default T removeAll() {
-        while (getNode().getFirstChild() != null) {
-            getNode().removeChild(getNode().getFirstChild());
+        while (true) {
+            E node = getNode();
+            if (node.getFirstChild() == null) break;
+            node.removeChild(node.getFirstChild());
         }
         return (T) this;
     }
@@ -69,5 +73,18 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
     default T text(String text) {
         getNode().setTextContent(text);
         return (T) this;
+    }
+
+    default String text() {
+        return getNode().getTextContent();
+    }
+
+    default T html(@Untainted String html) {
+        getNode().setInnerHTML(html);
+        return (T) this;
+    }
+
+    default String html() {
+        return getNode().getInnerHTML();
     }
 }

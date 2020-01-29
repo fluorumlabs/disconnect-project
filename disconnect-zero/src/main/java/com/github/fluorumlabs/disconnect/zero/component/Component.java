@@ -8,6 +8,7 @@ import js.lang.Any;
 import js.web.dom.*;
 import org.teavm.jso.JSBody;
 
+import javax.annotation.Nullable;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
@@ -66,9 +67,10 @@ public abstract class Component<X extends Node & EventTarget> extends LazyEventI
         return createEvent(getNode(), addEventListener, altAddEventListeners);
     }
 
-    protected <X extends Component> X getParent() {
+    @Nullable
+    protected <Y extends Component<?>> Y getParent() {
         Node parentNode = (isHidden() ? hiddenNodeHolder : node).getParentNode();
-        return parentNode == null ? null : Component.from(parentNode);
+        return parentNode == null ? null : from(parentNode);
     }
 
     public boolean isHidden() {

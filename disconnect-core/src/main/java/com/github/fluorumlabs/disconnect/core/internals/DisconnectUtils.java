@@ -19,14 +19,14 @@ public abstract class DisconnectUtils implements Any {
     }
 
     public static <T> T asJavaObject(Any that) {
-        return (T)(Object)that;
+        return (T) that;
     }
 
     @JSBody(params = "result", script = "return;")
-    private static native void ensure(Any result);
+    private static native void _ensure(Any result);
 
     public static void ensure(Object x) {
-        ensure(Platform.getPlatformObject(x));
+        _ensure(Platform.getPlatformObject(x).cast());
     }
 
 }
