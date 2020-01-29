@@ -24,6 +24,7 @@ public interface HTMLParagraphElement extends HTMLElement {
     @JSProperty
     String getAlign();
 
+    @Deprecated
     @JSProperty
     void setAlign(String align);
 

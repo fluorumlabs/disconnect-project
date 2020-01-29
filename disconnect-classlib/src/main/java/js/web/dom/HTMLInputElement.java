@@ -37,6 +37,7 @@ public interface HTMLInputElement extends HTMLElement {
     @JSProperty
     String getAlign();
 
+    @Deprecated
     @JSProperty
     void setAlign(String align);
 

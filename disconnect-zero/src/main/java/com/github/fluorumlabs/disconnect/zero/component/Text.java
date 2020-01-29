@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.zero.component;
 import static js.web.dom.Window.DOCUMENT;
 
 
-public class Text extends Component {
+public class Text extends AbstractComponent {
     public Text(String textContent) {
         super(DOCUMENT.createTextNode(textContent));
     }

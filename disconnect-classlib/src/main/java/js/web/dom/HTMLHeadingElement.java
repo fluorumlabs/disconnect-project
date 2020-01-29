@@ -24,6 +24,7 @@ public interface HTMLHeadingElement extends HTMLElement {
     @JSProperty
     String getAlign();
 
+    @Deprecated
     @JSProperty
     void setAlign(String align);
 

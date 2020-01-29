@@ -30,6 +30,7 @@ public interface HTMLImageElement extends HTMLElement, CanvasImageSource, TexIma
     @JSProperty
     String getAlign();
 
+    @Deprecated
     @JSProperty
     void setAlign(String align);
 

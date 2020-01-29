@@ -6,7 +6,7 @@ import js.web.dom.Node;
 import javax.annotation.Untainted;
 
 
-public interface HasComponents<E extends Element, T extends HasComponents<E, T, C>, C extends Component<?>> extends ComponentBase<E> {
+public interface HasComponents<E extends Element, T extends HasComponents<E, T, C>, C extends Component<?>> extends Component<E> {
     default T add(C component) {
         getNode().appendChild(component.render());
         return (T) this;

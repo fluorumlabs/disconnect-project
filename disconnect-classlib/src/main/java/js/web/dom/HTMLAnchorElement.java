@@ -24,6 +24,7 @@ public interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtil
     @JSProperty
     String getCharset();
 
+    @Deprecated
     @JSProperty
     void setCharset(String charset);
 
@@ -34,6 +35,7 @@ public interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtil
     @JSProperty
     String getCoords();
 
+    @Deprecated
     @JSProperty
     void setCoords(String coords);
 
@@ -59,6 +61,7 @@ public interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtil
     @JSProperty
     String getName();
 
+    @Deprecated
     @JSProperty
     void setName(String name);
 
@@ -93,6 +96,7 @@ public interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtil
     @JSProperty
     String getRev();
 
+    @Deprecated
     @JSProperty
     void setRev(String rev);
 
@@ -103,6 +107,7 @@ public interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtil
     @JSProperty
     String getShape();
 
+    @Deprecated
     @JSProperty
     void setShape(String shape);
 
