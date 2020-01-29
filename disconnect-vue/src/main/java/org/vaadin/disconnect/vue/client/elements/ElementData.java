@@ -117,10 +117,10 @@ public interface ElementData extends JSObject {
     }
 
     interface EventListeners extends JSObject {
-        @JSBody(params = {"type", "listener"}, script = "this[type] = $rtd_wrapThread(listener);")
+        @JSBody(params = {"type", "listener"}, script = "this[type] = $rtd_wrapThread.fn(listener);")
         void set(String type, VoidEventListener listener);
 
-        @JSBody(params = {"type", "listener"}, script = "this[type] = $rtd_wrapThread(listener);")
+        @JSBody(params = {"type", "listener"}, script = "this[type] = $rtd_wrapThread.fn(listener);")
         void set(String type, EventListener<?> listener);
 
         @JSBody(params = "type", script = "delete this[type];")
@@ -128,7 +128,7 @@ public interface ElementData extends JSObject {
     }
 
     interface NativeEventListeners extends JSObject {
-        @JSBody(params = {"type", "listener"}, script = "this[type] = $rtd_wrapThread(listener);")
+        @JSBody(params = {"type", "listener"}, script = "this[type] = $rtd_wrapThread.fn(listener);")
         void set(String type, NativeEventListener<?> listener);
 
         @JSBody(params = "type", script = "delete this[type];")

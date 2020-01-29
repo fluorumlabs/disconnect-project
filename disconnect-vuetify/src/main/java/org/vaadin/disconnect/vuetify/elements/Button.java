@@ -11,6 +11,8 @@ import org.vaadin.disconnect.vue.client.events.VoidEventListener;
  */
 @ImportComponent(module = "vuetify/lib/components/VBtn")
 public final class Button extends Element<Button> implements HasChildElements<Button, Element<?>>,
+        HasTheme<Button>,
+        HasColor<Button>,
         HasClickListener<Button> {
     public Button() {
         super(Button.class);

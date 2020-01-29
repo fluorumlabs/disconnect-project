@@ -1,0 +1,62 @@
+package js.web.dom;
+
+import org.teavm.jso.JSBody;
+import org.teavm.jso.JSProperty;
+
+/** HTMLOptionsCollection is an interface representing a collection of HTML option elements (in document order) and offers methods and properties for traversing the list as well as optionally altering its items. This type is returned solely by the "options" property of select. */
+public interface HTMLOptionsCollection extends HTMLCollectionOf<HTMLOptionElement> {
+    /**
+     * Returns the number of elements in the collection.
+     *
+     * When set to a smaller number, truncates the number of option elements in the corresponding container.
+     *
+     * When set to a greater number, adds new blank option elements to that container.
+     */
+    @JSProperty
+     int getLength();
+
+    @JSProperty
+     void setLength(int length);
+
+    /**
+     * Returns the index of the first selected item, if any, or −1 if there is no selected item.
+     *
+     * Can be set, to change the selection.
+     */
+    @JSProperty
+     int getSelectedIndex();
+
+    @JSProperty
+     void setSelectedIndex(int selectedIndex);
+
+    /**
+     * Inserts element before the node given by before.
+     *
+     * The before argument can be a number, in which case element is inserted before the item with that number, or an element from the collection, in which case element is inserted before that element.
+     *
+     * If before is omitted, null, or a number out of range, then element will be added at the end of the list.
+     *
+     * This method will throw a "HierarchyRequestError" DOMException if element is an ancestor of the element into which it is to be inserted.
+     */
+     void add(HTMLOptGroupElement element, HTMLElement before);
+     void add(HTMLOptGroupElement element, int before);
+     void add(HTMLOptGroupElement element);
+     void add(HTMLOptionElement element, HTMLElement before);
+     void add(HTMLOptionElement element, int before);
+     void add(HTMLOptionElement element);
+    /**
+     * Removes the item with index index from the collection.
+     */
+     void remove(int index);
+
+    @JSBody(script = "return HTMLOptionsCollection.prototype")
+    static HTMLOptionsCollection prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLOptionsCollection()")
+    static HTMLOptionsCollection create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+}

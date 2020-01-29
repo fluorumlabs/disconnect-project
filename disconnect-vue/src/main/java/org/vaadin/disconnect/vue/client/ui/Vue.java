@@ -15,12 +15,19 @@ public abstract class Vue implements JSObject {
     @ImportObject(module = "vue")
     private static Vue INSTANCE;
 
+    static {
+        configure(INSTANCE);
+    }
+
     @JSBody(params = {"instance", "definition"},
             script = "return new instance(definition)")
     private static native ComponentInstance createComponent(Vue instance, ComponentDefinition definition);
 
     @JSBody(params = {"instance", "plugin"}, script = "instance.use(plugin);")
     private static native void use(Vue instance, JSObject plugin);
+
+    @JSBody(params = {"instance"}, script = "instance.config.ignoredElements.push(/.*/);")
+    private static native void configure(Vue instance);
 
     public static void use(JSObject plugin) {
         use(INSTANCE, plugin);
@@ -30,4 +37,5 @@ public abstract class Vue implements JSObject {
 
         return createComponent(INSTANCE, definition);
     }
+
 }

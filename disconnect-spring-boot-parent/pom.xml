@@ -108,6 +108,24 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>com.fizzed</groupId>
+                    <artifactId>fizzed-watcher-maven-plugin</artifactId>
+                    <version>1.0.6</version>
+                    <configuration>
+                        <watches>
+                            <watch>
+                                <directory>src/main/java</directory>
+                            </watch>
+                            <watch>
+                                <directory>src/main/resources</directory>
+                            </watch>
+                        </watches>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
@@ -120,7 +138,7 @@
                         </compilerArgs>
                     </configuration>
                 </plugin>
-                <plugin>
+                <!--plugin>
                     <groupId>org.teavm</groupId>
                     <artifactId>teavm-maven-plugin</artifactId>
                     <version>${teavm.version}</version>
@@ -162,28 +180,29 @@
                             <goals>
                                 <goal>unpack-dependencies</goal>
                             </goals>
-                            <phase>prepare-package</phase>
+                            <phase>package</phase>
                             <configuration>
                                 <includes>frontend/**</includes>
-                                <outputDirectory>${project.build.directory}</outputDirectory>
+                                <outputDirectory>${project.build.directory}/frontend/jar_modules</outputDirectory>
                             </configuration>
                         </execution>
                     </executions>
                     <configuration>
                         <silent>true</silent>
+                        <useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
+                        <stripClassifier>true</stripClassifier>
+                        <stripVersion>true</stripVersion>
                     </configuration>
                 </plugin>
 
                 <plugin>
                     <groupId>com.github.eirslett</groupId>
                     <artifactId>frontend-maven-plugin</artifactId>
-                    <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
                     <version>1.8.0</version>
 
                     <configuration>
                         <workingDirectory>${project.build.directory}/frontend</workingDirectory>
                         <environmentVariables>
-                            <!-- Avoid certificates issues, needed behind a corporate proxy -->
                             <NODE_TLS_REJECT_UNAUTHORIZED>0</NODE_TLS_REJECT_UNAUTHORIZED>
                             <NODE_ENV>${NODE_ENV}</NODE_ENV>
                         </environmentVariables>
@@ -198,7 +217,6 @@
                             </goals>
                             <phase>prepare-package</phase>
                             <configuration>
-                                <!-- See https://nodejs.org/en/download/ for latest node and npm (lts) versions -->
                                 <nodeVersion>v10.16.3</nodeVersion>
                                 <npmVersion>6.9.0</npmVersion>
                             </configuration>
@@ -209,10 +227,9 @@
                             <goals>
                                 <goal>npm</goal>
                             </goals>
-                            <phase>prepare-package</phase>
-                            <!-- Optional configuration which provides for running any npm command -->
+                            <phase>package</phase>
                             <configuration>
-                                <arguments>install</arguments>
+                                <arguments>install -no-audit</arguments>
                             </configuration>
                         </execution>
 
@@ -221,8 +238,7 @@
                             <goals>
                                 <goal>npm</goal>
                             </goals>
-                            <phase>prepare-package</phase>
-                            <!-- Optional configuration which provides for running any npm command -->
+                            <phase>package</phase>
                             <configuration>
                                 <arguments>run rollup</arguments>
                             </configuration>
@@ -236,34 +252,16 @@
                     <version>3.1.0</version>
                     <executions>
                         <execution>
-                            <id>pre-copy-resources</id>
-                            <phase>process-resources</phase>
-                            <goals>
-                                <goal>copy-resources</goal>
-                            </goals>
-                            <configuration>
-                                <outputDirectory>${project.build.directory}/frontend/static</outputDirectory>
-                                <resources>
-                                    <resource>
-                                        <directory>${project.basedir}/src/main/resources/static</directory>
-                                        <includes>
-                                            <include>**/*</include>
-                                        </includes>
-                                    </resource>
-                                </resources>
-                            </configuration>
-                        </execution>
-                        <execution>
                             <id>pre-copy-development-resources</id>
                             <phase>process-resources</phase>
                             <goals>
                                 <goal>copy-resources</goal>
                             </goals>
                             <configuration>
-                                <outputDirectory>${project.build.directory}/frontend/src</outputDirectory>
+                                <outputDirectory>${project.build.directory}/frontend/</outputDirectory>
                                 <resources>
                                     <resource>
-                                        <directory>${project.basedir}/src/main/resources/src
+                                        <directory>${project.basedir}/src/main/resources/frontend
                                         </directory>
                                         <includes>
                                             <include>**/*</include>
@@ -282,7 +280,7 @@
                                 <outputDirectory>${project.build.directory}/classes/static</outputDirectory>
                                 <resources>
                                     <resource>
-                                        <directory>${project.build.directory}/frontend/static</directory>
+                                        <directory>${project.build.directory}/frontend/dist</directory>
                                         <includes>
                                             <include>**/*</include>
                                         </includes>
@@ -291,7 +289,7 @@
                             </configuration>
                         </execution>
                     </executions>
-                </plugin>
+                </plugin-->
             </plugins>
         </pluginManagement>
     </build>

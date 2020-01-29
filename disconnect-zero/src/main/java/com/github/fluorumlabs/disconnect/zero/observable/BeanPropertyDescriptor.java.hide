@@ -1,0 +1,66 @@
+package com.github.fluorumlabs.disconnect.zero.observable;
+
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+
+
+class BeanPropertyDescriptor<BEAN, VALUE> {
+    Class<VALUE> type;
+    Function<BEAN, VALUE> getter;
+    BiConsumer<BEAN, VALUE> setter;
+
+
+    BeanPropertyDescriptor(Class<VALUE> type, Function<BEAN, VALUE> getter, BiConsumer<BEAN, VALUE> setter) {
+        this.type = type;
+        this.getter = getter;
+        this.setter = setter;
+    }
+
+    static <BEAN> Map<String, BeanPropertyDescriptor<BEAN, ?>> buildPropertyMap(Class<BEAN> clazz) {
+        try {
+            Map<String, BeanPropertyDescriptor<BEAN, ?>> propertyMap = new HashMap<>();;
+            BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
+            for (PropertyDescriptor propertyDescriptor : beanInfo.getPropertyDescriptors()) {
+                Class<?> propertyType = propertyDescriptor.getPropertyType();
+                Method readMethod = propertyDescriptor.getReadMethod();
+                Method writeMethod = propertyDescriptor.getWriteMethod();
+
+                if (readMethod != null && writeMethod != null) {
+                    propertyMap.put(propertyDescriptor.getName(), new BeanPropertyDescriptor<>(propertyType, makeGetter(readMethod), makeSetter(writeMethod)));
+                }
+            }
+            return propertyMap;
+        } catch (IntrospectionException e) {
+            throw new IllegalStateException("Unable to create ObservableBean", e);
+        }
+    }
+
+    private static <BEAN, X> Function<BEAN, X> makeGetter(Method readMethod) {
+        return v -> {
+            try {
+                return (X)readMethod.invoke(v);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                throw new IllegalArgumentException("Unable to read property", e);
+            }
+        };
+    }
+
+    private static <BEAN, X> BiConsumer<BEAN, X> makeSetter(Method writeMethod) {
+        return (v, o) -> {
+            try {
+                writeMethod.invoke(v, o);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                throw new IllegalArgumentException("Unable to write property", e);
+            }
+        };
+    }
+
+}

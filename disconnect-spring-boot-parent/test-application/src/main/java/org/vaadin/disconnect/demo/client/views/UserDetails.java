@@ -5,9 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * Created by Artem Godin on 10/11/2019.
- */
+
 @PasswordsMatch
 class UserDetails {
     @NotNull

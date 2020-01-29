@@ -17,12 +17,23 @@ public abstract class Vuetify {
     @ImportObject(module = "vuetify/lib/framework")
     private static JSObject INSTANCE;
 
+    private static VuetifyConfiguration vuetifyConfiguration;
+
     static {
         Vue.use(INSTANCE);
     }
 
     public static JSObject configure(VuetifyConfiguration configuration) {
+        vuetifyConfiguration = configuration;
         return createInstance(INSTANCE, configuration);
+    }
+
+    public static void useDarkTheme(boolean dark) {
+        if (dark) {
+            vuetifyConfiguration.useDarkTheme();
+        } else {
+            vuetifyConfiguration.useLightTheme();
+        }
     }
 
     @JSBody(params = {"instance", "configuration"}, script = "return new instance(configuration)")

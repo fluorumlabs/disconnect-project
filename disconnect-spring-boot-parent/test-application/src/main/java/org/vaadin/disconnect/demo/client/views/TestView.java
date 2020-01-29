@@ -1,5 +1,6 @@
 package org.vaadin.disconnect.demo.client.views;
 
+import org.vaadin.disconnect.demo.backend.GreeterService;
 import org.vaadin.disconnect.demo.client.TestState;
 import org.vaadin.disconnect.vue.annotations.Route;
 import org.vaadin.disconnect.vue.annotations.InjectState;
@@ -14,11 +15,10 @@ import org.vaadin.disconnect.vuetify.elements.wrappers.VerticalLayout;
 import org.vaadin.disconnect.vuetify.icons.MDI;
 import org.vaadin.disconnect.vuetify.theme.MaterialColor;
 
+import javax.annotation.Resource;
 import java.util.Objects;
 
-/**
- * Created by Artem Godin on 9/27/2019.
- */
+
 @VueComponent
 @Route("test")
 public class TestView extends Component {
@@ -32,6 +32,9 @@ public class TestView extends Component {
     @InjectState
     private TestState testState;
 
+    @Resource
+    private GreeterService service;
+
     @Override
     public Element init() {
         Binder<UserDetails> binder = Binder.bind(details,this);
@@ -44,7 +47,10 @@ public class TestView extends Component {
                 .then(confirmPassword::setErrorMessage);
         observe(binder::isValid).then(button::setEnabled);
 
-        button.onClick(() -> testState.setEmailAddress(details.getEmail()));
+        button.onClick(() -> {
+            testState.setEmailAddress(details.getEmail());
+            System.out.println(service.hello(details.getEmail()));
+        });
 
         return new VerticalLayout(new Icon(MDI.LAN_DISCONNECT), email, password, confirmPassword, button);
     }

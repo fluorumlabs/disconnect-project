@@ -5,9 +5,7 @@ import org.vaadin.disconnect.vuetify.theme.Theme;
 import org.vaadin.disconnect.vuetify.theme.ThemeColor;
 import org.vaadin.disconnect.vuetify.theme.VuetifyColor;
 
-/**
- * Created by Artem Godin on 10/18/2019.
- */
+
 public enum VaadinThemeColors implements ThemeColor {
     WATER, LAVA, SALMON, GOLD, GRASS,
     CHARCOAL, GRAPHITE, STAINLESS, ALUMINIUM, SNOW;

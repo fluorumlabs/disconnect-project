@@ -44,8 +44,6 @@ public interface HasChildElements<T extends HasChildElements<T, E>, E extends El
     }
 
     default T setText(String text) {
-        removeAll();
-        data().domProperties().set("textContent", text);
-        return (T) this;
+        return removeAll().add((E)new Text(text));
     }
 }

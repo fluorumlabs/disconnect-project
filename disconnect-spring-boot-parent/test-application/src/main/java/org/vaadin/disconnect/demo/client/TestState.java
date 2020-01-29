@@ -6,9 +6,7 @@ import org.vaadin.disconnect.vue.annotations.VuexState;
 
 import java.io.Serializable;
 
-/**
- * Created by Artem Godin on 10/16/2019.
- */
+
 @VuexState
 @PersistToLocalStorage
 public class TestState implements Serializable {

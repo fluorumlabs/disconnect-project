@@ -3,9 +3,7 @@ package org.vaadin.disconnect.demo.client;
 import org.vaadin.disconnect.vue.annotations.Mutation;
 import org.vaadin.disconnect.vue.annotations.VuexState;
 
-/**
- * Created by Artem Godin on 9/26/2019.
- */
+
 @VuexState
 public class LoadingState {
     private int activeRequestCount = 0;

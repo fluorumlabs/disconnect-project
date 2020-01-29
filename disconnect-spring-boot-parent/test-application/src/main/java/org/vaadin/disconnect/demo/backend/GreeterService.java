@@ -5,9 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.vaadin.disconnect.core.annotations.AllowClientCalls;
 
-/**
- * Created by Artem Godin on 8/20/2019.
- */
+
 @Service
 public class GreeterService {
     private static final Logger log = LoggerFactory.getLogger(GreeterService.class);

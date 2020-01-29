@@ -51,22 +51,26 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>com.fizzed</groupId>
+                <artifactId>fizzed-watcher-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.teavm</groupId>
-                <artifactId>teavm-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
+                <groupId>org.vaadin.disconnect</groupId>
+                <artifactId>disconnect-maven-plugin</artifactId>
+                <version>${disconnect.version}</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>com.heroku.sdk</groupId>

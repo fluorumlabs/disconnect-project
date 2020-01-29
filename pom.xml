@@ -4,14 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.vaadin.disconnect</groupId>
+    <groupId>com.github.fluorumlabs.disconnect</groupId>
     <artifactId>disconnect</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>disconnect-core</module>
-        <module>disconnect-spring-boot-parent</module>
-        <module>disconnect-vue</module>
-        <module>disconnect-vuetify</module>
+        <module>disconnect-classlib</module>
+        <module>disconnect-maven-plugin</module>
+        <module>disconnect-spring-integration</module>
+        <module>examples</module>
+        <module>disconnect-zero</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -27,8 +29,6 @@
         <teavm.version>0.6.1</teavm.version>
         <flavour.version>0.2.0-dev-70</flavour.version>
         <auto-service.version>1.0-rc6</auto-service.version>
-        <spring.version>5.1.9.RELEASE</spring.version>
-        <jackson.version>2.9.9</jackson.version>
         <commons-lang3.version>3.8.1</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
     </properties>
@@ -88,21 +88,6 @@
                 <artifactId>auto-service</artifactId>
                 <version>${auto-service.version}</version>
                 <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>4.0.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

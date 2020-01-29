@@ -12,9 +12,7 @@ import org.vaadin.disconnect.vue.client.router.Route;
 /**
  * Created by Artem Godin on 9/20/2019.
  */
-@Import(symbols = "renderElementPrototype", module = "./disconnect-vue/render-elementprototype.js", defaultExport = true)
-@Import(symbols = "enqueue as vue_enqueue_watch", module = "./disconnect-vue/defer-watches.js")
-@Import(symbols = "register as vue_register_watches", module = "./disconnect-vue/defer-watches.js")
+@Import(symbols = "renderElementPrototype", module = "disconnect-vue-jar/frontend/render-elementprototype.js", defaultExport = true)
 public abstract class ComponentInstance implements JSObject {
     @JSBody(params = "instance", script = "this.$options.data = function() { return instance };")
     public native void setJavaInstance(JSObject instance);
@@ -48,7 +46,7 @@ public abstract class ComponentInstance implements JSObject {
     }
 
     @JSBody(params = {"observeFunction", "computeFunction"}, script = "var that = this;\n" +
-            "window.requestAnimationFrame(function() { that.$watch(observeFunction, $rtd_wrapThread(computeFunction), { deep: true, immediate: true })});")
+            "window.requestAnimationFrame(function() { that.$watch(observeFunction, $rtd_wrapThread.fn(computeFunction), { deep: true, immediate: true })});")
     public native void watch(ObserveFunction observeFunction, VoidCallbackFunction computeFunction);
 
     @JSFunctor

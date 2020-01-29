@@ -66,7 +66,7 @@ public class DisconnectValidationClassTransformer implements ClassHolderTransfor
         while (instruction != null) {
             if (instruction instanceof GetFieldInstruction) {
                 GetFieldInstruction getFieldInstruction = (GetFieldInstruction) instruction;
-                FieldHolder fieldHolder = (FieldHolder)(context.getHierarchy().getClassSource().resolve(getFieldInstruction.getField()));
+                FieldReader fieldHolder = (context.getHierarchy().getClassSource().resolve(getFieldInstruction.getField()));
                 if (fieldHolder != null && isValidated(fieldHolder, context)) {
                     Variable clazz = basicBlock.getProgram().createVariable();
                     Variable fieldName = basicBlock.getProgram().createVariable();
@@ -92,10 +92,10 @@ public class DisconnectValidationClassTransformer implements ClassHolderTransfor
         }
     }
 
-    private boolean isValidated(FieldHolder fh, ClassHolderTransformerContext context) {
+    private boolean isValidated(FieldReader fh, ClassHolderTransformerContext context) {
         return validatedFields.computeIfAbsent(fh.getOwnerName()+":"+fh.getName(), k -> {
             List<AnnotationReader> annotations = new ArrayList<>();
-            for (AnnotationHolder annotationHolder : fh.getAnnotations().all()) {
+            for (AnnotationReader annotationHolder : fh.getAnnotations().all()) {
                 collectAnnotations(annotationHolder, annotations::add, context);
             }
             return annotations.stream().anyMatch(annotationReader -> annotationReader.getType().equals("javax.validation.Constraint"));
