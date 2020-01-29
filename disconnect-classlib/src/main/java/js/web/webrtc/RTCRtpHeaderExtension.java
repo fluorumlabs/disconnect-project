@@ -1,8 +1,9 @@
 package js.web.webrtc;
 
+import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
 
 public interface RTCRtpHeaderExtension extends Any {

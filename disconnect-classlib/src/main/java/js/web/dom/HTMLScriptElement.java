@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** HTML <script> elements expose the HTMLScriptElement interface, which provides special properties and methods for manipulating the behavior and execution of <script> elements (beyond the inherited HTMLElement interface). */
+/**
+ * HTML <script> elements expose the HTMLScriptElement interface, which provides special properties and methods for manipulating the behavior and execution of <script> elements (beyond the inherited HTMLElement interface).
+ */
 public interface HTMLScriptElement extends HTMLElement, HTMLOrSVGScriptElement {
+    @JSBody(script = "return HTMLScriptElement.prototype")
+    static HTMLScriptElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLScriptElement()")
+    static HTMLScriptElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     boolean isAsync();
 
@@ -26,7 +38,7 @@ public interface HTMLScriptElement extends HTMLElement, HTMLOrSVGScriptElement {
 
     @JSProperty
     @Nullable
-    String  getCrossOrigin();
+    String getCrossOrigin();
 
     @JSProperty
     void setCrossOrigin(String crossOrigin);
@@ -104,15 +116,5 @@ public interface HTMLScriptElement extends HTMLElement, HTMLOrSVGScriptElement {
 
     @JSProperty
     void setType(String type);
-
-    @JSBody(script = "return HTMLScriptElement.prototype")
-    static HTMLScriptElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLScriptElement()")
-    static HTMLScriptElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

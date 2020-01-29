@@ -1,40 +1,47 @@
 package js.web.dom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
-/** An iterator over the members of a list of the nodes in a subtree of the DOM. The nodes will be returned in document order. */
-        public interface NodeIterator extends Any {
-        @JSProperty
-        @Nullable
-        NodeFilter getFilter();
+/**
+ * An iterator over the members of a list of the nodes in a subtree of the DOM. The nodes will be returned in document order.
+ */
+public interface NodeIterator extends Any {
+    @JSBody(script = "return NodeIterator.prototype")
+    static NodeIterator prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        boolean isPointerBeforeReferenceNode();
+    @JSBody(script = "return new NodeIterator()")
+    static NodeIterator create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        Node getReferenceNode();
+    @JSProperty
+    @Nullable
+    NodeFilter getFilter();
 
-        @JSProperty
-        Node getRoot();
+    @JSProperty
+    boolean isPointerBeforeReferenceNode();
 
-        @JSProperty
-        int getWhatToShow();
+    @JSProperty
+    Node getReferenceNode();
 
-        void detach();
-        @Nullable Node nextNode();
-        @Nullable Node previousNode();
+    @JSProperty
+    Node getRoot();
 
-        @JSBody(script = "return NodeIterator.prototype")
-        static NodeIterator prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    int getWhatToShow();
 
-        @JSBody(script = "return new NodeIterator()")
-        static NodeIterator create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    void detach();
 
-        }
+    @Nullable
+    Node nextNode();
+
+    @Nullable
+    Node previousNode();
+
+}

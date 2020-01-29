@@ -5,26 +5,26 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGPathSegCurvetoQuadraticSmoothRel extends SVGPathSeg {
-        @JSProperty
-        double getX();
+    @JSBody(script = "return SVGPathSegCurvetoQuadraticSmoothRel.prototype")
+    static SVGPathSegCurvetoQuadraticSmoothRel prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setX(double x);
+    @JSBody(script = "return new SVGPathSegCurvetoQuadraticSmoothRel()")
+    static SVGPathSegCurvetoQuadraticSmoothRel create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getY();
+    @JSProperty
+    double getX();
 
-        @JSProperty
-        void setY(double y);
+    @JSProperty
+    void setX(double x);
 
-        @JSBody(script = "return SVGPathSegCurvetoQuadraticSmoothRel.prototype")
-        static SVGPathSegCurvetoQuadraticSmoothRel prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getY();
 
-        @JSBody(script = "return new SVGPathSegCurvetoQuadraticSmoothRel()")
-        static SVGPathSegCurvetoQuadraticSmoothRel create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setY(double y);
 
-        }
+}

@@ -9,6 +9,6 @@ import javax.annotation.Nullable;
 
 @JSFunctor
 @FunctionalInterface
-        public interface OnErrorEventHandler extends JSObject {
-        void handle(Unknown event, @Nullable String source, int lineno, int colno, @Nullable Error error);
-        }
+public interface OnErrorEventHandler extends JSObject {
+    void handle(Unknown event, @Nullable String source, int lineno, int colno, @Nullable Error error);
+}

@@ -6,9 +6,6 @@ import org.teavm.jso.JSBody;
 
 
 public interface Clipboard extends EventTarget {
-    StringPromise readText();
-    VoidPromise writeText(String data);
-
     @JSBody(script = "return Clipboard.prototype")
     static Clipboard prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -18,5 +15,9 @@ public interface Clipboard extends EventTarget {
     static Clipboard create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    StringPromise readText();
+
+    VoidPromise writeText(String data);
 
 }

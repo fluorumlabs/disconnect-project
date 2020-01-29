@@ -3,34 +3,36 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides access to the properties of <filter> elements, as well as methods to manipulate them. */
-        public interface SVGFilterElement extends SVGElement, SVGURIReference {
-        @JSProperty
-        SVGAnimatedEnumeration getFilterUnits();
+/**
+ * Provides access to the properties of <filter> elements, as well as methods to manipulate them.
+ */
+public interface SVGFilterElement extends SVGElement, SVGURIReference {
+    @JSBody(script = "return SVGFilterElement.prototype")
+    static SVGFilterElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedLength getHeight();
+    @JSBody(script = "return new SVGFilterElement()")
+    static SVGFilterElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedEnumeration getPrimitiveUnits();
+    @JSProperty
+    SVGAnimatedEnumeration getFilterUnits();
 
-        @JSProperty
-        SVGAnimatedLength getWidth();
+    @JSProperty
+    SVGAnimatedLength getHeight();
 
-        @JSProperty
-        SVGAnimatedLength getX();
+    @JSProperty
+    SVGAnimatedEnumeration getPrimitiveUnits();
 
-        @JSProperty
-        SVGAnimatedLength getY();
+    @JSProperty
+    SVGAnimatedLength getWidth();
 
-        @JSBody(script = "return SVGFilterElement.prototype")
-        static SVGFilterElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getX();
 
-        @JSBody(script = "return new SVGFilterElement()")
-        static SVGFilterElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getY();
 
-        }
+}

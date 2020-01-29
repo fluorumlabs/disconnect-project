@@ -5,20 +5,20 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGPathSegLinetoVerticalRel extends SVGPathSeg {
-        @JSProperty
-        double getY();
+    @JSBody(script = "return SVGPathSegLinetoVerticalRel.prototype")
+    static SVGPathSegLinetoVerticalRel prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setY(double y);
+    @JSBody(script = "return new SVGPathSegLinetoVerticalRel()")
+    static SVGPathSegLinetoVerticalRel create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return SVGPathSegLinetoVerticalRel.prototype")
-        static SVGPathSegLinetoVerticalRel prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getY();
 
-        @JSBody(script = "return new SVGPathSegLinetoVerticalRel()")
-        static SVGPathSegLinetoVerticalRel create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setY(double y);
 
-        }
+}

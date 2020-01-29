@@ -6,6 +6,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface RTCStatsCallback extends JSObject {
-        void accept(RTCStatsReport report);
-        }
+public interface RTCStatsCallback extends JSObject {
+    void accept(RTCStatsReport report);
+}

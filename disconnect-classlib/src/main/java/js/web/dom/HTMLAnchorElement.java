@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Hyperlink elements and provides special properties and methods (beyond those of the regular HTMLElement object interface that they inherit from) for manipulating the layout and presentation of such elements. */
+/**
+ * Hyperlink elements and provides special properties and methods (beyond those of the regular HTMLElement object interface that they inherit from) for manipulating the layout and presentation of such elements.
+ */
 public interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtils {
+    @JSBody(script = "return HTMLAnchorElement.prototype")
+    static HTMLAnchorElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLAnchorElement()")
+    static HTMLAnchorElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves the character set used to encode the object.
      */
@@ -117,15 +129,5 @@ public interface HTMLAnchorElement extends HTMLElement, HTMLHyperlinkElementUtil
 
     @JSProperty
     void setType(String type);
-
-    @JSBody(script = "return HTMLAnchorElement.prototype")
-    static HTMLAnchorElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLAnchorElement()")
-    static HTMLAnchorElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

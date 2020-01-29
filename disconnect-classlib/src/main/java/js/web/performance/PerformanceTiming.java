@@ -1,87 +1,88 @@
 package js.web.performance;
 
+import js.lang.Any;
+import js.lang.Unknown;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-import js.lang.Unknown;
-
-/** A legacy interface kept for backwards compatibility and contains properties that offer performance timing information for various events which occur during the loading and use of the current page. You get a PerformanceTiming object describing your page using the window.performance.timing property. */
+/**
+ * A legacy interface kept for backwards compatibility and contains properties that offer performance timing information for various events which occur during the loading and use of the current page. You get a PerformanceTiming object describing your page using the window.performance.timing property.
+ */
 @Deprecated
-        public interface PerformanceTiming extends Any {
-        @JSProperty
-        double getConnectEnd();
+public interface PerformanceTiming extends Any {
+    @JSBody(script = "return PerformanceTiming.prototype")
+    static PerformanceTiming prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getConnectStart();
+    @JSBody(script = "return new PerformanceTiming()")
+    static PerformanceTiming create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getDomComplete();
+    @JSProperty
+    double getConnectEnd();
 
-        @JSProperty
-        double getDomContentLoadedEventEnd();
+    @JSProperty
+    double getConnectStart();
 
-        @JSProperty
-        double getDomContentLoadedEventStart();
+    @JSProperty
+    double getDomComplete();
 
-        @JSProperty
-        double getDomInteractive();
+    @JSProperty
+    double getDomContentLoadedEventEnd();
 
-        @JSProperty
-        double getDomLoading();
+    @JSProperty
+    double getDomContentLoadedEventStart();
 
-        @JSProperty
-        double getDomainLookupEnd();
+    @JSProperty
+    double getDomInteractive();
 
-        @JSProperty
-        double getDomainLookupStart();
+    @JSProperty
+    double getDomLoading();
 
-        @JSProperty
-        double getFetchStart();
+    @JSProperty
+    double getDomainLookupEnd();
 
-        @JSProperty
-        double getLoadEventEnd();
+    @JSProperty
+    double getDomainLookupStart();
 
-        @JSProperty
-        double getLoadEventStart();
+    @JSProperty
+    double getFetchStart();
 
-        @JSProperty
-        double getNavigationStart();
+    @JSProperty
+    double getLoadEventEnd();
 
-        @JSProperty
-        double getRedirectEnd();
+    @JSProperty
+    double getLoadEventStart();
 
-        @JSProperty
-        double getRedirectStart();
+    @JSProperty
+    double getNavigationStart();
 
-        @JSProperty
-        double getRequestStart();
+    @JSProperty
+    double getRedirectEnd();
 
-        @JSProperty
-        double getResponseEnd();
+    @JSProperty
+    double getRedirectStart();
 
-        @JSProperty
-        double getResponseStart();
+    @JSProperty
+    double getRequestStart();
 
-        @JSProperty
-        double getSecureConnectionStart();
+    @JSProperty
+    double getResponseEnd();
 
-        @JSProperty
-        double getUnloadEventEnd();
+    @JSProperty
+    double getResponseStart();
 
-        @JSProperty
-        double getUnloadEventStart();
+    @JSProperty
+    double getSecureConnectionStart();
 
-        Unknown toJSON();
+    @JSProperty
+    double getUnloadEventEnd();
 
-        @JSBody(script = "return PerformanceTiming.prototype")
-        static PerformanceTiming prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getUnloadEventStart();
 
-        @JSBody(script = "return new PerformanceTiming()")
-        static PerformanceTiming create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    Unknown toJSON();
 
-        }
+}

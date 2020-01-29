@@ -9,8 +9,8 @@ public interface ArrayLike<T extends Any> extends IterableIterable<T>, Any {
     /**
      * Gets the length of the array. This is a number one higher than the highest element defined in an array.
      */
-     int getLength();
+    int getLength();
 
     @JSIndexer
-     T get(int n);
+    T get(int n);
 }

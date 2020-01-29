@@ -1,13 +1,26 @@
 package js.web.dom;
 
 import js.extras.JsEnum;
+import js.lang.JsDate;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.JsDate;
+import javax.annotation.Nullable;
 
-/** Provides special properties and methods for manipulating the options, layout, and presentation of <input> elements. */
+/**
+ * Provides special properties and methods for manipulating the options, layout, and presentation of <input> elements.
+ */
 public interface HTMLInputElement extends HTMLElement {
+    @JSBody(script = "return HTMLInputElement.prototype")
+    static HTMLInputElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLInputElement()")
+    static HTMLInputElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves a comma-separated list of content types.
      */
@@ -108,7 +121,7 @@ public interface HTMLInputElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    HTMLFormElement  getForm();
+    HTMLFormElement getForm();
 
     /**
      * Overrides the action attribute (where the data on a form is sent) on the parent form element.
@@ -179,7 +192,7 @@ public interface HTMLInputElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    HTMLElement  getList();
+    HTMLElement getList();
 
     /**
      * Defines the maximum acceptable value for an input element with type="number".When used with the min and step attributes, lets you control the range and increment (such as only even numbers) that the user can enter into an input field.
@@ -267,7 +280,7 @@ public interface HTMLInputElement extends HTMLElement {
 
     @JSProperty
     @Nullable
-    String  getSelectionDirection();
+    String getSelectionDirection();
 
     @JSProperty
     void setSelectionDirection(String selectionDirection);
@@ -277,7 +290,7 @@ public interface HTMLInputElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    double  getSelectionEnd();
+    double getSelectionEnd();
 
     @JSProperty
     void setSelectionEnd(double selectionEnd);
@@ -287,7 +300,7 @@ public interface HTMLInputElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    double  getSelectionStart();
+    double getSelectionStart();
 
     @JSProperty
     void setSelectionStart(double selectionStart);
@@ -357,8 +370,8 @@ public interface HTMLInputElement extends HTMLElement {
     void setValue(String value);
 
     /**
-      * Returns a Date object representing the form control's value, if applicable
-     otherwise, returns null. Can be set, to change the value. Throws an "InvalidStateError" DOMException if the control isn't date- or time-based.
+     * Returns a Date object representing the form control's value, if applicable
+     * otherwise, returns null. Can be set, to change the value. Throws an "InvalidStateError" DOMException if the control isn't date- or time-based.
      */
     @JSProperty
     @Nullable
@@ -395,27 +408,55 @@ public interface HTMLInputElement extends HTMLElement {
      * Returns whether a form will validate when it is submitted, without having to submit it.
      */
     boolean checkValidity();
+
     boolean reportValidity();
+
     /**
      * Makes the selection equal to the current object.
      */
     void select();
+
     /**
      * Sets a custom error message that is displayed when a form is submitted.
+     *
      * @param error Sets a custom error message that is displayed when a form is submitted.
      */
     void setCustomValidity(String error);
+
     void setRangeText(String replacement);
+
     void setRangeText(String replacement, int start, int end, SelectionMode selectionMode);
+
     void setRangeText(String replacement, int start, int end);
+
     /**
      * Sets the start and end positions of a selection in a text field.
-     * @param start The offset into the text field for the start of the selection.
-     * @param end The offset into the text field for the end of the selection.
+     *
+     * @param start     The offset into the text field for the start of the selection.
+     * @param end       The offset into the text field for the end of the selection.
      * @param direction The direction in which the selection is performed.
      */
     void setSelectionRange(int start, int end, Direction direction);
+
     void setSelectionRange(int start, int end);
+
+    /**
+     * Decrements a range input control's value by the value given by the Step attribute. If the optional parameter is used, it will decrement the input control's step value multiplied by the parameter's value.
+     *
+     * @param n Value to decrement the value by.
+     */
+    void stepDown(double n);
+
+    void stepDown();
+
+    /**
+     * Increments a range input control's value by the value given by the Step attribute. If the optional parameter is used, will increment the input control's value by that value.
+     *
+     * @param n Value to increment the value by.
+     */
+    void stepUp(double n);
+
+    void stepUp();
 
     abstract class Direction extends JsEnum {
         public static final Direction FORWARD = JsEnum.of("forward");
@@ -423,29 +464,6 @@ public interface HTMLInputElement extends HTMLElement {
         public static final Direction BACKWARD = JsEnum.of("backward");
 
         public static final Direction NONE = JsEnum.of("none");
-
-    }
-    /**
-     * Decrements a range input control's value by the value given by the Step attribute. If the optional parameter is used, it will decrement the input control's step value multiplied by the parameter's value.
-     * @param n Value to decrement the value by.
-     */
-    void stepDown(double n);
-    void stepDown();
-    /**
-     * Increments a range input control's value by the value given by the Step attribute. If the optional parameter is used, will increment the input control's value by that value.
-     * @param n Value to increment the value by.
-     */
-    void stepUp(double n);
-    void stepUp();
-
-    @JSBody(script = "return HTMLInputElement.prototype")
-    static HTMLInputElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLInputElement()")
-    static HTMLInputElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
 }

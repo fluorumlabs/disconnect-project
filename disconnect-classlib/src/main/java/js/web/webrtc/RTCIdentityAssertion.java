@@ -1,32 +1,31 @@
 package js.web.webrtc;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
 
 public interface RTCIdentityAssertion extends Any {
-        @JSProperty
-        String getIdp();
+    @JSBody(script = "return RTCIdentityAssertion.prototype")
+    static RTCIdentityAssertion prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setIdp(String idp);
+    @JSBody(params = {"idp", "name"}, script = "return new RTCIdentityAssertion(idp, name)")
+    static RTCIdentityAssertion create(String idp, String name) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getName();
+    @JSProperty
+    String getIdp();
 
-        @JSProperty
-        void setName(String name);
+    @JSProperty
+    void setIdp(String idp);
 
-        @JSBody(script = "return RTCIdentityAssertion.prototype")
-        static RTCIdentityAssertion prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getName();
 
-        @JSBody(params={"idp","name"}, script = "return new RTCIdentityAssertion(idp, name)")
-        static RTCIdentityAssertion create(String idp, String name) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setName(String name);
 
-        }
+}

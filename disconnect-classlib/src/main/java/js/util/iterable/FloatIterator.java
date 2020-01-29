@@ -9,13 +9,17 @@ import java.util.Iterator;
 public interface FloatIterator extends Any {
     @JSBody(script = "return this.next()")
     FloatIteratorResult doNext();
-    @JSBody(params="value", script ="return this.return(value)")
+
+    @JSBody(params = "value", script = "return this.return(value)")
     FloatIteratorResult doReturn(float value);
-    @JSBody(script ="return this.return()")
+
+    @JSBody(script = "return this.return()")
     FloatIteratorResult doReturn();
-    @JSBody(params="e", script ="return this.throw(e)")
+
+    @JSBody(params = "e", script = "return this.throw(e)")
     FloatIteratorResult doThrow(Any e);
-    @JSBody(script ="return this.throw()")
+
+    @JSBody(script = "return this.throw()")
     FloatIteratorResult doThrow();
 
     default Iterator<Float> getJavaIterator() {

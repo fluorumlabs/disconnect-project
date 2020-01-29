@@ -1,12 +1,11 @@
 package js.web.dom;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface NavigatorOnLine extends Any {
-        @JSProperty
-        boolean isOnLine();
+    @JSProperty
+    boolean isOnLine();
 
-        }
+}

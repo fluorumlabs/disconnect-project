@@ -1,32 +1,31 @@
 package js.web.webspeech;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
 
 public interface SpeechGrammar extends Any {
-        @JSProperty
-        String getSrc();
+    @JSBody(script = "return SpeechGrammar.prototype")
+    static SpeechGrammar prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setSrc(String src);
+    @JSBody(script = "return new SpeechGrammar()")
+    static SpeechGrammar create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getWeight();
+    @JSProperty
+    String getSrc();
 
-        @JSProperty
-        void setWeight(double weight);
+    @JSProperty
+    void setSrc(String src);
 
-        @JSBody(script = "return SpeechGrammar.prototype")
-        static SpeechGrammar prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getWeight();
 
-        @JSBody(script = "return new SpeechGrammar()")
-        static SpeechGrammar create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setWeight(double weight);
 
-        }
+}

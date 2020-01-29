@@ -8,25 +8,25 @@ import javax.annotation.Nullable;
 
 
 public interface MediaStreamError extends Any {
-        @JSProperty
-        @Nullable
-        String  getConstraintName();
+    @JSBody(script = "return MediaStreamError.prototype")
+    static MediaStreamError prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        String  getMessage();
+    @JSBody(script = "return new MediaStreamError()")
+    static MediaStreamError create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getName();
+    @JSProperty
+    @Nullable
+    String getConstraintName();
 
-        @JSBody(script = "return MediaStreamError.prototype")
-        static MediaStreamError prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    String getMessage();
 
-        @JSBody(script = "return new MediaStreamError()")
-        static MediaStreamError create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getName();
 
-        }
+}

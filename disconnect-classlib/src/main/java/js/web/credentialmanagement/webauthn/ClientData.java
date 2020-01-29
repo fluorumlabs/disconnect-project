@@ -27,6 +27,7 @@ public interface ClientData extends Any {
 
     @JSProperty
     void setHashAlg(String hashAlg);
+
     @JSProperty
     void setHashAlg(Algorithm hashAlg);
 

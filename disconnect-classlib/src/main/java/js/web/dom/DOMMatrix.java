@@ -1,14 +1,53 @@
 package js.web.dom;
 
-import org.teavm.jso.JSBody;
-import org.teavm.jso.JSProperty;
-
 import js.util.buffers.Float32Array;
 import js.util.buffers.Float64Array;
+import org.teavm.jso.JSBody;
 import org.teavm.jso.JSByRef;
+import org.teavm.jso.JSProperty;
 
 
 public interface DOMMatrix extends DOMMatrixReadOnly {
+    @JSBody(script = "return DOMMatrix.prototype")
+    static DOMMatrix prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "init", script = "return new DOMMatrix(init)")
+    static DOMMatrix create(String init) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "init", script = "return new DOMMatrix(init)")
+    static DOMMatrix create(@JSByRef double... init) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new DOMMatrix()")
+    static DOMMatrix create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "array32", script = "return DOMMatrix.fromFloat32Array(array32)")
+    static DOMMatrix fromFloat32Array(Float32Array array32) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "array64", script = "return DOMMatrix.fromFloat64Array(array64)")
+    static DOMMatrix fromFloat64Array(Float64Array array64) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "other", script = "return DOMMatrix.fromMatrix(other)")
+    static DOMMatrix fromMatrix(DOMMatrixInit other) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return DOMMatrix.fromMatrix()")
+    static DOMMatrix fromMatrix() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     double getA();
 
@@ -142,81 +181,78 @@ public interface DOMMatrix extends DOMMatrixReadOnly {
     void setM44(double m44);
 
     DOMMatrix invertSelf();
+
     DOMMatrix multiplySelf(DOMMatrixInit other);
+
     DOMMatrix multiplySelf();
+
     DOMMatrix preMultiplySelf(DOMMatrixInit other);
+
     DOMMatrix preMultiplySelf();
+
     DOMMatrix rotateAxisAngleSelf(double x, double y, double z, double angle);
+
     DOMMatrix rotateAxisAngleSelf(double x, double y, double z);
+
     DOMMatrix rotateAxisAngleSelf(double x, double y);
+
     DOMMatrix rotateAxisAngleSelf(double x);
+
     DOMMatrix rotateAxisAngleSelf();
+
     DOMMatrix rotateFromVectorSelf(double x, double y);
+
     DOMMatrix rotateFromVectorSelf(double x);
+
     DOMMatrix rotateFromVectorSelf();
+
     DOMMatrix rotateSelf(double rotX, double rotY, double rotZ);
+
     DOMMatrix rotateSelf(double rotX, double rotY);
+
     DOMMatrix rotateSelf(double rotX);
+
     DOMMatrix rotateSelf();
+
     DOMMatrix scale3dSelf(double scale, double originX, double originY, double originZ);
+
     DOMMatrix scale3dSelf(double scale, double originX, double originY);
+
     DOMMatrix scale3dSelf(double scale, double originX);
+
     DOMMatrix scale3dSelf(double scale);
+
     DOMMatrix scale3dSelf();
+
     DOMMatrix scaleSelf(double scaleX, double scaleY, double scaleZ, double originX, double originY, double originZ);
+
     DOMMatrix scaleSelf(double scaleX, double scaleY, double scaleZ, double originX, double originY);
+
     DOMMatrix scaleSelf(double scaleX, double scaleY, double scaleZ, double originX);
+
     DOMMatrix scaleSelf(double scaleX, double scaleY, double scaleZ);
+
     DOMMatrix scaleSelf(double scaleX, double scaleY);
+
     DOMMatrix scaleSelf(double scaleX);
+
     DOMMatrix scaleSelf();
+
     DOMMatrix setMatrixValue(String transformList);
+
     DOMMatrix skewXSelf(double sx);
+
     DOMMatrix skewXSelf();
+
     DOMMatrix skewYSelf(double sy);
+
     DOMMatrix skewYSelf();
+
     DOMMatrix translateSelf(double tx, double ty, double tz);
+
     DOMMatrix translateSelf(double tx, double ty);
+
     DOMMatrix translateSelf(double tx);
+
     DOMMatrix translateSelf();
-
-    @JSBody(script = "return DOMMatrix.prototype")
-    static DOMMatrix prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="init", script = "return new DOMMatrix(init)")
-    static DOMMatrix create(String init) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="init", script = "return new DOMMatrix(init)")
-    static DOMMatrix create(@JSByRef double... init) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new DOMMatrix()")
-    static DOMMatrix create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="array32", script = "return DOMMatrix.fromFloat32Array(array32)")
-    static DOMMatrix fromFloat32Array(Float32Array array32) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="array64", script = "return DOMMatrix.fromFloat64Array(array64)")
-    static DOMMatrix fromFloat64Array(Float64Array array64) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="other", script = "return DOMMatrix.fromMatrix(other)")
-    static DOMMatrix fromMatrix(DOMMatrixInit other) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return DOMMatrix.fromMatrix()")
-    static DOMMatrix fromMatrix() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 }

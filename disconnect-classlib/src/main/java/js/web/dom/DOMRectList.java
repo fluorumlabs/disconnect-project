@@ -8,9 +8,6 @@ import javax.annotation.Nullable;
 
 
 public interface DOMRectList extends ArrayLike<DOMRect> {
-    @Nullable
-     DOMRect item(int index);
-
     @JSBody(script = "return DOMRectList.prototype")
     static DOMRectList prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -20,5 +17,8 @@ public interface DOMRectList extends ArrayLike<DOMRect> {
     static DOMRectList create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @Nullable
+    DOMRect item(int index);
 
 }

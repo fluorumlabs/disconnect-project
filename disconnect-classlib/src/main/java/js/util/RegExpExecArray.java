@@ -7,14 +7,14 @@ import org.teavm.jso.JSProperty;
 
 public interface RegExpExecArray extends Array<JsString> {
     @JSProperty
-     int getIndex();
+    int getIndex();
 
     @JSProperty
-     void setIndex(int value);
+    void setIndex(int value);
 
     @JSProperty
-     String getInput();
+    String getInput();
 
     @JSProperty
-     void setInput(String value);
+    void setInput(String value);
 }

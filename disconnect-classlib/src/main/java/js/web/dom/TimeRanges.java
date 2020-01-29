@@ -1,26 +1,28 @@
 package js.web.dom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * Used to represent a set of time ranges, primarily for the purpose of tracking which portions of media have been buffered when loading it for use by the <audio> and <video> elements.
+ */
+public interface TimeRanges extends Any {
+    @JSBody(script = "return TimeRanges.prototype")
+    static TimeRanges prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Used to represent a set of time ranges, primarily for the purpose of tracking which portions of media have been buffered when loading it for use by the <audio> and <video> elements. */
-        public interface TimeRanges extends Any {
-        @JSProperty
-        int getLength();
+    @JSBody(script = "return new TimeRanges()")
+    static TimeRanges create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        double end(int index);
-        double start(int index);
+    @JSProperty
+    int getLength();
 
-        @JSBody(script = "return TimeRanges.prototype")
-        static TimeRanges prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    double end(int index);
 
-        @JSBody(script = "return new TimeRanges()")
-        static TimeRanges create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    double start(int index);
 
-        }
+}

@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** <option> elements and inherits all classes and methods of the HTMLElement interface. */
+/**
+ * <option> elements and inherits all classes and methods of the HTMLElement interface.
+ */
 public interface HTMLOptionElement extends HTMLElement {
+    @JSBody(script = "return HTMLOptionElement.prototype")
+    static HTMLOptionElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLOptionElement()")
+    static HTMLOptionElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves the status of an option.
      */
@@ -28,7 +40,7 @@ public interface HTMLOptionElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    HTMLFormElement  getForm();
+    HTMLFormElement getForm();
 
     /**
      * Sets or retrieves the ordinal position of an option in a list box.
@@ -71,15 +83,5 @@ public interface HTMLOptionElement extends HTMLElement {
 
     @JSProperty
     void setValue(String value);
-
-    @JSBody(script = "return HTMLOptionElement.prototype")
-    static HTMLOptionElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLOptionElement()")
-    static HTMLOptionElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

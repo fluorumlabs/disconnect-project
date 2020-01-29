@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Implements the document object model (DOM) representation of the font element. The HTML Font Element <font> defines the font size, font face and color of text. */
+/**
+ * Implements the document object model (DOM) representation of the font element. The HTML Font Element <font> defines the font size, font face and color of text.
+ */
 public interface HTMLFontElement extends HTMLElement {
+    @JSBody(script = "return HTMLFontElement.prototype")
+    static HTMLFontElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLFontElement()")
+    static HTMLFontElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @Deprecated
     @JSProperty
     String getColor();
@@ -28,15 +40,5 @@ public interface HTMLFontElement extends HTMLElement {
 
     @JSProperty
     void setSize(String size);
-
-    @JSBody(script = "return HTMLFontElement.prototype")
-    static HTMLFontElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLFontElement()")
-    static HTMLFontElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

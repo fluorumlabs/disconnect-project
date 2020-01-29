@@ -7,6 +7,21 @@ import javax.annotation.Nullable;
 
 
 public interface FocusNavigationEvent extends Event {
+    @JSBody(script = "return FocusNavigationEvent.prototype")
+    static FocusNavigationEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new FocusNavigationEvent(type, eventInitDict)")
+    static FocusNavigationEvent create(String type, FocusNavigationEventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "type", script = "return new FocusNavigationEvent(type)")
+    static FocusNavigationEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     NavigationReason getNavigationReason();
 
@@ -24,26 +39,11 @@ public interface FocusNavigationEvent extends Event {
 
     void requestFocus();
 
-    @JSBody(script = "return FocusNavigationEvent.prototype")
-    static FocusNavigationEvent prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params={"type","eventInitDict"}, script = "return new FocusNavigationEvent(type, eventInitDict)")
-    static FocusNavigationEvent create(String type, FocusNavigationEventInit eventInitDict) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="type", script = "return new FocusNavigationEvent(type)")
-    static FocusNavigationEvent create(String type) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
 
     interface FocusNavigationEventInit extends EventInit {
         @JSProperty
         @Nullable
-        String  getNavigationReason();
+        String getNavigationReason();
 
         @JSProperty
         void setNavigationReason(String navigationReason);

@@ -8,6 +8,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface WritableStreamErrorCallback extends JSObject {
-        VoidPromiseLike handle(Any reason);
-        }
+public interface WritableStreamErrorCallback extends JSObject {
+    VoidPromiseLike handle(Any reason);
+}

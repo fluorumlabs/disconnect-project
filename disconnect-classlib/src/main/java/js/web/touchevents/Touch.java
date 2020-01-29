@@ -1,67 +1,68 @@
 package js.web.touchevents;
 
+import js.lang.Any;
 import js.web.dom.EventTarget;
 import js.web.dom.TouchType;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * A single contact point on a touch-sensitive device. The contact point is commonly a finger or stylus and the device may be a touchscreen or trackpad.
+ */
+public interface Touch extends Any {
+    @JSBody(script = "return Touch.prototype")
+    static Touch prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** A single contact point on a touch-sensitive device. The contact point is commonly a finger or stylus and the device may be a touchscreen or trackpad. */
-        public interface Touch extends Any {
-        @JSProperty
-        double getAltitudeAngle();
+    @JSBody(params = "touchInitDict", script = "return new Touch(touchInitDict)")
+    static Touch create(TouchInit touchInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getAzimuthAngle();
+    @JSProperty
+    double getAltitudeAngle();
 
-        @JSProperty
-        double getClientX();
+    @JSProperty
+    double getAzimuthAngle();
 
-        @JSProperty
-        double getClientY();
+    @JSProperty
+    double getClientX();
 
-        @JSProperty
-        double getForce();
+    @JSProperty
+    double getClientY();
 
-        @JSProperty
-        int getIdentifier();
+    @JSProperty
+    double getForce();
 
-        @JSProperty
-        double getPageX();
+    @JSProperty
+    int getIdentifier();
 
-        @JSProperty
-        double getPageY();
+    @JSProperty
+    double getPageX();
 
-        @JSProperty
-        double getRadiusX();
+    @JSProperty
+    double getPageY();
 
-        @JSProperty
-        double getRadiusY();
+    @JSProperty
+    double getRadiusX();
 
-        @JSProperty
-        double getRotationAngle();
+    @JSProperty
+    double getRadiusY();
 
-        @JSProperty
-        double getScreenX();
+    @JSProperty
+    double getRotationAngle();
 
-        @JSProperty
-        double getScreenY();
+    @JSProperty
+    double getScreenX();
 
-        @JSProperty
-        EventTarget getTarget();
+    @JSProperty
+    double getScreenY();
 
-        @JSProperty
-        TouchType getTouchType();
+    @JSProperty
+    EventTarget getTarget();
 
-        @JSBody(script = "return Touch.prototype")
-        static Touch prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    TouchType getTouchType();
 
-        @JSBody(params="touchInitDict", script = "return new Touch(touchInitDict)")
-        static Touch create(TouchInit touchInitDict) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

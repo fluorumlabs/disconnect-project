@@ -4,12 +4,7 @@ import js.lang.Any;
 import js.lang.Unknown;
 import js.util.StringRecord;
 import js.util.buffers.Uint8Array;
-import js.web.dom.BufferSource;
-import js.web.dom.AbortSignal;
-import js.web.dom.Blob;
-import js.web.dom.ReferrerPolicy;
-import js.web.dom.FormData;
-import js.web.dom.URLSearchParams;
+import js.web.dom.*;
 import js.web.streams.ReadableStream;
 import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
@@ -23,18 +18,23 @@ public interface RequestInit extends Any {
      */
     @JSProperty
     @Nullable
-    Unknown  getBody();
+    Unknown getBody();
 
     @JSProperty
     void setBody(Blob body);
+
     @JSProperty
     void setBody(BufferSource body);
+
     @JSProperty
     void setBody(FormData body);
+
     @JSProperty
     void setBody(URLSearchParams body);
+
     @JSProperty
     void setBody(ReadableStream<Uint8Array> body);
+
     @JSProperty
     void setBody(String body);
 
@@ -67,8 +67,10 @@ public interface RequestInit extends Any {
 
     @JSProperty
     void setHeaders(Headers headers);
+
     @JSProperty
     void setHeaders(@JSByRef String[]... headers);
+
     @JSProperty
     void setHeaders(StringRecord headers);
 

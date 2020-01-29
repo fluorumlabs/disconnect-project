@@ -5,28 +5,30 @@ import js.web.dom.Event;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** This EncryptedMediaExtensions API interface contains the content and related data when the content decryption module generates a message for the session. */
-        public interface MediaKeyMessageEvent extends Event {
-        @JSProperty
-        ArrayBuffer getMessage();
+/**
+ * This EncryptedMediaExtensions API interface contains the content and related data when the content decryption module generates a message for the session.
+ */
+public interface MediaKeyMessageEvent extends Event {
+    @JSBody(script = "return MediaKeyMessageEvent.prototype")
+    static MediaKeyMessageEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        MediaKeyMessageType getMessageType();
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new MediaKeyMessageEvent(type, eventInitDict)")
+    static MediaKeyMessageEvent create(String type, MediaKeyMessageEventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return MediaKeyMessageEvent.prototype")
-        static MediaKeyMessageEvent prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSBody(params = "type", script = "return new MediaKeyMessageEvent(type)")
+    static MediaKeyMessageEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(params={"type","eventInitDict"}, script = "return new MediaKeyMessageEvent(type, eventInitDict)")
-        static MediaKeyMessageEvent create(String type, MediaKeyMessageEventInit eventInitDict) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    ArrayBuffer getMessage();
 
-        @JSBody(params="type", script = "return new MediaKeyMessageEvent(type)")
-        static MediaKeyMessageEvent create(String type) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    MediaKeyMessageType getMessageType();
 
 
     interface MediaKeyMessageEventInit extends EventInit {

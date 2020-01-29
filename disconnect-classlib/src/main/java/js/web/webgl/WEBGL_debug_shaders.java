@@ -4,5 +4,5 @@ import js.lang.Any;
 
 
 public interface WEBGL_debug_shaders extends Any {
-        String getTranslatedShaderSource(WebGLShader shader);
-        }
+    String getTranslatedShaderSource(WebGLShader shader);
+}

@@ -5,38 +5,38 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGPathSegCurvetoCubicSmoothRel extends SVGPathSeg {
-        @JSProperty
-        double getX();
+    @JSBody(script = "return SVGPathSegCurvetoCubicSmoothRel.prototype")
+    static SVGPathSegCurvetoCubicSmoothRel prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setX(double x);
+    @JSBody(script = "return new SVGPathSegCurvetoCubicSmoothRel()")
+    static SVGPathSegCurvetoCubicSmoothRel create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getX2();
+    @JSProperty
+    double getX();
 
-        @JSProperty
-        void setX2(double x2);
+    @JSProperty
+    void setX(double x);
 
-        @JSProperty
-        double getY();
+    @JSProperty
+    double getX2();
 
-        @JSProperty
-        void setY(double y);
+    @JSProperty
+    void setX2(double x2);
 
-        @JSProperty
-        double getY2();
+    @JSProperty
+    double getY();
 
-        @JSProperty
-        void setY2(double y2);
+    @JSProperty
+    void setY(double y);
 
-        @JSBody(script = "return SVGPathSegCurvetoCubicSmoothRel.prototype")
-        static SVGPathSegCurvetoCubicSmoothRel prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getY2();
 
-        @JSBody(script = "return new SVGPathSegCurvetoCubicSmoothRel()")
-        static SVGPathSegCurvetoCubicSmoothRel create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setY2(double y2);
 
-        }
+}

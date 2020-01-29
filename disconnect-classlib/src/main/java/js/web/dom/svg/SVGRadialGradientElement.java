@@ -3,31 +3,33 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <RadialGradient> element. */
-        public interface SVGRadialGradientElement extends SVGGradientElement {
-        @JSProperty
-        SVGAnimatedLength getCx();
+/**
+ * Corresponds to the <RadialGradient> element.
+ */
+public interface SVGRadialGradientElement extends SVGGradientElement {
+    @JSBody(script = "return SVGRadialGradientElement.prototype")
+    static SVGRadialGradientElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedLength getCy();
+    @JSBody(script = "return new SVGRadialGradientElement()")
+    static SVGRadialGradientElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedLength getFx();
+    @JSProperty
+    SVGAnimatedLength getCx();
 
-        @JSProperty
-        SVGAnimatedLength getFy();
+    @JSProperty
+    SVGAnimatedLength getCy();
 
-        @JSProperty
-        SVGAnimatedLength getR();
+    @JSProperty
+    SVGAnimatedLength getFx();
 
-        @JSBody(script = "return SVGRadialGradientElement.prototype")
-        static SVGRadialGradientElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getFy();
 
-        @JSBody(script = "return new SVGRadialGradientElement()")
-        static SVGRadialGradientElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getR();
 
-        }
+}

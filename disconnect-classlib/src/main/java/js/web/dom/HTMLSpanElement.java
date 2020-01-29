@@ -2,7 +2,9 @@ package js.web.dom;
 
 import org.teavm.jso.JSBody;
 
-/** A <span> element and derives from the HTMLElement interface, but without implementing any additional properties or methods. */
+/**
+ * A <span> element and derives from the HTMLElement interface, but without implementing any additional properties or methods.
+ */
 public interface HTMLSpanElement extends HTMLElement {
     @JSBody(script = "return HTMLSpanElement.prototype")
     static HTMLSpanElement prototype() {

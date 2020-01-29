@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating <hr> elements. */
+/**
+ * Provides special properties (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating <hr> elements.
+ */
 public interface HTMLHRElement extends HTMLElement {
+    @JSBody(script = "return HTMLHRElement.prototype")
+    static HTMLHRElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLHRElement()")
+    static HTMLHRElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves how the object is aligned with adjacent text.
      */
@@ -48,15 +60,5 @@ public interface HTMLHRElement extends HTMLElement {
 
     @JSProperty
     void setWidth(String width);
-
-    @JSBody(script = "return HTMLHRElement.prototype")
-    static HTMLHRElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLHRElement()")
-    static HTMLHRElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

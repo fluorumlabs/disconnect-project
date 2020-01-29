@@ -7,6 +7,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface RTCPeerConnectionErrorCallback extends JSObject {
-        void accept(DOMException error);
-        }
+public interface RTCPeerConnectionErrorCallback extends JSObject {
+    void accept(DOMException error);
+}

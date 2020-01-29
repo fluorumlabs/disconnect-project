@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties and methods for manipulating the layout and presentation of <textarea> elements. */
+/**
+ * Provides special properties and methods for manipulating the layout and presentation of <textarea> elements.
+ */
 public interface HTMLTextAreaElement extends HTMLElement {
+    @JSBody(script = "return HTMLTextAreaElement.prototype")
+    static HTMLTextAreaElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLTextAreaElement()")
+    static HTMLTextAreaElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     String getAutocomplete();
 
@@ -58,10 +70,11 @@ public interface HTMLTextAreaElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    HTMLFormElement  getForm();
+    HTMLFormElement getForm();
 
     @JSProperty
     NodeListOf<HTMLLabelElement> getLabels();
+
     /**
      * Sets or retrieves the maximum number of characters that the user can enter in a text control.
      */
@@ -195,36 +208,36 @@ public interface HTMLTextAreaElement extends HTMLElement {
      * Returns whether a form will validate when it is submitted, without having to submit it.
      */
     boolean checkValidity();
+
     boolean reportValidity();
+
     /**
      * Highlights the input area of a form element.
      */
     void select();
+
     /**
      * Sets a custom error message that is displayed when a form is submitted.
+     *
      * @param error Sets a custom error message that is displayed when a form is submitted.
      */
     void setCustomValidity(String error);
+
     void setRangeText(String replacement);
+
     void setRangeText(String replacement, int start, int end, SelectionMode selectionMode);
+
     void setRangeText(String replacement, int start, int end);
+
     /**
      * Sets the start and end positions of a selection in a text field.
-     * @param start The offset into the text field for the start of the selection.
-     * @param end The offset into the text field for the end of the selection.
+     *
+     * @param start     The offset into the text field for the start of the selection.
+     * @param end       The offset into the text field for the end of the selection.
      * @param direction The direction in which the selection is performed.
      */
     void setSelectionRange(int start, int end, HTMLInputElement.Direction direction);
+
     void setSelectionRange(int start, int end);
-
-    @JSBody(script = "return HTMLTextAreaElement.prototype")
-    static HTMLTextAreaElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLTextAreaElement()")
-    static HTMLTextAreaElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

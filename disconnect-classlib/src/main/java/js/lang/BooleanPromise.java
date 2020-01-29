@@ -8,8 +8,10 @@ import org.teavm.jso.JSBody;
 public abstract class BooleanPromise extends BooleanPromiseLike {
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
+     *
      * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
+     * @param onrejected  The callback to execute when the Promise is rejected.
+     *
      * @returns A Promise for the completion of which ever callback is executed.
      */
     public native <R extends Any> Promise<R> then(FullfilledValueCallback<R> onfulfilled, RejectedValueCallback<R> onrejected);
@@ -38,19 +40,26 @@ public abstract class BooleanPromise extends BooleanPromiseLike {
 
     /**
      * Attaches a callback for only the rejection of the Promise.
+     *
      * @param onrejected The callback to execute when the Promise is rejected.
+     *
      * @returns A Promise for the completion of the callback.
      */
     @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native <R extends Any> Promise<R> catchError(RejectedValueCallback<R> onrejected);
+
     @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native VoidPromise catchError(RejectedValueVoidCallback onrejected);
+
     @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native BooleanPromise catchError(RejectedValueBooleanCallback onrejected);
+
     @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native StringPromise catchError(RejectedValueStringCallback onrejected);
+
     @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native IntPromise catchError(RejectedValueIntCallback onrejected);
+
     @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native DoublePromise catchError(RejectedValueDoubleCallback onrejected);
 }

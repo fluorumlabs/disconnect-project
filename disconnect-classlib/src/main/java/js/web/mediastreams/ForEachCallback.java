@@ -10,5 +10,5 @@ import javax.annotation.Nullable;
 @JSFunctor
 @FunctionalInterface
 public interface ForEachCallback extends JSObject {
-        void accept(@Nullable BufferSource keyId, MediaKeyStatus status);
-        }
+    void accept(@Nullable BufferSource keyId, MediaKeyStatus status);
+}

@@ -8,6 +8,122 @@ import org.teavm.jso.JSByRef;
  * Enables basic storage and retrieval of dates and times.
  */
 public interface JsDate extends Any {
+    @JSBody(script = "return new Date()")
+    static JsDate create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "value", script = "return new Date(value)")
+    static JsDate create(int value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "value", script = "return new Date(value)")
+    static JsDate create(double value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "value", script = "return new Date(value)")
+    static JsDate create(String value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "value", script = "return new Date(value)")
+    static JsDate create(JsDate value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds", "ms"}, script = "return new Date(year,month,date,hours,minutes,seconds,ms)")
+    static JsDate create(int year, int month, int date, int hours, int minutes, int seconds, int ms) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds"}, script = "return new Date(year,month,date,hours,minutes,seconds)")
+    static JsDate create(int year, int month, int date, int hours, int minutes, int seconds) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date", "hours", "minutes"}, script = "return new Date(year,month,date,hours,minutes)")
+    static JsDate create(int year, int month, int date, int hours, int minutes) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date", "hours"}, script = "return new Date(year,month,date,hours)")
+    static JsDate create(int year, int month, int date, int hours) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date"}, script = "return new Date(year,month,date)")
+    static JsDate create(int year, int month, int date) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month"}, script = "return new Date(year,month)")
+    static JsDate create(int year, int month) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return Date.prototype")
+    static JsDate prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    /**
+     * Parses a string containing a date, and returns the number of milliseconds between that date and midnight, January 1, 1970.
+     *
+     * @param s A date string
+     */
+    @JSBody(params = "s", script = "return Date.parse(s)")
+    static int parse(String s) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    /**
+     * Returns the number of milliseconds between midnight, January 1, 1970 Universal Coordinated Time (UTC) (or GMT) and the specified date.
+     *
+     * @param year    The full year designation is required for cross-century date accuracy. If year is between 0 and 99 is used, then year is assumed to be 1900 + year.
+     * @param month   The month as a number between 0 and 11 (January to December).
+     * @param date    The date as a number between 1 and 31.
+     * @param hours   Must be supplied if minutes is supplied. A number from 0 to 23 (midnight to 11pm) that specifies the hour.
+     * @param minutes Must be supplied if seconds is supplied. A number from 0 to 59 that specifies the minutes.
+     * @param seconds Must be supplied if milliseconds is supplied. A number from 0 to 59 that specifies the seconds.
+     * @param ms      A number from 0 to 999 that specifies the milliseconds.
+     */
+    @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds", "ms"}, script = "return Date.UTC(year,month,date,hours,minutes,seconds,ms)")
+    static int UTC(int year, int month, int date, int hours, int minutes, int seconds, int ms) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds"}, script = "return Date.UTC(year,month,date,hours,minutes,seconds)")
+    static int UTC(int year, int month, int date, int hours, int minutes, int seconds) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date", "hours", "minutes"}, script = "return Date.UTC(year,month,date,hours,minutes)")
+    static int UTC(int year, int month, int date, int hours, int minutes) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date", "hours"}, script = "return Date.UTC(year,month,date,hours)")
+    static int UTC(int year, int month, int date, int hours) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month", "date"}, script = "return Date.UTC(year,month,date)")
+    static int UTC(int year, int month, int date) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"year", "month"}, script = "return Date.UTC(year,month)")
+    static int UTC(int year, int month) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return Date.now()")
+    static int now() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Returns a string representation of a date. The format of the string depends on the locale.
      */
@@ -30,12 +146,16 @@ public interface JsDate extends Any {
 
     /**
      * Converts a date and time to a string by using the current or specified locale.
+     *
      * @param locales A locale string or array of locale strings that contain one or more language or locale tags. If you include more than one locale string, list them in descending order of priority so that the first entry is the preferred locale. If you omit this parameter, the default locale of the JavaScript runtime is used.
      * @param options An object that contains one or more properties that specify comparison options.
      */
     String toLocaleString(String locales, DateTimeFormatOptions options);
+
     String toLocaleString(@JSByRef String[] locales, DateTimeFormatOptions options);
+
     String toLocaleString(String locales);
+
     String toLocaleString(@JSByRef String[] locales);
 
     /**
@@ -45,12 +165,16 @@ public interface JsDate extends Any {
 
     /**
      * Converts a date to a string by using the current or specified locale.
+     *
      * @param locales A locale string or array of locale strings that contain one or more language or locale tags. If you include more than one locale string, list them in descending order of priority so that the first entry is the preferred locale. If you omit this parameter, the default locale of the JavaScript runtime is used.
      * @param options An object that contains one or more properties that specify comparison options.
      */
     String toLocaleDateString(String locales, DateTimeFormatOptions options);
+
     String toLocaleDateString(@JSByRef String[] locales, DateTimeFormatOptions options);
+
     String toLocaleDateString(String locales);
+
     String toLocaleDateString(@JSByRef String[] locales);
 
     /**
@@ -60,12 +184,16 @@ public interface JsDate extends Any {
 
     /**
      * Converts a time to a string by using the current or specified locale.
+     *
      * @param locales A locale string or array of locale strings that contain one or more language or locale tags. If you include more than one locale string, list them in descending order of priority so that the first entry is the preferred locale. If you omit this parameter, the default locale of the JavaScript runtime is used.
      * @param options An object that contains one or more properties that specify comparison options.
      */
     String toLocaleTimeString(String locales, DateTimeFormatOptions options);
+
     String toLocaleTimeString(@JSByRef String[] locales, DateTimeFormatOptions options);
+
     String toLocaleTimeString(String locales);
+
     String toLocaleTimeString(@JSByRef String[] locales);
 
     /**
@@ -338,120 +466,4 @@ public interface JsDate extends Any {
     String toJSON(Any key);
 
     String toJSON();
-
-    @JSBody(script = "return new Date()")
-    static JsDate create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = "value", script = "return new Date(value)")
-    static JsDate create(int value) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = "value", script = "return new Date(value)")
-    static JsDate create(double value) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = "value", script = "return new Date(value)")
-    static JsDate create(String value) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = "value", script = "return new Date(value)")
-    static JsDate create(JsDate value) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds", "ms"}, script = "return new Date(year,month,date,hours,minutes,seconds,ms)")
-    static JsDate create(int year, int month, int date, int hours, int minutes, int seconds, int ms) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds"}, script = "return new Date(year,month,date,hours,minutes,seconds)")
-    static JsDate create(int year, int month, int date, int hours, int minutes, int seconds) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date", "hours", "minutes"}, script = "return new Date(year,month,date,hours,minutes)")
-    static JsDate create(int year, int month, int date, int hours, int minutes) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date", "hours"}, script = "return new Date(year,month,date,hours)")
-    static JsDate create(int year, int month, int date, int hours) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date"}, script = "return new Date(year,month,date)")
-    static JsDate create(int year, int month, int date) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month"}, script = "return new Date(year,month)")
-    static JsDate create(int year, int month) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return Date.prototype")
-    static JsDate prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    /**
-     * Parses a string containing a date, and returns the number of milliseconds between that date and midnight, January 1, 1970.
-     *
-     * @param s A date string
-     */
-    @JSBody(params = "s", script = "return Date.parse(s)")
-    static int parse(String s) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    /**
-     * Returns the number of milliseconds between midnight, January 1, 1970 Universal Coordinated Time (UTC) (or GMT) and the specified date.
-     *
-     * @param year    The full year designation is required for cross-century date accuracy. If year is between 0 and 99 is used, then year is assumed to be 1900 + year.
-     * @param month   The month as a number between 0 and 11 (January to December).
-     * @param date    The date as a number between 1 and 31.
-     * @param hours   Must be supplied if minutes is supplied. A number from 0 to 23 (midnight to 11pm) that specifies the hour.
-     * @param minutes Must be supplied if seconds is supplied. A number from 0 to 59 that specifies the minutes.
-     * @param seconds Must be supplied if milliseconds is supplied. A number from 0 to 59 that specifies the seconds.
-     * @param ms      A number from 0 to 999 that specifies the milliseconds.
-     */
-    @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds", "ms"}, script = "return Date.UTC(year,month,date,hours,minutes,seconds,ms)")
-    static int UTC(int year, int month, int date, int hours, int minutes, int seconds, int ms) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds"}, script = "return Date.UTC(year,month,date,hours,minutes,seconds)")
-    static int UTC(int year, int month, int date, int hours, int minutes, int seconds) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date", "hours", "minutes"}, script = "return Date.UTC(year,month,date,hours,minutes)")
-    static int UTC(int year, int month, int date, int hours, int minutes) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date", "hours"}, script = "return Date.UTC(year,month,date,hours)")
-    static int UTC(int year, int month, int date, int hours) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month", "date"}, script = "return Date.UTC(year,month,date)")
-    static int UTC(int year, int month, int date) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"year", "month"}, script = "return Date.UTC(year,month)")
-    static int UTC(int year, int month) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return Date.now()")
-    static int now() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 }

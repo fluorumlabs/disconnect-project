@@ -1,204 +1,224 @@
 package js.web.mse;
 
 
-import js.web.dom.BufferSource;
-import js.web.dom.EventListener;
-import js.web.dom.AddEventListenerOptions;
-import js.web.dom.Event;
-import js.web.dom.EventListenerOptions;
-import js.web.dom.EventTarget;
-import js.web.dom.AudioTrackList;
-import js.web.dom.TimeRanges;
-import js.web.dom.VideoTrackList;
-import js.web.dom.TextTrackList;
+import js.web.dom.*;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** A chunk of media to be passed into an HTMLMediaElement and played, via a MediaSource object. This can be made up of one or several media segments. */
-        public interface SourceBuffer extends EventTarget {
-        @JSProperty
-        double getAppendWindowEnd();
+/**
+ * A chunk of media to be passed into an HTMLMediaElement and played, via a MediaSource object. This can be made up of one or several media segments.
+ */
+public interface SourceBuffer extends EventTarget {
+    @JSBody(script = "return SourceBuffer.prototype")
+    static SourceBuffer prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setAppendWindowEnd(double appendWindowEnd);
+    @JSBody(script = "return new SourceBuffer()")
+    static SourceBuffer create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getAppendWindowStart();
+    @JSProperty
+    double getAppendWindowEnd();
 
-        @JSProperty
-        void setAppendWindowStart(double appendWindowStart);
+    @JSProperty
+    void setAppendWindowEnd(double appendWindowEnd);
 
-        @JSProperty
-        AudioTrackList getAudioTracks();
+    @JSProperty
+    double getAppendWindowStart();
 
-        @JSProperty
-        TimeRanges getBuffered();
+    @JSProperty
+    void setAppendWindowStart(double appendWindowStart);
 
-        @JSProperty
-        AppendMode getMode();
+    @JSProperty
+    AudioTrackList getAudioTracks();
 
-        @JSProperty
-        void setMode(AppendMode mode);
+    @JSProperty
+    TimeRanges getBuffered();
 
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnabort();
+    @JSProperty
+    AppendMode getMode();
 
-        @JSProperty
-        void setOnabort(EventListener<Event> onabort);
+    @JSProperty
+    void setMode(AppendMode mode);
 
-        default void addAbortEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("abort", listener, options);
-        }
-        default void addAbortEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("abort", listener, options);
-        }
-        default void addAbortEventListener(EventListener<Event> listener) {
-            addEventListener("abort", listener);
-        }
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnabort();
 
-        default void removeAbortEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("abort", listener, options);
-        }
-        default void removeAbortEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("abort", listener, options);
-        }
-        default void removeAbortEventListener(EventListener<Event> listener) {
-            removeEventListener("abort", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnerror();
+    @JSProperty
+    void setOnabort(EventListener<Event> onabort);
 
-        @JSProperty
-        void setOnerror(EventListener<Event> onerror);
+    default void addAbortEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("abort", listener, options);
+    }
 
-        default void addErrorEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("error", listener, options);
-        }
-        default void addErrorEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("error", listener, options);
-        }
-        default void addErrorEventListener(EventListener<Event> listener) {
-            addEventListener("error", listener);
-        }
+    default void addAbortEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("abort", listener, options);
+    }
 
-        default void removeErrorEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("error", listener, options);
-        }
-        default void removeErrorEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("error", listener, options);
-        }
-        default void removeErrorEventListener(EventListener<Event> listener) {
-            removeEventListener("error", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnupdate();
+    default void addAbortEventListener(EventListener<Event> listener) {
+        addEventListener("abort", listener);
+    }
 
-        @JSProperty
-        void setOnupdate(EventListener<Event> onupdate);
+    default void removeAbortEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("abort", listener, options);
+    }
 
-        default void addUpdateEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("update", listener, options);
-        }
-        default void addUpdateEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("update", listener, options);
-        }
-        default void addUpdateEventListener(EventListener<Event> listener) {
-            addEventListener("update", listener);
-        }
+    default void removeAbortEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("abort", listener, options);
+    }
 
-        default void removeUpdateEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("update", listener, options);
-        }
-        default void removeUpdateEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("update", listener, options);
-        }
-        default void removeUpdateEventListener(EventListener<Event> listener) {
-            removeEventListener("update", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnupdateend();
+    default void removeAbortEventListener(EventListener<Event> listener) {
+        removeEventListener("abort", listener);
+    }
 
-        @JSProperty
-        void setOnupdateend(EventListener<Event> onupdateend);
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnerror();
 
-        default void addUpdateEndEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("updateend", listener, options);
-        }
-        default void addUpdateEndEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("updateend", listener, options);
-        }
-        default void addUpdateEndEventListener(EventListener<Event> listener) {
-            addEventListener("updateend", listener);
-        }
+    @JSProperty
+    void setOnerror(EventListener<Event> onerror);
 
-        default void removeUpdateEndEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("updateend", listener, options);
-        }
-        default void removeUpdateEndEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("updateend", listener, options);
-        }
-        default void removeUpdateEndEventListener(EventListener<Event> listener) {
-            removeEventListener("updateend", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnupdatestart();
+    default void addErrorEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("error", listener, options);
+    }
 
-        @JSProperty
-        void setOnupdatestart(EventListener<Event> onupdatestart);
+    default void addErrorEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("error", listener, options);
+    }
 
-        default void addUpdateStartEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("updatestart", listener, options);
-        }
-        default void addUpdateStartEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("updatestart", listener, options);
-        }
-        default void addUpdateStartEventListener(EventListener<Event> listener) {
-            addEventListener("updatestart", listener);
-        }
+    default void addErrorEventListener(EventListener<Event> listener) {
+        addEventListener("error", listener);
+    }
 
-        default void removeUpdateStartEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("updatestart", listener, options);
-        }
-        default void removeUpdateStartEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("updatestart", listener, options);
-        }
-        default void removeUpdateStartEventListener(EventListener<Event> listener) {
-            removeEventListener("updatestart", listener);
-        }
-        @JSProperty
-        TextTrackList getTextTracks();
+    default void removeErrorEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("error", listener, options);
+    }
 
-        @JSProperty
-        double getTimestampOffset();
+    default void removeErrorEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("error", listener, options);
+    }
 
-        @JSProperty
-        void setTimestampOffset(double timestampOffset);
+    default void removeErrorEventListener(EventListener<Event> listener) {
+        removeEventListener("error", listener);
+    }
 
-        @JSProperty
-        boolean isUpdating();
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnupdate();
 
-        @JSProperty
-        VideoTrackList getVideoTracks();
+    @JSProperty
+    void setOnupdate(EventListener<Event> onupdate);
 
-        void abort();
-        void appendBuffer(BufferSource data);
-        void remove(double start, double end);
+    default void addUpdateEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("update", listener, options);
+    }
 
-        @JSBody(script = "return SourceBuffer.prototype")
-        static SourceBuffer prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void addUpdateEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("update", listener, options);
+    }
 
-        @JSBody(script = "return new SourceBuffer()")
-        static SourceBuffer create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void addUpdateEventListener(EventListener<Event> listener) {
+        addEventListener("update", listener);
+    }
 
-        }
+    default void removeUpdateEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("update", listener, options);
+    }
+
+    default void removeUpdateEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("update", listener, options);
+    }
+
+    default void removeUpdateEventListener(EventListener<Event> listener) {
+        removeEventListener("update", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnupdateend();
+
+    @JSProperty
+    void setOnupdateend(EventListener<Event> onupdateend);
+
+    default void addUpdateEndEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("updateend", listener, options);
+    }
+
+    default void addUpdateEndEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("updateend", listener, options);
+    }
+
+    default void addUpdateEndEventListener(EventListener<Event> listener) {
+        addEventListener("updateend", listener);
+    }
+
+    default void removeUpdateEndEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("updateend", listener, options);
+    }
+
+    default void removeUpdateEndEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("updateend", listener, options);
+    }
+
+    default void removeUpdateEndEventListener(EventListener<Event> listener) {
+        removeEventListener("updateend", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnupdatestart();
+
+    @JSProperty
+    void setOnupdatestart(EventListener<Event> onupdatestart);
+
+    default void addUpdateStartEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("updatestart", listener, options);
+    }
+
+    default void addUpdateStartEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("updatestart", listener, options);
+    }
+
+    default void addUpdateStartEventListener(EventListener<Event> listener) {
+        addEventListener("updatestart", listener);
+    }
+
+    default void removeUpdateStartEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("updatestart", listener, options);
+    }
+
+    default void removeUpdateStartEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("updatestart", listener, options);
+    }
+
+    default void removeUpdateStartEventListener(EventListener<Event> listener) {
+        removeEventListener("updatestart", listener);
+    }
+
+    @JSProperty
+    TextTrackList getTextTracks();
+
+    @JSProperty
+    double getTimestampOffset();
+
+    @JSProperty
+    void setTimestampOffset(double timestampOffset);
+
+    @JSProperty
+    boolean isUpdating();
+
+    @JSProperty
+    VideoTrackList getVideoTracks();
+
+    void abort();
+
+    void appendBuffer(BufferSource data);
+
+    void remove(double start, double end);
+
+}

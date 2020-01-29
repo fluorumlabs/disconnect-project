@@ -1,10 +1,10 @@
 package js.web.webaudio;
 
+import js.lang.Any;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface AudioWorkletNodeOptions extends AudioNodeOptions {

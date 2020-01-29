@@ -5,12 +5,6 @@ import org.teavm.jso.JSProperty;
 
 
 public interface DOMSettableTokenList extends DOMTokenList {
-    @JSProperty
-     String getValue();
-
-    @JSProperty
-     void setValue(String value);
-
     @JSBody(script = "return DOMSettableTokenList.prototype")
     static DOMSettableTokenList prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -20,6 +14,12 @@ public interface DOMSettableTokenList extends DOMTokenList {
     static DOMSettableTokenList create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    String getValue();
+
+    @JSProperty
+    void setValue(String value);
 
 
 }

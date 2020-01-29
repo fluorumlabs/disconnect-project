@@ -11,42 +11,45 @@ import javax.annotation.Nullable;
 
 
 public interface RTCRtpTransceiver extends Any {
-        @JSProperty
-        @Nullable
-        RTCRtpTransceiverDirection  getCurrentDirection();
+    @JSBody(script = "return RTCRtpTransceiver.prototype")
+    static RTCRtpTransceiver prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        RTCRtpTransceiverDirection getDirection();
+    @JSBody(script = "return new RTCRtpTransceiver()")
+    static RTCRtpTransceiver create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setDirection(RTCRtpTransceiverDirection direction);
+    @JSProperty
+    @Nullable
+    RTCRtpTransceiverDirection getCurrentDirection();
 
-        @JSProperty
-        @Nullable
-        String  getMid();
+    @JSProperty
+    RTCRtpTransceiverDirection getDirection();
 
-        @JSProperty
-        RTCRtpReceiver getReceiver();
+    @JSProperty
+    void setDirection(RTCRtpTransceiverDirection direction);
 
-        @JSProperty
-        RTCRtpSender getSender();
+    @JSProperty
+    @Nullable
+    String getMid();
 
-        @JSProperty
-        boolean isStopped();
+    @JSProperty
+    RTCRtpReceiver getReceiver();
 
-        void setCodecPreferences(@JSByRef RTCRtpCodecCapability... codecs);
-        void setCodecPreferences(Array<RTCRtpCodecCapability> codecs);
-        void setCodecPreferences(JsIterable<RTCRtpCodecCapability> codecs);
-        void stop();
+    @JSProperty
+    RTCRtpSender getSender();
 
-        @JSBody(script = "return RTCRtpTransceiver.prototype")
-        static RTCRtpTransceiver prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    boolean isStopped();
 
-        @JSBody(script = "return new RTCRtpTransceiver()")
-        static RTCRtpTransceiver create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    void setCodecPreferences(@JSByRef RTCRtpCodecCapability... codecs);
 
-        }
+    void setCodecPreferences(Array<RTCRtpCodecCapability> codecs);
+
+    void setCodecPreferences(JsIterable<RTCRtpCodecCapability> codecs);
+
+    void stop();
+
+}

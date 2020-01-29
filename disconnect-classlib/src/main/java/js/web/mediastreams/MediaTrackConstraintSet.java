@@ -19,6 +19,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setAspectRatio(ConstrainDoubleRange aspectRatio);
+
     @JSProperty
     void setAspectRatio(double aspectRatio);
 
@@ -28,6 +29,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setAutoGainControl(ConstrainBooleanParameters autoGainControl);
+
     @JSProperty
     void setAutoGainControl(boolean autoGainControl);
 
@@ -37,6 +39,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setChannelCount(ConstrainULongRange channelCount);
+
     @JSProperty
     void setChannelCount(int channelCount);
 
@@ -46,8 +49,10 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setDeviceId(ConstrainDOMStringParameters deviceId);
+
     @JSProperty
     void setDeviceId(String deviceId);
+
     @JSProperty
     void setDeviceId(@JSByRef String... deviceId);
 
@@ -57,6 +62,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setEchoCancellation(ConstrainBooleanParameters echoCancellation);
+
     @JSProperty
     void setEchoCancellation(boolean echoCancellation);
 
@@ -66,8 +72,10 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setFacingMode(ConstrainDOMStringParameters facingMode);
+
     @JSProperty
     void setFacingMode(String facingMode);
+
     @JSProperty
     void setFacingMode(@JSByRef String... facingMode);
 
@@ -77,6 +85,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setFrameRate(ConstrainDoubleRange frameRate);
+
     @JSProperty
     void setFrameRate(double frameRate);
 
@@ -86,8 +95,10 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setGroupId(ConstrainDOMStringParameters groupId);
+
     @JSProperty
     void setGroupId(String groupId);
+
     @JSProperty
     void setGroupId(@JSByRef String... groupId);
 
@@ -97,6 +108,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setHeight(ConstrainULongRange height);
+
     @JSProperty
     void setHeight(int height);
 
@@ -106,6 +118,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setLatency(ConstrainDoubleRange latency);
+
     @JSProperty
     void setLatency(double latency);
 
@@ -115,6 +128,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setNoiseSuppression(ConstrainBooleanParameters noiseSuppression);
+
     @JSProperty
     void setNoiseSuppression(boolean noiseSuppression);
 
@@ -124,8 +138,10 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setResizeMode(ConstrainDOMStringParameters resizeMode);
+
     @JSProperty
     void setResizeMode(String resizeMode);
+
     @JSProperty
     void setResizeMode(@JSByRef String... resizeMode);
 
@@ -135,6 +151,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setSampleRate(ConstrainULongRange sampleRate);
+
     @JSProperty
     void setSampleRate(int sampleRate);
 
@@ -144,6 +161,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setSampleSize(ConstrainULongRange sampleSize);
+
     @JSProperty
     void setSampleSize(int sampleSize);
 
@@ -153,6 +171,7 @@ public interface MediaTrackConstraintSet extends Any {
 
     @JSProperty
     void setWidth(ConstrainULongRange width);
+
     @JSProperty
     void setWidth(int width);
 

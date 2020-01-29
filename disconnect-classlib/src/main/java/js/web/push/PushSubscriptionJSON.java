@@ -1,9 +1,10 @@
 package js.web.push;
 
+import js.lang.Any;
 import js.util.StringRecord;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
 
 public interface PushSubscriptionJSON extends Any {
@@ -15,7 +16,7 @@ public interface PushSubscriptionJSON extends Any {
     void setEndpoint(String endpoint);
 
     @JSProperty
-    double  getExpirationTime();
+    double getExpirationTime();
 
     @JSProperty
     void setExpirationTime(double expirationTime);

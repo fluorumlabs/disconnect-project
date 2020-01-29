@@ -4,10 +4,23 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <progress> elements. */
+/**
+ * Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <progress> elements.
+ */
 public interface HTMLProgressElement extends HTMLElement {
+    @JSBody(script = "return HTMLProgressElement.prototype")
+    static HTMLProgressElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLProgressElement()")
+    static HTMLProgressElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     NodeListOf<HTMLLabelElement> getLabels();
+
     /**
      * Defines the maximum, or "done" value for a progress element.
      */
@@ -31,15 +44,5 @@ public interface HTMLProgressElement extends HTMLElement {
 
     @JSProperty
     void setValue(double value);
-
-    @JSBody(script = "return HTMLProgressElement.prototype")
-    static HTMLProgressElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLProgressElement()")
-    static HTMLProgressElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

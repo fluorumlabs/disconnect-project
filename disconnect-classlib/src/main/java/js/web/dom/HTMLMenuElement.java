@@ -5,13 +5,6 @@ import org.teavm.jso.JSProperty;
 
 
 public interface HTMLMenuElement extends HTMLElement {
-    @Deprecated
-    @JSProperty
-    boolean isCompact();
-
-    @JSProperty
-    void setCompact(boolean compact);
-
     @JSBody(script = "return HTMLMenuElement.prototype")
     static HTMLMenuElement prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -21,5 +14,12 @@ public interface HTMLMenuElement extends HTMLElement {
     static HTMLMenuElement create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @Deprecated
+    @JSProperty
+    boolean isCompact();
+
+    @JSProperty
+    void setCompact(boolean compact);
 
 }

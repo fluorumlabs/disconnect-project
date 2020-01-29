@@ -10,15 +10,6 @@ import javax.annotation.Nullable;
 
 
 public interface CaretPosition extends Any {
-    @JSProperty
-    int getOffset();
-
-    @JSProperty
-    Node getOffsetNode();
-
-    @Nullable
-    DOMRect getClientRect();
-
     @JSBody(script = "return CaretPosition.prototype")
     static CaretPosition prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -28,5 +19,14 @@ public interface CaretPosition extends Any {
     static CaretPosition create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    int getOffset();
+
+    @JSProperty
+    Node getOffsetNode();
+
+    @Nullable
+    DOMRect getClientRect();
 
 }

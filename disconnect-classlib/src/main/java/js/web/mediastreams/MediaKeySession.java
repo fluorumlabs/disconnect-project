@@ -9,87 +9,103 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This EncryptedMediaExtensions API interface represents a context for message exchange with a content decryption module (CDM). */
-        public interface MediaKeySession extends EventTarget {
+/**
+ * This EncryptedMediaExtensions API interface represents a context for message exchange with a content decryption module (CDM).
+ */
+public interface MediaKeySession extends EventTarget {
 
-        @JSProperty
-        VoidPromise getClosed();
-        @JSProperty
-        double getExpiration();
+    @JSBody(script = "return MediaKeySession.prototype")
+    static MediaKeySession prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        MediaKeyStatusMap getKeyStatuses();
+    @JSBody(script = "return new MediaKeySession()")
+    static MediaKeySession create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnkeystatuseschange();
+    @JSProperty
+    VoidPromise getClosed();
 
-        @JSProperty
-        void setOnkeystatuseschange(EventListener<Event> onkeystatuseschange);
+    @JSProperty
+    double getExpiration();
 
-        default void addKeyStatusesChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("keystatuseschange", listener, options);
-        }
-        default void addKeyStatusesChangeEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("keystatuseschange", listener, options);
-        }
-        default void addKeyStatusesChangeEventListener(EventListener<Event> listener) {
-            addEventListener("keystatuseschange", listener);
-        }
+    @JSProperty
+    MediaKeyStatusMap getKeyStatuses();
 
-        default void removeKeyStatusesChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("keystatuseschange", listener, options);
-        }
-        default void removeKeyStatusesChangeEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("keystatuseschange", listener, options);
-        }
-        default void removeKeyStatusesChangeEventListener(EventListener<Event> listener) {
-            removeEventListener("keystatuseschange", listener);
-        }
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnkeystatuseschange();
 
-        @JSProperty
-        @Nullable
-        EventListener<MessageEvent> getOnmessage();
+    @JSProperty
+    void setOnkeystatuseschange(EventListener<Event> onkeystatuseschange);
 
-        @JSProperty
-        void setOnmessage(EventListener<MessageEvent> onmessage);
+    default void addKeyStatusesChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("keystatuseschange", listener, options);
+    }
 
-        default void addMessageEventListener(EventListener<MessageEvent> listener, AddEventListenerOptions options) {
-            addEventListener("message", listener, options);
-        }
-        default void addMessageEventListener(EventListener<MessageEvent> listener, boolean options) {
-            addEventListener("message", listener, options);
-        }
-        default void addMessageEventListener(EventListener<MessageEvent> listener) {
-            addEventListener("message", listener);
-        }
+    default void addKeyStatusesChangeEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("keystatuseschange", listener, options);
+    }
 
-        default void removeMessageEventListener(EventListener<MessageEvent> listener, EventListenerOptions options) {
-            removeEventListener("message", listener, options);
-        }
-        default void removeMessageEventListener(EventListener<MessageEvent> listener, boolean options) {
-            removeEventListener("message", listener, options);
-        }
-        default void removeMessageEventListener(EventListener<MessageEvent> listener) {
-            removeEventListener("message", listener);
-        }
-        @JSProperty
-        String getSessionId();
+    default void addKeyStatusesChangeEventListener(EventListener<Event> listener) {
+        addEventListener("keystatuseschange", listener);
+    }
 
-        VoidPromise close();
-        VoidPromise generateRequest(String initDataType, BufferSource initData);
+    default void removeKeyStatusesChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("keystatuseschange", listener, options);
+    }
+
+    default void removeKeyStatusesChangeEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("keystatuseschange", listener, options);
+    }
+
+    default void removeKeyStatusesChangeEventListener(EventListener<Event> listener) {
+        removeEventListener("keystatuseschange", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<MessageEvent> getOnmessage();
+
+    @JSProperty
+    void setOnmessage(EventListener<MessageEvent> onmessage);
+
+    default void addMessageEventListener(EventListener<MessageEvent> listener, AddEventListenerOptions options) {
+        addEventListener("message", listener, options);
+    }
+
+    default void addMessageEventListener(EventListener<MessageEvent> listener, boolean options) {
+        addEventListener("message", listener, options);
+    }
+
+    default void addMessageEventListener(EventListener<MessageEvent> listener) {
+        addEventListener("message", listener);
+    }
+
+    default void removeMessageEventListener(EventListener<MessageEvent> listener, EventListenerOptions options) {
+        removeEventListener("message", listener, options);
+    }
+
+    default void removeMessageEventListener(EventListener<MessageEvent> listener, boolean options) {
+        removeEventListener("message", listener, options);
+    }
+
+    default void removeMessageEventListener(EventListener<MessageEvent> listener) {
+        removeEventListener("message", listener);
+    }
+
+    @JSProperty
+    String getSessionId();
+
+    VoidPromise close();
+
+    VoidPromise generateRequest(String initDataType, BufferSource initData);
+
     BooleanPromise load(String sessionId);
-        VoidPromise remove();
-        VoidPromise update(BufferSource response);
 
-        @JSBody(script = "return MediaKeySession.prototype")
-        static MediaKeySession prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    VoidPromise remove();
 
-        @JSBody(script = "return new MediaKeySession()")
-        static MediaKeySession create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    VoidPromise update(BufferSource response);
 
-        }
+}

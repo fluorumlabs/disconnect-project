@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties (beyond those inherited from the regular HTMLElement interface) for manipulating <body> elements. */
+/**
+ * Provides special properties (beyond those inherited from the regular HTMLElement interface) for manipulating <body> elements.
+ */
 public interface HTMLBodyElement extends HTMLElement, WindowEventHandlers {
+    @JSBody(script = "return HTMLBodyElement.prototype")
+    static HTMLBodyElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLBodyElement()")
+    static HTMLBodyElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @Deprecated
     @JSProperty
     String getALink();
@@ -62,10 +74,12 @@ public interface HTMLBodyElement extends HTMLElement, WindowEventHandlers {
     default void addOrientationChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
         addEventListener("orientationchange", listener, options);
     }
+
     @Deprecated
     default void addOrientationChangeEventListener(EventListener<Event> listener, boolean options) {
         addEventListener("orientationchange", listener, options);
     }
+
     @Deprecated
     default void addOrientationChangeEventListener(EventListener<Event> listener) {
         addEventListener("orientationchange", listener);
@@ -75,15 +89,16 @@ public interface HTMLBodyElement extends HTMLElement, WindowEventHandlers {
     default void removeOrientationChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
         removeEventListener("orientationchange", listener, options);
     }
+
     @Deprecated
     default void removeOrientationChangeEventListener(EventListener<Event> listener, boolean options) {
         removeEventListener("orientationchange", listener, options);
     }
+
     @Deprecated
     default void removeOrientationChangeEventListener(EventListener<Event> listener) {
         removeEventListener("orientationchange", listener);
     }
-
 
     @Deprecated
     @JSProperty
@@ -98,15 +113,5 @@ public interface HTMLBodyElement extends HTMLElement, WindowEventHandlers {
 
     @JSProperty
     void setVLink(String vLink);
-
-    @JSBody(script = "return HTMLBodyElement.prototype")
-    static HTMLBodyElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLBodyElement()")
-    static HTMLBodyElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

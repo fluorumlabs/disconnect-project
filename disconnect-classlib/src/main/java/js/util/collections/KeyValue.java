@@ -7,7 +7,12 @@ import org.teavm.jso.JSBody;
 import java.util.Map;
 
 
-public abstract class KeyValue<K extends Any, V extends Any> implements Any, Map.Entry<K,V> {
+public abstract class KeyValue<K extends Any, V extends Any> implements Any, Map.Entry<K, V> {
+    @JSBody(params = {"key", "value"}, script = "return [key, value]")
+    public static <K extends Any, V extends Any> KeyValue of(K key, V value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSBody(script = "return this[0]")
     @Override
     public native K getKey();
@@ -23,10 +28,10 @@ public abstract class KeyValue<K extends Any, V extends Any> implements Any, Map
     @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object o) {
-        if ( o == null ) {
+        if (o == null) {
             return false;
         }
-        KeyValue<K,V> other = (KeyValue<K, V>) o;
+        KeyValue<K, V> other = (KeyValue<K, V>) o;
 
         boolean result = (other.getKey() == null && getKey() == null) || JsObject.is(other.getKey(), getKey());
         result &= (other.getValue() == null && getValue() == null) || JsObject.is(other.getValue(), getValue());
@@ -37,10 +42,5 @@ public abstract class KeyValue<K extends Any, V extends Any> implements Any, Map
     @Override
     public int hashCode() {
         throw new UnsupportedOperationException();
-    }
-
-    @JSBody(params = {"key", "value"}, script = "return [key, value]")
-    public static <K extends Any, V extends Any> KeyValue of(K key, V value) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
     }
 }

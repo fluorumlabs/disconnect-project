@@ -2,8 +2,6 @@ package js.web.streams;
 
 import js.extras.JsEnum;
 import js.lang.Any;
-import js.web.streams.ReadableByteStreamControllerCallback;
-import js.web.streams.ReadableStreamErrorCallback;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;

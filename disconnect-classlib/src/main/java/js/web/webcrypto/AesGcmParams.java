@@ -1,10 +1,9 @@
 package js.web.webcrypto;
 
+import js.web.dom.BufferSource;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
-
-import js.web.dom.BufferSource;
 
 
 public interface AesGcmParams extends Algorithm {

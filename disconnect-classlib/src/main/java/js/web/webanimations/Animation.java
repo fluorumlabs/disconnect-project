@@ -12,6 +12,26 @@ import javax.annotation.Nullable;
 
 
 public interface Animation extends EventTarget {
+    @JSBody(params = {"effect", "timeline"}, script = "return new Animation(type, eventInitDict)")
+    static Animation create(AnimationEffect effect, AnimationTimeline timeline) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"effect"}, script = "return new Animation(type)")
+    static Animation create(AnimationEffect effect) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new Animation()")
+    static Animation create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return Animation.prototype")
+    static Animation prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     double getCurrentTime();
 
@@ -135,25 +155,5 @@ public interface Animation extends EventTarget {
     void reverse();
 
     void updatePlaybackRate(double playbackRate);
-
-    @JSBody(params = {"effect", "timeline"}, script = "return new Animation(type, eventInitDict)")
-    static Animation create(AnimationEffect effect, AnimationTimeline timeline) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"effect"}, script = "return new Animation(type)")
-    static Animation create(AnimationEffect effect) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new Animation()")
-    static Animation create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return Animation.prototype")
-    static Animation prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

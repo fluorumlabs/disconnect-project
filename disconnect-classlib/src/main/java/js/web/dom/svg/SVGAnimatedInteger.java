@@ -1,29 +1,30 @@
 package js.web.dom.svg;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * Used for attributes of basic type <integer> which can be animated.
+ */
+public interface SVGAnimatedInteger extends Any {
+    @JSBody(script = "return SVGAnimatedInteger.prototype")
+    static SVGAnimatedInteger prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Used for attributes of basic type <integer> which can be animated. */
-        public interface SVGAnimatedInteger extends Any {
-        @JSProperty
-        int getAnimVal();
+    @JSBody(script = "return new SVGAnimatedInteger()")
+    static SVGAnimatedInteger create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        int getBaseVal();
+    @JSProperty
+    int getAnimVal();
 
-        @JSProperty
-        void setBaseVal(int baseVal);
+    @JSProperty
+    int getBaseVal();
 
-        @JSBody(script = "return SVGAnimatedInteger.prototype")
-        static SVGAnimatedInteger prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setBaseVal(int baseVal);
 
-        @JSBody(script = "return new SVGAnimatedInteger()")
-        static SVGAnimatedInteger create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

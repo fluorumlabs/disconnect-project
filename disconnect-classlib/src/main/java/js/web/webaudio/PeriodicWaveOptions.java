@@ -1,11 +1,11 @@
 package js.web.webaudio;
 
+import js.lang.Unknown;
+import js.util.buffers.Float32Array;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Unknown;
-import js.util.buffers.Float32Array;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface PeriodicWaveOptions extends PeriodicWaveConstraints {

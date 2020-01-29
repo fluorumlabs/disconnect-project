@@ -8,77 +8,77 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
-* Created by Artem Godin on 1/22/2020.
-*/
+ * Created by Artem Godin on 1/22/2020.
+ */
 public interface RTCError extends JsError {
-@JSProperty
-String getErrorDetail();
+    @JSBody(script = "return RTCError.prototype")
+    static RTCError prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-void setErrorDetail(String errorDetail);
+    @JSBody(script = "return new RTCError()")
+    static RTCError create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-int getHttpRequestStatusCode();
+    @JSBody(params = "errorDetail", script = "return new RTCError(errorDetail)")
+    static RTCError create(String errorDetail) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-void setHttpRequestStatusCode(int httpRequestStatusCode);
+    @JSBody(params = {"errorDetail", "message"}, script = "return new RTCError(errorDetail, message)")
+    static RTCError create(String errorDetail, String message) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-String getMessage();
+    @JSProperty
+    String getErrorDetail();
 
-@JSProperty
-void setMessage(String message);
+    @JSProperty
+    void setErrorDetail(String errorDetail);
 
-@JSProperty
-String getName();
+    @JSProperty
+    int getHttpRequestStatusCode();
 
-@JSProperty
-void setName(String name);
+    @JSProperty
+    void setHttpRequestStatusCode(int httpRequestStatusCode);
 
-@JSProperty
-@Nullable
-int  getReceivedAlert();
+    @JSProperty
+    String getMessage();
 
-@JSProperty
-void setReceivedAlert(int receivedAlert);
+    @JSProperty
+    void setMessage(String message);
 
-@JSProperty
-int getSctpCauseCode();
+    @JSProperty
+    String getName();
 
-@JSProperty
-void setSctpCauseCode(int sctpCauseCode);
+    @JSProperty
+    void setName(String name);
 
-@JSProperty
-int getSdpLineNumber();
+    @JSProperty
+    @Nullable
+    int getReceivedAlert();
 
-@JSProperty
-void setSdpLineNumber(int sdpLineNumber);
+    @JSProperty
+    void setReceivedAlert(int receivedAlert);
 
-@JSProperty
-@Nullable
-int  getSentAlert();
+    @JSProperty
+    int getSctpCauseCode();
 
-@JSProperty
-void setSentAlert(int sentAlert);
+    @JSProperty
+    void setSctpCauseCode(int sctpCauseCode);
 
-@JSBody(script = "return RTCError.prototype")
-static RTCError prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    @JSProperty
+    int getSdpLineNumber();
 
-@JSBody(script = "return new RTCError()")
-static RTCError create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    @JSProperty
+    void setSdpLineNumber(int sdpLineNumber);
 
-@JSBody(params="errorDetail", script = "return new RTCError(errorDetail)")
-static RTCError create(String errorDetail) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    @JSProperty
+    @Nullable
+    int getSentAlert();
 
-@JSBody(params={"errorDetail","message"}, script = "return new RTCError(errorDetail, message)")
-static RTCError create(String errorDetail, String message) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    @JSProperty
+    void setSentAlert(int sentAlert);
 
 }

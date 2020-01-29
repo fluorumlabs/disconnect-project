@@ -8,14 +8,6 @@ import org.teavm.jso.JSMethod;
 
 
 public interface CredentialsContainer extends Any {
-    Promise<Credential> create(CredentialCreationOptions options);
-    @JSMethod("create")
-    Promise<Credential> createDefault();
-    Promise<Credential> get(CredentialRequestOptions options);
-    Promise<Credential> get();
-    VoidPromise preventSilentAccess();
-    Promise<Credential> store(Credential credential);
-
     @JSBody(script = "return CredentialsContainer.prototype")
     static CredentialsContainer prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -25,5 +17,18 @@ public interface CredentialsContainer extends Any {
     static CredentialsContainer create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    Promise<Credential> create(CredentialCreationOptions options);
+
+    @JSMethod("create")
+    Promise<Credential> createDefault();
+
+    Promise<Credential> get(CredentialRequestOptions options);
+
+    Promise<Credential> get();
+
+    VoidPromise preventSilentAccess();
+
+    Promise<Credential> store(Credential credential);
 
 }

@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties (beyond those of the regular HTMLElement object interface it inherits) for manipulating <param> elements, representing a pair of a key and a value that acts as a parameter for an <object> element. */
+/**
+ * Provides special properties (beyond those of the regular HTMLElement object interface it inherits) for manipulating <param> elements, representing a pair of a key and a value that acts as a parameter for an <object> element.
+ */
 public interface HTMLParamElement extends HTMLElement {
+    @JSBody(script = "return HTMLParamElement.prototype")
+    static HTMLParamElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLParamElement()")
+    static HTMLParamElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves the name of an input parameter for an element.
      */
@@ -42,15 +54,5 @@ public interface HTMLParamElement extends HTMLElement {
 
     @JSProperty
     void setValueType(String valueType);
-
-    @JSBody(script = "return HTMLParamElement.prototype")
-    static HTMLParamElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLParamElement()")
-    static HTMLParamElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

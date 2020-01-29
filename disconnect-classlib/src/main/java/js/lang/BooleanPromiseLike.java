@@ -10,11 +10,21 @@ import javax.annotation.Nullable;
 
 
 public abstract class BooleanPromiseLike implements Any {
+    @Async
+    private static native boolean await(BooleanPromiseLike promise) throws PromiseRejectionException;
+
+    private static void await(BooleanPromiseLike promise, AsyncCallback<Boolean> callback) {
+        promise.then(callback::complete, reason -> {
+            callback.error(new PromiseRejectionException(reason.<JsObject>cast().toString()));
+        });
+    }
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      *
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected  The callback to execute when the Promise is rejected.
+     *
      * @returns A Promise for the completion of which ever callback is executed.
      */
     public native <R extends Any> PromiseLike<R> then(FullfilledValueCallback<R> onfulfilled, RejectedValueCallback<R> onrejected);
@@ -43,15 +53,6 @@ public abstract class BooleanPromiseLike implements Any {
 
     public boolean await() throws PromiseRejectionException {
         return BooleanPromiseLike.await(this);
-    }
-
-    @Async
-    private static native boolean await(BooleanPromiseLike promise) throws PromiseRejectionException;
-
-    private static void await(BooleanPromiseLike promise, AsyncCallback<Boolean> callback) {
-        promise.then(callback::complete, reason -> {
-            callback.error(new PromiseRejectionException(reason.<JsObject>cast().toString()));
-        });
     }
 
     @JSFunctor

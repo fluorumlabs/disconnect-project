@@ -1,10 +1,9 @@
 package js.web.credentialmanagement.webauthn;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
 import js.lang.Unknown;
 import js.web.webcrypto.Algorithm;
+import org.teavm.jso.JSProperty;
 
 
 public interface ScopedCredentialParameters extends Any {
@@ -13,6 +12,7 @@ public interface ScopedCredentialParameters extends Any {
 
     @JSProperty
     void setAlgorithm(Algorithm algorithm);
+
     @JSProperty
     void setAlgorithm(String algorithm);
 

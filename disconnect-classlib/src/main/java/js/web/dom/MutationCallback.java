@@ -7,6 +7,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface MutationCallback extends JSObject {
-        void accept(Array<MutationRecord> mutations, MutationObserver observer);
-        }
+public interface MutationCallback extends JSObject {
+    void accept(Array<MutationRecord> mutations, MutationObserver observer);
+}

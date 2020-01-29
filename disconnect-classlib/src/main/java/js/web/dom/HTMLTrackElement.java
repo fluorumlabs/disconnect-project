@@ -4,8 +4,20 @@ import js.extras.JsEnum;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** The HTMLTrackElement */
+/**
+ * The HTMLTrackElement
+ */
 public interface HTMLTrackElement extends HTMLElement {
+    @JSBody(script = "return HTMLTrackElement.prototype")
+    static HTMLTrackElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLTrackElement()")
+    static HTMLTrackElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     boolean isDefault();
 
@@ -43,22 +55,13 @@ public interface HTMLTrackElement extends HTMLElement {
     TextTrack getTrack();
 
     abstract class ReadyState extends JsEnum {
-    public static final ReadyState ERROR = JsEnum.from("return HTMLTrackElement.ERROR");
+        public static final ReadyState ERROR = JsEnum.from("return HTMLTrackElement.ERROR");
 
-    public static final ReadyState LOADED = JsEnum.from("return HTMLTrackElement.LOADED");
+        public static final ReadyState LOADED = JsEnum.from("return HTMLTrackElement.LOADED");
 
-    public static final ReadyState LOADING = JsEnum.from("return HTMLTrackElement.LOADING");
+        public static final ReadyState LOADING = JsEnum.from("return HTMLTrackElement.LOADING");
 
-    public static final ReadyState NONE = JsEnum.from("return HTMLTrackElement.NONE");}
-
-    @JSBody(script = "return HTMLTrackElement.prototype")
-    static HTMLTrackElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLTrackElement()")
-    static HTMLTrackElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
+        public static final ReadyState NONE = JsEnum.from("return HTMLTrackElement.NONE");
     }
 
 }

@@ -1,22 +1,23 @@
 package js.web.geolocation;
 
+import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
-/** The position and altitude of the device on Earth, as well as the accuracy with which these properties are calculated. */
+/**
+ * The position and altitude of the device on Earth, as well as the accuracy with which these properties are calculated.
+ */
 public interface GeolocationCoordinates extends Any {
     @JSProperty
     double getAccuracy();
 
     @JSProperty
-    double  getAltitude();
+    double getAltitude();
 
     @JSProperty
-    double  getAltitudeAccuracy();
+    double getAltitudeAccuracy();
 
     @JSProperty
-    double  getHeading();
+    double getHeading();
 
     @JSProperty
     double getLatitude();
@@ -25,6 +26,6 @@ public interface GeolocationCoordinates extends Any {
     double getLongitude();
 
     @JSProperty
-    double  getSpeed();
+    double getSpeed();
 
 }

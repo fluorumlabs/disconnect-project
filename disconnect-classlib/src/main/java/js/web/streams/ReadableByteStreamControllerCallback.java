@@ -7,6 +7,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface ReadableByteStreamControllerCallback extends JSObject {
-        VoidPromiseLike handle(ReadableByteStreamController controller);
-        }
+public interface ReadableByteStreamControllerCallback extends JSObject {
+    VoidPromiseLike handle(ReadableByteStreamController controller);
+}

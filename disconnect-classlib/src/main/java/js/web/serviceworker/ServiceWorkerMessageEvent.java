@@ -12,39 +12,41 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This ServiceWorker API interface contains information about an event sent to a ServiceWorkerContainer target. This extends the default message event to allow setting a ServiceWorker object as the source of a message. The event object is accessed via the handler function of a message event, when fired by a message received from a service worker. */
-        public interface ServiceWorkerMessageEvent extends Event {
-        @JSProperty
-        Unknown getData();
+/**
+ * This ServiceWorker API interface contains information about an event sent to a ServiceWorkerContainer target. This extends the default message event to allow setting a ServiceWorker object as the source of a message. The event object is accessed via the handler function of a message event, when fired by a message received from a service worker.
+ */
+public interface ServiceWorkerMessageEvent extends Event {
+    @JSBody(script = "return ServiceWorkerMessageEvent.prototype")
+    static ServiceWorkerMessageEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getLastEventId();
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new ServiceWorkerMessageEvent(type, eventInitDict)")
+    static ServiceWorkerMessageEvent create(String type, ServiceWorkerMessageEventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getOrigin();
+    @JSBody(params = "type", script = "return new ServiceWorkerMessageEvent(type)")
+    static ServiceWorkerMessageEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        ReadonlyArray<MessagePort> getPorts();
+    @JSProperty
+    Unknown getData();
 
-        @JSProperty
-        @Nullable
-        Unknown  getSource();
+    @JSProperty
+    String getLastEventId();
 
-        @JSBody(script = "return ServiceWorkerMessageEvent.prototype")
-        static ServiceWorkerMessageEvent prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getOrigin();
 
-        @JSBody(params={"type","eventInitDict"}, script = "return new ServiceWorkerMessageEvent(type, eventInitDict)")
-        static ServiceWorkerMessageEvent create(String type, ServiceWorkerMessageEventInit eventInitDict) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    ReadonlyArray<MessagePort> getPorts();
 
-        @JSBody(params="type", script = "return new ServiceWorkerMessageEvent(type)")
-        static ServiceWorkerMessageEvent create(String type) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    Unknown getSource();
 
 
     interface ServiceWorkerMessageEventInit extends EventInit {
@@ -75,6 +77,7 @@ import javax.annotation.Nullable;
 
         @JSProperty
         void setPorts(@JSByRef MessagePort... ports);
+
         @JSProperty
         void setPorts(Array<MessagePort> ports);
 
@@ -84,6 +87,7 @@ import javax.annotation.Nullable;
 
         @JSProperty
         void setSource(ServiceWorker source);
+
         @JSProperty
         void setSource(MessagePort source);
 

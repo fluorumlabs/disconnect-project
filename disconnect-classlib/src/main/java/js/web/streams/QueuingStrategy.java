@@ -1,15 +1,16 @@
 package js.web.streams;
 
+import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
 
 public interface QueuingStrategy<T extends Any> {
-@JSProperty
+    @JSProperty
     int getHighWaterMark();
 
-@JSProperty
+    @JSProperty
     void setHighWaterMark(int highWaterMark);
 
     @JSProperty

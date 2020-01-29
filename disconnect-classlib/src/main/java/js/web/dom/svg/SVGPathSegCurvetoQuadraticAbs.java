@@ -5,38 +5,38 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGPathSegCurvetoQuadraticAbs extends SVGPathSeg {
-        @JSProperty
-        double getX();
+    @JSBody(script = "return SVGPathSegCurvetoQuadraticAbs.prototype")
+    static SVGPathSegCurvetoQuadraticAbs prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setX(double x);
+    @JSBody(script = "return new SVGPathSegCurvetoQuadraticAbs()")
+    static SVGPathSegCurvetoQuadraticAbs create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getX1();
+    @JSProperty
+    double getX();
 
-        @JSProperty
-        void setX1(double x1);
+    @JSProperty
+    void setX(double x);
 
-        @JSProperty
-        double getY();
+    @JSProperty
+    double getX1();
 
-        @JSProperty
-        void setY(double y);
+    @JSProperty
+    void setX1(double x1);
 
-        @JSProperty
-        double getY1();
+    @JSProperty
+    double getY();
 
-        @JSProperty
-        void setY1(double y1);
+    @JSProperty
+    void setY(double y);
 
-        @JSBody(script = "return SVGPathSegCurvetoQuadraticAbs.prototype")
-        static SVGPathSegCurvetoQuadraticAbs prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getY1();
 
-        @JSBody(script = "return new SVGPathSegCurvetoQuadraticAbs()")
-        static SVGPathSegCurvetoQuadraticAbs create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setY1(double y1);
 
-        }
+}

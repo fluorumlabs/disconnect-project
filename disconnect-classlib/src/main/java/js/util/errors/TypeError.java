@@ -8,6 +8,7 @@ public interface TypeError extends JsError {
     static TypeError create(String value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
     @JSBody(script = "return new TypeError()")
     static TypeError create() {
         throw new UnsupportedOperationException("Available only in JavaScript");

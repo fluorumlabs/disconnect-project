@@ -3,7 +3,7 @@ package js.lang;
 import org.teavm.jso.JSIndexer;
 
 
-public interface PropertyDescriptorMap extends Any{
+public interface PropertyDescriptorMap extends Any {
     @JSIndexer
     PropertyDescriptor get(String s);
 

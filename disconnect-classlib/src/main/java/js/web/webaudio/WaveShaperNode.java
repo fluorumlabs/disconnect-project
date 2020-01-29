@@ -7,35 +7,37 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** A WaveShaperNode always has exactly one input and one output. */
-        public interface WaveShaperNode extends AudioNode {
-        @JSProperty
-        @Nullable
-        Float32Array getCurve();
+/**
+ * A WaveShaperNode always has exactly one input and one output.
+ */
+public interface WaveShaperNode extends AudioNode {
+    @JSBody(script = "return WaveShaperNode.prototype")
+    static WaveShaperNode prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setCurve(Float32Array curve);
+    @JSBody(params = {"context", "options"}, script = "return new WaveShaperNode(context, options)")
+    static WaveShaperNode create(BaseAudioContext context, WaveShaperOptions options) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        OverSampleType getOversample();
+    @JSBody(params = "context", script = "return new WaveShaperNode(context)")
+    static WaveShaperNode create(BaseAudioContext context) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setOversample(OverSampleType oversample);
+    @JSProperty
+    @Nullable
+    Float32Array getCurve();
 
-        @JSBody(script = "return WaveShaperNode.prototype")
-        static WaveShaperNode prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setCurve(Float32Array curve);
 
-        @JSBody(params={"context","options"}, script = "return new WaveShaperNode(context, options)")
-        static WaveShaperNode create(BaseAudioContext context, WaveShaperOptions options) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    OverSampleType getOversample();
 
-        @JSBody(params="context", script = "return new WaveShaperNode(context)")
-        static WaveShaperNode create(BaseAudioContext context) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setOversample(OverSampleType oversample);
 
 
-        }
+}

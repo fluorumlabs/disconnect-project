@@ -1,13 +1,13 @@
 package js.web.webvr;
 
-import js.web.canvas.HTMLCanvasElement;
-import org.teavm.jso.JSProperty;
-
-import javax.annotation.Nullable;import js.lang.Any;
+import js.lang.Any;
 import js.lang.Unknown;
 import js.util.buffers.Float32Array;
-
+import js.web.canvas.HTMLCanvasElement;
 import org.teavm.jso.JSByRef;
+import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 
 public interface VRLayer extends Any {
@@ -17,15 +17,17 @@ public interface VRLayer extends Any {
 
     @JSProperty
     void setLeftBounds(@JSByRef double... leftBounds);
+
     @JSProperty
     void setLeftBounds(Float32Array leftBounds);
 
     @JSProperty
     @Nullable
-    Unknown  getRightBounds();
+    Unknown getRightBounds();
 
     @JSProperty
     void setRightBounds(@JSByRef double... rightBounds);
+
     @JSProperty
     void setRightBounds(Float32Array rightBounds);
 

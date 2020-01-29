@@ -17,8 +17,10 @@ public interface PropertyIndexedKeyframes extends Any {
 
     @JSProperty
     void setComposite(CompositeOperationOrAuto composite);
+
     @JSProperty
     void setComposite(@JSByRef CompositeOperationOrAuto... composite);
+
     @JSProperty
     void setComposite(Array<CompositeOperationOrAuto> composite);
 

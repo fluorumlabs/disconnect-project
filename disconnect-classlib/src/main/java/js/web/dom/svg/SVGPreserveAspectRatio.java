@@ -1,35 +1,47 @@
 package js.web.dom.svg;
 
 import js.extras.JsEnum;
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * Corresponds to the preserveAspectRatio attribute, which is available for some of SVG's elements.
+ */
+public interface SVGPreserveAspectRatio extends Any {
+    @JSBody(script = "return SVGPreserveAspectRatio.prototype")
+    static SVGPreserveAspectRatio prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Corresponds to the preserveAspectRatio attribute, which is available for some of SVG's elements. */
-        public interface SVGPreserveAspectRatio extends Any {
-        @JSProperty
-        Align getAlign();
+    @JSBody(script = "return new SVGPreserveAspectRatio()")
+    static SVGPreserveAspectRatio create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setAlign(Align align);
+    @JSProperty
+    Align getAlign();
 
-        @JSProperty
-        MeetOrSlice getMeetOrSlice();
+    @JSProperty
+    void setAlign(Align align);
 
-        @JSProperty
-        void setMeetOrSlice(MeetOrSlice meetOrSlice);
+    @JSProperty
+    MeetOrSlice getMeetOrSlice();
 
-        abstract class MeetOrSlice extends JsEnum {
+    @JSProperty
+    void setMeetOrSlice(MeetOrSlice meetOrSlice);
+
+    abstract class MeetOrSlice extends JsEnum {
         public static final MeetOrSlice SVG_MEETORSLICE_MEET = JsEnum.from("return SVGPreserveAspectRatio.SVG_MEETORSLICE_MEET");
 
 
         public static final MeetOrSlice SVG_MEETORSLICE_SLICE = JsEnum.from("return SVGPreserveAspectRatio.SVG_MEETORSLICE_SLICE");
 
 
-        public static final MeetOrSlice SVG_MEETORSLICE_UNKNOWN = JsEnum.from("return SVGPreserveAspectRatio.SVG_MEETORSLICE_UNKNOWN");}
+        public static final MeetOrSlice SVG_MEETORSLICE_UNKNOWN = JsEnum.from("return SVGPreserveAspectRatio.SVG_MEETORSLICE_UNKNOWN");
+    }
 
-        abstract class Align extends JsEnum {
+    abstract class Align extends JsEnum {
         public static final Align SVG_PRESERVEASPECTRATIO_NONE = JsEnum.from("return SVGPreserveAspectRatio.SVG_PRESERVEASPECTRATIO_NONE");
 
 
@@ -60,16 +72,7 @@ import js.lang.Any;
         public static final Align SVG_PRESERVEASPECTRATIO_XMINYMID = JsEnum.from("return SVGPreserveAspectRatio.SVG_PRESERVEASPECTRATIO_XMINYMID");
 
 
-        public static final Align SVG_PRESERVEASPECTRATIO_XMINYMIN = JsEnum.from("return SVGPreserveAspectRatio.SVG_PRESERVEASPECTRATIO_XMINYMIN");}
+        public static final Align SVG_PRESERVEASPECTRATIO_XMINYMIN = JsEnum.from("return SVGPreserveAspectRatio.SVG_PRESERVEASPECTRATIO_XMINYMIN");
+    }
 
-@JSBody(script = "return SVGPreserveAspectRatio.prototype")
-static SVGPreserveAspectRatio prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
 }
-
-@JSBody(script = "return new SVGPreserveAspectRatio()")
-static SVGPreserveAspectRatio create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
-
-        }

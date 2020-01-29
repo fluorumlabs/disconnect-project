@@ -4,17 +4,30 @@ import js.extras.JsEnum;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feBlend> element. */
-        public interface SVGFEBlendElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedString getIn1();
+/**
+ * Corresponds to the <feBlend> element.
+ */
+public interface SVGFEBlendElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    @JSBody(script = "return SVGFEBlendElement.prototype")
+    static SVGFEBlendElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedString getIn2();
+    @JSBody(script = "return new SVGFEBlendElement()")
+    static SVGFEBlendElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedEnumeration getMode();
-abstract class Mode extends JsEnum {
+    @JSProperty
+    SVGAnimatedString getIn1();
+
+    @JSProperty
+    SVGAnimatedString getIn2();
+
+    @JSProperty
+    SVGAnimatedEnumeration getMode();
+
+    abstract class Mode extends JsEnum {
         public static final Mode SVG_FEBLEND_MODE_COLOR = JsEnum.from("return SVGFEBlendElement.SVG_FEBLEND_MODE_COLOR");
 
 
@@ -38,8 +51,8 @@ abstract class Mode extends JsEnum {
 
 
         public static final Mode SVG_FEBLEND_MODE_LIGHTEN = JsEnum.from("return SVGFEBlendElement.SVG_FEBLEND_MODE_LIGHTEN");
-        public static final Mode SVG_FEBLEND_MODE_LUMINOSITY = JsEnum.from("return SVGFEBlendElement.SVG_FEBLEND_MODE_LUMINOSITY");
 
+        public static final Mode SVG_FEBLEND_MODE_LUMINOSITY = JsEnum.from("return SVGFEBlendElement.SVG_FEBLEND_MODE_LUMINOSITY");
 
 
         public static final Mode SVG_FEBLEND_MODE_MULTIPLY = JsEnum.from("return SVGFEBlendElement.SVG_FEBLEND_MODE_MULTIPLY");
@@ -60,16 +73,7 @@ abstract class Mode extends JsEnum {
         public static final Mode SVG_FEBLEND_MODE_SOFT_LIGHT = JsEnum.from("return SVGFEBlendElement.SVG_FEBLEND_MODE_SOFT_LIGHT");
 
 
-        public static final Mode SVG_FEBLEND_MODE_UNKNOWN = JsEnum.from("return SVGFEBlendElement.SVG_FEBLEND_MODE_UNKNOWN");}
+        public static final Mode SVG_FEBLEND_MODE_UNKNOWN = JsEnum.from("return SVGFEBlendElement.SVG_FEBLEND_MODE_UNKNOWN");
+    }
 
-        @JSBody(script = "return SVGFEBlendElement.prototype")
-        static SVGFEBlendElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new SVGFEBlendElement()")
-        static SVGFEBlendElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

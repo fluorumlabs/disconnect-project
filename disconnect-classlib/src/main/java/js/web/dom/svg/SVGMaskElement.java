@@ -3,34 +3,36 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides access to the properties of <mask> elements, as well as methods to manipulate them. */
-        public interface SVGMaskElement extends SVGElement {
-        @JSProperty
-        SVGAnimatedLength getHeight();
+/**
+ * Provides access to the properties of <mask> elements, as well as methods to manipulate them.
+ */
+public interface SVGMaskElement extends SVGElement {
+    @JSBody(script = "return SVGMaskElement.prototype")
+    static SVGMaskElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedEnumeration getMaskContentUnits();
+    @JSBody(script = "return new SVGMaskElement()")
+    static SVGMaskElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedEnumeration getMaskUnits();
+    @JSProperty
+    SVGAnimatedLength getHeight();
 
-        @JSProperty
-        SVGAnimatedLength getWidth();
+    @JSProperty
+    SVGAnimatedEnumeration getMaskContentUnits();
 
-        @JSProperty
-        SVGAnimatedLength getX();
+    @JSProperty
+    SVGAnimatedEnumeration getMaskUnits();
 
-        @JSProperty
-        SVGAnimatedLength getY();
+    @JSProperty
+    SVGAnimatedLength getWidth();
 
-        @JSBody(script = "return SVGMaskElement.prototype")
-        static SVGMaskElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getX();
 
-        @JSBody(script = "return new SVGMaskElement()")
-        static SVGMaskElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getY();
 
-        }
+}

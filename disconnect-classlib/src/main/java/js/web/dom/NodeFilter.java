@@ -4,26 +4,30 @@ import js.extras.JsBit;
 import js.extras.JsEnum;
 import js.lang.Any;
 
-/** An object used to filter the nodes in a NodeIterator or TreeWalker. They don't know anything about the DOM or how to traverse nodes; they just know how to evaluate a single node against the provided filter. */
-        public interface NodeFilter extends Any {
-        FilterResult acceptNode(Node node);
+/**
+ * An object used to filter the nodes in a NodeIterator or TreeWalker. They don't know anything about the DOM or how to traverse nodes; they just know how to evaluate a single node against the provided filter.
+ */
+public interface NodeFilter extends Any {
+    FilterResult acceptNode(Node node);
 
-        abstract class FilterResult extends JsEnum {
+    abstract class FilterResult extends JsEnum {
 
         public static final FilterResult FILTER_ACCEPT = JsEnum.from("return NodeFilter.FILTER_ACCEPT");
 
         public static final FilterResult FILTER_REJECT = JsEnum.from("return NodeFilter.FILTER_REJECT");
 
-        public static final FilterResult FILTER_SKIP = JsEnum.from("return NodeFilter.FILTER_SKIP");}
+        public static final FilterResult FILTER_SKIP = JsEnum.from("return NodeFilter.FILTER_SKIP");
+    }
 
-        abstract class FilterShow extends JsBit {
+    abstract class FilterShow extends JsBit {
 
         public static final FilterShow SHOW_ALL = JsBit.from("return NodeFilter.SHOW_ALL");
-         public static final FilterShow SHOW_ATTRIBUTE = JsBit.from("return NodeFilter.SHOW_ATTRIBUTE");
 
-         public static final FilterShow SHOW_CDATA_SECTION = JsBit.from("return NodeFilter.SHOW_CDATA_SECTION");
+        public static final FilterShow SHOW_ATTRIBUTE = JsBit.from("return NodeFilter.SHOW_ATTRIBUTE");
 
-         public static final FilterShow SHOW_COMMENT = JsBit.from("return NodeFilter.SHOW_COMMENT");
+        public static final FilterShow SHOW_CDATA_SECTION = JsBit.from("return NodeFilter.SHOW_CDATA_SECTION");
+
+        public static final FilterShow SHOW_COMMENT = JsBit.from("return NodeFilter.SHOW_COMMENT");
 
         public static final FilterShow SHOW_DOCUMENT = JsBit.from("return NodeFilter.SHOW_DOCUMENT");
 
@@ -41,6 +45,7 @@ import js.lang.Any;
 
         public static final FilterShow SHOW_PROCESSING_INSTRUCTION = JsBit.from("return NodeFilter.SHOW_PROCESSING_INSTRUCTION");
 
-        public static final FilterShow SHOW_TEXT = JsBit.from("return NodeFilter.SHOW_TEXT");}
+        public static final FilterShow SHOW_TEXT = JsBit.from("return NodeFilter.SHOW_TEXT");
+    }
 
 }

@@ -1,8 +1,7 @@
 package js.web.webcrypto;
 
-import org.teavm.jso.JSProperty;
-
 import js.web.dom.BufferSource;
+import org.teavm.jso.JSProperty;
 
 
 public interface AesCbcParams extends Algorithm {

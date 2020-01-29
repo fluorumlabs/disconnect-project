@@ -7,8 +7,8 @@ import javax.annotation.Nullable;
 
 
 public interface Slotable extends Any {
-        @JSProperty
-        @Nullable
-        HTMLSlotElement getAssignedSlot();
+    @JSProperty
+    @Nullable
+    HTMLSlotElement getAssignedSlot();
 
-        }
+}

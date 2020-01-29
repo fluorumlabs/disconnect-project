@@ -1,15 +1,14 @@
 package js.web.dom;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface InnerHTML extends Any {
-        @JSProperty
-        String getInnerHTML();
+    @JSProperty
+    String getInnerHTML();
 
-        @JSProperty
-        void setInnerHTML(String innerHTML);
+    @JSProperty
+    void setInnerHTML(String innerHTML);
 
-        }
+}

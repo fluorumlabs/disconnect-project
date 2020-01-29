@@ -5,20 +5,20 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGPathSegLinetoVerticalAbs extends SVGPathSeg {
-        @JSProperty
-        double getY();
+    @JSBody(script = "return SVGPathSegLinetoVerticalAbs.prototype")
+    static SVGPathSegLinetoVerticalAbs prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setY(double y);
+    @JSBody(script = "return new SVGPathSegLinetoVerticalAbs()")
+    static SVGPathSegLinetoVerticalAbs create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return SVGPathSegLinetoVerticalAbs.prototype")
-        static SVGPathSegLinetoVerticalAbs prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getY();
 
-        @JSBody(script = "return new SVGPathSegLinetoVerticalAbs()")
-        static SVGPathSegLinetoVerticalAbs create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setY(double y);
 
-        }
+}

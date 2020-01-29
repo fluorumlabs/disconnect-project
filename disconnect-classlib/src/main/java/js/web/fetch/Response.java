@@ -12,105 +12,119 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This Fetch API interface represents the response to a request. */
-        public interface Response extends Body {
-        @JSProperty
-        Headers getHeaders();
+/**
+ * This Fetch API interface represents the response to a request.
+ */
+public interface Response extends Body {
+    @JSBody(script = "return Response.prototype")
+    static Response prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        boolean isOk();
+    @JSBody(script = "return new Response()")
+    static Response create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        boolean isRedirected();
+    @JSBody(params = "body", script = "return new Response(body)")
+    static Response create(Blob body) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getStatus();
+    @JSBody(params = "body", script = "return new Response(body)")
+    static Response create(BufferSource body) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getStatusText();
+    @JSBody(params = "body", script = "return new Response(body)")
+    static Response create(FormData body) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        Promise<Headers> getTrailer();
-        @JSProperty
-        ResponseType getType();
+    @JSBody(params = "body", script = "return new Response(body)")
+    static Response create(URLSearchParams body) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getUrl();
+    @JSBody(params = "body", script = "return new Response(body)")
+    static Response create(ReadableStream<Uint8Array> body) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        Response clone();
+    @JSBody(params = "body", script = "return new Response(body)")
+    static Response create(String body) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return Response.prototype")
-        static Response prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSBody(params = {"body", "init"}, script = "return new Response(body, init)")
+    static Response create(@Nullable Blob body, ResponseInit init) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return new Response()")
-        static Response create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSBody(params = {"body", "init"}, script = "return new Response(body, init)")
+    static Response create(@Nullable BufferSource body, ResponseInit init) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(params="body", script = "return new Response(body)")
-        static Response create(Blob body) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params="body", script = "return new Response(body)")
-        static Response create(BufferSource body) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params="body", script = "return new Response(body)")
-        static Response create(FormData body) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params="body", script = "return new Response(body)")
-        static Response create(URLSearchParams body) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params="body", script = "return new Response(body)")
-        static Response create(ReadableStream<Uint8Array> body) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params="body", script = "return new Response(body)")
-        static Response create(String body) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSBody(params = {"body", "init"}, script = "return new Response(body, init)")
+    static Response create(@Nullable FormData body, ResponseInit init) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(params={"body","init"}, script = "return new Response(body, init)")
-        static Response create(@Nullable Blob body, ResponseInit init) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params={"body","init"}, script = "return new Response(body, init)")
-        static Response create(@Nullable BufferSource body, ResponseInit init) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params={"body","init"}, script = "return new Response(body, init)")
-        static Response create(@Nullable FormData body, ResponseInit init) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params={"body","init"}, script = "return new Response(body, init)")
-        static Response create(@Nullable URLSearchParams body, ResponseInit init) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params={"body","init"}, script = "return new Response(body, init)")
-        static Response create(@Nullable ReadableStream<Uint8Array> body, ResponseInit init) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params={"body","init"}, script = "return new Response(body, init)")
-        static Response create(@Nullable String body, ResponseInit init) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSBody(params = {"body", "init"}, script = "return new Response(body, init)")
+    static Response create(@Nullable URLSearchParams body, ResponseInit init) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return Response.error()")
-        static Response error() {
-                throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSBody(params = {"body", "init"}, script = "return new Response(body, init)")
+    static Response create(@Nullable ReadableStream<Uint8Array> body, ResponseInit init) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(params={"url","status"}, script = "return Response.redirect(url, status)")
-        static Response redirect(String url, int status) {
-                throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params={"url"}, script = "return Response.redirect(url)")
-        static Response redirect(String url) {
-                throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSBody(params = {"body", "init"}, script = "return new Response(body, init)")
+    static Response create(@Nullable String body, ResponseInit init) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return Response.error()")
+    static Response error() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"url", "status"}, script = "return Response.redirect(url, status)")
+    static Response redirect(String url, int status) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"url"}, script = "return Response.redirect(url)")
+    static Response redirect(String url) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSProperty
+    Headers getHeaders();
+
+    @JSProperty
+    boolean isOk();
+
+    @JSProperty
+    boolean isRedirected();
+
+    @JSProperty
+    double getStatus();
+
+    @JSProperty
+    String getStatusText();
+
+    @JSProperty
+    Promise<Headers> getTrailer();
+
+    @JSProperty
+    ResponseType getType();
+
+    @JSProperty
+    String getUrl();
+
+    Response clone();
 
 }

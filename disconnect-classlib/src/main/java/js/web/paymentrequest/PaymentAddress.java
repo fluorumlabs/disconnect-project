@@ -1,56 +1,57 @@
 package js.web.paymentrequest;
 
+import js.lang.Any;
+import js.lang.Unknown;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-import js.lang.Unknown;
+/**
+ * This Payment Request API interface is used to store shipping or payment address information.
+ */
+public interface PaymentAddress extends Any {
+    @JSBody(script = "return PaymentAddress.prototype")
+    static PaymentAddress prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** This Payment Request API interface is used to store shipping or payment address information. */
-        public interface PaymentAddress extends Any {
-        @JSProperty
-        String[] getAddressLine();
+    @JSBody(script = "return new PaymentAddress()")
+    static PaymentAddress create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getCity();
+    @JSProperty
+    String[] getAddressLine();
 
-        @JSProperty
-        String getCountry();
+    @JSProperty
+    String getCity();
 
-        @JSProperty
-        String getDependentLocality();
+    @JSProperty
+    String getCountry();
 
-        @JSProperty
-        String getLanguageCode();
+    @JSProperty
+    String getDependentLocality();
 
-        @JSProperty
-        String getOrganization();
+    @JSProperty
+    String getLanguageCode();
 
-        @JSProperty
-        String getPhone();
+    @JSProperty
+    String getOrganization();
 
-        @JSProperty
-        String getPostalCode();
+    @JSProperty
+    String getPhone();
 
-        @JSProperty
-        String getRecipient();
+    @JSProperty
+    String getPostalCode();
 
-        @JSProperty
-        String getRegion();
+    @JSProperty
+    String getRecipient();
 
-        @JSProperty
-        String getSortingCode();
+    @JSProperty
+    String getRegion();
 
-        Unknown toJSON();
+    @JSProperty
+    String getSortingCode();
 
-        @JSBody(script = "return PaymentAddress.prototype")
-        static PaymentAddress prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    Unknown toJSON();
 
-        @JSBody(script = "return new PaymentAddress()")
-        static PaymentAddress create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

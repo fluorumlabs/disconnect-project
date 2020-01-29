@@ -1,67 +1,74 @@
 package js.web.webspeech;
 
 import js.util.collections.Array;
-import js.web.dom.EventListener;
-import js.web.dom.AddEventListenerOptions;
-import js.web.dom.Event;
-import js.web.dom.EventListenerOptions;
-import js.web.dom.EventTarget;
+import js.web.dom.*;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This Web Speech API interface is the controller interface for the speech service; this can be used to retrieve information about the synthesis voices available on the device, start and pause speech, and other commands besides. */
-        public interface SpeechSynthesis extends EventTarget {
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnvoiceschanged();
+/**
+ * This Web Speech API interface is the controller interface for the speech service; this can be used to retrieve information about the synthesis voices available on the device, start and pause speech, and other commands besides.
+ */
+public interface SpeechSynthesis extends EventTarget {
+    @JSBody(script = "return SpeechSynthesis.prototype")
+    static SpeechSynthesis prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setOnvoiceschanged(EventListener<Event> onvoiceschanged);
+    @JSBody(script = "return new SpeechSynthesis()")
+    static SpeechSynthesis create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        default void addVoicesChangedEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("voiceschanged", listener, options);
-        }
-        default void addVoicesChangedEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("voiceschanged", listener, options);
-        }
-        default void addVoicesChangedEventListener(EventListener<Event> listener) {
-            addEventListener("voiceschanged", listener);
-        }
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnvoiceschanged();
 
-        default void removeVoicesChangedEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("voiceschanged", listener, options);
-        }
-        default void removeVoicesChangedEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("voiceschanged", listener, options);
-        }
-        default void removeVoicesChangedEventListener(EventListener<Event> listener) {
-            removeEventListener("voiceschanged", listener);
-        }
-        @JSProperty
-        boolean isPaused();
+    @JSProperty
+    void setOnvoiceschanged(EventListener<Event> onvoiceschanged);
 
-        @JSProperty
-        boolean isPending();
+    default void addVoicesChangedEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("voiceschanged", listener, options);
+    }
 
-        @JSProperty
-        boolean isSpeaking();
+    default void addVoicesChangedEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("voiceschanged", listener, options);
+    }
 
-        void cancel();
-        Array<SpeechSynthesisVoice> getVoices();
-        void pause();
-        void resume();
-        void speak(SpeechSynthesisUtterance utterance);
+    default void addVoicesChangedEventListener(EventListener<Event> listener) {
+        addEventListener("voiceschanged", listener);
+    }
 
-        @JSBody(script = "return SpeechSynthesis.prototype")
-        static SpeechSynthesis prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void removeVoicesChangedEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("voiceschanged", listener, options);
+    }
 
-        @JSBody(script = "return new SpeechSynthesis()")
-        static SpeechSynthesis create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void removeVoicesChangedEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("voiceschanged", listener, options);
+    }
 
-        }
+    default void removeVoicesChangedEventListener(EventListener<Event> listener) {
+        removeEventListener("voiceschanged", listener);
+    }
+
+    @JSProperty
+    boolean isPaused();
+
+    @JSProperty
+    boolean isPending();
+
+    @JSProperty
+    boolean isSpeaking();
+
+    void cancel();
+
+    Array<SpeechSynthesisVoice> getVoices();
+
+    void pause();
+
+    void resume();
+
+    void speak(SpeechSynthesisUtterance utterance);
+
+}

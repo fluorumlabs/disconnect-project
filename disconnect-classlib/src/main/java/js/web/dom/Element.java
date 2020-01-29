@@ -12,8 +12,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element. */
+/**
+ * Element is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
+ */
 public interface Element extends Node, Animatable, ChildNode, InnerHTML, NonDocumentTypeChildNode, ParentNode, Slotable {
+    @JSBody(script = "return Element.prototype")
+    static Element prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new Element()")
+    static Element create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     @Nullable
     HTMLSlotElement getAssignedSlot();
@@ -68,7 +80,7 @@ public interface Element extends Node, Animatable, ChildNode, InnerHTML, NonDocu
      */
     @JSProperty
     @Nullable
-    String  getNamespaceURI();
+    String getNamespaceURI();
 
     @JSProperty
     @Nullable
@@ -80,9 +92,11 @@ public interface Element extends Node, Animatable, ChildNode, InnerHTML, NonDocu
     default void addFullscreenChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
         addEventListener("fullscreenchange", listener, options);
     }
+
     default void addFullscreenChangeEventListener(EventListener<Event> listener, boolean options) {
         addEventListener("fullscreenchange", listener, options);
     }
+
     default void addFullscreenChangeEventListener(EventListener<Event> listener) {
         addEventListener("fullscreenchange", listener);
     }
@@ -90,9 +104,11 @@ public interface Element extends Node, Animatable, ChildNode, InnerHTML, NonDocu
     default void removeFullscreenChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
         removeEventListener("fullscreenchange", listener, options);
     }
+
     default void removeFullscreenChangeEventListener(EventListener<Event> listener, boolean options) {
         removeEventListener("fullscreenchange", listener, options);
     }
+
     default void removeFullscreenChangeEventListener(EventListener<Event> listener) {
         removeEventListener("fullscreenchange", listener);
     }
@@ -107,9 +123,11 @@ public interface Element extends Node, Animatable, ChildNode, InnerHTML, NonDocu
     default void addFullscreenErrorEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
         addEventListener("fullscreenerror", listener, options);
     }
+
     default void addFullscreenErrorEventListener(EventListener<Event> listener, boolean options) {
         addEventListener("fullscreenerror", listener, options);
     }
+
     default void addFullscreenErrorEventListener(EventListener<Event> listener) {
         addEventListener("fullscreenerror", listener);
     }
@@ -117,12 +135,15 @@ public interface Element extends Node, Animatable, ChildNode, InnerHTML, NonDocu
     default void removeFullscreenErrorEventListener(EventListener<Event> listener, EventListenerOptions options) {
         removeEventListener("fullscreenerror", listener, options);
     }
+
     default void removeFullscreenErrorEventListener(EventListener<Event> listener, boolean options) {
         removeEventListener("fullscreenerror", listener, options);
     }
+
     default void removeFullscreenErrorEventListener(EventListener<Event> listener) {
         removeEventListener("fullscreenerror", listener);
     }
+
     @JSProperty
     String getOuterHTML();
 
@@ -134,7 +155,7 @@ public interface Element extends Node, Animatable, ChildNode, InnerHTML, NonDocu
      */
     @JSProperty
     @Nullable
-    String  getPrefix();
+    String getPrefix();
 
     @JSProperty
     double getScrollHeight();
@@ -180,118 +201,155 @@ public interface Element extends Node, Animatable, ChildNode, InnerHTML, NonDocu
      * Creates a shadow root for element and returns it.
      */
     ShadowRoot attachShadow(ShadowRootInit init);
+
     /**
      * Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
      */
     <E extends Element> E closest(String selector);
+
     /**
      * Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.
      */
     @Nullable
     String getAttribute(String qualifiedName);
+
     /**
      * Returns element's attribute whose namespace is namespace and local name is localName, and null if there is no such attribute otherwise.
      */
     @Nullable
     String getAttributeNS(@Nullable String namespace, String localName);
+
     /**
      * Returns the qualified names of all element's attributes. Can contain duplicates.
      */
     String[] getAttributeNames();
+
     @Nullable
     Attr getAttributeNode(String name);
+
     @Nullable
     Attr getAttributeNodeNS(String namespaceURI, String localName);
+
     DOMRect getBoundingClientRect();
+
     DOMRectList getClientRects();
+
     /**
      * Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
      */
     HTMLCollectionOf<Element> getElementsByClassName(String classNames);
+
     <E extends Element> HTMLCollectionOf<E> getElementsByTagName(String qualifiedName);
+
     <E extends Element> HTMLCollectionOf<E> getElementsByTagNameNS(String namespaceURI, String localName);
+
     /**
      * Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
      */
     boolean hasAttribute(String qualifiedName);
+
     /**
      * Returns true if element has an attribute whose namespace is namespace and local name is localName.
      */
     boolean hasAttributeNS(@Nullable String namespace, String localName);
+
     /**
      * Returns true if element has attributes, and false otherwise.
      */
     boolean hasAttributes();
+
     boolean hasPointerCapture(int pointerId);
+
     @Nullable
     Element insertAdjacentElement(InsertPosition position, Element insertedElement);
+
     void insertAdjacentHTML(InsertPosition where, String html);
+
     void insertAdjacentText(InsertPosition where, String text);
+
     /**
      * Returns true if matching selectors against element's root yields element, and false otherwise.
      */
     boolean matches(String selectors);
+
     Unknown msGetRegionContent();
+
     void releasePointerCapture(int pointerId);
+
     /**
      * Removes element's first attribute whose qualified name is qualifiedName.
      */
     void removeAttribute(String qualifiedName);
+
     /**
      * Removes element's attribute whose namespace is namespace and local name is localName.
      */
     void removeAttributeNS(@Nullable String namespace, String localName);
+
     Attr removeAttributeNode(Attr attr);
+
     /**
      * Displays element fullscreen and resolves promise when done.
-     *
+     * <p>
      * When supplied, options's navigationUI member indicates whether showing navigation UI while in fullscreen is preferred or not. If set to "show", navigation simplicity is preferred over screen space, and if set to "hide", more screen space is preferred. User agents are always free to honor user preference over the application's. The default value "auto" indicates no application preference.
      */
     VoidPromise requestFullscreen(FullscreenOptions options);
+
     VoidPromise requestFullscreen();
+
     void requestPointerLock();
+
     void scroll(ScrollToOptions options);
+
     void scroll();
+
     void scroll(double x, double y);
+
     void scrollBy(ScrollToOptions options);
+
     void scrollBy();
+
     void scrollBy(double x, double y);
+
     void scrollIntoView(ScrollIntoViewOptions arg);
+
     void scrollIntoView(boolean arg);
+
     void scrollIntoView();
+
     void scrollTo(ScrollToOptions options);
+
     void scrollTo();
+
     void scrollTo(double x, double y);
+
     /**
      * Sets the value of element's first attribute whose qualified name is qualifiedName to value.
      */
     void setAttribute(String qualifiedName, String value);
+
     /**
      * Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
      */
     void setAttributeNS(@Nullable String namespace, String qualifiedName, String value);
+
     @Nullable
     Attr setAttributeNode(Attr attr);
+
     @Nullable
     Attr setAttributeNodeNS(Attr attr);
+
     void setPointerCapture(int pointerId);
+
     /**
      * If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
-     *
+     * <p>
      * Returns true if qualifiedName is now present, and false otherwise.
      */
     boolean toggleAttribute(String qualifiedName, boolean force);
+
     boolean toggleAttribute(String qualifiedName);
+
     boolean webkitMatchesSelector(String selectors);
-
-    @JSBody(script = "return Element.prototype")
-    static Element prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new Element()")
-    static Element create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

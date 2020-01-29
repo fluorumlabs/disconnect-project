@@ -1,74 +1,75 @@
 package js.web.performance.timeline;
 
+import js.lang.Unknown;
 import js.web.performance.PerformanceEntry;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Unknown;
+/**
+ * Enables retrieval and analysis of detailed network timing data regarding the loading of an application's resources. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource, such as an XMLHttpRequest, <SVG>, image, or script.
+ */
+public interface PerformanceResourceTiming extends PerformanceEntry {
+    @JSBody(script = "return PerformanceResourceTiming.prototype")
+    static PerformanceResourceTiming prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Enables retrieval and analysis of detailed network timing data regarding the loading of an application's resources. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource, such as an XMLHttpRequest, <SVG>, image, or script. */
-        public interface PerformanceResourceTiming extends PerformanceEntry {
-        @JSProperty
-        double getConnectEnd();
+    @JSBody(script = "return new PerformanceResourceTiming()")
+    static PerformanceResourceTiming create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getConnectStart();
+    @JSProperty
+    double getConnectEnd();
 
-        @JSProperty
-        double getDecodedBodySize();
+    @JSProperty
+    double getConnectStart();
 
-        @JSProperty
-        double getDomainLookupEnd();
+    @JSProperty
+    double getDecodedBodySize();
 
-        @JSProperty
-        double getDomainLookupStart();
+    @JSProperty
+    double getDomainLookupEnd();
 
-        @JSProperty
-        double getEncodedBodySize();
+    @JSProperty
+    double getDomainLookupStart();
 
-        @JSProperty
-        double getFetchStart();
+    @JSProperty
+    double getEncodedBodySize();
 
-        @JSProperty
-        String getInitiatorType();
+    @JSProperty
+    double getFetchStart();
 
-        @JSProperty
-        String getNextHopProtocol();
+    @JSProperty
+    String getInitiatorType();
 
-        @JSProperty
-        double getRedirectEnd();
+    @JSProperty
+    String getNextHopProtocol();
 
-        @JSProperty
-        double getRedirectStart();
+    @JSProperty
+    double getRedirectEnd();
 
-        @JSProperty
-        double getRequestStart();
+    @JSProperty
+    double getRedirectStart();
 
-        @JSProperty
-        double getResponseEnd();
+    @JSProperty
+    double getRequestStart();
 
-        @JSProperty
-        double getResponseStart();
+    @JSProperty
+    double getResponseEnd();
 
-        @JSProperty
-        double getSecureConnectionStart();
+    @JSProperty
+    double getResponseStart();
 
-        @JSProperty
-        double getTransferSize();
+    @JSProperty
+    double getSecureConnectionStart();
 
-        @JSProperty
-        double getWorkerStart();
+    @JSProperty
+    double getTransferSize();
 
-        Unknown toJSON();
+    @JSProperty
+    double getWorkerStart();
 
-        @JSBody(script = "return PerformanceResourceTiming.prototype")
-        static PerformanceResourceTiming prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    Unknown toJSON();
 
-        @JSBody(script = "return new PerformanceResourceTiming()")
-        static PerformanceResourceTiming create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

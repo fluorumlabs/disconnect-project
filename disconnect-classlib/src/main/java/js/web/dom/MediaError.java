@@ -1,23 +1,34 @@
 package js.web.dom;
 
 import js.extras.JsEnum;
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as <audio> or <video>.
+ */
+public interface MediaError extends Any {
+    @JSBody(script = "return MediaError.prototype")
+    static MediaError prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as <audio> or <video>. */
-        public interface MediaError extends Any {
-        @JSProperty
-        Code getCode();
+    @JSBody(script = "return new MediaError()")
+    static MediaError create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getMessage();
+    @JSProperty
+    Code getCode();
 
-        @JSProperty
-        int getMsExtendedCode();
+    @JSProperty
+    String getMessage();
 
-        abstract class Code extends JsEnum {
+    @JSProperty
+    int getMsExtendedCode();
+
+    abstract class Code extends JsEnum {
         public static final Code MEDIA_ERR_ABORTED = JsEnum.from("return MediaError.MEDIA_ERR_ABORTED");
 
         public static final Code MEDIA_ERR_DECODE = JsEnum.from("return MediaError.MEDIA_ERR_DECODE");
@@ -26,16 +37,7 @@ import js.lang.Any;
 
         public static final Code MEDIA_ERR_SRC_NOT_SUPPORTED = JsEnum.from("return MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED");
 
-        public static final Code MS_MEDIA_ERR_ENCRYPTED = JsEnum.from("return MediaError.MS_MEDIA_ERR_ENCRYPTED");}
+        public static final Code MS_MEDIA_ERR_ENCRYPTED = JsEnum.from("return MediaError.MS_MEDIA_ERR_ENCRYPTED");
+    }
 
-@JSBody(script = "return MediaError.prototype")
-static MediaError prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
 }
-
-@JSBody(script = "return new MediaError()")
-static MediaError create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
-
-        }

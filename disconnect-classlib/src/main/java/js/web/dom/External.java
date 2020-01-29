@@ -1,17 +1,11 @@
 package js.web.dom;
 
-import org.teavm.jso.JSBody;
-
 import js.lang.Any;
+import org.teavm.jso.JSBody;
 
 
 @Deprecated
 public interface External extends Any {
-    @Deprecated
-    void AddSearchProvider();
-    @Deprecated
-    void IsSearchProviderInstalled();
-
     @JSBody(script = "return External.prototype")
     static External prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -21,5 +15,11 @@ public interface External extends Any {
     static External create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @Deprecated
+    void AddSearchProvider();
+
+    @Deprecated
+    void IsSearchProviderInstalled();
 
 }

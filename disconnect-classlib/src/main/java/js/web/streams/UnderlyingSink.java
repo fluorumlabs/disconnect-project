@@ -2,10 +2,6 @@ package js.web.streams;
 
 import js.lang.Any;
 import js.lang.Unknown;
-import js.web.streams.WritableStreamDefaultControllerCloseCallback;
-import js.web.streams.WritableStreamDefaultControllerStartCallback;
-import js.web.streams.WritableStreamDefaultControllerWriteCallback;
-import js.web.streams.WritableStreamErrorCallback;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;

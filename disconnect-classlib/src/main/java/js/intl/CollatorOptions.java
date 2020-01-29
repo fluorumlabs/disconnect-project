@@ -16,33 +16,33 @@ public interface CollatorOptions extends Any {
 
     @JSProperty
     @Nullable
-    String getLocaleMatcher() ;
+    String getLocaleMatcher();
 
     @JSProperty
     void setLocaleMatcher(String localeMatcher);
 
     @JSProperty
-    boolean isNumeric() ;
+    boolean isNumeric();
 
     @JSProperty
     void setNumeric(boolean numeric);
 
     @JSProperty
     @Nullable
-    String getCaseFirst() ;
+    String getCaseFirst();
 
     @JSProperty
     void setCaseFirst(String caseFirst);
 
     @JSProperty
     @Nullable
-    String getSensitivity() ;
+    String getSensitivity();
 
     @JSProperty
     void setSensitivity(String sensitivity);
 
     @JSProperty
-    boolean isIgnorePunctuation() ;
+    boolean isIgnorePunctuation();
 
     @JSProperty
     void setIgnorePunctuation(boolean ignorePunctuation);

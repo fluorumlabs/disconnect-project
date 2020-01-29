@@ -1,8 +1,9 @@
 package js.web.webrtc;
 
+import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
 
 public interface RTCIceCandidateInit extends Any {
@@ -14,14 +15,14 @@ public interface RTCIceCandidateInit extends Any {
     void setCandidate(String candidate);
 
     @JSProperty
-    int  getSdpMLineIndex();
+    int getSdpMLineIndex();
 
     @JSProperty
     void setSdpMLineIndex(int sdpMLineIndex);
 
     @JSProperty
     @Nullable
-    String  getSdpMid();
+    String getSdpMid();
 
     @JSProperty
     void setSdpMid(String sdpMid);

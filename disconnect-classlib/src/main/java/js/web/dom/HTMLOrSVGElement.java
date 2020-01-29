@@ -1,10 +1,9 @@
 package js.web.dom;
 
-import js.web.dom.DOMStringMap;
-import js.web.dom.FocusOptions;
+import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
 
 public interface HTMLOrSVGElement extends Any {
@@ -25,6 +24,8 @@ public interface HTMLOrSVGElement extends Any {
     void setTabIndex(double tabIndex);
 
     void blur();
+
     void focus(FocusOptions options);
+
     void focus();
 }

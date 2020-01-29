@@ -8,6 +8,7 @@ public interface ReferenceError extends JsError {
     static ReferenceError create(String value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
     @JSBody(script = "return new ReferenceError()")
     static ReferenceError create() {
         throw new UnsupportedOperationException("Available only in JavaScript");

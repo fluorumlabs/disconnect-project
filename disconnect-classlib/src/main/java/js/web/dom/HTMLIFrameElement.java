@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties and methods (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of inline frame elements. */
+/**
+ * Provides special properties and methods (beyond those of the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of inline frame elements.
+ */
 public interface HTMLIFrameElement extends HTMLElement {
+    @JSBody(script = "return HTMLIFrameElement.prototype")
+    static HTMLIFrameElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLIFrameElement()")
+    static HTMLIFrameElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves how the object is aligned with adjacent text.
      */
@@ -156,15 +168,5 @@ public interface HTMLIFrameElement extends HTMLElement {
 
     @Nullable
     Document getSVGDocument();
-
-    @JSBody(script = "return HTMLIFrameElement.prototype")
-    static HTMLIFrameElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLIFrameElement()")
-    static HTMLIFrameElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

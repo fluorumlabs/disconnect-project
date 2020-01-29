@@ -7,12 +7,26 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This Gamepad API interface defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id. */
+/**
+ * This Gamepad API interface defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id.
+ */
 public interface Gamepad extends Any {
+    @JSBody(script = "return Gamepad.prototype")
+    static Gamepad prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new Gamepad()")
+    static Gamepad create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     double[] getAxes();
+
     @JSProperty
     ReadonlyArray<GamepadButton> getButtons();
+
     @JSProperty
     boolean isConnected();
 
@@ -37,15 +51,5 @@ public interface Gamepad extends Any {
 
     @JSProperty
     double getTimestamp();
-
-    @JSBody(script = "return Gamepad.prototype")
-    static Gamepad prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new Gamepad()")
-    static Gamepad create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

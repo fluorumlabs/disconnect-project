@@ -1,35 +1,36 @@
 package js.web.mse;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * Returned by the HTMLVideoElement.getVideoPlaybackQuality() method and contains metrics that can be used to determine the playback quality of a video.
+ */
+public interface VideoPlaybackQuality extends Any {
+    @JSBody(script = "return VideoPlaybackQuality.prototype")
+    static VideoPlaybackQuality prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Returned by the HTMLVideoElement.getVideoPlaybackQuality() method and contains metrics that can be used to determine the playback quality of a video. */
-        public interface VideoPlaybackQuality extends Any {
-        @JSProperty
-        int getCorruptedVideoFrames();
+    @JSBody(script = "return new VideoPlaybackQuality()")
+    static VideoPlaybackQuality create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getCreationTime();
+    @JSProperty
+    int getCorruptedVideoFrames();
 
-        @JSProperty
-        int getDroppedVideoFrames();
+    @JSProperty
+    double getCreationTime();
 
-        @JSProperty
-        double getTotalFrameDelay();
+    @JSProperty
+    int getDroppedVideoFrames();
 
-        @JSProperty
-        int getTotalVideoFrames();
+    @JSProperty
+    double getTotalFrameDelay();
 
-        @JSBody(script = "return VideoPlaybackQuality.prototype")
-        static VideoPlaybackQuality prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    int getTotalVideoFrames();
 
-        @JSBody(script = "return new VideoPlaybackQuality()")
-        static VideoPlaybackQuality create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

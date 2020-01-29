@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties (beyond the HTMLElement interface it also has available to it inheritance) for manipulating single or grouped table column elements. */
+/**
+ * Provides special properties (beyond the HTMLElement interface it also has available to it inheritance) for manipulating single or grouped table column elements.
+ */
 public interface HTMLTableColElement extends HTMLElement {
+    @JSBody(script = "return HTMLTableColElement.prototype")
+    static HTMLTableColElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLTableColElement()")
+    static HTMLTableColElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves the alignment of the object relative to the display or table.
      */
@@ -54,15 +66,5 @@ public interface HTMLTableColElement extends HTMLElement {
 
     @JSProperty
     void setWidth(String width);
-
-    @JSBody(script = "return HTMLTableColElement.prototype")
-    static HTMLTableColElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLTableColElement()")
-    static HTMLTableColElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

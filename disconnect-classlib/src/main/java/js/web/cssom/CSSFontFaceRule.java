@@ -5,9 +5,6 @@ import org.teavm.jso.JSProperty;
 
 
 public interface CSSFontFaceRule extends CSSRule {
-    @JSProperty
-    CSSStyleDeclaration getStyle();
-
     @JSBody(script = "return CSSFontFaceRule.prototype")
     static CSSFontFaceRule prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -17,5 +14,8 @@ public interface CSSFontFaceRule extends CSSRule {
     static CSSFontFaceRule create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    CSSStyleDeclaration getStyle();
 
 }

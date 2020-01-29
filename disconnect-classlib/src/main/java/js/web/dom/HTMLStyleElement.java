@@ -4,8 +4,20 @@ import js.web.cssom.LinkStyle;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** A <style> element. It inherits properties and methods from its parent, HTMLElement, and from LinkStyle. */
+/**
+ * A <style> element. It inherits properties and methods from its parent, HTMLElement, and from LinkStyle.
+ */
 public interface HTMLStyleElement extends HTMLElement, LinkStyle {
+    @JSBody(script = "return HTMLStyleElement.prototype")
+    static HTMLStyleElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLStyleElement()")
+    static HTMLStyleElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves the media type.
      */
@@ -24,15 +36,5 @@ public interface HTMLStyleElement extends HTMLElement, LinkStyle {
 
     @JSProperty
     void setType(String type);
-
-    @JSBody(script = "return HTMLStyleElement.prototype")
-    static HTMLStyleElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLStyleElement()")
-    static HTMLStyleElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

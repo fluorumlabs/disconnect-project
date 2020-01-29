@@ -1,55 +1,62 @@
 package js.web.webaudio;
 
+import js.web.dom.AddEventListenerOptions;
+import js.web.dom.EventListener;
+import js.web.dom.EventListenerOptions;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.web.dom.AddEventListenerOptions;
-import js.web.dom.EventListener;
-import js.web.dom.EventListenerOptions;
+import javax.annotation.Nullable;
 
-/** Allows the generation, processing, or analyzing of audio using JavaScript. */
-        public interface ScriptProcessorNode extends AudioNode {
-        @Deprecated
-        @JSProperty
-        int getBufferSize();
+/**
+ * Allows the generation, processing, or analyzing of audio using JavaScript.
+ */
+public interface ScriptProcessorNode extends AudioNode {
+    @JSBody(script = "return ScriptProcessorNode.prototype")
+    static ScriptProcessorNode prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @Deprecated
-        @JSProperty
-        @Nullable
-        EventListener<AudioProcessingEvent> getOnaudioprocess();
+    @JSBody(script = "return new ScriptProcessorNode()")
+    static ScriptProcessorNode create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @Deprecated
-        @JSProperty
-        void setOnaudioprocess(EventListener<AudioProcessingEvent> onaudioprocess);
+    @Deprecated
+    @JSProperty
+    int getBufferSize();
 
-        default void addAudioProcessEventListener(EventListener<AudioProcessingEvent> listener, AddEventListenerOptions options) {
-            addEventListener("audioprocess", listener, options);
-        }
-        default void addAudioProcessEventListener(EventListener<AudioProcessingEvent> listener, boolean options) {
-            addEventListener("audioprocess", listener, options);
-        }
-        default void addAudioProcessEventListener(EventListener<AudioProcessingEvent> listener) {
-            addEventListener("audioprocess", listener);
-        }
+    @Deprecated
+    @JSProperty
+    @Nullable
+    EventListener<AudioProcessingEvent> getOnaudioprocess();
 
-        default void removeAudioProcessEventListener(EventListener<AudioProcessingEvent> listener, EventListenerOptions options) {
-            removeEventListener("audioprocess", listener, options);
-        }
-        default void removeAudioProcessEventListener(EventListener<AudioProcessingEvent> listener, boolean options) {
-            removeEventListener("audioprocess", listener, options);
-        }
-        default void removeAudioProcessEventListener(EventListener<AudioProcessingEvent> listener) {
-            removeEventListener("audioprocess", listener);
-        }
+    @Deprecated
+    @JSProperty
+    void setOnaudioprocess(EventListener<AudioProcessingEvent> onaudioprocess);
 
-        @JSBody(script = "return ScriptProcessorNode.prototype")
-        static ScriptProcessorNode prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void addAudioProcessEventListener(EventListener<AudioProcessingEvent> listener, AddEventListenerOptions options) {
+        addEventListener("audioprocess", listener, options);
+    }
 
-        @JSBody(script = "return new ScriptProcessorNode()")
-        static ScriptProcessorNode create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void addAudioProcessEventListener(EventListener<AudioProcessingEvent> listener, boolean options) {
+        addEventListener("audioprocess", listener, options);
+    }
 
-        }
+    default void addAudioProcessEventListener(EventListener<AudioProcessingEvent> listener) {
+        addEventListener("audioprocess", listener);
+    }
+
+    default void removeAudioProcessEventListener(EventListener<AudioProcessingEvent> listener, EventListenerOptions options) {
+        removeEventListener("audioprocess", listener, options);
+    }
+
+    default void removeAudioProcessEventListener(EventListener<AudioProcessingEvent> listener, boolean options) {
+        removeEventListener("audioprocess", listener, options);
+    }
+
+    default void removeAudioProcessEventListener(EventListener<AudioProcessingEvent> listener) {
+        removeEventListener("audioprocess", listener);
+    }
+
+}

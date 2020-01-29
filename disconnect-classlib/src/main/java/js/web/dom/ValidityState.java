@@ -1,54 +1,55 @@
 package js.web.dom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
+ */
+public interface ValidityState extends Any {
+    @JSBody(script = "return ValidityState.prototype")
+    static ValidityState prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** The validity states that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid. */
-        public interface ValidityState extends Any {
-        @JSProperty
-        boolean isBadInput();
+    @JSBody(script = "return new ValidityState()")
+    static ValidityState create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        boolean isCustomError();
+    @JSProperty
+    boolean isBadInput();
 
-        @JSProperty
-        boolean isPatternMismatch();
+    @JSProperty
+    boolean isCustomError();
 
-        @JSProperty
-        boolean isRangeOverflow();
+    @JSProperty
+    boolean isPatternMismatch();
 
-        @JSProperty
-        boolean isRangeUnderflow();
+    @JSProperty
+    boolean isRangeOverflow();
 
-        @JSProperty
-        boolean isStepMismatch();
+    @JSProperty
+    boolean isRangeUnderflow();
 
-        @JSProperty
-        boolean isTooLong();
+    @JSProperty
+    boolean isStepMismatch();
 
-        @JSProperty
-        boolean isTooShort();
+    @JSProperty
+    boolean isTooLong();
 
-        @JSProperty
-        boolean isTypeMismatch();
+    @JSProperty
+    boolean isTooShort();
 
-        @JSProperty
-        boolean isValid();
+    @JSProperty
+    boolean isTypeMismatch();
 
-        @JSProperty
-        boolean isValueMissing();
+    @JSProperty
+    boolean isValid();
 
-        @JSBody(script = "return ValidityState.prototype")
-        static ValidityState prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new ValidityState()")
-        static ValidityState create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    boolean isValueMissing();
 
 
-        }
+}

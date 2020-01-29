@@ -9,17 +9,6 @@ import org.teavm.jso.JSProperty;
 
 
 public interface HTMLSlotElement extends HTMLElement {
-    @JSProperty
-    String getName();
-
-    @JSProperty
-    void setName(String name);
-
-    Array<Element> assignedElements(AssignedNodesOptions options);
-    Array<Element> assignedElements();
-    Array<Node> assignedNodes(AssignedNodesOptions options);
-    Array<Node> assignedNodes();
-
     @JSBody(script = "return HTMLSlotElement.prototype")
     static HTMLSlotElement prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -29,5 +18,19 @@ public interface HTMLSlotElement extends HTMLElement {
     static HTMLSlotElement create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    String getName();
+
+    @JSProperty
+    void setName(String name);
+
+    Array<Element> assignedElements(AssignedNodesOptions options);
+
+    Array<Element> assignedElements();
+
+    Array<Node> assignedNodes(AssignedNodesOptions options);
+
+    Array<Node> assignedNodes();
 
 }

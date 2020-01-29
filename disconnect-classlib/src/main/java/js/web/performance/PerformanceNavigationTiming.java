@@ -1,53 +1,54 @@
 package js.web.performance;
 
+import js.lang.Unknown;
 import js.web.performance.timeline.PerformanceResourceTiming;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Unknown;
+/**
+ * Provides methods and properties to store and retrieve metrics regarding the browser's document navigation events. For example, this interface can be used to determine how much time it takes to load or unload a document.
+ */
+public interface PerformanceNavigationTiming extends PerformanceResourceTiming {
+    @JSBody(script = "return PerformanceNavigationTiming.prototype")
+    static PerformanceNavigationTiming prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Provides methods and properties to store and retrieve metrics regarding the browser's document navigation events. For example, this interface can be used to determine how much time it takes to load or unload a document. */
-        public interface PerformanceNavigationTiming extends PerformanceResourceTiming {
-        @JSProperty
-        double getDomComplete();
+    @JSBody(script = "return new PerformanceNavigationTiming()")
+    static PerformanceNavigationTiming create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getDomContentLoadedEventEnd();
+    @JSProperty
+    double getDomComplete();
 
-        @JSProperty
-        double getDomContentLoadedEventStart();
+    @JSProperty
+    double getDomContentLoadedEventEnd();
 
-        @JSProperty
-        double getDomInteractive();
+    @JSProperty
+    double getDomContentLoadedEventStart();
 
-        @JSProperty
-        double getLoadEventEnd();
+    @JSProperty
+    double getDomInteractive();
 
-        @JSProperty
-        double getLoadEventStart();
+    @JSProperty
+    double getLoadEventEnd();
 
-        @JSProperty
-        double getRedirectCount();
+    @JSProperty
+    double getLoadEventStart();
 
-        @JSProperty
-        NavigationType getType();
+    @JSProperty
+    double getRedirectCount();
 
-        @JSProperty
-        double getUnloadEventEnd();
+    @JSProperty
+    NavigationType getType();
 
-        @JSProperty
-        double getUnloadEventStart();
+    @JSProperty
+    double getUnloadEventEnd();
 
-        Unknown toJSON();
+    @JSProperty
+    double getUnloadEventStart();
 
-        @JSBody(script = "return PerformanceNavigationTiming.prototype")
-        static PerformanceNavigationTiming prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    Unknown toJSON();
 
-        @JSBody(script = "return new PerformanceNavigationTiming()")
-        static PerformanceNavigationTiming create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

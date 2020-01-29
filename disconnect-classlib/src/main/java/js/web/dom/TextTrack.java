@@ -8,123 +8,152 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This interface also inherits properties from EventTarget. */
-        public interface TextTrack extends EventTarget {
-        @JSProperty
-        TextTrackCueList getActiveCues();
+/**
+ * This interface also inherits properties from EventTarget.
+ */
+public interface TextTrack extends EventTarget {
+    @JSBody(script = "return TextTrack.prototype")
+    static TextTrack prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        TextTrackCueList getCues();
+    @JSBody(script = "return new TextTrack()")
+    static TextTrack create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getInBandMetadataTrackDispatchType();
+    @JSProperty
+    TextTrackCueList getActiveCues();
 
-        @JSProperty
-        String getKind();
+    @JSProperty
+    TextTrackCueList getCues();
 
-        @JSProperty
-        String getLabel();
+    @JSProperty
+    String getInBandMetadataTrackDispatchType();
 
-        @JSProperty
-        String getLanguage();
+    @JSProperty
+    String getKind();
 
-        @JSProperty
-        Unknown getMode();
+    @JSProperty
+    String getLabel();
 
-        @JSProperty
-        void setMode(TextTrackMode mode);
-        @JSProperty
-        void setMode(int mode);
+    @JSProperty
+    String getLanguage();
 
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOncuechange();
+    @JSProperty
+    Unknown getMode();
 
-        @JSProperty
-        void setOncuechange(EventListener<Event> oncuechange);
+    @JSProperty
+    void setMode(TextTrackMode mode);
 
-        default void addCueChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("cuechange", listener, options);
-        }
-        default void addCueChangeEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("cuechange", listener, options);
-        }
-        default void addCueChangeEventListener(EventListener<Event> listener) {
-            addEventListener("cuechange", listener);
-        }
+    @JSProperty
+    void setMode(int mode);
 
-        default void removeCueChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("cuechange", listener, options);
-        }
-        default void removeCueChangeEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("cuechange", listener, options);
-        }
-        default void removeCueChangeEventListener(EventListener<Event> listener) {
-            removeEventListener("cuechange", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnerror();
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOncuechange();
 
-        @JSProperty
-        void setOnerror(EventListener<Event> onerror);
+    @JSProperty
+    void setOncuechange(EventListener<Event> oncuechange);
 
-        default void addErrorEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("error", listener, options);
-        }
-        default void addErrorEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("error", listener, options);
-        }
-        default void addErrorEventListener(EventListener<Event> listener) {
-            addEventListener("error", listener);
-        }
+    default void addCueChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("cuechange", listener, options);
+    }
 
-        default void removeErrorEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("error", listener, options);
-        }
-        default void removeErrorEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("error", listener, options);
-        }
-        default void removeErrorEventListener(EventListener<Event> listener) {
-            removeEventListener("error", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnload();
+    default void addCueChangeEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("cuechange", listener, options);
+    }
 
-        @JSProperty
-        void setOnload(EventListener<Event> onload);
+    default void addCueChangeEventListener(EventListener<Event> listener) {
+        addEventListener("cuechange", listener);
+    }
 
-        default void addLoadEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("load", listener, options);
-        }
-        default void addLoadEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("load", listener, options);
-        }
-        default void addLoadEventListener(EventListener<Event> listener) {
-            addEventListener("load", listener);
-        }
+    default void removeCueChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("cuechange", listener, options);
+    }
 
-        default void removeLoadEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("load", listener, options);
-        }
-        default void removeLoadEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("load", listener, options);
-        }
-        default void removeLoadEventListener(EventListener<Event> listener) {
-            removeEventListener("load", listener);
-        }
-        @JSProperty
-        ReadyState getReadyState();
+    default void removeCueChangeEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("cuechange", listener, options);
+    }
 
-        @JSProperty
-        @Nullable
-        SourceBuffer getSourceBuffer();
+    default void removeCueChangeEventListener(EventListener<Event> listener) {
+        removeEventListener("cuechange", listener);
+    }
 
-        void addCue(TextTrackCue cue);
-        void removeCue(TextTrackCue cue);
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnerror();
 
-        abstract class ReadyState extends JsEnum {
+    @JSProperty
+    void setOnerror(EventListener<Event> onerror);
+
+    default void addErrorEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("error", listener, options);
+    }
+
+    default void addErrorEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("error", listener, options);
+    }
+
+    default void addErrorEventListener(EventListener<Event> listener) {
+        addEventListener("error", listener);
+    }
+
+    default void removeErrorEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("error", listener, options);
+    }
+
+    default void removeErrorEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("error", listener, options);
+    }
+
+    default void removeErrorEventListener(EventListener<Event> listener) {
+        removeEventListener("error", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnload();
+
+    @JSProperty
+    void setOnload(EventListener<Event> onload);
+
+    default void addLoadEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("load", listener, options);
+    }
+
+    default void addLoadEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("load", listener, options);
+    }
+
+    default void addLoadEventListener(EventListener<Event> listener) {
+        addEventListener("load", listener);
+    }
+
+    default void removeLoadEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("load", listener, options);
+    }
+
+    default void removeLoadEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("load", listener, options);
+    }
+
+    default void removeLoadEventListener(EventListener<Event> listener) {
+        removeEventListener("load", listener);
+    }
+
+    @JSProperty
+    ReadyState getReadyState();
+
+    @JSProperty
+    @Nullable
+    SourceBuffer getSourceBuffer();
+
+    void addCue(TextTrackCue cue);
+
+    void removeCue(TextTrackCue cue);
+
+    abstract class ReadyState extends JsEnum {
         public static final ReadyState DISABLED = JsEnum.from("return TextTrack.DISABLED");
 
 
@@ -143,16 +172,8 @@ import javax.annotation.Nullable;
         public static final ReadyState NONE = JsEnum.from("return TextTrack.NONE");
 
 
-        public static final ReadyState SHOWING = JsEnum.from("return TextTrack.SHOWING");}
-        @JSBody(script = "return TextTrack.prototype")
-        static TextTrack prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new TextTrack()")
-        static TextTrack create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+        public static final ReadyState SHOWING = JsEnum.from("return TextTrack.SHOWING");
+    }
 
 
-        }
+}

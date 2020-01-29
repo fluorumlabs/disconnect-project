@@ -8,6 +8,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface ReadableStreamDefaultControllerCallback<R extends Any> extends JSObject {
-        VoidPromiseLike handle(ReadableStreamDefaultController<R> controller);
-        }
+public interface ReadableStreamDefaultControllerCallback<R extends Any> extends JSObject {
+    VoidPromiseLike handle(ReadableStreamDefaultController<R> controller);
+}

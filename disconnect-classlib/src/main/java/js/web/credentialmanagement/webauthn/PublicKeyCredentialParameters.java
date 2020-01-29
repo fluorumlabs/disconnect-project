@@ -1,8 +1,7 @@
 package js.web.credentialmanagement.webauthn;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface PublicKeyCredentialParameters extends Any {

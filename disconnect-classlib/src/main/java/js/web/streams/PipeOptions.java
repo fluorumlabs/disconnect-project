@@ -1,9 +1,8 @@
 package js.web.streams;
 
+import js.lang.Any;
 import js.web.dom.AbortSignal;
 import org.teavm.jso.JSProperty;
-
-import js.lang.Any;
 
 
 public interface PipeOptions extends Any {

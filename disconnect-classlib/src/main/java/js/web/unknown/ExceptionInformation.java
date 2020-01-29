@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 public interface ExceptionInformation extends Any {
     @JSProperty
     @Nullable
-    String  getDomain();
+    String getDomain();
 
     @JSProperty
     void setDomain(String domain);

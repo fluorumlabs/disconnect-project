@@ -1,11 +1,11 @@
 package js.web.webcrypto;
 
+import js.lang.Any;
 import js.util.collections.Array;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface JsonWebKey extends Any {
@@ -91,6 +91,7 @@ public interface JsonWebKey extends Any {
 
     @JSProperty
     void setOth(@JSByRef RsaOtherPrimesInfo... oth);
+
     @JSProperty
     void setOth(Array<RsaOtherPrimesInfo> oth);
 

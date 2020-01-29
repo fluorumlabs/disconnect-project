@@ -1,43 +1,42 @@
 package js.web.dom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
-
-import js.lang.Any;
 
 
 @Deprecated
 public interface WebKitPoint extends Any {
-        @JSProperty
-        double getX();
+    @JSBody(script = "return WebKitPoint.prototype")
+    static WebKitPoint prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setX(double x);
+    @JSBody(script = "return new WebKitPoint()")
+    static WebKitPoint create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getY();
+    @JSBody(params = "x", script = "return new WebKitPoint(x)")
+    static WebKitPoint create(double x) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setY(double y);
+    @JSBody(params = {"x", "y"}, script = "return new WebKitPoint(x, y)")
+    static WebKitPoint create(double x, double y) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return WebKitPoint.prototype")
-        static WebKitPoint prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getX();
 
-        @JSBody(script = "return new WebKitPoint()")
-        static WebKitPoint create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setX(double x);
 
-        @JSBody(params="x", script = "return new WebKitPoint(x)")
-        static WebKitPoint create(double x) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getY();
 
-        @JSBody(params={"x","y"}, script = "return new WebKitPoint(x, y)")
-        static WebKitPoint create(double x, double y) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setY(double y);
 
-        }
+}

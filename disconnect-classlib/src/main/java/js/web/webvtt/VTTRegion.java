@@ -1,68 +1,67 @@
 package js.web.webvtt;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
 
 public interface VTTRegion extends Any {
-        @JSProperty
-        String getId();
+    @JSBody(script = "return VTTRegion.prototype")
+    static VTTRegion prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setId(String id);
+    @JSBody(script = "return new VTTRegion()")
+    static VTTRegion create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        int getLines();
+    @JSProperty
+    String getId();
 
-        @JSProperty
-        void setLines(int lines);
+    @JSProperty
+    void setId(String id);
 
-        @JSProperty
-        double getRegionAnchorX();
+    @JSProperty
+    int getLines();
 
-        @JSProperty
-        void setRegionAnchorX(double regionAnchorX);
+    @JSProperty
+    void setLines(int lines);
 
-        @JSProperty
-        double getRegionAnchorY();
+    @JSProperty
+    double getRegionAnchorX();
 
-        @JSProperty
-        void setRegionAnchorY(double regionAnchorY);
+    @JSProperty
+    void setRegionAnchorX(double regionAnchorX);
 
-        @JSProperty
-        ScrollSetting getScroll();
+    @JSProperty
+    double getRegionAnchorY();
 
-        @JSProperty
-        void setScroll(ScrollSetting scroll);
+    @JSProperty
+    void setRegionAnchorY(double regionAnchorY);
 
-        @JSProperty
-        double getViewportAnchorX();
+    @JSProperty
+    ScrollSetting getScroll();
 
-        @JSProperty
-        void setViewportAnchorX(double viewportAnchorX);
+    @JSProperty
+    void setScroll(ScrollSetting scroll);
 
-        @JSProperty
-        double getViewportAnchorY();
+    @JSProperty
+    double getViewportAnchorX();
 
-        @JSProperty
-        void setViewportAnchorY(double viewportAnchorY);
+    @JSProperty
+    void setViewportAnchorX(double viewportAnchorX);
 
-        @JSProperty
-        double getWidth();
+    @JSProperty
+    double getViewportAnchorY();
 
-        @JSProperty
-        void setWidth(double width);
+    @JSProperty
+    void setViewportAnchorY(double viewportAnchorY);
 
-        @JSBody(script = "return VTTRegion.prototype")
-        static VTTRegion prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getWidth();
 
-        @JSBody(script = "return new VTTRegion()")
-        static VTTRegion create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setWidth(double width);
 
-        }
+}

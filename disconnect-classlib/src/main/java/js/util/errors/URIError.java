@@ -8,6 +8,7 @@ public interface URIError extends JsError {
     static URIError create(String value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
     @JSBody(script = "return new URIError()")
     static URIError create() {
         throw new UnsupportedOperationException("Available only in JavaScript");

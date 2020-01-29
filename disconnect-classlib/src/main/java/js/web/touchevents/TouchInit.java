@@ -1,10 +1,11 @@
 package js.web.touchevents;
 
+import js.lang.Any;
 import js.web.dom.EventTarget;
 import js.web.dom.TouchType;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
 
 public interface TouchInit extends Any {

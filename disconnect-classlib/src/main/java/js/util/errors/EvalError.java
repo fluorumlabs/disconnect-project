@@ -9,6 +9,7 @@ public interface EvalError extends JsError {
     static EvalError create(String value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
     @JSBody(script = "return new EvalError()")
     static EvalError create() {
         throw new UnsupportedOperationException("Available only in JavaScript");

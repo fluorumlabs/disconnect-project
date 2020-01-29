@@ -9,28 +9,30 @@ import javax.annotation.Nullable;
 
 
 public interface MediaList extends StringArrayLike {
-        @JSProperty
-         String getMediaText();
+    @JSBody(script = "return MediaList.prototype")
+    static MediaList prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-         void setMediaText(String mediaText);
+    @JSBody(script = "return new MediaList()")
+    static MediaList create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-         void appendMedium(String medium);
-         void deleteMedium(String medium);
-        @Nullable
-         String item(int index);
-        @JSMethod("toString")
-         int doToString();
+    @JSProperty
+    String getMediaText();
 
+    @JSProperty
+    void setMediaText(String mediaText);
 
-        @JSBody(script = "return MediaList.prototype")
-        static MediaList prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    void appendMedium(String medium);
 
-        @JSBody(script = "return new MediaList()")
-        static MediaList create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    void deleteMedium(String medium);
 
-        }
+    @Nullable
+    String item(int index);
+
+    @JSMethod("toString")
+    int doToString();
+
+}

@@ -5,7 +5,7 @@ import org.teavm.jso.JSProperty;
 
 
 public interface WindowSessionStorage extends Any {
-        @JSProperty
-        Storage getSessionStorage();
+    @JSProperty
+    Storage getSessionStorage();
 
-        }
+}

@@ -1,8 +1,7 @@
 package js.web.webgl;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface EXT_sRGB extends Any {

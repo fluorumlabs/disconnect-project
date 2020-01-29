@@ -1,9 +1,7 @@
 package js.web.mediastreams;
 
-import js.web.mediastreams.MediaStreamTrack;
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface MediaStreamTrackAudioSourceOptions extends Any {

@@ -3,31 +3,33 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Implemented by elements that support attributes that position individual text glyphs. It is inherited by SVGTextElement, SVGTSpanElement, SVGTRefElement and SVGAltGlyphElement. */
-        public interface SVGTextPositioningElement extends SVGTextContentElement {
-        @JSProperty
-        SVGAnimatedLengthList getDx();
+/**
+ * Implemented by elements that support attributes that position individual text glyphs. It is inherited by SVGTextElement, SVGTSpanElement, SVGTRefElement and SVGAltGlyphElement.
+ */
+public interface SVGTextPositioningElement extends SVGTextContentElement {
+    @JSBody(script = "return SVGTextPositioningElement.prototype")
+    static SVGTextPositioningElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedLengthList getDy();
+    @JSBody(script = "return new SVGTextPositioningElement()")
+    static SVGTextPositioningElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumberList getRotate();
+    @JSProperty
+    SVGAnimatedLengthList getDx();
 
-        @JSProperty
-        SVGAnimatedLengthList getX();
+    @JSProperty
+    SVGAnimatedLengthList getDy();
 
-        @JSProperty
-        SVGAnimatedLengthList getY();
+    @JSProperty
+    SVGAnimatedNumberList getRotate();
 
-        @JSBody(script = "return SVGTextPositioningElement.prototype")
-        static SVGTextPositioningElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLengthList getX();
 
-        @JSBody(script = "return new SVGTextPositioningElement()")
-        static SVGTextPositioningElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLengthList getY();
 
-        }
+}

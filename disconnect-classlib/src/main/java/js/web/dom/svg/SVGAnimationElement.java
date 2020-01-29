@@ -5,21 +5,23 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGAnimationElement extends SVGElement {
-        @JSProperty
-        SVGElement getTargetElement();
+    @JSBody(script = "return SVGAnimationElement.prototype")
+    static SVGAnimationElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        double getCurrentTime();
-        double getSimpleDuration();
-        double getStartTime();
+    @JSBody(script = "return new SVGAnimationElement()")
+    static SVGAnimationElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return SVGAnimationElement.prototype")
-        static SVGAnimationElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGElement getTargetElement();
 
-        @JSBody(script = "return new SVGAnimationElement()")
-        static SVGAnimationElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    double getCurrentTime();
 
-        }
+    double getSimpleDuration();
+
+    double getStartTime();
+
+}

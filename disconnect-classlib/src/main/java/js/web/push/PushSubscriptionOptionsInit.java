@@ -1,10 +1,11 @@
 package js.web.push;
 
+import js.lang.Any;
+import js.lang.Unknown;
 import js.web.dom.BufferSource;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.lang.Unknown;
+import javax.annotation.Nullable;
 
 
 public interface PushSubscriptionOptionsInit extends Any {
@@ -14,6 +15,7 @@ public interface PushSubscriptionOptionsInit extends Any {
 
     @JSProperty
     void setApplicationServerKey(BufferSource applicationServerKey);
+
     @JSProperty
     void setApplicationServerKey(String applicationServerKey);
 

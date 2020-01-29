@@ -7,6 +7,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface QueuingStrategySizeCallback<T extends Any> extends JSObject {
-        int getSize(T chunk);
-        }
+public interface QueuingStrategySizeCallback<T extends Any> extends JSObject {
+    int getSize(T chunk);
+}

@@ -5,4 +5,5 @@ import js.lang.Any;
 
 
 @Experimental
-public interface OffscreenRenderingContext extends Any {}
+public interface OffscreenRenderingContext extends Any {
+}

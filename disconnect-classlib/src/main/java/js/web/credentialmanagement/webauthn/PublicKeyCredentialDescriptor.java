@@ -1,12 +1,12 @@
 package js.web.credentialmanagement.webauthn;
 
+import js.lang.Any;
 import js.util.collections.Array;
 import js.web.dom.BufferSource;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface PublicKeyCredentialDescriptor extends Any {
@@ -22,6 +22,7 @@ public interface PublicKeyCredentialDescriptor extends Any {
 
     @JSProperty
     void setTransports(@JSByRef AuthenticatorTransport... transports);
+
     @JSProperty
     void setTransports(Array<AuthenticatorTransport> transports);
 

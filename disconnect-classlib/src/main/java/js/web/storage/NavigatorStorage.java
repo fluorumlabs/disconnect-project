@@ -5,7 +5,7 @@ import org.teavm.jso.JSProperty;
 
 
 public interface NavigatorStorage extends Any {
-        @JSProperty
-        StorageManager getStorage();
+    @JSProperty
+    StorageManager getStorage();
 
-        }
+}

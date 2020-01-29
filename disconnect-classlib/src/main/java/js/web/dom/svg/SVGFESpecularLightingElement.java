@@ -3,34 +3,36 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feSpecularLighting> element. */
-        public interface SVGFESpecularLightingElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedString getIn1();
+/**
+ * Corresponds to the <feSpecularLighting> element.
+ */
+public interface SVGFESpecularLightingElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    @JSBody(script = "return SVGFESpecularLightingElement.prototype")
+    static SVGFESpecularLightingElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getKernelUnitLengthX();
+    @JSBody(script = "return new SVGFESpecularLightingElement()")
+    static SVGFESpecularLightingElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getKernelUnitLengthY();
+    @JSProperty
+    SVGAnimatedString getIn1();
 
-        @JSProperty
-        SVGAnimatedNumber getSpecularConstant();
+    @JSProperty
+    SVGAnimatedNumber getKernelUnitLengthX();
 
-        @JSProperty
-        SVGAnimatedNumber getSpecularExponent();
+    @JSProperty
+    SVGAnimatedNumber getKernelUnitLengthY();
 
-        @JSProperty
-        SVGAnimatedNumber getSurfaceScale();
+    @JSProperty
+    SVGAnimatedNumber getSpecularConstant();
 
-        @JSBody(script = "return SVGFESpecularLightingElement.prototype")
-        static SVGFESpecularLightingElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getSpecularExponent();
 
-        @JSBody(script = "return new SVGFESpecularLightingElement()")
-        static SVGFESpecularLightingElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getSurfaceScale();
 
-        }
+}

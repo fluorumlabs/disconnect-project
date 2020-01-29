@@ -9,8 +9,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties and methods for manipulating <img> elements. */
+/**
+ * Provides special properties and methods for manipulating <img> elements.
+ */
 public interface HTMLImageElement extends HTMLElement, CanvasImageSource, TexImageSource {
+    @JSBody(script = "return HTMLImageElement.prototype")
+    static HTMLImageElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLImageElement()")
+    static HTMLImageElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves how the object is aligned with adjacent text.
      */
@@ -48,7 +60,7 @@ public interface HTMLImageElement extends HTMLElement, CanvasImageSource, TexIma
 
     @JSProperty
     @Nullable
-    String  getCrossOrigin();
+    String getCrossOrigin();
 
     @JSProperty
     void setCrossOrigin(String crossOrigin);
@@ -61,15 +73,6 @@ public interface HTMLImageElement extends HTMLElement, CanvasImageSource, TexIma
 
     @JSProperty
     void setDecoding(Decoding decoding);
-
-    abstract class Decoding extends JsEnum {
-        public static final Decoding ASYNC = JsEnum.of("async");
-
-        public static final Decoding SYNC = JsEnum.of("sync");
-
-        public static final Decoding AUTO = JsEnum.of("auto");
-
-    }
 
     /**
      * Sets or retrieves the height of the object.
@@ -201,14 +204,12 @@ public interface HTMLImageElement extends HTMLElement, CanvasImageSource, TexIma
 
     VoidPromise decode();
 
-    @JSBody(script = "return HTMLImageElement.prototype")
-    static HTMLImageElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
+    abstract class Decoding extends JsEnum {
+        public static final Decoding ASYNC = JsEnum.of("async");
 
-    @JSBody(script = "return new HTMLImageElement()")
-    static HTMLImageElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
+        public static final Decoding SYNC = JsEnum.of("sync");
+
+        public static final Decoding AUTO = JsEnum.of("auto");
     }
 
 }

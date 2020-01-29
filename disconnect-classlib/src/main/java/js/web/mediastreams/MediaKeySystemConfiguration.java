@@ -15,6 +15,7 @@ public interface MediaKeySystemConfiguration extends Any {
 
     @JSProperty
     void setAudioCapabilities(@JSByRef MediaKeySystemMediaCapability... audioCapabilities);
+
     @JSProperty
     void setAudioCapabilities(Array<MediaKeySystemMediaCapability> audioCapabilities);
 
@@ -59,6 +60,7 @@ public interface MediaKeySystemConfiguration extends Any {
 
     @JSProperty
     void setVideoCapabilities(@JSByRef MediaKeySystemMediaCapability... videoCapabilities);
+
     @JSProperty
     void setVideoCapabilities(Array<MediaKeySystemMediaCapability> videoCapabilities);
 

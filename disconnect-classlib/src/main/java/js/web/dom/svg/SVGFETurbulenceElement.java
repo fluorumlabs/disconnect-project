@@ -4,52 +4,56 @@ import js.extras.JsEnum;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feTurbulence> element. */
-        public interface SVGFETurbulenceElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedNumber getBaseFrequencyX();
+/**
+ * Corresponds to the <feTurbulence> element.
+ */
+public interface SVGFETurbulenceElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    @JSBody(script = "return SVGFETurbulenceElement.prototype")
+    static SVGFETurbulenceElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getBaseFrequencyY();
+    @JSBody(script = "return new SVGFETurbulenceElement()")
+    static SVGFETurbulenceElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedInteger getNumOctaves();
+    @JSProperty
+    SVGAnimatedNumber getBaseFrequencyX();
 
-        @JSProperty
-        SVGAnimatedNumber getSeed();
+    @JSProperty
+    SVGAnimatedNumber getBaseFrequencyY();
 
-        @JSProperty
-        SVGAnimatedEnumeration<StitchType> getStitchTiles();
+    @JSProperty
+    SVGAnimatedInteger getNumOctaves();
 
-        @JSProperty
-        SVGAnimatedEnumeration<Type> getType();
+    @JSProperty
+    SVGAnimatedNumber getSeed();
 
-        abstract class StitchType extends JsEnum {
+    @JSProperty
+    SVGAnimatedEnumeration<StitchType> getStitchTiles();
+
+    @JSProperty
+    SVGAnimatedEnumeration<Type> getType();
+
+    abstract class StitchType extends JsEnum {
         public static final StitchType SVG_STITCHTYPE_NOSTITCH = JsEnum.from("return SVGFETurbulenceElement.SVG_STITCHTYPE_NOSTITCH");
 
 
         public static final StitchType SVG_STITCHTYPE_STITCH = JsEnum.from("return SVGFETurbulenceElement.SVG_STITCHTYPE_STITCH");
 
 
-        public static final StitchType SVG_STITCHTYPE_UNKNOWN = JsEnum.from("return SVGFETurbulenceElement.SVG_STITCHTYPE_UNKNOWN");}
+        public static final StitchType SVG_STITCHTYPE_UNKNOWN = JsEnum.from("return SVGFETurbulenceElement.SVG_STITCHTYPE_UNKNOWN");
+    }
 
-        abstract class Type extends JsEnum {
+    abstract class Type extends JsEnum {
         public static final Type SVG_TURBULENCE_TYPE_FRACTALNOISE = JsEnum.from("return SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_FRACTALNOISE");
 
 
         public static final Type SVG_TURBULENCE_TYPE_TURBULENCE = JsEnum.from("return SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_TURBULENCE");
 
 
-        public static final Type SVG_TURBULENCE_TYPE_UNKNOWN = JsEnum.from("return SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_UNKNOWN");}
+        public static final Type SVG_TURBULENCE_TYPE_UNKNOWN = JsEnum.from("return SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_UNKNOWN");
+    }
 
-        @JSBody(script = "return SVGFETurbulenceElement.prototype")
-        static SVGFETurbulenceElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new SVGFETurbulenceElement()")
-        static SVGFETurbulenceElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

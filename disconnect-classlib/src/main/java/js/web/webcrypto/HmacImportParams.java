@@ -1,8 +1,7 @@
 package js.web.webcrypto;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Unknown;
+import org.teavm.jso.JSProperty;
 
 
 public interface HmacImportParams extends Algorithm {
@@ -11,6 +10,7 @@ public interface HmacImportParams extends Algorithm {
 
     @JSProperty
     void setHash(String hash);
+
     @JSProperty
     void setHash(Algorithm hash);
 

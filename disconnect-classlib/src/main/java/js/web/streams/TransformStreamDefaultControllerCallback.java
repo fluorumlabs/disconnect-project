@@ -8,6 +8,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface TransformStreamDefaultControllerCallback<O extends Any> extends JSObject {
-        VoidPromiseLike handle(TransformStreamDefaultController<O> controller);
-        }
+public interface TransformStreamDefaultControllerCallback<O extends Any> extends JSObject {
+    VoidPromiseLike handle(TransformStreamDefaultController<O> controller);
+}

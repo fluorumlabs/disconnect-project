@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of table cells, either header or data cells, in an HTML document. */
+/**
+ * Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of table cells, either header or data cells, in an HTML document.
+ */
 public interface HTMLTableCellElement extends HTMLElement {
+    @JSBody(script = "return HTMLTableCellElement.prototype")
+    static HTMLTableCellElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLTableCellElement()")
+    static HTMLTableCellElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves abbreviated text for the object.
      */
@@ -133,15 +145,5 @@ public interface HTMLTableCellElement extends HTMLElement {
 
     @JSProperty
     void setWidth(String width);
-
-    @JSBody(script = "return HTMLTableCellElement.prototype")
-    static HTMLTableCellElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLTableCellElement()")
-    static HTMLTableCellElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

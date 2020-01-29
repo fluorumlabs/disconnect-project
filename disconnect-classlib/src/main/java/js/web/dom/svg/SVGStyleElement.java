@@ -3,40 +3,42 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the SVG <style> element. */
-        public interface SVGStyleElement extends SVGElement {
-        @JSProperty
-        boolean isDisabled();
+/**
+ * Corresponds to the SVG <style> element.
+ */
+public interface SVGStyleElement extends SVGElement {
+    @JSBody(script = "return SVGStyleElement.prototype")
+    static SVGStyleElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setDisabled(boolean disabled);
+    @JSBody(script = "return new SVGStyleElement()")
+    static SVGStyleElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getMedia();
+    @JSProperty
+    boolean isDisabled();
 
-        @JSProperty
-        void setMedia(String media);
+    @JSProperty
+    void setDisabled(boolean disabled);
 
-        @JSProperty
-        String getTitle();
+    @JSProperty
+    String getMedia();
 
-        @JSProperty
-        void setTitle(String title);
+    @JSProperty
+    void setMedia(String media);
 
-        @JSProperty
-        String getType();
+    @JSProperty
+    String getTitle();
 
-        @JSProperty
-        void setType(String type);
+    @JSProperty
+    void setTitle(String title);
 
-        @JSBody(script = "return SVGStyleElement.prototype")
-        static SVGStyleElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getType();
 
-        @JSBody(script = "return new SVGStyleElement()")
-        static SVGStyleElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setType(String type);
 
-        }
+}

@@ -1,38 +1,50 @@
 package js.web.dom.svg;
 
 import js.extras.JsEnum;
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * Correspond to the <length> basic data type.
+ */
+public interface SVGLength extends Any {
+    @JSBody(script = "return SVGLength.prototype")
+    static SVGLength prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Correspond to the <length> basic data type. */
-        public interface SVGLength extends Any {
-        @JSProperty
-        int getUnitType();
+    @JSBody(script = "return new SVGLength()")
+    static SVGLength create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getValue();
+    @JSProperty
+    int getUnitType();
 
-        @JSProperty
-        void setValue(double value);
+    @JSProperty
+    double getValue();
 
-        @JSProperty
-        String getValueAsString();
+    @JSProperty
+    void setValue(double value);
 
-        @JSProperty
-        void setValueAsString(String valueAsString);
+    @JSProperty
+    String getValueAsString();
 
-        @JSProperty
-        double getValueInSpecifiedUnits();
+    @JSProperty
+    void setValueAsString(String valueAsString);
 
-        @JSProperty
-        void setValueInSpecifiedUnits(double valueInSpecifiedUnits);
+    @JSProperty
+    double getValueInSpecifiedUnits();
 
-        void convertToSpecifiedUnits(UnitType unitType);
-        void newValueSpecifiedUnits(UnitType unitType, double valueInSpecifiedUnits);
+    @JSProperty
+    void setValueInSpecifiedUnits(double valueInSpecifiedUnits);
 
-        abstract class UnitType extends JsEnum {
+    void convertToSpecifiedUnits(UnitType unitType);
+
+    void newValueSpecifiedUnits(UnitType unitType, double valueInSpecifiedUnits);
+
+    abstract class UnitType extends JsEnum {
         public static final UnitType SVG_LENGTHTYPE_CM = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_CM");
 
         public static final UnitType SVG_LENGTHTYPE_EMS = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_EMS");
@@ -54,18 +66,10 @@ import js.lang.Any;
 
 
         public static final UnitType SVG_LENGTHTYPE_PT = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_PT");
+
         public static final UnitType SVG_LENGTHTYPE_PX = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_PX");
-        public static final UnitType SVG_LENGTHTYPE_UNKNOWN = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_UNKNOWN");}
 
+        public static final UnitType SVG_LENGTHTYPE_UNKNOWN = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_UNKNOWN");
+    }
 
-        @JSBody(script = "return SVGLength.prototype")
-        static SVGLength prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new SVGLength()")
-        static SVGLength create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

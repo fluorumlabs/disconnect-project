@@ -1,49 +1,52 @@
 package js.web.dom;
 
+import js.lang.Any;
 import js.web.mse.SourceBuffer;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
-/** A single video track from a <video> element. */
-        public interface VideoTrack extends Any {
-        @JSProperty
-        String getId();
+/**
+ * A single video track from a <video> element.
+ */
+public interface VideoTrack extends Any {
+    @JSBody(script = "return VideoTrack.prototype")
+    static VideoTrack prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getKind();
+    @JSBody(script = "return new VideoTrack()")
+    static VideoTrack create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setKind(String kind);
+    @JSProperty
+    String getId();
 
-        @JSProperty
-        String getLabel();
+    @JSProperty
+    String getKind();
 
-        @JSProperty
-        String getLanguage();
+    @JSProperty
+    void setKind(String kind);
 
-        @JSProperty
-        void setLanguage(String language);
+    @JSProperty
+    String getLabel();
 
-        @JSProperty
-        boolean isSelected();
+    @JSProperty
+    String getLanguage();
 
-        @JSProperty
-        void setSelected(boolean selected);
+    @JSProperty
+    void setLanguage(String language);
 
-        @JSProperty
-        @Nullable
-        SourceBuffer getSourceBuffer();
+    @JSProperty
+    boolean isSelected();
 
-        @JSBody(script = "return VideoTrack.prototype")
-        static VideoTrack prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setSelected(boolean selected);
 
-        @JSBody(script = "return new VideoTrack()")
-        static VideoTrack create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    SourceBuffer getSourceBuffer();
 
-        }
+}

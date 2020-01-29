@@ -7,8 +7,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Reference information for external resources and the relationship of those resources to a document and vice-versa. This object inherits all of the properties and methods of the HTMLElement interface. */
+/**
+ * Reference information for external resources and the relationship of those resources to a document and vice-versa. This object inherits all of the properties and methods of the HTMLElement interface.
+ */
 public interface HTMLLinkElement extends HTMLElement, LinkStyle {
+    @JSBody(script = "return HTMLLinkElement.prototype")
+    static HTMLLinkElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLLinkElement()")
+    static HTMLLinkElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     String getAs();
 
@@ -27,7 +39,7 @@ public interface HTMLLinkElement extends HTMLElement, LinkStyle {
 
     @JSProperty
     @Nullable
-    String  getCrossOrigin();
+    String getCrossOrigin();
 
     @JSProperty
     void setCrossOrigin(String crossOrigin);
@@ -132,15 +144,5 @@ public interface HTMLLinkElement extends HTMLElement, LinkStyle {
 
     @JSProperty
     void setType(String type);
-
-    @JSBody(script = "return HTMLLinkElement.prototype")
-    static HTMLLinkElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLLinkElement()")
-    static HTMLLinkElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

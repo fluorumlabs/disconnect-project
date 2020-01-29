@@ -6,36 +6,37 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Events measuring progress of an underlying process, like an HTTP request (for an XMLHttpRequest, or the loading of the underlying resource of an <img>, <audio>, <video>, <style> or <link>). */
-        public interface ProgressEvent<T extends EventTarget> extends Event {
-        @JSProperty
-        boolean isLengthComputable();
+/**
+ * Events measuring progress of an underlying process, like an HTTP request (for an XMLHttpRequest, or the loading of the underlying resource of an <img>, <audio>, <video>, <style> or <link>).
+ */
+public interface ProgressEvent<T extends EventTarget> extends Event {
+    @JSBody(script = "return ProgressEvent.prototype")
+    static ProgressEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        int getLoaded();
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new ProgressEvent(type, eventInitDict)")
+    static ProgressEvent create(String type, ProgressEventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        T  getTarget();
+    @JSBody(params = "type", script = "return new ProgressEvent(type)")
+    static ProgressEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        int getTotal();
+    @JSProperty
+    boolean isLengthComputable();
 
-        @JSBody(script = "return ProgressEvent.prototype")
-        static ProgressEvent prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    int getLoaded();
 
-        @JSBody(params={"type","eventInitDict"}, script = "return new ProgressEvent(type, eventInitDict)")
-        static ProgressEvent create(String type, ProgressEventInit eventInitDict) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    T getTarget();
 
-        @JSBody(params="type", script = "return new ProgressEvent(type)")
-        static ProgressEvent create(String type) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
+    @JSProperty
+    int getTotal();
 
 
     interface ProgressEventInit extends EventInit {

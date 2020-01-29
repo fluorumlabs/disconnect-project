@@ -1,61 +1,69 @@
 package js.web.webrtc;
 
-import org.teavm.jso.JSBody;
-import org.teavm.jso.JSProperty;
-
-import javax.annotation.Nullable;import js.web.dom.AddEventListenerOptions;
+import js.web.dom.AddEventListenerOptions;
 import js.web.dom.EventListener;
 import js.web.dom.EventListenerOptions;
 import js.web.dom.EventTarget;
+import org.teavm.jso.JSBody;
+import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
-* Created by Artem Godin on 1/22/2020.
-*/
+ * Created by Artem Godin on 1/22/2020.
+ */
 public interface RTCDTMFSender extends EventTarget {
-@JSProperty
-boolean isCanInsertDTMF();
+    @JSBody(script = "return RTCDTMFSender.prototype")
+    static RTCDTMFSender prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-@Nullable
-EventListener<RTCDTMFToneChangeEvent> getOntonechange();
+    @JSBody(script = "return new RTCDTMFSender()")
+    static RTCDTMFSender create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-void setOntonechange(EventListener<RTCDTMFToneChangeEvent> ontonechange);
+    @JSProperty
+    boolean isCanInsertDTMF();
 
-default void addToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener, AddEventListenerOptions options) {
-    addEventListener("tonechange", listener, options);
-}
-default void addToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener, boolean options) {
-    addEventListener("tonechange", listener, options);
-}
-default void addToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener) {
-    addEventListener("tonechange", listener);
-}
+    @JSProperty
+    @Nullable
+    EventListener<RTCDTMFToneChangeEvent> getOntonechange();
 
-default void removeToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener, EventListenerOptions options) {
-    removeEventListener("tonechange", listener, options);
-}
-default void removeToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener, boolean options) {
-    removeEventListener("tonechange", listener, options);
-}
-default void removeToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener) {
-    removeEventListener("tonechange", listener);
-}
-@JSProperty
-String getToneBuffer();
+    @JSProperty
+    void setOntonechange(EventListener<RTCDTMFToneChangeEvent> ontonechange);
 
-void insertDTMF(String tones, double duration, double interToneGap);
-void insertDTMF(String tones, double duration);
-void insertDTMF(String tones);
+    default void addToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener, AddEventListenerOptions options) {
+        addEventListener("tonechange", listener, options);
+    }
 
-@JSBody(script = "return RTCDTMFSender.prototype")
-static RTCDTMFSender prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void addToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener, boolean options) {
+        addEventListener("tonechange", listener, options);
+    }
 
-@JSBody(script = "return new RTCDTMFSender()")
-static RTCDTMFSender create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void addToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener) {
+        addEventListener("tonechange", listener);
+    }
+
+    default void removeToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener, EventListenerOptions options) {
+        removeEventListener("tonechange", listener, options);
+    }
+
+    default void removeToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener, boolean options) {
+        removeEventListener("tonechange", listener, options);
+    }
+
+    default void removeToneChangeEventListener(EventListener<RTCDTMFToneChangeEvent> listener) {
+        removeEventListener("tonechange", listener);
+    }
+
+    @JSProperty
+    String getToneBuffer();
+
+    void insertDTMF(String tones, double duration, double interToneGap);
+
+    void insertDTMF(String tones, double duration);
+
+    void insertDTMF(String tones);
 
 }

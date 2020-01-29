@@ -14,7 +14,7 @@ public interface DocumentTimeline extends AnimationTimeline {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params="options", script = "return new DocumentTimeline(options)")
+    @JSBody(params = "options", script = "return new DocumentTimeline(options)")
     static DocumentTimeline create(DocumentTimelineOptions options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

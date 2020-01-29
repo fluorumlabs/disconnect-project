@@ -1,18 +1,17 @@
 package js.web.deviceorientation;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface DeviceMotionEventAcceleration extends Any {
     @JSProperty
-    double  getX();
+    double getX();
 
     @JSProperty
-    double  getY();
+    double getY();
 
     @JSProperty
-    double  getZ();
+    double getZ();
 
 }

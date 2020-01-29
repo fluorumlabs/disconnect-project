@@ -6,19 +6,19 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SpeechRecognitionResult extends ArrayLike<SpeechRecognitionAlternative> {
-        @JSProperty
-         boolean isIsFinal();
+    @JSBody(script = "return SpeechRecognitionResult.prototype")
+    static SpeechRecognitionResult prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-         SpeechRecognitionAlternative item(int index);
+    @JSBody(script = "return new SpeechRecognitionResult()")
+    static SpeechRecognitionResult create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return SpeechRecognitionResult.prototype")
-        static SpeechRecognitionResult prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    boolean isIsFinal();
 
-        @JSBody(script = "return new SpeechRecognitionResult()")
-        static SpeechRecognitionResult create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    SpeechRecognitionAlternative item(int index);
 
-        }
+}

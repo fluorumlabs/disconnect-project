@@ -6,12 +6,10 @@ import org.teavm.jso.JSBody;
 import javax.annotation.Nullable;
 
 
-/** An object of this type is returned by the files property of the HTML <input> element; this lets you access the list of files selected with the <input type="file"> element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage. */
+/**
+ * An object of this type is returned by the files property of the HTML <input> element; this lets you access the list of files selected with the <input type="file"> element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage.
+ */
 public interface FileList extends ArrayLike<File> {
-    @Nullable
-     File item(int index);
-
-
     @JSBody(script = "return FileList.prototype")
     static FileList prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -21,5 +19,8 @@ public interface FileList extends ArrayLike<File> {
     static FileList create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @Nullable
+    File item(int index);
 
 }

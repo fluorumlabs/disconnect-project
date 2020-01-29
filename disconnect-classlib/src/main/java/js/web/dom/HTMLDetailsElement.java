@@ -5,12 +5,6 @@ import org.teavm.jso.JSProperty;
 
 
 public interface HTMLDetailsElement extends HTMLElement {
-    @JSProperty
-    boolean isOpen();
-
-    @JSProperty
-    void setOpen(boolean open);
-
     @JSBody(script = "return HTMLDetailsElement.prototype")
     static HTMLDetailsElement prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -20,5 +14,11 @@ public interface HTMLDetailsElement extends HTMLElement {
     static HTMLDetailsElement create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    boolean isOpen();
+
+    @JSProperty
+    void setOpen(boolean open);
 
 }

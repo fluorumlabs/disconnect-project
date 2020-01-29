@@ -8,6 +8,16 @@ import javax.annotation.Nullable;
 
 
 public interface HTMLAppletElement extends HTMLElement {
+    @JSBody(script = "return HTMLAppletElement.prototype")
+    static HTMLAppletElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLAppletElement()")
+    static HTMLAppletElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @Deprecated
     @JSProperty
     String getAlign();
@@ -103,15 +113,5 @@ public interface HTMLAppletElement extends HTMLElement {
 
     @JSProperty
     void setWidth(String width);
-
-    @JSBody(script = "return HTMLAppletElement.prototype")
-    static HTMLAppletElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLAppletElement()")
-    static HTMLAppletElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

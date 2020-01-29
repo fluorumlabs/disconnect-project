@@ -1,108 +1,110 @@
 package js.web.dom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * The URL interface represents an object providing static methods used for creating object URLs.
+ */
+public interface URL extends Any {
+    @JSBody(script = "return URL.prototype")
+    static URL prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** The URL interface represents an object providing static methods used for creating object URLs. */
-        public interface URL extends Any {
-        @JSProperty
-        String getHash();
+    @JSBody(params = "url", script = "return new URL(url)")
+    static URL create(String url) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setHash(String hash);
+    @JSBody(params = {"url", "base"}, script = "return new URL(url, base)")
+    static URL create(String url, String base) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getHost();
+    @JSBody(params = {"url", "base"}, script = "return new URL(url, base)")
+    static URL create(String url, URL base) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setHost(String host);
+    @JSBody(params = "object", script = "return URL.createObjectURL(object)")
+    static String createObjectURL(Any object) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
 
-        @JSProperty
-        String getHostname();
+    }
 
-        @JSProperty
-        void setHostname(String hostname);
+    @JSBody(script = "URL.revokeObjectURL(url)")
+    static void revokeObjectURL(String url) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
 
-        @JSProperty
-        String getHref();
+    }
 
-        @JSProperty
-        void setHref(String href);
+    @JSProperty
+    String getHash();
 
-        @JSProperty
-        String getOrigin();
+    @JSProperty
+    void setHash(String hash);
 
-        @JSProperty
-        String getPassword();
+    @JSProperty
+    String getHost();
 
-        @JSProperty
-        void setPassword(String password);
+    @JSProperty
+    void setHost(String host);
 
-        @JSProperty
-        String getPathname();
+    @JSProperty
+    String getHostname();
 
-        @JSProperty
-        void setPathname(String pathname);
+    @JSProperty
+    void setHostname(String hostname);
 
-        @JSProperty
-        String getPort();
+    @JSProperty
+    String getHref();
 
-        @JSProperty
-        void setPort(String port);
+    @JSProperty
+    void setHref(String href);
 
-        @JSProperty
-        String getProtocol();
+    @JSProperty
+    String getOrigin();
 
-        @JSProperty
-        void setProtocol(String protocol);
+    @JSProperty
+    String getPassword();
 
-        @JSProperty
-        String getSearch();
+    @JSProperty
+    void setPassword(String password);
 
-        @JSProperty
-        void setSearch(String search);
+    @JSProperty
+    String getPathname();
 
-        @JSProperty
-        URLSearchParams getSearchParams();
+    @JSProperty
+    void setPathname(String pathname);
 
-        @JSProperty
-        String getUsername();
+    @JSProperty
+    String getPort();
 
-        @JSProperty
-        void setUsername(String username);
+    @JSProperty
+    void setPort(String port);
 
-        String toJSON();
+    @JSProperty
+    String getProtocol();
 
-        @JSBody(script = "return URL.prototype")
-        static URL prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setProtocol(String protocol);
 
-        @JSBody(params="url", script = "return new URL(url)")
-        static URL create(String url) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getSearch();
 
-        @JSBody(params={"url","base"}, script = "return new URL(url, base)")
-        static URL create(String url, String base) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setSearch(String search);
 
-        @JSBody(params={"url","base"}, script = "return new URL(url, base)")
-        static URL create(String url, URL base) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    URLSearchParams getSearchParams();
 
-        @JSBody(params = "object", script = "return URL.createObjectURL(object)")
-        static String createObjectURL(Any object) {
-                throw new UnsupportedOperationException("Available only in JavaScript");
+    @JSProperty
+    String getUsername();
 
-        }
-        @JSBody(script = "URL.revokeObjectURL(url)")
-        static void revokeObjectURL(String url) {
-                throw new UnsupportedOperationException("Available only in JavaScript");
+    @JSProperty
+    void setUsername(String username);
 
-        }
-        }
+    String toJSON();
+}

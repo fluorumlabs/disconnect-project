@@ -7,8 +7,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** A single audio track from one of the HTML media elements, <audio> or <video>.  */
+/**
+ * A single audio track from one of the HTML media elements, <audio> or <video>.
+ */
 public interface AudioTrack extends Any {
+    @JSBody(script = "return AudioTrack.prototype")
+    static AudioTrack prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new AudioTrack()")
+    static AudioTrack create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     boolean isEnabled();
 
@@ -36,15 +48,5 @@ public interface AudioTrack extends Any {
     @JSProperty
     @Nullable
     SourceBuffer getSourceBuffer();
-
-    @JSBody(script = "return AudioTrack.prototype")
-    static AudioTrack prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new AudioTrack()")
-    static AudioTrack create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

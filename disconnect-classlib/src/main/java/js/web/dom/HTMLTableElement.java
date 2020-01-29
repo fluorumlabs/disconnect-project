@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties and methods (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating the layout and presentation of tables in an HTML document. */
+/**
+ * Provides special properties and methods (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating the layout and presentation of tables in an HTML document.
+ */
 public interface HTMLTableElement extends HTMLElement {
+    @JSBody(script = "return HTMLTableElement.prototype")
+    static HTMLTableElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLTableElement()")
+    static HTMLTableElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves a value that indicates the table alignment.
      */
@@ -40,7 +52,7 @@ public interface HTMLTableElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    HTMLTableCaptionElement  getCaption();
+    HTMLTableCaptionElement getCaption();
 
     @JSProperty
     void setCaption(HTMLTableCaptionElement caption);
@@ -80,6 +92,7 @@ public interface HTMLTableElement extends HTMLElement {
      */
     @JSProperty
     HTMLCollectionOf<HTMLTableRowElement> getRows();
+
     /**
      * Sets or retrieves which dividing lines (inner borders) are displayed.
      */
@@ -105,6 +118,7 @@ public interface HTMLTableElement extends HTMLElement {
      */
     @JSProperty
     HTMLCollectionOf<HTMLTableSectionElement> getTBodies();
+
     /**
      * Retrieves the tFoot object of the table.
      */
@@ -139,50 +153,51 @@ public interface HTMLTableElement extends HTMLElement {
      * Creates an empty caption element in the table.
      */
     HTMLTableCaptionElement createCaption();
+
     /**
      * Creates an empty tBody element in the table.
      */
     HTMLTableSectionElement createTBody();
+
     /**
      * Creates an empty tFoot element in the table.
      */
     HTMLTableSectionElement createTFoot();
+
     /**
      * Returns the tHead element object if successful, or null otherwise.
      */
     HTMLTableSectionElement createTHead();
+
     /**
      * Deletes the caption element and its contents from the table.
      */
     void deleteCaption();
+
     /**
      * Removes the specified row (tr) from the element and from the rows collection.
+     *
      * @param index Number that specifies the zero-based position in the rows collection of the row to remove.
      */
     void deleteRow(int index);
+
     /**
      * Deletes the tFoot element and its contents from the table.
      */
     void deleteTFoot();
+
     /**
      * Deletes the tHead element and its contents from the table.
      */
     void deleteTHead();
+
     /**
      * Creates a new row (tr) in the table, and adds the row to the rows collection.
+     *
      * @param index Number that specifies where to insert the row in the rows collection. The default value is -1, which appends the new row to the end of the rows collection.
      */
     HTMLTableRowElement insertRow(int index);
+
     HTMLTableRowElement insertRow();
-
-    @JSBody(script = "return HTMLTableElement.prototype")
-    static HTMLTableElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLTableElement()")
-    static HTMLTableElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

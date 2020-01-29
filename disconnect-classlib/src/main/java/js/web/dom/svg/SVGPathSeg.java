@@ -1,20 +1,29 @@
 package js.web.dom.svg;
 
 import js.extras.JsEnum;
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
 
 public interface SVGPathSeg extends Any {
-        @JSProperty
-        PathSegType getPathSegType();
+    @JSBody(script = "return SVGPathSeg.prototype")
+    static SVGPathSeg prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getPathSegTypeAsLetter();
+    @JSBody(script = "return new SVGPathSeg()")
+    static SVGPathSeg create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        abstract class PathSegType extends JsEnum {
+    @JSProperty
+    PathSegType getPathSegType();
+
+    @JSProperty
+    String getPathSegTypeAsLetter();
+
+    abstract class PathSegType extends JsEnum {
         public static final PathSegType PATHSEG_ARC_ABS = JsEnum.from("return SVGPathSeg.PATHSEG_ARC_ABS");
 
 
@@ -72,17 +81,8 @@ public interface SVGPathSeg extends Any {
         public static final PathSegType PATHSEG_MOVETO_REL = JsEnum.from("return SVGPathSeg.PATHSEG_MOVETO_REL");
 
 
-        public static final PathSegType PATHSEG_UNKNOWN = JsEnum.from("return SVGPathSeg.PATHSEG_UNKNOWN");}
-
-        @JSBody(script = "return SVGPathSeg.prototype")
-        static SVGPathSeg prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new SVGPathSeg()")
-        static SVGPathSeg create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+        public static final PathSegType PATHSEG_UNKNOWN = JsEnum.from("return SVGPathSeg.PATHSEG_UNKNOWN");
+    }
 
 
-        }
+}

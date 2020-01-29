@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties (beyond those of the regular HTMLElement interface they also inherit) for manipulating <frameset> elements. */
+/**
+ * Provides special properties (beyond those of the regular HTMLElement interface they also inherit) for manipulating <frameset> elements.
+ */
 public interface HTMLFrameSetElement extends HTMLElement, WindowEventHandlers {
+    @JSBody(script = "return HTMLFrameSetElement.prototype")
+    static HTMLFrameSetElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLFrameSetElement()")
+    static HTMLFrameSetElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves the frame widths of the object.
      */
@@ -24,15 +36,5 @@ public interface HTMLFrameSetElement extends HTMLElement, WindowEventHandlers {
 
     @JSProperty
     void setRows(String rows);
-
-    @JSBody(script = "return HTMLFrameSetElement.prototype")
-    static HTMLFrameSetElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLFrameSetElement()")
-    static HTMLFrameSetElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

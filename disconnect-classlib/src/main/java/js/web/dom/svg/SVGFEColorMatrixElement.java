@@ -4,18 +4,30 @@ import js.extras.JsEnum;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feColorMatrix> element. */
-        public interface SVGFEColorMatrixElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedString getIn1();
+/**
+ * Corresponds to the <feColorMatrix> element.
+ */
+public interface SVGFEColorMatrixElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    @JSBody(script = "return SVGFEColorMatrixElement.prototype")
+    static SVGFEColorMatrixElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedEnumeration<Type> getType();
+    @JSBody(script = "return new SVGFEColorMatrixElement()")
+    static SVGFEColorMatrixElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumberList getValues();
+    @JSProperty
+    SVGAnimatedString getIn1();
 
-        abstract class Type extends JsEnum {
+    @JSProperty
+    SVGAnimatedEnumeration<Type> getType();
+
+    @JSProperty
+    SVGAnimatedNumberList getValues();
+
+    abstract class Type extends JsEnum {
         public static final Type SVG_FECOLORMATRIX_TYPE_HUEROTATE = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_HUEROTATE");
 
 
@@ -28,16 +40,7 @@ import org.teavm.jso.JSProperty;
         public static final Type SVG_FECOLORMATRIX_TYPE_SATURATE = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE");
 
 
-        public static final Type SVG_FECOLORMATRIX_TYPE_UNKNOWN = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_UNKNOWN");}
+        public static final Type SVG_FECOLORMATRIX_TYPE_UNKNOWN = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_UNKNOWN");
+    }
 
-        @JSBody(script = "return SVGFEColorMatrixElement.prototype")
-        static SVGFEColorMatrixElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new SVGFEColorMatrixElement()")
-        static SVGFEColorMatrixElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

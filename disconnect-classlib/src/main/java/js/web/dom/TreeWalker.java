@@ -1,44 +1,60 @@
 package js.web.dom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
-/** The nodes of a document subtree and a position within them. */
-        public interface TreeWalker extends Any {
-        @JSProperty
-        Node getCurrentNode();
+/**
+ * The nodes of a document subtree and a position within them.
+ */
+public interface TreeWalker extends Any {
+    @JSBody(script = "return TreeWalker.prototype")
+    static TreeWalker prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setCurrentNode(Node currentNode);
+    @JSBody(script = "return new TreeWalker()")
+    static TreeWalker create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        NodeFilter getFilter();
+    @JSProperty
+    Node getCurrentNode();
 
-        @JSProperty
-        Node getRoot();
+    @JSProperty
+    void setCurrentNode(Node currentNode);
 
-        @JSProperty
-        double getWhatToShow();
+    @JSProperty
+    @Nullable
+    NodeFilter getFilter();
 
-        @Nullable Node firstChild();
-        @Nullable Node lastChild();
-        @Nullable Node nextNode();
-        @Nullable Node nextSibling();
-        @Nullable Node parentNode();
-        @Nullable Node previousNode();
-        @Nullable Node previousSibling();
+    @JSProperty
+    Node getRoot();
 
-        @JSBody(script = "return TreeWalker.prototype")
-        static TreeWalker prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getWhatToShow();
 
-        @JSBody(script = "return new TreeWalker()")
-        static TreeWalker create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @Nullable
+    Node firstChild();
 
-        }
+    @Nullable
+    Node lastChild();
+
+    @Nullable
+    Node nextNode();
+
+    @Nullable
+    Node nextSibling();
+
+    @Nullable
+    Node parentNode();
+
+    @Nullable
+    Node previousNode();
+
+    @Nullable
+    Node previousSibling();
+
+}

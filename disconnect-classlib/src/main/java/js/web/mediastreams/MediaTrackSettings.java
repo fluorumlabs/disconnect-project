@@ -1,8 +1,9 @@
 package js.web.mediastreams;
 
+import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
 
 public interface MediaTrackSettings extends Any {

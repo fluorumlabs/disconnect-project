@@ -1,10 +1,9 @@
 package js.web.webrtc;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
 import js.util.collections.Array;
 import org.teavm.jso.JSByRef;
+import org.teavm.jso.JSProperty;
 
 
 public interface RTCRtpParameters extends Any {
@@ -13,6 +12,7 @@ public interface RTCRtpParameters extends Any {
 
     @JSProperty
     void setCodecs(@JSByRef RTCRtpCodecParameters... codecs);
+
     @JSProperty
     void setCodecs(Array<RTCRtpCodecParameters> codecs);
 
@@ -21,6 +21,7 @@ public interface RTCRtpParameters extends Any {
 
     @JSProperty
     void setHeaderExtensions(@JSByRef RTCRtpHeaderExtensionParameters... headerExtensions);
+
     @JSProperty
     void setHeaderExtensions(Array<RTCRtpHeaderExtensionParameters> headerExtensions);
 

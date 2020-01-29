@@ -1,8 +1,7 @@
 package js.web.canvas;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface CanvasFilters extends Any {

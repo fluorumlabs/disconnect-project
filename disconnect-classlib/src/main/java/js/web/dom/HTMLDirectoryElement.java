@@ -5,13 +5,6 @@ import org.teavm.jso.JSProperty;
 
 
 public interface HTMLDirectoryElement extends HTMLElement {
-    @Deprecated
-    @JSProperty
-    boolean isCompact();
-
-    @JSProperty
-    void setCompact(boolean compact);
-
     @JSBody(script = "return HTMLDirectoryElement.prototype")
     static HTMLDirectoryElement prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -21,5 +14,12 @@ public interface HTMLDirectoryElement extends HTMLElement {
     static HTMLDirectoryElement create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @Deprecated
+    @JSProperty
+    boolean isCompact();
+
+    @JSProperty
+    void setCompact(boolean compact);
 
 }

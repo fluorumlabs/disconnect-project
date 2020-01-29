@@ -3,37 +3,39 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <pattern> element. */
-        public interface SVGPatternElement extends SVGElement, SVGFitToViewBox, SVGTests, SVGURIReference {
-        @JSProperty
-        SVGAnimatedLength getHeight();
+/**
+ * Corresponds to the <pattern> element.
+ */
+public interface SVGPatternElement extends SVGElement, SVGFitToViewBox, SVGTests, SVGURIReference {
+    @JSBody(script = "return SVGPatternElement.prototype")
+    static SVGPatternElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedEnumeration getPatternContentUnits();
+    @JSBody(script = "return new SVGPatternElement()")
+    static SVGPatternElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedTransformList getPatternTransform();
+    @JSProperty
+    SVGAnimatedLength getHeight();
 
-        @JSProperty
-        SVGAnimatedEnumeration getPatternUnits();
+    @JSProperty
+    SVGAnimatedEnumeration getPatternContentUnits();
 
-        @JSProperty
-        SVGAnimatedLength getWidth();
+    @JSProperty
+    SVGAnimatedTransformList getPatternTransform();
 
-        @JSProperty
-        SVGAnimatedLength getX();
+    @JSProperty
+    SVGAnimatedEnumeration getPatternUnits();
 
-        @JSProperty
-        SVGAnimatedLength getY();
+    @JSProperty
+    SVGAnimatedLength getWidth();
 
-        @JSBody(script = "return SVGPatternElement.prototype")
-        static SVGPatternElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getX();
 
-        @JSBody(script = "return new SVGPatternElement()")
-        static SVGPatternElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getY();
 
-        }
+}

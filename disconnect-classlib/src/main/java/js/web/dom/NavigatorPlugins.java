@@ -1,16 +1,15 @@
 package js.web.dom;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface NavigatorPlugins extends Any {
-        @JSProperty
-        MimeTypeArray getMimeTypes();
+    @JSProperty
+    MimeTypeArray getMimeTypes();
 
-        @JSProperty
-        PluginArray getPlugins();
+    @JSProperty
+    PluginArray getPlugins();
 
-        boolean javaEnabled();
-        }
+    boolean javaEnabled();
+}

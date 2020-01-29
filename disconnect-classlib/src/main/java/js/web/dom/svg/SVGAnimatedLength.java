@@ -1,26 +1,27 @@
 package js.web.dom.svg;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * Used for attributes of basic type <length> which can be animated.
+ */
+public interface SVGAnimatedLength extends Any {
+    @JSBody(script = "return SVGAnimatedLength.prototype")
+    static SVGAnimatedLength prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Used for attributes of basic type <length> which can be animated. */
-        public interface SVGAnimatedLength extends Any {
-        @JSProperty
-        SVGLength getAnimVal();
+    @JSBody(script = "return new SVGAnimatedLength()")
+    static SVGAnimatedLength create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGLength getBaseVal();
+    @JSProperty
+    SVGLength getAnimVal();
 
-        @JSBody(script = "return SVGAnimatedLength.prototype")
-        static SVGAnimatedLength prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGLength getBaseVal();
 
-        @JSBody(script = "return new SVGAnimatedLength()")
-        static SVGAnimatedLength create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

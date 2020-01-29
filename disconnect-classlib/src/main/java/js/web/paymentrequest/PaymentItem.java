@@ -1,8 +1,7 @@
 package js.web.paymentrequest;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface PaymentItem extends Any {

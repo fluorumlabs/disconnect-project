@@ -12,7 +12,7 @@ public interface ComputedEffectTiming extends EffectTiming {
     void setActiveDuration(double activeDuration);
 
     @JSProperty
-    int  getCurrentIteration();
+    int getCurrentIteration();
 
     @JSProperty
     void setCurrentIteration(int currentIteration);
@@ -24,13 +24,13 @@ public interface ComputedEffectTiming extends EffectTiming {
     void setEndTime(double endTime);
 
     @JSProperty
-    double  getLocalTime();
+    double getLocalTime();
 
     @JSProperty
     void setLocalTime(double localTime);
 
     @JSProperty
-    double  getProgress();
+    double getProgress();
 
     @JSProperty
     void setProgress(double progress);

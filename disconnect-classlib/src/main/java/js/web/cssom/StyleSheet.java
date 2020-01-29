@@ -7,43 +7,45 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** A single style sheet. CSS style sheets will further implement the more specialized CSSStyleSheet interface. */
-        public interface StyleSheet extends Any {
-        @JSProperty
-        boolean isDisabled();
+/**
+ * A single style sheet. CSS style sheets will further implement the more specialized CSSStyleSheet interface.
+ */
+public interface StyleSheet extends Any {
+    @JSBody(script = "return StyleSheet.prototype")
+    static StyleSheet prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setDisabled(boolean disabled);
+    @JSBody(script = "return new StyleSheet()")
+    static StyleSheet create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        String  getHref();
+    @JSProperty
+    boolean isDisabled();
 
-        @JSProperty
-        MediaList getMedia();
+    @JSProperty
+    void setDisabled(boolean disabled);
 
-        @JSProperty
-        Node getOwnerNode();
+    @JSProperty
+    @Nullable
+    String getHref();
 
-        @JSProperty
-        @Nullable
-        StyleSheet getParentStyleSheet();
+    @JSProperty
+    MediaList getMedia();
 
-        @JSProperty
-        @Nullable
-        String  getTitle();
+    @JSProperty
+    Node getOwnerNode();
 
-        @JSProperty
-        String getType();
+    @JSProperty
+    @Nullable
+    StyleSheet getParentStyleSheet();
 
-        @JSBody(script = "return StyleSheet.prototype")
-        static StyleSheet prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    String getTitle();
 
-        @JSBody(script = "return new StyleSheet()")
-        static StyleSheet create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getType();
 
-        }
+}

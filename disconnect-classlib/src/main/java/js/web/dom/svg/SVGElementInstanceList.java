@@ -1,27 +1,26 @@
 package js.web.dom.svg;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
 
 public interface SVGElementInstanceList extends Any {
-        @Deprecated
-        @JSProperty
-        int getLength();
+    @JSBody(script = "return SVGElementInstanceList.prototype")
+    static SVGElementInstanceList prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @Deprecated
-        SVGElementInstance item(int index);
+    @JSBody(script = "return new SVGElementInstanceList()")
+    static SVGElementInstanceList create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return SVGElementInstanceList.prototype")
-        static SVGElementInstanceList prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @Deprecated
+    @JSProperty
+    int getLength();
 
-        @JSBody(script = "return new SVGElementInstanceList()")
-        static SVGElementInstanceList create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @Deprecated
+    SVGElementInstance item(int index);
 
-        }
+}

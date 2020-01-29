@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <fieldset> elements. */
+/**
+ * Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <fieldset> elements.
+ */
 public interface HTMLFieldSetElement extends HTMLElement {
+    @JSBody(script = "return HTMLFieldSetElement.prototype")
+    static HTMLFieldSetElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLFieldSetElement()")
+    static HTMLFieldSetElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     boolean isDisabled();
 
@@ -55,21 +67,14 @@ public interface HTMLFieldSetElement extends HTMLElement {
      * Returns whether a form will validate when it is submitted, without having to submit it.
      */
     boolean checkValidity();
+
     boolean reportValidity();
+
     /**
      * Sets a custom error message that is displayed when a form is submitted.
+     *
      * @param error Sets a custom error message that is displayed when a form is submitted.
      */
-   void setCustomValidity(String error);
-
-   @JSBody(script = "return HTMLFieldSetElement.prototype")
-   static HTMLFieldSetElement prototype() {
-       throw new UnsupportedOperationException("Available only in JavaScript");
-   }
-
-   @JSBody(script = "return new HTMLFieldSetElement()")
-   static HTMLFieldSetElement create() {
-       throw new UnsupportedOperationException("Available only in JavaScript");
-   }
+    void setCustomValidity(String error);
 
 }

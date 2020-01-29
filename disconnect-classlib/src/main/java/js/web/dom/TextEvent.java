@@ -6,12 +6,22 @@ import org.teavm.jso.JSProperty;
 
 
 public interface TextEvent extends UIEvent {
-        @JSProperty
-        String getData();
+    @JSBody(script = "return TextEvent.prototype")
+    static TextEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        void initTextEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg, Window viewArg, String dataArg, InputMethod inputMethod, String locale);
+    @JSBody(script = "return new TextEvent()")
+    static TextEvent create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        abstract class InputMethod extends JsEnum {
+    @JSProperty
+    String getData();
+
+    void initTextEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg, Window viewArg, String dataArg, InputMethod inputMethod, String locale);
+
+    abstract class InputMethod extends JsEnum {
         public static final InputMethod DOM_INPUT_METHOD_DROP = JsEnum.from("return TextEvent.DOM_INPUT_METHOD_DROP");
 
 
@@ -39,16 +49,7 @@ public interface TextEvent extends UIEvent {
         public static final InputMethod DOM_INPUT_METHOD_UNKNOWN = JsEnum.from("return TextEvent.DOM_INPUT_METHOD_UNKNOWN");
 
 
-        public static final InputMethod DOM_INPUT_METHOD_VOICE = JsEnum.from("return TextEvent.DOM_INPUT_METHOD_VOICE");}
+        public static final InputMethod DOM_INPUT_METHOD_VOICE = JsEnum.from("return TextEvent.DOM_INPUT_METHOD_VOICE");
+    }
 
-@JSBody(script = "return TextEvent.prototype")
-static TextEvent prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
 }
-
-@JSBody(script = "return new TextEvent()")
-static TextEvent create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
-
-        }

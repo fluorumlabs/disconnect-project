@@ -8,12 +8,6 @@ import javax.annotation.Nullable;
 
 
 public interface HTMLCollection extends ArrayLike<Element> {
-    /**
-     * Retrieves a select object or an object from an options collection.
-     */
-    @Nullable
-     Element namedItem(String name);
-
     @JSBody(script = "return HTMLCollection.prototype")
     static HTMLCollection prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -23,5 +17,11 @@ public interface HTMLCollection extends ArrayLike<Element> {
     static HTMLCollection create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    /**
+     * Retrieves a select object or an object from an options collection.
+     */
+    @Nullable
+    Element namedItem(String name);
 
 }

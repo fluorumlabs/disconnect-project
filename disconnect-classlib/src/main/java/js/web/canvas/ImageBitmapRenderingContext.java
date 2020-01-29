@@ -11,25 +11,25 @@ import javax.annotation.Nullable;
 
 @Experimental
 public interface ImageBitmapRenderingContext extends Any, RenderingContext, OffscreenRenderingContext {
-        /**
-         * Returns the canvas element that the context is bound to.
-         */
-        @JSProperty
-        Unknown getCanvas();
+    @JSBody(script = "return ImageBitmapRenderingContext.prototype")
+    static ImageBitmapRenderingContext prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        /**
-         * Transfers the underlying bitmap data from imageBitmap to context, and the bitmap becomes the contents of the canvas element to which context is bound.
-         */
-        void transferFromImageBitmap(@Nullable ImageBitmap bitmap);
+    @JSBody(script = "return new ImageBitmapRenderingContext()")
+    static ImageBitmapRenderingContext create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return ImageBitmapRenderingContext.prototype")
-        static ImageBitmapRenderingContext prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    /**
+     * Returns the canvas element that the context is bound to.
+     */
+    @JSProperty
+    Unknown getCanvas();
 
-        @JSBody(script = "return new ImageBitmapRenderingContext()")
-        static ImageBitmapRenderingContext create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    /**
+     * Transfers the underlying bitmap data from imageBitmap to context, and the bitmap becomes the contents of the canvas element to which context is bound.
+     */
+    void transferFromImageBitmap(@Nullable ImageBitmap bitmap);
 
-        }
+}

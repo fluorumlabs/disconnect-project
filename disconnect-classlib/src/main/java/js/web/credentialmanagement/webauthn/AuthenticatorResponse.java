@@ -1,16 +1,12 @@
 package js.web.credentialmanagement.webauthn;
 
+import js.lang.Any;
+import js.util.buffers.ArrayBuffer;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-import js.util.buffers.ArrayBuffer;
-
 
 public interface AuthenticatorResponse extends Any {
-    @JSProperty
-    ArrayBuffer getClientDataJSON();
-
     @JSBody(script = "return AuthenticatorResponse.prototype")
     static AuthenticatorResponse prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -20,4 +16,7 @@ public interface AuthenticatorResponse extends Any {
     static AuthenticatorResponse create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    ArrayBuffer getClientDataJSON();
 }

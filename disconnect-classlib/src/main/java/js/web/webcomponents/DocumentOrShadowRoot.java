@@ -36,11 +36,15 @@ public interface DocumentOrShadowRoot extends Any {
 
     @Nullable
     CaretPosition caretPositionFromPoint(double x, double y);
+
     @Deprecated
     Range caretRangeFromPoint(double x, double y);
+
     @Nullable
     Element elementFromPoint(double x, double y);
+
     Array<Element> elementsFromPoint(double x, double y);
+
     @Nullable
     Selection getSelection();
 }

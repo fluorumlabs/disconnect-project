@@ -1,13 +1,13 @@
 package js.web.webcrypto;
 
+import js.lang.Any;
+import js.util.collections.Array;
 import js.web.credentialmanagement.webauthn.ScopedCredentialDescriptor;
 import js.web.credentialmanagement.webauthn.WebAuthnExtensions;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.util.collections.Array;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface AssertionOptions extends Any {
@@ -17,6 +17,7 @@ public interface AssertionOptions extends Any {
 
     @JSProperty
     void setAllowList(Array<ScopedCredentialDescriptor> allowList);
+
     @JSProperty
     void setAllowList(@JSByRef ScopedCredentialDescriptor... allowList);
 

@@ -8,49 +8,53 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This Payment Request API interface is returned after a user selects a payment method and approves a payment request. */
-        public interface PaymentResponse extends Any {
-        @JSProperty
-        Unknown getDetails();
+/**
+ * This Payment Request API interface is returned after a user selects a payment method and approves a payment request.
+ */
+public interface PaymentResponse extends Any {
+    @JSBody(script = "return PaymentResponse.prototype")
+    static PaymentResponse prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getMethodName();
+    @JSBody(script = "return new PaymentResponse()")
+    static PaymentResponse create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        String  getPayerEmail();
+    @JSProperty
+    Unknown getDetails();
 
-        @JSProperty
-        @Nullable
-        String  getPayerName();
+    @JSProperty
+    String getMethodName();
 
-        @JSProperty
-        @Nullable
-        String  getPayerPhone();
+    @JSProperty
+    @Nullable
+    String getPayerEmail();
 
-        @JSProperty
-        String getRequestId();
+    @JSProperty
+    @Nullable
+    String getPayerName();
 
-        @JSProperty
-        @Nullable
-        PaymentAddress  getShippingAddress();
+    @JSProperty
+    @Nullable
+    String getPayerPhone();
 
-        @JSProperty
-        @Nullable
-        String  getShippingOption();
+    @JSProperty
+    String getRequestId();
 
-        VoidPromise complete(PaymentComplete result);
-        VoidPromise complete();
-        Unknown toJSON();
+    @JSProperty
+    @Nullable
+    PaymentAddress getShippingAddress();
 
-        @JSBody(script = "return PaymentResponse.prototype")
-        static PaymentResponse prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    String getShippingOption();
 
-        @JSBody(script = "return new PaymentResponse()")
-        static PaymentResponse create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    VoidPromise complete(PaymentComplete result);
 
-        }
+    VoidPromise complete();
+
+    Unknown toJSON();
+
+}

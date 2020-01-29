@@ -3,25 +3,27 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feOffset> element. */
-        public interface SVGFEOffsetElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedNumber getDx();
+/**
+ * Corresponds to the <feOffset> element.
+ */
+public interface SVGFEOffsetElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    @JSBody(script = "return SVGFEOffsetElement.prototype")
+    static SVGFEOffsetElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getDy();
+    @JSBody(script = "return new SVGFEOffsetElement()")
+    static SVGFEOffsetElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedString getIn1();
+    @JSProperty
+    SVGAnimatedNumber getDx();
 
-        @JSBody(script = "return SVGFEOffsetElement.prototype")
-        static SVGFEOffsetElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getDy();
 
-        @JSBody(script = "return new SVGFEOffsetElement()")
-        static SVGFEOffsetElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedString getIn1();
 
-        }
+}

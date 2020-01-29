@@ -1,66 +1,67 @@
 package js.web.webrtc;
 
-import js.web.dom.EventListener;
-import js.web.dom.AddEventListenerOptions;
-import js.web.dom.Event;
-import js.web.dom.EventListenerOptions;
-import js.web.dom.EventTarget;
+import js.web.dom.*;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
 /**
-* Created by Artem Godin on 1/22/2020.
-*/
+ * Created by Artem Godin on 1/22/2020.
+ */
 public interface RTCSctpTransport extends EventTarget {
-@JSProperty
-@Nullable
-int  getMaxChannels();
+    @JSBody(script = "return RTCSctpTransport.prototype")
+    static RTCSctpTransport prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-int getMaxMessageSize();
+    @JSBody(script = "return new RTCSctpTransport()")
+    static RTCSctpTransport create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-@Nullable
-EventListener<Event> getOnstatechange();
+    @JSProperty
+    @Nullable
+    int getMaxChannels();
 
-@JSProperty
-void setOnstatechange(EventListener<Event> onstatechange);
+    @JSProperty
+    int getMaxMessageSize();
 
-default void addStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-    addEventListener("statechange", listener, options);
-}
-default void addStateChangeEventListener(EventListener<Event> listener, boolean options) {
-    addEventListener("statechange", listener, options);
-}
-default void addStateChangeEventListener(EventListener<Event> listener) {
-    addEventListener("statechange", listener);
-}
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnstatechange();
 
-default void removeStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
-    removeEventListener("statechange", listener, options);
-}
-default void removeStateChangeEventListener(EventListener<Event> listener, boolean options) {
-    removeEventListener("statechange", listener, options);
-}
-default void removeStateChangeEventListener(EventListener<Event> listener) {
-    removeEventListener("statechange", listener);
-}
-@JSProperty
-RTCSctpTransportState getState();
+    @JSProperty
+    void setOnstatechange(EventListener<Event> onstatechange);
 
-@JSProperty
-RTCDtlsTransport getTransport();
+    default void addStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("statechange", listener, options);
+    }
 
-@JSBody(script = "return RTCSctpTransport.prototype")
-static RTCSctpTransport prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void addStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("statechange", listener, options);
+    }
 
-@JSBody(script = "return new RTCSctpTransport()")
-static RTCSctpTransport create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void addStateChangeEventListener(EventListener<Event> listener) {
+        addEventListener("statechange", listener);
+    }
+
+    default void removeStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("statechange", listener, options);
+    }
+
+    default void removeStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("statechange", listener, options);
+    }
+
+    default void removeStateChangeEventListener(EventListener<Event> listener) {
+        removeEventListener("statechange", listener);
+    }
+
+    @JSProperty
+    RTCSctpTransportState getState();
+
+    @JSProperty
+    RTCDtlsTransport getTransport();
 
 }

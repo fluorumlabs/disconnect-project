@@ -4,30 +4,42 @@ import js.extras.JsEnum;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feComposite> element. */
-        public interface SVGFECompositeElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedString getIn1();
+/**
+ * Corresponds to the <feComposite> element.
+ */
+public interface SVGFECompositeElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    @JSBody(script = "return SVGFECompositeElement.prototype")
+    static SVGFECompositeElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedString getIn2();
+    @JSBody(script = "return new SVGFECompositeElement()")
+    static SVGFECompositeElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getK1();
+    @JSProperty
+    SVGAnimatedString getIn1();
 
-        @JSProperty
-        SVGAnimatedNumber getK2();
+    @JSProperty
+    SVGAnimatedString getIn2();
 
-        @JSProperty
-        SVGAnimatedNumber getK3();
+    @JSProperty
+    SVGAnimatedNumber getK1();
 
-        @JSProperty
-        SVGAnimatedNumber getK4();
+    @JSProperty
+    SVGAnimatedNumber getK2();
 
-        @JSProperty
-        SVGAnimatedEnumeration<Operator> getOperator();
+    @JSProperty
+    SVGAnimatedNumber getK3();
 
-        abstract class Operator extends JsEnum {
+    @JSProperty
+    SVGAnimatedNumber getK4();
+
+    @JSProperty
+    SVGAnimatedEnumeration<Operator> getOperator();
+
+    abstract class Operator extends JsEnum {
 
         public static final Operator SVG_FECOMPOSITE_OPERATOR_ARITHMETIC = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_ARITHMETIC");
 
@@ -46,16 +58,7 @@ import org.teavm.jso.JSProperty;
         public static final Operator SVG_FECOMPOSITE_OPERATOR_UNKNOWN = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_UNKNOWN");
 
 
-        public static final Operator SVG_FECOMPOSITE_OPERATOR_XOR = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_XOR");}
+        public static final Operator SVG_FECOMPOSITE_OPERATOR_XOR = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_XOR");
+    }
 
-        @JSBody(script = "return SVGFECompositeElement.prototype")
-        static SVGFECompositeElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new SVGFECompositeElement()")
-        static SVGFECompositeElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

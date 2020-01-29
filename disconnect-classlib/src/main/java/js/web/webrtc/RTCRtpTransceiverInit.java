@@ -1,12 +1,12 @@
 package js.web.webrtc;
 
+import js.lang.Any;
+import js.util.collections.Array;
 import js.web.mediastreams.MediaStream;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.util.collections.Array;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface RTCRtpTransceiverInit extends Any {
@@ -23,6 +23,7 @@ public interface RTCRtpTransceiverInit extends Any {
 
     @JSProperty
     void setSendEncodings(@JSByRef RTCRtpEncodingParameters... sendEncodings);
+
     @JSProperty
     void setSendEncodings(Array<RTCRtpEncodingParameters> sendEncodings);
 
@@ -32,6 +33,7 @@ public interface RTCRtpTransceiverInit extends Any {
 
     @JSProperty
     void setStreams(@JSByRef MediaStream... streams);
+
     @JSProperty
     void setStreams(Array<MediaStream> streams);
 

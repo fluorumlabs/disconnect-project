@@ -8,52 +8,58 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
-* Created by Artem Godin on 1/23/2020.
-*/
+ * Created by Artem Godin on 1/23/2020.
+ */
 public interface ScreenOrientation extends EventTarget {
-@JSProperty
-double getAngle();
+    @JSBody(script = "return ScreenOrientation.prototype")
+    static ScreenOrientation prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-@Nullable
-EventListener<Event> getOnchange();
+    @JSBody(script = "return new ScreenOrientation()")
+    static ScreenOrientation create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-void setOnchange(EventListener<Event> onchange);
+    @JSProperty
+    double getAngle();
 
-default void addChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-    addEventListener("change", listener, options);
-}
-default void addChangeEventListener(EventListener<Event> listener, boolean options) {
-    addEventListener("change", listener, options);
-}
-default void addChangeEventListener(EventListener<Event> listener) {
-    addEventListener("change", listener);
-}
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnchange();
 
-default void removeChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
-    removeEventListener("change", listener, options);
-}
-default void removeChangeEventListener(EventListener<Event> listener, boolean options) {
-    removeEventListener("change", listener, options);
-}
-default void removeChangeEventListener(EventListener<Event> listener) {
-    removeEventListener("change", listener);
-}
-@JSProperty
-OrientationType getType();
+    @JSProperty
+    void setOnchange(EventListener<Event> onchange);
 
-VoidPromise lock(OrientationLockType orientation);
-void unlock();
+    default void addChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("change", listener, options);
+    }
 
-@JSBody(script = "return ScreenOrientation.prototype")
-static ScreenOrientation prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void addChangeEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("change", listener, options);
+    }
 
-@JSBody(script = "return new ScreenOrientation()")
-static ScreenOrientation create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void addChangeEventListener(EventListener<Event> listener) {
+        addEventListener("change", listener);
+    }
+
+    default void removeChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("change", listener, options);
+    }
+
+    default void removeChangeEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("change", listener, options);
+    }
+
+    default void removeChangeEventListener(EventListener<Event> listener) {
+        removeEventListener("change", listener);
+    }
+
+    @JSProperty
+    OrientationType getType();
+
+    VoidPromise lock(OrientationLockType orientation);
+
+    void unlock();
 
 }

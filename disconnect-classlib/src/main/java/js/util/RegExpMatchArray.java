@@ -2,7 +2,6 @@ package js.util;
 
 import js.lang.JsString;
 import js.util.collections.Array;
-
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
@@ -10,15 +9,15 @@ import javax.annotation.Nullable;
 
 public interface RegExpMatchArray extends Array<JsString> {
     @JSProperty
-     int getIndex();
+    int getIndex();
 
     @JSProperty
-     void setIndex(int value);
+    void setIndex(int value);
 
     @Nullable
     @JSProperty
-     String getInput();
+    String getInput();
 
     @JSProperty
-     void setInput(String value);
+    void setInput(String value);
 }

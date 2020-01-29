@@ -9,8 +9,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** One drag data item. During a drag operation, each drag event has a dataTransfer property which contains a list of drag data items. Each item in the list is a DataTransferItem object. */
+/**
+ * One drag data item. During a drag operation, each drag event has a dataTransfer property which contains a list of drag data items. Each item in the list is a DataTransferItem object.
+ */
 public interface DataTransferItem extends Any {
+    @JSBody(script = "return DataTransferItem.prototype")
+    static DataTransferItem prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new DataTransferItem()")
+    static DataTransferItem create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Returns the drag data item kind, one of: "string", "file".
      */
@@ -28,20 +40,12 @@ public interface DataTransferItem extends Any {
      */
     @Nullable
     File getAsFile();
+
     /**
      * Invokes the callback with the string data as the argument, if the drag data item kind is Plain Unicode string.
      */
     void getAsString(JsStringConsumer callback);
+
     Unknown webkitGetAsEntry();
-
-    @JSBody(script = "return DataTransferItem.prototype")
-    static DataTransferItem prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new DataTransferItem()")
-    static DataTransferItem create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

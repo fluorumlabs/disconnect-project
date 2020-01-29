@@ -1,9 +1,8 @@
 package js.web.webcrypto;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Unknown;
 import js.web.dom.BufferSource;
+import org.teavm.jso.JSProperty;
 
 
 public interface HkdfCtrParams extends Algorithm {
@@ -18,6 +17,7 @@ public interface HkdfCtrParams extends Algorithm {
 
     @JSProperty
     void setHash(String hash);
+
     @JSProperty
     void setHash(Algorithm hash);
 

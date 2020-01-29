@@ -1,8 +1,8 @@
 package js.web.credentialmanagement;
 
 import js.lang.Any;
-import js.web.dom.AbortSignal;
 import js.web.credentialmanagement.webauthn.PublicKeyCredentialRequestOptions;
+import js.web.dom.AbortSignal;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;

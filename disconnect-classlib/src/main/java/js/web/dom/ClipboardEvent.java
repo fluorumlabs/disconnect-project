@@ -7,27 +7,28 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Events providing information related to modification of the clipboard, that is cut, copy, and paste events. */
+/**
+ * Events providing information related to modification of the clipboard, that is cut, copy, and paste events.
+ */
 public interface ClipboardEvent extends Event {
-    @JSProperty
-    @Nullable
-    DataTransfer getClipboardData();
-
     @JSBody(script = "return ClipboardEvent.prototype")
     static ClipboardEvent prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params={"type","eventInitDict"}, script = "return new ClipboardEvent(type, eventInitDict)")
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new ClipboardEvent(type, eventInitDict)")
     static ClipboardEvent create(String type, ClipboardEventInit eventInitDict) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params="type", script = "return new ClipboardEvent(type)")
+    @JSBody(params = "type", script = "return new ClipboardEvent(type)")
     static ClipboardEvent create(String type) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
+    @JSProperty
+    @Nullable
+    DataTransfer getClipboardData();
 
 
     interface ClipboardEventInit extends EventInit {

@@ -1,16 +1,10 @@
 package js.web.webanimations;
 
-import org.teavm.jso.JSBody;
-
 import js.lang.Any;
+import org.teavm.jso.JSBody;
 
 
 public interface AnimationEffect extends Any {
-    ComputedEffectTiming getComputedTiming();
-    EffectTiming getTiming();
-    void updateTiming(OptionalEffectTiming timing);
-    void updateTiming();
-
     @JSBody(script = "return AnimationEffect.prototype")
     static AnimationEffect prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -20,5 +14,13 @@ public interface AnimationEffect extends Any {
     static AnimationEffect create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    ComputedEffectTiming getComputedTiming();
+
+    EffectTiming getTiming();
+
+    void updateTiming(OptionalEffectTiming timing);
+
+    void updateTiming();
 
 }

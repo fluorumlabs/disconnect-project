@@ -1,14 +1,27 @@
 package js.web.cssom;
 
 
+import js.lang.Unknown;
 import js.web.dom.Element;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Unknown;
+import javax.annotation.Nullable;
 
-/** A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet. */
+/**
+ * A single CSS style sheet. It inherits properties and methods from its parent, StyleSheet.
+ */
 public interface CSSStyleSheet extends StyleSheet {
+    @JSBody(script = "return CSSStyleSheet.prototype")
+    static CSSStyleSheet prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new CSSStyleSheet()")
+    static CSSStyleSheet create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     CSSRuleList getCssRules();
 
@@ -37,7 +50,7 @@ public interface CSSStyleSheet extends StyleSheet {
 
     @JSProperty
     @Nullable
-    CSSRule  getOwnerRule();
+    CSSRule getOwnerRule();
 
     @Deprecated
     @JSProperty
@@ -56,31 +69,33 @@ public interface CSSStyleSheet extends StyleSheet {
 
     @Deprecated
     int addImport(String bstrURL, int lIndex);
+
     @Deprecated
     int addImport(String bstrURL);
+
     @Deprecated
     int addPageRule(String bstrSelector, String bstrStyle, int lIndex);
+
     @Deprecated
     int addPageRule(String bstrSelector, String bstrStyle);
+
     int addRule(String bstrSelector, String bstrStyle, int lIndex);
+
     int addRule(String bstrSelector, String bstrStyle);
+
     int addRule(String bstrSelector);
+
     void deleteRule(int index);
+
     void deleteRule();
+
     int insertRule(String rule, int index);
+
     int insertRule(String rule);
+
     @Deprecated
     void removeImport(int lIndex);
+
     void removeRule(int lIndex);
-
-    @JSBody(script = "return CSSStyleSheet.prototype")
-    static CSSStyleSheet prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new CSSStyleSheet()")
-    static CSSStyleSheet create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

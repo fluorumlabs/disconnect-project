@@ -1,8 +1,7 @@
 package js.web.webcrypto;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Unknown;
+import org.teavm.jso.JSProperty;
 
 
 public interface RsaHashedKeyGenParams extends RsaKeyGenParams {
@@ -11,6 +10,7 @@ public interface RsaHashedKeyGenParams extends RsaKeyGenParams {
 
     @JSProperty
     void setHash(String hash);
+
     @JSProperty
     void setHash(Algorithm hash);
 

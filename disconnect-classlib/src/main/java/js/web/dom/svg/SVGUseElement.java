@@ -6,36 +6,38 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Corresponds to the <use> element. */
-        public interface SVGUseElement extends SVGGraphicsElement, SVGURIReference {
-        @JSProperty
-        @Nullable
-        SVGElementInstance  getAnimatedInstanceRoot();
+/**
+ * Corresponds to the <use> element.
+ */
+public interface SVGUseElement extends SVGGraphicsElement, SVGURIReference {
+    @JSBody(script = "return SVGUseElement.prototype")
+    static SVGUseElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedLength getHeight();
+    @JSBody(script = "return new SVGUseElement()")
+    static SVGUseElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        SVGElementInstance  getInstanceRoot();
+    @JSProperty
+    @Nullable
+    SVGElementInstance getAnimatedInstanceRoot();
 
-        @JSProperty
-        SVGAnimatedLength getWidth();
+    @JSProperty
+    SVGAnimatedLength getHeight();
 
-        @JSProperty
-        SVGAnimatedLength getX();
+    @JSProperty
+    @Nullable
+    SVGElementInstance getInstanceRoot();
 
-        @JSProperty
-        SVGAnimatedLength getY();
+    @JSProperty
+    SVGAnimatedLength getWidth();
 
-        @JSBody(script = "return SVGUseElement.prototype")
-        static SVGUseElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getX();
 
-        @JSBody(script = "return new SVGUseElement()")
-        static SVGUseElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getY();
 
-        }
+}

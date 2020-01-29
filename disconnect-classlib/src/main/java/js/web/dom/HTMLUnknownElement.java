@@ -2,7 +2,9 @@ package js.web.dom;
 
 import org.teavm.jso.JSBody;
 
-/** An invalid HTML element and derives from the HTMLElement interface, but without implementing any additional properties or methods. */
+/**
+ * An invalid HTML element and derives from the HTMLElement interface, but without implementing any additional properties or methods.
+ */
 public interface HTMLUnknownElement extends HTMLElement {
     @JSBody(script = "return HTMLUnknownElement.prototype")
     static HTMLUnknownElement prototype() {

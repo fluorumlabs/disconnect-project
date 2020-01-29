@@ -19,8 +19,12 @@ public interface Body extends Any {
     boolean isBodyUsed();
 
     Promise<ArrayBuffer> arrayBuffer();
+
     Promise<Blob> blob();
+
     Promise<FormData> formData();
+
     Promise<Any> json();
+
     StringPromise text();
 }

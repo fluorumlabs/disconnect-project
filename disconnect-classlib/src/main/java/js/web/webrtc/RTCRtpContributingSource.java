@@ -1,8 +1,7 @@
 package js.web.webrtc;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface RTCRtpContributingSource extends Any {

@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Contains descriptive metadata about a document. It inherits all of the properties and methods described in the HTMLElement interface. */
+/**
+ * Contains descriptive metadata about a document. It inherits all of the properties and methods described in the HTMLElement interface.
+ */
 public interface HTMLMetaElement extends HTMLElement {
+    @JSBody(script = "return HTMLMetaElement.prototype")
+    static HTMLMetaElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLMetaElement()")
+    static HTMLMetaElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Gets or sets meta-information to associate with httpEquiv or name.
      */
@@ -41,15 +53,5 @@ public interface HTMLMetaElement extends HTMLElement {
 
     @JSProperty
     void setScheme(String scheme);
-
-    @JSBody(script = "return HTMLMetaElement.prototype")
-    static HTMLMetaElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLMetaElement()")
-    static HTMLMetaElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

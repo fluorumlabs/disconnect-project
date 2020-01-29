@@ -8,6 +8,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface WritableStreamDefaultControllerWriteCallback<W extends Any> extends JSObject {
-        VoidPromiseLike handle(W chunk, WritableStreamDefaultController controller);
-        }
+public interface WritableStreamDefaultControllerWriteCallback<W extends Any> extends JSObject {
+    VoidPromiseLike handle(W chunk, WritableStreamDefaultController controller);
+}

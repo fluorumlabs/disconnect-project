@@ -2,7 +2,9 @@ package js.web.dom;
 
 import org.teavm.jso.JSBody;
 
-/** A CDATA section that can be used within XML to include extended portions of unescaped text. The symbols < and & don’t need escaping as they normally do when inside a CDATA section. */
+/**
+ * A CDATA section that can be used within XML to include extended portions of unescaped text. The symbols < and & don’t need escaping as they normally do when inside a CDATA section.
+ */
 public interface CDATASection extends Text {
     @JSBody(script = "return CDATASection.prototype")
     static CDATASection prototype() {

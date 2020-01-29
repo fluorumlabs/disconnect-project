@@ -1,27 +1,29 @@
 package js.web.mediastreams;
 
+import js.lang.Any;
+import js.lang.Promise;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-import js.lang.Promise;
+/**
+ * This EncryptedMediaExtensions API interface provides access to a Key System for decryption and/or a content protection provider. You can request an instance of this object using the Navigator.requestMediaKeySystemAccess method.
+ */
+public interface MediaKeySystemAccess extends Any {
+    @JSBody(script = "return MediaKeySystemAccess.prototype")
+    static MediaKeySystemAccess prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** This EncryptedMediaExtensions API interface provides access to a Key System for decryption and/or a content protection provider. You can request an instance of this object using the Navigator.requestMediaKeySystemAccess method. */
-        public interface MediaKeySystemAccess extends Any {
-        @JSProperty
-        String getKeySystem();
+    @JSBody(script = "return new MediaKeySystemAccess()")
+    static MediaKeySystemAccess create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        Promise<MediaKeys> createMediaKeys();
-        MediaKeySystemConfiguration getConfiguration();
+    @JSProperty
+    String getKeySystem();
 
-        @JSBody(script = "return MediaKeySystemAccess.prototype")
-        static MediaKeySystemAccess prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    Promise<MediaKeys> createMediaKeys();
 
-        @JSBody(script = "return new MediaKeySystemAccess()")
-        static MediaKeySystemAccess create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    MediaKeySystemConfiguration getConfiguration();
 
-        }
+}

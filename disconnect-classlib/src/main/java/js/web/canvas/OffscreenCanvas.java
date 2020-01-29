@@ -17,6 +17,16 @@ import javax.annotation.Nullable;
 
 @Experimental
 public interface OffscreenCanvas extends EventTarget, CanvasImageSource, TexImageSource {
+    @JSBody(script = "return OffscreenCanvas.prototype")
+    static OffscreenCanvas prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"width", "height"}, script = "return new OffscreenCanvas(width, height)")
+    static OffscreenCanvas create(int width, int height) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * These attributes return the dimensions of the OffscreenCanvas object's bitmap.
      * <p>
@@ -95,7 +105,6 @@ public interface OffscreenCanvas extends EventTarget, CanvasImageSource, TexImag
         return getContext(OffscreenRenderingContextId.CONTEXT_WEBGL2);
     }
 
-
     @Nullable
     <T extends OffscreenRenderingContext> T getContext(OffscreenRenderingContextId contextId, Any options);
 
@@ -106,15 +115,5 @@ public interface OffscreenCanvas extends EventTarget, CanvasImageSource, TexImag
      * Returns a newly created ImageBitmap object with the image in the OffscreenCanvas object. The image in the OffscreenCanvas object is replaced with a new blank image.
      */
     ImageBitmap transferToImageBitmap();
-
-    @JSBody(script = "return OffscreenCanvas.prototype")
-    static OffscreenCanvas prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params = {"width", "height"}, script = "return new OffscreenCanvas(width, height)")
-    static OffscreenCanvas create(int width, int height) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

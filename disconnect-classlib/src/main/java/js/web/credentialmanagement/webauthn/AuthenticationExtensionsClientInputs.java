@@ -1,12 +1,12 @@
 package js.web.credentialmanagement.webauthn;
 
+import js.lang.Any;
 import js.util.collections.Array;
 import js.web.dom.BufferSource;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface AuthenticationExtensionsClientInputs extends Any {
@@ -23,6 +23,7 @@ public interface AuthenticationExtensionsClientInputs extends Any {
 
     @JSProperty
     void setAuthnSel(Array<BufferSource> authnSel);
+
     @JSProperty
     void setAuthnSel(@JSByRef BufferSource... authnSel);
 

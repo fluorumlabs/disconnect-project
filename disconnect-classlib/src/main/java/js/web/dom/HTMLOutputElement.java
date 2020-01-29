@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides properties and methods (beyond those inherited from HTMLElement) for manipulating the layout and presentation of <output> elements. */
+/**
+ * Provides properties and methods (beyond those inherited from HTMLElement) for manipulating the layout and presentation of <output> elements.
+ */
 public interface HTMLOutputElement extends HTMLElement {
+    @JSBody(script = "return HTMLOutputElement.prototype")
+    static HTMLOutputElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLOutputElement()")
+    static HTMLOutputElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     String getDefaultValue();
 
@@ -16,7 +28,7 @@ public interface HTMLOutputElement extends HTMLElement {
 
     @JSProperty
     @Nullable
-    HTMLFormElement  getForm();
+    HTMLFormElement getForm();
 
     @JSProperty
     DOMTokenList getHtmlFor();
@@ -49,17 +61,9 @@ public interface HTMLOutputElement extends HTMLElement {
     boolean isWillValidate();
 
     boolean checkValidity();
+
     boolean reportValidity();
+
     void setCustomValidity(String error);
-
-    @JSBody(script = "return HTMLOutputElement.prototype")
-    static HTMLOutputElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLOutputElement()")
-    static HTMLOutputElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

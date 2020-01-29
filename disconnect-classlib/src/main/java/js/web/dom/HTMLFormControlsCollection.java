@@ -7,16 +7,10 @@ import org.teavm.jso.JSBody;
 import javax.annotation.Nullable;
 
 
-/** A collection of HTML form control elements.  */
+/**
+ * A collection of HTML form control elements.
+ */
 public interface HTMLFormControlsCollection extends ArrayLike<Element> {
-    /**
-     * Returns the item with ID or name name from the collection.
-     *
-     * If there are multiple matching items, then a RadioNodeList object containing all those elements is returned.
-     */
-    @Nullable
-     Unknown namedItem(String name);
-
     @JSBody(script = "return HTMLFormControlsCollection.prototype")
     static HTMLFormControlsCollection prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -26,5 +20,13 @@ public interface HTMLFormControlsCollection extends ArrayLike<Element> {
     static HTMLFormControlsCollection create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    /**
+     * Returns the item with ID or name name from the collection.
+     * <p>
+     * If there are multiple matching items, then a RadioNodeList object containing all those elements is returned.
+     */
+    @Nullable
+    Unknown namedItem(String name);
 
 }

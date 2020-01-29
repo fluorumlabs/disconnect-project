@@ -1,214 +1,232 @@
 package js.web.webrtc;
 
-import js.web.dom.BufferSource;
-import js.web.dom.EventListener;
-import js.web.dom.AddEventListenerOptions;
-import js.web.dom.Blob;
-import js.web.dom.Event;
-import js.web.dom.EventListenerOptions;
-import js.web.dom.EventTarget;
 import js.web.channelmessaging.MessageEvent;
+import js.web.dom.*;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
 /**
-* Created by Artem Godin on 1/22/2020.
-*/
+ * Created by Artem Godin on 1/22/2020.
+ */
 public interface RTCDataChannel extends EventTarget {
-@JSProperty
-String getBinaryType();
+    @JSBody(script = "return RTCDataChannel.prototype")
+    static RTCDataChannel prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-void setBinaryType(String binaryType);
+    @JSBody(script = "return new RTCDataChannel()")
+    static RTCDataChannel create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-@JSProperty
-int getBufferedAmount();
+    @JSProperty
+    String getBinaryType();
 
-@JSProperty
-int getBufferedAmountLowThreshold();
+    @JSProperty
+    void setBinaryType(String binaryType);
 
-@JSProperty
-void setBufferedAmountLowThreshold(int bufferedAmountLowThreshold);
+    @JSProperty
+    int getBufferedAmount();
 
-@JSProperty
-@Nullable
-int  getId();
+    @JSProperty
+    int getBufferedAmountLowThreshold();
 
-@JSProperty
-String getLabel();
+    @JSProperty
+    void setBufferedAmountLowThreshold(int bufferedAmountLowThreshold);
 
-@JSProperty
-@Nullable
-double  getMaxPacketLifeTime();
+    @JSProperty
+    @Nullable
+    int getId();
 
-@JSProperty
-@Nullable
-int  getMaxRetransmits();
+    @JSProperty
+    String getLabel();
 
-@JSProperty
-boolean isNegotiated();
+    @JSProperty
+    @Nullable
+    double getMaxPacketLifeTime();
 
-@JSProperty
-@Nullable
-EventListener<Event> getOnbufferedamountlow();
+    @JSProperty
+    @Nullable
+    int getMaxRetransmits();
 
-@JSProperty
-void setOnbufferedamountlow(EventListener<Event> onbufferedamountlow);
+    @JSProperty
+    boolean isNegotiated();
 
-default void addBufferedAmountLowEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-    addEventListener("bufferedamountlow", listener, options);
-}
-default void addBufferedAmountLowEventListener(EventListener<Event> listener, boolean options) {
-    addEventListener("bufferedamountlow", listener, options);
-}
-default void addBufferedAmountLowEventListener(EventListener<Event> listener) {
-    addEventListener("bufferedamountlow", listener);
-}
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnbufferedamountlow();
 
-default void removeBufferedAmountLowEventListener(EventListener<Event> listener, EventListenerOptions options) {
-    removeEventListener("bufferedamountlow", listener, options);
-}
-default void removeBufferedAmountLowEventListener(EventListener<Event> listener, boolean options) {
-    removeEventListener("bufferedamountlow", listener, options);
-}
-default void removeBufferedAmountLowEventListener(EventListener<Event> listener) {
-    removeEventListener("bufferedamountlow", listener);
-}
+    @JSProperty
+    void setOnbufferedamountlow(EventListener<Event> onbufferedamountlow);
 
-@JSProperty
-@Nullable
-EventListener<Event> getOnclose();
+    default void addBufferedAmountLowEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("bufferedamountlow", listener, options);
+    }
 
-@JSProperty
-void setOnclose(EventListener<Event> onclose);
+    default void addBufferedAmountLowEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("bufferedamountlow", listener, options);
+    }
 
-default void addCloseEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-    addEventListener("close", listener, options);
-}
-default void addCloseEventListener(EventListener<Event> listener, boolean options) {
-    addEventListener("close", listener, options);
-}
-default void addCloseEventListener(EventListener<Event> listener) {
-    addEventListener("close", listener);
-}
+    default void addBufferedAmountLowEventListener(EventListener<Event> listener) {
+        addEventListener("bufferedamountlow", listener);
+    }
 
-default void removeCloseEventListener(EventListener<Event> listener, EventListenerOptions options) {
-    removeEventListener("close", listener, options);
-}
-default void removeCloseEventListener(EventListener<Event> listener, boolean options) {
-    removeEventListener("close", listener, options);
-}
-default void removeCloseEventListener(EventListener<Event> listener) {
-    removeEventListener("close", listener);
-}
+    default void removeBufferedAmountLowEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("bufferedamountlow", listener, options);
+    }
 
-@JSProperty
-@Nullable
-EventListener<RTCErrorEvent> getOnerror();
+    default void removeBufferedAmountLowEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("bufferedamountlow", listener, options);
+    }
 
-@JSProperty
-void setOnerror(EventListener<RTCErrorEvent> onerror);
+    default void removeBufferedAmountLowEventListener(EventListener<Event> listener) {
+        removeEventListener("bufferedamountlow", listener);
+    }
 
-default void addErrorEventListener(EventListener<RTCErrorEvent> listener, AddEventListenerOptions options) {
-    addEventListener("error", listener, options);
-}
-default void addErrorEventListener(EventListener<RTCErrorEvent> listener, boolean options) {
-    addEventListener("error", listener, options);
-}
-default void addErrorEventListener(EventListener<RTCErrorEvent> listener) {
-    addEventListener("error", listener);
-}
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnclose();
 
-default void removeErrorEventListener(EventListener<RTCErrorEvent> listener, EventListenerOptions options) {
-    removeEventListener("error", listener, options);
-}
-default void removeErrorEventListener(EventListener<RTCErrorEvent> listener, boolean options) {
-    removeEventListener("error", listener, options);
-}
-default void removeErrorEventListener(EventListener<RTCErrorEvent> listener) {
-    removeEventListener("error", listener);
-}
+    @JSProperty
+    void setOnclose(EventListener<Event> onclose);
 
-@JSProperty
-@Nullable
-EventListener<MessageEvent> getOnmessage();
+    default void addCloseEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("close", listener, options);
+    }
 
-@JSProperty
-void setOnmessage(EventListener<MessageEvent> onmessage);
+    default void addCloseEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("close", listener, options);
+    }
 
-default void addMessageEventListener(EventListener<MessageEvent> listener, AddEventListenerOptions options) {
-    addEventListener("message", listener, options);
-}
-default void addMessageEventListener(EventListener<MessageEvent> listener, boolean options) {
-    addEventListener("message", listener, options);
-}
-default void addMessageEventListener(EventListener<MessageEvent> listener) {
-    addEventListener("message", listener);
-}
+    default void addCloseEventListener(EventListener<Event> listener) {
+        addEventListener("close", listener);
+    }
 
-default void removeMessageEventListener(EventListener<MessageEvent> listener, EventListenerOptions options) {
-    removeEventListener("message", listener, options);
-}
-default void removeMessageEventListener(EventListener<MessageEvent> listener, boolean options) {
-    removeEventListener("message", listener, options);
-}
-default void removeMessageEventListener(EventListener<MessageEvent> listener) {
-    removeEventListener("message", listener);
-}
+    default void removeCloseEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("close", listener, options);
+    }
 
-@JSProperty
-@Nullable
-EventListener<Event> getOnopen();
+    default void removeCloseEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("close", listener, options);
+    }
 
-@JSProperty
-void setOnopen(EventListener<Event> onopen);
+    default void removeCloseEventListener(EventListener<Event> listener) {
+        removeEventListener("close", listener);
+    }
 
-default void addOpenEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-    addEventListener("open", listener, options);
-}
-default void addOpenEventListener(EventListener<Event> listener, boolean options) {
-    addEventListener("open", listener, options);
-}
-default void addOpenEventListener(EventListener<Event> listener) {
-    addEventListener("open", listener);
-}
+    @JSProperty
+    @Nullable
+    EventListener<RTCErrorEvent> getOnerror();
 
-default void removeOpenEventListener(EventListener<Event> listener, EventListenerOptions options) {
-    removeEventListener("open", listener, options);
-}
-default void removeOpenEventListener(EventListener<Event> listener, boolean options) {
-    removeEventListener("open", listener, options);
-}
-default void removeOpenEventListener(EventListener<Event> listener) {
-    removeEventListener("open", listener);
-}
-@JSProperty
-boolean isOrdered();
+    @JSProperty
+    void setOnerror(EventListener<RTCErrorEvent> onerror);
 
-@JSProperty
-RTCPriorityType getPriority();
+    default void addErrorEventListener(EventListener<RTCErrorEvent> listener, AddEventListenerOptions options) {
+        addEventListener("error", listener, options);
+    }
 
-@JSProperty
-String getProtocol();
+    default void addErrorEventListener(EventListener<RTCErrorEvent> listener, boolean options) {
+        addEventListener("error", listener, options);
+    }
 
-@JSProperty
-RTCDataChannelState getReadyState();
+    default void addErrorEventListener(EventListener<RTCErrorEvent> listener) {
+        addEventListener("error", listener);
+    }
 
-void close();
-void send(String data);
-void send(Blob data);
-void send(BufferSource data);
+    default void removeErrorEventListener(EventListener<RTCErrorEvent> listener, EventListenerOptions options) {
+        removeEventListener("error", listener, options);
+    }
 
-@JSBody(script = "return RTCDataChannel.prototype")
-static RTCDataChannel prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void removeErrorEventListener(EventListener<RTCErrorEvent> listener, boolean options) {
+        removeEventListener("error", listener, options);
+    }
 
-@JSBody(script = "return new RTCDataChannel()")
-static RTCDataChannel create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void removeErrorEventListener(EventListener<RTCErrorEvent> listener) {
+        removeEventListener("error", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<MessageEvent> getOnmessage();
+
+    @JSProperty
+    void setOnmessage(EventListener<MessageEvent> onmessage);
+
+    default void addMessageEventListener(EventListener<MessageEvent> listener, AddEventListenerOptions options) {
+        addEventListener("message", listener, options);
+    }
+
+    default void addMessageEventListener(EventListener<MessageEvent> listener, boolean options) {
+        addEventListener("message", listener, options);
+    }
+
+    default void addMessageEventListener(EventListener<MessageEvent> listener) {
+        addEventListener("message", listener);
+    }
+
+    default void removeMessageEventListener(EventListener<MessageEvent> listener, EventListenerOptions options) {
+        removeEventListener("message", listener, options);
+    }
+
+    default void removeMessageEventListener(EventListener<MessageEvent> listener, boolean options) {
+        removeEventListener("message", listener, options);
+    }
+
+    default void removeMessageEventListener(EventListener<MessageEvent> listener) {
+        removeEventListener("message", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnopen();
+
+    @JSProperty
+    void setOnopen(EventListener<Event> onopen);
+
+    default void addOpenEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("open", listener, options);
+    }
+
+    default void addOpenEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("open", listener, options);
+    }
+
+    default void addOpenEventListener(EventListener<Event> listener) {
+        addEventListener("open", listener);
+    }
+
+    default void removeOpenEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("open", listener, options);
+    }
+
+    default void removeOpenEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("open", listener, options);
+    }
+
+    default void removeOpenEventListener(EventListener<Event> listener) {
+        removeEventListener("open", listener);
+    }
+
+    @JSProperty
+    boolean isOrdered();
+
+    @JSProperty
+    RTCPriorityType getPriority();
+
+    @JSProperty
+    String getProtocol();
+
+    @JSProperty
+    RTCDataChannelState getReadyState();
+
+    void close();
+
+    void send(String data);
+
+    void send(Blob data);
+
+    void send(BufferSource data);
 
 }

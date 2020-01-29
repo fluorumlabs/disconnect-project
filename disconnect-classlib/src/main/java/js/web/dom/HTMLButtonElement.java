@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <button> elements. */
+/**
+ * Provides properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <button> elements.
+ */
 public interface HTMLButtonElement extends HTMLElement {
+    @JSBody(script = "return HTMLButtonElement.prototype")
+    static HTMLButtonElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLButtonElement()")
+    static HTMLButtonElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Provides a way to direct a user to a specific field when a document loads. This can provide both direction and convenience for a user, reducing the need to click or tab to a field when a page opens. This attribute is true when present on an element, and false when missing.
      */
@@ -77,6 +89,7 @@ public interface HTMLButtonElement extends HTMLElement {
 
     @JSProperty
     NodeListOf<HTMLLabelElement> getLabels();
+
     /**
      * Sets or retrieves the name of the object.
      */
@@ -126,21 +139,14 @@ public interface HTMLButtonElement extends HTMLElement {
      * Returns whether a form will validate when it is submitted, without having to submit it.
      */
     boolean checkValidity();
+
     boolean reportValidity();
+
     /**
      * Sets a custom error message that is displayed when a form is submitted.
+     *
      * @param error Sets a custom error message that is displayed when a form is submitted.
      */
     void setCustomValidity(String error);
-
-    @JSBody(script = "return HTMLButtonElement.prototype")
-    static HTMLButtonElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLButtonElement()")
-    static HTMLButtonElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

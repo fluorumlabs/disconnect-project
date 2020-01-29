@@ -12,44 +12,51 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides the ability to control and obtain details about how a particular MediaStreamTrack is encoded and sent to a remote peer. */
-        public interface RTCRtpSender extends Any {
-        @JSProperty
-        @Nullable
-        RTCDTMFSender getDtmf();
+/**
+ * Provides the ability to control and obtain details about how a particular MediaStreamTrack is encoded and sent to a remote peer.
+ */
+public interface RTCRtpSender extends Any {
+    @JSBody(script = "return RTCRtpSender.prototype")
+    static RTCRtpSender prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        RTCDtlsTransport  getRtcpTransport();
+    @JSBody(script = "return new RTCRtpSender()")
+    static RTCRtpSender create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        MediaStreamTrack getTrack();
+    @JSBody(params = "kind", script = "return RTCRtpSender.getCapabilities(kind)")
+    static RTCRtpCapabilities getCapabilities(String kind) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        RTCDtlsTransport  getTransport();
+    @JSProperty
+    @Nullable
+    RTCDTMFSender getDtmf();
 
-        RTCRtpSendParameters getParameters();
-        Promise<RTCStatsReport> getStats();
-        VoidPromise replaceTrack(@Nullable MediaStreamTrack withTrack);
-        VoidPromise setParameters(RTCRtpSendParameters parameters);
-        void setStreams(@JSByRef MediaStream... streams);
-        void setStreams(Array<MediaStream> streams);
+    @JSProperty
+    @Nullable
+    RTCDtlsTransport getRtcpTransport();
 
-        @JSBody(script = "return RTCRtpSender.prototype")
-        static RTCRtpSender prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    MediaStreamTrack getTrack();
 
-        @JSBody(script = "return new RTCRtpSender()")
-        static RTCRtpSender create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    RTCDtlsTransport getTransport();
 
-        @JSBody(params="kind", script = "return RTCRtpSender.getCapabilities(kind)")
-        static RTCRtpCapabilities getCapabilities(String kind) {
-                throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    RTCRtpSendParameters getParameters();
+
+    Promise<RTCStatsReport> getStats();
+
+    VoidPromise replaceTrack(@Nullable MediaStreamTrack withTrack);
+
+    VoidPromise setParameters(RTCRtpSendParameters parameters);
+
+    void setStreams(@JSByRef MediaStream... streams);
+
+    void setStreams(Array<MediaStream> streams);
 
 }

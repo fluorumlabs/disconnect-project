@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** The HTML <meter> elements expose the HTMLMeterElement interface, which provides special properties and methods (beyond the HTMLElement object interface they also have available to them by inheritance) for manipulating the layout and presentation of <meter> elements. */
+/**
+ * The HTML <meter> elements expose the HTMLMeterElement interface, which provides special properties and methods (beyond the HTMLElement object interface they also have available to them by inheritance) for manipulating the layout and presentation of <meter> elements.
+ */
 public interface HTMLMeterElement extends HTMLElement {
+    @JSBody(script = "return HTMLMeterElement.prototype")
+    static HTMLMeterElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLMeterElement()")
+    static HTMLMeterElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     double getHigh();
 
@@ -43,15 +55,5 @@ public interface HTMLMeterElement extends HTMLElement {
 
     @JSProperty
     void setValue(double value);
-
-    @JSBody(script = "return HTMLMeterElement.prototype")
-    static HTMLMeterElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLMeterElement()")
-    static HTMLMeterElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

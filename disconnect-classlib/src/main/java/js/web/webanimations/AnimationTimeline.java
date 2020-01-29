@@ -1,15 +1,11 @@
 package js.web.webanimations;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
 
 public interface AnimationTimeline extends Any {
-    @JSProperty
-    double  getCurrentTime();
-
     @JSBody(script = "return AnimationTimeline.prototype")
     static AnimationTimeline prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -19,5 +15,8 @@ public interface AnimationTimeline extends Any {
     static AnimationTimeline create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    double getCurrentTime();
 
 }

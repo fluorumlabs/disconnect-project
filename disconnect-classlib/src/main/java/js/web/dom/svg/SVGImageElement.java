@@ -4,31 +4,33 @@ import js.web.canvas.CanvasImageSource;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <image> element. */
-        public interface SVGImageElement extends SVGGraphicsElement, SVGURIReference, CanvasImageSource {
-        @JSProperty
-        SVGAnimatedLength getHeight();
+/**
+ * Corresponds to the <image> element.
+ */
+public interface SVGImageElement extends SVGGraphicsElement, SVGURIReference, CanvasImageSource {
+    @JSBody(script = "return SVGImageElement.prototype")
+    static SVGImageElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedPreserveAspectRatio getPreserveAspectRatio();
+    @JSBody(script = "return new SVGImageElement()")
+    static SVGImageElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedLength getWidth();
+    @JSProperty
+    SVGAnimatedLength getHeight();
 
-        @JSProperty
-        SVGAnimatedLength getX();
+    @JSProperty
+    SVGAnimatedPreserveAspectRatio getPreserveAspectRatio();
 
-        @JSProperty
-        SVGAnimatedLength getY();
+    @JSProperty
+    SVGAnimatedLength getWidth();
 
-        @JSBody(script = "return SVGImageElement.prototype")
-        static SVGImageElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getX();
 
-        @JSBody(script = "return new SVGImageElement()")
-        static SVGImageElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedLength getY();
 
-        }
+}

@@ -3,35 +3,37 @@ package js.web.webaudio;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** The OscillatorNode interface represents a periodic waveform, such as a sine wave. It is an AudioScheduledSourceNode audio-processing module that causes a specified frequency of a given wave to be created—in effect, a constant tone. */
-        public interface OscillatorNode extends AudioScheduledSourceNode {
-        @JSProperty
-        AudioParam getDetune();
+/**
+ * The OscillatorNode interface represents a periodic waveform, such as a sine wave. It is an AudioScheduledSourceNode audio-processing module that causes a specified frequency of a given wave to be created—in effect, a constant tone.
+ */
+public interface OscillatorNode extends AudioScheduledSourceNode {
+    @JSBody(script = "return OscillatorNode.prototype")
+    static OscillatorNode prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        AudioParam getFrequency();
+    @JSBody(params = {"context", "options"}, script = "return new OscillatorNode(context, options)")
+    static OscillatorNode create(BaseAudioContext context, OscillatorOptions options) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        OscillatorType getType();
+    @JSBody(params = "context", script = "return new OscillatorNode(context)")
+    static OscillatorNode create(BaseAudioContext context) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setType(OscillatorType type);
+    @JSProperty
+    AudioParam getDetune();
 
-        void setPeriodicWave(PeriodicWave periodicWave);
+    @JSProperty
+    AudioParam getFrequency();
 
-        @JSBody(script = "return OscillatorNode.prototype")
-        static OscillatorNode prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    OscillatorType getType();
 
-        @JSBody(params={"context","options"}, script = "return new OscillatorNode(context, options)")
-        static OscillatorNode create(BaseAudioContext context, OscillatorOptions options) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setType(OscillatorType type);
 
-        @JSBody(params="context", script = "return new OscillatorNode(context)")
-        static OscillatorNode create(BaseAudioContext context) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    void setPeriodicWave(PeriodicWave periodicWave);
 
-        }
+}

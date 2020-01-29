@@ -5,15 +5,6 @@ import org.teavm.jso.JSProperty;
 
 
 public interface CSSImportRule extends CSSRule {
-    @JSProperty
-    String getHref();
-
-    @JSProperty
-    MediaList getMedia();
-
-    @JSProperty
-    CSSStyleSheet getStyleSheet();
-
     @JSBody(script = "return CSSImportRule.prototype")
     static CSSImportRule prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -23,5 +14,14 @@ public interface CSSImportRule extends CSSRule {
     static CSSImportRule create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    String getHref();
+
+    @JSProperty
+    MediaList getMedia();
+
+    @JSProperty
+    CSSStyleSheet getStyleSheet();
 
 }

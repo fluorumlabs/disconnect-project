@@ -1,9 +1,10 @@
 package js.web.webvr;
 
+import js.lang.Any;
+import js.util.buffers.Float32Array;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.util.buffers.Float32Array;
+import javax.annotation.Nullable;
 
 
 public interface VRStageParameters extends Any {

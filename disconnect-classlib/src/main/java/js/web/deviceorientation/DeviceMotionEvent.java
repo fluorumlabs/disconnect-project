@@ -7,8 +7,25 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** The DeviceMotionEvent provides web developers with information about the speed of changes for the device's position and orientation. */
+/**
+ * The DeviceMotionEvent provides web developers with information about the speed of changes for the device's position and orientation.
+ */
 public interface DeviceMotionEvent extends Event {
+    @JSBody(script = "return DeviceMotionEvent.prototype")
+    static DeviceMotionEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new DeviceMotionEvent(type, eventInitDict)")
+    static DeviceMotionEvent create(String type, DeviceMotionEventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "type", script = "return new DeviceMotionEvent(type)")
+    static DeviceMotionEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     @Nullable
     DeviceMotionEventAcceleration getAcceleration();
@@ -23,21 +40,6 @@ public interface DeviceMotionEvent extends Event {
     @JSProperty
     @Nullable
     DeviceMotionEventRotationRate getRotationRate();
-
-    @JSBody(script = "return DeviceMotionEvent.prototype")
-    static DeviceMotionEvent prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params={"type","eventInitDict"}, script = "return new DeviceMotionEvent(type, eventInitDict)")
-    static DeviceMotionEvent create(String type, DeviceMotionEventInit eventInitDict) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="type", script = "return new DeviceMotionEvent(type)")
-    static DeviceMotionEvent create(String type) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 
     interface DeviceMotionEventInit extends EventInit {

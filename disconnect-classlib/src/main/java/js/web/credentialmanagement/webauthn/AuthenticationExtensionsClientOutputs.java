@@ -1,12 +1,12 @@
 package js.web.credentialmanagement.webauthn;
 
+import js.lang.Any;
 import js.util.buffers.ArrayBuffer;
 import js.web.geolocation.GeolocationCoordinates;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface AuthenticationExtensionsClientOutputs extends Any {

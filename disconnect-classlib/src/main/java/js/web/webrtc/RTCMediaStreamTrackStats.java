@@ -1,9 +1,10 @@
 package js.web.webrtc;
 
 
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface RTCMediaStreamTrackStats extends RTCStats {

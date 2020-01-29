@@ -1,9 +1,8 @@
 package js.web.webrtc;
 
-import org.teavm.jso.JSProperty;
-
 import js.util.collections.Array;
 import org.teavm.jso.JSByRef;
+import org.teavm.jso.JSProperty;
 
 
 public interface RTCRtpReceiveParameters extends RTCRtpParameters {
@@ -12,6 +11,7 @@ public interface RTCRtpReceiveParameters extends RTCRtpParameters {
 
     @JSProperty
     void setEncodings(Array<RTCRtpDecodingParameters> encodings);
+
     @JSProperty
     void setEncodings(@JSByRef RTCRtpDecodingParameters... encodings);
 

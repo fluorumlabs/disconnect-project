@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Contains the base URI for a document. This object inherits all of the properties and methods as described in the HTMLElement interface. */
+/**
+ * Contains the base URI for a document. This object inherits all of the properties and methods as described in the HTMLElement interface.
+ */
 public interface HTMLBaseElement extends HTMLElement {
+    @JSBody(script = "return HTMLBaseElement.prototype")
+    static HTMLBaseElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLBaseElement()")
+    static HTMLBaseElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Gets or sets the baseline URL on which relative links are based.
      */
@@ -22,15 +34,5 @@ public interface HTMLBaseElement extends HTMLElement {
 
     @JSProperty
     void setTarget(String target);
-
-    @JSBody(script = "return HTMLBaseElement.prototype")
-    static HTMLBaseElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLBaseElement()")
-    static HTMLBaseElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

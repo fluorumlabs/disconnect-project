@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties and methods (beyond the regular HTMLElement object interface they also have available to them by inheritance) for manipulating the layout and presentation of <optgroup> elements. */
+/**
+ * Provides special properties and methods (beyond the regular HTMLElement object interface they also have available to them by inheritance) for manipulating the layout and presentation of <optgroup> elements.
+ */
 public interface HTMLOptGroupElement extends HTMLElement {
+    @JSBody(script = "return HTMLOptGroupElement.prototype")
+    static HTMLOptGroupElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLOptGroupElement()")
+    static HTMLOptGroupElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     boolean isDisabled();
 
@@ -19,7 +31,7 @@ public interface HTMLOptGroupElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    HTMLFormElement  getForm();
+    HTMLFormElement getForm();
 
     /**
      * Sets or retrieves a value that you can use to implement your own label functionality for the object.
@@ -29,15 +41,5 @@ public interface HTMLOptGroupElement extends HTMLElement {
 
     @JSProperty
     void setLabel(String label);
-
-    @JSBody(script = "return HTMLOptGroupElement.prototype")
-    static HTMLOptGroupElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLOptGroupElement()")
-    static HTMLOptGroupElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

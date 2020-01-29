@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties and methods (beyond those on the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <object> element, representing external resources. */
+/**
+ * Provides special properties and methods (beyond those on the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <object> element, representing external resources.
+ */
 public interface HTMLObjectElement extends HTMLElement {
+    @JSBody(script = "return HTMLObjectElement.prototype")
+    static HTMLObjectElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLObjectElement()")
+    static HTMLObjectElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @Deprecated
     @JSProperty
     String getAlign();
@@ -94,7 +106,7 @@ public interface HTMLObjectElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    HTMLFormElement  getForm();
+    HTMLFormElement getForm();
 
     /**
      * Sets or retrieves the height of the object.
@@ -187,23 +199,17 @@ public interface HTMLObjectElement extends HTMLElement {
      * Returns whether a form will validate when it is submitted, without having to submit it.
      */
     boolean checkValidity();
+
     @Nullable
     Document getSVGDocument();
+
     boolean reportValidity();
+
     /**
      * Sets a custom error message that is displayed when a form is submitted.
+     *
      * @param error Sets a custom error message that is displayed when a form is submitted.
      */
     void setCustomValidity(String error);
-
-    @JSBody(script = "return HTMLObjectElement.prototype")
-    static HTMLObjectElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLObjectElement()")
-    static HTMLObjectElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

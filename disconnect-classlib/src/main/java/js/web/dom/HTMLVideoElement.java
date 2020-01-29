@@ -1,15 +1,28 @@
 package js.web.dom;
 
+import js.lang.Unknown;
+import js.web.canvas.CanvasImageSource;
 import js.web.mse.VideoPlaybackQuality;
+import js.web.webgl.TexImageSource;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Unknown;
-import js.web.canvas.CanvasImageSource;
-import js.web.webgl.TexImageSource;
+import javax.annotation.Nullable;
 
-/** Provides special properties and methods for manipulating video objects. It also inherits properties and methods of HTMLMediaElement and HTMLElement. */
+/**
+ * Provides special properties and methods for manipulating video objects. It also inherits properties and methods of HTMLMediaElement and HTMLElement.
+ */
 public interface HTMLVideoElement extends HTMLMediaElement, CanvasImageSource, TexImageSource {
+    @JSBody(script = "return HTMLVideoElement.prototype")
+    static HTMLVideoElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLVideoElement()")
+    static HTMLVideoElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Gets or sets the height of the video element.
      */
@@ -59,9 +72,11 @@ public interface HTMLVideoElement extends HTMLMediaElement, CanvasImageSource, T
     default void addMSVideoFormatChangedEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
         addEventListener("MSVideoFormatChanged", listener, options);
     }
+
     default void addMSVideoFormatChangedEventListener(EventListener<Event> listener, boolean options) {
         addEventListener("MSVideoFormatChanged", listener, options);
     }
+
     default void addMSVideoFormatChangedEventListener(EventListener<Event> listener) {
         addEventListener("MSVideoFormatChanged", listener);
     }
@@ -69,12 +84,15 @@ public interface HTMLVideoElement extends HTMLMediaElement, CanvasImageSource, T
     default void removeMSVideoFormatChangedEventListener(EventListener<Event> listener, EventListenerOptions options) {
         removeEventListener("MSVideoFormatChanged", listener, options);
     }
+
     default void removeMSVideoFormatChangedEventListener(EventListener<Event> listener, boolean options) {
         removeEventListener("MSVideoFormatChanged", listener, options);
     }
+
     default void removeMSVideoFormatChangedEventListener(EventListener<Event> listener) {
         removeEventListener("MSVideoFormatChanged", listener);
     }
+
     @JSProperty
     @Nullable
     EventListener<Event> getOnMSVideoFrameStepCompleted();
@@ -85,9 +103,11 @@ public interface HTMLVideoElement extends HTMLMediaElement, CanvasImageSource, T
     default void addMSVideoFrameStepCompletedEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
         addEventListener("MSVideoFrameStepCompleted", listener, options);
     }
+
     default void addMSVideoFrameStepCompletedEventListener(EventListener<Event> listener, boolean options) {
         addEventListener("MSVideoFrameStepCompleted", listener, options);
     }
+
     default void addMSVideoFrameStepCompletedEventListener(EventListener<Event> listener) {
         addEventListener("MSVideoFrameStepCompleted", listener);
     }
@@ -95,12 +115,15 @@ public interface HTMLVideoElement extends HTMLMediaElement, CanvasImageSource, T
     default void removeMSVideoFrameStepCompletedEventListener(EventListener<Event> listener, EventListenerOptions options) {
         removeEventListener("MSVideoFrameStepCompleted", listener, options);
     }
+
     default void removeMSVideoFrameStepCompletedEventListener(EventListener<Event> listener, boolean options) {
         removeEventListener("MSVideoFrameStepCompleted", listener, options);
     }
+
     default void removeMSVideoFrameStepCompletedEventListener(EventListener<Event> listener) {
         removeEventListener("MSVideoFrameStepCompleted", listener);
     }
+
     @JSProperty
     @Nullable
     EventListener<Event> getOnMSVideoOptimalLayoutChanged();
@@ -111,9 +134,11 @@ public interface HTMLVideoElement extends HTMLMediaElement, CanvasImageSource, T
     default void addMSVideoOptimalLayoutChangedEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
         addEventListener("MSVideoOptimalLayoutChanged", listener, options);
     }
+
     default void addMSVideoOptimalLayoutChangedEventListener(EventListener<Event> listener, boolean options) {
         addEventListener("MSVideoOptimalLayoutChanged", listener, options);
     }
+
     default void addMSVideoOptimalLayoutChangedEventListener(EventListener<Event> listener) {
         addEventListener("MSVideoOptimalLayoutChanged", listener);
     }
@@ -121,12 +146,15 @@ public interface HTMLVideoElement extends HTMLMediaElement, CanvasImageSource, T
     default void removeMSVideoOptimalLayoutChangedEventListener(EventListener<Event> listener, EventListenerOptions options) {
         removeEventListener("MSVideoOptimalLayoutChanged", listener, options);
     }
+
     default void removeMSVideoOptimalLayoutChangedEventListener(EventListener<Event> listener, boolean options) {
         removeEventListener("MSVideoOptimalLayoutChanged", listener, options);
     }
+
     default void removeMSVideoOptimalLayoutChangedEventListener(EventListener<Event> listener) {
         removeEventListener("MSVideoOptimalLayoutChanged", listener);
     }
+
     /**
      * Gets or sets a URL of an image to display, for example, like a movie poster. This can be a still frame from the video, or another image if no video data is available.
      */
@@ -164,23 +192,21 @@ public interface HTMLVideoElement extends HTMLMediaElement, CanvasImageSource, T
     void setWidth(double width);
 
     VideoPlaybackQuality getVideoPlaybackQuality();
+
     void msFrameStep(boolean forward);
+
     void msInsertVideoEffect(String activatableClassId, boolean effectRequired, Unknown config);
+
     void msInsertVideoEffect(String activatableClassId, boolean effectRequired);
+
     void msSetVideoRectangle(double left, double top, double right, double bottom);
+
     void webkitEnterFullScreen();
+
     void webkitEnterFullscreen();
+
     void webkitExitFullScreen();
+
     void webkitExitFullscreen();
-
-    @JSBody(script = "return HTMLVideoElement.prototype")
-    static HTMLVideoElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLVideoElement()")
-    static HTMLVideoElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

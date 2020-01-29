@@ -1,7 +1,6 @@
 package js.web.indexeddb;
 
 
-import js.web.dom.EventListener;
 import js.web.dom.*;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
@@ -9,130 +8,144 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
-* Created by Artem Godin on 1/22/2020.
-*/
+ * Created by Artem Godin on 1/22/2020.
+ */
 public interface IDBTransaction extends EventTarget {
-/**
- * Returns the transaction's connection.
- */
-@JSProperty
-IDBDatabase getDb();
+    @JSBody(script = "return IDBTransaction.prototype")
+    static IDBTransaction prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/**
- * If the transaction was aborted, returns the error (a DOMException) providing the reason.
- */
-@JSProperty
-DOMException getError();
+    @JSBody(script = "return new IDBTransaction()")
+    static IDBTransaction create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/**
- * Returns the mode the transaction was created with ("readonly" or "readwrite"), or "versionchange" for an upgrade transaction.
- */
-@JSProperty
-IDBTransactionMode getMode();
+    /**
+     * Returns the transaction's connection.
+     */
+    @JSProperty
+    IDBDatabase getDb();
 
-/**
- * Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
- */
-@JSProperty
-DOMStringList getObjectStoreNames();
+    /**
+     * If the transaction was aborted, returns the error (a DOMException) providing the reason.
+     */
+    @JSProperty
+    DOMException getError();
 
-@JSProperty
-@Nullable
-EventListener<Event> getOnabort();
+    /**
+     * Returns the mode the transaction was created with ("readonly" or "readwrite"), or "versionchange" for an upgrade transaction.
+     */
+    @JSProperty
+    IDBTransactionMode getMode();
 
-@JSProperty
-void setOnabort(EventListener<Event> onabort);
+    /**
+     * Returns a list of the names of object stores in the transaction's scope. For an upgrade transaction this is all object stores in the database.
+     */
+    @JSProperty
+    DOMStringList getObjectStoreNames();
 
-default void addAbortEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-    addEventListener("abort", listener, options);
-}
-default void addAbortEventListener(EventListener<Event> listener, boolean options) {
-    addEventListener("abort", listener, options);
-}
-default void addAbortEventListener(EventListener<Event> listener) {
-    addEventListener("abort", listener);
-}
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnabort();
 
-default void removeAbortEventListener(EventListener<Event> listener, EventListenerOptions options) {
-    removeEventListener("abort", listener, options);
-}
-default void removeAbortEventListener(EventListener<Event> listener, boolean options) {
-    removeEventListener("abort", listener, options);
-}
-default void removeAbortEventListener(EventListener<Event> listener) {
-    removeEventListener("abort", listener);
-}
+    @JSProperty
+    void setOnabort(EventListener<Event> onabort);
 
-@JSProperty
-@Nullable
-EventListener<Event> getOncomplete();
+    default void addAbortEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("abort", listener, options);
+    }
 
-@JSProperty
-void setOncomplete(EventListener<Event> oncomplete);
+    default void addAbortEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("abort", listener, options);
+    }
 
-default void addCompleteEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-    addEventListener("complete", listener, options);
-}
-default void addCompleteEventListener(EventListener<Event> listener, boolean options) {
-    addEventListener("complete", listener, options);
-}
-default void addCompleteEventListener(EventListener<Event> listener) {
-    addEventListener("complete", listener);
-}
+    default void addAbortEventListener(EventListener<Event> listener) {
+        addEventListener("abort", listener);
+    }
 
-default void removeCompleteEventListener(EventListener<Event> listener, EventListenerOptions options) {
-    removeEventListener("complete", listener, options);
-}
-default void removeCompleteEventListener(EventListener<Event> listener, boolean options) {
-    removeEventListener("complete", listener, options);
-}
-default void removeCompleteEventListener(EventListener<Event> listener) {
-    removeEventListener("complete", listener);
-}
+    default void removeAbortEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("abort", listener, options);
+    }
 
-@JSProperty
-@Nullable
-EventListener<Event> getOnerror();
+    default void removeAbortEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("abort", listener, options);
+    }
 
-@JSProperty
-void setOnerror(EventListener<Event> onerror);
+    default void removeAbortEventListener(EventListener<Event> listener) {
+        removeEventListener("abort", listener);
+    }
 
-default void addErrorEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-    addEventListener("error", listener, options);
-}
-default void addErrorEventListener(EventListener<Event> listener, boolean options) {
-    addEventListener("error", listener, options);
-}
-default void addErrorEventListener(EventListener<Event> listener) {
-    addEventListener("error", listener);
-}
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOncomplete();
 
-default void removeErrorEventListener(EventListener<Event> listener, EventListenerOptions options) {
-    removeEventListener("error", listener, options);
-}
-default void removeErrorEventListener(EventListener<Event> listener, boolean options) {
-    removeEventListener("error", listener, options);
-}
-default void removeErrorEventListener(EventListener<Event> listener) {
-    removeEventListener("error", listener);
-}
-/**
- * Aborts the transaction. All pending requests will fail with a "AbortError" DOMException and all changes made to the database will be reverted.
- */
-void abort();
-/**
- * Returns an IDBObjectStore in the transaction's scope.
- */
-IDBObjectStore objectStore(String name);
+    @JSProperty
+    void setOncomplete(EventListener<Event> oncomplete);
 
-@JSBody(script = "return IDBTransaction.prototype")
-static IDBTransaction prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void addCompleteEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("complete", listener, options);
+    }
 
-@JSBody(script = "return new IDBTransaction()")
-static IDBTransaction create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
+    default void addCompleteEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("complete", listener, options);
+    }
+
+    default void addCompleteEventListener(EventListener<Event> listener) {
+        addEventListener("complete", listener);
+    }
+
+    default void removeCompleteEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("complete", listener, options);
+    }
+
+    default void removeCompleteEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("complete", listener, options);
+    }
+
+    default void removeCompleteEventListener(EventListener<Event> listener) {
+        removeEventListener("complete", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnerror();
+
+    @JSProperty
+    void setOnerror(EventListener<Event> onerror);
+
+    default void addErrorEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("error", listener, options);
+    }
+
+    default void addErrorEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("error", listener, options);
+    }
+
+    default void addErrorEventListener(EventListener<Event> listener) {
+        addEventListener("error", listener);
+    }
+
+    default void removeErrorEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("error", listener, options);
+    }
+
+    default void removeErrorEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("error", listener, options);
+    }
+
+    default void removeErrorEventListener(EventListener<Event> listener) {
+        removeEventListener("error", listener);
+    }
+
+    /**
+     * Aborts the transaction. All pending requests will fail with a "AbortError" DOMException and all changes made to the database will be reverted.
+     */
+    void abort();
+
+    /**
+     * Returns an IDBObjectStore in the transaction's scope.
+     */
+    IDBObjectStore objectStore(String name);
 
 }

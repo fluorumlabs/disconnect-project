@@ -1,8 +1,7 @@
 package js.web.webcomponents;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface AssignedNodesOptions extends Any {

@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of rows in an HTML table. */
+/**
+ * Provides special properties and methods (beyond the HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of rows in an HTML table.
+ */
 public interface HTMLTableRowElement extends HTMLElement {
+    @JSBody(script = "return HTMLTableRowElement.prototype")
+    static HTMLTableRowElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLTableRowElement()")
+    static HTMLTableRowElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves how the object is aligned with adjacent text.
      */
@@ -27,6 +39,7 @@ public interface HTMLTableRowElement extends HTMLElement {
      */
     @JSProperty
     HTMLCollectionOf<HTMLElement> getCells();
+
     @Deprecated
     @JSProperty
     String getCh();
@@ -62,24 +75,18 @@ public interface HTMLTableRowElement extends HTMLElement {
 
     /**
      * Removes the specified cell from the table row, as well as from the cells collection.
+     *
      * @param index Number that specifies the zero-based position of the cell to remove from the table row. If no value is provided, the last cell in the cells collection is deleted.
      */
     void deleteCell(int index);
+
     /**
      * Creates a new cell in the table row, and adds the cell to the cells collection.
+     *
      * @param index Number that specifies where to insert the cell in the tr. The default value is -1, which appends the new cell to the end of the cells collection.
      */
     HTMLTableDataCellElement insertCell(int index);
+
     HTMLTableDataCellElement insertCell();
-
-    @JSBody(script = "return HTMLTableRowElement.prototype")
-    static HTMLTableRowElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLTableRowElement()")
-    static HTMLTableRowElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

@@ -5,6 +5,16 @@ import org.teavm.jso.JSProperty;
 
 
 public interface HTMLDialogElement extends HTMLElement {
+    @JSBody(script = "return HTMLDialogElement.prototype")
+    static HTMLDialogElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLDialogElement()")
+    static HTMLDialogElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     boolean isOpen();
 
@@ -18,18 +28,11 @@ public interface HTMLDialogElement extends HTMLElement {
     void setReturnValue(String returnValue);
 
     void close(String returnValue);
+
     void close();
+
     void show();
+
     void showModal();
-
-    @JSBody(script = "return HTMLDialogElement.prototype")
-    static HTMLDialogElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLDialogElement()")
-    static HTMLDialogElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

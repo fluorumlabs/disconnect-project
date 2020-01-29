@@ -1,34 +1,33 @@
 package js.web.credentialmanagement.webauthn;
 
+import js.lang.Any;
 import js.util.buffers.ArrayBuffer;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
 
 public interface WebAuthnAssertion extends Any {
-        @JSProperty
-        ArrayBuffer getAuthenticatorData();
+    @JSBody(script = "return WebAuthnAssertion.prototype")
+    static WebAuthnAssertion prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        ArrayBuffer getClientData();
+    @JSBody(script = "return new WebAuthnAssertion()")
+    static WebAuthnAssertion create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        ScopedCredential getCredential();
+    @JSProperty
+    ArrayBuffer getAuthenticatorData();
 
-        @JSProperty
-        ArrayBuffer getSignature();
+    @JSProperty
+    ArrayBuffer getClientData();
 
-        @JSBody(script = "return WebAuthnAssertion.prototype")
-        static WebAuthnAssertion prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    ScopedCredential getCredential();
 
-        @JSBody(script = "return new WebAuthnAssertion()")
-        static WebAuthnAssertion create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    ArrayBuffer getSignature();
 
 
-        }
+}

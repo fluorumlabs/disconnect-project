@@ -9,73 +9,77 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** An event sent when the state of contacts with a touch-sensitive surface changes. This surface can be a touch screen or trackpad, for example. The event can describe one or more points of contact with the screen and includes support for detecting movement, addition and removal of contact points, and so forth. */
-        public interface TouchEvent extends UIEvent {
+/**
+ * An event sent when the state of contacts with a touch-sensitive surface changes. This surface can be a touch screen or trackpad, for example. The event can describe one or more points of contact with the screen and includes support for detecting movement, addition and removal of contact points, and so forth.
+ */
+public interface TouchEvent extends UIEvent {
+    @JSBody(script = "return TouchEvent.prototype")
+    static TouchEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new TouchEvent(type, eventInitDict)")
+    static TouchEvent create(String type, TouchEventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "type", script = "return new TouchEvent(type)")
+    static TouchEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSProperty
+    boolean isAltKey();
+
+    @JSProperty
+    TouchList getChangedTouches();
+
+    @JSProperty
+    boolean isCtrlKey();
+
+    @JSProperty
+    boolean isMetaKey();
+
+    @JSProperty
+    boolean isShiftKey();
+
+    @JSProperty
+    TouchList getTargetTouches();
+
+    @JSProperty
+    TouchList getTouches();
+
+
+    interface TouchEventInit extends EventModifierInit {
         @JSProperty
-        boolean isAltKey();
+        @Nullable
+        Array<Touch> getChangedTouches();
 
         @JSProperty
-        TouchList getChangedTouches();
+        void setChangedTouches(@JSByRef Touch... changedTouches);
 
         @JSProperty
-        boolean isCtrlKey();
+        void setChangedTouches(Array<Touch> changedTouches);
 
         @JSProperty
-        boolean isMetaKey();
+        @Nullable
+        Array<Touch> getTargetTouches();
 
         @JSProperty
-        boolean isShiftKey();
+        void setTargetTouches(@JSByRef Touch... targetTouches);
 
         @JSProperty
-        TouchList getTargetTouches();
+        void setTargetTouches(Array<Touch> targetTouches);
 
         @JSProperty
-        TouchList getTouches();
+        @Nullable
+        Array<Touch> getTouches();
 
-        @JSBody(script = "return TouchEvent.prototype")
-        static TouchEvent prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+        @JSProperty
+        void setTouches(@JSByRef Touch... touches);
 
-        @JSBody(params={"type","eventInitDict"}, script = "return new TouchEvent(type, eventInitDict)")
-        static TouchEvent create(String type, TouchEventInit eventInitDict) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+        @JSProperty
+        void setTouches(Array<Touch> touches);
 
-        @JSBody(params="type", script = "return new TouchEvent(type)")
-        static TouchEvent create(String type) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-
-
-        interface TouchEventInit extends EventModifierInit {
-            @JSProperty
-            @Nullable
-            Array<Touch> getChangedTouches();
-
-            @JSProperty
-            void setChangedTouches(@JSByRef Touch... changedTouches);
-            @JSProperty
-            void setChangedTouches(Array<Touch> changedTouches);
-
-            @JSProperty
-            @Nullable
-            Array<Touch> getTargetTouches();
-
-            @JSProperty
-            void setTargetTouches(@JSByRef Touch... targetTouches);
-            @JSProperty
-            void setTargetTouches(Array<Touch> targetTouches);
-
-            @JSProperty
-            @Nullable
-            Array<Touch> getTouches();
-
-            @JSProperty
-            void setTouches(@JSByRef Touch... touches);
-            @JSProperty
-            void setTouches(Array<Touch> touches);
-
-        }
+    }
 }

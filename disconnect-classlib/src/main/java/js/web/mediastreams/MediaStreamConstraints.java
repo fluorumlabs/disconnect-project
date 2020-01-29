@@ -14,6 +14,7 @@ public interface MediaStreamConstraints extends Any {
 
     @JSProperty
     void setAudio(boolean audio);
+
     @JSProperty
     void setAudio(MediaTrackConstraints audio);
 
@@ -30,6 +31,7 @@ public interface MediaStreamConstraints extends Any {
 
     @JSProperty
     void setVideo(boolean video);
+
     @JSProperty
     void setVideo(MediaTrackConstraints video);
 

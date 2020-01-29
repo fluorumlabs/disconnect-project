@@ -13,6 +13,7 @@ public interface NumberFormatOptions extends Any {
 
     @JSProperty
     void setLocaleMatcher(String localeMatcher);
+
     @JSProperty
     @Nullable
     String getStyle();

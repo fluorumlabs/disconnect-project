@@ -10,11 +10,21 @@ import javax.annotation.Nullable;
 
 
 public abstract class DoublePromiseLike implements Any {
+    @Async
+    private static native double await(DoublePromiseLike promise) throws PromiseRejectionException;
+
+    private static void await(DoublePromiseLike promise, AsyncCallback<Boolean> callback) {
+        promise.then(callback::complete, reason -> {
+            callback.error(new PromiseRejectionException(reason.<JsObject>cast().toString()));
+        });
+    }
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      *
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected  The callback to execute when the Promise is rejected.
+     *
      * @returns A Promise for the completion of which ever callback is executed.
      */
     public native <R extends Any> PromiseLike<R> then(FullfilledValueCallback<R> onfulfilled, RejectedValueCallback<R> onrejected);
@@ -43,15 +53,6 @@ public abstract class DoublePromiseLike implements Any {
 
     public double await() throws PromiseRejectionException {
         return DoublePromiseLike.await(this);
-    }
-
-    @Async
-    private static native double await(DoublePromiseLike promise) throws PromiseRejectionException;
-
-    private static void await(DoublePromiseLike promise, AsyncCallback<Boolean> callback) {
-        promise.then(callback::complete, reason -> {
-            callback.error(new PromiseRejectionException(reason.<JsObject>cast().toString()));
-        });
     }
 
     @JSFunctor

@@ -6,8 +6,35 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read. */
+/**
+ * Lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read.
+ */
 public interface FileReader extends EventTarget {
+    @JSBody(script = "return FileReader.prototype")
+    static FileReader prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new FileReader()")
+    static FileReader create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return FileReader.DONE")
+    static int DONE() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return FileReader.EMPTY")
+    static int EMPTY() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return FileReader.LOADING")
+    static int LOADING() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     @Nullable
     DOMException getError();
@@ -216,29 +243,4 @@ public interface FileReader extends EventTarget {
     void readAsText(Blob blob, String encoding);
 
     void readAsText(Blob blob);
-
-    @JSBody(script = "return FileReader.prototype")
-    static FileReader prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new FileReader()")
-    static FileReader create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return FileReader.DONE")
-    static int DONE() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return FileReader.EMPTY")
-    static int EMPTY() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return FileReader.LOADING")
-    static int LOADING() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 }

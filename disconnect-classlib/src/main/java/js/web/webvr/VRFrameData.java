@@ -1,40 +1,41 @@
 package js.web.webvr;
 
+import js.lang.Any;
 import js.util.buffers.Float32Array;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * This WebVR API interface represents all the information needed to render a single frame of a VR scene; constructed by VRDisplay.getFrameData().
+ */
+public interface VRFrameData extends Any {
+    @JSBody(script = "return VRFrameData.prototype")
+    static VRFrameData prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** This WebVR API interface represents all the information needed to render a single frame of a VR scene; constructed by VRDisplay.getFrameData(). */
-        public interface VRFrameData extends Any {
-        @JSProperty
-        Float32Array getLeftProjectionMatrix();
+    @JSBody(script = "return new VRFrameData()")
+    static VRFrameData create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        Float32Array getLeftViewMatrix();
+    @JSProperty
+    Float32Array getLeftProjectionMatrix();
 
-        @JSProperty
-        VRPose getPose();
+    @JSProperty
+    Float32Array getLeftViewMatrix();
 
-        @JSProperty
-        Float32Array getRightProjectionMatrix();
+    @JSProperty
+    VRPose getPose();
 
-        @JSProperty
-        Float32Array getRightViewMatrix();
+    @JSProperty
+    Float32Array getRightProjectionMatrix();
 
-        @JSProperty
-        double getTimestamp();
+    @JSProperty
+    Float32Array getRightViewMatrix();
 
-        @JSBody(script = "return VRFrameData.prototype")
-        static VRFrameData prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new VRFrameData()")
-        static VRFrameData create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getTimestamp();
 
 
-        }
+}

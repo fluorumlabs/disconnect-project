@@ -1,10 +1,10 @@
 package js.web.webvtt;
 
 import js.lang.Unknown;
+import js.web.dom.DocumentFragment;
 import js.web.dom.TextTrackCue;
 import js.web.mediastreams.AlignSetting;
 import js.web.mediastreams.DirectionSetting;
-import js.web.dom.DocumentFragment;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
@@ -12,81 +12,83 @@ import javax.annotation.Nullable;
 
 
 public interface VTTCue extends TextTrackCue {
-        @JSProperty
-        AlignSetting getAlign();
+    @JSBody(script = "return VTTCue.prototype")
+    static VTTCue prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setAlign(AlignSetting align);
+    @JSBody(params = {"startTime", "endTime", "text"}, script = "return new VTTCue(startTime, endTime, text)")
+    static VTTCue create(double startTime, double endTime, String text) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        Unknown getLine();
+    @JSProperty
+    AlignSetting getAlign();
 
-        @JSProperty
-        void setLine(int line);
-        @JSProperty
-        void setLine(AutoKeyword line);
+    @JSProperty
+    void setAlign(AlignSetting align);
 
-        @JSProperty
-        LineAlignSetting getLineAlign();
+    @JSProperty
+    Unknown getLine();
 
-        @JSProperty
-        void setLineAlign(LineAlignSetting lineAlign);
+    @JSProperty
+    void setLine(int line);
 
-        @JSProperty
-        Unknown getPosition();
+    @JSProperty
+    void setLine(AutoKeyword line);
 
-        @JSProperty
-        void setPosition(int position);
-        @JSProperty
-        void setPosition(AutoKeyword position);
+    @JSProperty
+    LineAlignSetting getLineAlign();
 
-        @JSProperty
-        PositionAlignSetting getPositionAlign();
+    @JSProperty
+    void setLineAlign(LineAlignSetting lineAlign);
 
-        @JSProperty
-        void setPositionAlign(PositionAlignSetting positionAlign);
+    @JSProperty
+    Unknown getPosition();
 
-        @JSProperty
-        @Nullable
-        VTTRegion getRegion();
+    @JSProperty
+    void setPosition(int position);
 
-        @JSProperty
-        void setRegion(VTTRegion region);
+    @JSProperty
+    void setPosition(AutoKeyword position);
 
-        @JSProperty
-        double getSize();
+    @JSProperty
+    PositionAlignSetting getPositionAlign();
 
-        @JSProperty
-        void setSize(double size);
+    @JSProperty
+    void setPositionAlign(PositionAlignSetting positionAlign);
 
-        @JSProperty
-        boolean isSnapToLines();
+    @JSProperty
+    @Nullable
+    VTTRegion getRegion();
 
-        @JSProperty
-        void setSnapToLines(boolean snapToLines);
+    @JSProperty
+    void setRegion(VTTRegion region);
 
-        @JSProperty
-        String getText();
+    @JSProperty
+    double getSize();
 
-        @JSProperty
-        void setText(String text);
+    @JSProperty
+    void setSize(double size);
 
-        @JSProperty
-        DirectionSetting getVertical();
+    @JSProperty
+    boolean isSnapToLines();
 
-        @JSProperty
-        void setVertical(DirectionSetting vertical);
+    @JSProperty
+    void setSnapToLines(boolean snapToLines);
 
-        DocumentFragment getCueAsHTML();
+    @JSProperty
+    String getText();
 
-        @JSBody(script = "return VTTCue.prototype")
-        static VTTCue prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setText(String text);
 
-        @JSBody(params={"startTime","endTime","text"}, script = "return new VTTCue(startTime, endTime, text)")
-        static VTTCue create(double startTime, double endTime, String text) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    DirectionSetting getVertical();
 
-        }
+    @JSProperty
+    void setVertical(DirectionSetting vertical);
+
+    DocumentFragment getCueAsHTML();
+
+}

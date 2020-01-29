@@ -8,20 +8,20 @@ import org.teavm.jso.JSProperty;
 
 
 public interface ShadowRoot extends DocumentFragment, DocumentOrShadowRoot, InnerHTML {
-        @JSProperty
-        Element getHost();
+    @JSBody(script = "return ShadowRoot.prototype")
+    static ShadowRoot prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        ShadowRootMode getMode();
+    @JSBody(script = "return new ShadowRoot()")
+    static ShadowRoot create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return ShadowRoot.prototype")
-        static ShadowRoot prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    Element getHost();
 
-        @JSBody(script = "return new ShadowRoot()")
-        static ShadowRoot create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    ShadowRootMode getMode();
 
-        }
+}

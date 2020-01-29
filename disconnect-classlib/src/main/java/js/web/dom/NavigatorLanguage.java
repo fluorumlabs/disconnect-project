@@ -1,14 +1,13 @@
 package js.web.dom;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface NavigatorLanguage extends Any {
-        @JSProperty
-        String getLanguage();
+    @JSProperty
+    String getLanguage();
 
-        @JSProperty
-        String[] getLanguages();
-        }
+    @JSProperty
+    String[] getLanguages();
+}

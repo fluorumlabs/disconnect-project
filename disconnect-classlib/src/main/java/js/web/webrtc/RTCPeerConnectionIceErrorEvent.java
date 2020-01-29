@@ -1,41 +1,39 @@
 package js.web.webrtc;
 
+import js.web.dom.Event;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
-
-import js.web.dom.Event;
 
 import javax.annotation.Nullable;
 
 
 public interface RTCPeerConnectionIceErrorEvent extends Event {
-        @JSProperty
-        int getErrorCode();
+    @JSBody(script = "return RTCPeerConnectionIceErrorEvent.prototype")
+    static RTCPeerConnectionIceErrorEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getErrorText();
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new RTCPeerConnectionIceErrorEvent(type, eventInitDict)")
+    static RTCPeerConnectionIceErrorEvent create(String type, RTCPeerConnectionIceErrorEventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getHostCandidate();
+    @JSBody(params = "type", script = "return new RTCPeerConnectionIceErrorEvent(type)")
+    static RTCPeerConnectionIceErrorEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getUrl();
+    @JSProperty
+    int getErrorCode();
 
-        @JSBody(script = "return RTCPeerConnectionIceErrorEvent.prototype")
-        static RTCPeerConnectionIceErrorEvent prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getErrorText();
 
-        @JSBody(params={"type","eventInitDict"}, script = "return new RTCPeerConnectionIceErrorEvent(type, eventInitDict)")
-        static RTCPeerConnectionIceErrorEvent create(String type, RTCPeerConnectionIceErrorEventInit eventInitDict) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getHostCandidate();
 
-        @JSBody(params="type", script = "return new RTCPeerConnectionIceErrorEvent(type)")
-        static RTCPeerConnectionIceErrorEvent create(String type) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
+    @JSProperty
+    String getUrl();
 
 
     interface RTCPeerConnectionIceErrorEventInit extends EventInit {

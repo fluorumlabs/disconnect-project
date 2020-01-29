@@ -1,29 +1,46 @@
 package js.web.dom.svg;
 
 import js.extras.JsEnum;
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * SVGTransform is the interface for one of the component transformations within an SVGTransformList; thus, an SVGTransform object corresponds to a single component (e.g., scale(…) or matrix(…)) within a transform attribute.
+ */
+public interface SVGTransform extends Any {
+    @JSBody(script = "return SVGTransform.prototype")
+    static SVGTransform prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** SVGTransform is the interface for one of the component transformations within an SVGTransformList; thus, an SVGTransform object corresponds to a single component (e.g., scale(…) or matrix(…)) within a transform attribute. */
-        public interface SVGTransform extends Any {
-        @JSProperty
-        double getAngle();
+    @JSBody(script = "return new SVGTransform()")
+    static SVGTransform create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGMatrix getMatrix();
+    @JSProperty
+    double getAngle();
 
-        @JSProperty
-        Type getType();
+    @JSProperty
+    SVGMatrix getMatrix();
 
-        void setMatrix(SVGMatrix matrix);
-        void setRotate(double angle, double cx, double cy);
-        void setScale(double sx, double sy);
-        void setSkewX(double angle);
-        void setSkewY(double angle);
-        void setTranslate(double tx, double ty);
-        abstract class Type extends JsEnum {
+    void setMatrix(SVGMatrix matrix);
+
+    @JSProperty
+    Type getType();
+
+    void setRotate(double angle, double cx, double cy);
+
+    void setScale(double sx, double sy);
+
+    void setSkewX(double angle);
+
+    void setSkewY(double angle);
+
+    void setTranslate(double tx, double ty);
+
+    abstract class Type extends JsEnum {
         public static final Type SVG_TRANSFORM_MATRIX = JsEnum.from("return SVGTransform.SVG_TRANSFORM_MATRIX");
 
 
@@ -42,17 +59,8 @@ import js.lang.Any;
         public static final Type SVG_TRANSFORM_TRANSLATE = JsEnum.from("return SVGTransform.SVG_TRANSFORM_TRANSLATE");
 
 
-        public static final Type SVG_TRANSFORM_UNKNOWN = JsEnum.from("return SVGTransform.SVG_TRANSFORM_UNKNOWN");}
-
-        @JSBody(script = "return SVGTransform.prototype")
-        static SVGTransform prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new SVGTransform()")
-        static SVGTransform create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+        public static final Type SVG_TRANSFORM_UNKNOWN = JsEnum.from("return SVGTransform.SVG_TRANSFORM_UNKNOWN");
+    }
 
 
-        }
+}

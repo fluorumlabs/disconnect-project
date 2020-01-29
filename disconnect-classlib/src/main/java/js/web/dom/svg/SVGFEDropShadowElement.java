@@ -5,29 +5,29 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGFEDropShadowElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedNumber getDx();
+    @JSBody(script = "return SVGFEDropShadowElement.prototype")
+    static SVGFEDropShadowElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getDy();
+    @JSBody(script = "return new SVGFEDropShadowElement()")
+    static SVGFEDropShadowElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedString getIn1();
+    @JSProperty
+    SVGAnimatedNumber getDx();
 
-        @JSProperty
-        SVGAnimatedNumber getStdDeviationX();
+    @JSProperty
+    SVGAnimatedNumber getDy();
 
-        @JSProperty
-        SVGAnimatedNumber getStdDeviationY();
+    @JSProperty
+    SVGAnimatedString getIn1();
 
-        @JSBody(script = "return SVGFEDropShadowElement.prototype")
-        static SVGFEDropShadowElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getStdDeviationX();
 
-        @JSBody(script = "return new SVGFEDropShadowElement()")
-        static SVGFEDropShadowElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getStdDeviationY();
 
-        }
+}

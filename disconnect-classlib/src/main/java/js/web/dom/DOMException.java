@@ -1,13 +1,34 @@
 package js.web.dom;
 
+import js.extras.JsEnum;
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-import js.extras.JsEnum;
-
-/** An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API. */
+/**
+ * An abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.
+ */
 public interface DOMException extends Any {
+    @JSBody(script = "return DOMException.prototype")
+    static DOMException prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"message", "name"}, script = "return new DOMException(message, name)")
+    static DOMException create(String message, String name) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "message", script = "return new DOMException(message)")
+    static DOMException create(String message) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new DOMException()")
+    static DOMException create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     Code getCode();
 
@@ -18,7 +39,6 @@ public interface DOMException extends Any {
     String getName();
 
     abstract class Code extends JsEnum {
-
         public static final Code ABORT_ERR = JsEnum.from("return DOMException.ABORT_ERR");
 
         public static final Code DATA_CLONE_ERR = JsEnum.from("return DOMException.DATA_CLONE_ERR");
@@ -66,28 +86,8 @@ public interface DOMException extends Any {
         public static final Code URL_MISMATCH_ERR = JsEnum.from("return DOMException.URL_MISMATCH_ERR");
 
         public static final Code VALIDATION_ERR = JsEnum.from("return DOMException.VALIDATION_ERR");
+
         public static final Code WRONG_DOCUMENT_ERR = JsEnum.from("return DOMException.WRONG_DOCUMENT_ERR");
-
-    }
-
-    @JSBody(script = "return DOMException.prototype")
-    static DOMException prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params={"message","name"}, script = "return new DOMException(message, name)")
-    static DOMException create(String message, String name) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="message", script = "return new DOMException(message)")
-    static DOMException create(String message) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new DOMException()")
-    static DOMException create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
 }

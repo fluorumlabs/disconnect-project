@@ -8,35 +8,40 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGPointList extends ArrayLike<DOMPoint> {
-        @JSProperty
-         int getLength();
+    @JSBody(script = "return SVGPointList.prototype")
+    static SVGPointList prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-         int getNumberOfItems();
+    @JSBody(script = "return new SVGPointList()")
+    static SVGPointList create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-         SVGPoint appendItem(SVGPoint newItem);
-         void clear();
-         SVGPoint getItem(int index);
-         SVGPoint initialize(SVGPoint newItem);
-         SVGPoint insertItemBefore(SVGPoint newItem, int index);
-         SVGPoint removeItem(int index);
-         SVGPoint replaceItem(SVGPoint newItem, int index);
+    @JSProperty
+    int getLength();
 
-        @JSIndexer
-         DOMPoint get(int index);
+    @JSProperty
+    int getNumberOfItems();
 
-        @JSIndexer
-         void set(int index, SVGPoint value);
+    SVGPoint appendItem(SVGPoint newItem);
 
+    void clear();
 
-        @JSBody(script = "return SVGPointList.prototype")
-        static SVGPointList prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    SVGPoint getItem(int index);
 
-        @JSBody(script = "return new SVGPointList()")
-        static SVGPointList create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    SVGPoint initialize(SVGPoint newItem);
 
-        }
+    SVGPoint insertItemBefore(SVGPoint newItem, int index);
+
+    SVGPoint removeItem(int index);
+
+    SVGPoint replaceItem(SVGPoint newItem, int index);
+
+    @JSIndexer
+    DOMPoint get(int index);
+
+    @JSIndexer
+    void set(int index, SVGPoint value);
+
+}

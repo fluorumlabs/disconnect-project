@@ -1,45 +1,48 @@
 package js.web.intersectionobserver;
 
+import js.lang.Any;
 import js.web.dom.DOMRectReadOnly;
 import js.web.dom.Element;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
-/** This Intersection Observer API interface describes the intersection between the target element and its root container at a specific moment of transition. */
-        public interface IntersectionObserverEntry extends Any {
-        @JSProperty
-        DOMRectReadOnly getBoundingClientRect();
+/**
+ * This Intersection Observer API interface describes the intersection between the target element and its root container at a specific moment of transition.
+ */
+public interface IntersectionObserverEntry extends Any {
+    @JSBody(script = "return IntersectionObserverEntry.prototype")
+    static IntersectionObserverEntry prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getIntersectionRatio();
+    @JSBody(params = "intersectionObserverEntryInit", script = "return new IntersectionObserverEntry(intersectionObserverEntryInit)")
+    static IntersectionObserverEntry create(IntersectionObserverEntryInit intersectionObserverEntryInit) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        DOMRectReadOnly getIntersectionRect();
+    @JSProperty
+    DOMRectReadOnly getBoundingClientRect();
 
-        @JSProperty
-        boolean isIsIntersecting();
+    @JSProperty
+    double getIntersectionRatio();
 
-        @JSProperty
-        @Nullable
-        DOMRectReadOnly  getRootBounds();
+    @JSProperty
+    DOMRectReadOnly getIntersectionRect();
 
-        @JSProperty
-        Element getTarget();
+    @JSProperty
+    boolean isIsIntersecting();
 
-        @JSProperty
-        double getTime();
+    @JSProperty
+    @Nullable
+    DOMRectReadOnly getRootBounds();
 
-        @JSBody(script = "return IntersectionObserverEntry.prototype")
-        static IntersectionObserverEntry prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    Element getTarget();
 
-        @JSBody(params="intersectionObserverEntryInit", script = "return new IntersectionObserverEntry(intersectionObserverEntryInit)")
-        static IntersectionObserverEntry create(IntersectionObserverEntryInit intersectionObserverEntryInit) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getTime();
 
 
-        }
+}

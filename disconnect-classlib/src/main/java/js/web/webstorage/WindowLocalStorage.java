@@ -5,7 +5,7 @@ import org.teavm.jso.JSProperty;
 
 
 public interface WindowLocalStorage extends Any {
-        @JSProperty
-        Storage getLocalStorage();
+    @JSProperty
+    Storage getLocalStorage();
 
-        }
+}

@@ -1,8 +1,8 @@
 package js.web.webvr;
 
 import js.lang.VoidPromise;
-import js.util.function.JsDoubleConsumer;
 import js.util.collections.Array;
+import js.util.function.JsDoubleConsumer;
 import js.util.iterable.JsIterable;
 import js.web.dom.AnimationFrameProvider;
 import js.web.dom.EventTarget;
@@ -12,62 +12,76 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This WebVR API interface represents any VR device supported by this API. It includes generic information such as device IDs and descriptions, as well as methods for starting to present a VR scene, retrieving eye parameters and display capabilities, and other important functionality. */
-        public interface VRDisplay extends EventTarget {
-        @JSProperty
-        VRDisplayCapabilities getCapabilities();
+/**
+ * This WebVR API interface represents any VR device supported by this API. It includes generic information such as device IDs and descriptions, as well as methods for starting to present a VR scene, retrieving eye parameters and display capabilities, and other important functionality.
+ */
+public interface VRDisplay extends EventTarget {
+    @JSBody(script = "return VRDisplay.prototype")
+    static VRDisplay prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getDepthFar();
+    @JSBody(script = "return new VRDisplay()")
+    static VRDisplay create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setDepthFar(double depthFar);
+    @JSProperty
+    VRDisplayCapabilities getCapabilities();
 
-        @JSProperty
-        double getDepthNear();
+    @JSProperty
+    double getDepthFar();
 
-        @JSProperty
-        void setDepthNear(double depthNear);
+    @JSProperty
+    void setDepthFar(double depthFar);
 
-        @JSProperty
-        int getDisplayId();
+    @JSProperty
+    double getDepthNear();
 
-        @JSProperty
-        String getDisplayName();
+    @JSProperty
+    void setDepthNear(double depthNear);
 
-        @JSProperty
-        boolean isIsConnected();
+    @JSProperty
+    int getDisplayId();
 
-        @JSProperty
-        boolean isIsPresenting();
+    @JSProperty
+    String getDisplayName();
 
-        @JSProperty
-        @Nullable
-        VRStageParameters  getStageParameters();
+    @JSProperty
+    boolean isIsConnected();
 
-        void cancelAnimationFrame(int handle);
-        VoidPromise exitPresent();
-        VREyeParameters getEyeParameters(String whichEye);
-        boolean getFrameData(VRFrameData frameData);
-        Array<VRLayer> getLayers();
-        @Deprecated
-        VRPose getPose();
-        AnimationFrameProvider.AnimationFrameHandle requestAnimationFrame(JsDoubleConsumer callback);
-        VoidPromise requestPresent(@JSByRef VRLayer... layers);
-        VoidPromise requestPresent(Array<VRLayer> layers);
-        VoidPromise requestPresent(JsIterable<VRLayer> layers);
-        void resetPose();
-        void submitFrame(VRPose pose);
-        void submitFrame();
+    @JSProperty
+    boolean isIsPresenting();
 
-        @JSBody(script = "return VRDisplay.prototype")
-        static VRDisplay prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    VRStageParameters getStageParameters();
 
-        @JSBody(script = "return new VRDisplay()")
-        static VRDisplay create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    void cancelAnimationFrame(int handle);
 
-        }
+    VoidPromise exitPresent();
+
+    VREyeParameters getEyeParameters(String whichEye);
+
+    boolean getFrameData(VRFrameData frameData);
+
+    Array<VRLayer> getLayers();
+
+    @Deprecated
+    VRPose getPose();
+
+    AnimationFrameProvider.AnimationFrameHandle requestAnimationFrame(JsDoubleConsumer callback);
+
+    VoidPromise requestPresent(@JSByRef VRLayer... layers);
+
+    VoidPromise requestPresent(Array<VRLayer> layers);
+
+    VoidPromise requestPresent(JsIterable<VRLayer> layers);
+
+    void resetPose();
+
+    void submitFrame(VRPose pose);
+
+    void submitFrame();
+
+}

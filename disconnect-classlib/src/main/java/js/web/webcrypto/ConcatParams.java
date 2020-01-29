@@ -1,9 +1,10 @@
 package js.web.webcrypto;
 
+import js.lang.Unknown;
 import js.util.buffers.Uint8Array;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Unknown;
+import javax.annotation.Nullable;
 
 
 public interface ConcatParams extends Algorithm {
@@ -19,6 +20,7 @@ public interface ConcatParams extends Algorithm {
 
     @JSProperty
     void setHash(String hash);
+
     @JSProperty
     void setHash(Algorithm hash);
 

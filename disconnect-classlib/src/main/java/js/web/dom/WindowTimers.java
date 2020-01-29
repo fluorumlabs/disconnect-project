@@ -4,4 +4,4 @@ import js.lang.Any;
 
 
 public interface WindowTimers extends Any {
-        }
+}

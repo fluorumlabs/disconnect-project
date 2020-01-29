@@ -1,10 +1,11 @@
 package js.web.intersectionobserver;
 
+import js.lang.Any;
 import js.web.dom.DOMRectInit;
 import js.web.dom.Element;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
 
 public interface IntersectionObserverEntryInit extends Any {
@@ -34,7 +35,7 @@ public interface IntersectionObserverEntryInit extends Any {
 
     @JSProperty
     @Nullable
-    DOMRectInit  getRootBounds();
+    DOMRectInit getRootBounds();
 
     @JSProperty
     void setRootBounds(DOMRectInit rootBounds);

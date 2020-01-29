@@ -3,25 +3,27 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feGaussianBlur> element. */
-        public interface SVGFEGaussianBlurElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedString getIn1();
+/**
+ * Corresponds to the <feGaussianBlur> element.
+ */
+public interface SVGFEGaussianBlurElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    @JSBody(script = "return SVGFEGaussianBlurElement.prototype")
+    static SVGFEGaussianBlurElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getStdDeviationX();
+    @JSBody(script = "return new SVGFEGaussianBlurElement()")
+    static SVGFEGaussianBlurElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getStdDeviationY();
+    @JSProperty
+    SVGAnimatedString getIn1();
 
-        @JSBody(script = "return SVGFEGaussianBlurElement.prototype")
-        static SVGFEGaussianBlurElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getStdDeviationX();
 
-        @JSBody(script = "return new SVGFEGaussianBlurElement()")
-        static SVGFEGaussianBlurElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getStdDeviationY();
 
-        }
+}

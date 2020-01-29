@@ -8,26 +8,26 @@ import org.teavm.jso.JSProperty;
 
 
 public interface PublicKeyCredential extends Credential {
-        @JSProperty
-        ArrayBuffer getRawId();
+    @JSBody(script = "return PublicKeyCredential.prototype")
+    static PublicKeyCredential prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        AuthenticatorResponse getResponse();
+    @JSBody(script = "return new PublicKeyCredential()")
+    static PublicKeyCredential create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        AuthenticationExtensionsClientOutputs getClientExtensionResults();
+    @JSBody(script = "return PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()")
+    static BooleanPromise isUserVerifyingPlatformAuthenticatorAvailable() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return PublicKeyCredential.prototype")
-        static PublicKeyCredential prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    ArrayBuffer getRawId();
 
-        @JSBody(script = "return new PublicKeyCredential()")
-        static PublicKeyCredential create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    AuthenticatorResponse getResponse();
 
-        @JSBody(script = "return PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()")
-        static BooleanPromise isUserVerifyingPlatformAuthenticatorAvailable() {
-                throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        }
+    AuthenticationExtensionsClientOutputs getClientExtensionResults();
+}

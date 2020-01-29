@@ -7,8 +7,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it. */
+/**
+ * Any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
+ */
 public interface HTMLElement extends Element, DocumentAndElementEventHandlers, ElementCSSInlineStyle, ElementContentEditable, GlobalEventHandlers, HTMLOrSVGElement {
+    @JSBody(script = "return HTMLElement.prototype")
+    static HTMLElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLElement()")
+    static HTMLElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     String getAccessKey();
 
@@ -62,7 +74,7 @@ public interface HTMLElement extends Element, DocumentAndElementEventHandlers, E
 
     @JSProperty
     @Nullable
-    Element  getOffsetParent();
+    Element getOffsetParent();
 
     @JSProperty
     double getOffsetTop();
@@ -89,15 +101,5 @@ public interface HTMLElement extends Element, DocumentAndElementEventHandlers, E
     void setTranslate(boolean translate);
 
     void click();
-
-    @JSBody(script = "return HTMLElement.prototype")
-    static HTMLElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLElement()")
-    static HTMLElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

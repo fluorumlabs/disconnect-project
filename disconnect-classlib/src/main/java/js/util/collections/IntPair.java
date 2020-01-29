@@ -5,6 +5,11 @@ import org.teavm.jso.JSBody;
 
 
 public interface IntPair extends Any {
+    @JSBody(params = {"key", "value"}, script = "return [key, value]")
+    static IntPair of(int key, int value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSBody(script = "return this[0]")
     int getKey();
 
@@ -13,10 +18,5 @@ public interface IntPair extends Any {
 
     @JSBody(params = "value", script = "var old = this[1]; this[1] = value; return old;")
     int setValue(int value);
-
-    @JSBody(params = {"key", "value"}, script = "return [key, value]")
-    static IntPair of(int key, int value) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

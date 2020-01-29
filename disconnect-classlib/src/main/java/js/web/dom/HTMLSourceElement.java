@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating <source> elements. */
+/**
+ * Provides special properties (beyond the regular HTMLElement object interface it also has available to it by inheritance) for manipulating <source> elements.
+ */
 public interface HTMLSourceElement extends HTMLElement {
+    @JSBody(script = "return HTMLSourceElement.prototype")
+    static HTMLSourceElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLSourceElement()")
+    static HTMLSourceElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Gets or sets the intended media type of the media source.
      */
@@ -43,15 +55,5 @@ public interface HTMLSourceElement extends HTMLElement {
 
     @JSProperty
     void setType(String type);
-
-    @JSBody(script = "return HTMLSourceElement.prototype")
-    static HTMLSourceElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLSourceElement()")
-    static HTMLSourceElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

@@ -8,16 +8,6 @@ import javax.annotation.Nullable;
 
 
 public interface AuthenticatorAssertionResponse extends AuthenticatorResponse {
-    @JSProperty
-    ArrayBuffer getAuthenticatorData();
-
-    @JSProperty
-    ArrayBuffer getSignature();
-
-    @JSProperty
-    @Nullable
-    ArrayBuffer  getUserHandle();
-
     @JSBody(script = "return AuthenticatorAssertionResponse.prototype")
     static AuthenticatorAssertionResponse prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -27,5 +17,15 @@ public interface AuthenticatorAssertionResponse extends AuthenticatorResponse {
     static AuthenticatorAssertionResponse create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    ArrayBuffer getAuthenticatorData();
+
+    @JSProperty
+    ArrayBuffer getSignature();
+
+    @JSProperty
+    @Nullable
+    ArrayBuffer getUserHandle();
 
 }

@@ -12,8 +12,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Adds to HTMLElement the properties and methods needed to support basic media-related capabilities that are common to audio and video. */
+/**
+ * Adds to HTMLElement the properties and methods needed to support basic media-related capabilities that are common to audio and video.
+ */
 public interface HTMLMediaElement extends HTMLElement {
+    @JSBody(script = "return HTMLMediaElement.prototype")
+    static HTMLMediaElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLMediaElement()")
+    static HTMLMediaElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Returns an AudioTrackList object with the audio tracks for a given video element.
      */
@@ -46,7 +58,7 @@ public interface HTMLMediaElement extends HTMLElement {
 
     @JSProperty
     @Nullable
-    String  getCrossOrigin();
+    String getCrossOrigin();
 
     @JSProperty
     void setCrossOrigin(String crossOrigin);
@@ -138,9 +150,11 @@ public interface HTMLMediaElement extends HTMLElement {
     default void addEncryptedEventListener(EventListener<MediaEncryptedEvent> listener, AddEventListenerOptions options) {
         addEventListener("encrypted", listener, options);
     }
+
     default void addEncryptedEventListener(EventListener<MediaEncryptedEvent> listener, boolean options) {
         addEventListener("encrypted", listener, options);
     }
+
     default void addEncryptedEventListener(EventListener<MediaEncryptedEvent> listener) {
         addEventListener("encrypted", listener);
     }
@@ -148,9 +162,11 @@ public interface HTMLMediaElement extends HTMLElement {
     default void removeEncryptedEventListener(EventListener<MediaEncryptedEvent> listener, EventListenerOptions options) {
         removeEventListener("encrypted", listener, options);
     }
+
     default void removeEncryptedEventListener(EventListener<MediaEncryptedEvent> listener, boolean options) {
         removeEventListener("encrypted", listener, options);
     }
+
     default void removeEncryptedEventListener(EventListener<MediaEncryptedEvent> listener) {
         removeEventListener("encrypted", listener);
     }
@@ -168,10 +184,12 @@ public interface HTMLMediaElement extends HTMLElement {
     default void addMSNeedKeyEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
         addEventListener("msneedkey", listener, options);
     }
+
     @Deprecated
     default void addMSNeedKeyEventListener(EventListener<Event> listener, boolean options) {
         addEventListener("msneedkey", listener, options);
     }
+
     @Deprecated
     default void addMSNeedKeyEventListener(EventListener<Event> listener) {
         addEventListener("msneedkey", listener);
@@ -181,10 +199,12 @@ public interface HTMLMediaElement extends HTMLElement {
     default void removeMSNeedKeyEventListener(EventListener<Event> listener, EventListenerOptions options) {
         removeEventListener("msneedkey", listener, options);
     }
+
     @Deprecated
     default void removeMSNeedKeyEventListener(EventListener<Event> listener, boolean options) {
         removeEventListener("msneedkey", listener, options);
     }
+
     @Deprecated
     default void removeMSNeedKeyEventListener(EventListener<Event> listener) {
         removeEventListener("msneedkey", listener);
@@ -200,9 +220,11 @@ public interface HTMLMediaElement extends HTMLElement {
     default void addWaitingForKeyEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
         addEventListener("waitingforkey", listener, options);
     }
+
     default void addWaitingForKeyEventListener(EventListener<Event> listener, boolean options) {
         addEventListener("waitingforkey", listener, options);
     }
+
     default void addWaitingForKeyEventListener(EventListener<Event> listener) {
         addEventListener("waitingforkey", listener);
     }
@@ -210,12 +232,15 @@ public interface HTMLMediaElement extends HTMLElement {
     default void removeWaitingForKeyEventListener(EventListener<Event> listener, EventListenerOptions options) {
         removeEventListener("waitingforkey", listener, options);
     }
+
     default void removeWaitingForKeyEventListener(EventListener<Event> listener, boolean options) {
         removeEventListener("waitingforkey", listener, options);
     }
+
     default void removeWaitingForKeyEventListener(EventListener<Event> listener) {
         removeEventListener("waitingforkey", listener);
     }
+
     /**
      * Gets a flag that specifies whether playback is paused.
      */
@@ -276,8 +301,10 @@ public interface HTMLMediaElement extends HTMLElement {
 
     @JSProperty
     void setSrcObject(MediaStream srcObject);
+
     @JSProperty
     void setSrcObject(MediaSource srcObject);
+
     @JSProperty
     void setSrcObject(Blob srcObject);
 
@@ -297,54 +324,51 @@ public interface HTMLMediaElement extends HTMLElement {
     void setVolume(double volume);
 
     TextTrack addTextTrack(TextTrackKind kind, String label, String language);
+
     TextTrack addTextTrack(TextTrackKind kind, String label);
+
     TextTrack addTextTrack(TextTrackKind kind);
+
     /**
      * Returns a string that specifies whether the client can play a given media resource type.
      */
     CanPlayTypeResult canPlayType(String type);
+
     /**
      * Resets the audio or video object and loads a new media resource.
      */
     void load();
+
     /**
      * Pauses the current playback and sets paused to TRUE. This can be used to test whether the media is playing or paused. You can also use the pause or play events to tell whether the media is playing or not.
      */
     void pause();
+
     /**
      * Loads and starts playback of a media resource.
      */
     VoidPromise play();
+
     VoidPromise setMediaKeys(@Nullable MediaKeys mediaKeys);
 
     abstract class ReadyState extends JsEnum {
+        public static final ReadyState HAVE_CURRENT_DATA = JsEnum.from("return HTMLMediaElement.HAVE_CURRENT_DATA");
 
-    public static final ReadyState HAVE_CURRENT_DATA = JsEnum.from("return HTMLMediaElement.HAVE_CURRENT_DATA");
+        public static final ReadyState HAVE_ENOUGH_DATA = JsEnum.from("return HTMLMediaElement.HAVE_ENOUGH_DATA");
 
-    public static final ReadyState HAVE_ENOUGH_DATA = JsEnum.from("return HTMLMediaElement.HAVE_ENOUGH_DATA");
+        public static final ReadyState HAVE_FUTURE_DATA = JsEnum.from("return HTMLMediaElement.HAVE_FUTURE_DATA");
 
-    public static final ReadyState HAVE_FUTURE_DATA = JsEnum.from("return HTMLMediaElement.HAVE_FUTURE_DATA");
+        public static final ReadyState HAVE_METADATA = JsEnum.from("return HTMLMediaElement.HAVE_METADATA");
 
-    public static final ReadyState HAVE_METADATA = JsEnum.from("return HTMLMediaElement.HAVE_METADATA");
+        public static final ReadyState HAVE_NOTHING = JsEnum.from("return HTMLMediaElement.HAVE_NOTHING");
 
-    public static final ReadyState HAVE_NOTHING = JsEnum.from("return HTMLMediaElement.HAVE_NOTHING");
+        public static final ReadyState NETWORK_EMPTY = JsEnum.from("return HTMLMediaElement.NETWORK_EMPTY");
 
-    public static final ReadyState NETWORK_EMPTY = JsEnum.from("return HTMLMediaElement.NETWORK_EMPTY");
+        public static final ReadyState NETWORK_IDLE = JsEnum.from("return HTMLMediaElement.NETWORK_IDLE");
 
-    public static final ReadyState NETWORK_IDLE = JsEnum.from("return HTMLMediaElement.NETWORK_IDLE");
+        public static final ReadyState NETWORK_LOADING = JsEnum.from("return HTMLMediaElement.NETWORK_LOADING");
 
-    public static final ReadyState NETWORK_LOADING = JsEnum.from("return HTMLMediaElement.NETWORK_LOADING");
-
-    public static final ReadyState NETWORK_NO_SOURCE = JsEnum.from("return HTMLMediaElement.NETWORK_NO_SOURCE");}
-
-    @JSBody(script = "return HTMLMediaElement.prototype")
-    static HTMLMediaElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLMediaElement()")
-    static HTMLMediaElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
+        public static final ReadyState NETWORK_NO_SOURCE = JsEnum.from("return HTMLMediaElement.NETWORK_NO_SOURCE");
     }
 
 }

@@ -3,40 +3,42 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feSpotLight> element. */
-        public interface SVGFESpotLightElement extends SVGElement {
-        @JSProperty
-        SVGAnimatedNumber getLimitingConeAngle();
+/**
+ * Corresponds to the <feSpotLight> element.
+ */
+public interface SVGFESpotLightElement extends SVGElement {
+    @JSBody(script = "return SVGFESpotLightElement.prototype")
+    static SVGFESpotLightElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getPointsAtX();
+    @JSBody(script = "return new SVGFESpotLightElement()")
+    static SVGFESpotLightElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getPointsAtY();
+    @JSProperty
+    SVGAnimatedNumber getLimitingConeAngle();
 
-        @JSProperty
-        SVGAnimatedNumber getPointsAtZ();
+    @JSProperty
+    SVGAnimatedNumber getPointsAtX();
 
-        @JSProperty
-        SVGAnimatedNumber getSpecularExponent();
+    @JSProperty
+    SVGAnimatedNumber getPointsAtY();
 
-        @JSProperty
-        SVGAnimatedNumber getX();
+    @JSProperty
+    SVGAnimatedNumber getPointsAtZ();
 
-        @JSProperty
-        SVGAnimatedNumber getY();
+    @JSProperty
+    SVGAnimatedNumber getSpecularExponent();
 
-        @JSProperty
-        SVGAnimatedNumber getZ();
+    @JSProperty
+    SVGAnimatedNumber getX();
 
-        @JSBody(script = "return SVGFESpotLightElement.prototype")
-        static SVGFESpotLightElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getY();
 
-        @JSBody(script = "return new SVGFESpotLightElement()")
-        static SVGFESpotLightElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAnimatedNumber getZ();
 
-        }
+}

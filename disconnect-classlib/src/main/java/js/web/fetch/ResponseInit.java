@@ -16,8 +16,10 @@ public interface ResponseInit extends Any {
 
     @JSProperty
     void setHeaders(Headers headers);
+
     @JSProperty
     void setHeaders(@JSByRef String... headers);
+
     @JSProperty
     void setHeaders(StringRecord headers);
 

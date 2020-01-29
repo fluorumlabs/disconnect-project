@@ -7,16 +7,24 @@ import org.teavm.jso.JSFunctor;
 import org.teavm.jso.JSObject;
 
 import javax.annotation.Nullable;
-import java.io.IOException;
-import java.util.concurrent.Future;
 
 
 public abstract class PromiseLike<T extends Any> implements Any {
+    @Async
+    private static native <T extends Any> T await(PromiseLike<T> promise) throws PromiseRejectionException;
+
+    private static <T extends Any> void await(PromiseLike<T> promise, AsyncCallback<T> callback) {
+        promise.then(callback::complete, reason -> {
+            callback.error(new PromiseRejectionException(reason.<JsObject>cast().toString()));
+        });
+    }
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      *
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected  The callback to execute when the Promise is rejected.
+     *
      * @returns A Promise for the completion of which ever callback is executed.
      */
     public native <R extends Any> PromiseLike<R> then(FullfilledValueCallback<T, R> onfulfilled, RejectedValueCallback<R> onrejected);
@@ -45,15 +53,6 @@ public abstract class PromiseLike<T extends Any> implements Any {
 
     public T await() throws PromiseRejectionException {
         return PromiseLike.await(this);
-    }
-
-    @Async
-    private static native <T extends Any> T await(PromiseLike<T> promise) throws PromiseRejectionException;
-
-    private static <T extends Any> void await(PromiseLike<T> promise, AsyncCallback<T> callback) {
-        promise.then(callback::complete, reason -> {
-            callback.error(new PromiseRejectionException(reason.<JsObject>cast().toString()));
-        });
     }
 
     @JSFunctor

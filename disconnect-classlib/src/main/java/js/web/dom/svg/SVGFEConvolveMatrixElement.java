@@ -4,45 +4,57 @@ import js.extras.JsEnum;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Corresponds to the <feConvolveMatrix> element. */
-        public interface SVGFEConvolveMatrixElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
-        @JSProperty
-        SVGAnimatedNumber getBias();
+/**
+ * Corresponds to the <feConvolveMatrix> element.
+ */
+public interface SVGFEConvolveMatrixElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
+    @JSBody(script = "return SVGFEConvolveMatrixElement.prototype")
+    static SVGFEConvolveMatrixElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedNumber getDivisor();
+    @JSBody(script = "return new SVGFEConvolveMatrixElement()")
+    static SVGFEConvolveMatrixElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedEnumeration<EdgeMode> getEdgeMode();
+    @JSProperty
+    SVGAnimatedNumber getBias();
 
-        @JSProperty
-        SVGAnimatedString getIn1();
+    @JSProperty
+    SVGAnimatedNumber getDivisor();
 
-        @JSProperty
-        SVGAnimatedNumberList getKernelMatrix();
+    @JSProperty
+    SVGAnimatedEnumeration<EdgeMode> getEdgeMode();
 
-        @JSProperty
-        SVGAnimatedNumber getKernelUnitLengthX();
+    @JSProperty
+    SVGAnimatedString getIn1();
 
-        @JSProperty
-        SVGAnimatedNumber getKernelUnitLengthY();
+    @JSProperty
+    SVGAnimatedNumberList getKernelMatrix();
 
-        @JSProperty
-        SVGAnimatedInteger getOrderX();
+    @JSProperty
+    SVGAnimatedNumber getKernelUnitLengthX();
 
-        @JSProperty
-        SVGAnimatedInteger getOrderY();
+    @JSProperty
+    SVGAnimatedNumber getKernelUnitLengthY();
 
-        @JSProperty
-        SVGAnimatedBoolean getPreserveAlpha();
+    @JSProperty
+    SVGAnimatedInteger getOrderX();
 
-        @JSProperty
-        SVGAnimatedInteger getTargetX();
+    @JSProperty
+    SVGAnimatedInteger getOrderY();
 
-        @JSProperty
-        SVGAnimatedInteger getTargetY();
+    @JSProperty
+    SVGAnimatedBoolean getPreserveAlpha();
 
-        abstract class EdgeMode extends JsEnum {
+    @JSProperty
+    SVGAnimatedInteger getTargetX();
+
+    @JSProperty
+    SVGAnimatedInteger getTargetY();
+
+    abstract class EdgeMode extends JsEnum {
         public static final EdgeMode SVG_EDGEMODE_DUPLICATE = JsEnum.from("return SVGFEConvolveMatrixElement.SVG_EDGEMODE_DUPLICATE");
 
 
@@ -52,16 +64,7 @@ import org.teavm.jso.JSProperty;
         public static final EdgeMode SVG_EDGEMODE_UNKNOWN = JsEnum.from("return SVGFEConvolveMatrixElement.SVG_EDGEMODE_UNKNOWN");
 
 
-        public static final EdgeMode SVG_EDGEMODE_WRAP = JsEnum.from("return SVGFEConvolveMatrixElement.SVG_EDGEMODE_WRAP");}
+        public static final EdgeMode SVG_EDGEMODE_WRAP = JsEnum.from("return SVGFEConvolveMatrixElement.SVG_EDGEMODE_WRAP");
+    }
 
-        @JSBody(script = "return SVGFEConvolveMatrixElement.prototype")
-        static SVGFEConvolveMatrixElement prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        @JSBody(script = "return new SVGFEConvolveMatrixElement()")
-        static SVGFEConvolveMatrixElement create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

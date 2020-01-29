@@ -1,12 +1,12 @@
 package js.web.credentialmanagement.webauthn;
 
+import js.lang.Any;
+import js.util.collections.Array;
 import js.web.dom.BufferSource;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.util.collections.Array;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface PublicKeyCredentialRequestOptions extends Any {
@@ -16,6 +16,7 @@ public interface PublicKeyCredentialRequestOptions extends Any {
 
     @JSProperty
     void setAllowCredentials(@JSByRef PublicKeyCredentialDescriptor... allowCredentials);
+
     @JSProperty
     void setAllowCredentials(Array<PublicKeyCredentialDescriptor> allowCredentials);
 

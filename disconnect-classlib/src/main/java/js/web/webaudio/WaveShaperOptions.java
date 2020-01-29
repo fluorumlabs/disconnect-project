@@ -15,6 +15,7 @@ public interface WaveShaperOptions extends AudioNodeOptions {
 
     @JSProperty
     void setCurve(@JSByRef double... curve);
+
     @JSProperty
     void setCurve(Float32Array curve);
 

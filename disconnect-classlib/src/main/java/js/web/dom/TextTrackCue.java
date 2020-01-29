@@ -5,101 +5,113 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** TextTrackCues represent a string of text that will be displayed for some duration of time on a TextTrack. This includes the start and end times that the cue will be displayed. A TextTrackCue cannot be used directly, instead one of the derived types (e.g. VTTCue) must be used. */
-        public interface TextTrackCue extends EventTarget {
-        @JSProperty
-        double getEndTime();
+/**
+ * TextTrackCues represent a string of text that will be displayed for some duration of time on a TextTrack. This includes the start and end times that the cue will be displayed. A TextTrackCue cannot be used directly, instead one of the derived types (e.g. VTTCue) must be used.
+ */
+public interface TextTrackCue extends EventTarget {
+    @JSBody(script = "return TextTrackCue.prototype")
+    static TextTrackCue prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setEndTime(double endTime);
+    @JSBody(params = {"startTime", "endTime", "text"}, script = "return new TextTrackCue(startTime, endTime, text)")
+    static TextTrackCue create(double startTime, double endTime, String text) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getId();
+    @JSProperty
+    double getEndTime();
 
-        @JSProperty
-        void setId(String id);
+    @JSProperty
+    void setEndTime(double endTime);
 
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnenter();
+    @JSProperty
+    String getId();
 
-        @JSProperty
-        void setOnenter(EventListener<Event> onenter);
+    @JSProperty
+    void setId(String id);
 
-        default void addEnterEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("enter", listener, options);
-        }
-        default void addEnterEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("enter", listener, options);
-        }
-        default void addEnterEventListener(EventListener<Event> listener) {
-            addEventListener("enter", listener);
-        }
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnenter();
 
-        default void removeEnterEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("enter", listener, options);
-        }
-        default void removeEnterEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("enter", listener, options);
-        }
-        default void removeEnterEventListener(EventListener<Event> listener) {
-            removeEventListener("enter", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnexit();
+    @JSProperty
+    void setOnenter(EventListener<Event> onenter);
 
-        @JSProperty
-        void setOnexit(EventListener<Event> onexit);
+    default void addEnterEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("enter", listener, options);
+    }
 
-        default void addExitEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("exit", listener, options);
-        }
-        default void addExitEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("exit", listener, options);
-        }
-        default void addExitEventListener(EventListener<Event> listener) {
-            addEventListener("exit", listener);
-        }
+    default void addEnterEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("enter", listener, options);
+    }
 
-        default void removeExitEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("exit", listener, options);
-        }
-        default void removeExitEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("exit", listener, options);
-        }
-        default void removeExitEventListener(EventListener<Event> listener) {
-            removeEventListener("exit", listener);
-        }
-        @JSProperty
-        boolean isPauseOnExit();
+    default void addEnterEventListener(EventListener<Event> listener) {
+        addEventListener("enter", listener);
+    }
 
-        @JSProperty
-        void setPauseOnExit(boolean pauseOnExit);
+    default void removeEnterEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("enter", listener, options);
+    }
 
-        @JSProperty
-        double getStartTime();
+    default void removeEnterEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("enter", listener, options);
+    }
 
-        @JSProperty
-        void setStartTime(double startTime);
+    default void removeEnterEventListener(EventListener<Event> listener) {
+        removeEventListener("enter", listener);
+    }
 
-        @JSProperty
-        String getText();
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnexit();
 
-        @JSProperty
-        void setText(String text);
+    @JSProperty
+    void setOnexit(EventListener<Event> onexit);
 
-        @JSProperty
-        TextTrack getTrack();
+    default void addExitEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("exit", listener, options);
+    }
 
-        @JSBody(script = "return TextTrackCue.prototype")
-        static TextTrackCue prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void addExitEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("exit", listener, options);
+    }
 
-        @JSBody(params={"startTime","endTime","text"}, script = "return new TextTrackCue(startTime, endTime, text)")
-        static TextTrackCue create(double startTime, double endTime, String text) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void addExitEventListener(EventListener<Event> listener) {
+        addEventListener("exit", listener);
+    }
 
-        }
+    default void removeExitEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("exit", listener, options);
+    }
+
+    default void removeExitEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("exit", listener, options);
+    }
+
+    default void removeExitEventListener(EventListener<Event> listener) {
+        removeEventListener("exit", listener);
+    }
+
+    @JSProperty
+    boolean isPauseOnExit();
+
+    @JSProperty
+    void setPauseOnExit(boolean pauseOnExit);
+
+    @JSProperty
+    double getStartTime();
+
+    @JSProperty
+    void setStartTime(double startTime);
+
+    @JSProperty
+    String getText();
+
+    @JSProperty
+    void setText(String text);
+
+    @JSProperty
+    TextTrack getTrack();
+
+}

@@ -1,10 +1,10 @@
 package js.web.webrtc;
 
+import js.util.collections.Array;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.util.collections.Array;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface RTCRtpSendParameters extends RTCRtpParameters {
@@ -20,6 +20,7 @@ public interface RTCRtpSendParameters extends RTCRtpParameters {
 
     @JSProperty
     void setEncodings(@JSByRef RTCRtpEncodingParameters... encodings);
+
     @JSProperty
     void setEncodings(Array<RTCRtpEncodingParameters> encodings);
 

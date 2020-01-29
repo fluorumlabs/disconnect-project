@@ -1,41 +1,42 @@
 package js.web.cssom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * A screen, usually the one on which the current window is being rendered, and is obtained using window.screen.
+ */
+public interface Screen extends Any {
+    @JSBody(script = "return Screen.prototype")
+    static Screen prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** A screen, usually the one on which the current window is being rendered, and is obtained using window.screen. */
-        public interface Screen extends Any {
-        @JSProperty
-        int getAvailHeight();
+    @JSBody(script = "return new Screen()")
+    static Screen create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        int getAvailWidth();
+    @JSProperty
+    int getAvailHeight();
 
-        @JSProperty
-        int getColorDepth();
+    @JSProperty
+    int getAvailWidth();
 
-        @JSProperty
-        int getHeight();
+    @JSProperty
+    int getColorDepth();
 
-        @JSProperty
-        ScreenOrientation getOrientation();
+    @JSProperty
+    int getHeight();
 
-        @JSProperty
-        int getPixelDepth();
+    @JSProperty
+    ScreenOrientation getOrientation();
 
-        @JSProperty
-        int getWidth();
+    @JSProperty
+    int getPixelDepth();
 
-        @JSBody(script = "return Screen.prototype")
-        static Screen prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    int getWidth();
 
-        @JSBody(script = "return new Screen()")
-        static Screen create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

@@ -1,11 +1,11 @@
 package js.web.webrtc;
 
+import js.lang.Any;
+import js.lang.Unknown;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.lang.Unknown;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface RTCIceServer extends Any {
@@ -15,6 +15,7 @@ public interface RTCIceServer extends Any {
 
     @JSProperty
     void setCredential(String credential);
+
     @JSProperty
     void setCredential(RTCOAuthCredential credential);
 
@@ -30,6 +31,7 @@ public interface RTCIceServer extends Any {
 
     @JSProperty
     void setUrls(String urls);
+
     @JSProperty
     void setUrls(@JSByRef String... urls);
 

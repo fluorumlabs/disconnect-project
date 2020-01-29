@@ -6,27 +6,28 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Focus-related events like focus, blur, focusin, or focusout. */
+/**
+ * Focus-related events like focus, blur, focusin, or focusout.
+ */
 public interface FocusEvent extends UIEvent {
-    @JSProperty
-    @Nullable
-    EventTarget getRelatedTarget();
-
     @JSBody(script = "return FocusEvent.prototype")
     static FocusEvent prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params={"type","eventInitDict"}, script = "return new FocusEvent(type, eventInitDict)")
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new FocusEvent(type, eventInitDict)")
     static FocusEvent create(String type, FocusEventInit eventInitDict) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params="type", script = "return new FocusEvent(type)")
+    @JSBody(params = "type", script = "return new FocusEvent(type)")
     static FocusEvent create(String type) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
+    @JSProperty
+    @Nullable
+    EventTarget getRelatedTarget();
 
 
     interface FocusEventInit extends UIEventInit {

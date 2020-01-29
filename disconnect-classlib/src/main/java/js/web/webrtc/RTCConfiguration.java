@@ -1,11 +1,11 @@
 package js.web.webrtc;
 
+import js.lang.Any;
 import js.util.collections.Array;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface RTCConfiguration extends Any {
@@ -22,6 +22,7 @@ public interface RTCConfiguration extends Any {
 
     @JSProperty
     void setCertificates(@JSByRef RTCCertificate... certificates);
+
     @JSProperty
     void setCertificates(Array<RTCCertificate> certificates);
 
@@ -37,6 +38,7 @@ public interface RTCConfiguration extends Any {
 
     @JSProperty
     void setIceServers(@JSByRef RTCIceServer... iceServers);
+
     @JSProperty
     void setIceServers(Array<RTCIceServer> iceServers);
 

@@ -1,32 +1,33 @@
 package js.web.webspeech;
 
+import js.web.dom.Event;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.web.dom.Event;
+/**
+ * This Web Speech API interface contains information about the current state of SpeechSynthesisUtterance objects that have been processed in the speech service.
+ */
+public interface SpeechSynthesisEvent extends Event {
+    @JSBody(script = "return SpeechSynthesisEvent.prototype")
+    static SpeechSynthesisEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** This Web Speech API interface contains information about the current state of SpeechSynthesisUtterance objects that have been processed in the speech service. */
-        public interface SpeechSynthesisEvent extends Event {
-        @JSProperty
-        int getCharIndex();
+    @JSBody(script = "return new SpeechSynthesisEvent()")
+    static SpeechSynthesisEvent create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getElapsedTime();
+    @JSProperty
+    int getCharIndex();
 
-        @JSProperty
-        String getName();
+    @JSProperty
+    double getElapsedTime();
 
-        @JSProperty
-        SpeechSynthesisUtterance getUtterance();
+    @JSProperty
+    String getName();
 
-        @JSBody(script = "return SpeechSynthesisEvent.prototype")
-        static SpeechSynthesisEvent prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SpeechSynthesisUtterance getUtterance();
 
-        @JSBody(script = "return new SpeechSynthesisEvent()")
-        static SpeechSynthesisEvent create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

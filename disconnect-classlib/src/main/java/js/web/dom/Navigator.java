@@ -20,64 +20,74 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** The state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities. */
-        public interface Navigator extends NavigatorAutomationInformation, NavigatorBeacon, NavigatorConcurrentHardware, NavigatorContentUtils, NavigatorCookies, NavigatorID, NavigatorLanguage, NavigatorOnLine, NavigatorPlugins, NavigatorStorage {
-        @JSProperty
-        ReadonlyArray<VRDisplay> getActiveVRDisplays();
-        @JSProperty
-        Clipboard getClipboard();
+/**
+ * The state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities.
+ */
+public interface Navigator extends NavigatorAutomationInformation, NavigatorBeacon, NavigatorConcurrentHardware, NavigatorContentUtils, NavigatorCookies, NavigatorID, NavigatorLanguage, NavigatorOnLine, NavigatorPlugins, NavigatorStorage {
+    @JSBody(script = "return Navigator.prototype")
+    static Navigator prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        CredentialsContainer getCredentials();
+    @JSBody(script = "return new Navigator()")
+    static Navigator create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        String  getDoNotTrack();
+    @JSProperty
+    ReadonlyArray<VRDisplay> getActiveVRDisplays();
 
-        @JSProperty
-        Geolocation getGeolocation();
+    @JSProperty
+    Clipboard getClipboard();
 
-        @JSProperty
-        int getMaxTouchPoints();
+    @JSProperty
+    CredentialsContainer getCredentials();
 
-        @JSProperty
-        MediaDevices getMediaDevices();
+    @JSProperty
+    @Nullable
+    String getDoNotTrack();
 
-        @JSProperty
-        boolean isMsManipulationViewsEnabled();
+    @JSProperty
+    Geolocation getGeolocation();
 
-        @JSProperty
-        int getMsMaxTouchPoints();
+    @JSProperty
+    int getMaxTouchPoints();
 
-        @JSProperty
-        boolean isMsPointerEnabled();
+    @JSProperty
+    MediaDevices getMediaDevices();
 
-        @JSProperty
-        Permissions getPermissions();
+    @JSProperty
+    boolean isMsManipulationViewsEnabled();
 
-        @JSProperty
-        boolean isPointerEnabled();
+    @JSProperty
+    int getMsMaxTouchPoints();
 
-        @JSProperty
-        ServiceWorkerContainer getServiceWorker();
+    @JSProperty
+    boolean isMsPointerEnabled();
 
-        Array<Gamepad> getGamepads();
-        void getUserMedia(MediaStreamConstraints constraints, JsConsumer<MediaStream> successCallback, JsConsumer<MediaStreamError> errorCallback);
-        Promise<Array<VRDisplay>> getVRDisplays();
-        Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, @JSByRef MediaKeySystemConfiguration... supportedConfigurations);
-        Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, Array<MediaKeySystemConfiguration> supportedConfigurations);
-        Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, JsIterable<MediaKeySystemConfiguration> supportedConfigurations);
-        boolean vibrate(int pattern);
-        boolean vibrate(@JSByRef int... pattern);
+    @JSProperty
+    Permissions getPermissions();
 
-        @JSBody(script = "return Navigator.prototype")
-        static Navigator prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    boolean isPointerEnabled();
 
-        @JSBody(script = "return new Navigator()")
-        static Navigator create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    ServiceWorkerContainer getServiceWorker();
 
-        }
+    Array<Gamepad> getGamepads();
+
+    void getUserMedia(MediaStreamConstraints constraints, JsConsumer<MediaStream> successCallback, JsConsumer<MediaStreamError> errorCallback);
+
+    Promise<Array<VRDisplay>> getVRDisplays();
+
+    Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, @JSByRef MediaKeySystemConfiguration... supportedConfigurations);
+
+    Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, Array<MediaKeySystemConfiguration> supportedConfigurations);
+
+    Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, JsIterable<MediaKeySystemConfiguration> supportedConfigurations);
+
+    boolean vibrate(int pattern);
+
+    boolean vibrate(@JSByRef int... pattern);
+
+}

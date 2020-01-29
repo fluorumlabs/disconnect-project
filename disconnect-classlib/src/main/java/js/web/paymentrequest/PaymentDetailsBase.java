@@ -1,11 +1,11 @@
 package js.web.paymentrequest;
 
+import js.lang.Any;
 import js.util.collections.Array;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface PaymentDetailsBase extends Any {
@@ -15,6 +15,7 @@ public interface PaymentDetailsBase extends Any {
 
     @JSProperty
     void setDisplayItems(@JSByRef PaymentItem... displayItems);
+
     @JSProperty
     void setDisplayItems(Array<PaymentItem> displayItems);
 
@@ -24,6 +25,7 @@ public interface PaymentDetailsBase extends Any {
 
     @JSProperty
     void setModifiers(@JSByRef PaymentDetailsModifier... modifiers);
+
     @JSProperty
     void setModifiers(Array<PaymentDetailsModifier> modifiers);
 
@@ -33,6 +35,7 @@ public interface PaymentDetailsBase extends Any {
 
     @JSProperty
     void setShippingOptions(@JSByRef PaymentShippingOption... shippingOptions);
+
     @JSProperty
     void setShippingOptions(Array<PaymentShippingOption> shippingOptions);
 

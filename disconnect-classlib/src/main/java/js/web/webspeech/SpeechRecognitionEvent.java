@@ -1,35 +1,36 @@
 package js.web.webspeech;
 
+import js.lang.Unknown;
+import js.web.dom.Document;
+import js.web.dom.Event;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Unknown;
-import js.web.dom.Document;
-import js.web.dom.Event;
+import javax.annotation.Nullable;
 
 
 public interface SpeechRecognitionEvent extends Event {
-        @JSProperty
-        @Nullable
-        Document getEmma();
+    @JSBody(script = "return SpeechRecognitionEvent.prototype")
+    static SpeechRecognitionEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        Unknown getInterpretation();
+    @JSBody(script = "return new SpeechRecognitionEvent()")
+    static SpeechRecognitionEvent create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getResultIndex();
+    @JSProperty
+    @Nullable
+    Document getEmma();
 
-        @JSProperty
-        SpeechRecognitionResultList getResults();
+    @JSProperty
+    Unknown getInterpretation();
 
-        @JSBody(script = "return SpeechRecognitionEvent.prototype")
-        static SpeechRecognitionEvent prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getResultIndex();
 
-        @JSBody(script = "return new SpeechRecognitionEvent()")
-        static SpeechRecognitionEvent create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SpeechRecognitionResultList getResults();
 
-        }
+}

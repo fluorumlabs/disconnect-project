@@ -13,77 +13,88 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This ServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin. */
-        public interface ServiceWorkerRegistration extends EventTarget {
-        @JSProperty
-        @Nullable
-        ServiceWorker  getActive();
+/**
+ * This ServiceWorker API interface represents the service worker registration. You register a service worker to control one or more pages that share the same origin.
+ */
+public interface ServiceWorkerRegistration extends EventTarget {
+    @JSBody(script = "return ServiceWorkerRegistration.prototype")
+    static ServiceWorkerRegistration prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        ServiceWorker  getInstalling();
+    @JSBody(script = "return new ServiceWorkerRegistration()")
+    static ServiceWorkerRegistration create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        NavigationPreloadManager getNavigationPreload();
+    @JSProperty
+    @Nullable
+    ServiceWorker getActive();
 
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnupdatefound();
+    @JSProperty
+    @Nullable
+    ServiceWorker getInstalling();
 
-        @JSProperty
-        void setOnupdatefound(EventListener<Event> onupdatefound);
+    @JSProperty
+    NavigationPreloadManager getNavigationPreload();
 
-        default void addUpdateFoundEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("updatefound", listener, options);
-        }
-        default void addUpdateFoundEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("updatefound", listener, options);
-        }
-        default void addUpdateFoundEventListener(EventListener<Event> listener) {
-            addEventListener("updatefound", listener);
-        }
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnupdatefound();
 
-        default void removeUpdateFoundEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("updatefound", listener, options);
-        }
-        default void removeUpdateFoundEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("updatefound", listener, options);
-        }
-        default void removeUpdateFoundEventListener(EventListener<Event> listener) {
-            removeEventListener("updatefound", listener);
-        }
+    @JSProperty
+    void setOnupdatefound(EventListener<Event> onupdatefound);
 
-        @JSProperty
-        PushManager getPushManager();
+    default void addUpdateFoundEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("updatefound", listener, options);
+    }
 
-        @JSProperty
-        String getScope();
+    default void addUpdateFoundEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("updatefound", listener, options);
+    }
 
-        @JSProperty
-        SyncManager getSync();
+    default void addUpdateFoundEventListener(EventListener<Event> listener) {
+        addEventListener("updatefound", listener);
+    }
 
-        @JSProperty
-        ServiceWorkerUpdateViaCache getUpdateViaCache();
+    default void removeUpdateFoundEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("updatefound", listener, options);
+    }
 
-        @JSProperty
-        @Nullable
-        ServiceWorker  getWaiting();
+    default void removeUpdateFoundEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("updatefound", listener, options);
+    }
 
-        Promise<Array<Notification>> getNotifications(GetNotificationOptions filter);
-        Promise<Array<Notification>> getNotifications();
-        VoidPromise showNotification(String title, NotificationOptions options);
-        VoidPromise showNotification(String title);
-        BooleanPromise unregister();
-        VoidPromise update();
+    default void removeUpdateFoundEventListener(EventListener<Event> listener) {
+        removeEventListener("updatefound", listener);
+    }
 
-        @JSBody(script = "return ServiceWorkerRegistration.prototype")
-        static ServiceWorkerRegistration prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    PushManager getPushManager();
 
-        @JSBody(script = "return new ServiceWorkerRegistration()")
-        static ServiceWorkerRegistration create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getScope();
 
-        }
+    @JSProperty
+    SyncManager getSync();
+
+    @JSProperty
+    ServiceWorkerUpdateViaCache getUpdateViaCache();
+
+    @JSProperty
+    @Nullable
+    ServiceWorker getWaiting();
+
+    Promise<Array<Notification>> getNotifications(GetNotificationOptions filter);
+
+    Promise<Array<Notification>> getNotifications();
+
+    VoidPromise showNotification(String title, NotificationOptions options);
+
+    VoidPromise showNotification(String title);
+
+    BooleanPromise unregister();
+
+    VoidPromise update();
+
+}

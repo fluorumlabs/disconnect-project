@@ -1,82 +1,85 @@
 package js.web.webrtc;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
-/** The RTCIceCandidate interface—part of the WebRTC API—represents a candidate Internet Connectivity Establishment (ICE) configuration which may be used to establish an RTCPeerConnection. */
-        public interface RTCIceCandidate extends Any {
-        @JSProperty
-        String getCandidate();
+/**
+ * The RTCIceCandidate interface—part of the WebRTC API—represents a candidate Internet Connectivity Establishment (ICE) configuration which may be used to establish an RTCPeerConnection.
+ */
+public interface RTCIceCandidate extends Any {
+    @JSBody(script = "return RTCIceCandidate.prototype")
+    static RTCIceCandidate prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        RTCIceComponent  getComponent();
+    @JSBody(script = "return new RTCIceCandidate()")
+    static RTCIceCandidate create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        String  getFoundation();
+    @JSBody(params = "candidateInitDict", script = "return new RTCIceCandidate(candidateInitDict)")
+    static RTCIceCandidate create(RTCIceCandidateInit candidateInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        String  getIp();
+    @JSProperty
+    String getCandidate();
 
-        @JSProperty
-        @Nullable
-        int  getPort();
+    @JSProperty
+    @Nullable
+    RTCIceComponent getComponent();
 
-        @JSProperty
-        @Nullable
-        int  getPriority();
+    @JSProperty
+    @Nullable
+    String getFoundation();
 
-        @JSProperty
-        @Nullable
-        RTCIceProtocol  getProtocol();
+    @JSProperty
+    @Nullable
+    String getIp();
 
-        @JSProperty
-        @Nullable
-        String  getRelatedAddress();
+    @JSProperty
+    @Nullable
+    int getPort();
 
-        @JSProperty
-        @Nullable
-        int  getRelatedPort();
+    @JSProperty
+    @Nullable
+    int getPriority();
 
-        @JSProperty
-        @Nullable
-        int  getSdpMLineIndex();
+    @JSProperty
+    @Nullable
+    RTCIceProtocol getProtocol();
 
-        @JSProperty
-        @Nullable
-        String  getSdpMid();
+    @JSProperty
+    @Nullable
+    String getRelatedAddress();
 
-        @JSProperty
-        @Nullable
-        RTCIceTcpCandidateType  getTcpType();
+    @JSProperty
+    @Nullable
+    int getRelatedPort();
 
-        @JSProperty
-        @Nullable
-        RTCIceCandidateType  getType();
+    @JSProperty
+    @Nullable
+    int getSdpMLineIndex();
 
-        @JSProperty
-        @Nullable
-        String  getUsernameFragment();
+    @JSProperty
+    @Nullable
+    String getSdpMid();
 
-        RTCIceCandidateInit toJSON();
+    @JSProperty
+    @Nullable
+    RTCIceTcpCandidateType getTcpType();
 
-        @JSBody(script = "return RTCIceCandidate.prototype")
-        static RTCIceCandidate prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    RTCIceCandidateType getType();
 
-        @JSBody(script = "return new RTCIceCandidate()")
-        static RTCIceCandidate create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    String getUsernameFragment();
 
-        @JSBody(params="candidateInitDict", script = "return new RTCIceCandidate(candidateInitDict)")
-        static RTCIceCandidate create(RTCIceCandidateInit candidateInitDict) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    RTCIceCandidateInit toJSON();
 
-        }
+}

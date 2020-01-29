@@ -3,8 +3,20 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-/** Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <area> elements. */
+/**
+ * Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <area> elements.
+ */
 public interface HTMLAreaElement extends HTMLElement, HTMLHyperlinkElementUtils {
+    @JSBody(script = "return HTMLAreaElement.prototype")
+    static HTMLAreaElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLAreaElement()")
+    static HTMLAreaElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Sets or retrieves a text alternative to the graphic.
      */
@@ -77,15 +89,5 @@ public interface HTMLAreaElement extends HTMLElement, HTMLHyperlinkElementUtils 
 
     @JSProperty
     void setTarget(String target);
-
-    @JSBody(script = "return HTMLAreaElement.prototype")
-    static HTMLAreaElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLAreaElement()")
-    static HTMLAreaElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

@@ -1,24 +1,23 @@
 package js.web.dom.svg;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface SVGFilterPrimitiveStandardAttributes extends Any {
-        @JSProperty
-        SVGAnimatedLength getHeight();
+    @JSProperty
+    SVGAnimatedLength getHeight();
 
-        @JSProperty
-        SVGAnimatedString getResult();
+    @JSProperty
+    SVGAnimatedString getResult();
 
-        @JSProperty
-        SVGAnimatedLength getWidth();
+    @JSProperty
+    SVGAnimatedLength getWidth();
 
-        @JSProperty
-        SVGAnimatedLength getX();
+    @JSProperty
+    SVGAnimatedLength getX();
 
-        @JSProperty
-        SVGAnimatedLength getY();
+    @JSProperty
+    SVGAnimatedLength getY();
 
-        }
+}

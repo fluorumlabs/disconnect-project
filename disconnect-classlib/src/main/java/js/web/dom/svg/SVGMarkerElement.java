@@ -6,52 +6,55 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGMarkerElement extends SVGElement, SVGFitToViewBox {
-        @JSProperty
-        SVGAnimatedLength getMarkerHeight();
+    @JSBody(script = "return SVGMarkerElement.prototype")
+    static SVGMarkerElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedEnumeration<MarkerUnit> getMarkerUnits();
+    @JSBody(script = "return new SVGMarkerElement()")
+    static SVGMarkerElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAnimatedLength getMarkerWidth();
+    @JSProperty
+    SVGAnimatedLength getMarkerHeight();
 
-        @JSProperty
-        SVGAnimatedAngle getOrientAngle();
+    @JSProperty
+    SVGAnimatedEnumeration<MarkerUnit> getMarkerUnits();
 
-        @JSProperty
-        SVGAnimatedEnumeration<OrientType> getOrientType();
+    @JSProperty
+    SVGAnimatedLength getMarkerWidth();
 
-        @JSProperty
-        SVGAnimatedLength getRefX();
+    @JSProperty
+    SVGAnimatedAngle getOrientAngle();
 
-        @JSProperty
-        SVGAnimatedLength getRefY();
+    @JSProperty
+    SVGAnimatedEnumeration<OrientType> getOrientType();
 
-        void setOrientToAngle(SVGAngle angle);
-        void setOrientToAuto();
+    @JSProperty
+    SVGAnimatedLength getRefX();
 
-        abstract class MarkerUnit extends JsEnum {
+    @JSProperty
+    SVGAnimatedLength getRefY();
+
+    void setOrientToAngle(SVGAngle angle);
+
+    void setOrientToAuto();
+
+    abstract class MarkerUnit extends JsEnum {
         public static final MarkerUnit SVG_MARKERUNITS_STROKEWIDTH = JsEnum.from("return SVGMarkerElement.SVG_MARKERUNITS_STROKEWIDTH");
 
-public static final MarkerUnit SVG_MARKERUNITS_UNKNOWN = JsEnum.from("return SVGMarkerElement.SVG_MARKERUNITS_UNKNOWN");
+        public static final MarkerUnit SVG_MARKERUNITS_UNKNOWN = JsEnum.from("return SVGMarkerElement.SVG_MARKERUNITS_UNKNOWN");
 
-        public static final MarkerUnit SVG_MARKERUNITS_USERSPACEONUSE = JsEnum.from("return SVGMarkerElement.SVG_MARKERUNITS_USERSPACEONUSE");}
+        public static final MarkerUnit SVG_MARKERUNITS_USERSPACEONUSE = JsEnum.from("return SVGMarkerElement.SVG_MARKERUNITS_USERSPACEONUSE");
+    }
 
-abstract class OrientType extends JsEnum {
+    abstract class OrientType extends JsEnum {
         public static final OrientType SVG_MARKER_ORIENT_ANGLE = JsEnum.from("return SVGMarkerElement.SVG_MARKER_ORIENT_ANGLE");
 
         public static final OrientType SVG_MARKER_ORIENT_AUTO = JsEnum.from("return SVGMarkerElement.SVG_MARKER_ORIENT_AUTO");
 
-public static final OrientType SVG_MARKER_ORIENT_UNKNOWN = JsEnum.from("return SVGMarkerElement.SVG_MARKER_ORIENT_UNKNOWN");}
+        public static final OrientType SVG_MARKER_ORIENT_UNKNOWN = JsEnum.from("return SVGMarkerElement.SVG_MARKER_ORIENT_UNKNOWN");
+    }
 
-@JSBody(script = "return SVGMarkerElement.prototype")
-static SVGMarkerElement prototype() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
 }
-
-@JSBody(script = "return new SVGMarkerElement()")
-static SVGMarkerElement create() {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-}
-
-        }

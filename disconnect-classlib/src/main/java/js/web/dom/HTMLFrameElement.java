@@ -8,6 +8,16 @@ import javax.annotation.Nullable;
 
 
 public interface HTMLFrameElement extends HTMLElement {
+    @JSBody(script = "return HTMLFrameElement.prototype")
+    static HTMLFrameElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLFrameElement()")
+    static HTMLFrameElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Retrieves the document object of the page or frame.
      */
@@ -103,15 +113,5 @@ public interface HTMLFrameElement extends HTMLElement {
 
     @JSProperty
     void setSrc(String src);
-
-    @JSBody(script = "return HTMLFrameElement.prototype")
-    static HTMLFrameElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLFrameElement()")
-    static HTMLFrameElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

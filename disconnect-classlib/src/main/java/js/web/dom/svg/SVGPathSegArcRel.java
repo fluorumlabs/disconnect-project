@@ -5,56 +5,56 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGPathSegArcRel extends SVGPathSeg {
-        @JSProperty
-        double getAngle();
+    @JSBody(script = "return SVGPathSegArcRel.prototype")
+    static SVGPathSegArcRel prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setAngle(double angle);
+    @JSBody(script = "return new SVGPathSegArcRel()")
+    static SVGPathSegArcRel create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        boolean isLargeArcFlag();
+    @JSProperty
+    double getAngle();
 
-        @JSProperty
-        void setLargeArcFlag(boolean largeArcFlag);
+    @JSProperty
+    void setAngle(double angle);
 
-        @JSProperty
-        double getR1();
+    @JSProperty
+    boolean isLargeArcFlag();
 
-        @JSProperty
-        void setR1(double r1);
+    @JSProperty
+    void setLargeArcFlag(boolean largeArcFlag);
 
-        @JSProperty
-        double getR2();
+    @JSProperty
+    double getR1();
 
-        @JSProperty
-        void setR2(double r2);
+    @JSProperty
+    void setR1(double r1);
 
-        @JSProperty
-        boolean isSweepFlag();
+    @JSProperty
+    double getR2();
 
-        @JSProperty
-        void setSweepFlag(boolean sweepFlag);
+    @JSProperty
+    void setR2(double r2);
 
-        @JSProperty
-        double getX();
+    @JSProperty
+    boolean isSweepFlag();
 
-        @JSProperty
-        void setX(double x);
+    @JSProperty
+    void setSweepFlag(boolean sweepFlag);
 
-        @JSProperty
-        double getY();
+    @JSProperty
+    double getX();
 
-        @JSProperty
-        void setY(double y);
+    @JSProperty
+    void setX(double x);
 
-        @JSBody(script = "return SVGPathSegArcRel.prototype")
-        static SVGPathSegArcRel prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    double getY();
 
-        @JSBody(script = "return new SVGPathSegArcRel()")
-        static SVGPathSegArcRel create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setY(double y);
 
-        }
+}

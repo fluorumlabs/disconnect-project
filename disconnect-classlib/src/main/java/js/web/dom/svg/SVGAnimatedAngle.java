@@ -1,26 +1,27 @@
 package js.web.dom.svg;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
+/**
+ * Used for attributes of basic type <angle> which can be animated.
+ */
+public interface SVGAnimatedAngle extends Any {
+    @JSBody(script = "return SVGAnimatedAngle.prototype")
+    static SVGAnimatedAngle prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** Used for attributes of basic type <angle> which can be animated. */
-        public interface SVGAnimatedAngle extends Any {
-        @JSProperty
-        SVGAngle getAnimVal();
+    @JSBody(script = "return new SVGAnimatedAngle()")
+    static SVGAnimatedAngle create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGAngle getBaseVal();
+    @JSProperty
+    SVGAngle getAnimVal();
 
-        @JSBody(script = "return SVGAnimatedAngle.prototype")
-        static SVGAnimatedAngle prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGAngle getBaseVal();
 
-        @JSBody(script = "return new SVGAnimatedAngle()")
-        static SVGAnimatedAngle create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

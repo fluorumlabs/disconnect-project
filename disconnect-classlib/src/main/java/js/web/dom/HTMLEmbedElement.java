@@ -6,8 +6,20 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <embed> elements. */
+/**
+ * Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <embed> elements.
+ */
 public interface HTMLEmbedElement extends HTMLElement {
+    @JSBody(script = "return HTMLEmbedElement.prototype")
+    static HTMLEmbedElement prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return new HTMLEmbedElement()")
+    static HTMLEmbedElement create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @Deprecated
     @JSProperty
     String getAlign();
@@ -60,15 +72,5 @@ public interface HTMLEmbedElement extends HTMLElement {
 
     @Nullable
     Document getSVGDocument();
-
-    @JSBody(script = "return HTMLEmbedElement.prototype")
-    static HTMLEmbedElement prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return new HTMLEmbedElement()")
-    static HTMLEmbedElement create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 }

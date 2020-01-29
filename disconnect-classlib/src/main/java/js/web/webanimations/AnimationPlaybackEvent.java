@@ -7,26 +7,26 @@ import org.teavm.jso.JSProperty;
 
 
 public interface AnimationPlaybackEvent extends Event {
-    @JSProperty
-    double  getCurrentTime();
-
-    @JSProperty
-    double  getTimelineTime();
-
     @JSBody(script = "return AnimationPlaybackEvent.prototype")
     static AnimationPlaybackEvent prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params={"type","eventInitDict"}, script = "return new AnimationPlaybackEvent(type, eventInitDict)")
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new AnimationPlaybackEvent(type, eventInitDict)")
     static AnimationPlaybackEvent create(String type, AnimationPlaybackEventInit eventInitDict) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params="type", script = "return new AnimationPlaybackEvent(type)")
+    @JSBody(params = "type", script = "return new AnimationPlaybackEvent(type)")
     static AnimationPlaybackEvent create(String type) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    double getCurrentTime();
+
+    @JSProperty
+    double getTimelineTime();
 
 
     interface AnimationPlaybackEventInit extends EventInit {

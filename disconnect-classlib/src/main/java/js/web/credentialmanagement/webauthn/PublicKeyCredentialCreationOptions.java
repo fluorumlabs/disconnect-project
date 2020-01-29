@@ -1,12 +1,12 @@
 package js.web.credentialmanagement.webauthn;
 
+import js.lang.Any;
 import js.util.collections.Array;
 import js.web.dom.BufferSource;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface PublicKeyCredentialCreationOptions extends Any {
@@ -36,6 +36,7 @@ public interface PublicKeyCredentialCreationOptions extends Any {
 
     @JSProperty
     void setExcludeCredentials(@JSByRef PublicKeyCredentialDescriptor... excludeCredentials);
+
     @JSProperty
     void setExcludeCredentials(Array<PublicKeyCredentialDescriptor> excludeCredentials);
 
@@ -51,6 +52,7 @@ public interface PublicKeyCredentialCreationOptions extends Any {
 
     @JSProperty
     void setPubKeyCredParams(@JSByRef PublicKeyCredentialParameters... pubKeyCredParams);
+
     @JSProperty
     void setPubKeyCredParams(Array<PublicKeyCredentialParameters> pubKeyCredParams);
 

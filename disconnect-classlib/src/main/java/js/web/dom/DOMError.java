@@ -1,17 +1,13 @@
 package js.web.dom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
-/** An error object that contains an error name. */
+/**
+ * An error object that contains an error name.
+ */
 public interface DOMError extends Any {
-    @JSProperty
-    String getName();
-
-    String toString();
-
     @JSBody(script = "return DOMError.prototype")
     static DOMError prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -21,5 +17,10 @@ public interface DOMError extends Any {
     static DOMError create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    String getName();
+
+    String toString();
 
 }

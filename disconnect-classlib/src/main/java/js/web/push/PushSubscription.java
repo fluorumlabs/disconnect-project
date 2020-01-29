@@ -8,31 +8,35 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** This Push API interface provides a subcription's URL endpoint and allows unsubscription from a push service. */
-        public interface PushSubscription extends Any {
-        @JSProperty
-        String getEndpoint();
+/**
+ * This Push API interface provides a subcription's URL endpoint and allows unsubscription from a push service.
+ */
+public interface PushSubscription extends Any {
+    @JSBody(script = "return PushSubscription.prototype")
+    static PushSubscription prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        double  getExpirationTime();
+    @JSBody(script = "return new PushSubscription()")
+    static PushSubscription create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        PushSubscriptionOptions getOptions();
+    @JSProperty
+    String getEndpoint();
 
-        @Nullable
-        ArrayBuffer getKey(PushEncryptionKeyName name);
-        PushSubscriptionJSON toJSON();
-        BooleanPromise unsubscribe();
+    @JSProperty
+    @Nullable
+    double getExpirationTime();
 
-        @JSBody(script = "return PushSubscription.prototype")
-        static PushSubscription prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    PushSubscriptionOptions getOptions();
 
-        @JSBody(script = "return new PushSubscription()")
-        static PushSubscription create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @Nullable
+    ArrayBuffer getKey(PushEncryptionKeyName name);
 
-        }
+    PushSubscriptionJSON toJSON();
+
+    BooleanPromise unsubscribe();
+
+}

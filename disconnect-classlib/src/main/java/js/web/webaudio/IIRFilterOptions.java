@@ -1,8 +1,7 @@
 package js.web.webaudio;
 
-import org.teavm.jso.JSProperty;
-
 import org.teavm.jso.JSByRef;
+import org.teavm.jso.JSProperty;
 
 
 public interface IIRFilterOptions extends AudioNodeOptions {

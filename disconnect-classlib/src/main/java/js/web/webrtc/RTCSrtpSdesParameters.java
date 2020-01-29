@@ -1,11 +1,11 @@
 package js.web.webrtc;
 
+import js.lang.Any;
+import js.util.collections.Array;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.util.collections.Array;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface RTCSrtpSdesParameters extends Any {
@@ -22,6 +22,7 @@ public interface RTCSrtpSdesParameters extends Any {
 
     @JSProperty
     void setKeyParams(@JSByRef RTCSrtpKeyParam... keyParams);
+
     @JSProperty
     void setKeyParams(Array<RTCSrtpKeyParam> keyParams);
 

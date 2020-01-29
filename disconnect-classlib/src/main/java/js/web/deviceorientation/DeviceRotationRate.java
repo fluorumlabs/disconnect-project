@@ -1,21 +1,13 @@
 package js.web.deviceorientation;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-
-/** Provides information about the rate at which the device is rotating around all three axes. */
+/**
+ * Provides information about the rate at which the device is rotating around all three axes.
+ */
 public interface DeviceRotationRate extends Any {
-    @JSProperty
-    double  getAlpha();
-
-    @JSProperty
-    double  getBeta();
-
-    @JSProperty
-    double  getGamma();
-
     @JSBody(script = "return DeviceRotationRate.prototype")
     static DeviceRotationRate prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -25,5 +17,14 @@ public interface DeviceRotationRate extends Any {
     static DeviceRotationRate create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    double getAlpha();
+
+    @JSProperty
+    double getBeta();
+
+    @JSProperty
+    double getGamma();
 
 }

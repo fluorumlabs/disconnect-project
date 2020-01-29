@@ -1,10 +1,9 @@
 package js.web.canvas;
 
-import js.util.iterable.DoubleIterable;
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import js.util.iterable.DoubleIterable;
 import org.teavm.jso.JSByRef;
+import org.teavm.jso.JSProperty;
 
 
 public interface CanvasPathDrawingStyles extends Any {
@@ -39,6 +38,8 @@ public interface CanvasPathDrawingStyles extends Any {
     void setMiterLimit(double miterLimit);
 
     double[] getLineDash();
+
     void setLineDash(@JSByRef double[] segments);
+
     void setLineDash(DoubleIterable segments);
 }

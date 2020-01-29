@@ -6,6 +6,6 @@ import org.teavm.jso.JSObject;
 
 @JSFunctor
 @FunctionalInterface
-        public interface RTCSessionDescriptionCallback extends JSObject {
-        void accept(RTCSessionDescriptionInit description);
-        }
+public interface RTCSessionDescriptionCallback extends JSObject {
+    void accept(RTCSessionDescriptionInit description);
+}

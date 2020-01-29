@@ -6,5 +6,5 @@ import org.teavm.jso.JSProperty;
 
 public interface TemplateStringsArray extends ReadonlyArray<JsString> {
     @JSProperty
-     String[] getRaw();
+    String[] getRaw();
 }

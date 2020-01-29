@@ -6,29 +6,29 @@ import org.teavm.jso.JSProperty;
 
 
 public interface SVGZoomEvent extends UIEvent {
-        @JSProperty
-        double getNewScale();
+    @JSBody(script = "return SVGZoomEvent.prototype")
+    static SVGZoomEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        SVGPoint getNewTranslate();
+    @JSBody(script = "return new SVGZoomEvent()")
+    static SVGZoomEvent create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        double getPreviousScale();
+    @JSProperty
+    double getNewScale();
 
-        @JSProperty
-        SVGPoint getPreviousTranslate();
+    @JSProperty
+    SVGPoint getNewTranslate();
 
-        @JSProperty
-        SVGRect getZoomRectScreen();
+    @JSProperty
+    double getPreviousScale();
 
-        @JSBody(script = "return SVGZoomEvent.prototype")
-        static SVGZoomEvent prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGPoint getPreviousTranslate();
 
-        @JSBody(script = "return new SVGZoomEvent()")
-        static SVGZoomEvent create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    SVGRect getZoomRectScreen();
 
-        }
+}

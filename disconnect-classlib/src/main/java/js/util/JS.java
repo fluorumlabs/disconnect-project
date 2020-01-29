@@ -4,15 +4,18 @@ import js.lang.Any;
 import org.teavm.jso.JSBody;
 
 public final class JS {
+    public static final Reflect Reflect = getReflectInstance();
+
+    /////////////////////////////
+    /// ECMAScript APIs
+    /////////////////////////////
+
     /**
      * Not instantiatable
      */
     private JS() {
     }
 
-    /////////////////////////////
-    /// ECMAScript APIs
-    /////////////////////////////
     /**
      * Evaluates JavaScript code and executes it.
      *
@@ -129,8 +132,6 @@ public final class JS {
      */
     @JSBody(params = "string", script = "return unescape(string)")
     public static native String unescape(String string);
-
-    public static final Reflect Reflect = getReflectInstance();
 
     @JSBody(script = "return Reflect")
     private static native Reflect getReflectInstance();

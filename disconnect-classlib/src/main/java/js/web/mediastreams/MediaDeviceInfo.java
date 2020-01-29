@@ -1,35 +1,36 @@
 package js.web.mediastreams;
 
+import js.lang.Any;
+import js.lang.Unknown;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Any;
-import js.lang.Unknown;
+/**
+ * The MediaDevicesInfo interface contains information that describes a single media input or output device.
+ */
+public interface MediaDeviceInfo extends Any {
+    @JSBody(script = "return MediaDeviceInfo.prototype")
+    static MediaDeviceInfo prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-/** The MediaDevicesInfo interface contains information that describes a single media input or output device. */
-        public interface MediaDeviceInfo extends Any {
-        @JSProperty
-        String getDeviceId();
+    @JSBody(script = "return new MediaDeviceInfo()")
+    static MediaDeviceInfo create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        String getGroupId();
+    @JSProperty
+    String getDeviceId();
 
-        @JSProperty
-        MediaDeviceKind getKind();
+    @JSProperty
+    String getGroupId();
 
-        @JSProperty
-        String getLabel();
+    @JSProperty
+    MediaDeviceKind getKind();
 
-        Unknown toJSON();
+    @JSProperty
+    String getLabel();
 
-        @JSBody(script = "return MediaDeviceInfo.prototype")
-        static MediaDeviceInfo prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    Unknown toJSON();
 
-        @JSBody(script = "return new MediaDeviceInfo()")
-        static MediaDeviceInfo create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-
-        }
+}

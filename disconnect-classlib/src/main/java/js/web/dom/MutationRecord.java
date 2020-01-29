@@ -1,79 +1,82 @@
 package js.web.dom;
 
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
+import javax.annotation.Nullable;
 
-/** A MutationRecord represents an individual DOM mutation. It is the object that is passed to MutationObserver's callback. */
-        public interface MutationRecord extends Any {
-        /**
-         * Return the nodes added and removed respectively.
-         */
-        @JSProperty
-        NodeList getAddedNodes();
+/**
+ * A MutationRecord represents an individual DOM mutation. It is the object that is passed to MutationObserver's callback.
+ */
+public interface MutationRecord extends Any {
+    @JSBody(script = "return MutationRecord.prototype")
+    static MutationRecord prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        /**
-         * Returns the local name of the changed attribute, and null otherwise.
-         */
-        @JSProperty
-        @Nullable
-        String  getAttributeName();
+    @JSBody(script = "return new MutationRecord()")
+    static MutationRecord create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        /**
-         * Returns the namespace of the changed attribute, and null otherwise.
-         */
-        @JSProperty
-        @Nullable
-        String  getAttributeNamespace();
+    /**
+     * Return the nodes added and removed respectively.
+     */
+    @JSProperty
+    NodeList getAddedNodes();
 
-        /**
-         * Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
-         */
-        @JSProperty
-        @Nullable
-        Node getNextSibling();
+    /**
+     * Returns the local name of the changed attribute, and null otherwise.
+     */
+    @JSProperty
+    @Nullable
+    String getAttributeName();
 
-        /**
-         * The return value depends on type. For "attributes", it is the value of the changed attribute before the change. For "characterData", it is the data of the changed node before the change. For "childList", it is null.
-         */
-        @JSProperty
-        @Nullable
-        String  getOldValue();
+    /**
+     * Returns the namespace of the changed attribute, and null otherwise.
+     */
+    @JSProperty
+    @Nullable
+    String getAttributeNamespace();
 
-        /**
-         * Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
-         */
-        @JSProperty
-        @Nullable
-        Node getPreviousSibling();
+    /**
+     * Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
+     */
+    @JSProperty
+    @Nullable
+    Node getNextSibling();
 
-        /**
-         * Return the nodes added and removed respectively.
-         */
-        @JSProperty
-        NodeList getRemovedNodes();
+    /**
+     * The return value depends on type. For "attributes", it is the value of the changed attribute before the change. For "characterData", it is the data of the changed node before the change. For "childList", it is null.
+     */
+    @JSProperty
+    @Nullable
+    String getOldValue();
 
-        /**
-         * Returns the node the mutation affected, depending on the type. For "attributes", it is the element whose attribute changed. For "characterData", it is the CharacterData node. For "childList", it is the node whose children changed.
-         */
-        @JSProperty
-        Node getTarget();
+    /**
+     * Return the previous and next sibling respectively of the added or removed nodes, and null otherwise.
+     */
+    @JSProperty
+    @Nullable
+    Node getPreviousSibling();
 
-        /**
-         * Returns "attributes" if it was an attribute mutation. "characterData" if it was a mutation to a CharacterData node. And "childList" if it was a mutation to the tree of nodes.
-         */
-        @JSProperty
-        MutationRecordType getType();
+    /**
+     * Return the nodes added and removed respectively.
+     */
+    @JSProperty
+    NodeList getRemovedNodes();
 
-        @JSBody(script = "return MutationRecord.prototype")
-        static MutationRecord prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    /**
+     * Returns the node the mutation affected, depending on the type. For "attributes", it is the element whose attribute changed. For "characterData", it is the CharacterData node. For "childList", it is the node whose children changed.
+     */
+    @JSProperty
+    Node getTarget();
 
-        @JSBody(script = "return new MutationRecord()")
-        static MutationRecord create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    /**
+     * Returns "attributes" if it was an attribute mutation. "characterData" if it was a mutation to a CharacterData node. And "childList" if it was a mutation to the tree of nodes.
+     */
+    @JSProperty
+    MutationRecordType getType();
 
-        }
+}

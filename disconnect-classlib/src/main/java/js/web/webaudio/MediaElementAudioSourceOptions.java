@@ -1,9 +1,8 @@
 package js.web.webaudio;
 
+import js.lang.Any;
 import js.web.dom.HTMLMediaElement;
 import org.teavm.jso.JSProperty;
-
-import js.lang.Any;
 
 
 public interface MediaElementAudioSourceOptions extends Any {

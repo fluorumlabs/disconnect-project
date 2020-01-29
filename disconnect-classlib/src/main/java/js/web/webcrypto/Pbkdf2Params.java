@@ -1,9 +1,8 @@
 package js.web.webcrypto;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Unknown;
 import js.web.dom.BufferSource;
+import org.teavm.jso.JSProperty;
 
 
 public interface Pbkdf2Params extends Algorithm {
@@ -12,6 +11,7 @@ public interface Pbkdf2Params extends Algorithm {
 
     @JSProperty
     void setHash(String hash);
+
     @JSProperty
     void setHash(Algorithm hash);
 

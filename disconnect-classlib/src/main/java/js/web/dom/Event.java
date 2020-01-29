@@ -8,8 +8,25 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** An event which takes place in the DOM. */
+/**
+ * An event which takes place in the DOM.
+ */
 public interface Event extends Any {
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new Event(type, eventInitDict)")
+    static Event create(String type, EventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"type"}, script = "return new Event(type)")
+    static Event create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return Event.prototype")
+    static Event prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     /**
      * Returns true or false depending on how event was initialized. True if event goes through its target's ancestors in reverse tree order, and false otherwise.
      */
@@ -39,7 +56,7 @@ public interface Event extends Any {
      */
     @JSProperty
     @Nullable
-    EventTarget  getCurrentTarget();
+    EventTarget getCurrentTarget();
 
     /**
      * Returns true if preventDefault() was invoked successfully to indicate cancelation, and false otherwise.
@@ -68,14 +85,14 @@ public interface Event extends Any {
     @Deprecated
     @JSProperty
     @Nullable
-    EventTarget  getSrcElement();
+    EventTarget getSrcElement();
 
     /**
      * Returns the object to which event is dispatched (its target).
      */
     @JSProperty
     @Nullable
-    EventTarget  getTarget();
+    EventTarget getTarget();
 
     /**
      * Returns the event's timestamp as the number of milliseconds measured relative to the time origin.
@@ -95,46 +112,25 @@ public interface Event extends Any {
     Array<EventTarget> composedPath();
 
     void initEvent(String type, boolean bubbles, boolean cancelable);
+
     void initEvent(String type, boolean bubbles);
+
     void initEvent(String type);
+
     /**
      * If invoked when the cancelable attribute value is true, and while executing a listener for the event with passive set to false, signals to the operation that caused event to be dispatched that it needs to be canceled.
      */
     void preventDefault();
+
     /**
      * Invoking this method prevents event from reaching any registered event listeners after the current one finishes running and, when dispatched in a tree, also prevents event from reaching any other objects.
      */
     void stopImmediatePropagation();
+
     /**
      * When dispatched in a tree, invoking this method prevents event from reaching any objects other than the current object.
      */
     void stopPropagation();
-
-    abstract class EventPhase extends JsEnum {
-        public static final EventPhase AT_TARGET = JsEnum.from("return Event.AT_TARGET");
-
-    public static final EventPhase BUBBLING_PHASE = JsEnum.from("return Event.BUBBLING_PHASE");
-
-    public static final EventPhase CAPTURING_PHASE = JsEnum.from("return Event.CAPTURING_PHASE");
-    public static final EventPhase NONE = JsEnum.from("return Event.NONE");
-    }
-
-
-    @JSBody(params={"type","eventInitDict"}, script = "return new Event(type, eventInitDict)")
-    static Event create(String type, EventInit eventInitDict) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params={"type"}, script = "return new Event(type)")
-    static Event create(String type) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return Event.prototype")
-    static Event prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
 
     interface EventInit extends Any {
         @JSProperty
@@ -155,5 +151,15 @@ public interface Event extends Any {
         @JSProperty
         void setComposed(boolean composed);
 
+    }
+
+    abstract class EventPhase extends JsEnum {
+        public static final EventPhase AT_TARGET = JsEnum.from("return Event.AT_TARGET");
+
+        public static final EventPhase BUBBLING_PHASE = JsEnum.from("return Event.BUBBLING_PHASE");
+
+        public static final EventPhase CAPTURING_PHASE = JsEnum.from("return Event.CAPTURING_PHASE");
+
+        public static final EventPhase NONE = JsEnum.from("return Event.NONE");
     }
 }

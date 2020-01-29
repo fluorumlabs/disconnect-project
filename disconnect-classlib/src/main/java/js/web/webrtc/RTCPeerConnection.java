@@ -14,377 +14,456 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** A WebRTC connection between the local computer and a remote peer. It provides methods to connect to a remote peer, maintain and monitor the connection, and close the connection once it's no longer needed. */
-        public interface RTCPeerConnection extends EventTarget {
-        @JSProperty
-        boolean  isCanTrickleIceCandidates();
+/**
+ * A WebRTC connection between the local computer and a remote peer. It provides methods to connect to a remote peer, maintain and monitor the connection, and close the connection once it's no longer needed.
+ */
+public interface RTCPeerConnection extends EventTarget {
+    @JSBody(script = "return RTCPeerConnection.prototype")
+    static RTCPeerConnection prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        RTCPeerConnectionState getConnectionState();
+    @JSBody(script = "return new RTCPeerConnection()")
+    static RTCPeerConnection create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        RTCSessionDescription getCurrentLocalDescription();
+    @JSBody(params = "configuration", script = "return new RTCPeerConnection(configuration)")
+    static RTCPeerConnection create(RTCConfiguration configuration) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        RTCSessionDescription getCurrentRemoteDescription();
+    @JSBody(params = "keygenAlgorithm", script = "return RTCPeerConnection.generateCertificate(configuration)")
+    static Promise<RTCCertificate> generateCertificate(String keygenAlgorithm) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        RTCIceConnectionState getIceConnectionState();
+    @JSBody(params = "keygenAlgorithm", script = "return RTCPeerConnection.generateCertificate(configuration)")
+    static Promise<RTCCertificate> generateCertificate(Algorithm keygenAlgorithm) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        RTCIceGatheringState getIceGatheringState();
+    @JSBody(script = "return RTCPeerConnection.getDefaultIceServers()")
+    static Array<RTCIceServer> getDefaultIceServers() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        @Nullable
-        String  getIdpErrorInfo();
+    @JSProperty
+    boolean isCanTrickleIceCandidates();
 
-        @JSProperty
-        @Nullable
-        String  getIdpLoginUrl();
+    @JSProperty
+    RTCPeerConnectionState getConnectionState();
 
-        @JSProperty
-        @Nullable
-        RTCSessionDescription getLocalDescription();
+    @JSProperty
+    @Nullable
+    RTCSessionDescription getCurrentLocalDescription();
 
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnconnectionstatechange();
+    @JSProperty
+    @Nullable
+    RTCSessionDescription getCurrentRemoteDescription();
 
-        @JSProperty
-        void setOnconnectionstatechange(EventListener<Event> onconnectionstatechange);
+    @JSProperty
+    RTCIceConnectionState getIceConnectionState();
 
-        default void addConnectionStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("connectionstatechange", listener, options);
-        }
-        default void addConnectionStateChangeEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("connectionstatechange", listener, options);
-        }
-        default void addConnectionStateChangeEventListener(EventListener<Event> listener) {
-            addEventListener("connectionstatechange", listener);
-        }
+    @JSProperty
+    RTCIceGatheringState getIceGatheringState();
 
-        default void removeConnectionStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("connectionstatechange", listener, options);
-        }
-        default void removeConnectionStateChangeEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("connectionstatechange", listener, options);
-        }
-        default void removeConnectionStateChangeEventListener(EventListener<Event> listener) {
-            removeEventListener("connectionstatechange", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<RTCDataChannelEvent> getOndatachannel();
+    @JSProperty
+    @Nullable
+    String getIdpErrorInfo();
 
-        @JSProperty
-        void setOndatachannel(EventListener<RTCDataChannelEvent> ondatachannel);
+    @JSProperty
+    @Nullable
+    String getIdpLoginUrl();
 
-        default void addDataChannelEventListener(EventListener<RTCDataChannelEvent> listener, AddEventListenerOptions options) {
-            addEventListener("datachannel", listener, options);
-        }
-        default void addDataChannelEventListener(EventListener<RTCDataChannelEvent> listener, boolean options) {
-            addEventListener("datachannel", listener, options);
-        }
-        default void addDataChannelEventListener(EventListener<RTCDataChannelEvent> listener) {
-            addEventListener("datachannel", listener);
-        }
+    @JSProperty
+    @Nullable
+    RTCSessionDescription getLocalDescription();
 
-        default void removeDataChannelEventListener(EventListener<RTCDataChannelEvent> listener, EventListenerOptions options) {
-            removeEventListener("datachannel", listener, options);
-        }
-        default void removeDataChannelEventListener(EventListener<RTCDataChannelEvent> listener, boolean options) {
-            removeEventListener("datachannel", listener, options);
-        }
-        default void removeDataChannelEventListener(EventListener<RTCDataChannelEvent> listener) {
-            removeEventListener("datachannel", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<RTCPeerConnectionIceEvent> getOnicecandidate();
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnconnectionstatechange();
 
-        @JSProperty
-        void setOnicecandidate(EventListener<RTCPeerConnectionIceEvent> onicecandidate);
+    @JSProperty
+    void setOnconnectionstatechange(EventListener<Event> onconnectionstatechange);
 
-        default void addIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener, AddEventListenerOptions options) {
-            addEventListener("icecandidate", listener, options);
-        }
-        default void addIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener, boolean options) {
-            addEventListener("icecandidate", listener, options);
-        }
-        default void addIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener) {
-            addEventListener("icecandidate", listener);
-        }
+    default void addConnectionStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("connectionstatechange", listener, options);
+    }
 
-        default void removeIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener, EventListenerOptions options) {
-            removeEventListener("icecandidate", listener, options);
-        }
-        default void removeIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener, boolean options) {
-            removeEventListener("icecandidate", listener, options);
-        }
-        default void removeIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener) {
-            removeEventListener("icecandidate", listener);
-        }
+    default void addConnectionStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("connectionstatechange", listener, options);
+    }
 
-        @JSProperty
-        @Nullable
-        EventListener<RTCPeerConnectionIceErrorEvent> getOnicecandidateerror();
+    default void addConnectionStateChangeEventListener(EventListener<Event> listener) {
+        addEventListener("connectionstatechange", listener);
+    }
 
-        @JSProperty
-        void setOnicecandidateerror(EventListener<RTCPeerConnectionIceErrorEvent> onicecandidateerror);
+    default void removeConnectionStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("connectionstatechange", listener, options);
+    }
 
-        default void addIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener, AddEventListenerOptions options) {
-            addEventListener("icecandidateerror", listener, options);
-        }
-        default void addIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener, boolean options) {
-            addEventListener("icecandidateerror", listener, options);
-        }
-        default void addIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener) {
-            addEventListener("icecandidateerror", listener);
-        }
+    default void removeConnectionStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("connectionstatechange", listener, options);
+    }
 
-        default void removeIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener, EventListenerOptions options) {
-            removeEventListener("icecandidateerror", listener, options);
-        }
-        default void removeIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener, boolean options) {
-            removeEventListener("icecandidateerror", listener, options);
-        }
-        default void removeIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener) {
-            removeEventListener("icecandidateerror", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOniceconnectionstatechange();
+    default void removeConnectionStateChangeEventListener(EventListener<Event> listener) {
+        removeEventListener("connectionstatechange", listener);
+    }
 
-        @JSProperty
-        void setOniceconnectionstatechange(EventListener<Event> oniceconnectionstatechange);
+    @JSProperty
+    @Nullable
+    EventListener<RTCDataChannelEvent> getOndatachannel();
 
-        default void addIceConnectionStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("iceconnectionstatechange", listener, options);
-        }
-        default void addIceConnectionStateChangeEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("iceconnectionstatechange", listener, options);
-        }
-        default void addIceConnectionStateChangeEventListener(EventListener<Event> listener) {
-            addEventListener("iceconnectionstatechange", listener);
-        }
+    @JSProperty
+    void setOndatachannel(EventListener<RTCDataChannelEvent> ondatachannel);
 
-        default void removeIceConnectionStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("iceconnectionstatechange", listener, options);
-        }
-        default void removeIceConnectionStateChangeEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("iceconnectionstatechange", listener, options);
-        }
-        default void removeIceConnectionStateChangeEventListener(EventListener<Event> listener) {
-            removeEventListener("iceconnectionstatechange", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnicegatheringstatechange();
+    default void addDataChannelEventListener(EventListener<RTCDataChannelEvent> listener, AddEventListenerOptions options) {
+        addEventListener("datachannel", listener, options);
+    }
 
-        @JSProperty
-        void setOnicegatheringstatechange(EventListener<Event> onicegatheringstatechange);
+    default void addDataChannelEventListener(EventListener<RTCDataChannelEvent> listener, boolean options) {
+        addEventListener("datachannel", listener, options);
+    }
 
-        default void addIceGatheringStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("icegatheringstatechange", listener, options);
-        }
-        default void addIceGatheringStateChangeEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("icegatheringstatechange", listener, options);
-        }
-        default void addIceGatheringStateChangeEventListener(EventListener<Event> listener) {
-            addEventListener("icegatheringstatechange", listener);
-        }
+    default void addDataChannelEventListener(EventListener<RTCDataChannelEvent> listener) {
+        addEventListener("datachannel", listener);
+    }
 
-        default void removeIceGatheringStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("icegatheringstatechange", listener, options);
-        }
-        default void removeIceGatheringStateChangeEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("icegatheringstatechange", listener, options);
-        }
-        default void removeIceGatheringStateChangeEventListener(EventListener<Event> listener) {
-            removeEventListener("icegatheringstatechange", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnnegotiationneeded();
+    default void removeDataChannelEventListener(EventListener<RTCDataChannelEvent> listener, EventListenerOptions options) {
+        removeEventListener("datachannel", listener, options);
+    }
 
-        @JSProperty
-        void setOnnegotiationneeded(EventListener<Event> onnegotiationneeded);
+    default void removeDataChannelEventListener(EventListener<RTCDataChannelEvent> listener, boolean options) {
+        removeEventListener("datachannel", listener, options);
+    }
 
-        default void addNegotiationNeededEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("negotiationneeded", listener, options);
-        }
-        default void addNegotiationNeededEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("negotiationneeded", listener, options);
-        }
-        default void addNegotiationNeededEventListener(EventListener<Event> listener) {
-            addEventListener("negotiationneeded", listener);
-        }
+    default void removeDataChannelEventListener(EventListener<RTCDataChannelEvent> listener) {
+        removeEventListener("datachannel", listener);
+    }
 
-        default void removeNegotiationNeededEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("negotiationneeded", listener, options);
-        }
-        default void removeNegotiationNeededEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("negotiationneeded", listener, options);
-        }
-        default void removeNegotiationNeededEventListener(EventListener<Event> listener) {
-            removeEventListener("negotiationneeded", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<Event> getOnsignalingstatechange();
+    @JSProperty
+    @Nullable
+    EventListener<RTCPeerConnectionIceEvent> getOnicecandidate();
 
-        @JSProperty
-        void setOnsignalingstatechange(EventListener<Event> onsignalingstatechange);
+    @JSProperty
+    void setOnicecandidate(EventListener<RTCPeerConnectionIceEvent> onicecandidate);
 
-        default void addSignalingStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
-            addEventListener("signalingstatechange", listener, options);
-        }
-        default void addSignalingStateChangeEventListener(EventListener<Event> listener, boolean options) {
-            addEventListener("signalingstatechange", listener, options);
-        }
-        default void addSignalingStateChangeEventListener(EventListener<Event> listener) {
-            addEventListener("signalingstatechange", listener);
-        }
+    default void addIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener, AddEventListenerOptions options) {
+        addEventListener("icecandidate", listener, options);
+    }
 
-        default void removeSignalingStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
-            removeEventListener("signalingstatechange", listener, options);
-        }
-        default void removeSignalingStateChangeEventListener(EventListener<Event> listener, boolean options) {
-            removeEventListener("signalingstatechange", listener, options);
-        }
-        default void removeSignalingStateChangeEventListener(EventListener<Event> listener) {
-            removeEventListener("signalingstatechange", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<RTCStatsEvent> getOnstatsended();
+    default void addIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener, boolean options) {
+        addEventListener("icecandidate", listener, options);
+    }
 
-        @JSProperty
-        void setOnstatsended(EventListener<RTCStatsEvent> onstatsended);
+    default void addIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener) {
+        addEventListener("icecandidate", listener);
+    }
 
-        default void addStatSendedEventListener(EventListener<RTCStatsEvent> listener, AddEventListenerOptions options) {
-            addEventListener("statsended", listener, options);
-        }
-        default void addStatSendedEventListener(EventListener<RTCStatsEvent> listener, boolean options) {
-            addEventListener("statsended", listener, options);
-        }
-        default void addStatSendedEventListener(EventListener<RTCStatsEvent> listener) {
-            addEventListener("statsended", listener);
-        }
+    default void removeIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener, EventListenerOptions options) {
+        removeEventListener("icecandidate", listener, options);
+    }
 
-        default void removeStatSendedEventListener(EventListener<RTCStatsEvent> listener, EventListenerOptions options) {
-            removeEventListener("statsended", listener, options);
-        }
-        default void removeStatSendedEventListener(EventListener<RTCStatsEvent> listener, boolean options) {
-            removeEventListener("statsended", listener, options);
-        }
-        default void removeStatSendedEventListener(EventListener<RTCStatsEvent> listener) {
-            removeEventListener("statsended", listener);
-        }
-        @JSProperty
-        @Nullable
-        EventListener<RTCTrackEvent> getOntrack();
+    default void removeIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener, boolean options) {
+        removeEventListener("icecandidate", listener, options);
+    }
 
-        @JSProperty
-        void setOntrack(EventListener<RTCTrackEvent> ontrack);
+    default void removeIceCandidateEventListener(EventListener<RTCPeerConnectionIceEvent> listener) {
+        removeEventListener("icecandidate", listener);
+    }
 
-        default void addTrackEventListener(EventListener<RTCTrackEvent> listener, AddEventListenerOptions options) {
-            addEventListener("track", listener, options);
-        }
-        default void addTrackEventListener(EventListener<RTCTrackEvent> listener, boolean options) {
-            addEventListener("track", listener, options);
-        }
-        default void addTrackEventListener(EventListener<RTCTrackEvent> listener) {
-            addEventListener("track", listener);
-        }
+    @JSProperty
+    @Nullable
+    EventListener<RTCPeerConnectionIceErrorEvent> getOnicecandidateerror();
 
-        default void removeTrackEventListener(EventListener<RTCTrackEvent> listener, EventListenerOptions options) {
-            removeEventListener("track", listener, options);
-        }
-        default void removeTrackEventListener(EventListener<RTCTrackEvent> listener, boolean options) {
-            removeEventListener("track", listener, options);
-        }
-        default void removeTrackEventListener(EventListener<RTCTrackEvent> listener) {
-            removeEventListener("track", listener);
-        }
-        @JSProperty
-        Promise<RTCIdentityAssertion> getPeerIdentity();
-        @JSProperty
-        @Nullable
-        RTCSessionDescription getPendingLocalDescription();
+    @JSProperty
+    void setOnicecandidateerror(EventListener<RTCPeerConnectionIceErrorEvent> onicecandidateerror);
 
-        @JSProperty
-        @Nullable
-        RTCSessionDescription getPendingRemoteDescription();
+    default void addIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener, AddEventListenerOptions options) {
+        addEventListener("icecandidateerror", listener, options);
+    }
 
-        @JSProperty
-        @Nullable
-        RTCSessionDescription getRemoteDescription();
+    default void addIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener, boolean options) {
+        addEventListener("icecandidateerror", listener, options);
+    }
 
-        @JSProperty
-        @Nullable
-        RTCSctpTransport getSctp();
+    default void addIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener) {
+        addEventListener("icecandidateerror", listener);
+    }
 
-        @JSProperty
-        RTCSignalingState getSignalingState();
+    default void removeIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener, EventListenerOptions options) {
+        removeEventListener("icecandidateerror", listener, options);
+    }
 
-        VoidPromise addIceCandidate(RTCIceCandidateInit candidate);
-        VoidPromise addIceCandidate(RTCIceCandidate candidate);
-        RTCRtpSender addTrack(MediaStreamTrack track, @JSByRef MediaStream... streams);
-        RTCRtpSender addTrack(MediaStreamTrack track, Array<MediaStream> streams);
-        RTCRtpTransceiver addTransceiver(MediaStreamTrack trackOrKind, RTCRtpTransceiverInit init);
-        RTCRtpTransceiver addTransceiver(String trackOrKind, RTCRtpTransceiverInit init);
-        RTCRtpTransceiver addTransceiver(MediaStreamTrack trackOrKind);
-        RTCRtpTransceiver addTransceiver(String trackOrKind);
-        void close();
-        Promise<RTCSessionDescriptionInit> createAnswer(RTCOfferOptions options);
-        Promise<RTCSessionDescriptionInit> createAnswer();
-        RTCDataChannel createDataChannel(String label, RTCDataChannelInit dataChannelDict);
-        RTCDataChannel createDataChannel(String label);
-        Promise<RTCSessionDescriptionInit> createOffer(RTCOfferOptions options);
-        Promise<RTCSessionDescriptionInit> createOffer();
-        RTCConfiguration getConfiguration();
-        StringPromise getIdentityAssertion();
-        Array<RTCRtpReceiver> getReceivers();
-        Array<RTCRtpSender> getSenders();
-        Promise<RTCStatsReport> getStats(@Nullable MediaStreamTrack selector);
-        Array<RTCRtpTransceiver> getTransceivers();
-        void removeTrack(RTCRtpSender sender);
-        void setConfiguration(RTCConfiguration configuration);
-        void setIdentityProvider(String provider, RTCIdentityProviderOptions options);
-        void setIdentityProvider(String provider);
-        VoidPromise setLocalDescription(RTCSessionDescriptionInit description);
-        VoidPromise setRemoteDescription(RTCSessionDescriptionInit description);
+    default void removeIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener, boolean options) {
+        removeEventListener("icecandidateerror", listener, options);
+    }
 
-        @JSBody(script = "return RTCPeerConnection.prototype")
-        static RTCPeerConnection prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void removeIceCandidateErrorEventListener(EventListener<RTCPeerConnectionIceErrorEvent> listener) {
+        removeEventListener("icecandidateerror", listener);
+    }
 
-        @JSBody(script = "return new RTCPeerConnection()")
-        static RTCPeerConnection create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOniceconnectionstatechange();
 
-        @JSBody(params="configuration", script = "return new RTCPeerConnection(configuration)")
-        static RTCPeerConnection create(RTCConfiguration configuration) {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setOniceconnectionstatechange(EventListener<Event> oniceconnectionstatechange);
 
-        @JSBody(params="keygenAlgorithm", script = "return RTCPeerConnection.generateCertificate(configuration)")
-        static Promise<RTCCertificate> generateCertificate(String keygenAlgorithm) {
-                throw new UnsupportedOperationException("Available only in JavaScript");
-        }
-        @JSBody(params="keygenAlgorithm", script = "return RTCPeerConnection.generateCertificate(configuration)")
-        static Promise<RTCCertificate> generateCertificate(Algorithm keygenAlgorithm) {
-                throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void addIceConnectionStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("iceconnectionstatechange", listener, options);
+    }
 
-        @JSBody(script = "return RTCPeerConnection.getDefaultIceServers()")
-        static Array<RTCIceServer> getDefaultIceServers() {
-                throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    default void addIceConnectionStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("iceconnectionstatechange", listener, options);
+    }
+
+    default void addIceConnectionStateChangeEventListener(EventListener<Event> listener) {
+        addEventListener("iceconnectionstatechange", listener);
+    }
+
+    default void removeIceConnectionStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("iceconnectionstatechange", listener, options);
+    }
+
+    default void removeIceConnectionStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("iceconnectionstatechange", listener, options);
+    }
+
+    default void removeIceConnectionStateChangeEventListener(EventListener<Event> listener) {
+        removeEventListener("iceconnectionstatechange", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnicegatheringstatechange();
+
+    @JSProperty
+    void setOnicegatheringstatechange(EventListener<Event> onicegatheringstatechange);
+
+    default void addIceGatheringStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("icegatheringstatechange", listener, options);
+    }
+
+    default void addIceGatheringStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("icegatheringstatechange", listener, options);
+    }
+
+    default void addIceGatheringStateChangeEventListener(EventListener<Event> listener) {
+        addEventListener("icegatheringstatechange", listener);
+    }
+
+    default void removeIceGatheringStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("icegatheringstatechange", listener, options);
+    }
+
+    default void removeIceGatheringStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("icegatheringstatechange", listener, options);
+    }
+
+    default void removeIceGatheringStateChangeEventListener(EventListener<Event> listener) {
+        removeEventListener("icegatheringstatechange", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnnegotiationneeded();
+
+    @JSProperty
+    void setOnnegotiationneeded(EventListener<Event> onnegotiationneeded);
+
+    default void addNegotiationNeededEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("negotiationneeded", listener, options);
+    }
+
+    default void addNegotiationNeededEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("negotiationneeded", listener, options);
+    }
+
+    default void addNegotiationNeededEventListener(EventListener<Event> listener) {
+        addEventListener("negotiationneeded", listener);
+    }
+
+    default void removeNegotiationNeededEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("negotiationneeded", listener, options);
+    }
+
+    default void removeNegotiationNeededEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("negotiationneeded", listener, options);
+    }
+
+    default void removeNegotiationNeededEventListener(EventListener<Event> listener) {
+        removeEventListener("negotiationneeded", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<Event> getOnsignalingstatechange();
+
+    @JSProperty
+    void setOnsignalingstatechange(EventListener<Event> onsignalingstatechange);
+
+    default void addSignalingStateChangeEventListener(EventListener<Event> listener, AddEventListenerOptions options) {
+        addEventListener("signalingstatechange", listener, options);
+    }
+
+    default void addSignalingStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        addEventListener("signalingstatechange", listener, options);
+    }
+
+    default void addSignalingStateChangeEventListener(EventListener<Event> listener) {
+        addEventListener("signalingstatechange", listener);
+    }
+
+    default void removeSignalingStateChangeEventListener(EventListener<Event> listener, EventListenerOptions options) {
+        removeEventListener("signalingstatechange", listener, options);
+    }
+
+    default void removeSignalingStateChangeEventListener(EventListener<Event> listener, boolean options) {
+        removeEventListener("signalingstatechange", listener, options);
+    }
+
+    default void removeSignalingStateChangeEventListener(EventListener<Event> listener) {
+        removeEventListener("signalingstatechange", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<RTCStatsEvent> getOnstatsended();
+
+    @JSProperty
+    void setOnstatsended(EventListener<RTCStatsEvent> onstatsended);
+
+    default void addStatSendedEventListener(EventListener<RTCStatsEvent> listener, AddEventListenerOptions options) {
+        addEventListener("statsended", listener, options);
+    }
+
+    default void addStatSendedEventListener(EventListener<RTCStatsEvent> listener, boolean options) {
+        addEventListener("statsended", listener, options);
+    }
+
+    default void addStatSendedEventListener(EventListener<RTCStatsEvent> listener) {
+        addEventListener("statsended", listener);
+    }
+
+    default void removeStatSendedEventListener(EventListener<RTCStatsEvent> listener, EventListenerOptions options) {
+        removeEventListener("statsended", listener, options);
+    }
+
+    default void removeStatSendedEventListener(EventListener<RTCStatsEvent> listener, boolean options) {
+        removeEventListener("statsended", listener, options);
+    }
+
+    default void removeStatSendedEventListener(EventListener<RTCStatsEvent> listener) {
+        removeEventListener("statsended", listener);
+    }
+
+    @JSProperty
+    @Nullable
+    EventListener<RTCTrackEvent> getOntrack();
+
+    @JSProperty
+    void setOntrack(EventListener<RTCTrackEvent> ontrack);
+
+    default void addTrackEventListener(EventListener<RTCTrackEvent> listener, AddEventListenerOptions options) {
+        addEventListener("track", listener, options);
+    }
+
+    default void addTrackEventListener(EventListener<RTCTrackEvent> listener, boolean options) {
+        addEventListener("track", listener, options);
+    }
+
+    default void addTrackEventListener(EventListener<RTCTrackEvent> listener) {
+        addEventListener("track", listener);
+    }
+
+    default void removeTrackEventListener(EventListener<RTCTrackEvent> listener, EventListenerOptions options) {
+        removeEventListener("track", listener, options);
+    }
+
+    default void removeTrackEventListener(EventListener<RTCTrackEvent> listener, boolean options) {
+        removeEventListener("track", listener, options);
+    }
+
+    default void removeTrackEventListener(EventListener<RTCTrackEvent> listener) {
+        removeEventListener("track", listener);
+    }
+
+    @JSProperty
+    Promise<RTCIdentityAssertion> getPeerIdentity();
+
+    @JSProperty
+    @Nullable
+    RTCSessionDescription getPendingLocalDescription();
+
+    @JSProperty
+    @Nullable
+    RTCSessionDescription getPendingRemoteDescription();
+
+    @JSProperty
+    @Nullable
+    RTCSessionDescription getRemoteDescription();
+
+    @JSProperty
+    @Nullable
+    RTCSctpTransport getSctp();
+
+    @JSProperty
+    RTCSignalingState getSignalingState();
+
+    VoidPromise addIceCandidate(RTCIceCandidateInit candidate);
+
+    VoidPromise addIceCandidate(RTCIceCandidate candidate);
+
+    RTCRtpSender addTrack(MediaStreamTrack track, @JSByRef MediaStream... streams);
+
+    RTCRtpSender addTrack(MediaStreamTrack track, Array<MediaStream> streams);
+
+    RTCRtpTransceiver addTransceiver(MediaStreamTrack trackOrKind, RTCRtpTransceiverInit init);
+
+    RTCRtpTransceiver addTransceiver(String trackOrKind, RTCRtpTransceiverInit init);
+
+    RTCRtpTransceiver addTransceiver(MediaStreamTrack trackOrKind);
+
+    RTCRtpTransceiver addTransceiver(String trackOrKind);
+
+    void close();
+
+    Promise<RTCSessionDescriptionInit> createAnswer(RTCOfferOptions options);
+
+    Promise<RTCSessionDescriptionInit> createAnswer();
+
+    RTCDataChannel createDataChannel(String label, RTCDataChannelInit dataChannelDict);
+
+    RTCDataChannel createDataChannel(String label);
+
+    Promise<RTCSessionDescriptionInit> createOffer(RTCOfferOptions options);
+
+    Promise<RTCSessionDescriptionInit> createOffer();
+
+    RTCConfiguration getConfiguration();
+
+    void setConfiguration(RTCConfiguration configuration);
+
+    StringPromise getIdentityAssertion();
+
+    Array<RTCRtpReceiver> getReceivers();
+
+    Array<RTCRtpSender> getSenders();
+
+    Promise<RTCStatsReport> getStats(@Nullable MediaStreamTrack selector);
+
+    Array<RTCRtpTransceiver> getTransceivers();
+
+    void removeTrack(RTCRtpSender sender);
+
+    void setIdentityProvider(String provider, RTCIdentityProviderOptions options);
+
+    void setIdentityProvider(String provider);
+
+    VoidPromise setLocalDescription(RTCSessionDescriptionInit description);
+
+    VoidPromise setRemoteDescription(RTCSessionDescriptionInit description);
 
 }

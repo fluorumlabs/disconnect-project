@@ -1,12 +1,13 @@
 package js.lang;
 
-import java.lang.String;
-
-
 public interface Symbol extends Any {
-    /** Returns a string representation of an object. */
+    /**
+     * Returns a string representation of an object.
+     */
     String toString();
 
-    /** Returns the primitive value of the specified object. */
+    /**
+     * Returns the primitive value of the specified object.
+     */
     Symbol valueOf();
 }

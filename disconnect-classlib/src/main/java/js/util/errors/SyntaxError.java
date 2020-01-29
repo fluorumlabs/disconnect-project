@@ -8,6 +8,7 @@ public interface SyntaxError extends JsError {
     static SyntaxError create(String value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
     @JSBody(script = "return new SyntaxError()")
     static SyntaxError create() {
         throw new UnsupportedOperationException("Available only in JavaScript");

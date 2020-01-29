@@ -1,11 +1,11 @@
 package js.web.credentialmanagement.webauthn;
 
+import js.lang.Any;
+import js.util.collections.Array;
+import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.util.collections.Array;
-
-import org.teavm.jso.JSByRef;
+import javax.annotation.Nullable;
 
 
 public interface ScopedCredentialOptions extends Any {
@@ -15,6 +15,7 @@ public interface ScopedCredentialOptions extends Any {
 
     @JSProperty
     void setExcludeList(@JSByRef ScopedCredentialDescriptor... excludeList);
+
     @JSProperty
     void setExcludeList(Array<ScopedCredentialDescriptor> excludeList);
 

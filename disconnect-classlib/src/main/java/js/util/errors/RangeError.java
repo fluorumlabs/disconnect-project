@@ -8,6 +8,7 @@ public interface RangeError extends JsError {
     static RangeError create(String value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
     @JSBody(script = "return new RangeError()")
     static RangeError create() {
         throw new UnsupportedOperationException("Available only in JavaScript");

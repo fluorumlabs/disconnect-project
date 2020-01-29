@@ -5,12 +5,6 @@ import org.teavm.jso.JSProperty;
 
 
 public interface HTMLTableHeaderCellElement extends HTMLTableCellElement {
-    @JSProperty
-    String getScope();
-
-    @JSProperty
-    void setScope(String scope);
-
     @JSBody(script = "return HTMLTableHeaderCellElement.prototype")
     static HTMLTableHeaderCellElement prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -20,5 +14,11 @@ public interface HTMLTableHeaderCellElement extends HTMLTableCellElement {
     static HTMLTableHeaderCellElement create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    String getScope();
+
+    @JSProperty
+    void setScope(String scope);
 
 }

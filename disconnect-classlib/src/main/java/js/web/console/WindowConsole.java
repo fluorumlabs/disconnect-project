@@ -1,12 +1,11 @@
 package js.web.console;
 
-import org.teavm.jso.JSProperty;
-
 import js.lang.Any;
+import org.teavm.jso.JSProperty;
 
 
 public interface WindowConsole extends Any {
-        @JSProperty
-        Console getConsole();
+    @JSProperty
+    Console getConsole();
 
-        }
+}

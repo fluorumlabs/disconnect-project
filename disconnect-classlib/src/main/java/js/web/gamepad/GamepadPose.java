@@ -1,43 +1,16 @@
 package js.web.gamepad;
 
+import js.lang.Any;
+import js.util.buffers.Float32Array;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import javax.annotation.Nullable;import js.lang.Any;
-import js.util.buffers.Float32Array;
+import javax.annotation.Nullable;
 
-/** This Gamepad API interface represents the pose of a WebVR controller at a given timestamp (which includes orientation, position, velocity, and acceleration information.) */
+/**
+ * This Gamepad API interface represents the pose of a WebVR controller at a given timestamp (which includes orientation, position, velocity, and acceleration information.)
+ */
 public interface GamepadPose extends Any {
-    @JSProperty
-    @Nullable
-    Float32Array getAngularAcceleration();
-
-    @JSProperty
-    @Nullable
-    Float32Array  getAngularVelocity();
-
-    @JSProperty
-    boolean isHasOrientation();
-
-    @JSProperty
-    boolean isHasPosition();
-
-    @JSProperty
-    @Nullable
-    Float32Array  getLinearAcceleration();
-
-    @JSProperty
-    @Nullable
-    Float32Array  getLinearVelocity();
-
-    @JSProperty
-    @Nullable
-    Float32Array  getOrientation();
-
-    @JSProperty
-    @Nullable
-    Float32Array  getPosition();
-
     @JSBody(script = "return GamepadPose.prototype")
     static GamepadPose prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -47,5 +20,35 @@ public interface GamepadPose extends Any {
     static GamepadPose create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
+
+    @JSProperty
+    @Nullable
+    Float32Array getAngularAcceleration();
+
+    @JSProperty
+    @Nullable
+    Float32Array getAngularVelocity();
+
+    @JSProperty
+    boolean isHasOrientation();
+
+    @JSProperty
+    boolean isHasPosition();
+
+    @JSProperty
+    @Nullable
+    Float32Array getLinearAcceleration();
+
+    @JSProperty
+    @Nullable
+    Float32Array getLinearVelocity();
+
+    @JSProperty
+    @Nullable
+    Float32Array getOrientation();
+
+    @JSProperty
+    @Nullable
+    Float32Array getPosition();
 
 }

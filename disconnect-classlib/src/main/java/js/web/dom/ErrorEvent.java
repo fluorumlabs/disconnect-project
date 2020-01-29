@@ -1,15 +1,31 @@
 package js.web.dom;
 
 import js.lang.Any;
+import js.lang.Unknown;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
-import js.lang.Unknown;
-
 import javax.annotation.Nullable;
 
-/** Events providing information related to errors in scripts or in files. */
+/**
+ * Events providing information related to errors in scripts or in files.
+ */
 public interface ErrorEvent extends Event {
+    @JSBody(script = "return ErrorEvent.prototype")
+    static ErrorEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"type", "eventInitDict"}, script = "return new ErrorEvent(type, eventInitDict)")
+    static ErrorEvent create(String type, ErrorEventInit eventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "type", script = "return new ErrorEvent(type)")
+    static ErrorEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     int getColno();
 
@@ -24,21 +40,6 @@ public interface ErrorEvent extends Event {
 
     @JSProperty
     String getMessage();
-
-    @JSBody(script = "return ErrorEvent.prototype")
-    static ErrorEvent prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params={"type","eventInitDict"}, script = "return new ErrorEvent(type, eventInitDict)")
-    static ErrorEvent create(String type, ErrorEventInit eventInitDict) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="type", script = "return new ErrorEvent(type)")
-    static ErrorEvent create(String type) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 
     interface ErrorEventInit extends EventInit {

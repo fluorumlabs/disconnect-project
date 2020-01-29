@@ -6,8 +6,25 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-/** Events providing information related to animations. */
+/**
+ * Events providing information related to animations.
+ */
 public interface AnimationEvent extends Event {
+    @JSBody(script = "return AnimationEvent.prototype")
+    static AnimationEvent prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = {"type", "animationEventInitDict"}, script = "return new AnimationEvent(type, animationEventInitDict)")
+    static AnimationEvent create(String type, AnimationEventInit animationEventInitDict) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(params = "type", script = "return new AnimationEvent(type)")
+    static AnimationEvent create(String type) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSProperty
     String getAnimationName();
 
@@ -16,21 +33,6 @@ public interface AnimationEvent extends Event {
 
     @JSProperty
     String getPseudoElement();
-
-    @JSBody(script = "return AnimationEvent.prototype")
-    static AnimationEvent prototype() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params={"type","animationEventInitDict"}, script = "return new AnimationEvent(type, animationEventInitDict)")
-    static AnimationEvent create(String type, AnimationEventInit animationEventInitDict) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(params="type", script = "return new AnimationEvent(type)")
-    static AnimationEvent create(String type) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
 
 
     interface AnimationEventInit extends EventInit {

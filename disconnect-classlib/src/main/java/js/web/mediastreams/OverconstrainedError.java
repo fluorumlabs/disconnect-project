@@ -6,21 +6,21 @@ import org.teavm.jso.JSProperty;
 
 
 public interface OverconstrainedError extends JsError {
-        @JSProperty
-        String getConstraint();
+    @JSBody(script = "return OverconstrainedError.prototype")
+    static OverconstrainedError prototype() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSProperty
-        void setConstraint(String constraint);
+    @JSBody(script = "return new OverconstrainedError()")
+    static OverconstrainedError create() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
 
-        @JSBody(script = "return OverconstrainedError.prototype")
-        static OverconstrainedError prototype() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    String getConstraint();
 
-        @JSBody(script = "return new OverconstrainedError()")
-        static OverconstrainedError create() {
-            throw new UnsupportedOperationException("Available only in JavaScript");
-        }
+    @JSProperty
+    void setConstraint(String constraint);
 
 
-        }
+}
