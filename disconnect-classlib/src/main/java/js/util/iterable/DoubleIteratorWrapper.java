@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class DoubleIteratorWrapper implements Iterator<Double> {
     private final DoubleIterator wrappedIterator;
+
     private DoubleIteratorResult currentResult;
 
     DoubleIteratorWrapper(DoubleIterator wrappedIterator) {
@@ -28,6 +29,7 @@ public class DoubleIteratorWrapper implements Iterator<Double> {
      * Returns the next element in the iteration.
      *
      * @return the next element in the iteration
+     *
      * @throws NoSuchElementException if the iteration has no more elements
      */
     @Override

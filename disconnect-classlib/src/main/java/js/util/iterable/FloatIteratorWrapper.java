@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class FloatIteratorWrapper implements Iterator<Float> {
     private final FloatIterator wrappedIterator;
+
     private FloatIteratorResult currentResult;
 
     FloatIteratorWrapper(FloatIterator wrappedIterator) {
@@ -28,6 +29,7 @@ public class FloatIteratorWrapper implements Iterator<Float> {
      * Returns the next element in the iteration.
      *
      * @return the next element in the iteration
+     *
      * @throws NoSuchElementException if the iteration has no more elements
      */
     @Override

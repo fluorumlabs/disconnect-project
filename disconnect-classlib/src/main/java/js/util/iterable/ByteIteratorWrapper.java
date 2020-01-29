@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class ByteIteratorWrapper implements Iterator<Byte> {
     private final ByteIterator wrappedIterator;
+
     private ByteIteratorResult currentResult;
 
     ByteIteratorWrapper(ByteIterator wrappedIterator) {
@@ -28,6 +29,7 @@ public class ByteIteratorWrapper implements Iterator<Byte> {
      * Returns the next element in the iteration.
      *
      * @return the next element in the iteration
+     *
      * @throws NoSuchElementException if the iteration has no more elements
      */
     @Override

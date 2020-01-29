@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class IntIteratorWrapper implements Iterator<Integer> {
     private final IntIterator wrappedIterator;
+
     private IntIteratorResult currentResult;
 
     IntIteratorWrapper(IntIterator wrappedIterator) {
@@ -28,6 +29,7 @@ public class IntIteratorWrapper implements Iterator<Integer> {
      * Returns the next element in the iteration.
      *
      * @return the next element in the iteration
+     *
      * @throws NoSuchElementException if the iteration has no more elements
      */
     @Override

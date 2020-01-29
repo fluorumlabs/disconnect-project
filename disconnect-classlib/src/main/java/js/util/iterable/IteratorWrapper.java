@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 public class IteratorWrapper<T extends Any> implements Iterator<T> {
     private final JsIterator<T> wrappedIterator;
+
     private IteratorResult<T> currentResult;
 
     IteratorWrapper(JsIterator<T> wrappedIterator) {
@@ -30,6 +31,7 @@ public class IteratorWrapper<T extends Any> implements Iterator<T> {
      * Returns the next element in the iteration.
      *
      * @return the next element in the iteration
+     *
      * @throws NoSuchElementException if the iteration has no more elements
      */
     @Override

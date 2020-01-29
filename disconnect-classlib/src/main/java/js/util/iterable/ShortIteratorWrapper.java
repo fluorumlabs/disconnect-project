@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class ShortIteratorWrapper implements Iterator<Short> {
     private final ShortIterator wrappedIterator;
+
     private ShortIteratorResult currentResult;
 
     ShortIteratorWrapper(ShortIterator wrappedIterator) {
@@ -28,6 +29,7 @@ public class ShortIteratorWrapper implements Iterator<Short> {
      * Returns the next element in the iteration.
      *
      * @return the next element in the iteration
+     *
      * @throws NoSuchElementException if the iteration has no more elements
      */
     @Override

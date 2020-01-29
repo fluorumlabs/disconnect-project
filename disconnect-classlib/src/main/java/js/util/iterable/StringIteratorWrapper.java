@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class StringIteratorWrapper implements Iterator<String> {
     private final StringIterator wrappedIterator;
+
     private StringIteratorResult currentResult;
 
     StringIteratorWrapper(StringIterator wrappedIterator) {
@@ -28,6 +29,7 @@ public class StringIteratorWrapper implements Iterator<String> {
      * Returns the next element in the iteration.
      *
      * @return the next element in the iteration
+     *
      * @throws NoSuchElementException if the iteration has no more elements
      */
     @Override
