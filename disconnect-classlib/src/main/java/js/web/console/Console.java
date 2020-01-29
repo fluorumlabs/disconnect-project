@@ -45,7 +45,7 @@ public interface Console extends Any {
     void count();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.debug.apply(this, [message].concat(optionalParams));")
-    void debug(Any message, @JSByRef Any... optionalParams);
+    void debug(String message, @JSByRef Any... optionalParams);
 
     void debug(Any message);
 
@@ -69,7 +69,7 @@ public interface Console extends Any {
     void dirxml(Any value);
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.error.apply(this, [message].concat(optionalParams));")
-    void error(Any message, @JSByRef Any... optionalParams);
+    void error(String message, @JSByRef Any... optionalParams);
 
     void error(Any message);
 
@@ -107,7 +107,7 @@ public interface Console extends Any {
     void groupEnd();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.info.apply(this, [message].concat(optionalParams));")
-    void info(Any message, @JSByRef Any... optionalParams);
+    void info(String message, @JSByRef Any... optionalParams);
 
     void info(Any message);
 
@@ -122,7 +122,7 @@ public interface Console extends Any {
     void info();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.log.apply(this, [message].concat(optionalParams));")
-    void log(Any message, @JSByRef Any... optionalParams);
+    void log(String message, @JSByRef Any... optionalParams);
 
     void log(Any message);
 
@@ -172,7 +172,7 @@ public interface Console extends Any {
     void timelineEnd();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.trace.apply(this, [message].concat(optionalParams));")
-    void trace(Any message, @JSByRef Any... optionalParams);
+    void trace(String message, @JSByRef Any... optionalParams);
 
     void trace(Any message);
 
@@ -187,7 +187,7 @@ public interface Console extends Any {
     void trace();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.warn.apply(this, [message].concat(optionalParams));")
-    void warn(Any message, @JSByRef Any... optionalParams);
+    void warn(String message, @JSByRef Any... optionalParams);
 
     void warn(Any message);
 

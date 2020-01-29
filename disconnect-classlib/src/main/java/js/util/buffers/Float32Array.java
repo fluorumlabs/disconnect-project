@@ -54,7 +54,7 @@ public interface Float32Array extends FloatIterableIterable, ArrayBufferView, An
      *
      * @param items A set of elements to include in the new array object.
      */
-    @JSBody(params = "items", script = "return Float32Array.of.apply(null, items)")
+    @JSBody(params = "items", script = "return Float32Array.of.apply(Float32Array, items)")
     static Float32Array of(@JSByRef float... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

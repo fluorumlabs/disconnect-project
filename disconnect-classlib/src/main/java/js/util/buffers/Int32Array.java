@@ -57,7 +57,7 @@ public interface Int32Array extends IntIterableIterable, ArrayBufferView, Any {
      *
      * @param items A set of elements to include in the new array object.
      */
-    @JSBody(params = "items", script = "return Int32Array.of.apply(null, items)")
+    @JSBody(params = "items", script = "return Int32Array.of.apply(Int32Array, items)")
     static Int32Array of(@JSByRef int... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

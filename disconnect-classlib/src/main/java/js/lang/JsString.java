@@ -35,7 +35,7 @@ public interface JsString extends StringIterable, Any {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params = "codes", script = "return String.fromCharCode.apply(null, codes)")
+    @JSBody(params = "codes", script = "return String.fromCharCode.apply(String, codes)")
     static JsString fromCharCode(@JSByRef int... codes) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
@@ -44,7 +44,7 @@ public interface JsString extends StringIterable, Any {
      * Return the String value whose elements are, in order, the elements in the List elements.
      * If length is 0, the empty string is returned.
      */
-    @JSBody(params = "codes", script = "return String.fromCodePoint.apply(null, codes)")
+    @JSBody(params = "codes", script = "return String.fromCodePoint.apply(String, codes)")
     static JsString fromCodePoint(@JSByRef int... codes) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
@@ -57,7 +57,7 @@ public interface JsString extends StringIterable, Any {
      * @param template      A well-formed template string call site representation.
      * @param substitutions A set of substitution values.
      */
-    @JSBody(params = {"template", "substitutions"}, script = "return String.raw.apply(null, [template].concat(substitutions))")
+    @JSBody(params = {"template", "substitutions"}, script = "return String.raw.apply(String, [template].concat(substitutions))")
     static String raw(TemplateStringsArray template, Any... substitutions) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

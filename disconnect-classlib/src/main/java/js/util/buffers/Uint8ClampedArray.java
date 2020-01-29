@@ -54,7 +54,7 @@ public interface Uint8ClampedArray extends ShortIterableIterable, ArrayBufferVie
      *
      * @param items A set of elements to include in the new array object.
      */
-    @JSBody(params = "items", script = "return Uint8ClampedArray.of.apply(null, items)")
+    @JSBody(params = "items", script = "return Uint8ClampedArray.of.apply(Uint8ClampedArray, items)")
     static Uint8ClampedArray of(@JSByRef short... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

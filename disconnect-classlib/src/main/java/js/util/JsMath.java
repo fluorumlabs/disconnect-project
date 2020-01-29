@@ -157,10 +157,10 @@ public abstract class JsMath implements Any {
      *
      * @param values Numeric expressions to be evaluated.
      */
-    @JSBody(params = "values", script = "return Math.max.apply(null, values)")
+    @JSBody(params = "values", script = "return Math.max.apply(Math, values)")
     public static native double max(@JSByRef double... values);
 
-    @JSBody(params = "values", script = "return Math.max.apply(null, values)")
+    @JSBody(params = "values", script = "return Math.max.apply(Math, values)")
     public static native int max(@JSByRef int... values);
 
     /**
@@ -168,10 +168,10 @@ public abstract class JsMath implements Any {
      *
      * @param values Numeric expressions to be evaluated.
      */
-    @JSBody(params = "values", script = "return Math.min.apply(null, values)")
+    @JSBody(params = "values", script = "return Math.min.apply(Math, values)")
     public static native double min(@JSByRef double... values);
 
-    @JSBody(params = "values", script = "return Math.min.apply(null, values)")
+    @JSBody(params = "values", script = "return Math.min.apply(Math, values)")
     public static native int min(@JSByRef int... values);
 
     /**
@@ -338,7 +338,7 @@ public abstract class JsMath implements Any {
      *               If any argument is NaN, the result is NaN.
      *               If all arguments are either +0 or −0, the result is +0.
      */
-    @JSBody(params = "values", script = "return Math.hypot.apply(null, values)")
+    @JSBody(params = "values", script = "return Math.hypot.apply(Math, values)")
     public static native double hypot(@JSByRef double... values);
 
     /**

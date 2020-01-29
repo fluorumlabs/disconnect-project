@@ -6,7 +6,7 @@ import org.teavm.jso.JSBody;
 
 public interface IntIterable extends Any {
     @JSBody(script = "return this[Symbol.iterator]()")
-    IntIterator getIterator();
+    <T extends IntIterator> T getIterator();
 
     default Iterable<Integer> iterable() {
         return () -> getIterator().getJavaIterator();

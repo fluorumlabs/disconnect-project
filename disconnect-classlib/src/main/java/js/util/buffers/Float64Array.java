@@ -54,7 +54,7 @@ public interface Float64Array extends DoubleIterableIterable, ArrayBufferView, A
      *
      * @param items A set of elements to include in the new array object.
      */
-    @JSBody(params = "items", script = "return Float64Array.of.apply(null, items)")
+    @JSBody(params = "items", script = "return Float64Array.of.apply(Float64Array, items)")
     static Float64Array of(@JSByRef double... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

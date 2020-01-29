@@ -78,7 +78,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      *
      * @param items A set of elements to include in the new array object.
      */
-    @JSBody(params = "items", script = "return Array.of.apply(null, arrayLike)")
+    @JSBody(params = "items", script = "return Array.of.apply(Array, arrayLike)")
     static <T extends Any> Array<T> of(@JSByRef T... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

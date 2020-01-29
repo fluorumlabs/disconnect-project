@@ -54,7 +54,7 @@ public interface Int16Array extends ShortIterableIterable, ArrayBufferView, Any 
      *
      * @param items A set of elements to include in the new array object.
      */
-    @JSBody(params = "items", script = "return Int16Array.of.apply(null, items)")
+    @JSBody(params = "items", script = "return Int16Array.of.apply(Int16Array, items)")
     static Int16Array of(@JSByRef short... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

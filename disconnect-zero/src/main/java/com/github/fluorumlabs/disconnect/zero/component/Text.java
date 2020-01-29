@@ -1,11 +1,11 @@
 package com.github.fluorumlabs.disconnect.zero.component;
 
-import static js.web.dom.Window.WINDOW;
+import static js.web.dom.Window.DOCUMENT;
 
 
 public class Text extends Component {
     public Text(String textContent) {
-        super(WINDOW.getDocument().createTextNode(textContent));
+        super(DOCUMENT.createTextNode(textContent));
     }
 
     public Text text(String textContent) {

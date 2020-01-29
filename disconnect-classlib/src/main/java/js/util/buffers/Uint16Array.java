@@ -57,7 +57,7 @@ public interface Uint16Array extends IntIterableIterable, ArrayBufferView, Any {
      *
      * @param items A set of elements to include in the new array object.
      */
-    @JSBody(params = "items", script = "return Uint16Array.of.apply(null, items)")
+    @JSBody(params = "items", script = "return Uint16Array.of.apply(Uint16Array, items)")
     static Uint16Array of(@JSByRef int... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

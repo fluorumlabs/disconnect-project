@@ -6,6 +6,7 @@ import js.util.buffers.Transferable;
 import js.util.collections.Array;
 import js.util.function.JsDoubleConsumer;
 import js.web.ambientlightevents.DeviceLightEvent;
+import js.web.console.Console;
 import js.web.console.WindowConsole;
 import js.web.cssom.CSSRuleList;
 import js.web.cssom.CSSStyleDeclaration;
@@ -35,6 +36,16 @@ import javax.annotation.Nullable;
 public interface Window extends EventTarget, AnimationFrameProvider, GlobalEventHandlers, IDBEnvironment, WindowBase64, WindowConsole, WindowEventHandlers, WindowLocalStorage, WindowOrWorkerGlobalScope, WindowSessionStorage, WindowTimers {
     Window WINDOW = getWindowInstance();
 
+    Console CONSOLE = getConsoleInstance();
+
+    Document DOCUMENT = getDocumentInstance();
+
+    Location LOCATION = getLocationInstance();
+
+    Navigator NAVIGATOR = getNavigatorInstance();
+
+    History HISTORY = getHistoryInstance();
+
     @JSBody(script = "return Window.prototype")
     static Window prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -47,6 +58,31 @@ public interface Window extends EventTarget, AnimationFrameProvider, GlobalEvent
 
     @JSBody(script = "return window")
     static Window getWindowInstance() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return window.console")
+    static Console getConsoleInstance() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return window.document")
+    static Document getDocumentInstance() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return window.location")
+    static Location getLocationInstance() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return window.navigator")
+    static Navigator getNavigatorInstance() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    @JSBody(script = "return window.history")
+    static History getHistoryInstance() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

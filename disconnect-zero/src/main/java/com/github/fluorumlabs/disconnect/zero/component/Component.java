@@ -11,7 +11,7 @@ import org.teavm.jso.JSBody;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
-import static js.web.dom.Window.WINDOW;
+import static js.web.dom.Window.DOCUMENT;
 
 
 public abstract class Component<X extends Node & EventTarget> extends LazyEventInitializer<X> implements ComponentBase<X> {
@@ -26,7 +26,7 @@ public abstract class Component<X extends Node & EventTarget> extends LazyEventI
     }
 
     protected Component(String tagName) {
-        this((X)WINDOW.getDocument().createElement(tagName));
+        this((X)DOCUMENT.createElement(tagName));
     }
 
     public X getNode() {
@@ -86,7 +86,7 @@ public abstract class Component<X extends Node & EventTarget> extends LazyEventI
     public void hide() {
         if (!isHidden()) {
             if (hiddenNodeHolder == null) {
-                hiddenNodeHolder = WINDOW.getDocument().createComment("").cast();
+                hiddenNodeHolder = DOCUMENT.createComment("").cast();
                 hiddenNodeHolder.setNode(node);
                 hiddenNodeHolder.setHidden(true);
                 if (node.getParentNode() != null) {

@@ -6,7 +6,7 @@ import org.teavm.jso.JSBody;
 
 public interface DoubleIterable extends Any {
     @JSBody(script = "return this[Symbol.iterator]()")
-    DoubleIterator getIterator();
+    <T extends DoubleIterator> T getIterator();
 
     default Iterable<Double> iterable() {
         return () -> getIterator().getJavaIterator();
