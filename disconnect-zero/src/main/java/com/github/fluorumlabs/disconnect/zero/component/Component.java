@@ -1,11 +1,10 @@
 package com.github.fluorumlabs.disconnect.zero.component;
 
-import js.web.dom.EventTarget;
-import js.web.dom.Node;
+import js.web.dom.Element;
 
 
-public interface Component<X extends EventTarget & Node> extends EventInitializer<X> {
-    X getNode();
+public interface Component<X extends Element> extends EventInitializer<X> {
+    X getElement();
 
-    Node render();
+    Element render();
 }

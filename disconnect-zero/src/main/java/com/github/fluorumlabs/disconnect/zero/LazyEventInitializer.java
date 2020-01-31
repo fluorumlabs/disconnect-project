@@ -11,7 +11,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 
-public class LazyEventInitializer<X extends EventTarget> {
+public abstract class LazyEventInitializer<X extends EventTarget> {
     private final Map<Object, ObservableEvent<?>> eventMap = new HashMap<>();
     private final static String[] NO_ALTERNATIVES = new String[0];
 

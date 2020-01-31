@@ -6,9 +6,10 @@ import js.web.dom.Node;
 import javax.annotation.Untainted;
 
 
+@SuppressWarnings("unchecked")
 public interface HasComponents<E extends Element, T extends HasComponents<E, T, C>, C extends Component<?>> extends Component<E> {
     default T add(C component) {
-        getNode().appendChild(component.render());
+        getElement().appendChild(component.render());
         return (T) this;
     }
 
@@ -20,24 +21,24 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
     }
 
     default T insert(C... components) {
-        Node firstChild = getNode().getFirstChild();
+        Node firstChild = getElement().getFirstChild();
         if ( firstChild == null ) {
             return add(components);
         }
 
         for (C component : components) {
-            getNode().insertBefore(component.render(), firstChild);
+            getElement().insertBefore(component.render(), firstChild);
         }
         return (T) this;
     }
 
     default T insert(C component) {
-        Node firstChild = getNode().getFirstChild();
+        Node firstChild = getElement().getFirstChild();
         if ( firstChild == null ) {
             return add(component);
         }
 
-        getNode().insertBefore(component.render(), firstChild);
+        getElement().insertBefore(component.render(), firstChild);
         return (T) this;
     }
 
@@ -50,7 +51,7 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
     }
 
     default T remove(C component) {
-        getNode().removeChild(component.render());
+        getElement().removeChild(component.render());
         return (T) this;
     }
 
@@ -63,7 +64,7 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
 
     default T removeAll() {
         while (true) {
-            E node = getNode();
+            E node = getElement();
             if (node.getFirstChild() == null) break;
             node.removeChild(node.getFirstChild());
         }
@@ -71,20 +72,20 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
     }
 
     default T text(String text) {
-        getNode().setTextContent(text);
+        getElement().setTextContent(text);
         return (T) this;
     }
 
     default String text() {
-        return getNode().getTextContent();
+        return getElement().getTextContent();
     }
 
     default T html(@Untainted String html) {
-        getNode().setInnerHTML(html);
+        getElement().setInnerHTML(html);
         return (T) this;
     }
 
     default String html() {
-        return getNode().getInnerHTML();
+        return getElement().getInnerHTML();
     }
 }
