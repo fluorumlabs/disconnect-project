@@ -9,7 +9,7 @@ public final class Application extends LazyEventInitializer {
     private final static Application INSTANCE = new Application();
 
     public void render(AbstractComponent component) {
-        DOCUMENT.appendChild(component.render());
+        DOCUMENT.appendChild(component.getRenderedNode());
     }
 
 

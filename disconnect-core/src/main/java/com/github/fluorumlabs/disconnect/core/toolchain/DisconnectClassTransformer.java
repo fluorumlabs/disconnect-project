@@ -23,6 +23,7 @@ import java.util.stream.Stream;
 
 public class DisconnectClassTransformer implements ClassHolderTransformer {
     private DisconnectTeaVMRendererListener rendererListener;
+
     private final TeaVMHost host;
 
     private Map<String, String> importedSymbols = new HashMap<>();
@@ -94,38 +95,38 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
                             .map(AnnotationValue::getList)
                             .orElse(Collections.emptyList());
 
-                    for (AnnotationValue symbol : symbols) {
-                        String symbolName = symbol.getString();
-                        importedSymbols.putIfAbsent(symbolName, module);
-                        if (!module.equals(importedSymbols.get(symbolName))) {
-                            context.getDiagnostics().error(null, "Class {{c0}} imports JS symbol '" + symbolName + "' from module '" + module + "', which was already imported previously from '" + importedSymbols.get(symbolName) + "'", cls.getName());
-                        }
-                    }
+            for (AnnotationValue symbol : symbols) {
+                String symbolName = symbol.getString();
+                importedSymbols.putIfAbsent(symbolName, module);
+                if (!module.equals(importedSymbols.get(symbolName))) {
+                    context.getDiagnostics().error(null, "Class {{c0}} imports JS symbol '" + symbolName + "' from module '" + module + "', which was already imported previously from '" + importedSymbols.get(symbolName) + "'", cls.getName());
+                }
+            }
 
-                    boolean object = !symbols.isEmpty() && (annotationReader.getValue("defaultExport") == null || !annotationReader.getValue("defaultExport").getBoolean());
+            boolean object = !symbols.isEmpty() && (annotationReader.getValue("defaultExport") == null || !annotationReader.getValue("defaultExport").getBoolean());
 
-                    String symbolsJoined = symbols.stream()
-                            .map(AnnotationValue::getString)
-                            .collect(Collectors.joining(", "));
+            String symbolsJoined = symbols.stream()
+                    .map(AnnotationValue::getString)
+                    .collect(Collectors.joining(", "));
 
-                    if (symbols.isEmpty()) {
-                        rendererListener.addImport("import '" + module + "';");
-                    } else if (object) {
-                        symbols.stream()
-                                .map(AnnotationValue::getString)
-                                .forEach(symbol -> {
-                                    rendererListener.addInjectedSymbol("\"" + symbol + "\": [\"" + module + "\", \"" + symbol + "\"]");
-                                    rendererListener.addImportedSymbol(symbol);
-                                });
-                    } else {
-                        symbols.stream()
-                                .map(AnnotationValue::getString)
-                                .forEach(symbol -> {
-                                    rendererListener.addInjectedSymbol("\"" + symbol + "\": \"" + module + "\"");
-                                    rendererListener.addImportedSymbol(symbol);
-                                });
-                    }
-                });
+            if (symbols.isEmpty()) {
+                rendererListener.addImport("import '" + module + "';");
+            } else if (object) {
+                symbols.stream()
+                        .map(AnnotationValue::getString)
+                        .forEach(symbol -> {
+                            rendererListener.addInjectedSymbol("\"" + symbol + "\": [\"" + module + "\", \"" + symbol + "\"]");
+                            rendererListener.addImportedSymbol(symbol);
+                        });
+            } else {
+                symbols.stream()
+                        .map(AnnotationValue::getString)
+                        .forEach(symbol -> {
+                            rendererListener.addInjectedSymbol("\"" + symbol + "\": \"" + module + "\"");
+                            rendererListener.addImportedSymbol(symbol);
+                        });
+            }
+        });
 
         if (cls.getInterfaces().contains(Serializable.class.getName()) && !cls.getName().startsWith("java")) {
             cls.getAnnotations().add(new AnnotationHolder(JsonPersistable.class.getName()));
@@ -538,6 +539,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
     }
 
     private static final Pattern CAMELCASE_CONVERT_STAGE1 = Pattern.compile("([a-z0-9])([A-Z])");
+
     private static final Pattern CAMELCASE_CONVERT_STAGE2 = Pattern.compile("([A-Z])([A-Z])(?=[a-z])");
 
     private static String toKebabCase(String camelCase) {

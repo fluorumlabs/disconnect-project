@@ -9,7 +9,7 @@ import javax.annotation.Untainted;
 @SuppressWarnings("unchecked")
 public interface HasComponents<E extends Element, T extends HasComponents<E, T, C>, C extends Component<?>> extends Component<E> {
     default T add(C component) {
-        getElement().appendChild(component.render());
+        getNode().appendChild(component.getRenderedNode());
         return (T) this;
     }
 
@@ -21,24 +21,24 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
     }
 
     default T insert(C... components) {
-        Node firstChild = getElement().getFirstChild();
+        Node firstChild = getNode().getFirstChild();
         if ( firstChild == null ) {
             return add(components);
         }
 
         for (C component : components) {
-            getElement().insertBefore(component.render(), firstChild);
+            getNode().insertBefore(component.getRenderedNode(), firstChild);
         }
         return (T) this;
     }
 
     default T insert(C component) {
-        Node firstChild = getElement().getFirstChild();
+        Node firstChild = getNode().getFirstChild();
         if ( firstChild == null ) {
             return add(component);
         }
 
-        getElement().insertBefore(component.render(), firstChild);
+        getNode().insertBefore(component.getRenderedNode(), firstChild);
         return (T) this;
     }
 
@@ -51,7 +51,7 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
     }
 
     default T remove(C component) {
-        getElement().removeChild(component.render());
+        getNode().removeChild(component.getRenderedNode());
         return (T) this;
     }
 
@@ -64,28 +64,61 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
 
     default T removeAll() {
         while (true) {
-            E node = getElement();
+            E node = getNode();
             if (node.getFirstChild() == null) break;
             node.removeChild(node.getFirstChild());
         }
         return (T) this;
     }
 
+    default T stamp(Template template) {
+        return stamp(template, true);
+    }
+
+    default T stamp(Template template, boolean deepClone) {
+        getNode().appendChild(template.getNode().cloneNode(deepClone));
+        return (T) this;
+    }
+
+    default T stampReplace(Template template) {
+        return stamp(template, true);
+    }
+
+    default T stampReplace(Template template, boolean deepClone) {
+        removeAll();
+        getNode().appendChild(template.getNode().cloneNode(deepClone));
+        return (T) this;
+    }
+
+    default T stampInsert(Template template) {
+        return stampInsert(template, true);
+    }
+
+    default T stampInsert(Template template, boolean deepClone) {
+        getNode().appendChild(template.getNode().cloneNode(deepClone));
+        Node firstChild = getNode().getFirstChild();
+        if ( firstChild == null ) {
+            return stamp(template, deepClone);
+        }
+        getNode().insertBefore(template.getNode().cloneNode(deepClone), firstChild);
+        return (T) this;
+    }
+
     default T text(String text) {
-        getElement().setTextContent(text);
+        getNode().setTextContent(text);
         return (T) this;
     }
 
     default String text() {
-        return getElement().getTextContent();
+        return getNode().getTextContent();
     }
 
     default T html(@Untainted String html) {
-        getElement().setInnerHTML(html);
+        getNode().setInnerHTML(html);
         return (T) this;
     }
 
     default String html() {
-        return getElement().getInnerHTML();
+        return getNode().getInnerHTML();
     }
 }

@@ -1,0 +1,35 @@
+package com.github.fluorumlabs.disconnect.polymer.utils;
+
+import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import js.util.function.JsDoubleConsumer;
+import org.teavm.jso.JSBody;
+
+@Import(symbols = "animationFrame", module = "@polymer/polymer/lib/utils/async.js")
+public interface AnimationFrame extends Polymer {
+    /**
+     * Enqueues a function called at `requestAnimationFrame` timing.
+     * FIXME param fn: function (number): void
+     *
+     * @param fn Callback to run
+     *
+     * @return Handle used for canceling task
+     */
+    @JSBody(params = "fn", script = "return animationFrame.run(fn)")
+    static Handle run(JsDoubleConsumer fn) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    /**
+     * Cancels a previously enqueued `animationFrame` callback.
+     *
+     * @param handle Handle returned from `run` of callback to cancel
+     */
+    @JSBody(params = "handle", script = "animationFrame.cancel(handle)")
+    static void cancel(Handle handle) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    abstract class Handle extends js.extras.Handle {
+    }
+}

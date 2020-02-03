@@ -14,7 +14,7 @@ public class BasicZeroExampleEntryPoint implements Runnable {
     public void run() {
         Component<HTMLDivElement> basicZeroExampleView = new BasicZeroExampleView();
 
-        DOCUMENT.getBody().appendChild(basicZeroExampleView.render());
+        DOCUMENT.getBody().appendChild(basicZeroExampleView.getRenderedNode());
     }
 
 }

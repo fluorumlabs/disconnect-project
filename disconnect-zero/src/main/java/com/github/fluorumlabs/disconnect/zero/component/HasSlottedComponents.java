@@ -6,7 +6,7 @@ import js.web.dom.Node;
 
 public interface HasSlottedComponents<E extends Element, T extends HasSlottedComponents<E, T, C>, C extends Component<? extends Element>> extends HasComponents<E,T,C> {
     default T addSlotted(String slot, C component) {
-        component.render().setSlot(slot);
+        component.getRenderedNode().setSlot(slot);
         return add(component);
     }
 
@@ -18,26 +18,26 @@ public interface HasSlottedComponents<E extends Element, T extends HasSlottedCom
     }
 
     default T insertSlotted(String slot, C... components) {
-        Node firstChild = getElement().getFirstChild();
+        Node firstChild = getNode().getFirstChild();
         if ( firstChild == null ) {
             return addSlotted(slot, components);
         }
 
         for (C component : components) {
-            component.render().setSlot(slot);
-            getElement().insertBefore(component.render(), firstChild);
+            component.getRenderedNode().setSlot(slot);
+            getNode().insertBefore(component.getRenderedNode(), firstChild);
         }
         return (T) this;
     }
 
     default T insertSlotted(String slot, C component) {
-        Node firstChild = getElement().getFirstChild();
+        Node firstChild = getNode().getFirstChild();
         if ( firstChild == null ) {
             return addSlotted(slot, component);
         }
 
-        component.render().setSlot(slot);
-        getElement().insertBefore(component.render(), firstChild);
+        component.getRenderedNode().setSlot(slot);
+        getNode().insertBefore(component.getRenderedNode(), firstChild);
         return (T) this;
     }
 
@@ -51,7 +51,7 @@ public interface HasSlottedComponents<E extends Element, T extends HasSlottedCom
 
     default T removeAllSlotted(String slot) {
         while (true) {
-            E element = getElement();
+            E element = getNode();
             if (element.getFirstElementChild() == null) break;
             if (element.getFirstElementChild().getSlot().equals(slot))
                 element.removeChild(element.getFirstElementChild());

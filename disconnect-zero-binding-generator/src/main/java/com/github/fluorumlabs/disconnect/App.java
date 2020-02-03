@@ -33,8 +33,7 @@ import javax.lang.model.element.Modifier;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -43,22 +42,23 @@ import java.util.stream.Stream;
  * Hello world!
  */
 public class App {
-    public static String rootPackage = "com.github.fluorumlabs.disconnect.vaadin";
-    //public static String rootPackage = "com.github.fluorumlabs.disconnect.polymer";
+    //public static String rootPackage = "com.github.fluorumlabs.disconnect.vaadin";
+    public static String rootPackage = "com.github.fluorumlabs.disconnect.polymer";
 
-    public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit\\zzz\\@vaadin\\";
-    //public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit\\zzz\\@polymer\\";
+    //public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit\\zzz\\@vaadin\\";
+    public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit\\zzz\\@polymer\\";
 
-    public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-vaadin";
+    //public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-vaadin";
+    public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-polymer";
 
-    public static String npmPackage = "@vaadin/vaadin";
-    //public static String npmPackage = "@polymer/polymer";
+    //public static String npmPackage = "@vaadin/vaadin";
+    public static String npmPackage = "@polymer/polymer";
 
-    public static String importRoot = "@vaadin";
-    //public static String importRoot = "@polymer";
+    //public static String importRoot = "@vaadin";
+    public static String importRoot = "@polymer";
 
-    public static String npmVersion = "14.1.16";
-    //public static String npmVersion = "3.3.1";
+    //public static String npmVersion = "14.1.16";
+    public static String npmVersion = "3.3.1";
 
     private static final Pattern KEBAB_SPLIT = Pattern.compile("-");
 
@@ -205,31 +205,87 @@ public class App {
 
         packageBuilder.addAnnotation(npmModule);
 
-        for (Object oFunction : analysis.getJSONArray("functions")) {
-            JSONObject function = (JSONObject) oFunction;
-
-            processPolymerFunctions(rootPath, commonPackageClassName, packageBuilder, function);
-        }
+        processPolymerAnalysis(rootPath, commonPackageClassName, analysis, packageBuilder);
 
         JavaFile.builder(rootPackage, packageBuilder.build())
                 .build()
                 .writeTo(Paths.get(targetPath, "src", "main", "java"));
-
-        for (Object oMixin : analysis.getJSONArray("mixins")) {
-            JSONObject mixin = (JSONObject) oMixin;
-
-            processPolymerMixin(rootPath, commonPackageClassName, mixin);
-        }
-
-        for (Object oElement : analysis.getJSONArray("elements")) {
-            JSONObject element = (JSONObject) oElement;
-
-            processPolymerElement(rootPath, commonPackageClassName, element);
-        }
-
     }
 
-    private static void processPolymerFunctions(String rootPath, String commonPackageClassName, TypeSpec.Builder packageBuilder, JSONObject function) {
+    private static void processPolymerAnalysis(String rootPath, String commonPackageClassName, JSONObject analysis, TypeSpec.Builder packageBuilder) throws IOException {
+        if (analysis.has("namespaces")) {
+            for (Object oNs : analysis.getJSONArray("namespaces")) {
+                JSONObject ns = (JSONObject) oNs;
+
+                processPolymerAnalysis(rootPath, commonPackageClassName, ns, packageBuilder);
+            }
+        }
+
+//        if (analysis.has("classes")) {
+//            for (Object oClass : analysis.getJSONArray("classes")) {
+//                JSONObject clazz = (JSONObject) oClass;
+//
+//                processPolymerElement(rootPath, commonPackageClassName, clazz, false);
+//            }
+//        }
+
+        if (analysis.has("functions")) {
+            Map<String, List<JSONObject>> functions = new HashMap<>();
+            for (Object oFunction : analysis.optJSONArray("functions")) {
+                JSONObject function = (JSONObject) oFunction;
+                String methodName = function.getString("name");
+                if (methodName.contains(".")) {
+                    String className = StringUtils.capitalize(toCamelCase(StringUtils.substringBefore(methodName, ".")));
+                    functions.computeIfAbsent(className, key -> new ArrayList<>()).add(function);
+                } else {
+                    String importFile = function.getJSONObject("sourceRange").getString("file");
+                    String importFileName = StringUtils.substringAfterLast(importFile, "/");
+                    if (StringUtils.isNotEmpty(importFileName)) {
+                        String className = StringUtils.capitalize(toCamelCase(StringUtils.substringBefore(importFileName, ".")));
+                        functions.computeIfAbsent(className, key -> new ArrayList<>()).add(function);
+                    }
+                }
+            }
+            for (Map.Entry<String, List<JSONObject>> stringListEntry : functions.entrySet()) {
+                TypeSpec.Builder utilBuilder = TypeSpec.interfaceBuilder(stringListEntry.getKey())
+                        .addSuperinterface(ClassName.get(rootPackage, commonPackageClassName))
+                        .addModifiers(Modifier.PUBLIC);
+                Map<String, Set<String>> importNames = new HashMap<>();
+                stringListEntry.getValue().forEach(function -> processPolymerFunctions(rootPath, commonPackageClassName, utilBuilder, function, importNames));
+
+                importNames.forEach((file, names) -> {
+                    AnnotationSpec importAnnotation = AnnotationSpec.builder(Import.class)
+                            .addMember("symbols", "{$L}", names.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", ")))
+                            .addMember("module", "$S", importRoot + "/" + file)
+                            .build();
+
+                    utilBuilder.addAnnotation(importAnnotation);
+                });
+
+                JavaFile.builder(rootPackage + ".utils", utilBuilder.build())
+                        .build()
+                        .writeTo(Paths.get(targetPath, "src", "main", "java"));
+            }
+        }
+
+        if (analysis.has("mixins")) {
+            for (Object oMixin : analysis.getJSONArray("mixins")) {
+                JSONObject mixin = (JSONObject) oMixin;
+
+                processPolymerMixin(rootPath, commonPackageClassName, mixin);
+            }
+        }
+
+        if (analysis.has("elements")) {
+            for (Object oElement : analysis.getJSONArray("elements")) {
+                JSONObject element = (JSONObject) oElement;
+
+                processPolymerElement(rootPath, commonPackageClassName, element, true);
+            }
+        }
+    }
+
+    private static void processPolymerFunctions(String rootPath, String commonPackageClassName, TypeSpec.Builder functionBuilder, JSONObject function, Map<String, Set<String>> imports) {
         String methodName = function.getString("name");
         String visibility = function.getString("privacy");
         String description = function.optString("description");
@@ -242,13 +298,11 @@ public class App {
             return;
         }
 
-        AnnotationSpec importAnnotation = AnnotationSpec.builder(Import.class)
-                .addMember("symbols", "$S", methodName)
-                .addMember("module", "$S", importRoot + "/" + importFile)
-                .build();
-        packageBuilder.addAnnotation(importAnnotation);
+        String importName = StringUtils.substringBefore(methodName, ".");
+        imports.computeIfAbsent(importFile, file -> new HashSet<>())
+                .add(importName);
 
-        MethodSpec.Builder javaMethod = MethodSpec.methodBuilder(methodName)
+        MethodSpec.Builder javaMethod = MethodSpec.methodBuilder(StringUtils.defaultIfEmpty(StringUtils.substringAfterLast(methodName, "."), methodName))
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC);
 
         if (StringUtils.isNotEmpty(description)) {
@@ -283,7 +337,7 @@ public class App {
             JSONObject param = (JSONObject) oParam;
             String paramName = param.getString("name");
             String paramRawType = param.optString("type", "<unspecified>");
-            String paramDescription = param.optString("description", "");
+            String paramDescription = param.optString("description", param.optString("desc", ""));
             TypeName paramType = parsePolymerType(paramRawType);
             if (paramType == null) {
                 paramType = TypeName.get(Unknown.class);
@@ -314,15 +368,15 @@ public class App {
         javaMethod.addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only in JavaScript");
 
         if (returnType != TypeName.VOID && returnObject != null) {
-            String returnTypeDescription = returnObject.optString("desc", "");
+            String returnTypeDescription = returnObject.optString("description", returnObject.optString("desc", ""));
 
             javaMethod.addJavadoc("\n@return $L", returnTypeDescription);
         }
 
-        packageBuilder.addMethod(javaMethod.build());
+        functionBuilder.addMethod(javaMethod.build());
     }
 
-    private static void processPolymerElement(String rootPath, String commonPackageClassName, JSONObject element) throws IOException {
+    private static void processPolymerElement(String rootPath, String commonPackageClassName, JSONObject element, boolean isElement) throws IOException {
         String visibility = element.getString("privacy");
         String tagName = element.optString("tagname", "");
         String elementName = element.optString("name", StringUtils.capitalize(toCamelCase(tagName)));
@@ -334,13 +388,13 @@ public class App {
         if (importPath.contains("/demo/")) {
             return;
         }
-        String superClass = element.getString("superclass");
+        String superClass = element.optString("superclass", "js.lang.Any");
         String description = element.optString("description");
 
         String shortElementName = StringUtils.defaultIfBlank(StringUtils.substringAfterLast(elementName, "."), elementName);
         String shortComponentName = StringUtils.defaultIfBlank(StringUtils.capitalize(toCamelCase(tagName)), "Abstract" + shortElementName);
 
-        TypeName jsElementClass = ClassName.get(rootPackage + ".elements", shortElementName);
+        TypeName jsElementClass = ClassName.get(rootPackage + (isElement ? ".elements" : ".classes"), shortElementName);
         TypeName javaElementClass = ClassName.get(rootPackage, shortComponentName);
 
         TypeSpec.Builder jsElement = TypeSpec.interfaceBuilder(shortElementName)
@@ -382,21 +436,33 @@ public class App {
             jsElement.addAnnotation(importAnnotation);
         }
 
-        processPolymerMethods(element.getJSONArray("staticMethods"), jsElementClass, jsElement, javaElement, elementName, shortElementName, true, javaElementClass);
-        processPolymerProperties(element.getJSONArray("properties"), jsElementClass, javaElementClass, jsElement, javaElement, elementName, shortElementName, javaElementClass);
-        processPolymerMethods(element.getJSONArray("methods"), jsElementClass, jsElement, javaElement, elementName, shortElementName, false, javaElementClass);
-        processPolymerEventsMethods(element.getJSONArray("events"), jsElement, javaElement, elementName, shortElementName, javaElementClass, jsElementClass);
-        processPolymerSlotsMethods(rootPath, importPath, element.getJSONArray("slots"), jsElementClass, javaElementClass, jsElement, javaElement, elementName, shortElementName, javaElementClass);
+        if (element.has("staticMethods")) {
+            processPolymerMethods(element.getJSONArray("staticMethods"), jsElementClass, jsElement, javaElement, elementName, shortElementName, true, javaElementClass);
+        }
+        if (element.has("properties")) {
+            processPolymerProperties(element.getJSONArray("properties"), jsElementClass, javaElementClass, jsElement, javaElement, elementName, shortElementName, javaElementClass);
+        }
+        if (element.has("methods")) {
+            processPolymerMethods(element.getJSONArray("methods"), jsElementClass, jsElement, javaElement, elementName, shortElementName, false, javaElementClass);
+        }
+        if (element.has("events")) {
+            processPolymerEventsMethods(element.getJSONArray("events"), jsElement, javaElement, elementName, shortElementName, javaElementClass, jsElementClass);
+        }
+        if (element.has("slots")) {
+            processPolymerSlotsMethods(rootPath, importPath, element.getJSONArray("slots"), jsElementClass, javaElementClass, jsElement, javaElement, elementName, shortElementName, javaElementClass);
+        }
 
-        JavaFile.builder(rootPackage + ".elements", jsElement.build())
+        JavaFile.builder(rootPackage + (isElement ? ".elements" : ".classes"), jsElement.build())
                 .indent("\t")
                 .build()
                 .writeTo(Paths.get(targetPath, "src", "main", "java"));
 
-        JavaFile.builder(rootPackage, javaElement.build())
-                .indent("\t")
-                .build()
-                .writeTo(Paths.get(targetPath, "src", "main", "java"));
+        if (isElement) {
+            JavaFile.builder(rootPackage, javaElement.build())
+                    .indent("\t")
+                    .build()
+                    .writeTo(Paths.get(targetPath, "src", "main", "java"));
+        }
     }
 
     private static void processPolymerMixin(String rootPath, String commonPackageClassName, JSONObject mixin) throws IOException {
@@ -429,6 +495,16 @@ public class App {
                 .addTypeVariable(TypeVariableName.get("T", ParameterizedTypeName.get(ClassName.get(Component.class), TypeVariableName.get("E"))))
                 .addSuperinterface(ParameterizedTypeName.get(ClassName.get(Component.class), TypeVariableName.get("E")))
                 .addModifiers(Modifier.PUBLIC);
+
+        JSONArray mixins = mixin.optJSONArray("mixins");
+        if (mixins != null) {
+            for (Object xmixin : mixins) {
+                String shortXMixinName = StringUtils.defaultIfBlank(StringUtils.substringAfterLast((String) xmixin, "."), (String) xmixin);
+                String shortXJavaMixinName = "Has" + shortXMixinName;
+                jsMixin.addSuperinterface(ClassName.get(rootPackage + ".elements.mixins", shortXMixinName));
+                javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(rootPackage + ".mixins", shortXJavaMixinName), TypeVariableName.get("E"), TypeVariableName.get("T")));
+            }
+        }
 
         if (StringUtils.isNotEmpty(description)) {
             jsMixin.addJavadoc("$L", description);
@@ -590,6 +666,11 @@ public class App {
     private static void processPolymerEventsMethods(JSONArray events, TypeSpec.Builder jsMixin, TypeSpec.Builder javaMixin, String mixinName, String shortMixinName, TypeName javaClass, TypeName jsClass) {
         for (Object oEvent : events) {
             JSONObject event = (JSONObject) oEvent;
+
+            if (event.has("inheritedFrom")) {
+                continue;
+            }
+
             String eventName = event.getString("name");
             String eventMethodName = StringUtils.capitalize(toCamelCase(eventName)) + "Event";
             String typeRaw = event.optString("type", "CustomEvent");
@@ -622,7 +703,8 @@ public class App {
             JSONObject property = (JSONObject) oProperty;
             String propertyName = property.getString("name");
             String visibility = property.getString("privacy");
-            if (!"public".equals(visibility)) {
+            if (!"public".equals(visibility)
+                    || property.has("inheritedFrom")) {
                 continue;
             }
             String description = property.optString("description");
@@ -653,7 +735,7 @@ public class App {
                     .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT);
             MethodSpec.Builder javaSetterMethod = MethodSpec.methodBuilder(SourceVersion.isKeyword(propertyName) ? setterName : propertyName)
                     .addModifiers(Modifier.PUBLIC);
-            MethodSpec.Builder javaGetterMethod = MethodSpec.methodBuilder(SourceVersion.isKeyword(propertyName) ? setterName : propertyName)
+            MethodSpec.Builder javaGetterMethod = MethodSpec.methodBuilder(SourceVersion.isKeyword(propertyName) ? getterName : propertyName)
                     .addModifiers(Modifier.PUBLIC);
 
             if (javaReturnType instanceof TypeVariableName) {
@@ -703,8 +785,8 @@ public class App {
                 javaSetterMethod.addJavadoc("$L", description);
             }
 
-            javaGetterMethod.addStatement("return getElement().$L()", getterName);
-            javaSetterMethod.addStatement("getElement().$L($L)", setterName, SourceVersion.isKeyword(propertyName) ? "value" : propertyName);
+            javaGetterMethod.addStatement("return getNode().$L()", getterName);
+            javaSetterMethod.addStatement("getNode().$L($L)", setterName, SourceVersion.isKeyword(propertyName) ? "value" : propertyName);
 
             if (javaReturnType instanceof TypeVariableName) {
                 javaSetterMethod.addStatement("return ($T)this", javaReturnType);
@@ -727,12 +809,12 @@ public class App {
             String methodName = method.getString("name");
             String visibility = method.getString("privacy");
             if (!"public".equals(visibility)
+                    || method.has("inheritedFrom")
                     || "connectedCallback".equals(methodName)
                     || "disconnectedCallback".equals(methodName)
                     || "attributeChangedCallback".equals(methodName)
                     || "finalize".equals(methodName)
-                    || "getElement".equals(methodName)
-                    || "render".equals(methodName)
+                    || "getNode".equals(methodName)
                     || "ready".equals(methodName)) {
                 continue;
             }
@@ -796,7 +878,7 @@ public class App {
             if (isStatic) {
                 javaBodyBuilder.append("$T.").append(methodName).append("(");
             } else {
-                javaBodyBuilder.append("getElement().").append(methodName).append("(");
+                javaBodyBuilder.append("getNode().").append(methodName).append("(");
             }
 
             JSONArray params = method.getJSONArray("params");
@@ -805,7 +887,7 @@ public class App {
                 JSONObject param = (JSONObject) oParam;
                 String paramName = param.getString("name");
                 String paramRawType = param.optString("type", "<unspecified>");
-                String paramDescription = param.optString("description", "");
+                String paramDescription = param.optString("description", param.optString("desc", ""));
                 TypeName paramType = parsePolymerType(paramRawType);
                 if (paramType == null) {
                     paramType = TypeName.get(Unknown.class);
