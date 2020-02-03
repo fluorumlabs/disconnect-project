@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import js.util.collections.Array;
 import org.teavm.jso.JSBody;
@@ -23,6 +25,10 @@ import javax.annotation.Nullable;
  * representing the last selected item.  When `multi` is true, `selected`
  * is an array of multiply selected items.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "ArraySelectorMixin",
         module = "@polymer/polymer/lib/elements/array-selector.js"

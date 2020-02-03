@@ -26,6 +26,11 @@
         </dependency>
         <dependency>
             <groupId>com.github.fluorumlabs.disconnect</groupId>
+            <artifactId>disconnect-polymer</artifactId>
+            <version>${disconnect.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fluorumlabs.disconnect</groupId>
             <artifactId>disconnect-classlib</artifactId>
             <version>${disconnect.version}</version>
         </dependency>

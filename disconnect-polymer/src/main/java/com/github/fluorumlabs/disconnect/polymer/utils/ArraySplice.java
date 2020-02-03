@@ -1,13 +1,18 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import js.util.collections.Array;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(symbols = "calculateSplices", module = "@polymer/polymer/lib/utils/array-splice.js")
-public interface ArraySplice extends Polymer {
+public interface ArraySplice extends Any {
     /**
      * Returns an array of splice records indicating the minimum edits required
      * to transform the `previous` array into the `current` array.

@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.utils.*;
 import js.lang.Any;
 import js.lang.Unknown;
@@ -19,6 +21,10 @@ import javax.annotation.Nullable;
  * found on the Polymer 1.x `Polymer.Base` prototype applied to all elements
  * defined using the `Polymer({...})` function.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "LegacyElementMixin",
         module = "@polymer/polymer/lib/legacy/legacy-element-mixin.js"

@@ -5,6 +5,7 @@ import com.github.fluorumlabs.disconnect.polymer.elements.TemplateInstanceBase;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasOptionalMutableData;
 import com.github.fluorumlabs.disconnect.polymer.utils.IntPropertyChangeDetails;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
+import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -119,6 +120,13 @@ public class DomRepeat<ITEM extends Any>
         HasComponent<DomRepeatElement<ITEM>, DomRepeat<ITEM>, Template> {
     public DomRepeat() {
         super("dom-repeat");
+    }
+
+    public DomRepeat(Component<?>... components) {
+        this();
+        Template template = new Template();
+        template.add(components);
+        setContent(template);
     }
 
     /**

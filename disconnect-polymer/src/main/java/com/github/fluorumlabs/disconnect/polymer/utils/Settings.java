@@ -1,14 +1,20 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = {"setAllowTemplateFromDomModule", "setCancelSyntheticClickEvents", "setLegacyOptimizations", "setStrictTemplatePolicy", "setRootPath", "setSanitizeDOMValue", "setPassiveTouchGestures", "setSyncInitialRender"},
         module = "@polymer/polymer/lib/utils/settings.js"
 )
-public interface Settings extends Polymer {
+public interface Settings extends Any {
     /**
      * Sets the global rootPath property used by `ElementMixin` and
      * available via `rootPath`.

@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -18,6 +20,10 @@ import org.teavm.jso.JSProperty;
  * Set the `restamp` property to true to force the stamped content to be
  * created / destroyed when the `if` condition changes.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "DomIf",
         module = "@polymer/polymer/lib/elements/dom-if.js"

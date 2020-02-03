@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.cssom.MediaQueryList;
 import js.web.dom.HTMLElement;
@@ -21,11 +22,15 @@ import javax.annotation.Nullable;
  * </iron-media-query>
  * ```
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "IronMediaQuery",
         module = "@polymer/iron-media-query/iron-media-query.js"
 )
-public interface IronMediaQueryElement extends Polymer, HTMLElement {
+public interface IronMediaQueryElement extends HTMLElement {
     /**
      * The Boolean return value of the media query.
      */

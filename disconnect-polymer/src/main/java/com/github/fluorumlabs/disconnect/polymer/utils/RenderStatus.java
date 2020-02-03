@@ -1,15 +1,21 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import js.lang.Any;
 import js.util.function.JsRunnable;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = {"flush", "beforeNextRender", "afterNextRender"},
         module = "@polymer/polymer/lib/utils/render-status.js"
 )
-public interface RenderStatus extends Polymer {
+public interface RenderStatus extends Any {
     /**
      * Flushes all `beforeNextRender` tasks, followed by all `afterNextRender`
      * tasks.

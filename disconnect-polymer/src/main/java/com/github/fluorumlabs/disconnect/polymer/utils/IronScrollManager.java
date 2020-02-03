@@ -1,15 +1,21 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import js.lang.Any;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = {"pushScrollLock", "removeScrollLock", "elementIsScrollLocked"},
         module = "@polymer/iron-overlay-behavior/iron-scroll-manager.js"
 )
-public interface IronScrollManager extends Polymer {
+public interface IronScrollManager extends Any {
     /**
      * Returns true if the provided element is "scroll locked", which is to
      * say that it cannot be scrolled via pointer or keyboard interactions.

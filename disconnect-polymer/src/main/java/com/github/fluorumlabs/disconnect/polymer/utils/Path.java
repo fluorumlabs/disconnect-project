@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import js.lang.Unknown;
@@ -10,11 +11,15 @@ import org.teavm.jso.JSByRef;
 
 import javax.annotation.Nullable;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = {"isAncestor", "split", "set", "isDescendant", "root", "normalize", "get", "isPath", "matches", "translate"},
         module = "@polymer/polymer/lib/utils/path.js"
 )
-public interface Path extends Polymer {
+public interface Path extends Any {
     /**
      * Returns true if the given string is a structured data path (has dots).
      * <p>

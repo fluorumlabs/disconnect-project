@@ -1,13 +1,10 @@
 package com.github.fluorumlabs.disconnect.zero.component;
 
-import js.web.dom.Element;
 import js.web.dom.Node;
-
-import javax.annotation.Untainted;
 
 
 @SuppressWarnings("unchecked")
-public interface HasComponents<E extends Element, T extends HasComponents<E, T, C>, C extends Component<?>> extends Component<E> {
+public interface HasComponents<E extends Node, T extends HasComponents<E, T, C>, C extends Component<?>> extends Component<E> {
     default T add(C component) {
         getNode().appendChild(component.getRenderedNode());
         return (T) this;
@@ -111,14 +108,5 @@ public interface HasComponents<E extends Element, T extends HasComponents<E, T, 
 
     default String text() {
         return getNode().getTextContent();
-    }
-
-    default T html(@Untainted String html) {
-        getNode().setInnerHTML(html);
-        return (T) this;
-    }
-
-    default String html() {
-        return getNode().getInnerHTML();
     }
 }

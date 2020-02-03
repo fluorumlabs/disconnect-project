@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.OptionalMutableData;
 import js.lang.Any;
 import js.util.collections.Array;
@@ -107,6 +109,10 @@ import javax.annotation.Nullable;
  * <dom-repeat items="{{employees}}" filter="isEngineer" observe="type manager.type">
  * ```
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "DomRepeat",
         module = "@polymer/polymer/lib/elements/dom-repeat.js"

@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 
 /**
  * Element class mixin that allows the element to boot up in a non-enabled
@@ -22,6 +24,10 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
  * <p>
  * MyClass = DisableUpgradeMixin(class extends BaseClass {...});
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "DisableUpgradeMixin",
         module = "@polymer/polymer/lib/mixins/disable-upgrade-mixin.js"

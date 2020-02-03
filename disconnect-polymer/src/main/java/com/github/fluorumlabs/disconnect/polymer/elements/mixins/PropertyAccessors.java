@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import org.teavm.jso.JSBody;
 
 /**
@@ -27,6 +29,10 @@ import org.teavm.jso.JSBody;
  * deserialized via `attributeChangedCallback` and set to the associated
  * property using `dash-case`-to-`camelCase` convention.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "PropertyAccessors",
         module = "@polymer/polymer/lib/mixins/property-accessors.js"

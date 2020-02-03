@@ -1,14 +1,20 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import js.lang.Any;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = {"camelToDashCase", "dashToCamelCase"},
         module = "@polymer/polymer/lib/utils/case-map.js"
 )
-public interface CaseMap extends Polymer {
+public interface CaseMap extends Any {
     /**
      * Converts "dash-case" identifier (e.g. `foo-bar-baz`) to "camelCase"
      * (e.g. `fooBarBaz`).

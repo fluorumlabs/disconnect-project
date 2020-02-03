@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.Element;
 import js.web.dom.HTMLElement;
@@ -26,11 +27,15 @@ import org.teavm.jso.JSProperty;
  * <p>
  * let img = customElements.get('dom-module').import('foo', 'img');
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "DomModule",
         module = "@polymer/polymer/lib/elements/dom-module.js"
 )
-public interface DomModuleElement extends Polymer, HTMLElement {
+public interface DomModuleElement extends HTMLElement {
     /**
      * Retrieves the element specified by the css `selector` in the module
      * registered by `id`. For example, this.import('foo', 'img');

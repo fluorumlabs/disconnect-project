@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.GestureEventListeners;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.OptionalMutableData;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.PropertyEffects;
@@ -16,6 +18,10 @@ import js.web.dom.HTMLElement;
  * document and bind elements to the `dom-bind` element itself as the
  * binding scope.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "DomBind",
         module = "@polymer/polymer/lib/elements/dom-bind.js"

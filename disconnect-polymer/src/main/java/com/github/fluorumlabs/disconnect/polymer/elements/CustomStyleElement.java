@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.HTMLElement;
 import js.web.dom.HTMLStyleElement;
@@ -47,11 +48,15 @@ import org.teavm.jso.JSMethod;
  * </custom-style>
  * ```
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "CustomStyle",
         module = "@polymer/polymer/lib/elements/custom-style.js"
 )
-public interface CustomStyleElement extends Polymer, HTMLElement {
+public interface CustomStyleElement extends HTMLElement {
     /**
      * Returns the light-DOM `<style>` child this element wraps.  Upon first
      * call any style modules referenced via the `include` attribute will be

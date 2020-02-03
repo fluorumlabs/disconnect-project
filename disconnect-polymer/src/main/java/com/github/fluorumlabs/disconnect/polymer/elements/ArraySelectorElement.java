@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.ArraySelectorMixin;
 import js.lang.Any;
 
@@ -71,6 +73,10 @@ import js.lang.Any;
  * }
  * ```
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "ArraySelector",
         module = "@polymer/polymer/lib/elements/array-selector.js"

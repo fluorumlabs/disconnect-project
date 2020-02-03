@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
@@ -69,11 +70,15 @@ import javax.annotation.Nullable;
  * `--iron-icon-fill-color` | Fill color of the svg icon | `currentcolor`
  * `--iron-icon-stroke-color` | Stroke color of the svg icon | none
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "IronIcon",
         module = "@polymer/iron-icon/iron-icon.js"
 )
-public interface IronIconElement extends Polymer, HTMLElement {
+public interface IronIconElement extends HTMLElement {
     /**
      * The name of the icon to use. The name should be of the form:
      * `iconset_name:icon_name`.

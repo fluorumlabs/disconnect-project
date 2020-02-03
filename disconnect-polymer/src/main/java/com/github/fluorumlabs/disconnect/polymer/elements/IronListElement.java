@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import js.util.collections.Array;
@@ -227,11 +228,15 @@ import javax.annotation.Nullable;
  * into pages so you can bring in a page at the time. The page could contain 500
  * items, and iron-list will only render 20.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "IronList",
         module = "@polymer/iron-list/iron-list.js"
 )
-public interface IronListElement<ITEM extends Any> extends Polymer, HTMLElement {
+public interface IronListElement<ITEM extends Any> extends HTMLElement {
     /**
      * An array containing items determining how many instances of the template
      * to stamp and that that each template instance should bind to.

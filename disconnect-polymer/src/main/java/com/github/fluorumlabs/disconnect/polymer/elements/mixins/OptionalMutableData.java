@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.Element;
 import org.teavm.jso.JSProperty;
@@ -40,11 +41,15 @@ import org.teavm.jso.JSProperty;
  * strict dirty checking with immutable patterns or Polymer's path notification
  * API.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "OptionalMutableData",
         module = "@polymer/polymer/lib/mixins/mutable-data.js"
 )
-public interface OptionalMutableData extends Polymer, Element {
+public interface OptionalMutableData extends Element {
     /**
      * Instance-level flag for configuring the dirty-checking strategy
      * for this element.  When true, Objects and Arrays will skip dirty

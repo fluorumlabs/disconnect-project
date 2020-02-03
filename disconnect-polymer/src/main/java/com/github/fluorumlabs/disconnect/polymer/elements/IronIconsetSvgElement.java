@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.Element;
 import js.web.dom.HTMLElement;
@@ -38,11 +39,15 @@ import javax.annotation.Nullable;
  * element use the `applyIcon` method. For example:
  *
  *     iconset.applyIcon(iconNode, 'car'); */
+@NpmPackage(
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
+)
 @Import(
 		symbols = "IronIconsetSvg",
 		module = "@polymer/iron-iconset-svg/iron-iconset-svg.js"
 )
-public interface IronIconsetSvgElement extends Polymer, HTMLElement {
+public interface IronIconsetSvgElement extends HTMLElement {
 	/**
 	 * The name of the iconset. */
 	@Nullable

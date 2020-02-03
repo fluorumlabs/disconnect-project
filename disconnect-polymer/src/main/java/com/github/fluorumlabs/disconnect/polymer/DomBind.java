@@ -5,6 +5,7 @@ import com.github.fluorumlabs.disconnect.polymer.mixins.HasGestureEventListeners
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasOptionalMutableData;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasPropertyEffects;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
+import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -29,6 +30,13 @@ public class DomBind
         HasComponent<DomBindElement, DomBind, Template> {
     public DomBind() {
         super("dom-bind");
+    }
+
+    public DomBind(Component<?>... components) {
+        this();
+        Template template = new Template();
+        template.add(components);
+        setContent(template);
     }
 
     /**

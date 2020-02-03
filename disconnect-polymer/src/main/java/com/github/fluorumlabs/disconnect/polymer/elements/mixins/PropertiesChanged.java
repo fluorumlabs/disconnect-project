@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.Element;
 
@@ -17,9 +18,13 @@ import js.web.dom.Element;
  * attributes. Last, call `this._enableProperties()` in the element's
  * `connectedCallback` to enable the accessors.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "PropertiesChanged",
         module = "@polymer/polymer/lib/mixins/properties-changed.js"
 )
-public interface PropertiesChanged extends Polymer, Element {
+public interface PropertiesChanged extends Element {
 }

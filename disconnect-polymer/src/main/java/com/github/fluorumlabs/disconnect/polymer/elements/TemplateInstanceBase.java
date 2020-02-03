@@ -1,12 +1,18 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.PropertyEffects;
 import js.lang.Any;
 import js.web.dom.HTMLElement;
 import js.web.dom.ParentNode;
 import org.teavm.jso.JSProperty;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "TemplateInstanceBase",
         module = "@polymer/polymer/lib/utils/templatize.js"

@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.Element;
 
@@ -13,9 +14,13 @@ import js.web.dom.Element;
  * templates will support gesture events when this mixin is applied along with
  * `TemplateStamp`.
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "GestureEventListeners",
         module = "@polymer/polymer/lib/mixins/gesture-event-listeners.js"
 )
-public interface GestureEventListeners extends Polymer, Element {
+public interface GestureEventListeners extends Element {
 }

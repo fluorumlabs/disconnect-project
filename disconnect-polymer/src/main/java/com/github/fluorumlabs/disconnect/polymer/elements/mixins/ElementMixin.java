@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.util.Record;
 import js.util.StringRecord;
 import js.web.dom.Element;
@@ -65,6 +67,10 @@ import org.teavm.jso.JSProperty;
  * `observedAttributes` implementation will automatically return an array
  * of dash-cased attributes based on `properties`)
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "ElementMixin",
         module = "@polymer/polymer/lib/mixins/element-mixin.js"

@@ -1,19 +1,25 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.elements.TemplateInstanceBase;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.PropertyEffects;
+import js.lang.Any;
 import js.util.function.JsSupplier;
 import js.web.dom.Node;
 import js.web.webcomponents.HTMLTemplateElement;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = {"templatize", "modelForElement"},
         module = "@polymer/polymer/lib/utils/templatize.js"
 )
-public interface Templatize extends Polymer {
+public interface Templatize extends Any {
     /**
      * Returns an anonymous `PropertyEffects` class bound to the
      * `<template>` provided.  Instancing the class will result in the

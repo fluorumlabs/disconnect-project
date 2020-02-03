@@ -2,6 +2,7 @@ package com.github.fluorumlabs.disconnect.polymer;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.DomIfElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
+import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -28,6 +29,13 @@ public class DomIf
         implements HasComponent<DomIfElement, DomIf, Template> {
     public DomIf() {
         super("dom-if");
+    }
+
+    public DomIf(Component<?>... components) {
+        this();
+        Template template = new Template();
+        template.add(components);
+        setContent(template);
     }
 
     /**

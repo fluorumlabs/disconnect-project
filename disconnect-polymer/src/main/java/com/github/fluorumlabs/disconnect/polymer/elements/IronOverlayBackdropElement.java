@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
@@ -20,11 +21,15 @@ import org.teavm.jso.JSProperty;
  * `--iron-overlay-backdrop`                  | Mixin applied to `iron-overlay-backdrop`.                      | {}
  * `--iron-overlay-backdrop-opened`           | Mixin applied to `iron-overlay-backdrop` when it is displayed | {}
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "IronOverlayBackdrop",
         module = "@polymer/iron-overlay-behavior/iron-overlay-backdrop.js"
 )
-public interface IronOverlayBackdropElement extends Polymer, HTMLElement {
+public interface IronOverlayBackdropElement extends HTMLElement {
     /**
      * Returns true if the backdrop is opened.
      */

@@ -1,18 +1,24 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import js.lang.Any;
 import js.web.dom.Element;
 import js.web.dom.Event;
 import js.web.dom.EventListener;
 import js.web.dom.EventTarget;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = {"prevent", "resetMouseCanceller", "deepTargetFind", "removeListener", "addListener", "register", "setTouchAction"},
         module = "@polymer/polymer/lib/utils/gestures.js"
 )
-public interface Gestures extends Polymer {
+public interface Gestures extends Any {
     /**
      * Finds the element rendered on the screen at the provided coordinates.
      * <p>

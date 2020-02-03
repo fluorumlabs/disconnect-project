@@ -1,17 +1,23 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import js.lang.Any;
 import js.util.collections.Array;
 import js.web.dom.HTMLStyleElement;
 import js.web.webcomponents.HTMLTemplateElement;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = {"stylesFromModule", "cssFromModules", "cssFromModule", "cssFromTemplate", "cssFromModuleImports", "stylesFromModuleImports", "stylesFromModules", "stylesFromTemplate"},
         module = "@polymer/polymer/lib/utils/style-gather.js"
 )
-public interface StyleGather extends Polymer {
+public interface StyleGather extends Any {
     /**
      * Returns a list of <style> elements in a space-separated list of `dom-module`s.
      *

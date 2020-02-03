@@ -13,7 +13,8 @@ import java.util.function.Supplier;
 import static js.web.dom.Document.DOCUMENT;
 
 
-public class Template extends LazyEventInitializer<DocumentFragment> implements Component<DocumentFragment> {
+public class Template extends LazyEventInitializer<DocumentFragment> implements Component<DocumentFragment>,
+HasComponents<DocumentFragment, Template, Component<?>> {
     private final DocumentFragment node;
     private final HTMLTemplateElement templateElement;
 

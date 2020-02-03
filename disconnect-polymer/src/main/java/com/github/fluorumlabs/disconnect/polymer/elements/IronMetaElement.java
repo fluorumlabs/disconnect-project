@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.elements;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import js.util.collections.Array;
@@ -42,11 +43,15 @@ import org.teavm.jso.JSProperty;
  * ...
  * this.$.meta.byKey('info');
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "IronMeta",
         module = "@polymer/iron-meta/iron-meta.js"
 )
-public interface IronMetaElement<ITEM extends Any> extends Polymer, HTMLElement {
+public interface IronMetaElement<ITEM extends Any> extends HTMLElement {
     /**
      * The type of meta-data.  All meta-data of the same type is stored
      * together.

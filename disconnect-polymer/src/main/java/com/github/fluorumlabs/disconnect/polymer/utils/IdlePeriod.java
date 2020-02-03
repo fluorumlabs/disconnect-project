@@ -1,12 +1,18 @@
 package com.github.fluorumlabs.disconnect.polymer.utils;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import js.lang.Any;
 import js.util.function.JsRunnable;
 import org.teavm.jso.JSBody;
 
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(symbols = "idlePeriod", module = "@polymer/polymer/lib/utils/async.js")
-public interface IdlePeriod extends Polymer {
+public interface IdlePeriod extends Any {
     /**
      * Enqueues a function called at `requestIdleCallback` timing.
      *

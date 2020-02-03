@@ -1,6 +1,8 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
+import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import com.github.fluorumlabs.disconnect.polymer.Polymer;
 
 /**
  * Element class mixin that allows elements to use the `:dir` CSS Selector to
@@ -21,6 +23,10 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
  * - Changing `dir` at runtime is supported.
  * - Opting out of the global direction styling is permanent
  */
+@NpmPackage(
+        name = "@polymer/polymer",
+        version = Polymer.VERSION
+)
 @Import(
         symbols = "DirMixin",
         module = "@polymer/polymer/lib/mixins/dir-mixin.js"
