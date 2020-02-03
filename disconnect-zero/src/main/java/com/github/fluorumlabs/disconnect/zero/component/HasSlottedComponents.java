@@ -6,7 +6,7 @@ import js.web.dom.Node;
 
 public interface HasSlottedComponents<E extends Element, T extends HasSlottedComponents<E, T, C>, C extends Component<? extends Element>> extends HasComponents<E,T,C> {
     default T addSlotted(String slot, C component) {
-        component.getRenderedNode().setSlot(slot);
+        component.getRenderedNode().<Element>cast().setSlot(slot);
         return add(component);
     }
 
@@ -24,7 +24,7 @@ public interface HasSlottedComponents<E extends Element, T extends HasSlottedCom
         }
 
         for (C component : components) {
-            component.getRenderedNode().setSlot(slot);
+            component.getRenderedNode().<Element>cast().setSlot(slot);
             getNode().insertBefore(component.getRenderedNode(), firstChild);
         }
         return (T) this;
@@ -36,7 +36,7 @@ public interface HasSlottedComponents<E extends Element, T extends HasSlottedCom
             return addSlotted(slot, component);
         }
 
-        component.getRenderedNode().setSlot(slot);
+        component.getRenderedNode().<Element>cast().setSlot(slot);
         getNode().insertBefore(component.getRenderedNode(), firstChild);
         return (T) this;
     }
