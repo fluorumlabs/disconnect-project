@@ -21,6 +21,11 @@ import org.teavm.jso.JSBody;
 		module = "@polymer/polymer/lib/utils/templatize.js"
 )
 public interface Templatize extends Any {
+	/**
+	 * FIXME return function (new: TemplateInstanceBase, Object=)
+	 * <p>
+	 * FIXME param owner: Polymer_PropertyEffects=
+	 * FIXME param options: Object=Returns an anonymous <code>PropertyEffects</code> class bound to the
 	 * <code>&lt;template&gt;</code> provided.  Instancing the class will result in the
 	 * template being stamped into a document fragment stored as the instance's
 	 * <code>root</code> property, after which it can be appended to the DOM.

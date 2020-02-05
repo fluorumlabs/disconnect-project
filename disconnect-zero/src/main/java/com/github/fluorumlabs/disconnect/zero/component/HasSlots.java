@@ -7,7 +7,7 @@ import js.web.dom.Element;
 /**
  * Created by Artem Godin on 2/5/2020.
  */
-public interface HasSlots extends Component<Element> {
+public interface HasSlots<E extends Element> extends Component<E> {
     default Container slotted(String slotName) {
         return new Container(getNode(), slotName);
     }

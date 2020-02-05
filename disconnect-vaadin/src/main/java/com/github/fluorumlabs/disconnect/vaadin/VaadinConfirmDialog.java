@@ -6,9 +6,9 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Element;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
@@ -56,7 +56,8 @@ import javax.annotation.Nullable;
 public class VaadinConfirmDialog extends AbstractComponent<ConfirmDialogElement>
 		implements HasElementMixin<ConfirmDialogElement, VaadinConfirmDialog>,
 		HasThemableMixin<ConfirmDialogElement, VaadinConfirmDialog>,
-		HasSlottedComponents<ConfirmDialogElement, VaadinConfirmDialog, Component<? extends Element>> {
+		HasSlots<ConfirmDialogElement>,
+		HasComponents<ConfirmDialogElement, VaadinConfirmDialog, Component<?>> {
 	public VaadinConfirmDialog() {
 		super("vaadin-confirm-dialog");
 	}
@@ -279,115 +280,19 @@ public class VaadinConfirmDialog extends AbstractComponent<ConfirmDialogElement>
 		return createEvent("cancel-changed");
 	}
 
-	public VaadinConfirmDialog setHeader(Component<? extends Element> component) {
-		return replaceSlotted("header", component);
+	public HasSlots.Container headerSlot() {
+		return slotted("header");
 	}
 
-	public VaadinConfirmDialog setHeader(Component<? extends Element>... components) {
-		return replaceSlotted("header", components);
+	public HasSlots.Container cancelButtonSlot() {
+		return slotted("cancel-button");
 	}
 
-	public VaadinConfirmDialog addToHeader(Component<? extends Element> component) {
-		return addSlotted("header", component);
+	public HasSlots.Container rejectButtonSlot() {
+		return slotted("reject-button");
 	}
 
-	public VaadinConfirmDialog addToHeader(Component<? extends Element>... components) {
-		return addSlotted("header", components);
-	}
-
-	public VaadinConfirmDialog insertToHeader(Component<? extends Element> component) {
-		return insertSlotted("header", component);
-	}
-
-	public VaadinConfirmDialog insertToHeader(Component<? extends Element>... components) {
-		return insertSlotted("header", components);
-	}
-
-	public VaadinConfirmDialog clearHeader() {
-		return removeAllSlotted("header");
-	}
-
-	public VaadinConfirmDialog setCancelButton(Component<? extends Element> component) {
-		return replaceSlotted("cancel-button", component);
-	}
-
-	public VaadinConfirmDialog setCancelButton(Component<? extends Element>... components) {
-		return replaceSlotted("cancel-button", components);
-	}
-
-	public VaadinConfirmDialog addToCancelButton(Component<? extends Element> component) {
-		return addSlotted("cancel-button", component);
-	}
-
-	public VaadinConfirmDialog addToCancelButton(Component<? extends Element>... components) {
-		return addSlotted("cancel-button", components);
-	}
-
-	public VaadinConfirmDialog insertToCancelButton(Component<? extends Element> component) {
-		return insertSlotted("cancel-button", component);
-	}
-
-	public VaadinConfirmDialog insertToCancelButton(Component<? extends Element>... components) {
-		return insertSlotted("cancel-button", components);
-	}
-
-	public VaadinConfirmDialog clearCancelButton() {
-		return removeAllSlotted("cancel-button");
-	}
-
-	public VaadinConfirmDialog setRejectButton(Component<? extends Element> component) {
-		return replaceSlotted("reject-button", component);
-	}
-
-	public VaadinConfirmDialog setRejectButton(Component<? extends Element>... components) {
-		return replaceSlotted("reject-button", components);
-	}
-
-	public VaadinConfirmDialog addToRejectButton(Component<? extends Element> component) {
-		return addSlotted("reject-button", component);
-	}
-
-	public VaadinConfirmDialog addToRejectButton(Component<? extends Element>... components) {
-		return addSlotted("reject-button", components);
-	}
-
-	public VaadinConfirmDialog insertToRejectButton(Component<? extends Element> component) {
-		return insertSlotted("reject-button", component);
-	}
-
-	public VaadinConfirmDialog insertToRejectButton(Component<? extends Element>... components) {
-		return insertSlotted("reject-button", components);
-	}
-
-	public VaadinConfirmDialog clearRejectButton() {
-		return removeAllSlotted("reject-button");
-	}
-
-	public VaadinConfirmDialog setConfirmButton(Component<? extends Element> component) {
-		return replaceSlotted("confirm-button", component);
-	}
-
-	public VaadinConfirmDialog setConfirmButton(Component<? extends Element>... components) {
-		return replaceSlotted("confirm-button", components);
-	}
-
-	public VaadinConfirmDialog addToConfirmButton(Component<? extends Element> component) {
-		return addSlotted("confirm-button", component);
-	}
-
-	public VaadinConfirmDialog addToConfirmButton(Component<? extends Element>... components) {
-		return addSlotted("confirm-button", components);
-	}
-
-	public VaadinConfirmDialog insertToConfirmButton(Component<? extends Element> component) {
-		return insertSlotted("confirm-button", component);
-	}
-
-	public VaadinConfirmDialog insertToConfirmButton(Component<? extends Element>... components) {
-		return insertSlotted("confirm-button", components);
-	}
-
-	public VaadinConfirmDialog clearConfirmButton() {
-		return removeAllSlotted("confirm-button");
+	public HasSlots.Container confirmButtonSlot() {
+		return slotted("confirm-button");
 	}
 }

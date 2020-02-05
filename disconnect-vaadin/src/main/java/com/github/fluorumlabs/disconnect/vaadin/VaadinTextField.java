@@ -5,8 +5,8 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasTextFieldMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
-import js.web.dom.Element;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 
 import javax.annotation.Nullable;
 
@@ -75,7 +75,8 @@ import javax.annotation.Nullable;
 public class VaadinTextField extends AbstractComponent<TextFieldElement>
 		implements HasTextFieldMixin<TextFieldElement, VaadinTextField>,
 		HasThemableMixin<TextFieldElement, VaadinTextField>,
-		HasSlottedComponents<TextFieldElement, VaadinTextField, Component<? extends Element>> {
+		HasSlots<TextFieldElement>,
+		HasComponents<TextFieldElement, VaadinTextField, Component<?>> {
 	public VaadinTextField() {
 		super("vaadin-text-field");
 	}
@@ -132,87 +133,15 @@ public class VaadinTextField extends AbstractComponent<TextFieldElement>
 		return this;
 	}
 
-	public VaadinTextField setPrefix(Component<? extends Element> component) {
-		return replaceSlotted("prefix", component);
+	public HasSlots.Container prefixSlot() {
+		return slotted("prefix");
 	}
 
-	public VaadinTextField setPrefix(Component<? extends Element>... components) {
-		return replaceSlotted("prefix", components);
+	public HasSlots.Container inputSlot() {
+		return slotted("input");
 	}
 
-	public VaadinTextField addToPrefix(Component<? extends Element> component) {
-		return addSlotted("prefix", component);
-	}
-
-	public VaadinTextField addToPrefix(Component<? extends Element>... components) {
-		return addSlotted("prefix", components);
-	}
-
-	public VaadinTextField insertToPrefix(Component<? extends Element> component) {
-		return insertSlotted("prefix", component);
-	}
-
-	public VaadinTextField insertToPrefix(Component<? extends Element>... components) {
-		return insertSlotted("prefix", components);
-	}
-
-	public VaadinTextField clearPrefix() {
-		return removeAllSlotted("prefix");
-	}
-
-	public VaadinTextField setInput(Component<? extends Element> component) {
-		return replaceSlotted("input", component);
-	}
-
-	public VaadinTextField setInput(Component<? extends Element>... components) {
-		return replaceSlotted("input", components);
-	}
-
-	public VaadinTextField addToInput(Component<? extends Element> component) {
-		return addSlotted("input", component);
-	}
-
-	public VaadinTextField addToInput(Component<? extends Element>... components) {
-		return addSlotted("input", components);
-	}
-
-	public VaadinTextField insertToInput(Component<? extends Element> component) {
-		return insertSlotted("input", component);
-	}
-
-	public VaadinTextField insertToInput(Component<? extends Element>... components) {
-		return insertSlotted("input", components);
-	}
-
-	public VaadinTextField clearInput() {
-		return removeAllSlotted("input");
-	}
-
-	public VaadinTextField setSuffix(Component<? extends Element> component) {
-		return replaceSlotted("suffix", component);
-	}
-
-	public VaadinTextField setSuffix(Component<? extends Element>... components) {
-		return replaceSlotted("suffix", components);
-	}
-
-	public VaadinTextField addToSuffix(Component<? extends Element> component) {
-		return addSlotted("suffix", component);
-	}
-
-	public VaadinTextField addToSuffix(Component<? extends Element>... components) {
-		return addSlotted("suffix", components);
-	}
-
-	public VaadinTextField insertToSuffix(Component<? extends Element> component) {
-		return insertSlotted("suffix", component);
-	}
-
-	public VaadinTextField insertToSuffix(Component<? extends Element>... components) {
-		return insertSlotted("suffix", components);
-	}
-
-	public VaadinTextField clearSuffix() {
-		return removeAllSlotted("suffix");
+	public HasSlots.Container suffixSlot() {
+		return slotted("suffix");
 	}
 }

@@ -4,8 +4,8 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.FormItemElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
-import js.web.dom.Element;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 
 /**
  * <code>&lt;vaadin-form-item&gt;</code> is a Web Component providing labelled form item wrapper
@@ -109,36 +109,13 @@ import js.web.dom.Element;
  */
 public class VaadinFormItem extends AbstractComponent<FormItemElement>
 		implements HasThemableMixin<FormItemElement, VaadinFormItem>,
-		HasSlottedComponents<FormItemElement, VaadinFormItem, Component<? extends Element>> {
+		HasSlots<FormItemElement>,
+		HasComponents<FormItemElement, VaadinFormItem, Component<?>> {
 	public VaadinFormItem() {
 		super("vaadin-form-item");
 	}
 
-	public VaadinFormItem setLabel(Component<? extends Element> component) {
-		return replaceSlotted("label", component);
-	}
-
-	public VaadinFormItem setLabel(Component<? extends Element>... components) {
-		return replaceSlotted("label", components);
-	}
-
-	public VaadinFormItem addToLabel(Component<? extends Element> component) {
-		return addSlotted("label", component);
-	}
-
-	public VaadinFormItem addToLabel(Component<? extends Element>... components) {
-		return addSlotted("label", components);
-	}
-
-	public VaadinFormItem insertToLabel(Component<? extends Element> component) {
-		return insertSlotted("label", component);
-	}
-
-	public VaadinFormItem insertToLabel(Component<? extends Element>... components) {
-		return insertSlotted("label", components);
-	}
-
-	public VaadinFormItem clearLabel() {
-		return removeAllSlotted("label");
+	public HasSlots.Container labelSlot() {
+		return slotted("label");
 	}
 }

@@ -404,7 +404,7 @@ public interface HasDatePickerMixin<E extends DatePickerMixin, T extends Compone
 	/**
 	 * Fired when the user commits a value change.
 	 */
-	default ObservableEvent<Event> ChangeEvent() {
+	default ObservableEvent<Event> changeEvent() {
 		return createEvent("change");
 	}
 }

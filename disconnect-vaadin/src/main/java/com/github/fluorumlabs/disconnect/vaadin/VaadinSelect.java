@@ -9,9 +9,9 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.SelectRenderer;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Element;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
@@ -120,7 +120,8 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 		implements HasElementMixin<SelectElement, VaadinSelect>,
 		HasControlStateMixin<SelectElement, VaadinSelect>,
 		HasThemableMixin<SelectElement, VaadinSelect>,
-		HasSlottedComponents<SelectElement, VaadinSelect, Component<? extends Element>> {
+		HasSlots<SelectElement>,
+		HasComponents<SelectElement, VaadinSelect, Component<?>> {
 	public VaadinSelect() {
 		super("vaadin-select");
 	}
@@ -363,35 +364,11 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 	/**
 	 * Fired when the <code>invalid</code> property changes.
 	 */
-	public ObservableEvent<BooleanPropertyChangeEvent> InvalidChangedEvent() {
+	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
 		return createEvent("invalid-changed");
 	}
 
-	public VaadinSelect setPrefix(Component<? extends Element> component) {
-		return replaceSlotted("prefix", component);
-	}
-
-	public VaadinSelect setPrefix(Component<? extends Element>... components) {
-		return replaceSlotted("prefix", components);
-	}
-
-	public VaadinSelect addToPrefix(Component<? extends Element> component) {
-		return addSlotted("prefix", component);
-	}
-
-	public VaadinSelect addToPrefix(Component<? extends Element>... components) {
-		return addSlotted("prefix", components);
-	}
-
-	public VaadinSelect insertToPrefix(Component<? extends Element> component) {
-		return insertSlotted("prefix", component);
-	}
-
-	public VaadinSelect insertToPrefix(Component<? extends Element>... components) {
-		return insertSlotted("prefix", components);
-	}
-
-	public VaadinSelect clearPrefix() {
-		return removeAllSlotted("prefix");
+	public HasSlots.Container prefixSlot() {
+		return slotted("prefix");
 	}
 }

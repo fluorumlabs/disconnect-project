@@ -6,9 +6,9 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.SplitLayoutElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Element;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
@@ -143,7 +143,8 @@ import javax.annotation.Nullable;
 public class VaadinSplitLayout extends AbstractComponent<SplitLayoutElement>
 		implements HasThemableMixin<SplitLayoutElement, VaadinSplitLayout>,
 		HasGestureEventListeners<SplitLayoutElement, VaadinSplitLayout>,
-		HasSlottedComponents<SplitLayoutElement, VaadinSplitLayout, Component<? extends Element>> {
+		HasSlots<SplitLayoutElement>,
+		HasComponents<SplitLayoutElement, VaadinSplitLayout, Component<?>> {
 	public VaadinSplitLayout() {
 		super("vaadin-split-layout");
 	}
@@ -179,59 +180,11 @@ public class VaadinSplitLayout extends AbstractComponent<SplitLayoutElement>
 		return createEvent("splitter-dragend");
 	}
 
-	public VaadinSplitLayout setPrimary(Component<? extends Element> component) {
-		return replaceSlotted("primary", component);
+	public HasSlots.Container primarySlot() {
+		return slotted("primary");
 	}
 
-	public VaadinSplitLayout setPrimary(Component<? extends Element>... components) {
-		return replaceSlotted("primary", components);
-	}
-
-	public VaadinSplitLayout addToPrimary(Component<? extends Element> component) {
-		return addSlotted("primary", component);
-	}
-
-	public VaadinSplitLayout addToPrimary(Component<? extends Element>... components) {
-		return addSlotted("primary", components);
-	}
-
-	public VaadinSplitLayout insertToPrimary(Component<? extends Element> component) {
-		return insertSlotted("primary", component);
-	}
-
-	public VaadinSplitLayout insertToPrimary(Component<? extends Element>... components) {
-		return insertSlotted("primary", components);
-	}
-
-	public VaadinSplitLayout clearPrimary() {
-		return removeAllSlotted("primary");
-	}
-
-	public VaadinSplitLayout setSecondary(Component<? extends Element> component) {
-		return replaceSlotted("secondary", component);
-	}
-
-	public VaadinSplitLayout setSecondary(Component<? extends Element>... components) {
-		return replaceSlotted("secondary", components);
-	}
-
-	public VaadinSplitLayout addToSecondary(Component<? extends Element> component) {
-		return addSlotted("secondary", component);
-	}
-
-	public VaadinSplitLayout addToSecondary(Component<? extends Element>... components) {
-		return addSlotted("secondary", components);
-	}
-
-	public VaadinSplitLayout insertToSecondary(Component<? extends Element> component) {
-		return insertSlotted("secondary", component);
-	}
-
-	public VaadinSplitLayout insertToSecondary(Component<? extends Element>... components) {
-		return insertSlotted("secondary", components);
-	}
-
-	public VaadinSplitLayout clearSecondary() {
-		return removeAllSlotted("secondary");
+	public HasSlots.Container secondarySlot() {
+		return slotted("secondary");
 	}
 }

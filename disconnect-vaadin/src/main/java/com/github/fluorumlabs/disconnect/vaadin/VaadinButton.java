@@ -7,8 +7,8 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
-import js.web.dom.Element;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 
 /**
  * <code>&lt;vaadin-button&gt;</code> is a Web Component providing an accessible and customizable button.
@@ -54,64 +54,17 @@ public class VaadinButton extends AbstractComponent<ButtonElement>
 		HasControlStateMixin<ButtonElement, VaadinButton>,
 		HasThemableMixin<ButtonElement, VaadinButton>,
 		HasGestureEventListeners<ButtonElement, VaadinButton>,
-		HasSlottedComponents<ButtonElement, VaadinButton, Component<? extends Element>> {
+		HasSlots<ButtonElement>,
+		HasComponents<ButtonElement, VaadinButton, Component<?>> {
 	public VaadinButton() {
 		super("vaadin-button");
 	}
 
-	public VaadinButton setPrefix(Component<? extends Element> component) {
-		return replaceSlotted("prefix", component);
+	public HasSlots.Container prefix() {
+		return slotted("prefix");
 	}
 
-	public VaadinButton setPrefix(Component<? extends Element>... components) {
-		return replaceSlotted("prefix", components);
-	}
-
-	public VaadinButton addToPrefix(Component<? extends Element> component) {
-		return addSlotted("prefix", component);
-	}
-
-	public VaadinButton addToPrefix(Component<? extends Element>... components) {
-		return addSlotted("prefix", components);
-	}
-
-	public VaadinButton insertToPrefix(Component<? extends Element> component) {
-		return insertSlotted("prefix", component);
-	}
-
-	public VaadinButton insertToPrefix(Component<? extends Element>... components) {
-		return insertSlotted("prefix", components);
-	}
-
-	public VaadinButton clearPrefix() {
-		return removeAllSlotted("prefix");
-	}
-
-	public VaadinButton setSuffix(Component<? extends Element> component) {
-		return replaceSlotted("suffix", component);
-	}
-
-	public VaadinButton setSuffix(Component<? extends Element>... components) {
-		return replaceSlotted("suffix", components);
-	}
-
-	public VaadinButton addToSuffix(Component<? extends Element> component) {
-		return addSlotted("suffix", component);
-	}
-
-	public VaadinButton addToSuffix(Component<? extends Element>... components) {
-		return addSlotted("suffix", components);
-	}
-
-	public VaadinButton insertToSuffix(Component<? extends Element> component) {
-		return insertSlotted("suffix", component);
-	}
-
-	public VaadinButton insertToSuffix(Component<? extends Element>... components) {
-		return insertSlotted("suffix", components);
-	}
-
-	public VaadinButton clearSuffix() {
-		return removeAllSlotted("suffix");
+	public HasSlots.Container suffix() {
+		return slotted("suffix");
 	}
 }

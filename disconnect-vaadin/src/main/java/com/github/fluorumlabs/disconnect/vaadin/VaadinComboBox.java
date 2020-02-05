@@ -4,7 +4,8 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.ComboBoxElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.*;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import js.lang.Any;
 import js.web.dom.Element;
 
@@ -179,7 +180,8 @@ public class VaadinComboBox<ITEM extends Any> extends AbstractComponent<ComboBox
 		HasComboBoxDataProviderMixin<ITEM, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
 		HasComboBoxMixin<ITEM, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
 		HasThemableMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
-		HasSlottedComponents<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>, Component<? extends Element>> {
+		HasSlots<ComboBoxElement<ITEM>>,
+		HasComponents<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>, Component<?>> {
 	public VaadinComboBox() {
 		super("vaadin-combo-box");
 	}
@@ -340,31 +342,7 @@ public class VaadinComboBox<ITEM extends Any> extends AbstractComponent<ComboBox
 		return this;
 	}
 
-	public VaadinComboBox<ITEM> setPrefix(Component<? extends Element> component) {
-		return replaceSlotted("prefix", component);
-	}
-
-	public VaadinComboBox<ITEM> setPrefix(Component<? extends Element>... components) {
-		return replaceSlotted("prefix", components);
-	}
-
-	public VaadinComboBox<ITEM> addToPrefix(Component<? extends Element> component) {
-		return addSlotted("prefix", component);
-	}
-
-	public VaadinComboBox<ITEM> addToPrefix(Component<? extends Element>... components) {
-		return addSlotted("prefix", components);
-	}
-
-	public VaadinComboBox<ITEM> insertToPrefix(Component<? extends Element> component) {
-		return insertSlotted("prefix", component);
-	}
-
-	public VaadinComboBox<ITEM> insertToPrefix(Component<? extends Element>... components) {
-		return insertSlotted("prefix", components);
-	}
-
-	public VaadinComboBox<ITEM> clearPrefix() {
-		return removeAllSlotted("prefix");
+	public HasSlots.Container prefix() {
+		return slotted("prefix");
 	}
 }

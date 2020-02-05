@@ -12,11 +12,11 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ItemEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
 import js.util.collections.Array;
-import js.web.dom.Element;
 
 import javax.annotation.Nullable;
 
@@ -130,7 +130,8 @@ import javax.annotation.Nullable;
 public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<ITEM>>
 		implements HasElementMixin<CrudElement<ITEM>, VaadinCrud<ITEM>>,
 		HasThemableMixin<CrudElement<ITEM>, VaadinCrud<ITEM>>,
-		HasSlottedComponents<CrudElement<ITEM>, VaadinCrud<ITEM>, Component<? extends Element>> {
+		HasSlots<CrudElement<ITEM>>,
+		HasComponents<CrudElement<ITEM>, VaadinCrud<ITEM>, Component<?>> {
 	public VaadinCrud() {
 		super("vaadin-crud");
 	}
@@ -525,88 +526,15 @@ public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<
 		return createEvent("size-changed");
 	}
 
-	public VaadinCrud<ITEM> setGrid(Component<? extends Element> component) {
-		return replaceSlotted("grid", component);
+	public HasSlots.Container gridSlot() {
+		return slotted("grid");
 	}
 
-	public VaadinCrud<ITEM> setGrid(Component<? extends Element>... components) {
-		return replaceSlotted("grid", components);
+	public HasSlots.Container toolbarSlot() {
+		return slotted("toolbar");
 	}
 
-	public VaadinCrud<ITEM> addToGrid(Component<? extends Element> component) {
-		return addSlotted("grid", component);
+	public HasSlots.Container formSlot() {
+		return slotted("form");
 	}
-
-	public VaadinCrud<ITEM> addToGrid(Component<? extends Element>... components) {
-		return addSlotted("grid", components);
-	}
-
-	public VaadinCrud<ITEM> insertToGrid(Component<? extends Element> component) {
-		return insertSlotted("grid", component);
-	}
-
-	public VaadinCrud<ITEM> insertToGrid(Component<? extends Element>... components) {
-		return insertSlotted("grid", components);
-	}
-
-	public VaadinCrud<ITEM> clearGrid() {
-		return removeAllSlotted("grid");
-	}
-
-	public VaadinCrud<ITEM> setToolbar(Component<? extends Element> component) {
-		return replaceSlotted("toolbar", component);
-	}
-
-	public VaadinCrud<ITEM> setToolbar(Component<? extends Element>... components) {
-		return replaceSlotted("toolbar", components);
-	}
-
-	public VaadinCrud<ITEM> addToToolbar(Component<? extends Element> component) {
-		return addSlotted("toolbar", component);
-	}
-
-	public VaadinCrud<ITEM> addToToolbar(Component<? extends Element>... components) {
-		return addSlotted("toolbar", components);
-	}
-
-	public VaadinCrud<ITEM> insertToToolbar(Component<? extends Element> component) {
-		return insertSlotted("toolbar", component);
-	}
-
-	public VaadinCrud<ITEM> insertToToolbar(Component<? extends Element>... components) {
-		return insertSlotted("toolbar", components);
-	}
-
-	public VaadinCrud<ITEM> clearToolbar() {
-		return removeAllSlotted("toolbar");
-	}
-
-	public VaadinCrud<ITEM> setForm(Component<? extends Element> component) {
-		return replaceSlotted("form", component);
-	}
-
-	public VaadinCrud<ITEM> setForm(Component<? extends Element>... components) {
-		return replaceSlotted("form", components);
-	}
-
-	public VaadinCrud<ITEM> addToForm(Component<? extends Element> component) {
-		return addSlotted("form", component);
-	}
-
-	public VaadinCrud<ITEM> addToForm(Component<? extends Element>... components) {
-		return addSlotted("form", components);
-	}
-
-	public VaadinCrud<ITEM> insertToForm(Component<? extends Element> component) {
-		return insertSlotted("form", component);
-	}
-
-	public VaadinCrud<ITEM> insertToForm(Component<? extends Element>... components) {
-		return insertSlotted("form", components);
-	}
-
-	public VaadinCrud<ITEM> clearForm() {
-		return removeAllSlotted("form");
-	}
-
 }

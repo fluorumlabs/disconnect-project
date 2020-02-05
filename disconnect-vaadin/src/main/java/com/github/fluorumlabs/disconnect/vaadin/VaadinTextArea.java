@@ -5,9 +5,9 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasTextFieldMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Element;
 import js.web.dom.Event;
 
 /**
@@ -63,7 +63,8 @@ import js.web.dom.Event;
 public class VaadinTextArea extends AbstractComponent<TextAreaElement>
 		implements HasTextFieldMixin<TextAreaElement, VaadinTextArea>,
 		HasThemableMixin<TextAreaElement, VaadinTextArea>,
-		HasSlottedComponents<TextAreaElement, VaadinTextArea, Component<? extends Element>> {
+		HasSlots<TextAreaElement>,
+		HasComponents<TextAreaElement, VaadinTextArea, Component<?>> {
 	public VaadinTextArea() {
 		super("vaadin-text-area");
 	}
@@ -75,87 +76,15 @@ public class VaadinTextArea extends AbstractComponent<TextAreaElement>
 		return createEvent("iron-resize");
 	}
 
-	public VaadinTextArea setPrefix(Component<? extends Element> component) {
-		return replaceSlotted("prefix", component);
+	public HasSlots.Container prefixSlot() {
+		return slotted("prefix");
 	}
 
-	public VaadinTextArea setPrefix(Component<? extends Element>... components) {
-		return replaceSlotted("prefix", components);
+	public HasSlots.Container textareaSlot() {
+		return slotted("textarea");
 	}
 
-	public VaadinTextArea addToPrefix(Component<? extends Element> component) {
-		return addSlotted("prefix", component);
-	}
-
-	public VaadinTextArea addToPrefix(Component<? extends Element>... components) {
-		return addSlotted("prefix", components);
-	}
-
-	public VaadinTextArea insertToPrefix(Component<? extends Element> component) {
-		return insertSlotted("prefix", component);
-	}
-
-	public VaadinTextArea insertToPrefix(Component<? extends Element>... components) {
-		return insertSlotted("prefix", components);
-	}
-
-	public VaadinTextArea clearPrefix() {
-		return removeAllSlotted("prefix");
-	}
-
-	public VaadinTextArea setTextarea(Component<? extends Element> component) {
-		return replaceSlotted("textarea", component);
-	}
-
-	public VaadinTextArea setTextarea(Component<? extends Element>... components) {
-		return replaceSlotted("textarea", components);
-	}
-
-	public VaadinTextArea addToTextarea(Component<? extends Element> component) {
-		return addSlotted("textarea", component);
-	}
-
-	public VaadinTextArea addToTextarea(Component<? extends Element>... components) {
-		return addSlotted("textarea", components);
-	}
-
-	public VaadinTextArea insertToTextarea(Component<? extends Element> component) {
-		return insertSlotted("textarea", component);
-	}
-
-	public VaadinTextArea insertToTextarea(Component<? extends Element>... components) {
-		return insertSlotted("textarea", components);
-	}
-
-	public VaadinTextArea clearTextarea() {
-		return removeAllSlotted("textarea");
-	}
-
-	public VaadinTextArea setSuffix(Component<? extends Element> component) {
-		return replaceSlotted("suffix", component);
-	}
-
-	public VaadinTextArea setSuffix(Component<? extends Element>... components) {
-		return replaceSlotted("suffix", components);
-	}
-
-	public VaadinTextArea addToSuffix(Component<? extends Element> component) {
-		return addSlotted("suffix", component);
-	}
-
-	public VaadinTextArea addToSuffix(Component<? extends Element>... components) {
-		return addSlotted("suffix", components);
-	}
-
-	public VaadinTextArea insertToSuffix(Component<? extends Element> component) {
-		return insertSlotted("suffix", component);
-	}
-
-	public VaadinTextArea insertToSuffix(Component<? extends Element>... components) {
-		return insertSlotted("suffix", components);
-	}
-
-	public VaadinTextArea clearSuffix() {
-		return removeAllSlotted("suffix");
+	public HasSlots.Container suffixSlot() {
+		return slotted("suffix");
 	}
 }

@@ -12,11 +12,11 @@ import com.github.fluorumlabs.disconnect.vaadin.types.UploadRequestEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadingFile;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.util.StringRecord;
 import js.util.collections.Array;
-import js.web.dom.Element;
 
 import javax.annotation.Nullable;
 
@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
  */
 public class VaadinUpload extends AbstractComponent<UploadElement>
 		implements HasThemableMixin<UploadElement, VaadinUpload>,
-		HasSlottedComponents<UploadElement, VaadinUpload, Component<? extends Element>> {
+		HasSlots<UploadElement>,
+		HasComponents<UploadElement, VaadinUpload, Component<?>> {
 	public VaadinUpload() {
 		super("vaadin-upload");
 	}
@@ -588,115 +589,19 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 		return createEvent("max-files-reached-changed");
 	}
 
-	public VaadinUpload setAddButton(Component<? extends Element> component) {
-		return replaceSlotted("add-button", component);
+	public HasSlots.Container addButtonSlot() {
+		return slotted("add-button");
 	}
 
-	public VaadinUpload setAddButton(Component<? extends Element>... components) {
-		return replaceSlotted("add-button", components);
+	public HasSlots.Container dropLabelIconSlot() {
+		return slotted("drop-label-icon");
 	}
 
-	public VaadinUpload addToAddButton(Component<? extends Element> component) {
-		return addSlotted("add-button", component);
+	public HasSlots.Container dropLabelSlot() {
+		return slotted("drop-label");
 	}
 
-	public VaadinUpload addToAddButton(Component<? extends Element>... components) {
-		return addSlotted("add-button", components);
-	}
-
-	public VaadinUpload insertToAddButton(Component<? extends Element> component) {
-		return insertSlotted("add-button", component);
-	}
-
-	public VaadinUpload insertToAddButton(Component<? extends Element>... components) {
-		return insertSlotted("add-button", components);
-	}
-
-	public VaadinUpload clearAddButton() {
-		return removeAllSlotted("add-button");
-	}
-
-	public VaadinUpload setDropLabelIcon(Component<? extends Element> component) {
-		return replaceSlotted("drop-label-icon", component);
-	}
-
-	public VaadinUpload setDropLabelIcon(Component<? extends Element>... components) {
-		return replaceSlotted("drop-label-icon", components);
-	}
-
-	public VaadinUpload addToDropLabelIcon(Component<? extends Element> component) {
-		return addSlotted("drop-label-icon", component);
-	}
-
-	public VaadinUpload addToDropLabelIcon(Component<? extends Element>... components) {
-		return addSlotted("drop-label-icon", components);
-	}
-
-	public VaadinUpload insertToDropLabelIcon(Component<? extends Element> component) {
-		return insertSlotted("drop-label-icon", component);
-	}
-
-	public VaadinUpload insertToDropLabelIcon(Component<? extends Element>... components) {
-		return insertSlotted("drop-label-icon", components);
-	}
-
-	public VaadinUpload clearDropLabelIcon() {
-		return removeAllSlotted("drop-label-icon");
-	}
-
-	public VaadinUpload setDropLabel(Component<? extends Element> component) {
-		return replaceSlotted("drop-label", component);
-	}
-
-	public VaadinUpload setDropLabel(Component<? extends Element>... components) {
-		return replaceSlotted("drop-label", components);
-	}
-
-	public VaadinUpload addToDropLabel(Component<? extends Element> component) {
-		return addSlotted("drop-label", component);
-	}
-
-	public VaadinUpload addToDropLabel(Component<? extends Element>... components) {
-		return addSlotted("drop-label", components);
-	}
-
-	public VaadinUpload insertToDropLabel(Component<? extends Element> component) {
-		return insertSlotted("drop-label", component);
-	}
-
-	public VaadinUpload insertToDropLabel(Component<? extends Element>... components) {
-		return insertSlotted("drop-label", components);
-	}
-
-	public VaadinUpload clearDropLabel() {
-		return removeAllSlotted("drop-label");
-	}
-
-	public VaadinUpload setFileList(Component<? extends Element> component) {
-		return replaceSlotted("file-list", component);
-	}
-
-	public VaadinUpload setFileList(Component<? extends Element>... components) {
-		return replaceSlotted("file-list", components);
-	}
-
-	public VaadinUpload addToFileList(Component<? extends Element> component) {
-		return addSlotted("file-list", component);
-	}
-
-	public VaadinUpload addToFileList(Component<? extends Element>... components) {
-		return addSlotted("file-list", components);
-	}
-
-	public VaadinUpload insertToFileList(Component<? extends Element> component) {
-		return insertSlotted("file-list", component);
-	}
-
-	public VaadinUpload insertToFileList(Component<? extends Element>... components) {
-		return insertSlotted("file-list", components);
-	}
-
-	public VaadinUpload clearFileList() {
-		return removeAllSlotted("file-list");
+	public HasSlots.Container fileListSlot() {
+		return slotted("file-list");
 	}
 }

@@ -7,9 +7,9 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemePropertyMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.NotificationRenderer;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Element;
 
 import javax.annotation.Nullable;
 
@@ -61,7 +61,8 @@ import javax.annotation.Nullable;
  */
 public class VaadinNotification extends AbstractComponent<NotificationElement>
 		implements HasThemePropertyMixin<NotificationElement, VaadinNotification>,
-		HasSlottedComponents<NotificationElement, VaadinNotification, Component<? extends Element>> {
+		HasSlots<NotificationElement>,
+		HasComponents<NotificationElement, VaadinNotification, Component<?>> {
 	public VaadinNotification() {
 		super("vaadin-notification");
 	}
@@ -176,255 +177,39 @@ public class VaadinNotification extends AbstractComponent<NotificationElement>
 		return createEvent("opened-changed");
 	}
 
-	public VaadinNotification setTopStretch(Component<? extends Element> component) {
-		return replaceSlotted("top-stretch", component);
+	public HasSlots.Container topStretchSlot() {
+		return slotted("top-stretch");
 	}
 
-	public VaadinNotification setTopStretch(Component<? extends Element>... components) {
-		return replaceSlotted("top-stretch", components);
+	public HasSlots.Container topStartSlot() {
+		return slotted("top-start");
 	}
 
-	public VaadinNotification addToTopStretch(Component<? extends Element> component) {
-		return addSlotted("top-stretch", component);
+	public HasSlots.Container topCenterSlot() {
+		return slotted("top-center");
 	}
 
-	public VaadinNotification addToTopStretch(Component<? extends Element>... components) {
-		return addSlotted("top-stretch", components);
+	public HasSlots.Container topEndSlot() {
+		return slotted("top-end");
 	}
 
-	public VaadinNotification insertToTopStretch(Component<? extends Element> component) {
-		return insertSlotted("top-stretch", component);
+	public HasSlots.Container middleSlot() {
+		return slotted("middle");
 	}
 
-	public VaadinNotification insertToTopStretch(Component<? extends Element>... components) {
-		return insertSlotted("top-stretch", components);
+	public HasSlots.Container bottomStartSlot() {
+		return slotted("bottom-start");
 	}
 
-	public VaadinNotification clearTopStretch() {
-		return removeAllSlotted("top-stretch");
+	public HasSlots.Container bottomCenterSlot() {
+		return slotted("bottom-center");
 	}
 
-	public VaadinNotification setTopStart(Component<? extends Element> component) {
-		return replaceSlotted("top-start", component);
+	public HasSlots.Container bottomEndSlot() {
+		return slotted("bottom-end");
 	}
 
-	public VaadinNotification setTopStart(Component<? extends Element>... components) {
-		return replaceSlotted("top-start", components);
-	}
-
-	public VaadinNotification addToTopStart(Component<? extends Element> component) {
-		return addSlotted("top-start", component);
-	}
-
-	public VaadinNotification addToTopStart(Component<? extends Element>... components) {
-		return addSlotted("top-start", components);
-	}
-
-	public VaadinNotification insertToTopStart(Component<? extends Element> component) {
-		return insertSlotted("top-start", component);
-	}
-
-	public VaadinNotification insertToTopStart(Component<? extends Element>... components) {
-		return insertSlotted("top-start", components);
-	}
-
-	public VaadinNotification clearTopStart() {
-		return removeAllSlotted("top-start");
-	}
-
-	public VaadinNotification setTopCenter(Component<? extends Element> component) {
-		return replaceSlotted("top-center", component);
-	}
-
-	public VaadinNotification setTopCenter(Component<? extends Element>... components) {
-		return replaceSlotted("top-center", components);
-	}
-
-	public VaadinNotification addToTopCenter(Component<? extends Element> component) {
-		return addSlotted("top-center", component);
-	}
-
-	public VaadinNotification addToTopCenter(Component<? extends Element>... components) {
-		return addSlotted("top-center", components);
-	}
-
-	public VaadinNotification insertToTopCenter(Component<? extends Element> component) {
-		return insertSlotted("top-center", component);
-	}
-
-	public VaadinNotification insertToTopCenter(Component<? extends Element>... components) {
-		return insertSlotted("top-center", components);
-	}
-
-	public VaadinNotification clearTopCenter() {
-		return removeAllSlotted("top-center");
-	}
-
-	public VaadinNotification setTopEnd(Component<? extends Element> component) {
-		return replaceSlotted("top-end", component);
-	}
-
-	public VaadinNotification setTopEnd(Component<? extends Element>... components) {
-		return replaceSlotted("top-end", components);
-	}
-
-	public VaadinNotification addToTopEnd(Component<? extends Element> component) {
-		return addSlotted("top-end", component);
-	}
-
-	public VaadinNotification addToTopEnd(Component<? extends Element>... components) {
-		return addSlotted("top-end", components);
-	}
-
-	public VaadinNotification insertToTopEnd(Component<? extends Element> component) {
-		return insertSlotted("top-end", component);
-	}
-
-	public VaadinNotification insertToTopEnd(Component<? extends Element>... components) {
-		return insertSlotted("top-end", components);
-	}
-
-	public VaadinNotification clearTopEnd() {
-		return removeAllSlotted("top-end");
-	}
-
-	public VaadinNotification setMiddle(Component<? extends Element> component) {
-		return replaceSlotted("middle", component);
-	}
-
-	public VaadinNotification setMiddle(Component<? extends Element>... components) {
-		return replaceSlotted("middle", components);
-	}
-
-	public VaadinNotification addToMiddle(Component<? extends Element> component) {
-		return addSlotted("middle", component);
-	}
-
-	public VaadinNotification addToMiddle(Component<? extends Element>... components) {
-		return addSlotted("middle", components);
-	}
-
-	public VaadinNotification insertToMiddle(Component<? extends Element> component) {
-		return insertSlotted("middle", component);
-	}
-
-	public VaadinNotification insertToMiddle(Component<? extends Element>... components) {
-		return insertSlotted("middle", components);
-	}
-
-	public VaadinNotification clearMiddle() {
-		return removeAllSlotted("middle");
-	}
-
-	public VaadinNotification setBottomStart(Component<? extends Element> component) {
-		return replaceSlotted("bottom-start", component);
-	}
-
-	public VaadinNotification setBottomStart(Component<? extends Element>... components) {
-		return replaceSlotted("bottom-start", components);
-	}
-
-	public VaadinNotification addToBottomStart(Component<? extends Element> component) {
-		return addSlotted("bottom-start", component);
-	}
-
-	public VaadinNotification addToBottomStart(Component<? extends Element>... components) {
-		return addSlotted("bottom-start", components);
-	}
-
-	public VaadinNotification insertToBottomStart(Component<? extends Element> component) {
-		return insertSlotted("bottom-start", component);
-	}
-
-	public VaadinNotification insertToBottomStart(Component<? extends Element>... components) {
-		return insertSlotted("bottom-start", components);
-	}
-
-	public VaadinNotification clearBottomStart() {
-		return removeAllSlotted("bottom-start");
-	}
-
-	public VaadinNotification setBottomCenter(Component<? extends Element> component) {
-		return replaceSlotted("bottom-center", component);
-	}
-
-	public VaadinNotification setBottomCenter(Component<? extends Element>... components) {
-		return replaceSlotted("bottom-center", components);
-	}
-
-	public VaadinNotification addToBottomCenter(Component<? extends Element> component) {
-		return addSlotted("bottom-center", component);
-	}
-
-	public VaadinNotification addToBottomCenter(Component<? extends Element>... components) {
-		return addSlotted("bottom-center", components);
-	}
-
-	public VaadinNotification insertToBottomCenter(Component<? extends Element> component) {
-		return insertSlotted("bottom-center", component);
-	}
-
-	public VaadinNotification insertToBottomCenter(Component<? extends Element>... components) {
-		return insertSlotted("bottom-center", components);
-	}
-
-	public VaadinNotification clearBottomCenter() {
-		return removeAllSlotted("bottom-center");
-	}
-
-	public VaadinNotification setBottomEnd(Component<? extends Element> component) {
-		return replaceSlotted("bottom-end", component);
-	}
-
-	public VaadinNotification setBottomEnd(Component<? extends Element>... components) {
-		return replaceSlotted("bottom-end", components);
-	}
-
-	public VaadinNotification addToBottomEnd(Component<? extends Element> component) {
-		return addSlotted("bottom-end", component);
-	}
-
-	public VaadinNotification addToBottomEnd(Component<? extends Element>... components) {
-		return addSlotted("bottom-end", components);
-	}
-
-	public VaadinNotification insertToBottomEnd(Component<? extends Element> component) {
-		return insertSlotted("bottom-end", component);
-	}
-
-	public VaadinNotification insertToBottomEnd(Component<? extends Element>... components) {
-		return insertSlotted("bottom-end", components);
-	}
-
-	public VaadinNotification clearBottomEnd() {
-		return removeAllSlotted("bottom-end");
-	}
-
-	public VaadinNotification setBottomStretch(Component<? extends Element> component) {
-		return replaceSlotted("bottom-stretch", component);
-	}
-
-	public VaadinNotification setBottomStretch(Component<? extends Element>... components) {
-		return replaceSlotted("bottom-stretch", components);
-	}
-
-	public VaadinNotification addToBottomStretch(Component<? extends Element> component) {
-		return addSlotted("bottom-stretch", component);
-	}
-
-	public VaadinNotification addToBottomStretch(Component<? extends Element>... components) {
-		return addSlotted("bottom-stretch", components);
-	}
-
-	public VaadinNotification insertToBottomStretch(Component<? extends Element> component) {
-		return insertSlotted("bottom-stretch", component);
-	}
-
-	public VaadinNotification insertToBottomStretch(Component<? extends Element>... components) {
-		return insertSlotted("bottom-stretch", components);
-	}
-
-	public VaadinNotification clearBottomStretch() {
-		return removeAllSlotted("bottom-stretch");
+	public HasSlots.Container bottomStretchSlot() {
+		return slotted("bottom-stretch");
 	}
 }

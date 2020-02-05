@@ -4,9 +4,9 @@ import com.github.fluorumlabs.disconnect.polymer.types.StringPropertyChangeEvent
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridFilterElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Element;
 
 import javax.annotation.Nullable;
 
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
  * </code></pre>
  */
 public class VaadinGridFilter extends AbstractComponent<GridFilterElement>
-		implements HasSlottedComponents<GridFilterElement, VaadinGridFilter, Component<? extends Element>> {
+		implements HasSlots<GridFilterElement>, HasComponents<GridFilterElement, VaadinGridFilter, Component<?>> {
 	public VaadinGridFilter() {
 		super("vaadin-grid-filter");
 	}
@@ -69,35 +69,11 @@ public class VaadinGridFilter extends AbstractComponent<GridFilterElement>
 	/**
 	 * Fired when the <code>value</code> property changes.
 	 */
-	public ObservableEvent<StringPropertyChangeEvent> ValueChangedEvent() {
+	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
 		return createEvent("value-changed");
 	}
 
-	public VaadinGridFilter setFilter(Component<? extends Element> component) {
-		return replaceSlotted("filter", component);
-	}
-
-	public VaadinGridFilter setFilter(Component<? extends Element>... components) {
-		return replaceSlotted("filter", components);
-	}
-
-	public VaadinGridFilter addToFilter(Component<? extends Element> component) {
-		return addSlotted("filter", component);
-	}
-
-	public VaadinGridFilter addToFilter(Component<? extends Element>... components) {
-		return addSlotted("filter", components);
-	}
-
-	public VaadinGridFilter insertToFilter(Component<? extends Element> component) {
-		return insertSlotted("filter", component);
-	}
-
-	public VaadinGridFilter insertToFilter(Component<? extends Element>... components) {
-		return insertSlotted("filter", components);
-	}
-
-	public VaadinGridFilter clearFilter() {
-		return removeAllSlotted("filter");
+	public HasSlots.Container filterSlot() {
+		return slotted("filter");
 	}
 }

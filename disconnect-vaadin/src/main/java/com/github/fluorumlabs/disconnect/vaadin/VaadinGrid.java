@@ -4,9 +4,9 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.GridElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.*;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import js.lang.Any;
-import js.web.dom.Element;
 
 /**
  * <code>&lt;vaadin-grid&gt;</code> is a free, high quality data grid / data table Web Component. The content of the
@@ -251,7 +251,8 @@ public class VaadinGrid<ITEM extends Any> extends AbstractComponent<GridElement<
 		HasEventContextMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
 		HasStylingMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
 		HasDragAndDropMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-		HasSlottedComponents<GridElement<ITEM>, VaadinGrid<ITEM>, Component<? extends Element>> {
+		HasSlots<GridElement<ITEM>>,
+		HasComponents<GridElement<ITEM>, VaadinGrid<ITEM>, Component<?>> {
 	public VaadinGrid() {
 		super("vaadin-grid");
 	}
@@ -296,31 +297,7 @@ public class VaadinGrid<ITEM extends Any> extends AbstractComponent<GridElement<
 		getNode().notifyResize();
 	}
 
-	public VaadinGrid<ITEM> setNodistribute(Component<? extends Element> component) {
-		return replaceSlotted("nodistribute", component);
-	}
-
-	public VaadinGrid<ITEM> setNodistribute(Component<? extends Element>... components) {
-		return replaceSlotted("nodistribute", components);
-	}
-
-	public VaadinGrid<ITEM> addToNodistribute(Component<? extends Element> component) {
-		return addSlotted("nodistribute", component);
-	}
-
-	public VaadinGrid<ITEM> addToNodistribute(Component<? extends Element>... components) {
-		return addSlotted("nodistribute", components);
-	}
-
-	public VaadinGrid<ITEM> insertToNodistribute(Component<? extends Element> component) {
-		return insertSlotted("nodistribute", component);
-	}
-
-	public VaadinGrid<ITEM> insertToNodistribute(Component<? extends Element>... components) {
-		return insertSlotted("nodistribute", components);
-	}
-
-	public VaadinGrid<ITEM> clearNodistribute() {
-		return removeAllSlotted("nodistribute");
+	public HasSlots.Container nodistributeSlot() {
+		return slotted("nodistribute");
 	}
 }

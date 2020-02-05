@@ -95,16 +95,15 @@ public class VaadinRichTextEditor extends AbstractComponent<RichTextEditorElemen
 	/**
 	 * Value is a list of the operations which describe change to the document.
 	 * Each of those operations describe the change at the current index.
-	 * They can be an `insert`, `delete` or `retain`. The format is as follows:
-	 * <p>
-	 * ```js
-	 * [
-	 * { insert: 'Hello World' },
-	 * { insert: '!', attributes: { bold: true }}
-	 * ]
-	 * ```
-	 * <p>
-	 * See also https://github.com/quilljs/delta for detailed documentation.
+	 * They can be an <code>insert</code>, <code>delete</code> or <code>retain</code>. The format is as follows:
+	 *
+	 * <pre><code class="language-js"> [
+	 *    { insert: 'Hello World' },
+	 *    { insert: '!', attributes: { bold: true }}
+	 *  ]
+	 * </code></pre>
+	 * See also <a href="https://github.com/quilljs/delta">https://github.com/quilljs/delta</a>
+	 * for detailed documentation.
 	 */
 	@Nullable
 	public String value() {

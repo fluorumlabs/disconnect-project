@@ -6,8 +6,8 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasLoginMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
-import js.web.dom.Element;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 
 /**
  * <code>&lt;vaadin-login-form-wrapper&gt;</code> is a helper component providing a wrapper for the login form.
@@ -53,36 +53,13 @@ public class VaadinLoginFormWrapper extends AbstractComponent<LoginFormWrapperEl
 		implements HasElementMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
 		HasThemableMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
 		HasLoginMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
-		HasSlottedComponents<LoginFormWrapperElement, VaadinLoginFormWrapper, Component<? extends Element>> {
+		HasSlots<LoginFormWrapperElement>,
+		HasComponents<LoginFormWrapperElement, VaadinLoginFormWrapper, Component<?>> {
 	public VaadinLoginFormWrapper() {
 		super("vaadin-login-form-wrapper");
 	}
 
-	public VaadinLoginFormWrapper setForm(Component<? extends Element> component) {
-		return replaceSlotted("form", component);
-	}
-
-	public VaadinLoginFormWrapper setForm(Component<? extends Element>... components) {
-		return replaceSlotted("form", components);
-	}
-
-	public VaadinLoginFormWrapper addToForm(Component<? extends Element> component) {
-		return addSlotted("form", component);
-	}
-
-	public VaadinLoginFormWrapper addToForm(Component<? extends Element>... components) {
-		return addSlotted("form", components);
-	}
-
-	public VaadinLoginFormWrapper insertToForm(Component<? extends Element> component) {
-		return insertSlotted("form", component);
-	}
-
-	public VaadinLoginFormWrapper insertToForm(Component<? extends Element>... components) {
-		return insertSlotted("form", components);
-	}
-
-	public VaadinLoginFormWrapper clearForm() {
-		return removeAllSlotted("form");
+	public HasSlots.Container formSlot() {
+		return slotted("form");
 	}
 }

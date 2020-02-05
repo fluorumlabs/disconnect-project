@@ -130,7 +130,7 @@ public class IronMeta<ITEM extends Any>
 	/**
 	 * Fired when the <code>value</code> property changes.
 	 */
-	public ObservableEvent<PropertyChangeEvent<ITEM>> ValueChangedEvent() {
+	public ObservableEvent<PropertyChangeEvent<ITEM>> valueChangedEvent() {
 		return createEvent("value-changed");
 	}
 }

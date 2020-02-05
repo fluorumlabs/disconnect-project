@@ -81,7 +81,7 @@ public class IronMediaQuery
 	/**
 	 * Fired when the <code>queryMatches</code> property changes.
 	 */
-	public ObservableEvent<Event> QueryMatchesChangedEvent() {
+	public ObservableEvent<Event> queryMatchesChangedEvent() {
 		return createEvent("query-matches-changed");
 	}
 }

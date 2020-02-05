@@ -8,9 +8,9 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Element;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
@@ -113,7 +113,8 @@ import javax.annotation.Nullable;
 public class VaadinAppLayout extends AbstractComponent<AppLayoutElement>
 		implements HasElementMixin<AppLayoutElement, VaadinAppLayout>,
 		HasThemableMixin<AppLayoutElement, VaadinAppLayout>,
-		HasSlottedComponents<AppLayoutElement, VaadinAppLayout, Component<? extends Element>> {
+		HasSlots<AppLayoutElement>,
+		HasComponents<AppLayoutElement, VaadinAppLayout, Component<?>> {
 	public VaadinAppLayout() {
 		super("vaadin-app-layout");
 	}
@@ -223,87 +224,15 @@ public class VaadinAppLayout extends AbstractComponent<AppLayoutElement>
 		return createEvent("overlay-changed");
 	}
 
-	public VaadinAppLayout setNavbar(Component<? extends Element> component) {
-		return replaceSlotted("navbar", component);
+	public HasSlots.Container navbarSlot() {
+		return slotted("navbar");
 	}
 
-	public VaadinAppLayout setNavbar(Component<? extends Element>... components) {
-		return replaceSlotted("navbar", components);
+	public HasSlots.Container drawerSlot() {
+		return slotted("drawer");
 	}
 
-	public VaadinAppLayout addToNavbar(Component<? extends Element> component) {
-		return addSlotted("navbar", component);
-	}
-
-	public VaadinAppLayout addToNavbar(Component<? extends Element>... components) {
-		return addSlotted("navbar", components);
-	}
-
-	public VaadinAppLayout insertToNavbar(Component<? extends Element> component) {
-		return insertSlotted("navbar", component);
-	}
-
-	public VaadinAppLayout insertToNavbar(Component<? extends Element>... components) {
-		return insertSlotted("navbar", components);
-	}
-
-	public VaadinAppLayout clearNavbar() {
-		return removeAllSlotted("navbar");
-	}
-
-	public VaadinAppLayout setDrawer(Component<? extends Element> component) {
-		return replaceSlotted("drawer", component);
-	}
-
-	public VaadinAppLayout setDrawer(Component<? extends Element>... components) {
-		return replaceSlotted("drawer", components);
-	}
-
-	public VaadinAppLayout addToDrawer(Component<? extends Element> component) {
-		return addSlotted("drawer", component);
-	}
-
-	public VaadinAppLayout addToDrawer(Component<? extends Element>... components) {
-		return addSlotted("drawer", components);
-	}
-
-	public VaadinAppLayout insertToDrawer(Component<? extends Element> component) {
-		return insertSlotted("drawer", component);
-	}
-
-	public VaadinAppLayout insertToDrawer(Component<? extends Element>... components) {
-		return insertSlotted("drawer", components);
-	}
-
-	public VaadinAppLayout clearDrawer() {
-		return removeAllSlotted("drawer");
-	}
-
-	public VaadinAppLayout setNavbarBottom(Component<? extends Element> component) {
-		return replaceSlotted("navbar-bottom", component);
-	}
-
-	public VaadinAppLayout setNavbarBottom(Component<? extends Element>... components) {
-		return replaceSlotted("navbar-bottom", components);
-	}
-
-	public VaadinAppLayout addToNavbarBottom(Component<? extends Element> component) {
-		return addSlotted("navbar-bottom", component);
-	}
-
-	public VaadinAppLayout addToNavbarBottom(Component<? extends Element>... components) {
-		return addSlotted("navbar-bottom", components);
-	}
-
-	public VaadinAppLayout insertToNavbarBottom(Component<? extends Element> component) {
-		return insertSlotted("navbar-bottom", component);
-	}
-
-	public VaadinAppLayout insertToNavbarBottom(Component<? extends Element>... components) {
-		return insertSlotted("navbar-bottom", components);
-	}
-
-	public VaadinAppLayout clearNavbarBottom() {
-		return removeAllSlotted("navbar-bottom");
+	public HasSlots.Container navbarBottomSlot() {
+		return slotted("navbar-bottom");
 	}
 }

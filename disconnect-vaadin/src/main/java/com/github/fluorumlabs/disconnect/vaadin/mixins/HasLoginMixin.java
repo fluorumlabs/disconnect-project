@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.LoginMixin;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.LoginI18n;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.CustomEvent;
+import js.web.dom.Event;
 
 import javax.annotation.Nullable;
 
@@ -153,7 +153,7 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 	/**
 	 * Fired when user clicks on the &quot;Forgot password&quot; button.
 	 */
-	default ObservableEvent<CustomEvent> ForgotPasswordEvent() {
+	default ObservableEvent<Event> forgotPasswordEvent() {
 		return createEvent("forgot-password");
 	}
 
@@ -161,7 +161,7 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 	 * Fired when an user submits the login.
 	 * The event contains <code>username</code> and <code>password</code> values in the <code>detail</code> property.
 	 */
-	default ObservableEvent<CustomEvent> LoginEvent() {
+	default ObservableEvent<Event> loginEvent() {
 		return createEvent("login");
 	}
 }

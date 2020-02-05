@@ -566,14 +566,14 @@ public class IronList<ITEM extends Any>
 	/**
 	 * Fired when the <code>selectedItem</code> property changes.
 	 */
-	public ObservableEvent<PropertyChangeEvent<ITEM>> SelectedItemChangedEvent() {
+	public ObservableEvent<PropertyChangeEvent<ITEM>> selectedItemChangedEvent() {
 		return createEvent("selected-item-changed");
 	}
 
 	/**
 	 * Fired when the <code>selectedItems</code> property changes.
 	 */
-	public ObservableEvent<PropertyChangeEvent<ITEM>> SelectedItemsChangedEvent() {
+	public ObservableEvent<PropertyChangeEvent<ITEM>> selectedItemsChangedEvent() {
 		return createEvent("selected-items-changed");
 	}
 }

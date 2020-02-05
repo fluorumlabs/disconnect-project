@@ -170,12 +170,6 @@ public interface ChartSeriesElement extends PolymerElement {
 	String getTitle();
 
 	/**
-	 * The name of the series as shown in the legend, tooltip etc.
-	 */
-	@JSProperty
-	void setType(String type);
-
-	/**
 	 * Shows/hides data-point markers for line-like series.
 	 * Acceptable input are:
 	 *

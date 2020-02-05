@@ -9,7 +9,8 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.dom.Element;
 
@@ -103,7 +104,8 @@ public class VaadinDatePicker extends AbstractComponent<DatePickerElement>
 		HasThemableMixin<DatePickerElement, VaadinDatePicker>,
 		HasDatePickerMixin<DatePickerElement, VaadinDatePicker>,
 		HasGestureEventListeners<DatePickerElement, VaadinDatePicker>,
-		HasSlottedComponents<DatePickerElement, VaadinDatePicker, Component<? extends Element>> {
+		HasSlots<DatePickerElement>,
+		HasComponents<DatePickerElement, VaadinDatePicker, Component<?>> {
 	public VaadinDatePicker() {
 		super("vaadin-date-picker");
 	}
@@ -214,31 +216,7 @@ public class VaadinDatePicker extends AbstractComponent<DatePickerElement>
 		return createEvent("invalid-changed");
 	}
 
-	public VaadinDatePicker setPrefix(Component<? extends Element> component) {
-		return replaceSlotted("prefix", component);
-	}
-
-	public VaadinDatePicker setPrefix(Component<? extends Element>... components) {
-		return replaceSlotted("prefix", components);
-	}
-
-	public VaadinDatePicker addToPrefix(Component<? extends Element> component) {
-		return addSlotted("prefix", component);
-	}
-
-	public VaadinDatePicker addToPrefix(Component<? extends Element>... components) {
-		return addSlotted("prefix", components);
-	}
-
-	public VaadinDatePicker insertToPrefix(Component<? extends Element> component) {
-		return insertSlotted("prefix", component);
-	}
-
-	public VaadinDatePicker insertToPrefix(Component<? extends Element>... components) {
-		return insertSlotted("prefix", components);
-	}
-
-	public VaadinDatePicker clearPrefix() {
-		return removeAllSlotted("prefix");
+	public HasSlots.Container prefixSlot() {
+		return slotted("prefix");
 	}
 }

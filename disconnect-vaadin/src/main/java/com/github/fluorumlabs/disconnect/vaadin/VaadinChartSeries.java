@@ -317,8 +317,7 @@ public class VaadinChartSeries extends AbstractComponent<ChartSeriesElement>
 	}
 
 	/**
-	 * Method to attach a series object of type `Highcharts.Series`.
-	 * FIXME param series: <unspecified>
+	 * FIXME param series: <unspecified>Method to attach a series object of type <code>Highcharts.Series</code>.
 	 *
 	 * @param series Object of type <code>Highcharts.Series</code>
 	 */

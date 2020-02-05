@@ -103,7 +103,7 @@ public class VaadinLoginOverlay extends AbstractComponent<LoginOverlayElement>
 	}
 
 	/**
-	 * Fired when the `description` property changes.
+	 * Fired when the <code>description</code> property changes.
 	 */
 	public ObservableEvent<StringPropertyChangeEvent> descriptionChangedEvent() {
 		return createEvent("description-changed");

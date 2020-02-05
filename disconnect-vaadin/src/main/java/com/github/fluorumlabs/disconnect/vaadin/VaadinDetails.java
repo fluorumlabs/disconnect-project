@@ -7,9 +7,9 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Element;
 
 /**
  * <code>&lt;vaadin-details&gt;</code> is a Web Component which the creates an
@@ -54,7 +54,8 @@ public class VaadinDetails extends AbstractComponent<DetailsElement>
 		implements HasControlStateMixin<DetailsElement, VaadinDetails>,
 		HasElementMixin<DetailsElement, VaadinDetails>,
 		HasThemableMixin<DetailsElement, VaadinDetails>,
-		HasSlottedComponents<DetailsElement, VaadinDetails, Component<? extends Element>> {
+		HasSlots<DetailsElement>,
+		HasComponents<DetailsElement, VaadinDetails, Component<?>> {
 	public VaadinDetails() {
 		super("vaadin-details");
 	}
@@ -81,31 +82,7 @@ public class VaadinDetails extends AbstractComponent<DetailsElement>
 		return createEvent("opened-changed");
 	}
 
-	public VaadinDetails setSummary(Component<? extends Element> component) {
-		return replaceSlotted("summary", component);
-	}
-
-	public VaadinDetails setSummary(Component<? extends Element>... components) {
-		return replaceSlotted("summary", components);
-	}
-
-	public VaadinDetails addToSummary(Component<? extends Element> component) {
-		return addSlotted("summary", component);
-	}
-
-	public VaadinDetails addToSummary(Component<? extends Element>... components) {
-		return addSlotted("summary", components);
-	}
-
-	public VaadinDetails insertToSummary(Component<? extends Element> component) {
-		return insertSlotted("summary", component);
-	}
-
-	public VaadinDetails insertToSummary(Component<? extends Element>... components) {
-		return insertSlotted("summary", components);
-	}
-
-	public VaadinDetails clearSummary() {
-		return removeAllSlotted("summary");
+	public HasSlots.Container summarySlot() {
+		return slotted("summary");
 	}
 }
