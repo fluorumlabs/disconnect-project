@@ -639,7 +639,7 @@ public class App {
         }
 
         if (!slots.isEmpty()) {
-            javaMixin.addSuperinterface(ClassName.get(HasSlots.class));
+            javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(HasSlots.class),jsMixinClass));
         } else if (!(javaReturnType instanceof TypeVariableName)) {
             javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(HasComponents.class),
                     jsMixinClass, javaReturnType, ParameterizedTypeName.get(ClassName.get(Component.class),
@@ -653,7 +653,7 @@ public class App {
             String slotMethodNameBase = toCamelCase(slotName);
             String description = slot.optString("description");
 
-            MethodSpec.Builder slotted = MethodSpec.methodBuilder(slotMethodNameBase)
+            MethodSpec.Builder slotted = MethodSpec.methodBuilder(slotMethodNameBase+"Slot")
                     .addModifiers(Modifier.PUBLIC)
                     .returns(HasSlots.Container.class)
                     .addStatement("return slotted($S)", slotName);
@@ -910,8 +910,8 @@ public class App {
                 TypeName paramType = parsePolymerType(paramRawType);
                 if (paramType == null) {
                     paramType = TypeName.get(Unknown.class);
-                    jsMethod.addJavadoc("\nFIXME param $L: $L", paramName, paramRawType);
-                    javaMethod.addJavadoc("\nFIXME param $L: $L", paramName, paramRawType);
+                    jsMethod.addJavadoc("\nFIXME param $L: $L\n", paramName, paramRawType);
+                    javaMethod.addJavadoc("\nFIXME param $L: $L\n", paramName, paramRawType);
                 }
                 jsMethod.addParameter(paramType, paramName);
                 javaMethod.addParameter(paramType, paramName);
