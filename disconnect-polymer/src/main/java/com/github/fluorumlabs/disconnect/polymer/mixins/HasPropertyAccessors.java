@@ -27,7 +27,8 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * deserialized via `attributeChangedCallback` and set to the associated
  * property using `dash-case`-to-`camelCase` convention.
  */
-public interface HasPropertyAccessors<E extends PropertyAccessors, T extends Component<E>> extends HasPropertiesChanged<E, T> {
+public interface HasPropertyAccessors<E extends PropertyAccessors, T extends Component<E>>
+        extends HasPropertiesChanged<E, T> {
     /**
      * Generates property accessors for all attributes in the standard
      * static `observedAttributes` array.

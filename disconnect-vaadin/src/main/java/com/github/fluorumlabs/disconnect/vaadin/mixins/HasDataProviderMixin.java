@@ -125,8 +125,6 @@ public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMi
     /**
      * Returns a value that identifies the item. Uses `itemIdPath` if available.
      * Can be customized by overriding.
-     *
-     * @param item
      */
     default Unknown getItemId(ITEM item) {
         return getNode().getItemId(item);
@@ -134,8 +132,6 @@ public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMi
 
     /**
      * Expands the given item tree.
-     *
-     * @param item
      */
     default void expandItem(ITEM item) {
         getNode().expandItem(item);
@@ -143,8 +139,6 @@ public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMi
 
     /**
      * Collapses the given item tree.
-     *
-     * @param item
      */
     default void collapseItem(ITEM item) {
         getNode().collapseItem(item);

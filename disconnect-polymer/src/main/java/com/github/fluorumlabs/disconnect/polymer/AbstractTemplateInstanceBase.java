@@ -9,7 +9,8 @@ import js.web.dom.Event;
 import js.web.dom.HTMLCollection;
 import js.web.dom.ParentNode;
 
-public abstract class AbstractTemplateInstanceBase<E extends TemplateInstanceBase, T extends AbstractTemplateInstanceBase<E, T>>
+public abstract class AbstractTemplateInstanceBase<E extends TemplateInstanceBase,
+        T extends AbstractTemplateInstanceBase<E, T>>
         extends AbstractComponent<E>
         implements HasPropertyEffects<E, T> {
     protected AbstractTemplateInstanceBase(String tagName) {

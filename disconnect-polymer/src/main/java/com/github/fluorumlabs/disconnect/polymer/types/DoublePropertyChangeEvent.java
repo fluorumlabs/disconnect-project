@@ -14,19 +14,19 @@ public interface DoublePropertyChangeEvent extends CustomEvent<DoublePropertyCha
     interface Details extends Any {
         @JSProperty
         double getValue();
-    
+
         @JSProperty
         void setValue(double value);
-    
+
         @JSProperty
         boolean getQueueProperty();
-    
+
         @JSProperty
         void setQueueProperty(boolean queueProperty);
-    
+
         @JSProperty
         String getPath();
-    
+
         @JSProperty
         void setPath(String path);
     }

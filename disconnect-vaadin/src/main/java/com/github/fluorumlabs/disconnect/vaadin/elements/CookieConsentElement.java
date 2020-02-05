@@ -6,7 +6,6 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.constants.CookieConsentPosition;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ThemableMixin;
-import js.lang.Any;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
 

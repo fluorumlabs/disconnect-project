@@ -9,5 +9,6 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * state machine instead of a regex. As such, this implementation is able to
  * handle more cases, with the potential performance hit.
  */
-public interface HasStrictBindingParser<E extends StrictBindingParser, T extends Component<E>> extends HasPropertyEffects<E, T> {
+public interface HasStrictBindingParser<E extends StrictBindingParser, T extends Component<E>>
+        extends HasPropertyEffects<E, T> {
 }

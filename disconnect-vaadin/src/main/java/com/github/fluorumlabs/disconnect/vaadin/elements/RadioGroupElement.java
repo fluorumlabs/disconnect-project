@@ -148,8 +148,6 @@ public interface RadioGroupElement extends HTMLElement, ThemableMixin {
 
     /**
      * Returns true if the current input value satisfies all constraints (if any)
-     *
-     * @return
      */
     boolean checkValidity();
 }

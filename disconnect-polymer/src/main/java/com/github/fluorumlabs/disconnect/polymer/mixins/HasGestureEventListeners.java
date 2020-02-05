@@ -12,5 +12,6 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * templates will support gesture events when this mixin is applied along with
  * `TemplateStamp`.
  */
-public interface HasGestureEventListeners<E extends GestureEventListeners, T extends Component<E>> extends Component<E> {
+public interface HasGestureEventListeners<E extends GestureEventListeners, T extends Component<E>>
+        extends Component<E> {
 }

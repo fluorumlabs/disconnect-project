@@ -12,6 +12,7 @@ public interface AsyncInterface extends Any {
      * @return Handle used for canceling task
      */
     Handle run(JsRunnable callback, double delay);
+
     Handle run(JsRunnable callback);
 
     /**

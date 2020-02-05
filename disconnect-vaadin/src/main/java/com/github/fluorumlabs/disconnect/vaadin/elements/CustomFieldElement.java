@@ -144,8 +144,6 @@ public interface CustomFieldElement extends HTMLElement, ElementMixin, ThemableM
 
     /**
      * Returns true if the current inputs values satisfy all constraints (if any)
-     *
-     * @return
      */
     boolean checkValidity();
 }

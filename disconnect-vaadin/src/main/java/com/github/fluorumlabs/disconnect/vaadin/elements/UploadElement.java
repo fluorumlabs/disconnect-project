@@ -416,8 +416,6 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 
     /**
      * Triggers the upload of any files that are not completed
-     *
-     * @param files
      */
     void uploadFiles(@JSByRef UploadingFile... files);
 

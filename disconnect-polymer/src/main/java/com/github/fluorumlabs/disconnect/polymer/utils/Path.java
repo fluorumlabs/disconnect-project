@@ -16,7 +16,8 @@ import javax.annotation.Nullable;
         version = Polymer.VERSION
 )
 @Import(
-        symbols = {"isAncestor", "split", "set", "isDescendant", "root", "normalize", "get", "isPath", "matches", "translate"},
+        symbols = {"isAncestor", "split", "set", "isDescendant", "root", "normalize", "get", "isPath", "matches",
+                "translate"},
         module = "@polymer/polymer/lib/utils/path.js"
 )
 public interface Path extends Any {

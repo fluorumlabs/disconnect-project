@@ -171,8 +171,6 @@ public class VaadinRadioGroup extends AbstractComponent<RadioGroupElement>
 
     /**
      * Returns true if the current input value satisfies all constraints (if any)
-     *
-     * @return
      */
     public boolean checkValidity() {
         return getNode().checkValidity();

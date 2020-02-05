@@ -14,7 +14,8 @@ import org.teavm.jso.JSBody;
         version = Polymer.VERSION
 )
 @Import(
-        symbols = {"stylesFromModule", "cssFromModules", "cssFromModule", "cssFromTemplate", "cssFromModuleImports", "stylesFromModuleImports", "stylesFromModules", "stylesFromTemplate"},
+        symbols = {"stylesFromModule", "cssFromModules", "cssFromModule", "cssFromTemplate", "cssFromModuleImports",
+                "stylesFromModuleImports", "stylesFromModules", "stylesFromTemplate"},
         module = "@polymer/polymer/lib/utils/style-gather.js"
 )
 public interface StyleGather extends Any {
@@ -63,7 +64,8 @@ public interface StyleGather extends Any {
     }
 
     /**
-     * Returns a list of <style> elements  from stylesheets loaded via `<link rel="import" type="css">` links within the specified `dom-module`.
+     * Returns a list of <style> elements  from stylesheets loaded via `<link rel="import" type="css">` links within
+     * the specified `dom-module`.
      *
      * @param moduleId Id of `dom-module` to gather CSS from
      *

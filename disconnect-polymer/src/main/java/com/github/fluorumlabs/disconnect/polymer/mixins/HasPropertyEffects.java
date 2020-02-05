@@ -37,7 +37,8 @@ import js.util.collections.Array;
  * whereas the default when using `PropertyAccessors` standalone is to be
  * async by default.
  */
-public interface HasPropertyEffects<E extends PropertyEffects, T extends Component<E>> extends HasTemplateStamp<E, T>, HasPropertyAccessors<E, T> {
+public interface HasPropertyEffects<E extends PropertyEffects, T extends Component<E>>
+        extends HasTemplateStamp<E, T>, HasPropertyAccessors<E, T> {
     /**
      *
      */

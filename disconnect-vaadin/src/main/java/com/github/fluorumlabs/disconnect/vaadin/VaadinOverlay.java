@@ -301,7 +301,7 @@ public class VaadinOverlay extends AbstractComponent<OverlayElement>
     }
 
     /**
-     * @param sourceEvent
+     *
      */
     public void close(Event sourceEvent) {
         getNode().close(sourceEvent);

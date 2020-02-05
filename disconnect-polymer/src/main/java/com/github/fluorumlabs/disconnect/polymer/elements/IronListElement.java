@@ -251,6 +251,7 @@ public interface IronListElement<ITEM extends Any> extends HTMLElement {
      */
     @JSProperty
     void setItems(@JSByRef ITEM... items);
+
     @JSProperty
     void setItems(Array<ITEM> items);
 
@@ -522,7 +523,7 @@ public interface IronListElement<ITEM extends Any> extends HTMLElement {
     void updateSizeForIndex(int index);
 
     /**
-     * @param idx
+     *
      */
     void focusItem(int idx);
 }

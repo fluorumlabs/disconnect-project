@@ -12,7 +12,9 @@ import org.teavm.jso.JSBody;
         version = Polymer.VERSION
 )
 @Import(
-        symbols = {"setAllowTemplateFromDomModule", "setCancelSyntheticClickEvents", "setLegacyOptimizations", "setStrictTemplatePolicy", "setRootPath", "setSanitizeDOMValue", "setPassiveTouchGestures", "setSyncInitialRender"},
+        symbols = {"setAllowTemplateFromDomModule", "setCancelSyntheticClickEvents", "setLegacyOptimizations",
+                "setStrictTemplatePolicy", "setRootPath", "setSanitizeDOMValue", "setPassiveTouchGestures",
+                "setSyncInitialRender"},
         module = "@polymer/polymer/lib/utils/settings.js"
 )
 public interface Settings extends Any {
@@ -100,7 +102,8 @@ public interface Settings extends Any {
      * @param useCancelSyntheticClickEvents enable or disable cancelling synthetic
      *                                      events
      */
-    @JSBody(params = "useCancelSyntheticClickEvents", script = "setCancelSyntheticClickEvents(useCancelSyntheticClickEvents)")
+    @JSBody(params = "useCancelSyntheticClickEvents", script = "setCancelSyntheticClickEvents" +
+            "(useCancelSyntheticClickEvents)")
     static void setCancelSyntheticClickEvents(boolean useCancelSyntheticClickEvents) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

@@ -121,22 +121,16 @@ public interface DataProviderMixin<ITEM extends Any> extends Element {
     /**
      * Returns a value that identifies the item. Uses `itemIdPath` if available.
      * Can be customized by overriding.
-     *
-     * @param item
      */
     Unknown getItemId(ITEM item);
 
     /**
      * Expands the given item tree.
-     *
-     * @param item
      */
     void expandItem(ITEM item);
 
     /**
      * Collapses the given item tree.
-     *
-     * @param item
      */
     void collapseItem(ITEM item);
 

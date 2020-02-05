@@ -16,7 +16,8 @@ import org.teavm.jso.JSBody;
         version = Polymer.VERSION
 )
 @Import(
-        symbols = {"prevent", "resetMouseCanceller", "deepTargetFind", "removeListener", "addListener", "register", "setTouchAction"},
+        symbols = {"prevent", "resetMouseCanceller", "deepTargetFind", "removeListener", "addListener", "register",
+                "setTouchAction"},
         module = "@polymer/polymer/lib/utils/gestures.js"
 )
 public interface Gestures extends Any {

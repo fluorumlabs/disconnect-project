@@ -340,8 +340,6 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 
     /**
      * Returns true if the current input value satisfies all constraints (if any)
-     *
-     * @return
      */
     default boolean checkValidity() {
         return getNode().checkValidity();

@@ -282,16 +282,20 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
      *
      * @return Array of removed items.
      */
-    @JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, start, deleteCount].concat(items))")
+    @JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, " +
+            "start, deleteCount].concat(items))")
     <T extends Any> Array<T> splice(String path, int start, int deleteCount, @JSByRef T... items);
 
-    @JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, start, deleteCount].concat(items))")
+    @JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, " +
+            "start, deleteCount].concat(items))")
     <T extends Any> Array<T> splice(@JSByRef String[] path, int start, int deleteCount, @JSByRef T... items);
 
-    @JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, start, deleteCount].concat(items))")
+    @JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, " +
+            "start, deleteCount].concat(items))")
     <T extends Any> Array<T> splice(@JSByRef Unknown[] path, int start, int deleteCount, @JSByRef T... items);
 
-    @JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, start, deleteCount].concat(items))")
+    @JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, " +
+            "start, deleteCount].concat(items))")
     <T extends Any> Array<T> splice(Array<Unknown> path, int start, int deleteCount, @JSByRef T... items);
 
     /**

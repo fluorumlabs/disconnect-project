@@ -67,7 +67,7 @@ public interface IronMediaQueryElement extends HTMLElement {
     void queryChanged();
 
     /**
-     * @param mq
+     *
      */
     void queryHandler(MediaQueryList mq);
 }

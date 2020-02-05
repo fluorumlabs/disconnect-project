@@ -68,15 +68,11 @@ public interface RowDetailsMixin<ITEM extends Any> extends Element {
 
     /**
      * Open the details row of a given item.
-     *
-     * @param item
      */
     void openItemDetails(ITEM item);
 
     /**
      * Close the details row of a given item.
-     *
-     * @param item
      */
     void closeItemDetails(ITEM item);
 }

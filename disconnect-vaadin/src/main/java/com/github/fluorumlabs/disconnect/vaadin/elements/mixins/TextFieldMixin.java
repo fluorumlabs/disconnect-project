@@ -291,8 +291,6 @@ public interface TextFieldMixin extends ControlStateMixin {
 
     /**
      * Returns true if the current input value satisfies all constraints (if any)
-     *
-     * @return
      */
     boolean checkValidity();
 

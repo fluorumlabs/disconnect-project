@@ -65,8 +65,6 @@ public interface HasRowDetailsMixin<ITEM extends Any, E extends RowDetailsMixin<
 
     /**
      * Open the details row of a given item.
-     *
-     * @param item
      */
     default void openItemDetails(ITEM item) {
         getNode().openItemDetails(item);
@@ -74,8 +72,6 @@ public interface HasRowDetailsMixin<ITEM extends Any, E extends RowDetailsMixin<
 
     /**
      * Close the details row of a given item.
-     *
-     * @param item
      */
     default void closeItemDetails(ITEM item) {
         getNode().closeItemDetails(item);

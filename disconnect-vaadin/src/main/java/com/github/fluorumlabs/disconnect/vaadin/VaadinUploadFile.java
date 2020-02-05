@@ -53,6 +53,7 @@ public class VaadinUploadFile extends AbstractComponent<UploadFileElement>
     }
 
     /**
+     *
      */
     @Nullable
     public UploadingFile file() {
@@ -60,6 +61,7 @@ public class VaadinUploadFile extends AbstractComponent<UploadFileElement>
     }
 
     /**
+     *
      */
     public VaadinUploadFile file(UploadingFile file) {
         getNode().setFile(file);

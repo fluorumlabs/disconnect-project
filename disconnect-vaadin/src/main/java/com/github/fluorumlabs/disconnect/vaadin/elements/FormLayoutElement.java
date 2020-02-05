@@ -196,8 +196,6 @@ public interface FormLayoutElement extends HTMLElement, ElementMixin, ThemableMi
 
     /**
      * Set custom CSS property values and update the layout.
-     *
-     * @param args
      */
     void updateStyles(StringRecord args);
 }

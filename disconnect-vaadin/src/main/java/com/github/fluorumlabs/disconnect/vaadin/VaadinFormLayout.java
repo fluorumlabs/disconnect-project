@@ -198,8 +198,6 @@ public class VaadinFormLayout extends AbstractComponent<FormLayoutElement>
 
     /**
      * Set custom CSS property values and update the layout.
-     *
-     * @param args
      */
     public void updateStyles(StringRecord args) {
         getNode().updateStyles(args);

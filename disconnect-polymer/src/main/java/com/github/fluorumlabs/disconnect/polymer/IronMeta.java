@@ -121,8 +121,6 @@ public class IronMeta<ITEM extends Any>
      * Retrieves meta data value by key.
      *
      * @param key The key of the meta-data to be returned.
-     *
-     * @return
      */
     public ITEM byKey(String key) {
         return getNode().byKey(key);

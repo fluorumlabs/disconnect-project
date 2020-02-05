@@ -251,7 +251,7 @@ public interface OverlayElement extends HTMLElement, ThemableMixin {
     void setRestoreFocusOnClose(boolean restoreFocusOnClose);
 
     /**
-     * @param sourceEvent
+     *
      */
     void close(Event sourceEvent);
 

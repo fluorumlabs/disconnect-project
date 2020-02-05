@@ -582,7 +582,7 @@ public class IronList<ITEM extends Any>
     }
 
     /**
-     * @param idx
+     *
      */
     public void focusItem(int idx) {
         getNode().focusItem(idx);

@@ -6,7 +6,6 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.SelectElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemePropertyMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.SelectRenderer;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;

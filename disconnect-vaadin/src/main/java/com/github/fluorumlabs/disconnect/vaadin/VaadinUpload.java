@@ -210,6 +210,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
         getNode().setFiles(files);
         return this;
     }
+
     public VaadinUpload files(Array<UploadingFile> files) {
         getNode().setFiles(files);
         return this;
@@ -464,12 +465,11 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 
     /**
      * Triggers the upload of any files that are not completed
-     *
-     * @param files
      */
     public void uploadFiles(UploadingFile... files) {
         getNode().uploadFiles(files);
     }
+
     public void uploadFiles(Array<UploadingFile> files) {
         getNode().uploadFiles(files);
     }

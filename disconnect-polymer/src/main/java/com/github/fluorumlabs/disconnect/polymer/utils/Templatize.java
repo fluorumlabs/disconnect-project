@@ -103,7 +103,8 @@ public interface Templatize extends Any {
             params = {"template", "owner", "options"},
             script = "return templatize(template, owner, options)"
     )
-    static JsSupplier<TemplateInstanceBase> templatize(HTMLTemplateElement template, PropertyEffects owner, TemplatizeOptions options) {
+    static JsSupplier<TemplateInstanceBase> templatize(HTMLTemplateElement template, PropertyEffects owner,
+                                                       TemplatizeOptions options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

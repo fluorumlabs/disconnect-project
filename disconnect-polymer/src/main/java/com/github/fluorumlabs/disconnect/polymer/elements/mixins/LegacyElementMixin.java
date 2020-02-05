@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.polymer.constants.PolymerType;
 import com.github.fluorumlabs.disconnect.polymer.constants.ScrollDirection;
 import com.github.fluorumlabs.disconnect.polymer.types.Debouncer;
 import com.github.fluorumlabs.disconnect.polymer.types.LegacyEventInit;
-import com.github.fluorumlabs.disconnect.polymer.utils.*;
+import com.github.fluorumlabs.disconnect.polymer.utils.TimeOut;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.collections.Array;

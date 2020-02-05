@@ -166,8 +166,6 @@ public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 
     /**
      * Returns true if the current inputs values satisfy all constraints (if any)
-     *
-     * @return
      */
     public boolean checkValidity() {
         return getNode().checkValidity();

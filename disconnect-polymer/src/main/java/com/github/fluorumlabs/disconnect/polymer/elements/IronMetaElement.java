@@ -112,8 +112,6 @@ public interface IronMetaElement<ITEM extends Any> extends HTMLElement {
      * Retrieves meta data value by key.
      *
      * @param key The key of the meta-data to be returned.
-     *
-     * @return
      */
     ITEM byKey(String key);
 }

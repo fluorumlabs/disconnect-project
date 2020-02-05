@@ -14,5 +14,6 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * way makes sense. This can be done in reaction to properties changing by
  * implementing `_propertiesChanged`.
  */
-public interface HasPropertiesMixin<E extends PropertiesMixin, T extends Component<E>> extends HasPropertiesChanged<E, T> {
+public interface HasPropertiesMixin<E extends PropertiesMixin, T extends Component<E>>
+        extends HasPropertiesChanged<E, T> {
 }

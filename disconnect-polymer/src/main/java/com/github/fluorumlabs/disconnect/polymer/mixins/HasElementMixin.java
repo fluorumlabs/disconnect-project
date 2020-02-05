@@ -64,7 +64,8 @@ import js.web.webcomponents.ShadowRoot;
  * `observedAttributes` implementation will automatically return an array
  * of dash-cased attributes based on `properties`)
  */
-public interface HasElementMixin<E extends ElementMixin, T extends Component<E>> extends HasPropertyEffects<E, T>, HasPropertiesMixin<E, T> {
+public interface HasElementMixin<E extends ElementMixin, T extends Component<E>>
+        extends HasPropertyEffects<E, T>, HasPropertiesMixin<E, T> {
     default String rootPath() {
         return getNode().getRootPath();
     }

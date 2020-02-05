@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * representing the last selected item.  When `multi` is true, `selected`
  * is an array of multiply selected items.
  */
-public interface HasArraySelectorMixin<ITEM extends Any, E extends ArraySelectorMixin<ITEM>, T extends Component<E>> extends HasElementMixin<E, T> {
+public interface HasArraySelectorMixin<ITEM extends Any, E extends ArraySelectorMixin<ITEM>, T extends Component<E>>
+        extends HasElementMixin<E, T> {
     /**
      * An array containing items from which selection will be made.
      */

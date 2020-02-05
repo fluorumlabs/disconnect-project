@@ -189,8 +189,6 @@ public class VaadinRichTextEditor extends AbstractComponent<RichTextEditorElemen
      * **NOTE:** Improper handling of HTML can lead to cross site scripting (XSS) and failure to sanitize
      * properly is both notoriously error-prone and a leading cause of web vulnerabilities.
      * This method is aptly named to ensure the developer has taken the necessary precautions.
-     *
-     * @param htmlValue
      */
     public void dangerouslySetHtmlValue(@Untainted String htmlValue) {
         getNode().dangerouslySetHtmlValue(htmlValue);

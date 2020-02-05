@@ -37,8 +37,6 @@ public interface EventContextMixin<ITEM extends Any> extends Element {
      * This may be the case eg. if the event is fired on the `<vaadin-grid>` element and not any deeper in the DOM,
      * or if
      * the event targets the empty part of the grid body.
-     *
-     * @param event
      */
     EventContextData<ITEM> getEventContext(Event event);
 }

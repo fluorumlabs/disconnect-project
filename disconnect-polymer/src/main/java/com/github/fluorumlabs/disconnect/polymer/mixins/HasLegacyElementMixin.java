@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.polymer.constants.ScrollDirection;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.LegacyElementMixin;
 import com.github.fluorumlabs.disconnect.polymer.types.Debouncer;
 import com.github.fluorumlabs.disconnect.polymer.types.LegacyEventInit;
-import com.github.fluorumlabs.disconnect.polymer.utils.*;
+import com.github.fluorumlabs.disconnect.polymer.utils.TimeOut;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import js.lang.Any;
 import js.lang.Unknown;
@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * defined using the `Polymer({...})` function.
  */
 @Deprecated
-public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends Component<E>> extends HasElementMixin<E, T>, HasGestureEventListeners<E, T> {
+public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends Component<E>>
+        extends HasElementMixin<E, T>, HasGestureEventListeners<E, T> {
     default boolean isAttached() {
         return getNode().isIsAttached();
     }

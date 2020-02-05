@@ -8,7 +8,8 @@ import js.web.dom.Element;
 /**
  * Mixin to selectively add back Polymer 1.x's `undefined` rules
  * governing when observers & computing functions run based
- * on all arguments being defined (reference https://www.polymer-project.org/1.0/docs/devguide/observers#multi-property-observers).
+ * on all arguments being defined (reference https://www.polymer-project.org/1
+ * .0/docs/devguide/observers#multi-property-observers).
  * <p>
  * When loaded, all legacy elements (defined with `Polymer({...})`)
  * will have the mixin applied. The mixin only restores legacy data handling
