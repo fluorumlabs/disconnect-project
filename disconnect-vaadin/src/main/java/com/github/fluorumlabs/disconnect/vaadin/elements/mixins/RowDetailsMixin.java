@@ -40,13 +40,18 @@ public interface RowDetailsMixin<ITEM extends Any> extends Element {
 	/**
 	 * Custom function for rendering the content of the row details.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The row details content DOM element. Append your content to it.
-	 * - `grid` The `<vaadin-grid>` element.
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>root</code> The row details content DOM element. Append your content to it.</li>
+	 * <li><code>grid</code> The <code>&lt;vaadin-grid&gt;</code> element.</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -55,13 +60,18 @@ public interface RowDetailsMixin<ITEM extends Any> extends Element {
 	/**
 	 * Custom function for rendering the content of the row details.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The row details content DOM element. Append your content to it.
-	 * - `grid` The `<vaadin-grid>` element.
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>root</code> The row details content DOM element. Append your content to it.</li>
+	 * <li><code>grid</code> The <code>&lt;vaadin-grid&gt;</code> element.</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setRowDetailsRenderer(RowDetailsRenderer<ITEM> rowDetailsRenderer);

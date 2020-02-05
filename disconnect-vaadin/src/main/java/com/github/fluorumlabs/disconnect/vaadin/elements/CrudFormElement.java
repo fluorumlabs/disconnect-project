@@ -11,12 +11,13 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-crud-form>` is a <vaadin-form-layout> which automatically can configures all its items based
+ * <code>&lt;vaadin-crud-form&gt;</code> is a <vaadin-form-layout> which automatically can configures all its items
+ * based
  * on the JSON structure of the first item set.
  * <p>
  * You cannot manually configure fields but you can still style the layout as it's described in
- * `<vaadin-form-layout>` [Documentation](https://vaadin.com/components/vaadin-form-layout/html-api/elements/Vaadin
- * .FormLayoutElement)
+ * <code>&lt;vaadin-form-layout&gt;</code>
+ * <a href="https://vaadin.com/components/vaadin-form-layout/html-api/elements/Vaadin.FormLayoutElement">Documentation</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

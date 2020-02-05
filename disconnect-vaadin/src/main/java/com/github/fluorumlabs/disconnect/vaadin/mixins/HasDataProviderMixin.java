@@ -27,25 +27,28 @@ public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMi
 	}
 
 	/**
-	 * Function that provides items lazily. Receives arguments `params`, `callback`
-	 * <p>
-	 * `params.page` Requested page index
-	 * <p>
-	 * `params.pageSize` Current page size
-	 * <p>
-	 * `params.filters` Currently applied filters
-	 * <p>
-	 * `params.sortOrders` Currently applied sorting orders
-	 * <p>
-	 * `params.parentItem` When tree is used, and sublevel items
+	 * Function that provides items lazily. Receives arguments <code>params</code>, <code>callback</code>
+	 *
+	 * <code>params.page</code> Requested page index
+	 *
+	 * <code>params.pageSize</code> Current page size
+	 *
+	 * <code>params.filters</code> Currently applied filters
+	 *
+	 * <code>params.sortOrders</code> Currently applied sorting orders
+	 *
+	 * <code>params.parentItem</code> When tree is used, and sublevel items
 	 * are requested, reference to parent item of the requested sublevel.
-	 * Otherwise `undefined`.
-	 * <p>
-	 * `callback(items, size)` Callback function with arguments:
-	 * - `items` Current page of items
-	 * - `size` Total number of items. When tree sublevel items
+	 * Otherwise <code>undefined</code>.
+	 *
+	 * <code>callback(items, size)</code> Callback function with arguments:
+	 *
+	 * <ul>
+	 * <li><code>items</code> Current page of items</li>
+	 * <li><code>size</code> Total number of items. When tree sublevel items
 	 * are requested, total number of items in the requested sublevel.
-	 * Optional when tree is not used, required for tree.
+	 * Optional when tree is not used, required for tree.</li>
+	 * </ul>
 	 */
 	@Nullable
 	default GridDataProvider<ITEM> dataProvider() {
@@ -53,25 +56,28 @@ public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMi
 	}
 
 	/**
-	 * Function that provides items lazily. Receives arguments `params`, `callback`
-	 * <p>
-	 * `params.page` Requested page index
-	 * <p>
-	 * `params.pageSize` Current page size
-	 * <p>
-	 * `params.filters` Currently applied filters
-	 * <p>
-	 * `params.sortOrders` Currently applied sorting orders
-	 * <p>
-	 * `params.parentItem` When tree is used, and sublevel items
+	 * Function that provides items lazily. Receives arguments <code>params</code>, <code>callback</code>
+	 *
+	 * <code>params.page</code> Requested page index
+	 *
+	 * <code>params.pageSize</code> Current page size
+	 *
+	 * <code>params.filters</code> Currently applied filters
+	 *
+	 * <code>params.sortOrders</code> Currently applied sorting orders
+	 *
+	 * <code>params.parentItem</code> When tree is used, and sublevel items
 	 * are requested, reference to parent item of the requested sublevel.
-	 * Otherwise `undefined`.
-	 * <p>
-	 * `callback(items, size)` Callback function with arguments:
-	 * - `items` Current page of items
-	 * - `size` Total number of items. When tree sublevel items
+	 * Otherwise <code>undefined</code>.
+	 *
+	 * <code>callback(items, size)</code> Callback function with arguments:
+	 *
+	 * <ul>
+	 * <li><code>items</code> Current page of items</li>
+	 * <li><code>size</code> Total number of items. When tree sublevel items
 	 * are requested, total number of items in the requested sublevel.
-	 * Optional when tree is not used, required for tree.
+	 * Optional when tree is not used, required for tree.</li>
+	 * </ul>
 	 */
 	default T dataProvider(GridDataProvider<ITEM> dataProvider) {
 		getNode().setDataProvider(dataProvider);
@@ -79,7 +85,7 @@ public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMi
 	}
 
 	/**
-	 * `true` while data is being requested from the data provider.
+	 * <code>true</code> while data is being requested from the data provider.
 	 */
 	default boolean loading() {
 		return getNode().isLoading();
@@ -123,7 +129,8 @@ public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMi
 	}
 
 	/**
-	 * Returns a value that identifies the item. Uses `itemIdPath` if available.
+	 * Returns a value that identifies the item. Uses <code>itemIdPath</code> if
+	 * available.
 	 * Can be customized by overriding.
 	 */
 	default Unknown getItemId(ITEM item) {

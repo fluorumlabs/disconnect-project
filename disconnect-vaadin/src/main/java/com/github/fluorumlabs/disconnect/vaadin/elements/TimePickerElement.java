@@ -13,50 +13,54 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-time-picker>` is a Web Component providing a time-selection field.
- * <p>
- * ```html
- * <vaadin-time-picker></vaadin-time-picker>
- * ```
- * ```js
- * timePicker.value = '14:30';
- * ```
- * <p>
- * When the selected `value` is changed, a `value-changed` event is triggered.
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-time-picker&gt;</code> is a Web Component providing a time-selection field.
+ *
+ * <pre><code class="language-html">&lt;vaadin-time-picker&gt;&lt;/vaadin-time-picker&gt;
+ * </code></pre>
+ * <pre><code class="language-js">timePicker.value = '14:30';
+ * </code></pre>
+ * When the selected <code>value</code> is changed, a <code>value-changed</code> event is triggered.
+ *
+ * <h3>Styling</h3>
  * The following custom properties are available for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `toggle-button` | The toggle button
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>toggle-button</code></td><td>The toggle button</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  * <p>
  * The following state attributes are available for styling:
- * <p>
- * Attribute    | Description | Part name
- * -------------|-------------|------------
- * `disabled` | Set to a disabled time picker | :host
- * `readonly` | Set to a read only time picker | :host
- * `invalid` | Set when the element is invalid | :host
- * `focused` | Set when the element is focused | :host
- * `focus-ring` | Set when the element is keyboard focused | :host
- * <p>
- * In addition to `<vaadin-time-picker>` itself, the following internal
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>disabled</code></td><td>Set to a disabled time picker</td><td>:host</td></tr>
+ * <tr><td><code>readonly</code></td><td>Set to a read only time picker</td><td>:host</td></tr>
+ * <tr><td><code>invalid</code></td><td>Set when the element is invalid</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the element is focused</td><td>:host</td></tr>
+ * <tr><td><code>focus-ring</code></td><td>Set when the element is keyboard focused</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * In addition to <code>&lt;vaadin-time-picker&gt;</code> itself, the following internal
  * components are themable:
- * <p>
- * - `<vaadin-time-picker-text-field>`, see
- * [`<vaadin-text-field>` documentation](https://vaadin.com/components/vaadin-text-field/html-api/elements/Vaadin
- * .TextFieldElement)
- * for the text field parts.
- * - `<vaadin-combo-box-light>`, see
- * [`<vaadin-combo-box>` documentation](https://vaadin.com/components/vaadin-combo-box/html-api/elements/Vaadin
- * .ComboBoxElement)
- * for the combo box parts.
- * <p>
- * Note: the `theme` attribute value set on `<vaadin-time-picker>` is
+ *
+ * <ul>
+ * <li><code>&lt;vaadin-time-picker-text-field&gt;</code>, see
+ * <a href="https://vaadin.com/components/vaadin-text-field/html-api/elements/Vaadin.TextFieldElement"><code>&lt;vaadin-text-field&gt;</code> documentation</a>
+ * for the text field parts.</li>
+ * <li><code>&lt;vaadin-combo-box-light&gt;</code>, see
+ * <a href="https://vaadin.com/components/vaadin-combo-box/html-api/elements/Vaadin.ComboBoxElement"><code>&lt;vaadin-combo-box&gt;</code> documentation</a>
+ * for the combo box parts.</li>
+ * </ul>
+ * Note: the <code>theme</code> attribute value set on <code>&lt;vaadin-time-picker&gt;</code> is
  * propagated to the internal themable components listed above.
  */
 @NpmPackage(
@@ -85,9 +89,12 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	 * The time value for this element.
 	 * <p>
 	 * Supported time formats are in ISO 8601:
-	 * - `hh:mm` (default)
-	 * - `hh:mm:ss`
-	 * - `hh:mm:ss.fff`
+	 *
+	 * <ul>
+	 * <li><code>hh:mm</code> (default)</li>
+	 * <li><code>hh:mm:ss</code></li>
+	 * <li><code>hh:mm:ss.fff</code></li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -97,9 +104,12 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	 * The time value for this element.
 	 * <p>
 	 * Supported time formats are in ISO 8601:
-	 * - `hh:mm` (default)
-	 * - `hh:mm:ss`
-	 * - `hh:mm:ss.fff`
+	 *
+	 * <ul>
+	 * <li><code>hh:mm</code> (default)</li>
+	 * <li><code>hh:mm:ss</code></li>
+	 * <li><code>hh:mm:ss.fff</code></li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setValue(String value);
@@ -142,14 +152,14 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	void setPreventInvalidInput(boolean preventInvalidInput);
 
 	/**
-	 * A pattern to validate the `input` with.
+	 * A pattern to validate the <code>input</code> with.
 	 */
 	@Nullable
 	@JSProperty
 	String getPattern();
 
 	/**
-	 * A pattern to validate the `input` with.
+	 * A pattern to validate the <code>input</code> with.
 	 */
 	@JSProperty
 	void setPattern(String pattern);
@@ -208,9 +218,12 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	 * Minimum time allowed.
 	 * <p>
 	 * Supported time formats are in ISO 8601:
-	 * - `hh:mm`
-	 * - `hh:mm:ss`
-	 * - `hh:mm:ss.fff`
+	 *
+	 * <ul>
+	 * <li><code>hh:mm</code></li>
+	 * <li><code>hh:mm:ss</code></li>
+	 * <li><code>hh:mm:ss.fff</code></li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -220,9 +233,12 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	 * Minimum time allowed.
 	 * <p>
 	 * Supported time formats are in ISO 8601:
-	 * - `hh:mm`
-	 * - `hh:mm:ss`
-	 * - `hh:mm:ss.fff`
+	 *
+	 * <ul>
+	 * <li><code>hh:mm</code></li>
+	 * <li><code>hh:mm:ss</code></li>
+	 * <li><code>hh:mm:ss.fff</code></li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setMin(String min);
@@ -231,9 +247,12 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	 * Maximum time allowed.
 	 * <p>
 	 * Supported time formats are in ISO 8601:
-	 * - `hh:mm`
-	 * - `hh:mm:ss`
-	 * - `hh:mm:ss.fff`
+	 *
+	 * <ul>
+	 * <li><code>hh:mm</code></li>
+	 * <li><code>hh:mm:ss</code></li>
+	 * <li><code>hh:mm:ss.fff</code></li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -243,9 +262,12 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	 * Maximum time allowed.
 	 * <p>
 	 * Supported time formats are in ISO 8601:
-	 * - `hh:mm`
-	 * - `hh:mm:ss`
-	 * - `hh:mm:ss.fff`
+	 *
+	 * <ul>
+	 * <li><code>hh:mm</code></li>
+	 * <li><code>hh:mm:ss</code></li>
+	 * <li><code>hh:mm:ss.fff</code></li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setMax(String max);
@@ -255,9 +277,9 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	 * configuring the items displayed in the selection box.
 	 * <p>
 	 * It also configures the precision of the value string. By default
-	 * the component formats values as `hh:mm` but setting a step value
+	 * the component formats values as <code>hh:mm</code> but setting a step value
 	 * lower than one minute or one second, format resolution changes to
-	 * `hh:mm:ss` and `hh:mm:ss.fff` respectively.
+	 * <code>hh:mm:ss</code> and <code>hh:mm:ss.fff</code> respectively.
 	 * <p>
 	 * Unit must be set in seconds, and for correctly configuring intervals
 	 * in the dropdown, it need to evenly divide a day.
@@ -274,9 +296,9 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	 * configuring the items displayed in the selection box.
 	 * <p>
 	 * It also configures the precision of the value string. By default
-	 * the component formats values as `hh:mm` but setting a step value
+	 * the component formats values as <code>hh:mm</code> but setting a step value
 	 * lower than one minute or one second, format resolution changes to
-	 * `hh:mm:ss` and `hh:mm:ss.fff` respectively.
+	 * <code>hh:mm:ss</code> and <code>hh:mm:ss.fff</code> respectively.
 	 * <p>
 	 * Unit must be set in seconds, and for correctly configuring intervals
 	 * in the dropdown, it need to evenly divide a day.
@@ -303,32 +325,33 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	/**
 	 * The object used to localize this component.
 	 * To change the default localization, replace the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
 	 * The object has the following JSON structure:
-	 * <p>
-	 * {
-	 * // A function to format given `Object` as
-	 * // time string. Object is in the format `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`
-	 * formatTime: (time) => {
-	 * // returns a string representation of the given
-	 * // object in `hh` / 'hh:mm' / 'hh:mm:ss' / 'hh:mm:ss.fff' - formats
-	 * },
-	 * <p>
-	 * // A function to parse the given text to an `Object` in the format
-	 * // `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`.
-	 * // Must properly parse (at least) text
-	 * // formatted by `formatTime`.
-	 * parseTime: text => {
-	 * // Parses a string in object/string that can be formatted by`formatTime`.
-	 * }
-	 * <p>
-	 * // Translation of the time selector icon button title.
-	 * selector: 'Time selector',
-	 * <p>
-	 * // Translation of the time selector clear button title.
-	 * clear: 'Clear'
-	 * }
+	 *
+	 * <pre><code>      {
+	 *         // A function to format given `Object` as
+	 *         // time string. Object is in the format `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`
+	 *         formatTime: (time) =&gt; {
+	 *           // returns a string representation of the given
+	 *           // object in `hh` / 'hh:mm' / 'hh:mm:ss' / 'hh:mm:ss.fff' - formats
+	 *         },
+	 *
+	 *         // A function to parse the given text to an `Object` in the format
+	 *         // `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`.
+	 *         // Must properly parse (at least) text
+	 *         // formatted by `formatTime`.
+	 *         parseTime: text =&gt; {
+	 *           // Parses a string in object/string that can be formatted by`formatTime`.
+	 *         }
+	 *
+	 *         // Translation of the time selector icon button title.
+	 *         selector: 'Time selector',
+	 *
+	 *         // Translation of the time selector clear button title.
+	 *         clear: 'Clear'
+	 *       }
+	 * </code></pre>
 	 */
 	@Nullable
 	@JSProperty
@@ -337,47 +360,48 @@ public interface TimePickerElement extends HTMLElement, ElementMixin, ControlSta
 	/**
 	 * The object used to localize this component.
 	 * To change the default localization, replace the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
 	 * The object has the following JSON structure:
-	 * <p>
-	 * {
-	 * // A function to format given `Object` as
-	 * // time string. Object is in the format `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`
-	 * formatTime: (time) => {
-	 * // returns a string representation of the given
-	 * // object in `hh` / 'hh:mm' / 'hh:mm:ss' / 'hh:mm:ss.fff' - formats
-	 * },
-	 * <p>
-	 * // A function to parse the given text to an `Object` in the format
-	 * // `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`.
-	 * // Must properly parse (at least) text
-	 * // formatted by `formatTime`.
-	 * parseTime: text => {
-	 * // Parses a string in object/string that can be formatted by`formatTime`.
-	 * }
-	 * <p>
-	 * // Translation of the time selector icon button title.
-	 * selector: 'Time selector',
-	 * <p>
-	 * // Translation of the time selector clear button title.
-	 * clear: 'Clear'
-	 * }
+	 *
+	 * <pre><code>      {
+	 *         // A function to format given `Object` as
+	 *         // time string. Object is in the format `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`
+	 *         formatTime: (time) =&gt; {
+	 *           // returns a string representation of the given
+	 *           // object in `hh` / 'hh:mm' / 'hh:mm:ss' / 'hh:mm:ss.fff' - formats
+	 *         },
+	 *
+	 *         // A function to parse the given text to an `Object` in the format
+	 *         // `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`.
+	 *         // Must properly parse (at least) text
+	 *         // formatted by `formatTime`.
+	 *         parseTime: text =&gt; {
+	 *           // Parses a string in object/string that can be formatted by`formatTime`.
+	 *         }
+	 *
+	 *         // Translation of the time selector icon button title.
+	 *         selector: 'Time selector',
+	 *
+	 *         // Translation of the time selector clear button title.
+	 *         clear: 'Clear'
+	 *       }
+	 * </code></pre>
 	 */
 	@JSProperty
 	void setI18n(TimePickerI18n i18n);
 
 	/**
-	 * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
+	 * Returns true if <code>value</code> is valid, and sets the <code>invalid</code> flag appropriately.
 	 *
-	 * @return True if the value is valid and sets the `invalid` flag appropriately
+	 * @return True if the value is valid and sets the <code>invalid</code> flag appropriately
 	 */
 	boolean validate();
 
 	/**
 	 * Returns true if the current input value satisfies all constraints (if any)
 	 * <p>
-	 * You can override the `checkValidity` method for custom validations.
+	 * You can override the <code>checkValidity</code> method for custom validations.
 	 */
 	boolean checkValidity();
 }

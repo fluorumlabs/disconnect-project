@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
 public interface LoginMixin extends Element {
 	/**
 	 * If set, a synchronous POST call will be fired to the path defined.
-	 * The `login` event is also dispatched, so `event.preventDefault()` can be called to prevent the POST call.
+	 * The <code>login</code> event is also dispatched, so <code>event.preventDefault()</code> can be called to
+	 * prevent the POST call.
 	 */
 	@Nullable
 	@JSProperty
@@ -28,13 +29,14 @@ public interface LoginMixin extends Element {
 
 	/**
 	 * If set, a synchronous POST call will be fired to the path defined.
-	 * The `login` event is also dispatched, so `event.preventDefault()` can be called to prevent the POST call.
+	 * The <code>login</code> event is also dispatched, so <code>event.preventDefault()</code> can be called to
+	 * prevent the POST call.
 	 */
 	@JSProperty
 	void setAction(String action);
 
 	/**
-	 * If set, disable the "Log in" button and prevent user from submitting login form.
+	 * If set, disable the &quot;Log in&quot; button and prevent user from submitting login form.
 	 * It is re-enabled automatically, when error is set to true, allowing form resubmission
 	 * after user makes changes.
 	 */
@@ -42,7 +44,7 @@ public interface LoginMixin extends Element {
 	boolean isDisabled();
 
 	/**
-	 * If set, disable the "Log in" button and prevent user from submitting login form.
+	 * If set, disable the &quot;Log in&quot; button and prevent user from submitting login form.
 	 * It is re-enabled automatically, when error is set to true, allowing form resubmission
 	 * after user makes changes.
 	 */
@@ -78,30 +80,32 @@ public interface LoginMixin extends Element {
 	/**
 	 * The object used to localize this component.
 	 * For changing the default localization, change the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
-	 * The object has the following JSON structure (by default it doesn't include `additionalInformation`
-	 * and `header` sections, `header` can be added to override `title` and `description` properties
-	 * in `vaadin-login-overlay`):
-	 * <p>
-	 * {
-	 * header: {
-	 * title: 'App name',
-	 * description: 'Inspiring application description'
-	 * },
-	 * form: {
-	 * title: 'Log in',
-	 * username: 'Username',
-	 * password: 'Password',
-	 * submit: 'Log in',
-	 * forgotPassword: 'Forgot password'
-	 * },
-	 * errorMessage: {
-	 * title: 'Incorrect username or password',
-	 * message: 'Check that you have entered the correct username and password and try again.'
-	 * },
-	 * additionalInformation: 'In case you need to provide some additional info for the user.'
-	 * }
+	 * The object has the following JSON structure (by default it doesn't include <code>additionalInformation</code>
+	 * and <code>header</code> sections, <code>header</code> can be added to override <code>title</code> and
+	 * <code>description</code> properties
+	 * in <code>vaadin-login-overlay</code>):
+	 *
+	 * <pre><code>    {
+	 *       header: {
+	 *         title: 'App name',
+	 *         description: 'Inspiring application description'
+	 *       },
+	 *       form: {
+	 *         title: 'Log in',
+	 *         username: 'Username',
+	 *         password: 'Password',
+	 *         submit: 'Log in',
+	 *         forgotPassword: 'Forgot password'
+	 *       },
+	 *       errorMessage: {
+	 *         title: 'Incorrect username or password',
+	 *         message: 'Check that you have entered the correct username and password and try again.'
+	 *       },
+	 *       additionalInformation: 'In case you need to provide some additional info for the user.'
+	 *     }
+	 * </code></pre>
 	 */
 	@Nullable
 	@JSProperty
@@ -110,30 +114,32 @@ public interface LoginMixin extends Element {
 	/**
 	 * The object used to localize this component.
 	 * For changing the default localization, change the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
-	 * The object has the following JSON structure (by default it doesn't include `additionalInformation`
-	 * and `header` sections, `header` can be added to override `title` and `description` properties
-	 * in `vaadin-login-overlay`):
-	 * <p>
-	 * {
-	 * header: {
-	 * title: 'App name',
-	 * description: 'Inspiring application description'
-	 * },
-	 * form: {
-	 * title: 'Log in',
-	 * username: 'Username',
-	 * password: 'Password',
-	 * submit: 'Log in',
-	 * forgotPassword: 'Forgot password'
-	 * },
-	 * errorMessage: {
-	 * title: 'Incorrect username or password',
-	 * message: 'Check that you have entered the correct username and password and try again.'
-	 * },
-	 * additionalInformation: 'In case you need to provide some additional info for the user.'
-	 * }
+	 * The object has the following JSON structure (by default it doesn't include <code>additionalInformation</code>
+	 * and <code>header</code> sections, <code>header</code> can be added to override <code>title</code> and
+	 * <code>description</code> properties
+	 * in <code>vaadin-login-overlay</code>):
+	 *
+	 * <pre><code>    {
+	 *       header: {
+	 *         title: 'App name',
+	 *         description: 'Inspiring application description'
+	 *       },
+	 *       form: {
+	 *         title: 'Log in',
+	 *         username: 'Username',
+	 *         password: 'Password',
+	 *         submit: 'Log in',
+	 *         forgotPassword: 'Forgot password'
+	 *       },
+	 *       errorMessage: {
+	 *         title: 'Incorrect username or password',
+	 *         message: 'Check that you have entered the correct username and password and try again.'
+	 *       },
+	 *       additionalInformation: 'In case you need to provide some additional info for the user.'
+	 *     }
+	 * </code></pre>
 	 */
 	@JSProperty
 	void setI18n(LoginI18n i18n);

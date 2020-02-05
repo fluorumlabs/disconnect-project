@@ -6,12 +6,11 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import org.teavm.jso.JSProperty;
 
 /**
- * `<vaadin-number-field>` is a Web Component for number field control in forms.
- * <p>
- * ```html
- * <vaadin-number-field label="Number">
- * </vaadin-number-field>
- * ```
+ * <code>&lt;vaadin-number-field&gt;</code> is a Web Component for number field control in forms.
+ *
+ * <pre><code class="language-html">&lt;vaadin-number-field label=&quot;Number&quot;&gt;
+ * &lt;/vaadin-number-field&gt;
+ * </code></pre>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

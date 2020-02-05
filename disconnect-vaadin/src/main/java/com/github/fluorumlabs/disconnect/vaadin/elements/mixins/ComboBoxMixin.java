@@ -60,13 +60,18 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	/**
 	 * Custom function for rendering the content of every item.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The `<vaadin-combo-box-item>` internal container DOM element.
-	 * - `comboBox` The reference to the `<vaadin-combo-box>` element.
-	 * - `model` The object with the properties related with the rendered
+	 *
+	 * <ul>
+	 * <li><code>root</code> The <code>&lt;vaadin-combo-box-item&gt;</code> internal container DOM element.</li>
+	 * <li><code>comboBox</code> The reference to the <code>&lt;vaadin-combo-box&gt;</code> element.</li>
+	 * <li><code>model</code> The object with the properties related with the rendered
 	 * item, contains:
-	 * - `model.index` The index of the rendered item.
-	 * - `model.item` The item.
+	 * <ul>
+	 * <li><code>model.index</code> The index of the rendered item.</li>
+	 * <li><code>model.item</code> The item.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -75,20 +80,25 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	/**
 	 * Custom function for rendering the content of every item.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The `<vaadin-combo-box-item>` internal container DOM element.
-	 * - `comboBox` The reference to the `<vaadin-combo-box>` element.
-	 * - `model` The object with the properties related with the rendered
+	 *
+	 * <ul>
+	 * <li><code>root</code> The <code>&lt;vaadin-combo-box-item&gt;</code> internal container DOM element.</li>
+	 * <li><code>comboBox</code> The reference to the <code>&lt;vaadin-combo-box&gt;</code> element.</li>
+	 * <li><code>model</code> The object with the properties related with the rendered
 	 * item, contains:
-	 * - `model.index` The index of the rendered item.
-	 * - `model.item` The item.
+	 * <ul>
+	 * <li><code>model.index</code> The index of the rendered item.</li>
+	 * <li><code>model.item</code> The item.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setRenderer(ComboBoxRenderer<ITEM> renderer);
 
 	/**
 	 * A full set of items to filter the visible options from.
-	 * The items can be of either `String` or `Object` type.
+	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	@Nullable
 	@JSProperty
@@ -96,7 +106,7 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 
 	/**
 	 * A full set of items to filter the visible options from.
-	 * The items can be of either `String` or `Object` type.
+	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	@JSProperty
 	void setItems(@JSByRef ITEM... items);
@@ -105,18 +115,18 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	void setItems(Array<ITEM> items);
 
 	/**
-	 * If `true`, the user can input a value that is not present in the items list.
-	 * `value` property will be set to the input value in this case.
-	 * Also, when `value` is set programmatically, the input value will be set
+	 * If <code>true</code>, the user can input a value that is not present in the items list.
+	 * <code>value</code> property will be set to the input value in this case.
+	 * Also, when <code>value</code> is set programmatically, the input value will be set
 	 * to reflect that value.
 	 */
 	@JSProperty
 	boolean isAllowCustomValue();
 
 	/**
-	 * If `true`, the user can input a value that is not present in the items list.
-	 * `value` property will be set to the input value in this case.
-	 * Also, when `value` is set programmatically, the input value will be set
+	 * If <code>true</code>, the user can input a value that is not present in the items list.
+	 * <code>value</code> property will be set to the input value in this case.
+	 * Also, when <code>value</code> is set programmatically, the input value will be set
 	 * to reflect that value.
 	 */
 	@JSProperty
@@ -125,7 +135,7 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	/**
 	 * A subset of items, filtered based on the user input. Filtered items
 	 * can be assigned directly to omit the internal filtering functionality.
-	 * The items can be of either `String` or `Object` type.
+	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	@Nullable
 	@JSProperty
@@ -134,7 +144,7 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	/**
 	 * A subset of items, filtered based on the user input. Filtered items
 	 * can be assigned directly to omit the internal filtering functionality.
-	 * The items can be of either `String` or `Object` type.
+	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	@JSProperty
 	void setFilteredItems(@JSByRef ITEM... filteredItems);
@@ -143,38 +153,38 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	void setFilteredItems(Array<ITEM> filteredItems);
 
 	/**
-	 * The `String` value for the selected item of the combo box. Provides
-	 * the value for `iron-form`.
+	 * The <code>String</code> value for the selected item of the combo box. Provides
+	 * the value for <code>iron-form</code>.
 	 * <p>
 	 * When there’s no item selected, the value is an empty string.
 	 * <p>
-	 * Use `selectedItem` property to get the raw selected item from
-	 * the `items` array.
+	 * Use <code>selectedItem</code> property to get the raw selected item from
+	 * the <code>items</code> array.
 	 */
 	@Nullable
 	@JSProperty
 	String getValue();
 
 	/**
-	 * The `String` value for the selected item of the combo box. Provides
-	 * the value for `iron-form`.
+	 * The <code>String</code> value for the selected item of the combo box. Provides
+	 * the value for <code>iron-form</code>.
 	 * <p>
 	 * When there’s no item selected, the value is an empty string.
 	 * <p>
-	 * Use `selectedItem` property to get the raw selected item from
-	 * the `items` array.
+	 * Use <code>selectedItem</code> property to get the raw selected item from
+	 * the <code>items</code> array.
 	 */
 	@JSProperty
 	void setValue(String value);
 
 	/**
-	 * When set to `true`, "loading" attribute is added to host and the overlay element.
+	 * When set to <code>true</code>, &quot;loading&quot; attribute is added to host and the overlay element.
 	 */
 	@JSProperty
 	boolean isLoading();
 
 	/**
-	 * When set to `true`, "loading" attribute is added to host and the overlay element.
+	 * When set to <code>true</code>, &quot;loading&quot; attribute is added to host and the overlay element.
 	 */
 	@JSProperty
 	void setLoading(boolean loading);
@@ -193,21 +203,21 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	void setFilter(String filter);
 
 	/**
-	 * The selected item from the `items` array.
+	 * The selected item from the <code>items</code> array.
 	 */
 	@Nullable
 	@JSProperty
 	ITEM getSelectedItem();
 
 	/**
-	 * The selected item from the `items` array.
+	 * The selected item from the <code>items</code> array.
 	 */
 	@JSProperty
 	void setSelectedItem(ITEM selectedItem);
 
 	/**
-	 * Path for label of the item. If `items` is an array of objects, the
-	 * `itemLabelPath` is used to fetch the displayed string label for each
+	 * Path for label of the item. If <code>items</code> is an array of objects, the
+	 * <code>itemLabelPath</code> is used to fetch the displayed string label for each
 	 * item.
 	 * <p>
 	 * The item label is also used for matching items when processing user
@@ -221,8 +231,8 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	String getItemLabelPath();
 
 	/**
-	 * Path for label of the item. If `items` is an array of objects, the
-	 * `itemLabelPath` is used to fetch the displayed string label for each
+	 * Path for label of the item. If <code>items</code> is an array of objects, the
+	 * <code>itemLabelPath</code> is used to fetch the displayed string label for each
 	 * item.
 	 * <p>
 	 * The item label is also used for matching items when processing user
@@ -235,11 +245,11 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	void setItemLabelPath(String itemLabelPath);
 
 	/**
-	 * Path for the value of the item. If `items` is an array of objects, the
-	 * `itemValuePath:` is used to fetch the string value for the selected
+	 * Path for the value of the item. If <code>items</code> is an array of objects, the
+	 * <code>itemValuePath:</code> is used to fetch the string value for the selected
 	 * item.
 	 * <p>
-	 * The item value is used in the `value` property of the combo box,
+	 * The item value is used in the <code>value</code> property of the combo box,
 	 * to provide the form value.
 	 */
 	@Nullable
@@ -247,31 +257,31 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	String getItemValuePath();
 
 	/**
-	 * Path for the value of the item. If `items` is an array of objects, the
-	 * `itemValuePath:` is used to fetch the string value for the selected
+	 * Path for the value of the item. If <code>items</code> is an array of objects, the
+	 * <code>itemValuePath:</code> is used to fetch the string value for the selected
 	 * item.
 	 * <p>
-	 * The item value is used in the `value` property of the combo box,
+	 * The item value is used in the <code>value</code> property of the combo box,
 	 * to provide the form value.
 	 */
 	@JSProperty
 	void setItemValuePath(String itemValuePath);
 
 	/**
-	 * Path for the id of the item. If `items` is an array of objects,
-	 * the `itemIdPath` is used to compare and identify the same item
-	 * in `selectedItem` and `filteredItems` (items given by the
-	 * `dataProvider` callback).
+	 * Path for the id of the item. If <code>items</code> is an array of objects,
+	 * the <code>itemIdPath</code> is used to compare and identify the same item
+	 * in <code>selectedItem</code> and <code>filteredItems</code> (items given by the
+	 * <code>dataProvider</code> callback).
 	 */
 	@Nullable
 	@JSProperty
 	String getItemIdPath();
 
 	/**
-	 * Path for the id of the item. If `items` is an array of objects,
-	 * the `itemIdPath` is used to compare and identify the same item
-	 * in `selectedItem` and `filteredItems` (items given by the
-	 * `dataProvider` callback).
+	 * Path for the id of the item. If <code>items</code> is an array of objects,
+	 * the <code>itemIdPath</code> is used to compare and identify the same item
+	 * in <code>selectedItem</code> and <code>filteredItems</code> (items given by the
+	 * <code>dataProvider</code> callback).
 	 */
 	@JSProperty
 	void setItemIdPath(String itemIdPath);
@@ -322,16 +332,16 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	void cancel();
 
 	/**
-	 * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
+	 * Returns true if <code>value</code> is valid, and sets the <code>invalid</code> flag appropriately.
 	 *
-	 * @return True if the value is valid and sets the `invalid` flag appropriately
+	 * @return True if the value is valid and sets the <code>invalid</code> flag appropriately
 	 */
 	boolean validate();
 
 	/**
 	 * Returns true if the current input value satisfies all constraints (if any)
 	 * <p>
-	 * You can override the `checkValidity` method for custom validations.
+	 * You can override the <code>checkValidity</code> method for custom validations.
 	 */
 	boolean checkValidity();
 }

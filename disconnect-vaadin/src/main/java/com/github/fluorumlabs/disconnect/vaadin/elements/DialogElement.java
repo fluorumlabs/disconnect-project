@@ -12,57 +12,51 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-dialog>` is a Web Component for creating customized modal dialogs. The content of the
+ * <code>&lt;vaadin-dialog&gt;</code> is a Web Component for creating customized modal dialogs. The content of the
  * dialog can be populated in two ways: imperatively by using renderer callback function and
  * declaratively by using Polymer's Templates.
- * <p>
- * ### Rendering
- * <p>
+ *
+ * <h3>Rendering</h3>
  * By default, the dialog uses the content provided by using the renderer callback function.
  * <p>
- * The renderer function provides `root`, `dialog` arguments.
- * Generate DOM content, append it to the `root` element and control the state
- * of the host element by accessing `dialog`. Before generating new content,
- * users are able to check if there is already content in `root` for reusing it.
- * <p>
- * ```html
- * <vaadin-dialog id="dialog"></vaadin-dialog>
- * ```
- * ```js
- * const dialog = document.querySelector('#dialog');
+ * The renderer function provides <code>root</code>, <code>dialog</code> arguments.
+ * Generate DOM content, append it to the <code>root</code> element and control the state
+ * of the host element by accessing <code>dialog</code>. Before generating new content,
+ * users are able to check if there is already content in <code>root</code> for reusing it.
+ *
+ * <pre><code class="language-html">&lt;vaadin-dialog id=&quot;dialog&quot;&gt;&lt;/vaadin-dialog&gt;
+ * </code></pre>
+ * <pre><code class="language-js">const dialog = document.querySelector('#dialog');
  * dialog.renderer = function(root, dialog) {
- * root.textContent = "Sample dialog";
+ *   root.textContent = &quot;Sample dialog&quot;;
  * };
- * ```
- * <p>
+ * </code></pre>
  * Renderer is called on the opening of the dialog.
  * DOM generated during the renderer call can be reused
- * in the next renderer call and will be provided with the `root` argument.
+ * in the next renderer call and will be provided with the <code>root</code> argument.
  * On first call it will be empty.
- * <p>
- * ### Polymer Templates
- * <p>
+ *
+ * <h3>Polymer Templates</h3>
  * Alternatively, the content can be provided with Polymer's Template.
  * Dialog finds the first child template and uses that in case renderer callback function
- * is not provided. You can also set a custom template using the `template` property.
+ * is not provided. You can also set a custom template using the <code>template</code> property.
+ *
+ * <pre><code class="language-html">&lt;vaadin-dialog opened&gt;
+ *   &lt;template&gt;
+ *     Sample dialog
+ *   &lt;/template&gt;
+ * &lt;/vaadin-dialog&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html"><code>&lt;vaadin-overlay&gt;</code> documentation</a>
+ * for <code>&lt;vaadin-dialog-overlay&gt;</code> parts.
  * <p>
- * ```html
- * <vaadin-dialog opened>
- * <template>
- * Sample dialog
- * </template>
- * </vaadin-dialog>
- * ```
+ * Note: the <code>theme</code> attribute value set on <code>&lt;vaadin-dialog&gt;</code> is
+ * propagated to the internal <code>&lt;vaadin-dialog-overlay&gt;</code> component.
  * <p>
- * ### Styling
- * <p>
- * See [`<vaadin-overlay>` documentation](https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html)
- * for `<vaadin-dialog-overlay>` parts.
- * <p>
- * Note: the `theme` attribute value set on `<vaadin-dialog>` is
- * propagated to the internal `<vaadin-dialog-overlay>` component.
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
@@ -110,9 +104,9 @@ public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyM
 	void setNoCloseOnEsc(boolean noCloseOnEsc);
 
 	/**
-	 * Set the `aria-label` attribute for assistive technologies like
-	 * screen readers. An `undefined` value for this property (the
-	 * default) means that the `aria-label` attribute is not present at
+	 * Set the <code>aria-label</code> attribute for assistive technologies like
+	 * screen readers. An <code>undefined</code> value for this property (the
+	 * default) means that the <code>aria-label</code> attribute is not present at
 	 * all.
 	 */
 	@Nullable
@@ -120,9 +114,9 @@ public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyM
 	String getAriaLabel();
 
 	/**
-	 * Set the `aria-label` attribute for assistive technologies like
-	 * screen readers. An `undefined` value for this property (the
-	 * default) means that the `aria-label` attribute is not present at
+	 * Set the <code>aria-label</code> attribute for assistive technologies like
+	 * screen readers. An <code>undefined</code> value for this property (the
+	 * default) means that the <code>aria-label</code> attribute is not present at
 	 * all.
 	 */
 	@JSProperty
@@ -144,9 +138,11 @@ public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyM
 	/**
 	 * Custom function for rendering the content of the dialog.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The root container DOM element. Append your content to it.
-	 * - `dialog` The reference to the `<vaadin-dialog>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The root container DOM element. Append your content to it.</li>
+	 * <li><code>dialog</code> The reference to the <code>&lt;vaadin-dialog&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -155,9 +151,11 @@ public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyM
 	/**
 	 * Custom function for rendering the content of the dialog.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The root container DOM element. Append your content to it.
-	 * - `dialog` The reference to the `<vaadin-dialog>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The root container DOM element. Append your content to it.</li>
+	 * <li><code>dialog</code> The reference to the <code>&lt;vaadin-dialog&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setRenderer(DialogRenderer renderer);

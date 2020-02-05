@@ -9,17 +9,16 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-grid-tree-column>` is a helper element for the `<vaadin-grid>`
+ * <code>&lt;vaadin-grid-tree-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code>
  * that provides default template and functionality for toggling tree/hierarchical items.
- * <p>
- * #### Example:
- * ```html
- * <vaadin-grid items="[[items]]">
- * <vaadin-grid-tree-column path="name.first"></vaadin-grid-tree-column>
- * <p>
- * <vaadin-grid-column>
- * ...
- * ```
+ *
+ * <h4>Example:</h4>
+ * <pre><code class="language-html">&lt;vaadin-grid items=&quot;[[items]]&quot;&gt;
+ *  &lt;vaadin-grid-tree-column path=&quot;name.first&quot;&gt;&lt;/vaadin-grid-tree-column&gt;
+ *
+ *  &lt;vaadin-grid-column&gt;
+ *    ...
+ * </code></pre>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

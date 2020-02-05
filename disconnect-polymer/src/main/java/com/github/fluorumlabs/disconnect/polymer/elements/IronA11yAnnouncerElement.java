@@ -18,18 +18,18 @@ import javax.annotation.Nullable;
 )
 public interface IronA11yAnnouncerElement extends HTMLElement {
 	/**
-	 * The value of mode is used to set the `aria-live` attribute
-	 * for the element that will be announced. Valid values are: `off`,
-	 * `polite` and `assertive`.
+	 * The value of mode is used to set the <code>aria-live</code> attribute
+	 * for the element that will be announced. Valid values are: <code>off</code>,
+	 * <code>polite</code> and <code>assertive</code>.
 	 */
 	@Nullable
 	@JSProperty
 	String getMode();
 
 	/**
-	 * The value of mode is used to set the `aria-live` attribute
-	 * for the element that will be announced. Valid values are: `off`,
-	 * `polite` and `assertive`.
+	 * The value of mode is used to set the <code>aria-live</code> attribute
+	 * for the element that will be announced. Valid values are: <code>off</code>,
+	 * <code>polite</code> and <code>assertive</code>.
 	 */
 	@JSProperty
 	void setMode(String mode);

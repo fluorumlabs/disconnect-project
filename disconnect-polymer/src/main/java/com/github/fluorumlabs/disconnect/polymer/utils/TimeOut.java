@@ -44,9 +44,9 @@ public interface TimeOut extends Any {
 	}
 
 	/**
-	 * Cancels a previously enqueued `timeOut` callback.
+	 * Cancels a previously enqueued <code>timeOut</code> callback.
 	 *
-	 * @param handle Handle returned from `run` of callback to cancel
+	 * @param handle Handle returned from <code>run</code> of callback to cancel
 	 */
 	@JSBody(params = "handle", script = "timeOut.cancel(handle)")
 	static void cancel(Handle handle) {

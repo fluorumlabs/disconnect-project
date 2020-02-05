@@ -9,17 +9,17 @@ import js.web.dom.Event;
 import javax.annotation.Nullable;
 
 /**
- * `iron-media-query` can be used to data bind to a CSS media query.
- * The `query` property is a bare CSS media query.
- * The `query-matches` property is a boolean representing whether the page matches
+ * <code>iron-media-query</code> can be used to data bind to a CSS media query.
+ * The <code>query</code> property is a bare CSS media query.
+ * The <code>query-matches</code> property is a boolean representing whether the page matches
  * that media query.
  * <p>
  * Example:
- * <p>
- * ```html
- * <iron-media-query query="(min-width: 600px)" query-matches="{{queryMatches}}">
- * </iron-media-query>
- * ```
+ *
+ * <pre><code class="language-html">&lt;iron-media-query query=&quot;(min-width: 600px)&quot; query-matches=&quot;{{
+ * queryMatches}}&quot;&gt;
+ * &lt;/iron-media-query&gt;
+ * </code></pre>
  */
 public class IronMediaQuery
 		extends AbstractComponent<IronMediaQueryElement> {
@@ -79,7 +79,7 @@ public class IronMediaQuery
 	}
 
 	/**
-	 * Fired when the `queryMatches` property changes.
+	 * Fired when the <code>queryMatches</code> property changes.
 	 */
 	public ObservableEvent<Event> QueryMatchesChangedEvent() {
 		return createEvent("query-matches-changed");

@@ -17,96 +17,103 @@ import js.web.dom.Event;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-select>` is a Web Component for selecting values from a list of items. The content of the
+ * <code>&lt;vaadin-select&gt;</code> is a Web Component for selecting values from a list of items. The content of the
  * the select can be populated in two ways: imperatively by using renderer callback function and
  * declaratively by using Polymer's Templates.
- * <p>
- * ### Rendering
- * <p>
+ *
+ * <h3>Rendering</h3>
  * By default, the select uses the content provided by using the renderer callback function.
  * <p>
- * The renderer function provides `root`, `select` arguments.
- * Generate DOM content, append it to the `root` element and control the state
- * of the host element by accessing `select`.
- * <p>
- * ```html
- * <vaadin-select id="select"></vaadin-select>
- * ```
- * ```js
- * const select = document.querySelector('#select');
+ * The renderer function provides <code>root</code>, <code>select</code> arguments.
+ * Generate DOM content, append it to the <code>root</code> element and control the state
+ * of the host element by accessing <code>select</code>.
+ *
+ * <pre><code class="language-html">&lt;vaadin-select id=&quot;select&quot;&gt;&lt;/vaadin-select&gt;
+ * </code></pre>
+ * <pre><code class="language-js">const select = document.querySelector('#select');
  * select.renderer = function(root, select) {
- * const listBox = document.createElement('vaadin-list-box');
- * // append 3 <vaadin-item> elements
- * ['Jose', 'Manolo', 'Pedro'].forEach(function(name) {
- * const item = document.createElement('vaadin-item');
- * item.textContent = name;
- * listBox.appendChild(item);
- * });
- * <p>
- * // update the content
- * root.appendChild(listBox);
+ *   const listBox = document.createElement('vaadin-list-box');
+ *   // append 3 &lt;vaadin-item&gt; elements
+ *   ['Jose', 'Manolo', 'Pedro'].forEach(function(name) {
+ *     const item = document.createElement('vaadin-item');
+ *     item.textContent = name;
+ *     listBox.appendChild(item);
+ *   });
+ *
+ *   // update the content
+ *   root.appendChild(listBox);
  * };
- * ```
- * <p>
+ * </code></pre>
  * Renderer is called on initialization of new select and on its opening.
  * DOM generated during the renderer call can be reused
- * in the next renderer call and will be provided with the `root` argument.
+ * in the next renderer call and will be provided with the <code>root</code> argument.
  * On first call it will be empty.
- * <p>
- * ### Polymer Templates
- * <p>
+ *
+ * <h3>Polymer Templates</h3>
  * Alternatively, the content can be provided with Polymer's Template.
  * Select finds the first child template and uses that in case renderer callback function
- * is not provided. You can also set a custom template using the `template` property.
- * <p>
- * ```
- * <vaadin-select>
- * <template>
- * <vaadin-list-box>
- * <vaadin-item label="foo">Foo</vaadin-item>
- * <vaadin-item>Bar</vaadin-item>
- * <vaadin-item>Baz</vaadin-item>
- * </vaadin-list-box>
- * </template>
- * </vaadin-select>
- * ```
- * <p>
- * Hint: By setting the `label` property of inner vaadin-items you will
+ * is not provided. You can also set a custom template using the <code>template</code> property.
+ *
+ * <pre><code>&lt;vaadin-select&gt;
+ *   &lt;template&gt;
+ *     &lt;vaadin-list-box&gt;
+ *       &lt;vaadin-item label=&quot;foo&quot;&gt;Foo&lt;/vaadin-item&gt;
+ *       &lt;vaadin-item&gt;Bar&lt;/vaadin-item&gt;
+ *       &lt;vaadin-item&gt;Baz&lt;/vaadin-item&gt;
+ *     &lt;/vaadin-list-box&gt;
+ *   &lt;/template&gt;
+ * &lt;/vaadin-select&gt;
+ * </code></pre>
+ * Hint: By setting the <code>label</code> property of inner vaadin-items you will
  * be able to change the visual representation of the selected value in the input part.
- * <p>
- * ### Styling
- * <p>
+ *
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `toggle-button` | The toggle button
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>toggle-button</code></td><td>The toggle button</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>opened</code></td><td>Set when the select is open</td><td>:host</td></tr>
+ * <tr><td><code>invalid</code></td><td>Set when the element is invalid</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the element is focused</td><td>:host</td></tr>
+ * <tr><td><code>focus-ring</code></td><td>Set when the element is keyboard focused</td><td>:host</td></tr>
+ * <tr><td><code>readonly</code></td><td>Set when the select is read only</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * <code>&lt;vaadin-select&gt;</code> element sets these custom CSS properties:
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Property name</th><th>Description</th><th>Theme for element</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>--vaadin-select-text-field-width</code></td><td>Width of the select text
+ * field</td><td><code>vaadin-select-overlay</code></td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  * <p>
- * Attribute    | Description | Part name
- * -------------|-------------|------------
- * `opened` | Set when the select is open | :host
- * `invalid` | Set when the element is invalid | :host
- * `focused` | Set when the element is focused | :host
- * `focus-ring` | Set when the element is keyboard focused | :host
- * `readonly` | Set when the select is read only | :host
- * <p>
- * `<vaadin-select>` element sets these custom CSS properties:
- * <p>
- * Property name | Description | Theme for element
- * --- | --- | ---
- * `--vaadin-select-text-field-width` | Width of the select text field | `vaadin-select-overlay`
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
- * <p>
- * In addition to `<vaadin-select>` itself, the following internal
+ * In addition to <code>&lt;vaadin-select&gt;</code> itself, the following internal
  * components are themable:
- * <p>
- * - `<vaadin-select-text-field>`
- * - `<vaadin-select-overlay>`
- * <p>
- * Note: the `theme` attribute value set on `<vaadin-select>` is
+ *
+ * <ul>
+ * <li><code>&lt;vaadin-select-text-field&gt;</code></li>
+ * <li><code>&lt;vaadin-select-overlay&gt;</code></li>
+ * </ul>
+ * Note: the <code>theme</code> attribute value set on <code>&lt;vaadin-select&gt;</code> is
  * propagated to the internal themable components listed above.
  */
 public class VaadinSelect extends AbstractComponent<SelectElement>
@@ -134,12 +141,14 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 	}
 
 	/**
-	 * Custom function for rendering the content of the `<vaadin-select>`.
+	 * Custom function for rendering the content of the <code>&lt;vaadin-select&gt;</code>.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The `<vaadin-select-overlay>` internal container
-	 * DOM element. Append your content to it.
-	 * - `select` The reference to the `<vaadin-select>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The <code>&lt;vaadin-select-overlay&gt;</code> internal container
+	 * DOM element. Append your content to it.</li>
+	 * <li><code>select</code> The reference to the <code>&lt;vaadin-select&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@Nullable
 	public SelectRenderer renderer() {
@@ -147,12 +156,14 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 	}
 
 	/**
-	 * Custom function for rendering the content of the `<vaadin-select>`.
+	 * Custom function for rendering the content of the <code>&lt;vaadin-select&gt;</code>.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The `<vaadin-select-overlay>` internal container
-	 * DOM element. Append your content to it.
-	 * - `select` The reference to the `<vaadin-select>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The <code>&lt;vaadin-select-overlay&gt;</code> internal container
+	 * DOM element. Append your content to it.</li>
+	 * <li><code>select</code> The reference to the <code>&lt;vaadin-select&gt;</code> element.</li>
+	 * </ul>
 	 */
 	public VaadinSelect renderer(SelectRenderer renderer) {
 		getNode().setRenderer(renderer);
@@ -192,7 +203,7 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 	}
 
 	/**
-	 * It stores the the `value` property of the selected item, providing the
+	 * It stores the the <code>value</code> property of the selected item, providing the
 	 * value for iron-form.
 	 * When there’s an item selected, it's the value of that item, otherwise
 	 * it's an empty string.
@@ -210,7 +221,7 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 	}
 
 	/**
-	 * It stores the the `value` property of the selected item, providing the
+	 * It stores the the <code>value</code> property of the selected item, providing the
 	 * value for iron-form.
 	 * When there’s an item selected, it's the value of that item, otherwise
 	 * it's an empty string.
@@ -320,9 +331,9 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 	}
 
 	/**
-	 * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
+	 * Returns true if <code>value</code> is valid, and sets the <code>invalid</code> flag appropriately.
 	 *
-	 * @return True if the value is valid and sets the `invalid` flag appropriately
+	 * @return True if the value is valid and sets the <code>invalid</code> flag appropriately
 	 */
 	public boolean validate() {
 		return getNode().validate();
@@ -336,21 +347,21 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 	}
 
 	/**
-	 * Fired when the `opened` property changes.
+	 * Fired when the <code>opened</code> property changes.
 	 */
 	public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
 		return createEvent("opened-changed");
 	}
 
 	/**
-	 * Fired when the `value` property changes.
+	 * Fired when the <code>value</code> property changes.
 	 */
 	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
 		return createEvent("value-changed");
 	}
 
 	/**
-	 * Fired when the `invalid` property changes.
+	 * Fired when the <code>invalid</code> property changes.
 	 */
 	public ObservableEvent<BooleanPropertyChangeEvent> InvalidChangedEvent() {
 		return createEvent("invalid-changed");

@@ -9,17 +9,21 @@ import js.web.dom.Element;
 
 /**
  * The container element for the notification
- * <p>
- * ### Styling
- * <p>
+ *
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `overlay` | The notification container
- * `content` | The content of the notification
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>overlay</code></td><td>The notification container</td></tr>
+ * <tr><td><code>content</code></td><td>The content of the notification</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinNotificationCard extends AbstractComponent<NotificationCard>
 		implements HasThemableMixin<NotificationCard, VaadinNotificationCard>,

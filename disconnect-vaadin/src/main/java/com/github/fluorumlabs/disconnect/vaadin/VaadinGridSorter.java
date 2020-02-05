@@ -11,34 +11,41 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-grid-sorter>` is a helper element for the `<vaadin-grid>` that provides out-of-the-box UI controls,
+ * <code>&lt;vaadin-grid-sorter&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code> that provides
+ * out-of-the-box UI controls,
  * visual feedback, and handlers for sorting the grid data.
- * <p>
- * #### Example:
- * ```html
- * <vaadin-grid-column>
- * <template class="header">
- * <vaadin-grid-sorter path="name.first">First name</vaadin-grid-sorter>
- * </template>
- * <template>[[item.name.first]]</template>
- * </vaadin-grid-column>
- * ```
- * <p>
- * ### Styling
- * <p>
+ *
+ * <h4>Example:</h4>
+ * <pre><code class="language-html">&lt;vaadin-grid-column&gt;
+ *   &lt;template class=&quot;header&quot;&gt;
+ *     &lt;vaadin-grid-sorter path=&quot;name.first&quot;&gt;First name&lt;/vaadin-grid-sorter&gt;
+ *   &lt;/template&gt;
+ *   &lt;template&gt;[[item.name.first]]&lt;/template&gt;
+ * &lt;/vaadin-grid-column&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `content` | The slotted content wrapper
- * `indicators` | The internal sorter indicators.
- * `order` | The internal sorter order
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>content</code></td><td>The slotted content wrapper</td></tr>
+ * <tr><td><code>indicators</code></td><td>The internal sorter indicators.</td></tr>
+ * <tr><td><code>order</code></td><td>The internal sorter order</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute    | Description | Part name
- * -------------|-------------|------------
- * `direction` | Sort direction of a sorter | :host
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>direction</code></td><td>Sort direction of a sorter</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
  */
 public class VaadinGridSorter extends AbstractComponent<GridSorterElement>
 		implements HasComponents<GridSorterElement, VaadinGridSorter, Component<?>> {
@@ -64,8 +71,8 @@ public class VaadinGridSorter extends AbstractComponent<GridSorterElement>
 
 	/**
 	 * How to sort the data.
-	 * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
-	 * descending direction, or `null` for not sorting the data.
+	 * Possible values are <code>asc</code> to use an ascending algorithm, <code>desc</code> to sort the data in
+	 * descending direction, or <code>null</code> for not sorting the data.
 	 */
 	@Nullable
 	public SortDirection direction() {
@@ -74,8 +81,8 @@ public class VaadinGridSorter extends AbstractComponent<GridSorterElement>
 
 	/**
 	 * How to sort the data.
-	 * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
-	 * descending direction, or `null` for not sorting the data.
+	 * Possible values are <code>asc</code> to use an ascending algorithm, <code>desc</code> to sort the data in
+	 * descending direction, or <code>null</code> for not sorting the data.
 	 */
 	public VaadinGridSorter direction(SortDirection direction) {
 		getNode().setDirection(direction);
@@ -83,7 +90,7 @@ public class VaadinGridSorter extends AbstractComponent<GridSorterElement>
 	}
 
 	/**
-	 * Fired when the `direction` property changes.
+	 * Fired when the <code>direction</code> property changes.
 	 */
 	public ObservableEvent<PropertyChangeEvent<SortDirection>> directionChangedEvent() {
 		return createEvent("direction-changed");

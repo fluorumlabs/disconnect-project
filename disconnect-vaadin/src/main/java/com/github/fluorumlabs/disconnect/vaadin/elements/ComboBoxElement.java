@@ -12,160 +12,167 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-combo-box>` is a combo box element combining a dropdown list with an
+ * <code>&lt;vaadin-combo-box&gt;</code> is a combo box element combining a dropdown list with an
  * input field for filtering the list of items. If you want to replace the default
  * input field with a custom implementation, you should use the
- * [`<vaadin-combo-box-light>`](#/elements/vaadin-combo-box-light) element.
+ * <a href="#/elements/vaadin-combo-box-light"><code>&lt;vaadin-combo-box-light&gt;</code></a> element.
  * <p>
- * Items in the dropdown list must be provided as a list of `String` values.
- * Defining the items is done using the `items` property, which can be assigned
+ * Items in the dropdown list must be provided as a list of <code>String</code> values.
+ * Defining the items is done using the <code>items</code> property, which can be assigned
  * with data-binding, using an attribute or directly with the JavaScript property.
+ *
+ * <pre><code class="language-html">&lt;vaadin-combo-box
+ *     label=&quot;Fruit&quot;
+ *     items=&quot;[[data]]&quot;&gt;
+ * &lt;/vaadin-combo-box&gt;
+ * </code></pre>
+ * <pre><code class="language-js">combobox.items = ['apple', 'orange', 'banana'];
+ * </code></pre>
+ * When the selected <code>value</code> is changed, a <code>value-changed</code> event is triggered.
  * <p>
- * ```html
- * <vaadin-combo-box
- * label="Fruit"
- * items="[[data]]">
- * </vaadin-combo-box>
- * ```
+ * This element can be used within an <code>iron-form</code>.
+ *
+ * <h3>Item rendering</h3>
+ * <code>&lt;vaadin-combo-box&gt;</code> supports using custom renderer callback function for defining the
+ * content of <code>&lt;vaadin-combo-box-item&gt;</code>.
  * <p>
- * ```js
- * combobox.items = ['apple', 'orange', 'banana'];
- * ```
- * <p>
- * When the selected `value` is changed, a `value-changed` event is triggered.
- * <p>
- * This element can be used within an `iron-form`.
- * <p>
- * ### Item rendering
- * <p>
- * `<vaadin-combo-box>` supports using custom renderer callback function for defining the
- * content of `<vaadin-combo-box-item>`.
- * <p>
- * The renderer function provides `root`, `comboBox`, `model` arguments when applicable.
- * Generate DOM content by using `model` object properties if needed, append it to the `root`
- * element and control the state of the host element by accessing `comboBox`. Before generating new
- * content, users are able to check if there is already content in `root` for reusing it.
- * <p>
- * ```html
- * <vaadin-combo-box id="combo-box"></vaadin-combo-box>
- * ```
- * ```js
- * const comboBox = document.querySelector('#combo-box');
+ * The renderer function provides <code>root</code>, <code>comboBox</code>, <code>model</code> arguments when
+ * applicable.
+ * Generate DOM content by using <code>model</code> object properties if needed, append it to the <code>root</code>
+ * element and control the state of the host element by accessing <code>comboBox</code>. Before generating new
+ * content, users are able to check if there is already content in <code>root</code> for reusing it.
+ *
+ * <pre><code class="language-html">&lt;vaadin-combo-box id=&quot;combo-box&quot;&gt;&lt;/vaadin-combo-box&gt;
+ * </code></pre>
+ * <pre><code class="language-js">const comboBox = document.querySelector('#combo-box');
  * comboBox.items = [{'label': 'Hydrogen', 'value': 'H'}];
  * comboBox.renderer = function(root, comboBox, model) {
- * root.innerHTML = model.index + ': ' +
- * model.item.label + ' ' +
- * '<b>' + model.item.value + '</b>';
+ *   root.innerHTML = model.index + ': ' +
+ *                    model.item.label + ' ' +
+ *                    '&lt;b&gt;' + model.item.value + '&lt;/b&gt;';
  * };
- * ```
- * <p>
+ * </code></pre>
  * Renderer is called on the opening of the combo-box and each time the related model is updated.
  * DOM generated during the renderer call can be reused
- * in the next renderer call and will be provided with the `root` argument.
+ * in the next renderer call and will be provided with the <code>root</code> argument.
  * On first call it will be empty.
- * <p>
- * ### Item Template
- * <p>
- * Alternatively, the content of the `<vaadin-combo-box-item>` can be populated by using
+ *
+ * <h3>Item Template</h3>
+ * Alternatively, the content of the <code>&lt;vaadin-combo-box-item&gt;</code> can be populated by using
  * custom item template provided in the light DOM:
- * <p>
- * ```html
- * <vaadin-combo-box items='[{"label": "Hydrogen", "value": "H"}]'>
- * <template>
- * [[index]]: [[item.label]] <b>[[item.value]</b>
- * </template>
- * </vaadin-combo-box>
- * ```
- * <p>
+ *
+ * <pre><code class="language-html">&lt;vaadin-combo-box items='[{&quot;label&quot;: &quot;Hydrogen&quot;, &quot;
+ * value&quot;: &quot;H&quot;}]'&gt;
+ *   &lt;template&gt;
+ *     [[index]]: [[item.label]] &lt;b&gt;[[item.value]&lt;/b&gt;
+ *   &lt;/template&gt;
+ * &lt;/vaadin-combo-box&gt;
+ * </code></pre>
  * The following properties are available for item template bindings:
- * <p>
- * Property name | Type | Description
- * --------------|------|------------
- * `index`| Number | Index of the item in the `items` array
- * `item` | String or Object | The item reference
- * `selected` | Boolean | True when item is selected
- * `focused` | Boolean | True when item is focused
- * <p>
- * ### Lazy Loading with Function Data Provider
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Property name</th><th>Type</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>index</code></td><td>Number</td><td>Index of the item in the <code>items</code> array</td></tr>
+ * <tr><td><code>item</code></td><td>String or Object</td><td>The item reference</td></tr>
+ * <tr><td><code>selected</code></td><td>Boolean</td><td>True when item is selected</td></tr>
+ * <tr><td><code>focused</code></td><td>Boolean</td><td>True when item is focused</td></tr>
+ * </tbody>
+ * </table>
+ * <h3>Lazy Loading with Function Data Provider</h3>
  * In addition to assigning an array to the items property, you can alternatively
- * provide the `<vaadin-combo-box>` data through the
- * [`dataProvider`](#/elements/vaadin-combo-box#property-dataProvider) function property.
- * The `<vaadin-combo-box>` calls this function lazily, only when it needs more data
+ * provide the <code>&lt;vaadin-combo-box&gt;</code> data through the
+ * <a href="#/elements/vaadin-combo-box#property-dataProvider"><code>dataProvider</code></a> function property.
+ * The <code>&lt;vaadin-combo-box&gt;</code> calls this function lazily, only when it needs more data
  * to be displayed.
  * <p>
- * See the [`dataProvider`](#/elements/vaadin-combo-box#property-dataProvider) in
+ * See the <a href="#/elements/vaadin-combo-box#property-dataProvider"><code>dataProvider</code></a> in
  * the API reference below for the detailed data provider arguments description,
  * and the “Lazy Loading“ example on “Basics” page in the demos.
- * <p>
- * __Note that when using function data providers, the total number of items
+ *
+ * <strong>Note that when using function data providers, the total number of items
  * needs to be set manually. The total number of items can be returned
- * in the second argument of the data provider callback:__
- * <p>
- * ```javascript
- * comboBox.dataProvider = function(params, callback) {
- * var url = 'https://api.example/data' +
- * '?page=' + params.page +        // the requested page index
- * '&per_page=' + params.pageSize; // number of items on the page
- * var xhr = new XMLHttpRequest();
- * xhr.onload = function() {
- * var response = JSON.parse(xhr.responseText);
- * callback(
- * response.employees, // requested page of items
- * response.totalSize  // total number of items
- * );
+ * in the second argument of the data provider callback:</strong>
+ *
+ * <pre><code class="language-javascript">comboBox.dataProvider = function(params, callback) {
+ *   var url = 'https://api.example/data' +
+ *       '?page=' + params.page +        // the requested page index
+ *       '&amp;per_page=' + params.pageSize; // number of items on the page
+ *   var xhr = new XMLHttpRequest();
+ *   xhr.onload = function() {
+ *     var response = JSON.parse(xhr.responseText);
+ *     callback(
+ *       response.employees, // requested page of items
+ *       response.totalSize  // total number of items
+ *     );
+ *   };
+ *   xhr.open('GET', url, true);
+ *   xhr.send();
  * };
- * xhr.open('GET', url, true);
- * xhr.send();
- * };
- * ```
- * <p>
- * ### Styling
- * <p>
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following custom properties are available for styling:
- * <p>
- * Custom property | Description | Default
- * ----------------|-------------|-------------
- * `--vaadin-combo-box-overlay-max-height` | Property that determines the max height of overlay | `65vh`
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Custom property</th><th>Description</th><th>Default</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>--vaadin-combo-box-overlay-max-height</code></td><td>Property that determines the max height of
+ * overlay</td><td><code>65vh</code></td></tr>
+ * </tbody>
+ * </table>
  * The following shadow DOM parts are available for styling:
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>text-field</code></td><td>The text field</td></tr>
+ * <tr><td><code>toggle-button</code></td><td>The toggle button</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html"><code>&lt;vaadin-overlay&gt;</code> documentation</a>
+ * for <code>&lt;vaadin-combo-box-overlay&gt;</code> parts.
  * <p>
- * Part name | Description
- * ----------------|----------------
- * `text-field` | The text field
- * `toggle-button` | The toggle button
- * <p>
- * See [`<vaadin-overlay>` documentation](https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html)
- * for `<vaadin-combo-box-overlay>` parts.
- * <p>
- * See [`<vaadin-text-field>` documentation](https://vaadin.com/components/vaadin-text-field/html-api/elements/Vaadin
- * .TextFieldElement)
+ * See
+ * <a href="https://vaadin.com/components/vaadin-text-field/html-api/elements/Vaadin.TextFieldElement"><code>&lt;vaadin-text-field&gt;</code> documentation</a>
  * for the text field parts.
  * <p>
  * The following state attributes are available for styling:
- * <p>
- * Attribute    | Description | Part name
- * -------------|-------------|------------
- * `opened` | Set when the combo box dropdown is open | :host
- * `disabled` | Set to a disabled combo box | :host
- * `readonly` | Set to a read only combo box | :host
- * `has-value` | Set when the element has a value | :host
- * `invalid` | Set when the element is invalid | :host
- * `focused` | Set when the element is focused | :host
- * `focus-ring` | Set when the element is keyboard focused | :host
- * `loading` | Set when new items are expected | :host
- * <p>
- * In addition to `<vaadin-combo-box>` itself, the following internal
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>opened</code></td><td>Set when the combo box dropdown is open</td><td>:host</td></tr>
+ * <tr><td><code>disabled</code></td><td>Set to a disabled combo box</td><td>:host</td></tr>
+ * <tr><td><code>readonly</code></td><td>Set to a read only combo box</td><td>:host</td></tr>
+ * <tr><td><code>has-value</code></td><td>Set when the element has a value</td><td>:host</td></tr>
+ * <tr><td><code>invalid</code></td><td>Set when the element is invalid</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the element is focused</td><td>:host</td></tr>
+ * <tr><td><code>focus-ring</code></td><td>Set when the element is keyboard focused</td><td>:host</td></tr>
+ * <tr><td><code>loading</code></td><td>Set when new items are expected</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * In addition to <code>&lt;vaadin-combo-box&gt;</code> itself, the following internal
  * components are themable:
- * <p>
- * - `<vaadin-text-field>`
- * - `<vaadin-combo-box-overlay>`
- * - `<vaadin-combo-box-item>`
- * <p>
- * Note: the `theme` attribute value set on `<vaadin-combo-box>` is
+ *
+ * <ul>
+ * <li><code>&lt;vaadin-text-field&gt;</code></li>
+ * <li><code>&lt;vaadin-combo-box-overlay&gt;</code></li>
+ * <li><code>&lt;vaadin-combo-box-item&gt;</code></li>
+ * </ul>
+ * Note: the <code>theme</code> attribute value set on <code>&lt;vaadin-combo-box&gt;</code> is
  * propagated to the internal themable components listed above.
  * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
@@ -237,7 +244,7 @@ public interface ComboBoxElement<ITEM extends Any> extends HTMLElement,
 	void setPreventInvalidInput(boolean preventInvalidInput);
 
 	/**
-	 * A pattern to validate the `input` with.
+	 * A pattern to validate the <code>input</code> with.
 	 */
 	@Nullable
 	@JSProperty

@@ -16,35 +16,43 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-upload>` is a Web Component for uploading multiple files with drag and drop support.
+ * <code>&lt;vaadin-upload&gt;</code> is a Web Component for uploading multiple files with drag and drop support.
  * <p>
  * Example:
- * <p>
- * ```
- * <vaadin-upload></vaadin-upload>
- * ```
- * <p>
- * ### Styling
- * <p>
+ *
+ * <pre><code>&lt;vaadin-upload&gt;&lt;/vaadin-upload&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ---|---
- * `primary-buttons` | Upload container
- * `upload-button` | Upload button
- * `drop-label` | Label for drop indicator
- * `drop-label-icon` | Icon for drop indicator
- * `file-list` | File list container
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>primary-buttons</code></td><td>Upload container</td></tr>
+ * <tr><td><code>upload-button</code></td><td>Upload button</td></tr>
+ * <tr><td><code>drop-label</code></td><td>Label for drop indicator</td></tr>
+ * <tr><td><code>drop-label-icon</code></td><td>Icon for drop indicator</td></tr>
+ * <tr><td><code>file-list</code></td><td>File list container</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute | Description | Part name
- * ---|---|---
- * `nodrop` | Set when drag and drop is disabled (e. g., on touch devices) | `:host`
- * `dragover` | A file is being dragged over the element | `:host`
- * `dragover-valid` | A dragged file is valid with `maxFiles` and `accept` criteria | `:host`
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>nodrop</code></td><td>Set when drag and drop is disabled (e. g., on touch devices)
+ * </td><td><code>:host</code></td></tr>
+ * <tr><td><code>dragover</code></td><td>A file is being dragged over the element</td><td><code>:host</code></td></tr>
+ * <tr><td><code>dragover-valid</code></td><td>A dragged file is valid with <code>maxFiles</code> and
+ * <code>accept</code> criteria</td><td><code>:host</code></td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
@@ -77,7 +85,7 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 
 	/**
 	 * The server URL. The default value is an empty string, which means that
-	 * _window.location_ will be used.
+	 * <em>window.location</em> will be used.
 	 */
 	@Nullable
 	@JSProperty
@@ -85,7 +93,7 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 
 	/**
 	 * The server URL. The default value is an empty string, which means that
-	 * _window.location_ will be used.
+	 * <em>window.location</em> will be used.
 	 */
 	@JSProperty
 	void setTarget(String target);
@@ -106,9 +114,9 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	/**
 	 * Key-Value map to send to the server. If you set this property as an
 	 * attribute, use a valid JSON string, for example:
-	 * ```
-	 * <vaadin-upload headers='{"X-Foo": "Bar"}'></vaadin-upload>
-	 * ```
+	 *
+	 * <pre><code>&lt;vaadin-upload headers='{&quot;X-Foo&quot;: &quot;Bar&quot;}'&gt;&lt;/vaadin-upload&gt;
+	 * </code></pre>
 	 */
 	@Nullable
 	@JSProperty
@@ -117,9 +125,9 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	/**
 	 * Key-Value map to send to the server. If you set this property as an
 	 * attribute, use a valid JSON string, for example:
-	 * ```
-	 * <vaadin-upload headers='{"X-Foo": "Bar"}'></vaadin-upload>
-	 * ```
+	 *
+	 * <pre><code>&lt;vaadin-upload headers='{&quot;X-Foo&quot;: &quot;Bar&quot;}'&gt;&lt;/vaadin-upload&gt;
+	 * </code></pre>
 	 */
 	@JSProperty
 	void setHeaders(StringRecord headers);
@@ -141,24 +149,27 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	/**
 	 * The array of files being processed, or already uploaded.
 	 * <p>
-	 * Each element is a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File)
+	 * Each element is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/File"><code>File</code></a>
 	 * object with a number of extra properties  to track the upload process:
-	 * - `uploadTarget`: The target URL used to upload this file.
-	 * - `elapsed`: Elapsed time since the upload started.
-	 * - `elapsedStr`: Human-readable elapsed time.
-	 * - `remaining`: Number of seconds remaining for the upload to finish.
-	 * - `remainingStr`: Human-readable remaining time for the upload to finish.
-	 * - `progress`: Percentage of the file already uploaded.
-	 * - `speed`: Upload speed in kB/s.
-	 * - `size`: File size in bytes.
-	 * - `totalStr`: Human-readable total size of the file.
-	 * - `loaded`: Bytes transferred so far.
-	 * - `loadedStr`: Human-readable uploaded size at the moment.
-	 * - `status`: Status of the upload process.
-	 * - `error`: Error message in case the upload failed.
-	 * - `abort`: True if the file was canceled by the user.
-	 * - `complete`: True when the file was transferred to the server.
-	 * - `uploading`: True while transferring data to the server.
+	 *
+	 * <ul>
+	 * <li><code>uploadTarget</code>: The target URL used to upload this file.</li>
+	 * <li><code>elapsed</code>: Elapsed time since the upload started.</li>
+	 * <li><code>elapsedStr</code>: Human-readable elapsed time.</li>
+	 * <li><code>remaining</code>: Number of seconds remaining for the upload to finish.</li>
+	 * <li><code>remainingStr</code>: Human-readable remaining time for the upload to finish.</li>
+	 * <li><code>progress</code>: Percentage of the file already uploaded.</li>
+	 * <li><code>speed</code>: Upload speed in kB/s.</li>
+	 * <li><code>size</code>: File size in bytes.</li>
+	 * <li><code>totalStr</code>: Human-readable total size of the file.</li>
+	 * <li><code>loaded</code>: Bytes transferred so far.</li>
+	 * <li><code>loadedStr</code>: Human-readable uploaded size at the moment.</li>
+	 * <li><code>status</code>: Status of the upload process.</li>
+	 * <li><code>error</code>: Error message in case the upload failed.</li>
+	 * <li><code>abort</code>: True if the file was canceled by the user.</li>
+	 * <li><code>complete</code>: True when the file was transferred to the server.</li>
+	 * <li><code>uploading</code>: True while transferring data to the server.</li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -167,24 +178,27 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	/**
 	 * The array of files being processed, or already uploaded.
 	 * <p>
-	 * Each element is a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File)
+	 * Each element is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/File"><code>File</code></a>
 	 * object with a number of extra properties  to track the upload process:
-	 * - `uploadTarget`: The target URL used to upload this file.
-	 * - `elapsed`: Elapsed time since the upload started.
-	 * - `elapsedStr`: Human-readable elapsed time.
-	 * - `remaining`: Number of seconds remaining for the upload to finish.
-	 * - `remainingStr`: Human-readable remaining time for the upload to finish.
-	 * - `progress`: Percentage of the file already uploaded.
-	 * - `speed`: Upload speed in kB/s.
-	 * - `size`: File size in bytes.
-	 * - `totalStr`: Human-readable total size of the file.
-	 * - `loaded`: Bytes transferred so far.
-	 * - `loadedStr`: Human-readable uploaded size at the moment.
-	 * - `status`: Status of the upload process.
-	 * - `error`: Error message in case the upload failed.
-	 * - `abort`: True if the file was canceled by the user.
-	 * - `complete`: True when the file was transferred to the server.
-	 * - `uploading`: True while transferring data to the server.
+	 *
+	 * <ul>
+	 * <li><code>uploadTarget</code>: The target URL used to upload this file.</li>
+	 * <li><code>elapsed</code>: Elapsed time since the upload started.</li>
+	 * <li><code>elapsedStr</code>: Human-readable elapsed time.</li>
+	 * <li><code>remaining</code>: Number of seconds remaining for the upload to finish.</li>
+	 * <li><code>remainingStr</code>: Human-readable remaining time for the upload to finish.</li>
+	 * <li><code>progress</code>: Percentage of the file already uploaded.</li>
+	 * <li><code>speed</code>: Upload speed in kB/s.</li>
+	 * <li><code>size</code>: File size in bytes.</li>
+	 * <li><code>totalStr</code>: Human-readable total size of the file.</li>
+	 * <li><code>loaded</code>: Bytes transferred so far.</li>
+	 * <li><code>loadedStr</code>: Human-readable uploaded size at the moment.</li>
+	 * <li><code>status</code>: Status of the upload process.</li>
+	 * <li><code>error</code>: Error message in case the upload failed.</li>
+	 * <li><code>abort</code>: True if the file was canceled by the user.</li>
+	 * <li><code>complete</code>: True when the file was transferred to the server.</li>
+	 * <li><code>uploading</code>: True while transferring data to the server.</li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setFiles(@JSByRef UploadingFile... files);
@@ -218,7 +232,7 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	 * allowed) or file extensions.
 	 * Notice that MIME types are widely supported, while file extensions
 	 * are only implemented in certain browsers, so avoid using it.
-	 * Example: accept="video/*,image/tiff" or accept=".pdf,audio/mp3"
+	 * Example: accept=&quot;video/*,image/tiff&quot; or accept=&quot;.pdf,audio/mp3&quot;
 	 */
 	@Nullable
 	@JSProperty
@@ -230,7 +244,7 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	 * allowed) or file extensions.
 	 * Notice that MIME types are widely supported, while file extensions
 	 * are only implemented in certain browsers, so avoid using it.
-	 * Example: accept="video/*,image/tiff" or accept=".pdf,audio/mp3"
+	 * Example: accept=&quot;video/*,image/tiff&quot; or accept=&quot;.pdf,audio/mp3&quot;
 	 */
 	@JSProperty
 	void setAccept(String accept);
@@ -268,14 +282,14 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 
 	/**
 	 * Prevents upload(s) from immediately uploading upon adding file(s).
-	 * When set, you must manually trigger uploads using the `uploadFiles` method
+	 * When set, you must manually trigger uploads using the <code>uploadFiles</code> method
 	 */
 	@JSProperty
 	boolean isNoAuto();
 
 	/**
 	 * Prevents upload(s) from immediately uploading upon adding file(s).
-	 * When set, you must manually trigger uploads using the `uploadFiles` method
+	 * When set, you must manually trigger uploads using the <code>uploadFiles</code> method
 	 */
 	@JSProperty
 	void setNoAuto(boolean noAuto);
@@ -310,52 +324,53 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	/**
 	 * The object used to localize this component.
 	 * For changing the default localization, change the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
 	 * The object has the following JSON structure and default values:
-	 * <p>
-	 * {
-	 * dropFiles: {
-	 * one: 'Drop file here
-	 * many: 'Drop files here
-	 * },
-	 * addFiles: {
-	 * one: 'Select File...',
-	 * many: 'Upload Files...'
-	 * },
-	 * cancel: 'Cancel',
-	 * error: {
-	 * tooManyFiles: 'Too Many Files.',
-	 * fileIsTooBig: 'File is Too Big.',
-	 * incorrectFileType: 'Incorrect File Type.'
-	 * },
-	 * uploading: {
-	 * status: {
-	 * connecting: 'Connecting...',
-	 * stalled: 'Stalled.',
-	 * processing: 'Processing File...',
-	 * held: 'Queued'
-	 * },
-	 * remainingTime: {
-	 * prefix: 'remaining time: ',
-	 * unknown: 'unknown remaining time'
-	 * },
-	 * error: {
-	 * serverUnavailable: 'Server Unavailable',
-	 * unexpectedServerError: 'Unexpected Server Error',
-	 * forbidden: 'Forbidden'
-	 * }
-	 * },
-	 * units: {
-	 * size: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-	 * },
-	 * formatSize: function(bytes) {
-	 * // returns the size followed by the best suitable unit
-	 * },
-	 * formatTime: function(seconds, [secs, mins, hours]) {
-	 * // returns a 'HH:MM:SS' string
-	 * }
-	 * }
+	 *
+	 * <pre><code>  {
+	 *     dropFiles: {
+	 *     one: 'Drop file here
+	 *     many: 'Drop files here
+	 *     },
+	 *     addFiles: {
+	 *     one: 'Select File...',
+	 *     many: 'Upload Files...'
+	 *     },
+	 *     cancel: 'Cancel',
+	 *     error: {
+	 *     tooManyFiles: 'Too Many Files.',
+	 *     fileIsTooBig: 'File is Too Big.',
+	 *     incorrectFileType: 'Incorrect File Type.'
+	 *     },
+	 *     uploading: {
+	 *     status: {
+	 *       connecting: 'Connecting...',
+	 *       stalled: 'Stalled.',
+	 *       processing: 'Processing File...',
+	 *       held: 'Queued'
+	 *     },
+	 *     remainingTime: {
+	 *       prefix: 'remaining time: ',
+	 *       unknown: 'unknown remaining time'
+	 *     },
+	 *     error: {
+	 *       serverUnavailable: 'Server Unavailable',
+	 *       unexpectedServerError: 'Unexpected Server Error',
+	 *       forbidden: 'Forbidden'
+	 *     }
+	 *     },
+	 *     units: {
+	 *     size: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+	 *     },
+	 *     formatSize: function(bytes) {
+	 *     // returns the size followed by the best suitable unit
+	 *     },
+	 *     formatTime: function(seconds, [secs, mins, hours]) {
+	 *     // returns a 'HH:MM:SS' string
+	 *     }
+	 *   }
+	 * </code></pre>
 	 */
 	@Nullable
 	@JSProperty
@@ -364,52 +379,53 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	/**
 	 * The object used to localize this component.
 	 * For changing the default localization, change the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
 	 * The object has the following JSON structure and default values:
-	 * <p>
-	 * {
-	 * dropFiles: {
-	 * one: 'Drop file here
-	 * many: 'Drop files here
-	 * },
-	 * addFiles: {
-	 * one: 'Select File...',
-	 * many: 'Upload Files...'
-	 * },
-	 * cancel: 'Cancel',
-	 * error: {
-	 * tooManyFiles: 'Too Many Files.',
-	 * fileIsTooBig: 'File is Too Big.',
-	 * incorrectFileType: 'Incorrect File Type.'
-	 * },
-	 * uploading: {
-	 * status: {
-	 * connecting: 'Connecting...',
-	 * stalled: 'Stalled.',
-	 * processing: 'Processing File...',
-	 * held: 'Queued'
-	 * },
-	 * remainingTime: {
-	 * prefix: 'remaining time: ',
-	 * unknown: 'unknown remaining time'
-	 * },
-	 * error: {
-	 * serverUnavailable: 'Server Unavailable',
-	 * unexpectedServerError: 'Unexpected Server Error',
-	 * forbidden: 'Forbidden'
-	 * }
-	 * },
-	 * units: {
-	 * size: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-	 * },
-	 * formatSize: function(bytes) {
-	 * // returns the size followed by the best suitable unit
-	 * },
-	 * formatTime: function(seconds, [secs, mins, hours]) {
-	 * // returns a 'HH:MM:SS' string
-	 * }
-	 * }
+	 *
+	 * <pre><code>  {
+	 *     dropFiles: {
+	 *     one: 'Drop file here
+	 *     many: 'Drop files here
+	 *     },
+	 *     addFiles: {
+	 *     one: 'Select File...',
+	 *     many: 'Upload Files...'
+	 *     },
+	 *     cancel: 'Cancel',
+	 *     error: {
+	 *     tooManyFiles: 'Too Many Files.',
+	 *     fileIsTooBig: 'File is Too Big.',
+	 *     incorrectFileType: 'Incorrect File Type.'
+	 *     },
+	 *     uploading: {
+	 *     status: {
+	 *       connecting: 'Connecting...',
+	 *       stalled: 'Stalled.',
+	 *       processing: 'Processing File...',
+	 *       held: 'Queued'
+	 *     },
+	 *     remainingTime: {
+	 *       prefix: 'remaining time: ',
+	 *       unknown: 'unknown remaining time'
+	 *     },
+	 *     error: {
+	 *       serverUnavailable: 'Server Unavailable',
+	 *       unexpectedServerError: 'Unexpected Server Error',
+	 *       forbidden: 'Forbidden'
+	 *     }
+	 *     },
+	 *     units: {
+	 *     size: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+	 *     },
+	 *     formatSize: function(bytes) {
+	 *     // returns the size followed by the best suitable unit
+	 *     },
+	 *     formatTime: function(seconds, [secs, mins, hours]) {
+	 *     // returns a 'HH:MM:SS' string
+	 *     }
+	 *   }
+	 * </code></pre>
 	 */
 	@JSProperty
 	void setI18n(UploadI18n i18n);

@@ -5,12 +5,11 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 
 /**
- * `<vaadin-integer-field>` is a Web Component for integer field control in forms.
- * <p>
- * ```html
- * <vaadin-integer-field label="Number">
- * </vaadin-integer-field>
- * ```
+ * <code>&lt;vaadin-integer-field&gt;</code> is a Web Component for integer field control in forms.
+ *
+ * <pre><code class="language-html">&lt;vaadin-integer-field label=&quot;Number&quot;&gt;
+ * &lt;/vaadin-integer-field&gt;
+ * </code></pre>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

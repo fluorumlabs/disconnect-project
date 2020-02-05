@@ -13,16 +13,16 @@ import javax.annotation.Nullable;
 
 /**
  * Element mixin for recording dynamic associations between item paths in a
- * master `items` array and a `selected` array such that path changes to the
+ * master <code>items</code> array and a <code>selected</code> array such that path changes to the
  * master array (at the host) element or elsewhere via data-binding) are
  * correctly propagated to items in the selected array and vice-versa.
  * <p>
- * The `items` property accepts an array of user data, and via the
- * `select(item)` and `deselect(item)` API, updates the `selected` property
+ * The <code>items</code> property accepts an array of user data, and via the
+ * <code>select(item)</code> and <code>deselect(item)</code> API, updates the <code>selected</code> property
  * which may be bound to other parts of the application, and any changes to
- * sub-fields of `selected` item(s) will be kept in sync with items in the
- * `items` array.  When `multi` is false, `selected` is a property
- * representing the last selected item.  When `multi` is true, `selected`
+ * sub-fields of <code>selected</code> item(s) will be kept in sync with items in the
+ * <code>items</code> array.  When <code>multi</code> is false, <code>selected</code> is a property
+ * representing the last selected item.  When <code>multi</code> is true, <code>selected</code>
  * is an array of multiply selected items.
  */
 @NpmPackage(
@@ -51,24 +51,25 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	void setItems(Array<T> items);
 
 	/**
-	 * When `true`, multiple items may be selected at once (in this case,
-	 * `selected` is an array of currently selected items).  When `false`,
+	 * When <code>true</code>, multiple items may be selected at once (in this case,
+	 * <code>selected</code> is an array of currently selected items).  When <code>false</code>,
 	 * only one item may be selected at a time.
 	 */
 	@JSProperty
 	boolean isMulti();
 
 	/**
-	 * When `true`, multiple items may be selected at once (in this case,
-	 * `selected` is an array of currently selected items).  When `false`,
+	 * When <code>true</code>, multiple items may be selected at once (in this case,
+	 * <code>selected</code> is an array of currently selected items).  When <code>false</code>,
 	 * only one item may be selected at a time.
 	 */
 	@JSProperty
 	void setMulti(boolean multi);
 
 	/**
-	 * When `multi` is true, this is an array that contains any selected.
-	 * When `multi` is false, this is the currently selected item, or `null`
+
+	 * When <code>multi</code> is true, this is an array that contains any selected.
+	 * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
 	 * if no item is selected.
 	 */
 	@JSBody(script = "var result = this.selected; \n" +
@@ -80,8 +81,9 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	Array<T> getSelected();
 
 	/**
-	 * When `multi` is true, this is an array that contains any selected.
-	 * When `multi` is false, this is the currently selected item, or `null`
+
+	 * When <code>multi</code> is true, this is an array that contains any selected.
+	 * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
 	 * if no item is selected.
 	 */
 	@JSProperty
@@ -94,7 +96,8 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	void setSelected(Array<T> selected);
 
 	/**
-	 * When `multi` is false, this is the currently selected item, or `null`
+
+	 * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
 	 * if no item is selected.
 	 */
 	@Nullable
@@ -102,21 +105,22 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	T getSelectedItem();
 
 	/**
-	 * When `multi` is false, this is the currently selected item, or `null`
+	 * FIXME type ?Object
+	 * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
 	 * if no item is selected.
 	 */
 	@JSProperty
 	void setSelectedItem(T selectedItem);
 
 	/**
-	 * When `true`, calling `select` on an item that is already selected
+	 * When <code>true</code>, calling <code>select</code> on an item that is already selected
 	 * will deselect the item.
 	 */
 	@JSProperty
 	boolean isToggle();
 
 	/**
-	 * When `true`, calling `select` on an item that is already selected
+	 * When <code>true</code>, calling <code>select</code> on an item that is already selected
 	 * will deselect the item.
 	 */
 	@JSProperty
@@ -130,7 +134,7 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	/**
 	 * Returns whether the item is currently selected.
 	 *
-	 * @param item Item from `items` array to test
+	 * @param item Item from <code>items</code> array to test
 	 *
 	 * @return Whether the item is selected
 	 */
@@ -139,7 +143,7 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	/**
 	 * Returns whether the item is currently selected.
 	 *
-	 * @param idx Index from `items` array to test
+	 * @param idx Index from <code>items</code> array to test
 	 *
 	 * @return Whether the item is selected
 	 */
@@ -148,30 +152,30 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	/**
 	 * Deselects the given item if it is already selected.
 	 *
-	 * @param item Item from `items` array to deselect
+	 * @param item Item from <code>items</code> array to deselect
 	 */
 	void deselect(T item);
 
 	/**
 	 * Deselects the given index if it is already selected.
 	 *
-	 * @param idx Index from `items` array to deselect
+	 * @param idx Index from <code>items</code> array to deselect
 	 */
 	void deselectIndex(int idx);
 
 	/**
-	 * Selects the given item.  When `toggle` is true, this will automatically
+	 * Selects the given item.  When <code>toggle</code> is true, this will automatically
 	 * deselect the item if already selected.
 	 *
-	 * @param item Item from `items` array to select
+	 * @param item Item from <code>items</code> array to select
 	 */
 	void select(T item);
 
 	/**
-	 * Selects the given index.  When `toggle` is true, this will automatically
+	 * Selects the given index.  When <code>toggle</code> is true, this will automatically
 	 * deselect the item if already selected.
 	 *
-	 * @param idx Index from `items` array to select
+	 * @param idx Index from <code>items</code> array to select
 	 */
 	void selectIndex(int idx);
 }

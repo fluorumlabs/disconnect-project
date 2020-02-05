@@ -9,26 +9,30 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ThemableMixin;
 import js.web.dom.HTMLElement;
 
 /**
- * `<vaadin-tab>` is a Web Component providing an accessible and customizable tab.
- * <p>
- * ```
- * <vaadin-tab>
- * Tab 1
- * </vaadin-tab>
- * ```
- * <p>
+ * <code>&lt;vaadin-tab&gt;</code> is a Web Component providing an accessible and customizable tab.
+ *
+ * <pre><code>  &lt;vaadin-tab&gt;
+ *     Tab 1
+ *   &lt;/vaadin-tab&gt;
+ * </code></pre>
  * The following state attributes are available for styling:
- * <p>
- * Attribute  | Description | Part name
- * -----------|-------------|------------
- * `disabled` | Set to a disabled tab | :host
- * `focused` | Set when the element is focused | :host
- * `focus-ring` | Set when the element is keyboard focused | :host
- * `selected` | Set when the tab is selected | :host
- * `active` | Set when mousedown or enter/spacebar pressed | :host
- * `orientation` | Set to `horizontal` or `vertical` depending on the direction of items  | :host
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>disabled</code></td><td>Set to a disabled tab</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the element is focused</td><td>:host</td></tr>
+ * <tr><td><code>focus-ring</code></td><td>Set when the element is keyboard focused</td><td>:host</td></tr>
+ * <tr><td><code>selected</code></td><td>Set when the tab is selected</td><td>:host</td></tr>
+ * <tr><td><code>active</code></td><td>Set when mousedown or enter/spacebar pressed</td><td>:host</td></tr>
+ * <tr><td><code>orientation</code></td><td>Set to <code>horizontal</code> or <code>vertical</code> depending on the
+ * direction of items</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

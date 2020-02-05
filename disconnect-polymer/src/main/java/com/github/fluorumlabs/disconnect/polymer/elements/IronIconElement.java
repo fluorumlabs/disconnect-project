@@ -9,66 +9,71 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * The `iron-icon` element displays an icon. By default an icon renders as a 24px
+ * The <code>iron-icon</code> element displays an icon. By default an icon renders as a 24px
  * square.
  * <p>
  * Example using src:
- * <p>
- * <iron-icon src="star.png"></iron-icon>
- * <p>
- * Example setting size to 32px x 32px:
- * <p>
- * <iron-icon class="big" src="big_star.png"></iron-icon>
  *
- * <style is="custom-style">
+ * <pre><code>&lt;iron-icon src=&quot;star.png&quot;&gt;&lt;/iron-icon&gt;
+ * </code></pre>
+ * Example setting size to 32px x 32px:
+ *
+ * <pre><code>&lt;iron-icon class=&quot;big&quot; src=&quot;big_star.png&quot;&gt;&lt;/iron-icon&gt;
+ *
+ * &lt;style is=&quot;custom-style&quot;&gt;
  * .big {
  * --iron-icon-height: 32px;
  * --iron-icon-width: 32px;
  * }
- * </style>
- * <p>
+ * &lt;/style&gt;
+ * </code></pre>
  * The iron elements include several sets of icons. To use the default set of
- * icons, import `iron-icons.js` and use the `icon` attribute to specify an icon:
+ * icons, import <code>iron-icons.js</code> and use the <code>icon</code> attribute to specify an icon:
  *
- * <script type="module">
- * import "@polymer/iron-icons/iron-icons.js";
- * </script>
- * <p>
- * <iron-icon icon="menu"></iron-icon>
- * <p>
+ * <pre><code>&lt;script type=&quot;module&quot;&gt;
+ *   import &quot;@polymer/iron-icons/iron-icons.js&quot;;
+ * &lt;/script&gt;
+ *
+ * &lt;iron-icon icon=&quot;menu&quot;&gt;&lt;/iron-icon&gt;
+ * </code></pre>
  * To use a different built-in set of icons, import the specific
- * `iron-icons/<iconset>-icons.js`, and specify the icon as `<iconset>:<icon>`.
+ * <code>iron-icons/&lt;iconset&gt;-icons.js</code>, and specify the icon as <code>&lt;iconset&gt;:&lt;icon&gt;</code>.
  * For example, to use a communication icon, you would use:
  *
- * <script type="module">
- * import "@polymer/iron-icons/communication-icons.js";
- * </script>
- * <p>
- * <iron-icon icon="communication:email"></iron-icon>
- * <p>
+ * <pre><code>&lt;script type=&quot;module&quot;&gt;
+ *   import &quot;@polymer/iron-icons/communication-icons.js&quot;;
+ * &lt;/script&gt;
+ *
+ * &lt;iron-icon icon=&quot;communication:email&quot;&gt;&lt;/iron-icon&gt;
+ * </code></pre>
  * You can also create custom icon sets of bitmap or SVG icons.
  * <p>
- * Example of using an icon named `cherry` from a custom iconset with the ID
- * `fruit`:
- * <p>
- * <iron-icon icon="fruit:cherry"></iron-icon>
- * <p>
- * See `<iron-iconset>` and `<iron-iconset-svg>` for more information about how to
+ * Example of using an icon named <code>cherry</code> from a custom iconset with the ID
+ * <code>fruit</code>:
+ *
+ * <pre><code>&lt;iron-icon icon=&quot;fruit:cherry&quot;&gt;&lt;/iron-icon&gt;
+ * </code></pre>
+ * See <code>&lt;iron-iconset&gt;</code> and <code>&lt;iron-iconset-svg&gt;</code> for more information about how to
  * create a custom iconset.
  * <p>
- * See the `iron-icons` demo to see the icons available in the various iconsets.
- * <p>
- * ### Styling
- * <p>
+ * See the <code>iron-icons</code> demo to see the icons available in the various iconsets.
+ *
+ * <h3>Styling</h3>
  * The following custom properties are available for styling:
- * <p>
- * Custom property | Description | Default
- * ----------------|-------------|----------
- * `--iron-icon` | Mixin applied to the icon | {}
- * `--iron-icon-width` | Width of the icon | `24px`
- * `--iron-icon-height` | Height of the icon | `24px`
- * `--iron-icon-fill-color` | Fill color of the svg icon | `currentcolor`
- * `--iron-icon-stroke-color` | Stroke color of the svg icon | none
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Custom property</th><th>Description</th><th>Default</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>--iron-icon</code></td><td>Mixin applied to the icon</td><td>{}</td></tr>
+ * <tr><td><code>--iron-icon-width</code></td><td>Width of the icon</td><td><code>24px</code></td></tr>
+ * <tr><td><code>--iron-icon-height</code></td><td>Height of the icon</td><td><code>24px</code></td></tr>
+ * <tr><td><code>--iron-icon-fill-color</code></td><td>Fill color of the svg
+ * icon</td><td><code>currentcolor</code></td></tr>
+ * <tr><td><code>--iron-icon-stroke-color</code></td><td>Stroke color of the svg icon</td><td>none</td></tr>
+ * </tbody>
+ * </table>
  */
 @NpmPackage(
 		name = "@polymer/polymer",
@@ -81,7 +86,7 @@ import javax.annotation.Nullable;
 public interface IronIconElement extends HTMLElement {
 	/**
 	 * The name of the icon to use. The name should be of the form:
-	 * `iconset_name:icon_name`.
+	 * <code>iconset_name:icon_name</code>.
 	 */
 	@Nullable
 	@JSProperty
@@ -89,7 +94,7 @@ public interface IronIconElement extends HTMLElement {
 
 	/**
 	 * The name of the icon to use. The name should be of the form:
-	 * `iconset_name:icon_name`.
+	 * <code>iconset_name:icon_name</code>.
 	 */
 	@JSProperty
 	void setIcon(String icon);

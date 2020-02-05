@@ -17,10 +17,10 @@ import js.web.webcomponents.HTMLTemplateElement;
 import javax.annotation.Nullable;
 
 /**
- * Element class mixin that provides Polymer's "legacy" API intended to be
+ * Element class mixin that provides Polymer's &quot;legacy&quot; API intended to be
  * backward-compatible to the greatest extent possible with the API
- * found on the Polymer 1.x `Polymer.Base` prototype applied to all elements
- * defined using the `Polymer({...})` function.
+ * found on the Polymer 1.x <code>Polymer.Base</code> prototype applied to all elements
+ * defined using the <code>Polymer({...})</code> function.
  */
 @Deprecated
 public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends Component<E>>
@@ -37,7 +37,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	/**
 	 * Return the element whose local dom within which this element
 	 * is contained. This is a shorthand for
-	 * `this.getRootNode().host`.
+	 * <code>this.getRootNode().host</code>.
 	 */
 	default Node domHost() {
 		return getNode().getDomHost();
@@ -49,8 +49,8 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * Note this method is provided as backward-compatible legacy API
 	 * only.  It is not directly called by any Polymer features. To customize
 	 * how properties are serialized to attributes for attribute bindings and
-	 * `reflectToAttribute: true` properties as well as this method, override
-	 * the `_serializeValue` method provided by `Polymer.PropertyAccessors`.
+	 * <code>reflectToAttribute: true</code> properties as well as this method, override
+	 * the <code>_serializeValue</code> method provided by <code>Polymer.PropertyAccessors</code>.
 	 *
 	 * @param value Value to deserialize
 	 *
@@ -67,13 +67,13 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * Note this method is provided as backward-compatible legacy API
 	 * only.  It is not directly called by any Polymer features.  To customize
 	 * how attributes are deserialized to properties for in
-	 * `attributeChangedCallback`, override `_deserializeValue` method
-	 * provided by `Polymer.PropertyAccessors`.
+	 * <code>attributeChangedCallback</code>, override <code>_deserializeValue</code> method
+	 * provided by <code>Polymer.PropertyAccessors</code>.
 	 *
 	 * @param value String to deserialize
 	 * @param type  Type to deserialize the string to
 	 *
-	 * @return Returns the deserialized value in the `type` given.
+	 * @return Returns the deserialized value in the <code>type</code> given.
 	 */
 	default Unknown deserialize(String value, PolymerType type) {
 		return getNode().deserialize(value, type);
@@ -108,7 +108,59 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	}
 
 	/**
-	 * Calls `importNode` on the `content` of the `template` specified and
+	 * Copies own properties (including accessor descriptors) from a source
+	 * object to a target object.
+	 *
+	 * @param prototype Target object to copy properties to.
+	 * @param api       Source object to copy properties from.
+	 *
+	 * @return prototype object that was passed as first argument.
+	 */
+	default Unknown extend(Unknown prototype, Unknown api) {
+		return getNode().extend(prototype, api);
+	}
+
+	/**
+	 * FIXME return !Object
+	 * <p>
+	 * FIXME param target: !Object
+	 * FIXME param source: !ObjectCopies props from a source object to a target object.
+	 * <p>
+	 * Note, this method uses a simple <code>for...in</code> strategy for enumerating
+	 * properties.  To ensure only <code>ownProperties</code> are copied from source
+	 * to target and that accessor implementations are copied, use <code>extend</code>.
+	 *
+	 * @param target Target object to copy properties to.
+	 * @param source Source object to copy properties from.
+	 *
+	 * @return Target object that was passed as first argument.
+	 */
+	default Unknown mixin(Unknown target, Unknown source) {
+		return getNode().mixin(target, source);
+	}
+
+	/**
+	 * FIXME return Object
+	 * <p>
+	 * FIXME param object: Object
+	 * FIXME param prototype: ObjectSets the prototype of an object.
+	 * <p>
+	 * Note this method is provided as backward-compatible legacy API
+	 * only.  It is not directly called by any Polymer features.
+	 *
+	 * @param object    The object on which to set the prototype.
+	 * @param prototype The prototype that will be set on the given
+	 *                  <code>object</code>.
+	 *
+	 * @return Returns the given <code>object</code> with its prototype set
+	 * 		to the given <code>prototype</code> object.
+	 */
+	default Unknown chainObject(Unknown object, Unknown prototype) {
+		return getNode().chainObject(object, prototype);
+	}
+
+	/**
+	 * Calls <code>importNode</code> on the <code>content</code> of the <code>template</code> specified and
 	 * returns a document fragment containing the imported content.
 	 *
 	 * @param template HTML template element to instance.
@@ -127,9 +179,9 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * @param detail  Detail value containing event-specific
 	 *                payload.
 	 * @param options Object specifying options.  These may include:
-	 *                `bubbles` (boolean, defaults to `true`),
-	 *                `cancelable` (boolean, defaults to false), and
-	 *                `node` on which to fire the event (HTMLElement, defaults to `this`).
+	 *                <code>bubbles</code> (boolean, defaults to <code>true</code>),
+	 *                <code>cancelable</code> (boolean, defaults to false), and
+	 *                <code>node</code> on which to fire the event (HTMLElement, defaults to <code>this</code>).
 	 *
 	 * @return The new event that was fired.
 	 */
@@ -143,7 +195,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 *
 	 * @param node       Element to add event listener to.
 	 * @param eventName  Name of event to listen for.
-	 * @param methodName Name of handler method on `this` to call.
+	 * @param methodName Name of handler method on <code>this</code> to call.
 	 */
 	default void listen(EventTarget node, String eventName, String methodName) {
 		getNode().listen(node, eventName, methodName);
@@ -155,7 +207,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 *
 	 * @param node       Element to remove event listener from.
 	 * @param eventName  Name of event to stop listening to.
-	 * @param methodName Name of handler method on `this` to not call
+	 * @param methodName Name of handler method on <code>this</code> to not call
 	 *                   anymore.
 	 */
 	default void unlisten(EventTarget node, String eventName, String methodName) {
@@ -166,24 +218,27 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * Override scrolling behavior to all direction, one direction, or none.
 	 * <p>
 	 * Valid scroll directions:
-	 * - 'all': scroll in any direction
-	 * - 'x': scroll only in the 'x' direction
-	 * - 'y': scroll only in the 'y' direction
-	 * - 'none': disable scrolling for this node
+	 *
+	 * <ul>
+	 * <li>'all': scroll in any direction</li>
+	 * <li>'x': scroll only in the 'x' direction</li>
+	 * <li>'y': scroll only in the 'y' direction</li>
+	 * <li>'none': disable scrolling for this node</li>
+	 * </ul>
 	 *
 	 * @param direction Direction to allow scrolling
-	 *                  Defaults to `all`.
+	 *                  Defaults to <code>all</code>.
 	 * @param node      Element to apply scroll direction setting.
-	 *                  Defaults to `this`.
+	 *                  Defaults to <code>this</code>.
 	 */
 	default void setScrollDirection(ScrollDirection direction, Element node) {
 		getNode().setScrollDirection(direction, node);
 	}
 
 	/**
-	 * Convenience method to run `querySelector` on this local DOM scope.
+	 * Convenience method to run <code>querySelector</code> on this local DOM scope.
 	 * <p>
-	 * This function calls `Polymer.dom(this.root).querySelector(slctr)`.
+	 * This function calls <code>Polymer.dom(this.root).querySelector(slctr)</code>.
 	 *
 	 * @param slctr Selector to run on this local DOM scope
 	 *
@@ -205,8 +260,8 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	/**
 	 * Returns a list of nodes that are the effective childNodes. The effective
 	 * childNodes list is the same as the element's childNodes except that
-	 * any `<content>` elements are replaced with the list of nodes distributed
-	 * to the `<content>`, the result of its `getDistributedNodes` method.
+	 * any <code>&lt;content&gt;</code> elements are replaced with the list of nodes distributed
+	 * to the <code>&lt;content&gt;</code>, the result of its <code>getDistributedNodes</code> method.
 	 *
 	 * @return List of effective child nodes.
 	 */
@@ -216,7 +271,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 
 	/**
 	 * Returns a list of nodes distributed within this element that match
-	 * `selector`. These can be dom children or elements distributed to
+	 * <code>selector</code>. These can be dom children or elements distributed to
 	 * children that are insertion points.
 	 *
 	 * @param selector Selector to run.
@@ -230,8 +285,8 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	/**
 	 * Returns a list of elements that are the effective children. The effective
 	 * children list is the same as the element's children except that
-	 * any `<content>` elements are replaced with the list of elements
-	 * distributed to the `<content>`.
+	 * any <code>&lt;content&gt;</code> elements are replaced with the list of elements
+	 * distributed to the <code>&lt;content&gt;</code>.
 	 *
 	 * @return List of effective children.
 	 */
@@ -242,7 +297,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	/**
 	 * Returns a string of text content that is the concatenation of the
 	 * text content's of the element's effective childNodes (the elements
-	 * returned by <a href="#getEffectiveChildNodes>getEffectiveChildNodes</a>.
+	 * returned by &lt;a href=&quot;#getEffectiveChildNodes&gt;getEffectiveChildNodes</a>.
 	 *
 	 * @return List of effective children.
 	 */
@@ -252,7 +307,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 
 	/**
 	 * Returns the first effective childNode within this element that
-	 * match `selector`. These can be dom child nodes or elements distributed
+	 * match <code>selector</code>. These can be dom child nodes or elements distributed
 	 * to children that are insertion points.
 	 *
 	 * @param selector Selector to run.
@@ -265,7 +320,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 
 	/**
 	 * Returns a list of effective childNodes within this element that
-	 * match `selector`. These can be dom child nodes or elements distributed
+	 * match <code>selector</code>. These can be dom child nodes or elements distributed
 	 * to children that are insertion points.
 	 *
 	 * @param selector Selector to run.
@@ -278,15 +333,15 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	}
 
 	/**
-	 * Returns a list of nodes distributed to this element's `<slot>`.
+	 * Returns a list of nodes distributed to this element's <code>&lt;slot&gt;</code>.
 	 * <p>
-	 * If this element contains more than one `<slot>` in its local DOM,
+	 * If this element contains more than one <code>&lt;slot&gt;</code> in its local DOM,
 	 * an optional selector may be passed to choose the desired content.
 	 *
 	 * @param slctr CSS selector to choose the desired
-	 *              `<slot>`.  Defaults to `content`.
+	 *              <code>&lt;slot&gt;</code>.  Defaults to <code>content</code>.
 	 *
-	 * @return List of distributed nodes for the `<slot>`.
+	 * @return List of distributed nodes for the <code>&lt;slot&gt;</code>.
 	 */
 	default Array<Node> getContentChildNodes(String slctr) {
 		return getNode().getContentChildNodes(slctr);
@@ -294,18 +349,18 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 
 	/**
 	 * Returns a list of element children distributed to this element's
-	 * `<slot>`.
+	 * <code>&lt;slot&gt;</code>.
 	 * <p>
-	 * If this element contains more than one `<slot>` in its
+	 * If this element contains more than one <code>&lt;slot&gt;</code> in its
 	 * local DOM, an optional selector may be passed to choose the desired
-	 * content.  This method differs from `getContentChildNodes` in that only
+	 * content.  This method differs from <code>getContentChildNodes</code> in that only
 	 * elements are returned.
 	 *
 	 * @param slctr CSS selector to choose the desired
-	 *              `<content>`.  Defaults to `content`.
+	 *              <code>&lt;content&gt;</code>.  Defaults to <code>content</code>.
 	 *
 	 * @return List of distributed nodes for the
-	 * 		`<slot>`.
+	 * 		<code>&lt;slot&gt;</code>.
 	 */
 	default Array<HTMLElement> getContentChildren(String slctr) {
 		return getNode().getContentChildren(slctr);
@@ -340,7 +395,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * @param container     Container element to scope
 	 * @param shouldObserve if true, start a mutation observer for added nodes to the container
 	 *
-	 * @return Returns a new MutationObserver on `container` if `shouldObserve` is true.
+	 * @return Returns a new MutationObserver on <code>container</code> if <code>shouldObserve</code> is true.
 	 */
 	default MutationObserver scopeSubtree(Element container, boolean shouldObserve) {
 		return getNode().scopeSubtree(container, shouldObserve);
@@ -352,35 +407,37 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * @param property The css property name.
 	 *
 	 * @return Returns the computed css property value for the given
-	 * 		`property`.
+	 * 		<code>property</code>.
 	 */
 	default String getComputedStyleValue(String property) {
 		return getNode().getComputedStyleValue(property);
 	}
 
 	/**
-	 * Call `debounce` to collapse multiple requests for a named task into
+	 * Call <code>debounce</code> to collapse multiple requests for a named
+	 * task into
 	 * one invocation which is made after the wait time has elapsed with
 	 * no new request.  If no wait time is given, the callback will be called
 	 * at microtask timing (guaranteed before paint).
-	 * <p>
-	 * debouncedClickAction(e) {
+	 *
+	 * <pre><code>debouncedClickAction(e) {
 	 * // will not call `processClick` more than once per 100ms
 	 * this.debounce('click', function() {
 	 * this.processClick();
 	 * } 100);
 	 * }
+	 * </code></pre>
 	 *
 	 * @param jobName  String to identify the debounce job.
-	 * @param callback Function that is called (with `this`
+	 * @param callback Function that is called (with <code>this</code>
 	 *                 context) when the wait time elapses.
 	 * @param wait     Optional wait time in milliseconds (ms) after the
-	 *                 last signal that must elapse before invoking `callback`
+	 *                 last signal that must elapse before invoking <code>callback</code>
 	 *
 	 * @return Returns a debouncer object on which exists the
-	 * 		following methods: `isActive()` returns true if the debouncer is
-	 * 		active; `cancel()` cancels the debouncer if it is active;
-	 * 		`flush()` immediately invokes the debounced callback if the debouncer
+	 * 		following methods: <code>isActive()</code> returns true if the debouncer is
+	 * 		active; <code>cancel()</code> cancels the debouncer if it is active;
+	 * 		<code>flush()</code> immediately invokes the debounced callback if the debouncer
 	 * 		is active.
 	 */
 	default Debouncer debounce(String jobName, JsRunnable callback, double wait) {
@@ -390,7 +447,7 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	/**
 	 * Returns whether a named debouncer is active.
 	 *
-	 * @param jobName The name of the debouncer started with `debounce`
+	 * @param jobName The name of the debouncer started with <code>debounce</code>
 	 *
 	 * @return Whether the debouncer is active (has not yet fired).
 	 */
@@ -399,18 +456,18 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	}
 
 	/**
-	 * Immediately calls the debouncer `callback` and inactivates it.
+	 * Immediately calls the debouncer <code>callback</code> and inactivates it.
 	 *
-	 * @param jobName The name of the debouncer started with `debounce`
+	 * @param jobName The name of the debouncer started with <code>debounce</code>
 	 */
 	default void flushDebouncer(String jobName) {
 		getNode().flushDebouncer(jobName);
 	}
 
 	/**
-	 * Cancels an active debouncer.  The `callback` will not be called.
+	 * Cancels an active debouncer.  The <code>callback</code> will not be called.
 	 *
-	 * @param jobName The name of the debouncer started with `debounce`
+	 * @param jobName The name of the debouncer started with <code>debounce</code>
 	 */
 	default void cancelDebouncer(String jobName) {
 		getNode().cancelDebouncer(jobName);
@@ -423,9 +480,9 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * microtask timing, which will occur before paint.
 	 *
 	 * @param callback The callback function to run, bound to
-	 *                 `this`.
+	 *                 <code>this</code>.
 	 * @param waitTime Time to wait before calling the
-	 *                 `callback`.  If unspecified or 0, the callback will be run at microtask
+	 *                 <code>callback</code>.  If unspecified or 0, the callback will be run at microtask
 	 *                 timing (before paint).
 	 *
 	 * @return Handle that may be used to cancel the async job.
@@ -435,9 +492,9 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	}
 
 	/**
-	 * Cancels an async operation started with `async`.
+	 * Cancels an async operation started with <code>async</code>.
 	 *
-	 * @param handle Handle returned from original `async` call to
+	 * @param handle Handle returned from original <code>async</code> call to
 	 *               cancel.
 	 */
 	default void cancelAsync(TimeOut.Handle handle) {
@@ -493,32 +550,32 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * @param name CSS class name
 	 * @param bool Boolean to force the class on or off.
 	 *             When unspecified, the state of the class will be reversed.
-	 * @param node Node to target.  Defaults to `this`.
+	 * @param node Node to target.  Defaults to <code>this</code>.
 	 */
 	default void toggleClass(String name, boolean bool, Element node) {
 		getNode().toggleClass(name, bool, node);
 	}
 
 	/**
-	 * Cross-platform helper for setting an element's CSS `transform` property.
+	 * Cross-platform helper for setting an element's CSS <code>transform</code> property.
 	 *
 	 * @param transformText Transform setting.
 	 * @param node          Element to apply the transform to.
-	 *                      Defaults to `this`
+	 *                      Defaults to <code>this</code>
 	 */
 	default void transform(String transformText, Element node) {
 		getNode().transform(transformText, node);
 	}
 
 	/**
-	 * Cross-platform helper for setting an element's CSS `translate3d`
+	 * Cross-platform helper for setting an element's CSS <code>translate3d</code>
 	 * property.
 	 *
 	 * @param x    X offset.
 	 * @param y    Y offset.
 	 * @param z    Z offset.
 	 * @param node Element to apply the transform to.
-	 *             Defaults to `this`.
+	 *             Defaults to <code>this</code>.
 	 */
 	default void translate3d(double x, double y, double z, Element node) {
 		getNode().translate3d(x, y, z, node);
@@ -535,8 +592,8 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * generated, so that observers, data bindings and computed
 	 * properties watching that path can update.
 	 * <p>
-	 * If the array is passed directly, **no change
-	 * notification is generated**.
+	 * If the array is passed directly, <strong>no change
+	 * notification is generated</strong>.
 	 *
 	 * @param arrayOrPath Path to array from
 	 *                    which to remove the item

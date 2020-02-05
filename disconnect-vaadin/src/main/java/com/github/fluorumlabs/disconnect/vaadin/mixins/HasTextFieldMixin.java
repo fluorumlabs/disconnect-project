@@ -18,7 +18,7 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 	/**
 	 * Whether the value of the control can be automatically completed by the browser.
 	 * List of available options at:
-	 * https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete
+	 * <a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete">https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete</a>
 	 */
 	@Nullable
 	default Autocomplete autocomplete() {
@@ -28,7 +28,7 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 	/**
 	 * Whether the value of the control can be automatically completed by the browser.
 	 * List of available options at:
-	 * https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete
+	 * <a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete">https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete</a>
 	 */
 	default T autocomplete(Autocomplete autocomplete) {
 		getNode().setAutocomplete(autocomplete);
@@ -136,13 +136,12 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 	/**
 	 * Object with translated strings used for localization. Has
 	 * the following structure and default values:
-	 * <p>
-	 * ```
-	 * {
-	 * // Translation of the clear icon button accessible label
-	 * clear: 'Clear'
+	 *
+	 * <pre><code>{
+	 *   // Translation of the clear icon button accessible label
+	 *   clear: 'Clear'
 	 * }
-	 * ```
+	 * </code></pre>
 	 */
 	@Nullable
 	default TextFieldI18n i18n() {
@@ -152,13 +151,12 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 	/**
 	 * Object with translated strings used for localization. Has
 	 * the following structure and default values:
-	 * <p>
-	 * ```
-	 * {
-	 * // Translation of the clear icon button accessible label
-	 * clear: 'Clear'
+	 *
+	 * <pre><code>{
+	 *   // Translation of the clear icon button accessible label
+	 *   clear: 'Clear'
 	 * }
-	 * ```
+	 * </code></pre>
 	 */
 	default T i18n(TextFieldI18n i18n) {
 		getNode().setI18n(i18n);
@@ -323,7 +321,7 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 
 	/**
 	 * When set to true, user is prevented from typing a value that
-	 * conflicts with the given `pattern`.
+	 * conflicts with the given <code>pattern</code>.
 	 */
 	default boolean preventInvalidInput() {
 		return getNode().isPreventInvalidInput();
@@ -331,7 +329,7 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 
 	/**
 	 * When set to true, user is prevented from typing a value that
-	 * conflicts with the given `pattern`.
+	 * conflicts with the given <code>pattern</code>.
 	 */
 	default T preventInvalidInput(boolean preventInvalidInput) {
 		getNode().setPreventInvalidInput(preventInvalidInput);
@@ -346,8 +344,8 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 	}
 
 	/**
-	 * Returns true if `value` is valid.
-	 * `<iron-form>` uses this to check the validity for all its elements.
+	 * Returns true if <code>value</code> is valid.
+	 * <code>&lt;iron-form&gt;</code> uses this to check the validity for all its elements.
 	 *
 	 * @return True if the value is valid.
 	 */

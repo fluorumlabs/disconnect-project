@@ -6,19 +6,27 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 
 /**
- * `iron-overlay-backdrop` is a backdrop used by `Polymer.IronOverlayBehavior`. It
+ * <code>iron-overlay-backdrop</code> is a backdrop used by <code>Polymer.IronOverlayBehavior</code>. It
  * should be a singleton.
- * <p>
- * ### Styling
- * <p>
+ *
+ * <h3>Styling</h3>
  * The following custom properties and mixins are available for styling.
- * <p>
- * Custom property | Description | Default
- * -------------------------------------------|------------------------|---------
- * `--iron-overlay-backdrop-background-color` | Backdrop background color | #000
- * `--iron-overlay-backdrop-opacity`          | Backdrop opacity | 0.6
- * `--iron-overlay-backdrop`                  | Mixin applied to `iron-overlay-backdrop`.                      | {}
- * `--iron-overlay-backdrop-opened`           | Mixin applied to `iron-overlay-backdrop` when it is displayed | {}
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Custom property</th><th>Description</th><th>Default</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>--iron-overlay-backdrop-background-color</code></td><td>Backdrop background
+ * color</td><td>#000</td></tr>
+ * <tr><td><code>--iron-overlay-backdrop-opacity</code></td><td>Backdrop opacity</td><td>0.6</td></tr>
+ * <tr><td><code>--iron-overlay-backdrop</code></td><td>Mixin applied to <code>iron-overlay-backdrop</code>.</td><td>
+ * {}
+ * </td></tr>
+ * <tr><td><code>--iron-overlay-backdrop-opened</code></td><td>Mixin applied to <code>iron-overlay-backdrop</code>
+ * when it is displayed</td><td>{}</td></tr>
+ * </tbody>
+ * </table>
  */
 public class IronOverlayBackdrop
 		extends AbstractComponent<IronOverlayBackdropElement>

@@ -11,58 +11,66 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-text-field>` is a Web Component for text field control in forms.
- * <p>
- * ```html
- * <vaadin-text-field label="First Name">
- * </vaadin-text-field>
- * ```
- * <p>
- * ### Prefixes and suffixes
- * <p>
- * These are child elements of a `<vaadin-text-field>` that are displayed
+ * <code>&lt;vaadin-text-field&gt;</code> is a Web Component for text field control in forms.
+ *
+ * <pre><code class="language-html">&lt;vaadin-text-field label=&quot;First Name&quot;&gt;
+ * &lt;/vaadin-text-field&gt;
+ * </code></pre>
+ * <h3>Prefixes and suffixes</h3>
+ * These are child elements of a <code>&lt;vaadin-text-field&gt;</code> that are displayed
  * inline with the input, before or after.
  * In order for an element to be considered as a prefix, it must have the slot
- * attribute set to `prefix` (and similarly for `suffix`).
- * <p>
- * ```html
- * <vaadin-text-field label="Email address">
- * <div slot="prefix">Sent to:</div>
- * <div slot="suffix">@vaadin.com</div>
- * </vaadin-text-area>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * attribute set to <code>prefix</code> (and similarly for <code>suffix</code>).
+ *
+ * <pre><code class="language-html">&lt;vaadin-text-field label=&quot;Email address&quot;&gt;
+ *   &lt;div slot=&quot;prefix&quot;&gt;Sent to:&lt;/div&gt;
+ *   &lt;div slot=&quot;suffix&quot;&gt;@vaadin.com&lt;/div&gt;
+ * &lt;/vaadin-text-area&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following custom properties are available for styling:
- * <p>
- * Custom property | Description | Default
- * ----------------|-------------|-------------
- * `--vaadin-text-field-default-width` | Set the default width of the input field | `12em`
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Custom property</th><th>Description</th><th>Default</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>--vaadin-text-field-default-width</code></td><td>Set the default width of the input
+ * field</td><td><code>12em</code></td></tr>
+ * </tbody>
+ * </table>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `label` | The label element
- * `input-field` | The element that wraps prefix, value and suffix
- * `value` | The text value element inside the `input-field` element
- * `error-message` | The error message element
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>label</code></td><td>The label element</td></tr>
+ * <tr><td><code>input-field</code></td><td>The element that wraps prefix, value and suffix</td></tr>
+ * <tr><td><code>value</code></td><td>The text value element inside the <code>input-field</code> element</td></tr>
+ * <tr><td><code>error-message</code></td><td>The error message element</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute    | Description | Part name
- * -------------|-------------|------------
- * `disabled` | Set to a disabled text field | :host
- * `has-value` | Set when the element has a value | :host
- * `has-label` | Set when the element has a label | :host
- * `invalid` | Set when the element is invalid | :host
- * `input-prevented` | Temporarily set when invalid input is prevented | :host
- * `focused` | Set when the element is focused | :host
- * `focus-ring` | Set when the element is keyboard focused | :host
- * `readonly` | Set to a readonly text field | :host
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>disabled</code></td><td>Set to a disabled text field</td><td>:host</td></tr>
+ * <tr><td><code>has-value</code></td><td>Set when the element has a value</td><td>:host</td></tr>
+ * <tr><td><code>has-label</code></td><td>Set when the element has a label</td><td>:host</td></tr>
+ * <tr><td><code>invalid</code></td><td>Set when the element is invalid</td><td>:host</td></tr>
+ * <tr><td><code>input-prevented</code></td><td>Temporarily set when invalid input is prevented</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the element is focused</td><td>:host</td></tr>
+ * <tr><td><code>focus-ring</code></td><td>Set when the element is keyboard focused</td><td>:host</td></tr>
+ * <tr><td><code>readonly</code></td><td>Set to a readonly text field</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

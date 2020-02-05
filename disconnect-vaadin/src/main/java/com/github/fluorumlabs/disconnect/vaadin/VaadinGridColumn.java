@@ -11,12 +11,13 @@ import js.lang.Any;
 import javax.annotation.Nullable;
 
 /**
- * A `<vaadin-grid-column>` is used to configure how a column in `<vaadin-grid>`
+ * A <code>&lt;vaadin-grid-column&gt;</code> is used to configure how a column in <code>&lt;vaadin-grid&gt;</code>
  * should look like.
  * <p>
- * See `<vaadin-grid>` documentation and demos for instructions and examples on how
- * to configure the `<vaadin-grid-column>`.
- * ```
+ * See <code>&lt;vaadin-grid&gt;</code> documentation and demos for instructions and examples on how
+ * to configure the <code>&lt;vaadin-grid-column&gt;</code>.
+ *
+ * <pre><code></code></pre>
  */
 public class VaadinGridColumn<ITEM extends Any> extends AbstractComponent<GridColumnElement<ITEM>> implements
 		HasColumnBaseMixin<ITEM, GridColumnElement<ITEM>, VaadinGridColumn<ITEM>>,
@@ -59,16 +60,21 @@ public class VaadinGridColumn<ITEM extends Any> extends AbstractComponent<GridCo
 	/**
 	 * Custom function for rendering the cell content.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>root</code> The cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	public CellRenderer<ITEM> renderer() {
@@ -78,16 +84,21 @@ public class VaadinGridColumn<ITEM extends Any> extends AbstractComponent<GridCo
 	/**
 	 * Custom function for rendering the cell content.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>root</code> The cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	public VaadinGridColumn<ITEM> renderer(CellRenderer<ITEM> renderer) {
 		getNode().setRenderer(renderer);
@@ -113,7 +124,7 @@ public class VaadinGridColumn<ITEM extends Any> extends AbstractComponent<GridCo
 	}
 
 	/**
-	 * Automatically sets the width of the column based on the column contents when this is set to `true`.
+	 * Automatically sets the width of the column based on the column contents when this is set to <code>true</code>.
 	 * <p>
 	 * For performance reasons the column width is calculated automatically only once when the grid items
 	 * are rendered for the first time and the calculation only considers the rows which are currently
@@ -123,16 +134,16 @@ public class VaadinGridColumn<ITEM extends Any> extends AbstractComponent<GridCo
 	 * Hidden columns are ignored in the calculation and their widths are not automatically updated when
 	 * you show a column that was initially hidden.
 	 * <p>
-	 * You can manually trigger the auto sizing behavior again by calling `grid.recalculateColumnWidths()`.
+	 * You can manually trigger the auto sizing behavior again by calling <code>grid.recalculateColumnWidths()</code>.
 	 * <p>
-	 * The column width may still grow larger when `flexGrow` is not 0.
+	 * The column width may still grow larger when <code>flexGrow</code> is not 0.
 	 */
 	public boolean autoWidth() {
 		return getNode().isAutoWidth();
 	}
 
 	/**
-	 * Automatically sets the width of the column based on the column contents when this is set to `true`.
+	 * Automatically sets the width of the column based on the column contents when this is set to <code>true</code>.
 	 * <p>
 	 * For performance reasons the column width is calculated automatically only once when the grid items
 	 * are rendered for the first time and the calculation only considers the rows which are currently
@@ -142,9 +153,9 @@ public class VaadinGridColumn<ITEM extends Any> extends AbstractComponent<GridCo
 	 * Hidden columns are ignored in the calculation and their widths are not automatically updated when
 	 * you show a column that was initially hidden.
 	 * <p>
-	 * You can manually trigger the auto sizing behavior again by calling `grid.recalculateColumnWidths()`.
+	 * You can manually trigger the auto sizing behavior again by calling <code>grid.recalculateColumnWidths()</code>.
 	 * <p>
-	 * The column width may still grow larger when `flexGrow` is not 0.
+	 * The column width may still grow larger when <code>flexGrow</code> is not 0.
 	 */
 	public VaadinGridColumn<ITEM> autoWidth(boolean autoWidth) {
 		getNode().setAutoWidth(autoWidth);

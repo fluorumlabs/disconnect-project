@@ -44,34 +44,40 @@ public interface ComboBoxDataProviderMixin<ITEM extends Any> extends Element {
 	void setSize(int size);
 
 	/**
-	 * Function that provides items lazily. Receives arguments `params`, `callback`
-	 * <p>
-	 * `params.page` Requested page index
-	 * <p>
-	 * `params.pageSize` Current page size
-	 * <p>
-	 * `params.filter` Currently applied filter
-	 * <p>
-	 * `callback(items, size)` Callback function with arguments:
-	 * - `items` Current page of items
-	 * - `size` Total number of items.
+	 * Function that provides items lazily. Receives arguments <code>params</code>, <code>callback</code>
+	 *
+	 * <code>params.page</code> Requested page index
+	 *
+	 * <code>params.pageSize</code> Current page size
+	 *
+	 * <code>params.filter</code> Currently applied filter
+	 *
+	 * <code>callback(items, size)</code> Callback function with arguments:
+	 *
+	 * <ul>
+	 * <li><code>items</code> Current page of items</li>
+	 * <li><code>size</code> Total number of items.</li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
 	ComboBoxDataProvider<ITEM> getDataProvider();
 
 	/**
-	 * Function that provides items lazily. Receives arguments `params`, `callback`
-	 * <p>
-	 * `params.page` Requested page index
-	 * <p>
-	 * `params.pageSize` Current page size
-	 * <p>
-	 * `params.filter` Currently applied filter
-	 * <p>
-	 * `callback(items, size)` Callback function with arguments:
-	 * - `items` Current page of items
-	 * - `size` Total number of items.
+	 * Function that provides items lazily. Receives arguments <code>params</code>, <code>callback</code>
+	 *
+	 * <code>params.page</code> Requested page index
+	 *
+	 * <code>params.pageSize</code> Current page size
+	 *
+	 * <code>params.filter</code> Currently applied filter
+	 *
+	 * <code>callback(items, size)</code> Callback function with arguments:
+	 *
+	 * <ul>
+	 * <li><code>items</code> Current page of items</li>
+	 * <li><code>size</code> Total number of items.</li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setDataProvider(ComboBoxDataProvider<ITEM> dataProvider);

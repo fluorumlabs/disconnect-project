@@ -10,28 +10,28 @@ import js.lang.Any;
 import javax.annotation.Nullable;
 
 /**
- * A `<vaadin-grid-column-group>` is used to make groups of columns in `<vaadin-grid>` and
+ * A <code>&lt;vaadin-grid-column-group&gt;</code> is used to make groups of columns in <code>&lt;vaadin-grid&gt;
+ * </code> and
  * to configure additional headers and footers.
  * <p>
  * Groups can be nested to create complex header and footer configurations.
  * <p>
- * The `class` attribute is used to differentiate header and footer templates.
- * <p>
- * #### Example:
- * ```html
- * <vaadin-grid-column-group resizable>
- * <template class="header">Name</template>
- * <p>
- * <vaadin-grid-column>
- * <template class="header">First</template>
- * <template>[[item.name.first]]</template>
- * </vaadin-grid-column>
- * <vaadin-grid-column>
- * <template class="header">Last</template>
- * <template>[[item.name.last]]</template>
- * </vaadin-grid-column>
- * </vaadin-grid-column-group>
- * ```
+ * The <code>class</code> attribute is used to differentiate header and footer templates.
+ *
+ * <h4>Example:</h4>
+ * <pre><code class="language-html">&lt;vaadin-grid-column-group resizable&gt;
+ *  &lt;template class=&quot;header&quot;&gt;Name&lt;/template&gt;
+ *
+ *  &lt;vaadin-grid-column&gt;
+ *    &lt;template class=&quot;header&quot;&gt;First&lt;/template&gt;
+ *    &lt;template&gt;[[item.name.first]]&lt;/template&gt;
+ *  &lt;/vaadin-grid-column&gt;
+ *  &lt;vaadin-grid-column&gt;
+ *    &lt;template class=&quot;header&quot;&gt;Last&lt;/template&gt;
+ *    &lt;template&gt;[[item.name.last]]&lt;/template&gt;
+ *  &lt;/vaadin-grid-column&gt;
+ * &lt;/vaadin-grid-column-group&gt;
+ * </code></pre>
  */
 public class VaadinGridColumnGroup<ITEM extends Any> extends AbstractComponent<GridColumnGroupElement<ITEM>>
 		implements HasColumnBaseMixin<ITEM, GridColumnGroupElement<ITEM>, VaadinGridColumnGroup<ITEM>>,

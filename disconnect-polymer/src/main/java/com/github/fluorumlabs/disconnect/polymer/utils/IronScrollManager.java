@@ -17,7 +17,7 @@ import org.teavm.jso.JSBody;
 )
 public interface IronScrollManager extends Any {
 	/**
-	 * Returns true if the provided element is "scroll locked", which is to
+	 * Returns true if the provided element is &quot;scroll locked&quot;, which is to
 	 * say that it cannot be scrolled via pointer or keyboard interactions.
 	 *
 	 * @param element An HTML element instance which may or may

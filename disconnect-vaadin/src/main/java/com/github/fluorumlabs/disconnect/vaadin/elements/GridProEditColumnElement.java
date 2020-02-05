@@ -12,19 +12,18 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-grid-pro-edit-column>` is a helper element for the `<vaadin-grid-pro>`
+ * <code>&lt;vaadin-grid-pro-edit-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid-pro&gt;</code>
  * that provides default inline editing for the items.
- * <p>
- * __Note that the `path` property must be explicitly specified for edit column.__
- * <p>
- * #### Example:
- * ```html
- * <vaadin-grid-pro items="[[items]]">
- * <vaadin-grid-pro-edit-column path="name.first"></vaadin-grid-pro-edit-column>
- * <p>
- * <vaadin-grid-column>
- * ...
- * ```
+ *
+ * <strong>Note that the <code>path</code> property must be explicitly specified for edit column.</strong>
+ *
+ * <h4>Example:</h4>
+ * <pre><code class="language-html">&lt;vaadin-grid-pro items=&quot;[[items]]&quot;&gt;
+ *  &lt;vaadin-grid-pro-edit-column path=&quot;name.first&quot;&gt;&lt;/vaadin-grid-pro-edit-column&gt;
+ *
+ *  &lt;vaadin-grid-column&gt;
+ *    ...
+ * </code></pre>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
@@ -38,16 +37,21 @@ public interface GridProEditColumnElement<ITEM extends Any> extends GridColumnEl
 	/**
 	 * Custom function for rendering the cell content in edit mode.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The cell content DOM element. Append your editor component to it.
-	 * - `column` The `<vaadin-grid-pro-edit-column>` element.
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>root</code> The cell content DOM element. Append your editor component to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-pro-edit-column&gt;</code> element.</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -56,23 +60,28 @@ public interface GridProEditColumnElement<ITEM extends Any> extends GridColumnEl
 	/**
 	 * Custom function for rendering the cell content in edit mode.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The cell content DOM element. Append your editor component to it.
-	 * - `column` The `<vaadin-grid-pro-edit-column>` element.
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>root</code> The cell content DOM element. Append your editor component to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-pro-edit-column&gt;</code> element.</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setEditModeRenderer(EditModeRenderer<ITEM> editModeRenderer);
 
 	/**
 	 * The list of options which should be passed to cell editor component.
-	 * Used with the `select` editor type, to provide a list of items.
+	 * Used with the <code>select</code> editor type, to provide a list of items.
 	 */
 	@Nullable
 	@JSProperty
@@ -80,18 +89,20 @@ public interface GridProEditColumnElement<ITEM extends Any> extends GridColumnEl
 
 	/**
 	 * The list of options which should be passed to cell editor component.
-	 * Used with the `select` editor type, to provide a list of items.
+	 * Used with the <code>select</code> editor type, to provide a list of items.
 	 */
 	@JSProperty
 	void setEditorOptions(@JSByRef String... editorOptions);
 
 	/**
 	 * Type of the cell editor component to be rendered. Allowed values:
-	 * - `text` (default) - renders a text field
-	 * - `checkbox` - renders a checkbox
-	 * - `select` - renders a select with a list of items passed as `editorOptions`
-	 * <p>
-	 * Editor type is set to `custom` when either `editModeRenderer` is set,
+	 *
+	 * <ul>
+	 * <li><code>text</code> (default) - renders a text field</li>
+	 * <li><code>checkbox</code> - renders a checkbox</li>
+	 * <li><code>select</code> - renders a select with a list of items passed as <code>editorOptions</code></li>
+	 * </ul>
+	 * Editor type is set to <code>custom</code> when either <code>editModeRenderer</code> is set,
 	 * or editor template provided for the column.
 	 */
 	@Nullable
@@ -100,11 +111,13 @@ public interface GridProEditColumnElement<ITEM extends Any> extends GridColumnEl
 
 	/**
 	 * Type of the cell editor component to be rendered. Allowed values:
-	 * - `text` (default) - renders a text field
-	 * - `checkbox` - renders a checkbox
-	 * - `select` - renders a select with a list of items passed as `editorOptions`
-	 * <p>
-	 * Editor type is set to `custom` when either `editModeRenderer` is set,
+	 *
+	 * <ul>
+	 * <li><code>text</code> (default) - renders a text field</li>
+	 * <li><code>checkbox</code> - renders a checkbox</li>
+	 * <li><code>select</code> - renders a select with a list of items passed as <code>editorOptions</code></li>
+	 * </ul>
+	 * Editor type is set to <code>custom</code> when either <code>editModeRenderer</code> is set,
 	 * or editor template provided for the column.
 	 */
 	@JSProperty

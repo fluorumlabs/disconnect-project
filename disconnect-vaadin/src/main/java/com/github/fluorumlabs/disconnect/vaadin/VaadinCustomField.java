@@ -14,36 +14,43 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-custom-field>` is a Web Component providing field wrapper functionality.
- * <p>
- * ```
- * <vaadin-custom-field label="Appointment time">
- * <vaadin-date-picker></vaadin-date-picker>
- * <vaadin-time-picker></vaadin-time-picker>
- * </vaadin-custom-field>
- * ```
- * <p>
- * ### Styling
- * <p>
- * You may set the attribute `disabled` or `readonly` on this component to make the label styles behave the same
- * way as they would on a `<vaadin-text-field>` which is disabled or readonly.
+ * <code>&lt;vaadin-custom-field&gt;</code> is a Web Component providing field wrapper functionality.
+ *
+ * <pre><code>&lt;vaadin-custom-field label=&quot;Appointment time&quot;&gt;
+ *   &lt;vaadin-date-picker&gt;&lt;/vaadin-date-picker&gt;
+ *   &lt;vaadin-time-picker&gt;&lt;/vaadin-time-picker&gt;
+ * &lt;/vaadin-custom-field&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
+ * You may set the attribute <code>disabled</code> or <code>readonly</code> on this component to make the label
+ * styles behave the same
+ * way as they would on a <code>&lt;vaadin-text-field&gt;</code> which is disabled or readonly.
  * <p>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `label` | The label element
- * `error-message` | The error message element
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>label</code></td><td>The label element</td></tr>
+ * <tr><td><code>error-message</code></td><td>The error message element</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute    | Description | Part name
- * -------------|-------------|------------
- * `has-label`  | Set when the field has a label | :host
- * `invalid`    | Set when the field is invalid | :host
- * `focused`    | Set when the field contains focus | :host
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>has-label</code></td><td>Set when the field has a label</td><td>:host</td></tr>
+ * <tr><td><code>invalid</code></td><td>Set when the field is invalid</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the field contains focus</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 		implements HasElementMixin<CustomFieldElement, VaadinCustomField>,
@@ -102,9 +109,10 @@ public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 	}
 
 	/**
-	 * The value of the field. When wrapping several inputs, it will contain `\t`
+	 * The value of the field. When wrapping several inputs, it will contain <code>\t</code>
 	 * (Tab character) as a delimiter indicating parts intended to be used as the
-	 * corresponding inputs values. Use the [`i18n`](#/elements/vaadin-custom-field#property-i18n)
+	 * corresponding inputs values. Use the
+	 * <a href="#/elements/vaadin-custom-field#property-i18n"><code>i18n</code></a>
 	 * property to customize this behavior.
 	 */
 	@Nullable
@@ -113,9 +121,10 @@ public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 	}
 
 	/**
-	 * The value of the field. When wrapping several inputs, it will contain `\t`
+	 * The value of the field. When wrapping several inputs, it will contain <code>\t</code>
 	 * (Tab character) as a delimiter indicating parts intended to be used as the
-	 * corresponding inputs values. Use the [`i18n`](#/elements/vaadin-custom-field#property-i18n)
+	 * corresponding inputs values. Use the
+	 * <a href="#/elements/vaadin-custom-field#property-i18n"><code>i18n</code></a>
 	 * property to customize this behavior.
 	 */
 	public VaadinCustomField value(String value) {
@@ -155,8 +164,8 @@ public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 	}
 
 	/**
-	 * Returns true if `value` is valid.
-	 * `<iron-form>` uses this to check the validity or all its elements.
+	 * Returns true if <code>value</code> is valid.
+	 * <code>&lt;iron-form&gt;</code> uses this to check the validity or all its elements.
 	 *
 	 * @return True if the value is valid.
 	 */
@@ -172,14 +181,14 @@ public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 	}
 
 	/**
-	 * Fired when the `value` property changes.
+	 * Fired when the <code>value</code> property changes.
 	 */
 	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
 		return createEvent("value-changed");
 	}
 
 	/**
-	 * Fired when the `invalid` property changes.
+	 * Fired when the <code>invalid</code> property changes.
 	 */
 	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
 		return createEvent("invalid-changed");

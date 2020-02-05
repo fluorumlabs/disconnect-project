@@ -64,13 +64,18 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	/**
 	 * Custom function for rendering the content of every item.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The `<vaadin-combo-box-item>` internal container DOM element.
-	 * - `comboBox` The reference to the `<vaadin-combo-box>` element.
-	 * - `model` The object with the properties related with the rendered
+	 *
+	 * <ul>
+	 * <li><code>root</code> The <code>&lt;vaadin-combo-box-item&gt;</code> internal container DOM element.</li>
+	 * <li><code>comboBox</code> The reference to the <code>&lt;vaadin-combo-box&gt;</code> element.</li>
+	 * <li><code>model</code> The object with the properties related with the rendered
 	 * item, contains:
-	 * - `model.index` The index of the rendered item.
-	 * - `model.item` The item.
+	 * <ul>
+	 * <li><code>model.index</code> The index of the rendered item.</li>
+	 * <li><code>model.item</code> The item.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	default ComboBoxRenderer<ITEM> renderer() {
@@ -80,13 +85,18 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	/**
 	 * Custom function for rendering the content of every item.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The `<vaadin-combo-box-item>` internal container DOM element.
-	 * - `comboBox` The reference to the `<vaadin-combo-box>` element.
-	 * - `model` The object with the properties related with the rendered
+	 *
+	 * <ul>
+	 * <li><code>root</code> The <code>&lt;vaadin-combo-box-item&gt;</code> internal container DOM element.</li>
+	 * <li><code>comboBox</code> The reference to the <code>&lt;vaadin-combo-box&gt;</code> element.</li>
+	 * <li><code>model</code> The object with the properties related with the rendered
 	 * item, contains:
-	 * - `model.index` The index of the rendered item.
-	 * - `model.item` The item.
+	 * <ul>
+	 * <li><code>model.index</code> The index of the rendered item.</li>
+	 * <li><code>model.item</code> The item.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	default T renderer(ComboBoxRenderer<ITEM> renderer) {
 		getNode().setRenderer(renderer);
@@ -95,7 +105,7 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 
 	/**
 	 * A full set of items to filter the visible options from.
-	 * The items can be of either `String` or `Object` type.
+	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	@Nullable
 	default Array<ITEM> items() {
@@ -104,7 +114,7 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 
 	/**
 	 * A full set of items to filter the visible options from.
-	 * The items can be of either `String` or `Object` type.
+	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	default T items(ITEM... items) {
 		getNode().setItems(items);
@@ -117,9 +127,9 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * If `true`, the user can input a value that is not present in the items list.
-	 * `value` property will be set to the input value in this case.
-	 * Also, when `value` is set programmatically, the input value will be set
+	 * If <code>true</code>, the user can input a value that is not present in the items list.
+	 * <code>value</code> property will be set to the input value in this case.
+	 * Also, when <code>value</code> is set programmatically, the input value will be set
 	 * to reflect that value.
 	 */
 	default boolean allowCustomValue() {
@@ -127,9 +137,9 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * If `true`, the user can input a value that is not present in the items list.
-	 * `value` property will be set to the input value in this case.
-	 * Also, when `value` is set programmatically, the input value will be set
+	 * If <code>true</code>, the user can input a value that is not present in the items list.
+	 * <code>value</code> property will be set to the input value in this case.
+	 * Also, when <code>value</code> is set programmatically, the input value will be set
 	 * to reflect that value.
 	 */
 	default T allowCustomValue(boolean allowCustomValue) {
@@ -140,7 +150,7 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	/**
 	 * A subset of items, filtered based on the user input. Filtered items
 	 * can be assigned directly to omit the internal filtering functionality.
-	 * The items can be of either `String` or `Object` type.
+	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	@Nullable
 	default Array<ITEM> filteredItems() {
@@ -150,7 +160,7 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	/**
 	 * A subset of items, filtered based on the user input. Filtered items
 	 * can be assigned directly to omit the internal filtering functionality.
-	 * The items can be of either `String` or `Object` type.
+	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	default T filteredItems(ITEM... filteredItems) {
 		getNode().setFilteredItems(filteredItems);
@@ -163,13 +173,13 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * The `String` value for the selected item of the combo box. Provides
-	 * the value for `iron-form`.
+	 * The <code>String</code> value for the selected item of the combo box. Provides
+	 * the value for <code>iron-form</code>.
 	 * <p>
 	 * When there’s no item selected, the value is an empty string.
 	 * <p>
-	 * Use `selectedItem` property to get the raw selected item from
-	 * the `items` array.
+	 * Use <code>selectedItem</code> property to get the raw selected item from
+	 * the <code>items</code> array.
 	 */
 	@Nullable
 	default String value() {
@@ -177,13 +187,13 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * The `String` value for the selected item of the combo box. Provides
-	 * the value for `iron-form`.
+	 * The <code>String</code> value for the selected item of the combo box. Provides
+	 * the value for <code>iron-form</code>.
 	 * <p>
 	 * When there’s no item selected, the value is an empty string.
 	 * <p>
-	 * Use `selectedItem` property to get the raw selected item from
-	 * the `items` array.
+	 * Use <code>selectedItem</code> property to get the raw selected item from
+	 * the <code>items</code> array.
 	 */
 	default T value(String value) {
 		getNode().setValue(value);
@@ -191,14 +201,14 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * When set to `true`, "loading" attribute is added to host and the overlay element.
+	 * When set to <code>true</code>, &quot;loading&quot; attribute is added to host and the overlay element.
 	 */
 	default boolean loading() {
 		return getNode().isLoading();
 	}
 
 	/**
-	 * When set to `true`, "loading" attribute is added to host and the overlay element.
+	 * When set to <code>true</code>, &quot;loading&quot; attribute is added to host and the overlay element.
 	 */
 	default T loading(boolean loading) {
 		getNode().setLoading(loading);
@@ -222,7 +232,7 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * The selected item from the `items` array.
+	 * The selected item from the <code>items</code> array.
 	 */
 	@Nullable
 	default ITEM selectedItem() {
@@ -230,7 +240,7 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * The selected item from the `items` array.
+	 * The selected item from the <code>items</code> array.
 	 */
 	default T selectedItem(ITEM selectedItem) {
 		getNode().setSelectedItem(selectedItem);
@@ -238,8 +248,8 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * Path for label of the item. If `items` is an array of objects, the
-	 * `itemLabelPath` is used to fetch the displayed string label for each
+	 * Path for label of the item. If <code>items</code> is an array of objects, the
+	 * <code>itemLabelPath</code> is used to fetch the displayed string label for each
 	 * item.
 	 * <p>
 	 * The item label is also used for matching items when processing user
@@ -254,8 +264,8 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * Path for label of the item. If `items` is an array of objects, the
-	 * `itemLabelPath` is used to fetch the displayed string label for each
+	 * Path for label of the item. If <code>items</code> is an array of objects, the
+	 * <code>itemLabelPath</code> is used to fetch the displayed string label for each
 	 * item.
 	 * <p>
 	 * The item label is also used for matching items when processing user
@@ -270,11 +280,11 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * Path for the value of the item. If `items` is an array of objects, the
-	 * `itemValuePath:` is used to fetch the string value for the selected
+	 * Path for the value of the item. If <code>items</code> is an array of objects, the
+	 * <code>itemValuePath:</code> is used to fetch the string value for the selected
 	 * item.
 	 * <p>
-	 * The item value is used in the `value` property of the combo box,
+	 * The item value is used in the <code>value</code> property of the combo box,
 	 * to provide the form value.
 	 */
 	@Nullable
@@ -283,11 +293,11 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * Path for the value of the item. If `items` is an array of objects, the
-	 * `itemValuePath:` is used to fetch the string value for the selected
+	 * Path for the value of the item. If <code>items</code> is an array of objects, the
+	 * <code>itemValuePath:</code> is used to fetch the string value for the selected
 	 * item.
 	 * <p>
-	 * The item value is used in the `value` property of the combo box,
+	 * The item value is used in the <code>value</code> property of the combo box,
 	 * to provide the form value.
 	 */
 	default T itemValuePath(String itemValuePath) {
@@ -296,10 +306,10 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * Path for the id of the item. If `items` is an array of objects,
-	 * the `itemIdPath` is used to compare and identify the same item
-	 * in `selectedItem` and `filteredItems` (items given by the
-	 * `dataProvider` callback).
+	 * Path for the id of the item. If <code>items</code> is an array of objects,
+	 * the <code>itemIdPath</code> is used to compare and identify the same item
+	 * in <code>selectedItem</code> and <code>filteredItems</code> (items given by the
+	 * <code>dataProvider</code> callback).
 	 */
 	@Nullable
 	default String itemIdPath() {
@@ -307,10 +317,10 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * Path for the id of the item. If `items` is an array of objects,
-	 * the `itemIdPath` is used to compare and identify the same item
-	 * in `selectedItem` and `filteredItems` (items given by the
-	 * `dataProvider` callback).
+	 * Path for the id of the item. If <code>items</code> is an array of objects,
+	 * the <code>itemIdPath</code> is used to compare and identify the same item
+	 * in <code>selectedItem</code> and <code>filteredItems</code> (items given by the
+	 * <code>dataProvider</code> callback).
 	 */
 	default T itemIdPath(String itemIdPath) {
 		getNode().setItemIdPath(itemIdPath);
@@ -377,9 +387,9 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	}
 
 	/**
-	 * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
+	 * Returns true if <code>value</code> is valid, and sets the <code>invalid</code> flag appropriately.
 	 *
-	 * @return True if the value is valid and sets the `invalid` flag appropriately
+	 * @return True if the value is valid and sets the <code>invalid</code> flag appropriately
 	 */
 	default boolean validate() {
 		return getNode().validate();
@@ -388,7 +398,7 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	/**
 	 * Returns true if the current input value satisfies all constraints (if any)
 	 * <p>
-	 * You can override the `checkValidity` method for custom validations.
+	 * You can override the <code>checkValidity</code> method for custom validations.
 	 */
 	default boolean checkValidity() {
 		return getNode().checkValidity();
@@ -396,7 +406,8 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 
 	/**
 	 * Fired when value changes.
-	 * To comply with https://developer.mozilla.org/en-US/docs/Web/Events/change
+	 * To comply with
+	 * <a href="https://developer.mozilla.org/en-US/docs/Web/Events/change">https://developer.mozilla.org/en-US/docs/Web/Events/change</a>
 	 */
 	default ObservableEvent<Event> changeEvent() {
 		return createEvent("change");

@@ -13,36 +13,46 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-checkbox>` is a Web Component for customized checkboxes.
- * <p>
- * ```html
- * <vaadin-checkbox>
- * Make my profile visible
- * </vaadin-checkbox>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-checkbox&gt;</code> is a Web Component for customized checkboxes.
+ *
+ * <pre><code class="language-html">&lt;vaadin-checkbox&gt;
+ *   Make my profile visible
+ * &lt;/vaadin-checkbox&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name         | Description
- * ------------------|----------------
- * `checkbox`        | The wrapper element for the native <input type="checkbox">
- * `label`           | The wrapper element in which the component's children, namely the label, is slotted
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>checkbox</code></td><td>The wrapper element for the native <input type="checkbox"></td></tr>
+ * <tr><td><code>label</code></td><td>The wrapper element in which the component's children, namely the label, is
+ * slotted</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute    | Description | Part name
- * -------------|-------------|--------------
- * `active`     | Set when the checkbox is pressed down, either with mouse, touch or the keyboard. | `:host`
- * `disabled`   | Set when the checkbox is disabled. | `:host`
- * `focus-ring` | Set when the checkbox is focused using the keyboard. | `:host`
- * `focused`    | Set when the checkbox is focused. | `:host`
- * `indeterminate` | Set when the checkbox is in indeterminate mode. | `:host`
- * `checked` | Set when the checkbox is checked. | `:host`
- * `empty` | Set when there is no label provided. | `label`
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>active</code></td><td>Set when the checkbox is pressed down, either with mouse, touch or the
+ * keyboard.</td><td><code>:host</code></td></tr>
+ * <tr><td><code>disabled</code></td><td>Set when the checkbox is disabled.</td><td><code>:host</code></td></tr>
+ * <tr><td><code>focus-ring</code></td><td>Set when the checkbox is focused using the keyboard
+ * .</td><td><code>:host</code></td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the checkbox is focused.</td><td><code>:host</code></td></tr>
+ * <tr><td><code>indeterminate</code></td><td>Set when the checkbox is in indeterminate mode
+ * .</td><td><code>:host</code></td></tr>
+ * <tr><td><code>checked</code></td><td>Set when the checkbox is checked.</td><td><code>:host</code></td></tr>
+ * <tr><td><code>empty</code></td><td>Set when there is no label provided.</td><td><code>label</code></td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
@@ -80,14 +90,14 @@ public interface CheckboxElement
 
 	/**
 	 * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
-	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
+	 * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes</a>
 	 */
 	@JSProperty
 	boolean isIndeterminate();
 
 	/**
 	 * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
-	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
+	 * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes</a>
 	 */
 	@JSProperty
 	void setIndeterminate(boolean indeterminate);

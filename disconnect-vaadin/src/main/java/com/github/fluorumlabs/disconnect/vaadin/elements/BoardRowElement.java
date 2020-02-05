@@ -7,37 +7,41 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ElementMixin;
 import js.web.dom.HTMLElement;
 
 /**
- * `<vaadin-board-row>` is a Polymer element that together with `vaadin-board` element allows to create flexible
- * responsive layouts and build nice looking dashboard.
+ * <code>&lt;vaadin-board-row&gt;</code> is a Polymer element that together with <code>vaadin-board</code> element
+ * allows to create flexible responsive layouts and build nice looking dashboard.
  * <p>
  * Each row can contain up to four elements (fewer if colspan is used) and is automatically responsive. The row
- * changes between `large`, `medium` and `small` modes depending on the available width and the set breakpoints. In
- * `large` mode, typically all content is shown side-by-side, in `medium` half of the content is side by side and in
- * `small` mode, content is laid out vertically.
+ * changes between <code>large</code>, <code>medium</code> and <code>small</code> modes depending on the available
+ * width and the set breakpoints. In <code>large</code> mode, typically all content is shown side-by-side, in
+ * <code>medium</code> half of the content is side by side and in <code>small</code> mode, content is laid out
+ * vertically.
  * <p>
- * The breakpoints can be set using custom CSS properties. By default the breakpoints are `small: <600px`, `medium: <
- * 960px`, `large >= 960px`.
- * <p>
- * <p>
- * ```html
- * <vaadin-board>
- * <vaadin-board-row>
- * <div>This could be chart 1</div>
- * <div>This could be chart 2</div>
- * <div>This could be chart 3</div>
- * <div>This could be chart 4</div>
- * </vaadin-board-row>
- * </vaadin-board>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * The breakpoints can be set using custom CSS properties. By default the breakpoints are <code>small: &lt;
+ * 600px</code>, <code>medium: &lt; 960px</code>, <code>large &gt;= 960px</code>.
+ *
+ * <pre><code class="language-html">&lt;vaadin-board&gt;
+ *   &lt;vaadin-board-row&gt;
+ *     &lt;div&gt;This could be chart 1&lt;/div&gt;
+ *     &lt;div&gt;This could be chart 2&lt;/div&gt;
+ *     &lt;div&gt;This could be chart 3&lt;/div&gt;
+ *     &lt;div&gt;This could be chart 4&lt;/div&gt;
+ *   &lt;/vaadin-board-row&gt;
+ * &lt;/vaadin-board&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following custom properties are available for styling:
- * <p>
- * Custom property | Description | Default
- * ----------------|-------------|-------------
- * `--vaadin-board-width-small` | Determines the width where mode changes from `small` to `medium` | `600px`
- * `--vaadin-board-width-medium` | Determines the width where mode changes from `medium` to `large` | `960px`
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Custom property</th><th>Description</th><th>Default</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>--vaadin-board-width-small</code></td><td>Determines the width where mode changes from
+ * <code>small</code> to <code>medium</code></td><td><code>600px</code></td></tr>
+ * <tr><td><code>--vaadin-board-width-medium</code></td><td>Determines the width where mode changes from
+ * <code>medium</code> to <code>large</code></td><td><code>960px</code></td></tr>
+ * </tbody>
+ * </table>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

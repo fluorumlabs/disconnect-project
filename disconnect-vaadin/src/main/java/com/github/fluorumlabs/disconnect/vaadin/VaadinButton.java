@@ -11,38 +11,43 @@ import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
 import js.web.dom.Element;
 
 /**
- * `<vaadin-button>` is a Web Component providing an accessible and customizable button.
- * <p>
- * ```html
- * <vaadin-button>
- * </vaadin-button>
- * ```
- * <p>
- * ```js
- * document.querySelector('vaadin-button').addEventListener('click', () => alert('Hello World!'));
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-button&gt;</code> is a Web Component providing an accessible and customizable button.
+ *
+ * <pre><code class="language-html">&lt;vaadin-button&gt;
+ * &lt;/vaadin-button&gt;
+ * </code></pre>
+ * <pre><code class="language-js">document.querySelector('vaadin-button').addEventListener('click', () =&gt; alert
+ * ('Hello World!'));
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are exposed for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `label` | The label (text) inside the button
- * `prefix` | A slot for e.g. an icon before the label
- * `suffix` | A slot for e.g. an icon after the label
- * <p>
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>label</code></td><td>The label (text) inside the button</td></tr>
+ * <tr><td><code>prefix</code></td><td>A slot for e.g. an icon before the label</td></tr>
+ * <tr><td><code>suffix</code></td><td>A slot for e.g. an icon after the label</td></tr>
+ * </tbody>
+ * </table>
  * The following attributes are exposed for styling:
- * <p>
- * Attribute | Description
- * --------- | -----------
- * `active` | Set when the button is pressed down, either with mouse, touch or the keyboard.
- * `disabled` | Set when the button is disabled.
- * `focus-ring` | Set when the button is focused using the keyboard.
- * `focused` | Set when the button is focused.
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>active</code></td><td>Set when the button is pressed down, either with mouse, touch or the keyboard
+ * .</td></tr>
+ * <tr><td><code>disabled</code></td><td>Set when the button is disabled.</td></tr>
+ * <tr><td><code>focus-ring</code></td><td>Set when the button is focused using the keyboard.</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the button is focused.</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinButton extends AbstractComponent<ButtonElement>
 		implements HasElementMixin<ButtonElement, VaadinButton>,

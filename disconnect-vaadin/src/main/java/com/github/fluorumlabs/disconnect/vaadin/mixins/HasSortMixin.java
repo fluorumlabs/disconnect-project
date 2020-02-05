@@ -5,14 +5,14 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
 
 public interface HasSortMixin<E extends SortMixin, T extends Component<E>> extends Component<E> {
 	/**
-	 * When `true`, all `<vaadin-grid-sorter>` are applied for sorting.
+	 * When <code>true</code>, all <code>&lt;vaadin-grid-sorter&gt;</code> are applied for sorting.
 	 */
 	default boolean multiSort() {
 		return getNode().isMultiSort();
 	}
 
 	/**
-	 * When `true`, all `<vaadin-grid-sorter>` are applied for sorting.
+	 * When <code>true</code>, all <code>&lt;vaadin-grid-sorter&gt;</code> are applied for sorting.
 	 */
 	default T multiSort(boolean multiSort) {
 		getNode().setMultiSort(multiSort);

@@ -9,7 +9,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * A mixin for `nav` elements, facilitating multiple selection of childNodes.
+ * A mixin for <code>nav</code> elements, facilitating multiple selection of childNodes.
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

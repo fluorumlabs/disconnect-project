@@ -7,14 +7,14 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 
 /**
  * The cell editor checkbox element.
+ *
+ * <h3>Styling</h3>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-checkbox/blob/master/src/vaadin-checkbox.html"><code>&lt;vaadin-checkbox&gt;</code> documentation</a>
+ * for <code>&lt;vaadin-checkbox&gt;</code> parts.
  * <p>
- * ### Styling
- * <p>
- * See [`<vaadin-checkbox>` documentation](https://github.com/vaadin/vaadin-checkbox/blob/master/src/vaadin-checkbox
- * .html)
- * for `<vaadin-checkbox>` parts.
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinGridProEditCheckbox extends AbstractComponent<GridProEditCheckboxElement>
 		implements HasComponents<GridProEditCheckboxElement, VaadinGridProEditCheckbox, Component<?>> {

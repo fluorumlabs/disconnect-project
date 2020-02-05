@@ -12,9 +12,9 @@ public class IronA11yAnnouncer
 	}
 
 	/**
-	 * The value of mode is used to set the `aria-live` attribute
-	 * for the element that will be announced. Valid values are: `off`,
-	 * `polite` and `assertive`.
+	 * The value of mode is used to set the <code>aria-live</code> attribute
+	 * for the element that will be announced. Valid values are: <code>off</code>,
+	 * <code>polite</code> and <code>assertive</code>.
 	 */
 	@Nullable
 	public String mode() {
@@ -22,9 +22,9 @@ public class IronA11yAnnouncer
 	}
 
 	/**
-	 * The value of mode is used to set the `aria-live` attribute
-	 * for the element that will be announced. Valid values are: `off`,
-	 * `polite` and `assertive`.
+	 * The value of mode is used to set the <code>aria-live</code> attribute
+	 * for the element that will be announced. Valid values are: <code>off</code>,
+	 * <code>polite</code> and <code>assertive</code>.
 	 */
 	public IronA11yAnnouncer mode(String mode) {
 		getNode().setMode(mode);

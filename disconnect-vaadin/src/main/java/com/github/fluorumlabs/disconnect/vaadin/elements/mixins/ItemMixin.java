@@ -7,9 +7,10 @@ import js.web.dom.Element;
 import org.teavm.jso.JSProperty;
 
 /**
- * A mixin providing `focused`, `focus-ring`, `active`, `disabled` and `selected`.
- * <p>
- * `focused`, `active` and `focus-ring` are set as only as attributes.
+ * A mixin providing <code>focused</code>, <code>focus-ring</code>, <code>active</code>, <code>disabled</code> and
+ * <code>selected</code>.
+ *
+ * <code>focused</code>, <code>active</code> and <code>focus-ring</code> are set as only as attributes.
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

@@ -21,35 +21,43 @@ import js.web.dom.Element;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-upload>` is a Web Component for uploading multiple files with drag and drop support.
+ * <code>&lt;vaadin-upload&gt;</code> is a Web Component for uploading multiple files with drag and drop support.
  * <p>
  * Example:
- * <p>
- * ```
- * <vaadin-upload></vaadin-upload>
- * ```
- * <p>
- * ### Styling
- * <p>
+ *
+ * <pre><code>&lt;vaadin-upload&gt;&lt;/vaadin-upload&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ---|---
- * `primary-buttons` | Upload container
- * `upload-button` | Upload button
- * `drop-label` | Label for drop indicator
- * `drop-label-icon` | Icon for drop indicator
- * `file-list` | File list container
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>primary-buttons</code></td><td>Upload container</td></tr>
+ * <tr><td><code>upload-button</code></td><td>Upload button</td></tr>
+ * <tr><td><code>drop-label</code></td><td>Label for drop indicator</td></tr>
+ * <tr><td><code>drop-label-icon</code></td><td>Icon for drop indicator</td></tr>
+ * <tr><td><code>file-list</code></td><td>File list container</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute | Description | Part name
- * ---|---|---
- * `nodrop` | Set when drag and drop is disabled (e. g., on touch devices) | `:host`
- * `dragover` | A file is being dragged over the element | `:host`
- * `dragover-valid` | A dragged file is valid with `maxFiles` and `accept` criteria | `:host`
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>nodrop</code></td><td>Set when drag and drop is disabled (e. g., on touch devices)
+ * </td><td><code>:host</code></td></tr>
+ * <tr><td><code>dragover</code></td><td>A file is being dragged over the element</td><td><code>:host</code></td></tr>
+ * <tr><td><code>dragover-valid</code></td><td>A dragged file is valid with <code>maxFiles</code> and
+ * <code>accept</code> criteria</td><td><code>:host</code></td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinUpload extends AbstractComponent<UploadElement>
 		implements HasThemableMixin<UploadElement, VaadinUpload>,
@@ -83,7 +91,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 
 	/**
 	 * The server URL. The default value is an empty string, which means that
-	 * _window.location_ will be used.
+	 * <em>window.location</em> will be used.
 	 */
 	@Nullable
 	public String target() {
@@ -92,7 +100,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 
 	/**
 	 * The server URL. The default value is an empty string, which means that
-	 * _window.location_ will be used.
+	 * <em>window.location</em> will be used.
 	 */
 	public VaadinUpload target(String target) {
 		getNode().setTarget(target);
@@ -118,9 +126,9 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	/**
 	 * Key-Value map to send to the server. If you set this property as an
 	 * attribute, use a valid JSON string, for example:
-	 * ```
-	 * <vaadin-upload headers='{"X-Foo": "Bar"}'></vaadin-upload>
-	 * ```
+	 *
+	 * <pre><code>&lt;vaadin-upload headers='{&quot;X-Foo&quot;: &quot;Bar&quot;}'&gt;&lt;/vaadin-upload&gt;
+	 * </code></pre>
 	 */
 	@Nullable
 	public StringRecord headers() {
@@ -131,9 +139,9 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	 * FIXME type Object | null | undefined
 	 * Key-Value map to send to the server. If you set this property as an
 	 * attribute, use a valid JSON string, for example:
-	 * ```
-	 * <vaadin-upload headers='{"X-Foo": "Bar"}'></vaadin-upload>
-	 * ```
+	 *
+	 * <pre><code>&lt;vaadin-upload headers='{&quot;X-Foo&quot;: &quot;Bar&quot;}'&gt;&lt;/vaadin-upload&gt;
+	 * </code></pre>
 	 */
 	public VaadinUpload headers(StringRecord headers) {
 		getNode().setHeaders(headers);
@@ -160,24 +168,27 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	/**
 	 * The array of files being processed, or already uploaded.
 	 * <p>
-	 * Each element is a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File)
+	 * Each element is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/File"><code>File</code></a>
 	 * object with a number of extra properties  to track the upload process:
-	 * - `uploadTarget`: The target URL used to upload this file.
-	 * - `elapsed`: Elapsed time since the upload started.
-	 * - `elapsedStr`: Human-readable elapsed time.
-	 * - `remaining`: Number of seconds remaining for the upload to finish.
-	 * - `remainingStr`: Human-readable remaining time for the upload to finish.
-	 * - `progress`: Percentage of the file already uploaded.
-	 * - `speed`: Upload speed in kB/s.
-	 * - `size`: File size in bytes.
-	 * - `totalStr`: Human-readable total size of the file.
-	 * - `loaded`: Bytes transferred so far.
-	 * - `loadedStr`: Human-readable uploaded size at the moment.
-	 * - `status`: Status of the upload process.
-	 * - `error`: Error message in case the upload failed.
-	 * - `abort`: True if the file was canceled by the user.
-	 * - `complete`: True when the file was transferred to the server.
-	 * - `uploading`: True while transferring data to the server.
+	 *
+	 * <ul>
+	 * <li><code>uploadTarget</code>: The target URL used to upload this file.</li>
+	 * <li><code>elapsed</code>: Elapsed time since the upload started.</li>
+	 * <li><code>elapsedStr</code>: Human-readable elapsed time.</li>
+	 * <li><code>remaining</code>: Number of seconds remaining for the upload to finish.</li>
+	 * <li><code>remainingStr</code>: Human-readable remaining time for the upload to finish.</li>
+	 * <li><code>progress</code>: Percentage of the file already uploaded.</li>
+	 * <li><code>speed</code>: Upload speed in kB/s.</li>
+	 * <li><code>size</code>: File size in bytes.</li>
+	 * <li><code>totalStr</code>: Human-readable total size of the file.</li>
+	 * <li><code>loaded</code>: Bytes transferred so far.</li>
+	 * <li><code>loadedStr</code>: Human-readable uploaded size at the moment.</li>
+	 * <li><code>status</code>: Status of the upload process.</li>
+	 * <li><code>error</code>: Error message in case the upload failed.</li>
+	 * <li><code>abort</code>: True if the file was canceled by the user.</li>
+	 * <li><code>complete</code>: True when the file was transferred to the server.</li>
+	 * <li><code>uploading</code>: True while transferring data to the server.</li>
+	 * </ul>
 	 */
 	@Nullable
 	public Array<UploadingFile> files() {
@@ -187,24 +198,27 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	/**
 	 * The array of files being processed, or already uploaded.
 	 * <p>
-	 * Each element is a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File)
+	 * Each element is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/File"><code>File</code></a>
 	 * object with a number of extra properties  to track the upload process:
-	 * - `uploadTarget`: The target URL used to upload this file.
-	 * - `elapsed`: Elapsed time since the upload started.
-	 * - `elapsedStr`: Human-readable elapsed time.
-	 * - `remaining`: Number of seconds remaining for the upload to finish.
-	 * - `remainingStr`: Human-readable remaining time for the upload to finish.
-	 * - `progress`: Percentage of the file already uploaded.
-	 * - `speed`: Upload speed in kB/s.
-	 * - `size`: File size in bytes.
-	 * - `totalStr`: Human-readable total size of the file.
-	 * - `loaded`: Bytes transferred so far.
-	 * - `loadedStr`: Human-readable uploaded size at the moment.
-	 * - `status`: Status of the upload process.
-	 * - `error`: Error message in case the upload failed.
-	 * - `abort`: True if the file was canceled by the user.
-	 * - `complete`: True when the file was transferred to the server.
-	 * - `uploading`: True while transferring data to the server.
+	 *
+	 * <ul>
+	 * <li><code>uploadTarget</code>: The target URL used to upload this file.</li>
+	 * <li><code>elapsed</code>: Elapsed time since the upload started.</li>
+	 * <li><code>elapsedStr</code>: Human-readable elapsed time.</li>
+	 * <li><code>remaining</code>: Number of seconds remaining for the upload to finish.</li>
+	 * <li><code>remainingStr</code>: Human-readable remaining time for the upload to finish.</li>
+	 * <li><code>progress</code>: Percentage of the file already uploaded.</li>
+	 * <li><code>speed</code>: Upload speed in kB/s.</li>
+	 * <li><code>size</code>: File size in bytes.</li>
+	 * <li><code>totalStr</code>: Human-readable total size of the file.</li>
+	 * <li><code>loaded</code>: Bytes transferred so far.</li>
+	 * <li><code>loadedStr</code>: Human-readable uploaded size at the moment.</li>
+	 * <li><code>status</code>: Status of the upload process.</li>
+	 * <li><code>error</code>: Error message in case the upload failed.</li>
+	 * <li><code>abort</code>: True if the file was canceled by the user.</li>
+	 * <li><code>complete</code>: True when the file was transferred to the server.</li>
+	 * <li><code>uploading</code>: True while transferring data to the server.</li>
+	 * </ul>
 	 */
 	public VaadinUpload files(UploadingFile... files) {
 		getNode().setFiles(files);
@@ -246,7 +260,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	 * allowed) or file extensions.
 	 * Notice that MIME types are widely supported, while file extensions
 	 * are only implemented in certain browsers, so avoid using it.
-	 * Example: accept="video/*,image/tiff" or accept=".pdf,audio/mp3"
+	 * Example: accept=&quot;video/*,image/tiff&quot; or accept=&quot;.pdf,audio/mp3&quot;
 	 */
 	@Nullable
 	public String accept() {
@@ -259,7 +273,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	 * allowed) or file extensions.
 	 * Notice that MIME types are widely supported, while file extensions
 	 * are only implemented in certain browsers, so avoid using it.
-	 * Example: accept="video/*,image/tiff" or accept=".pdf,audio/mp3"
+	 * Example: accept=&quot;video/*,image/tiff&quot; or accept=&quot;.pdf,audio/mp3&quot;
 	 */
 	public VaadinUpload accept(String accept) {
 		getNode().setAccept(accept);
@@ -305,7 +319,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 
 	/**
 	 * Prevents upload(s) from immediately uploading upon adding file(s).
-	 * When set, you must manually trigger uploads using the `uploadFiles` method
+	 * When set, you must manually trigger uploads using the <code>uploadFiles</code> method
 	 */
 	public boolean noAuto() {
 		return getNode().isNoAuto();
@@ -313,7 +327,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 
 	/**
 	 * Prevents upload(s) from immediately uploading upon adding file(s).
-	 * When set, you must manually trigger uploads using the `uploadFiles` method
+	 * When set, you must manually trigger uploads using the <code>uploadFiles</code> method
 	 */
 	public VaadinUpload noAuto(boolean noAuto) {
 		getNode().setNoAuto(noAuto);
@@ -356,52 +370,53 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	/**
 	 * The object used to localize this component.
 	 * For changing the default localization, change the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
 	 * The object has the following JSON structure and default values:
-	 * <p>
-	 * {
-	 * dropFiles: {
-	 * one: 'Drop file here
-	 * many: 'Drop files here
-	 * },
-	 * addFiles: {
-	 * one: 'Select File...',
-	 * many: 'Upload Files...'
-	 * },
-	 * cancel: 'Cancel',
-	 * error: {
-	 * tooManyFiles: 'Too Many Files.',
-	 * fileIsTooBig: 'File is Too Big.',
-	 * incorrectFileType: 'Incorrect File Type.'
-	 * },
-	 * uploading: {
-	 * status: {
-	 * connecting: 'Connecting...',
-	 * stalled: 'Stalled.',
-	 * processing: 'Processing File...',
-	 * held: 'Queued'
-	 * },
-	 * remainingTime: {
-	 * prefix: 'remaining time: ',
-	 * unknown: 'unknown remaining time'
-	 * },
-	 * error: {
-	 * serverUnavailable: 'Server Unavailable',
-	 * unexpectedServerError: 'Unexpected Server Error',
-	 * forbidden: 'Forbidden'
-	 * }
-	 * },
-	 * units: {
-	 * size: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-	 * },
-	 * formatSize: function(bytes) {
-	 * // returns the size followed by the best suitable unit
-	 * },
-	 * formatTime: function(seconds, [secs, mins, hours]) {
-	 * // returns a 'HH:MM:SS' string
-	 * }
-	 * }
+	 *
+	 * <pre><code>  {
+	 *     dropFiles: {
+	 *     one: 'Drop file here
+	 *     many: 'Drop files here
+	 *     },
+	 *     addFiles: {
+	 *     one: 'Select File...',
+	 *     many: 'Upload Files...'
+	 *     },
+	 *     cancel: 'Cancel',
+	 *     error: {
+	 *     tooManyFiles: 'Too Many Files.',
+	 *     fileIsTooBig: 'File is Too Big.',
+	 *     incorrectFileType: 'Incorrect File Type.'
+	 *     },
+	 *     uploading: {
+	 *     status: {
+	 *       connecting: 'Connecting...',
+	 *       stalled: 'Stalled.',
+	 *       processing: 'Processing File...',
+	 *       held: 'Queued'
+	 *     },
+	 *     remainingTime: {
+	 *       prefix: 'remaining time: ',
+	 *       unknown: 'unknown remaining time'
+	 *     },
+	 *     error: {
+	 *       serverUnavailable: 'Server Unavailable',
+	 *       unexpectedServerError: 'Unexpected Server Error',
+	 *       forbidden: 'Forbidden'
+	 *     }
+	 *     },
+	 *     units: {
+	 *     size: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+	 *     },
+	 *     formatSize: function(bytes) {
+	 *     // returns the size followed by the best suitable unit
+	 *     },
+	 *     formatTime: function(seconds, [secs, mins, hours]) {
+	 *     // returns a 'HH:MM:SS' string
+	 *     }
+	 *   }
+	 * </code></pre>
 	 */
 	@Nullable
 	public UploadI18n i18n() {
@@ -411,52 +426,53 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	/**
 	 * The object used to localize this component.
 	 * For changing the default localization, change the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
 	 * The object has the following JSON structure and default values:
-	 * <p>
-	 * {
-	 * dropFiles: {
-	 * one: 'Drop file here
-	 * many: 'Drop files here
-	 * },
-	 * addFiles: {
-	 * one: 'Select File...',
-	 * many: 'Upload Files...'
-	 * },
-	 * cancel: 'Cancel',
-	 * error: {
-	 * tooManyFiles: 'Too Many Files.',
-	 * fileIsTooBig: 'File is Too Big.',
-	 * incorrectFileType: 'Incorrect File Type.'
-	 * },
-	 * uploading: {
-	 * status: {
-	 * connecting: 'Connecting...',
-	 * stalled: 'Stalled.',
-	 * processing: 'Processing File...',
-	 * held: 'Queued'
-	 * },
-	 * remainingTime: {
-	 * prefix: 'remaining time: ',
-	 * unknown: 'unknown remaining time'
-	 * },
-	 * error: {
-	 * serverUnavailable: 'Server Unavailable',
-	 * unexpectedServerError: 'Unexpected Server Error',
-	 * forbidden: 'Forbidden'
-	 * }
-	 * },
-	 * units: {
-	 * size: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-	 * },
-	 * formatSize: function(bytes) {
-	 * // returns the size followed by the best suitable unit
-	 * },
-	 * formatTime: function(seconds, [secs, mins, hours]) {
-	 * // returns a 'HH:MM:SS' string
-	 * }
-	 * }
+	 *
+	 * <pre><code>  {
+	 *     dropFiles: {
+	 *     one: 'Drop file here
+	 *     many: 'Drop files here
+	 *     },
+	 *     addFiles: {
+	 *     one: 'Select File...',
+	 *     many: 'Upload Files...'
+	 *     },
+	 *     cancel: 'Cancel',
+	 *     error: {
+	 *     tooManyFiles: 'Too Many Files.',
+	 *     fileIsTooBig: 'File is Too Big.',
+	 *     incorrectFileType: 'Incorrect File Type.'
+	 *     },
+	 *     uploading: {
+	 *     status: {
+	 *       connecting: 'Connecting...',
+	 *       stalled: 'Stalled.',
+	 *       processing: 'Processing File...',
+	 *       held: 'Queued'
+	 *     },
+	 *     remainingTime: {
+	 *       prefix: 'remaining time: ',
+	 *       unknown: 'unknown remaining time'
+	 *     },
+	 *     error: {
+	 *       serverUnavailable: 'Server Unavailable',
+	 *       unexpectedServerError: 'Unexpected Server Error',
+	 *       forbidden: 'Forbidden'
+	 *     }
+	 *     },
+	 *     units: {
+	 *     size: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+	 *     },
+	 *     formatSize: function(bytes) {
+	 *     // returns the size followed by the best suitable unit
+	 *     },
+	 *     formatTime: function(seconds, [secs, mins, hours]) {
+	 *     // returns a 'HH:MM:SS' string
+	 *     }
+	 *   }
+	 * </code></pre>
 	 */
 	public VaadinUpload i18n(UploadI18n i18n) {
 		getNode().setI18n(i18n);
@@ -515,7 +531,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	/**
 	 * Fired when the XHR has been opened but not sent yet. Useful for appending
 	 * data keys to the FormData object, for changing some parameters like
-	 * headers, etc. If the event is defaultPrevented, `vaadin-upload` will not
+	 * headers, etc. If the event is defaultPrevented, <code>vaadin-upload</code> will not
 	 * send the request allowing the user to do something on his own.
 	 */
 	public ObservableEvent<UploadRequestEvent> uploadRequestEvent() {
@@ -527,9 +543,9 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	 * analyses it. It's useful for developers to make the upload fail depending
 	 * on the server response. If the event is defaultPrevented the vaadin-upload
 	 * will return allowing the user to do something on his own like retry the
-	 * upload, etc. since he has full access to the `xhr` and `file` objects.
-	 * Otherwise, if the event is not prevented default `vaadin-upload` continues
-	 * with the normal workflow checking the `xhr.status` and `file.error`
+	 * upload, etc. since he has full access to the <code>xhr</code> and <code>file</code> objects.
+	 * Otherwise, if the event is not prevented default <code>vaadin-upload</code> continues
+	 * with the normal workflow checking the <code>xhr.status</code> and <code>file.error</code>
 	 * which also might be modified by the user to force a customized response.
 	 */
 	public ObservableEvent<UploadEvent> uploadResponseEvent() {
@@ -559,14 +575,14 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 	}
 
 	/**
-	 * Fired when the `files` property changes.
+	 * Fired when the <code>files</code> property changes.
 	 */
 	public ObservableEvent<PropertyChangeEvent<Array<UploadingFile>>> filesChangedEvent() {
 		return createEvent("files-changed");
 	}
 
 	/**
-	 * Fired when the `maxFilesReached` property changes.
+	 * Fired when the <code>maxFilesReached</code> property changes.
 	 */
 	public ObservableEvent<BooleanPropertyChangeEvent> maxFilesReachedChangedEvent() {
 		return createEvent("max-files-reached-changed");

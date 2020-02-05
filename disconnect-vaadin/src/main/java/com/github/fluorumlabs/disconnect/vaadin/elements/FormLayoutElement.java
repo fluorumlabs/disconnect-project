@@ -13,94 +13,91 @@ import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
 /**
- * `<vaadin-form-layout>` is a Web Component providing configurable responsive
+ * <code>&lt;vaadin-form-layout&gt;</code> is a Web Component providing configurable responsive
  * layout for form elements.
- * <p>
- * ```html
- * <vaadin-form-layout>
- * <p>
- * <vaadin-form-item>
- * <label slot="label">First Name</label>
- * <input class="full-width" value="Jane">
- * </vaadin-form-item>
- * <p>
- * <vaadin-form-item>
- * <label slot="label">Last Name</label>
- * <input class="full-width" value="Doe">
- * </vaadin-form-item>
- * <p>
- * <vaadin-form-item>
- * <label slot="label">Email</label>
- * <input class="full-width" value="jane.doe@example.com">
- * </vaadin-form-item>
- * <p>
- * </vaadin-form-layout>
- * ```
- * <p>
+ *
+ * <pre><code class="language-html">&lt;vaadin-form-layout&gt;
+ *
+ *   &lt;vaadin-form-item&gt;
+ *     &lt;label slot=&quot;label&quot;&gt;First Name&lt;/label&gt;
+ *     &lt;input class=&quot;full-width&quot; value=&quot;Jane&quot;&gt;
+ *   &lt;/vaadin-form-item&gt;
+ *
+ *   &lt;vaadin-form-item&gt;
+ *     &lt;label slot=&quot;label&quot;&gt;Last Name&lt;/label&gt;
+ *     &lt;input class=&quot;full-width&quot; value=&quot;Doe&quot;&gt;
+ *   &lt;/vaadin-form-item&gt;
+ *
+ *   &lt;vaadin-form-item&gt;
+ *     &lt;label slot=&quot;label&quot;&gt;Email&lt;/label&gt;
+ *     &lt;input class=&quot;full-width&quot; value=&quot;jane.doe@example.com&quot;&gt;
+ *   &lt;/vaadin-form-item&gt;
+ *
+ * &lt;/vaadin-form-layout&gt;
+ * </code></pre>
  * It supports any child elements as layout items.
  * <p>
  * By default, it makes a layout of two columns if the element width is equal or
  * wider than 40em, and a single column layout otherwise.
  * <p>
  * The number of columns and the responsive behavior are customizable with
- * the `responsiveSteps` property.
- * <p>
- * ### Spanning Items on Multiple Columns
- * <p>
- * You can use `colspan` attribute on the items.
- * In the example below, the first text field spans on two columns:
- * <p>
- * ```html
- * <vaadin-form-layout>
- * <p>
- * <vaadin-form-item colspan="2">
- * <label slot="label">Address</label>
- * <input class="full-width">
- * </vaadin-form-item>
- * <p>
- * <vaadin-form-item>
- * <label slot="label">First Name</label>
- * <input class="full-width" value="Jane">
- * </vaadin-form-item>
- * <p>
- * <vaadin-form-item>
- * <label slot="label">Last Name</label>
- * <input class="full-width" value="Doe">
- * </vaadin-form-item>
- * <p>
- * </vaadin-form-layout>
- * ```
- * <p>
- * ### Explicit New Row
- * <p>
- * Use the `<br>` line break element to wrap the items on a new row:
- * <p>
- * ```html
- * <vaadin-form-layout>
- * <p>
- * <vaadin-form-item>
- * <label slot="label">Email</label>
- * <input class="full-width">
- * </vaadin-form-item>
+ * the <code>responsiveSteps</code> property.
  *
- * <br>
- * <p>
- * <vaadin-form-item>
- * <label slot="label">Confirm Email</label>
- * <input class="full-width">
- * </vaadin-form-item>
- * <p>
- * </vaadin-form-layout>
- * ```
- * <p>
- * ### CSS Properties Reference
- * <p>
- * The following custom CSS properties are available on the `<vaadin-form-layout>`
+ * <h3>Spanning Items on Multiple Columns</h3>
+ * You can use <code>colspan</code> attribute on the items.
+ * In the example below, the first text field spans on two columns:
+ *
+ * <pre><code class="language-html">&lt;vaadin-form-layout&gt;
+ *
+ *   &lt;vaadin-form-item colspan=&quot;2&quot;&gt;
+ *     &lt;label slot=&quot;label&quot;&gt;Address&lt;/label&gt;
+ *     &lt;input class=&quot;full-width&quot;&gt;
+ *   &lt;/vaadin-form-item&gt;
+ *
+ *   &lt;vaadin-form-item&gt;
+ *     &lt;label slot=&quot;label&quot;&gt;First Name&lt;/label&gt;
+ *     &lt;input class=&quot;full-width&quot; value=&quot;Jane&quot;&gt;
+ *   &lt;/vaadin-form-item&gt;
+ *
+ *   &lt;vaadin-form-item&gt;
+ *     &lt;label slot=&quot;label&quot;&gt;Last Name&lt;/label&gt;
+ *     &lt;input class=&quot;full-width&quot; value=&quot;Doe&quot;&gt;
+ *   &lt;/vaadin-form-item&gt;
+ *
+ * &lt;/vaadin-form-layout&gt;
+ * </code></pre>
+ * <h3>Explicit New Row</h3>
+ * Use the <code>&lt;br&gt;</code> line break element to wrap the items on a new row:
+ *
+ * <pre><code class="language-html">&lt;vaadin-form-layout&gt;
+ *
+ *   &lt;vaadin-form-item&gt;
+ *     &lt;label slot=&quot;label&quot;&gt;Email&lt;/label&gt;
+ *     &lt;input class=&quot;full-width&quot;&gt;
+ *   &lt;/vaadin-form-item&gt;
+ *
+ *   &lt;br&gt;
+ *
+ *   &lt;vaadin-form-item&gt;
+ *     &lt;label slot=&quot;label&quot;&gt;Confirm Email&lt;/label&gt;
+ *     &lt;input class=&quot;full-width&quot;&gt;
+ *   &lt;/vaadin-form-item&gt;
+ *
+ * &lt;/vaadin-form-layout&gt;
+ * </code></pre>
+ * <h3>CSS Properties Reference</h3>
+ * The following custom CSS properties are available on the <code>&lt;vaadin-form-layout&gt;</code>
  * element:
- * <p>
- * Custom CSS property | Description | Default
- * ---|---|---
- * `--vaadin-form-layout-column-spacing` | Length of the spacing between columns | `2em`
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Custom CSS property</th><th>Description</th><th>Default</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>--vaadin-form-layout-column-spacing</code></td><td>Length of the spacing between
+ * columns</td><td><code>2em</code></td></tr>
+ * </tbody>
+ * </table>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
@@ -116,37 +113,32 @@ public interface FormLayoutElement extends HTMLElement, ElementMixin, ThemableMi
 	 * and the label position depending on the layout width.
 	 * <p>
 	 * Format: array of objects, each object defines one responsive step
-	 * with `minWidth` CSS length, `columns` number, and optional
-	 * `labelsPosition` string of `"aside"` or `"top"`. At least one item is required.
-	 * <p>
-	 * #### Examples
-	 * <p>
-	 * ```javascript
-	 * formLayout.responsiveSteps = [{columns: 1}];
+	 * with <code>minWidth</code> CSS length, <code>columns</code> number, and optional
+	 * <code>labelsPosition</code> string of <code>&quot;aside&quot;</code> or <code>&quot;top&quot;</code>. At least
+	 * one item is required.
+	 *
+	 * <h4>Examples</h4>
+	 * <pre><code class="language-javascript">formLayout.responsiveSteps = [{columns: 1}];
 	 * // The layout is always a single column, labels aside.
-	 * ```
-	 * <p>
-	 * ```javascript
-	 * formLayout.responsiveSteps = [
-	 * {minWidth: 0, columns: 1},
-	 * {minWidth: '40em', columns: 2}
+	 * </code></pre>
+	 * <pre><code class="language-javascript">formLayout.responsiveSteps = [
+	 *   {minWidth: 0, columns: 1},
+	 *   {minWidth: '40em', columns: 2}
 	 * ];
 	 * // Sets two responsive steps:
-	 * // 1. When the layout width is < 40em, one column, labels aside.
-	 * // 2. Width >= 40em, two columns, labels aside.
-	 * ```
-	 * <p>
-	 * ```javascript
-	 * formLayout.responsiveSteps = [
-	 * {minWidth: 0, columns: 1, labelsPosition: 'top'},
-	 * {minWidth: '20em', columns: 1},
-	 * {minWidth: '40em', columns: 2}
+	 * // 1. When the layout width is &lt; 40em, one column, labels aside.
+	 * // 2. Width &gt;= 40em, two columns, labels aside.
+	 * </code></pre>
+	 * <pre><code class="language-javascript">formLayout.responsiveSteps = [
+	 *   {minWidth: 0, columns: 1, labelsPosition: 'top'},
+	 *   {minWidth: '20em', columns: 1},
+	 *   {minWidth: '40em', columns: 2}
 	 * ];
 	 * // Default value. Three responsive steps:
-	 * // 1. Width < 20em, one column, labels on top.
-	 * // 2. 20em <= width < 40em, one column, labels aside.
-	 * // 3. Width >= 40em, two columns, labels aside.
-	 * ```
+	 * // 1. Width &lt; 20em, one column, labels on top.
+	 * // 2. 20em &lt;= width &lt; 40em, one column, labels aside.
+	 * // 3. Width &gt;= 40em, two columns, labels aside.
+	 * </code></pre>
 	 */
 	@JSProperty
 	Array<ResponsiveStep> getResponsiveSteps();
@@ -156,37 +148,32 @@ public interface FormLayoutElement extends HTMLElement, ElementMixin, ThemableMi
 	 * and the label position depending on the layout width.
 	 * <p>
 	 * Format: array of objects, each object defines one responsive step
-	 * with `minWidth` CSS length, `columns` number, and optional
-	 * `labelsPosition` string of `"aside"` or `"top"`. At least one item is required.
-	 * <p>
-	 * #### Examples
-	 * <p>
-	 * ```javascript
-	 * formLayout.responsiveSteps = [{columns: 1}];
+	 * with <code>minWidth</code> CSS length, <code>columns</code> number, and optional
+	 * <code>labelsPosition</code> string of <code>&quot;aside&quot;</code> or <code>&quot;top&quot;</code>. At least
+	 * one item is required.
+	 *
+	 * <h4>Examples</h4>
+	 * <pre><code class="language-javascript">formLayout.responsiveSteps = [{columns: 1}];
 	 * // The layout is always a single column, labels aside.
-	 * ```
-	 * <p>
-	 * ```javascript
-	 * formLayout.responsiveSteps = [
-	 * {minWidth: 0, columns: 1},
-	 * {minWidth: '40em', columns: 2}
+	 * </code></pre>
+	 * <pre><code class="language-javascript">formLayout.responsiveSteps = [
+	 *   {minWidth: 0, columns: 1},
+	 *   {minWidth: '40em', columns: 2}
 	 * ];
 	 * // Sets two responsive steps:
-	 * // 1. When the layout width is < 40em, one column, labels aside.
-	 * // 2. Width >= 40em, two columns, labels aside.
-	 * ```
-	 * <p>
-	 * ```javascript
-	 * formLayout.responsiveSteps = [
-	 * {minWidth: 0, columns: 1, labelsPosition: 'top'},
-	 * {minWidth: '20em', columns: 1},
-	 * {minWidth: '40em', columns: 2}
+	 * // 1. When the layout width is &lt; 40em, one column, labels aside.
+	 * // 2. Width &gt;= 40em, two columns, labels aside.
+	 * </code></pre>
+	 * <pre><code class="language-javascript">formLayout.responsiveSteps = [
+	 *   {minWidth: 0, columns: 1, labelsPosition: 'top'},
+	 *   {minWidth: '20em', columns: 1},
+	 *   {minWidth: '40em', columns: 2}
 	 * ];
 	 * // Default value. Three responsive steps:
-	 * // 1. Width < 20em, one column, labels on top.
-	 * // 2. 20em <= width < 40em, one column, labels aside.
-	 * // 3. Width >= 40em, two columns, labels aside.
-	 * ```
+	 * // 1. Width &lt; 20em, one column, labels on top.
+	 * // 2. 20em &lt;= width &lt; 40em, one column, labels aside.
+	 * // 3. Width &gt;= 40em, two columns, labels aside.
+	 * </code></pre>
 	 */
 	@JSProperty
 	void setResponsiveSteps(@JSByRef ResponsiveStep... responsiveSteps);

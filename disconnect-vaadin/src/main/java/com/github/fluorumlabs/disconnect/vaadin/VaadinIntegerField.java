@@ -6,12 +6,11 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 
 /**
- * `<vaadin-integer-field>` is a Web Component for integer field control in forms.
- * <p>
- * ```html
- * <vaadin-integer-field label="Number">
- * </vaadin-integer-field>
- * ```
+ * <code>&lt;vaadin-integer-field&gt;</code> is a Web Component for integer field control in forms.
+ *
+ * <pre><code class="language-html">&lt;vaadin-integer-field label=&quot;Number&quot;&gt;
+ * &lt;/vaadin-integer-field&gt;
+ * </code></pre>
  */
 public class VaadinIntegerField extends AbstractComponent<IntegerFieldElement>
 		implements HasComponents<IntegerFieldElement, VaadinIntegerField, Component<?>> {

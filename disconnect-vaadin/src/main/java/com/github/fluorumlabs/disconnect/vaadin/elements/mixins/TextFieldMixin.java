@@ -23,7 +23,7 @@ public interface TextFieldMixin extends ControlStateMixin {
 	/**
 	 * Whether the value of the control can be automatically completed by the browser.
 	 * List of available options at:
-	 * https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete
+	 * <a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete">https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete</a>
 	 */
 	@Nullable
 	@JSProperty
@@ -32,7 +32,7 @@ public interface TextFieldMixin extends ControlStateMixin {
 	/**
 	 * Whether the value of the control can be automatically completed by the browser.
 	 * List of available options at:
-	 * https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete
+	 * <a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete">https://developer.mozilla.org/en/docs/Web/HTML/Element/input#attr-autocomplete</a>
 	 */
 	@JSProperty
 	void setAutocomplete(Autocomplete autocomplete);
@@ -123,13 +123,12 @@ public interface TextFieldMixin extends ControlStateMixin {
 	/**
 	 * Object with translated strings used for localization. Has
 	 * the following structure and default values:
-	 * <p>
-	 * ```
-	 * {
-	 * // Translation of the clear icon button accessible label
-	 * clear: 'Clear'
+	 *
+	 * <pre><code>{
+	 *   // Translation of the clear icon button accessible label
+	 *   clear: 'Clear'
 	 * }
-	 * ```
+	 * </code></pre>
 	 */
 	@Nullable
 	@JSProperty
@@ -138,13 +137,12 @@ public interface TextFieldMixin extends ControlStateMixin {
 	/**
 	 * Object with translated strings used for localization. Has
 	 * the following structure and default values:
-	 * <p>
-	 * ```
-	 * {
-	 * // Translation of the clear icon button accessible label
-	 * clear: 'Clear'
+	 *
+	 * <pre><code>{
+	 *   // Translation of the clear icon button accessible label
+	 *   clear: 'Clear'
 	 * }
-	 * ```
+	 * </code></pre>
 	 */
 	@JSProperty
 	void setI18n(TextFieldI18n i18n);
@@ -277,14 +275,14 @@ public interface TextFieldMixin extends ControlStateMixin {
 
 	/**
 	 * When set to true, user is prevented from typing a value that
-	 * conflicts with the given `pattern`.
+	 * conflicts with the given <code>pattern</code>.
 	 */
 	@JSProperty
 	boolean isPreventInvalidInput();
 
 	/**
 	 * When set to true, user is prevented from typing a value that
-	 * conflicts with the given `pattern`.
+	 * conflicts with the given <code>pattern</code>.
 	 */
 	@JSProperty
 	void setPreventInvalidInput(boolean preventInvalidInput);
@@ -295,8 +293,8 @@ public interface TextFieldMixin extends ControlStateMixin {
 	boolean checkValidity();
 
 	/**
-	 * Returns true if `value` is valid.
-	 * `<iron-form>` uses this to check the validity for all its elements.
+	 * Returns true if <code>value</code> is valid.
+	 * <code>&lt;iron-form&gt;</code> uses this to check the validity for all its elements.
 	 *
 	 * @return True if the value is valid.
 	 */

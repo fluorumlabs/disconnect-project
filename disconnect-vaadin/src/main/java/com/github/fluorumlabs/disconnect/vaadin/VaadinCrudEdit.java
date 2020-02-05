@@ -9,12 +9,12 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
 
 /**
- * `<vaadin-crud-edit>` is a helper element for `<vaadin-grid-column>` that provides
- * an easily themable button that fires an `edit` event with the row item as detail
+ * <code>&lt;vaadin-crud-edit&gt;</code> is a helper element for <code>&lt;vaadin-grid-column&gt;</code> that provides
+ * an easily themable button that fires an <code>edit</code> event with the row item as detail
  * when clicked.
  * <p>
- * Typical usage is in a `<vaadin-grid-column>` of a custom `<vaadin-grid>` inside
- * a `<vaadin-crud>` to enable editing.
+ * Typical usage is in a <code>&lt;vaadin-grid-column&gt;</code> of a custom <code>&lt;vaadin-grid&gt;</code> inside
+ * a <code>&lt;vaadin-crud&gt;</code> to enable editing.
  */
 public class VaadinCrudEdit<ITEM extends Any> extends AbstractComponent<CrudEditElement>
 		implements HasComponents<CrudEditElement, VaadinCrudEdit<ITEM>, Component<?>> {

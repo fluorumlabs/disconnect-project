@@ -25,11 +25,10 @@ public interface Path extends Any {
 	 * Returns true if the given string is a structured data path (has dots).
 	 * <p>
 	 * Example:
-	 * <p>
-	 * ```
-	 * isPath('foo.bar.baz') // true
+	 *
+	 * <pre><code>isPath('foo.bar.baz') // true
 	 * isPath('foo')         // false
-	 * ```
+	 * </code></pre>
 	 *
 	 * @param path Path string
 	 *
@@ -44,11 +43,10 @@ public interface Path extends Any {
 	 * Returns the root property name for the given path.
 	 * <p>
 	 * Example:
-	 * <p>
-	 * ```
-	 * root('foo.bar.baz') // 'foo'
+	 *
+	 * <pre><code>root('foo.bar.baz') // 'foo'
 	 * root('foo')         // 'foo'
-	 * ```
+	 * </code></pre>
 	 *
 	 * @param path Path string
 	 *
@@ -60,21 +58,20 @@ public interface Path extends Any {
 	}
 
 	/**
-	 * Given `base` is `foo.bar`, `foo` is an ancestor, `foo.bar` is not
+	 * Given <code>base</code> is <code>foo.bar</code>, <code>foo</code> is an ancestor, <code>foo.bar</code> is not
 	 * Returns true if the given path is an ancestor of the base path.
 	 * <p>
 	 * Example:
-	 * <p>
-	 * ```
-	 * isAncestor('foo.bar', 'foo')         // true
+	 *
+	 * <pre><code>isAncestor('foo.bar', 'foo')         // true
 	 * isAncestor('foo.bar', 'foo.bar')     // false
 	 * isAncestor('foo.bar', 'foo.bar.baz') // false
-	 * ```
+	 * </code></pre>
 	 *
 	 * @param base Path string to test against.
 	 * @param path Path string to test.
 	 *
-	 * @return True if `path` is an ancestor of `base`.
+	 * @return True if <code>path</code> is an ancestor of <code>base</code>.
 	 */
 	@JSBody(
 			params = {"base", "path"},
@@ -85,20 +82,19 @@ public interface Path extends Any {
 	}
 
 	/**
-	 * Given `base` is `foo.bar`, `foo.bar.baz` is an descendant
+	 * Given <code>base</code> is <code>foo.bar</code>, <code>foo.bar.baz</code> is an descendant
 	 * <p>
 	 * Example:
-	 * <p>
-	 * ```
-	 * isDescendant('foo.bar', 'foo.bar.baz') // true
+	 *
+	 * <pre><code>isDescendant('foo.bar', 'foo.bar.baz') // true
 	 * isDescendant('foo.bar', 'foo.bar')     // false
 	 * isDescendant('foo.bar', 'foo')         // false
-	 * ```
+	 * </code></pre>
 	 *
 	 * @param base Path string to test against.
 	 * @param path Path string to test.
 	 *
-	 * @return True if `path` is a descendant of `base`.
+	 * @return True if <code>path</code> is a descendant of <code>base</code>.
 	 */
 	@JSBody(
 			params = {"base", "path"},
@@ -112,13 +108,12 @@ public interface Path extends Any {
 	 * Replaces a previous base path with a new base path, preserving the
 	 * remainder of the path.
 	 * <p>
-	 * User must ensure `path` has a prefix of `base`.
+	 * User must ensure <code>path</code> has a prefix of <code>base</code>.
 	 * <p>
 	 * Example:
-	 * <p>
-	 * ```
-	 * translate('foo.bar', 'zot', 'foo.bar.baz') // 'zot.baz'
-	 * ```
+	 *
+	 * <pre><code>translate('foo.bar', 'zot', 'foo.bar.baz') // 'zot.baz'
+	 * </code></pre>
 	 *
 	 * @param base    Current base string to remove
 	 * @param newBase New base string to replace with
@@ -138,7 +133,7 @@ public interface Path extends Any {
 	 * @param base Path string to test against
 	 * @param path Path string to test
 	 *
-	 * @return True if `path` is equal to `base`
+	 * @return True if <code>path</code> is equal to <code>base</code>
 	 */
 	@JSBody(
 			params = {"base", "path"},
@@ -149,15 +144,15 @@ public interface Path extends Any {
 	}
 
 	/**
-	 * Converts array-based paths to flattened path.  String-based paths
+	 * Converts array-based paths to flattened path.
+	 * String-based paths
 	 * are returned as-is.
 	 * <p>
 	 * Example:
-	 * <p>
-	 * ```
-	 * normalize(['foo.bar', 0, 'baz'])  // 'foo.bar.0.baz'
+	 *
+	 * <pre><code>normalize(['foo.bar', 0, 'baz'])  // 'foo.bar.0.baz'
 	 * normalize('foo.bar.0.baz')        // 'foo.bar.0.baz'
-	 * ```
+	 * </code></pre>
 	 *
 	 * @param path Input path
 	 *
@@ -188,11 +183,10 @@ public interface Path extends Any {
 	 * of path parts or strings.
 	 * <p>
 	 * Example:
-	 * <p>
-	 * ```
-	 * split(['foo.bar', 0, 'baz'])  // ['foo', 'bar', '0', 'baz']
+	 *
+	 * <pre><code>split(['foo.bar', 0, 'baz'])  // ['foo', 'bar', '0', 'baz']
 	 * split('foo.bar.0.baz')        // ['foo', 'bar', '0', 'baz']
-	 * ```
+	 * </code></pre>
 	 *
 	 * @param path Input path
 	 *
@@ -219,15 +213,15 @@ public interface Path extends Any {
 	}
 
 	/**
-	 * Reads a value from a path.  If any sub-property in the path is `undefined`,
+	 * Reads a value from a path.  If any sub-property in the path is <code>undefined</code>,
 	 * this method returns `undefined` (will never throw.
 	 *
 	 * @param root Object from which to dereference path from
 	 * @param path Path to read
-	 * @param info If an object is provided to `info`, the normalized
-	 *             (flattened) path will be set to `info.path`.
+	 * @param info If an object is provided to <code>info</code>, the normalized
+	 *             (flattened) path will be set to <code>info.path</code>.
 	 *
-	 * @return Value at path, or `undefined` if the path could not be
+	 * @return Value at path, or <code>undefined</code> if the path could not be
 	 * 		fully dereferenced.
 	 */
 	@JSBody(
@@ -295,14 +289,11 @@ public interface Path extends Any {
 	}
 
 	/**
-	 * Sets a value to a path.  If any sub-property in the path is `undefined`,
+	 * Sets a value to a path.  If any sub-property in the path is <code>undefined</code>,
 	 * this method will no-op.
-	 * FIXME return (string | undefined)
 	 * <p>
-	 * FIXME param root: Object
 	 *
 	 * @param root  Object from which to dereference path from
-	 *              FIXME param path: (string | !Array.<(string | number)>)
 	 * @param path  Path to set
 	 * @param value Value to set to path
 	 *

@@ -26,9 +26,9 @@ public interface MicroTask extends Any {
 	}
 
 	/**
-	 * Cancels a previously enqueued `microTask` callback.
+	 * Cancels a previously enqueued <code>microTask</code> callback.
 	 *
-	 * @param handle Handle returned from `run` of callback to cancel
+	 * @param handle Handle returned from <code>run</code> of callback to cancel
 	 */
 	@JSBody(params = "handle", script = "microTask.cancel(handle)")
 	static void cancel(Handle handle) {

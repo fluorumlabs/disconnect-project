@@ -11,30 +11,35 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-cookie-consent>` is used to show a cookie consent banner the first
+ * <code>&lt;vaadin-cookie-consent&gt;</code> is used to show a cookie consent banner the first
  * time a user visits the application.
  * <p>
  * By default, the banner is shown attached to the top of the screen and with a
- * predefined text, a link to https://cookiesandyou.com/ describing cookies and a consent button.
+ * predefined text, a link to <a href="https://cookiesandyou.com/">https://cookiesandyou.com/</a>
+ * describing cookies and a consent button.
  * <p>
  * The texts, link and position can be configured using attributes/properties, e.g.
- * ```
- * <vaadin-cookie-consent learn-more-link="https://mysite.com/cookies.html"></vaadin-cookie-consent>
- * ```
- * <p>
- * ### Styling
- * <p>
- * To change the look of the cookie consent banner, a `style` node should be attached
+ *
+ * <pre><code>&lt;vaadin-cookie-consent learn-more-link=&quot;https://mysite.com/cookies.html&quot;&gt;&lt;
+ * /vaadin-cookie-consent&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
+ * To change the look of the cookie consent banner, a <code>style</code> node should be attached
  * to the document's head with the following style names overridden:
- * <p>
- * Style name      | Description
- * ----------------|-------------------------------------------------------|
- * `cc-window`     | Banner container
- * `cc-message`    | Message container
- * `cc-compliance` | Dismiss cookie button container
- * `cc-dismiss`    | Dismiss cookie button
- * `cc-btn`        | Dismiss cookie button
- * `cc-link`       | Learn more link element
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Style name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>cc-window</code></td><td>Banner container</td></tr>
+ * <tr><td><code>cc-message</code></td><td>Message container</td></tr>
+ * <tr><td><code>cc-compliance</code></td><td>Dismiss cookie button container</td></tr>
+ * <tr><td><code>cc-dismiss</code></td><td>Dismiss cookie button</td></tr>
+ * <tr><td><code>cc-btn</code></td><td>Dismiss cookie button</td></tr>
+ * <tr><td><code>cc-link</code></td><td>Learn more link element</td></tr>
+ * </tbody>
+ * </table>
  */
 public class VaadinCookieConsent extends AbstractComponent<CookieConsentElement>
 		implements HasElementMixin<CookieConsentElement, VaadinCookieConsent>,
@@ -111,8 +116,9 @@ public class VaadinCookieConsent extends AbstractComponent<CookieConsentElement>
 	/**
 	 * Determines the position of the banner.
 	 * <p>
-	 * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
-	 * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
+	 * Possible values are: <code>top</code>, <code>bottom</code>, <code>top-left</code>, <code>top-right</code>,
+	 * <code>bottom-left</code>, <code>bottom-right</code>
+	 * For <code>top</code> and <code>bottom</code>, the banner is shown with full width. For the corner positions,
 	 * it is shown as a smaller popup.
 	 */
 	@Nullable
@@ -123,8 +129,9 @@ public class VaadinCookieConsent extends AbstractComponent<CookieConsentElement>
 	/**
 	 * Determines the position of the banner.
 	 * <p>
-	 * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
-	 * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
+	 * Possible values are: <code>top</code>, <code>bottom</code>, <code>top-left</code>, <code>top-right</code>,
+	 * <code>bottom-left</code>, <code>bottom-right</code>
+	 * For <code>top</code> and <code>bottom</code>, the banner is shown with full width. For the corner positions,
 	 * it is shown as a smaller popup.
 	 */
 	public VaadinCookieConsent position(CookieConsentPosition position) {

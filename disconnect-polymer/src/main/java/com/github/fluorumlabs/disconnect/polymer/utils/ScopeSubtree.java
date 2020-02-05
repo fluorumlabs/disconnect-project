@@ -22,7 +22,7 @@ public interface ScopeSubtree extends Any {
 	 * @param container     Container element to scope
 	 * @param shouldObserve if true, start a mutation observer for added nodes to the container
 	 *
-	 * @return Returns a new MutationObserver on `container` if `shouldObserve` is true.
+	 * @return Returns a new MutationObserver on <code>container</code> if <code>shouldObserve</code> is true.
 	 */
 	@JSBody(
 			params = {"container", "shouldObserve"},

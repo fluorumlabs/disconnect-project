@@ -72,7 +72,7 @@ public interface ColumnBaseMixin<ITEM extends Any> extends Element {
 
 	/**
 	 * Aligns the columns cell content horizontally.
-	 * Supported values: "start", "center" and "end".
+	 * Supported values: &quot;start&quot;, &quot;center&quot; and &quot;end&quot;.
 	 */
 	@Nullable
 	@JSProperty
@@ -80,7 +80,7 @@ public interface ColumnBaseMixin<ITEM extends Any> extends Element {
 
 	/**
 	 * Aligns the columns cell content horizontally.
-	 * Supported values: "start", "center" and "end".
+	 * Supported values: &quot;start&quot;, &quot;center&quot; and &quot;end&quot;.
 	 */
 	@JSProperty
 	void setTextAlign(String textAlign);
@@ -88,9 +88,11 @@ public interface ColumnBaseMixin<ITEM extends Any> extends Element {
 	/**
 	 * Custom function for rendering the header content.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The header cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The header cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -99,9 +101,11 @@ public interface ColumnBaseMixin<ITEM extends Any> extends Element {
 	/**
 	 * Custom function for rendering the header content.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The header cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The header cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setHeaderRenderer(GridHeaderFooterRenderer<ITEM> headerRenderer);
@@ -109,9 +113,11 @@ public interface ColumnBaseMixin<ITEM extends Any> extends Element {
 	/**
 	 * Custom function for rendering the footer content.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The footer cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The footer cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -120,9 +126,11 @@ public interface ColumnBaseMixin<ITEM extends Any> extends Element {
 	/**
 	 * Custom function for rendering the footer content.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The footer cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The footer cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setFooterRenderer(GridHeaderFooterRenderer<ITEM> footerRenderer);

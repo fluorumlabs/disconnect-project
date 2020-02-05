@@ -41,7 +41,7 @@ public abstract class AbstractTemplateInstanceBase<E extends TemplateInstanceBas
 
 	/**
 	 * Find the parent model of this template instance.  The parent model
-	 * is either another templatize instance that had option `parentModel: true`,
+	 * is either another templatize instance that had option <code>parentModel: true</code>,
 	 * or else the host element.
 	 */
 	public PropertyEffects parentModel() {
@@ -50,7 +50,7 @@ public abstract class AbstractTemplateInstanceBase<E extends TemplateInstanceBas
 
 	/**
 	 * Forwards a host property to this instance.  This method should be
-	 * called on instances from the `options.forwardHostProp` callback
+	 * called on instances from the <code>options.forwardHostProp</code> callback
 	 * to propagate changes of host properties to each instance.
 	 * <p>
 	 * Note this method enqueues the change, which are flushed as a batch.
@@ -63,7 +63,7 @@ public abstract class AbstractTemplateInstanceBase<E extends TemplateInstanceBas
 	}
 
 	/**
-	 * Stub of HTMLElement's `dispatchEvent`, so that effects that may
+	 * Stub of HTMLElement's <code>dispatchEvent</code>, so that effects that may
 	 * dispatch events safely no-op.
 	 *
 	 * @param event Event to dispatch

@@ -11,7 +11,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * A mixin for `nav` elements, facilitating navigation and selection of childNodes.
+ * A mixin for <code>nav</code> elements, facilitating navigation and selection of childNodes.
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
@@ -30,21 +30,21 @@ public interface ListMixin extends Element {
 
 	/**
 	 * The index of the item selected in the items array.
-	 * Note: Not updated when used in `multiple` selection mode.
+	 * Note: Not updated when used in <code>multiple</code> selection mode.
 	 */
 	@JSProperty
 	int getSelected();
 
 	/**
 	 * The index of the item selected in the items array.
-	 * Note: Not updated when used in `multiple` selection mode.
+	 * Note: Not updated when used in <code>multiple</code> selection mode.
 	 */
 	@JSProperty
 	void setSelected(int selected);
 
 	/**
 	 * Define how items are disposed in the dom.
-	 * Possible values are: `horizontal|vertical`.
+	 * Possible values are: <code>horizontal|vertical</code>.
 	 * It also changes navigation keys from left/right to up/down.
 	 */
 	@Nullable
@@ -53,7 +53,7 @@ public interface ListMixin extends Element {
 
 	/**
 	 * Define how items are disposed in the dom.
-	 * Possible values are: `horizontal|vertical`.
+	 * Possible values are: <code>horizontal|vertical</code>.
 	 * It also changes navigation keys from left/right to up/down.
 	 */
 	@JSProperty
@@ -64,11 +64,11 @@ public interface ListMixin extends Element {
 	 * It is populated from the elements passed to the light DOM,
 	 * and updated dynamically when adding or removing items.
 	 * <p>
-	 * The item elements must implement `Vaadin.ItemMixin`.
+	 * The item elements must implement <code>Vaadin.ItemMixin</code>.
 	 * <p>
-	 * Note: unlike `<vaadin-combo-box>`, this property is read-only,
+	 * Note: unlike <code>&lt;vaadin-combo-box&gt;</code>, this property is read-only,
 	 * so if you want to provide items by iterating array of data,
-	 * you have to use `dom-repeat` and place it to the light DOM.
+	 * you have to use <code>dom-repeat</code> and place it to the light DOM.
 	 */
 	@Nullable
 	@JSProperty

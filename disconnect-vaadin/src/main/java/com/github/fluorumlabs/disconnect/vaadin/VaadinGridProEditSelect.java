@@ -9,13 +9,14 @@ import javax.annotation.Nullable;
 
 /**
  * The cell editor select element.
+ *
+ * <h3>Styling</h3>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-select/blob/master/src/vaadin-select.html"><code>&lt;vaadin-select&gt;</code> documentation</a>
+ * for <code>&lt;vaadin-grid-pro-edit-select&gt;</code> parts.
  * <p>
- * ### Styling
- * <p>
- * See [`<vaadin-select>` documentation](https://github.com/vaadin/vaadin-select/blob/master/src/vaadin-select.html)
- * for `<vaadin-grid-pro-edit-select>` parts.
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinGridProEditSelect extends AbstractComponent<GridProEditSelectElement>
 		implements HasComponents<GridProEditSelectElement, VaadinGridProEditSelect, Component<?>> {

@@ -11,21 +11,18 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-login-form>` is a Web Component providing an easy way to require users
+ * <code>&lt;vaadin-login-form&gt;</code> is a Web Component providing an easy way to require users
  * to log in into an application. Note that component has no shadowRoot.
- * <p>
- * ```
- * <vaadin-login-form></vaadin-login-form>
- * ```
- * <p>
- * Component has to be accessible from the `document` layer in order to allow password managers to work properly with
- * form values.
- * Using `<vaadin-login-overlay>` allows to always attach the component to the document body.
- * <p>
- * ### Styling
- * <p>
+ *
+ * <pre><code>&lt;vaadin-login-form&gt;&lt;/vaadin-login-form&gt;
+ * </code></pre>
+ * Component has to be accessible from the <code>document</code> layer in order to allow password managers to work
+ * properly with form values.
+ * Using <code>&lt;vaadin-login-overlay&gt;</code> allows to always attach the component to the document body.
+ *
+ * <h3>Styling</h3>
  * The component doesn't have a shadowRoot, so the html form and input fields can be styled in an upper layer. To style
- * `vaadin-login-form-wrapper` check its documentation.
+ * <code>vaadin-login-form-wrapper</code> check its documentation.
  * <p>
  * See examples of setting the content into slots in the live demos.
  */

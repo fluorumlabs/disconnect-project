@@ -11,7 +11,8 @@ import javax.annotation.Nullable;
 public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> extends Component<E> {
 	/**
 	 * If set, a synchronous POST call will be fired to the path defined.
-	 * The `login` event is also dispatched, so `event.preventDefault()` can be called to prevent the POST call.
+	 * The <code>login</code> event is also dispatched, so <code>event.preventDefault()</code> can be called to
+	 * prevent the POST call.
 	 */
 	@Nullable
 	default String action() {
@@ -20,7 +21,8 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 
 	/**
 	 * If set, a synchronous POST call will be fired to the path defined.
-	 * The `login` event is also dispatched, so `event.preventDefault()` can be called to prevent the POST call.
+	 * The <code>login</code> event is also dispatched, so <code>event.preventDefault()</code> can be called to
+	 * prevent the POST call.
 	 */
 	default T action(String action) {
 		getNode().setAction(action);
@@ -28,7 +30,7 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 	}
 
 	/**
-	 * If set, disable the "Log in" button and prevent user from submitting login form.
+	 * If set, disable the &quot;Log in&quot; button and prevent user from submitting login form.
 	 * It is re-enabled automatically, when error is set to true, allowing form resubmission
 	 * after user makes changes.
 	 */
@@ -37,7 +39,7 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 	}
 
 	/**
-	 * If set, disable the "Log in" button and prevent user from submitting login form.
+	 * If set, disable the &quot;Log in&quot; button and prevent user from submitting login form.
 	 * It is re-enabled automatically, when error is set to true, allowing form resubmission
 	 * after user makes changes.
 	 */
@@ -81,30 +83,32 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 	/**
 	 * The object used to localize this component.
 	 * For changing the default localization, change the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
-	 * The object has the following JSON structure (by default it doesn't include `additionalInformation`
-	 * and `header` sections, `header` can be added to override `title` and `description` properties
-	 * in `vaadin-login-overlay`):
-	 * <p>
-	 * {
-	 * header: {
-	 * title: 'App name',
-	 * description: 'Inspiring application description'
-	 * },
-	 * form: {
-	 * title: 'Log in',
-	 * username: 'Username',
-	 * password: 'Password',
-	 * submit: 'Log in',
-	 * forgotPassword: 'Forgot password'
-	 * },
-	 * errorMessage: {
-	 * title: 'Incorrect username or password',
-	 * message: 'Check that you have entered the correct username and password and try again.'
-	 * },
-	 * additionalInformation: 'In case you need to provide some additional info for the user.'
-	 * }
+	 * The object has the following JSON structure (by default it doesn't include <code>additionalInformation</code>
+	 * and <code>header</code> sections, <code>header</code> can be added to override <code>title</code> and
+	 * <code>description</code> properties
+	 * in <code>vaadin-login-overlay</code>):
+	 *
+	 * <pre><code>    {
+	 *       header: {
+	 *         title: 'App name',
+	 *         description: 'Inspiring application description'
+	 *       },
+	 *       form: {
+	 *         title: 'Log in',
+	 *         username: 'Username',
+	 *         password: 'Password',
+	 *         submit: 'Log in',
+	 *         forgotPassword: 'Forgot password'
+	 *       },
+	 *       errorMessage: {
+	 *         title: 'Incorrect username or password',
+	 *         message: 'Check that you have entered the correct username and password and try again.'
+	 *       },
+	 *       additionalInformation: 'In case you need to provide some additional info for the user.'
+	 *     }
+	 * </code></pre>
 	 */
 	@Nullable
 	default LoginI18n i18n() {
@@ -114,30 +118,32 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 	/**
 	 * The object used to localize this component.
 	 * For changing the default localization, change the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
-	 * The object has the following JSON structure (by default it doesn't include `additionalInformation`
-	 * and `header` sections, `header` can be added to override `title` and `description` properties
-	 * in `vaadin-login-overlay`):
-	 * <p>
-	 * {
-	 * header: {
-	 * title: 'App name',
-	 * description: 'Inspiring application description'
-	 * },
-	 * form: {
-	 * title: 'Log in',
-	 * username: 'Username',
-	 * password: 'Password',
-	 * submit: 'Log in',
-	 * forgotPassword: 'Forgot password'
-	 * },
-	 * errorMessage: {
-	 * title: 'Incorrect username or password',
-	 * message: 'Check that you have entered the correct username and password and try again.'
-	 * },
-	 * additionalInformation: 'In case you need to provide some additional info for the user.'
-	 * }
+	 * The object has the following JSON structure (by default it doesn't include <code>additionalInformation</code>
+	 * and <code>header</code> sections, <code>header</code> can be added to override <code>title</code> and
+	 * <code>description</code> properties
+	 * in <code>vaadin-login-overlay</code>):
+	 *
+	 * <pre><code>    {
+	 *       header: {
+	 *         title: 'App name',
+	 *         description: 'Inspiring application description'
+	 *       },
+	 *       form: {
+	 *         title: 'Log in',
+	 *         username: 'Username',
+	 *         password: 'Password',
+	 *         submit: 'Log in',
+	 *         forgotPassword: 'Forgot password'
+	 *       },
+	 *       errorMessage: {
+	 *         title: 'Incorrect username or password',
+	 *         message: 'Check that you have entered the correct username and password and try again.'
+	 *       },
+	 *       additionalInformation: 'In case you need to provide some additional info for the user.'
+	 *     }
+	 * </code></pre>
 	 */
 	default T i18n(LoginI18n i18n) {
 		getNode().setI18n(i18n);
@@ -145,7 +151,7 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 	}
 
 	/**
-	 * Fired when user clicks on the "Forgot password" button.
+	 * Fired when user clicks on the &quot;Forgot password&quot; button.
 	 */
 	default ObservableEvent<CustomEvent> ForgotPasswordEvent() {
 		return createEvent("forgot-password");
@@ -153,7 +159,7 @@ public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> ext
 
 	/**
 	 * Fired when an user submits the login.
-	 * The event contains `username` and `password` values in the `detail` property.
+	 * The event contains <code>username</code> and <code>password</code> values in the <code>detail</code> property.
 	 */
 	default ObservableEvent<CustomEvent> LoginEvent() {
 		return createEvent("login");

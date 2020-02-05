@@ -16,14 +16,21 @@ public interface HasStylingMixin<ITEM extends Any, E extends StylingMixin<ITEM>,
 	 * characters.
 	 * <p>
 	 * Receives two arguments:
-	 * - `column` The `<vaadin-grid-column>` element (`undefined` for details-cell).
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element (<code>undefined</code> for
+	 * details-cell).</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	default CellClassNameGenerator<ITEM> cellClassNameGenerator() {
@@ -37,14 +44,21 @@ public interface HasStylingMixin<ITEM extends Any, E extends StylingMixin<ITEM>,
 	 * characters.
 	 * <p>
 	 * Receives two arguments:
-	 * - `column` The `<vaadin-grid-column>` element (`undefined` for details-cell).
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element (<code>undefined</code> for
+	 * details-cell).</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	default T cellClassNameGenerator(CellClassNameGenerator<ITEM> cellClassNameGenerator) {
 		getNode().setCellClassNameGenerator(cellClassNameGenerator);
@@ -52,7 +66,7 @@ public interface HasStylingMixin<ITEM extends Any, E extends StylingMixin<ITEM>,
 	}
 
 	/**
-	 * Runs the `cellClassNameGenerator` for the visible cells.
+	 * Runs the <code>cellClassNameGenerator</code> for the visible cells.
 	 * If the generator depends on varying conditions, you need to
 	 * call this function manually in order to update the styles when
 	 * the conditions change.

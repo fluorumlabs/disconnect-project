@@ -74,7 +74,7 @@ public interface HasColumnBaseMixin<ITEM extends Any, E extends ColumnBaseMixin<
 
 	/**
 	 * Aligns the columns cell content horizontally.
-	 * Supported values: "start", "center" and "end".
+	 * Supported values: &quot;start&quot;, &quot;center&quot; and &quot;end&quot;.
 	 */
 	@Nullable
 	default String textAlign() {
@@ -83,7 +83,7 @@ public interface HasColumnBaseMixin<ITEM extends Any, E extends ColumnBaseMixin<
 
 	/**
 	 * Aligns the columns cell content horizontally.
-	 * Supported values: "start", "center" and "end".
+	 * Supported values: &quot;start&quot;, &quot;center&quot; and &quot;end&quot;.
 	 */
 	default T textAlign(String textAlign) {
 		getNode().setTextAlign(textAlign);
@@ -93,9 +93,11 @@ public interface HasColumnBaseMixin<ITEM extends Any, E extends ColumnBaseMixin<
 	/**
 	 * Custom function for rendering the header content.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The header cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The header cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@Nullable
 	default GridHeaderFooterRenderer<ITEM> headerRenderer() {
@@ -105,9 +107,11 @@ public interface HasColumnBaseMixin<ITEM extends Any, E extends ColumnBaseMixin<
 	/**
 	 * Custom function for rendering the header content.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The header cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The header cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * </ul>
 	 */
 	default T headerRenderer(GridHeaderFooterRenderer<ITEM> headerRenderer) {
 		getNode().setHeaderRenderer(headerRenderer);
@@ -117,9 +121,11 @@ public interface HasColumnBaseMixin<ITEM extends Any, E extends ColumnBaseMixin<
 	/**
 	 * Custom function for rendering the footer content.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The footer cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The footer cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * </ul>
 	 */
 	@Nullable
 	default GridHeaderFooterRenderer<ITEM> footerRenderer() {
@@ -129,9 +135,11 @@ public interface HasColumnBaseMixin<ITEM extends Any, E extends ColumnBaseMixin<
 	/**
 	 * Custom function for rendering the footer content.
 	 * Receives two arguments:
-	 * <p>
-	 * - `root` The footer cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
+	 *
+	 * <ul>
+	 * <li><code>root</code> The footer cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * </ul>
 	 */
 	default T footerRenderer(GridHeaderFooterRenderer<ITEM> footerRenderer) {
 		getNode().setFooterRenderer(footerRenderer);

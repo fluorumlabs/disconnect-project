@@ -21,11 +21,14 @@ public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixi
 	 * Defines the locations within the Grid row where an element can be dropped.
 	 * <p>
 	 * Possible values are:
-	 * - `between`: The drop event can happen between Grid rows.
-	 * - `on-top`: The drop event can happen on top of Grid rows.
-	 * - `on-top-or-between`: The drop event can happen either on top of or between Grid rows.
-	 * - `on-grid`: The drop event will not happen on any specific row, it will show the drop target outline around
-	 * the whole grid.
+	 *
+	 * <ul>
+	 * <li><code>between</code>: The drop event can happen between Grid rows.</li>
+	 * <li><code>on-top</code>: The drop event can happen on top of Grid rows.</li>
+	 * <li><code>on-top-or-between</code>: The drop event can happen either on top of or between Grid rows.</li>
+	 * <li><code>on-grid</code>: The drop event will not happen on any specific row, it will show the drop target
+	 * outline around the whole grid.</li>
+	 * </ul>
 	 */
 	@Nullable
 	default DropMode dropMode() {
@@ -36,11 +39,14 @@ public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixi
 	 * Defines the locations within the Grid row where an element can be dropped.
 	 * <p>
 	 * Possible values are:
-	 * - `between`: The drop event can happen between Grid rows.
-	 * - `on-top`: The drop event can happen on top of Grid rows.
-	 * - `on-top-or-between`: The drop event can happen either on top of or between Grid rows.
-	 * - `on-grid`: The drop event will not happen on any specific row, it will show the drop target outline around
-	 * the whole grid.
+	 *
+	 * <ul>
+	 * <li><code>between</code>: The drop event can happen between Grid rows.</li>
+	 * <li><code>on-top</code>: The drop event can happen on top of Grid rows.</li>
+	 * <li><code>on-top-or-between</code>: The drop event can happen either on top of or between Grid rows.</li>
+	 * <li><code>on-grid</code>: The drop event will not happen on any specific row, it will show the drop target
+	 * outline around the whole grid.</li>
+	 * </ul>
 	 */
 	default T dropMode(DropMode dropMode) {
 		getNode().setDropMode(dropMode);
@@ -67,13 +73,19 @@ public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixi
 	 * if dragging of the row should be disabled.
 	 * <p>
 	 * Receives one argument:
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	default JsPredicate<DragAndDropRowData<ITEM>> dragFilter() {
@@ -85,13 +97,19 @@ public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixi
 	 * if dragging of the row should be disabled.
 	 * <p>
 	 * Receives one argument:
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	default T dragFilter(JsPredicate<DragAndDropRowData<ITEM>> dragFilter) {
 		getNode().setDragFilter(dragFilter);
@@ -103,13 +121,19 @@ public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixi
 	 * if dropping on the row should be disabled.
 	 * <p>
 	 * Receives one argument:
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	default JsPredicate<DragAndDropRowData<ITEM>> dropFilter() {
@@ -121,13 +145,19 @@ public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixi
 	 * if dropping on the row should be disabled.
 	 * <p>
 	 * Receives one argument:
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	default T dropFilter(JsPredicate<DragAndDropRowData<ITEM>> dropFilter) {
 		getNode().setDropFilter(dropFilter);
@@ -135,7 +165,7 @@ public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixi
 	}
 
 	/**
-	 * Runs the `dragFilter` and `dropFilter` hooks for the visible cells.
+	 * Runs the <code>dragFilter</code> and <code>dropFilter</code> hooks for the visible cells.
 	 * If the filter depends on varying conditions, you may need to
 	 * call this function manually in order to update the draggability when
 	 * the conditions change.

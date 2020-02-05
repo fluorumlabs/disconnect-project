@@ -8,34 +8,36 @@ import js.web.dom.HTMLStyleElement;
 
 /**
  * Custom element for defining styles in the main document that can take
- * advantage of [shady DOM](https://github.com/webcomponents/shadycss) shims
+ * advantage of <a href="https://github.com/webcomponents/shadycss">shady DOM</a> shims
  * for style encapsulation, custom properties, and custom mixins.
- * <p>
- * - Document styles defined in a `<custom-style>` are shimmed to ensure they
+ *
+ * <ul>
+ * <li>Document styles defined in a <code>&lt;custom-style&gt;</code> are shimmed to ensure they
  * do not leak into local DOM when running on browsers without native
- * Shadow DOM.
- * - Custom properties can be defined in a `<custom-style>`. Use the `html` selector
- * to define custom properties that apply to all custom elements.
- * - Custom mixins can be defined in a `<custom-style>`, if you import the optional
- * [apply shim](https://github.com/webcomponents/shadycss#about-applyshim)
- * (`shadycss/apply-shim.html`).
- * <p>
+ * Shadow DOM.</li>
+ * <li>Custom properties can be defined in a <code>&lt;custom-style&gt;</code>. Use the <code>html</code> selector
+ * to define custom properties that apply to all custom elements.</li>
+ * <li>Custom mixins can be defined in a <code>&lt;custom-style&gt;</code>, if you import the optional
+ * <a href="https://github.com/webcomponents/shadycss#about-applyshim">apply shim</a>
+ * (<code>shadycss/apply-shim.html</code>).</li>
+ * </ul>
  * To use:
- * <p>
- * - Import `custom-style.html`.
- * - Place a `<custom-style>` element in the main document, wrapping an inline `<style>` tag that
- * contains the CSS rules you want to shim.
- * <p>
+ *
+ * <ul>
+ * <li>Import <code>custom-style.html</code>.</li>
+ * <li>Place a <code>&lt;custom-style&gt;</code> element in the main document, wrapping an inline <code>&lt;style&gt;
+ * </code> tag that
+ * contains the CSS rules you want to shim.</li>
+ * </ul>
  * For example:
- * <p>
- * ```html
- * <!-- import apply shim--only required if using mixins -->
- * <link rel="import" href="bower_components/shadycss/apply-shim.html">
- * <!-- import custom-style element -->
- * <link rel="import" href="bower_components/polymer/lib/elements/custom-style.html">
- * <p>
- * <custom-style>
- * <style>
+ *
+ * <pre><code class="language-html">&lt;!-- import apply shim--only required if using mixins --&gt;
+ * &lt;link rel=&quot;import&quot; href=&quot;bower_components/shadycss/apply-shim.html&quot;&gt;
+ * &lt;!-- import custom-style element --&gt;
+ * &lt;link rel=&quot;import&quot; href=&quot;bower_components/polymer/lib/elements/custom-style.html&quot;&gt;
+ *
+ * &lt;custom-style&gt;
+ *   &lt;style&gt;
  * html {
  * --custom-color: blue;
  * --custom-mixin: {
@@ -43,9 +45,9 @@ import js.web.dom.HTMLStyleElement;
  * color: red;
  * };
  * }
- * </style>
- * </custom-style>
- * ```
+ *   &lt;/style&gt;
+ * &lt;/custom-style&gt;
+ * </code></pre>
  */
 public class CustomStyle
 		extends AbstractComponent<CustomStyleElement>
@@ -55,11 +57,11 @@ public class CustomStyle
 	}
 
 	/**
-	 * Returns the light-DOM `<style>` child this element wraps.  Upon first
-	 * call any style modules referenced via the `include` attribute will be
-	 * concatenated to this element's `<style>`.
+	 * Returns the light-DOM <code>&lt;style&gt;</code> child this element wraps.  Upon first
+	 * call any style modules referenced via the <code>include</code> attribute will be
+	 * concatenated to this element's <code>&lt;style&gt;</code>.
 	 *
-	 * @return This element's light-DOM `<style>`
+	 * @return This element's light-DOM <code>&lt;style&gt;</code>
 	 */
 	public HTMLStyleElement getStyle() {
 		return getNode().getStyleElement();

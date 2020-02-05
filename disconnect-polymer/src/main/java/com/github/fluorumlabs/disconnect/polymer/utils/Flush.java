@@ -14,8 +14,11 @@ import org.teavm.jso.JSBody;
 public interface Flush extends Any {
 	/**
 	 * Forces several classes of asynchronously queued tasks to flush:
-	 * - Debouncers added via `enqueueDebouncer`
-	 * - ShadyDOM distribution
+	 *
+	 * <ul>
+	 * <li>Debouncers added via <code>enqueueDebouncer</code></li>
+	 * <li>ShadyDOM distribution</li>
+	 * </ul>
 	 */
 	@JSBody(
 			script = "flush()"

@@ -14,7 +14,8 @@ import org.teavm.jso.JSBody;
 @Import(symbols = "idlePeriod", module = "@polymer/polymer/lib/utils/async.js")
 public interface IdlePeriod extends Any {
 	/**
-	 * Enqueues a function called at `requestIdleCallback` timing.
+	 * Enqueues a function called at <code>requestIdleCallback</code>
+	 * timing.
 	 *
 	 * @param fn Callback to run
 	 *
@@ -26,9 +27,9 @@ public interface IdlePeriod extends Any {
 	}
 
 	/**
-	 * Cancels a previously enqueued `idlePeriod` callback.
+	 * Cancels a previously enqueued <code>idlePeriod</code> callback.
 	 *
-	 * @param handle Handle returned from `run` of callback to cancel
+	 * @param handle Handle returned from <code>run</code> of callback to cancel
 	 */
 	@JSBody(params = "handle", script = "idlePeriod.cancel(handle)")
 	static void cancel(Handle handle) {

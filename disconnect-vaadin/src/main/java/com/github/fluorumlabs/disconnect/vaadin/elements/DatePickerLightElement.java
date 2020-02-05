@@ -11,50 +11,52 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-date-picker-light>` is a customizable version of the `<vaadin-date-picker>` providing
+ * <code>&lt;vaadin-date-picker-light&gt;</code> is a customizable version of the <code>&lt;vaadin-date-picker&gt;
+ * </code> providing
  * only the scrollable month calendar view and leaving the input field definition to the user.
  * <p>
  * To create a custom input field, you need to add a child element which has a two-way
  * data-bindable property representing the input value. The property name is expected
- * to be `bindValue` by default. See the example below for a simplest possible example
- * using an `<input>` element extended with `iron-input`.
- * <p>
- * ```html
- * <vaadin-date-picker-light>
- * <iron-input>
- * <input/>
- * </iron-input>
- * </vaadin-date-picker-light>
- * ```
- * <p>
- * If you are using other custom input fields like `<paper-input>`, you
- * need to define the name of value property using the `attrForValue` property.
- * <p>
- * ```html
- * <vaadin-date-picker-light attr-for-value="value">
- * <paper-input label="Birthday">
- * </paper-input>
- * </vaadin-date-picker-light>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * to be <code>bindValue</code> by default. See the example below for a simplest possible example
+ * using an <code>&lt;input&gt;</code> element extended with <code>iron-input</code>.
+ *
+ * <pre><code class="language-html">&lt;vaadin-date-picker-light&gt;
+ *   &lt;iron-input&gt;
+ *     &lt;input/&gt;
+ *   &lt;/iron-input&gt;
+ * &lt;/vaadin-date-picker-light&gt;
+ * </code></pre>
+ * If you are using other custom input fields like <code>&lt;paper-input&gt;</code>, you
+ * need to define the name of value property using the <code>attrForValue</code> property.
+ *
+ * <pre><code class="language-html">&lt;vaadin-date-picker-light attr-for-value=&quot;value&quot;&gt;
+ *   &lt;paper-input label=&quot;Birthday&quot;&gt;
+ *   &lt;/paper-input&gt;
+ * &lt;/vaadin-date-picker-light&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th><th>Theme for Element</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>overlay-content</code></td><td>The overlay element</td><td>vaadin-date-picker-light</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  * <p>
- * Part name | Description | Theme for Element
- * ----------------|----------------|----------------
- * `overlay-content` | The overlay element | vaadin-date-picker-light
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
- * <p>
- * In addition to `<vaadin-date-picker-light>` itself, the following
+ * In addition to <code>&lt;vaadin-date-picker-light&gt;</code> itself, the following
  * internal components are themable:
- * <p>
- * - `<vaadin-date-picker-overlay>`
- * - `<vaadin-date-picker-overlay-content>`
- * - `<vaadin-month-calendar>`
- * <p>
- * Note: the `theme` attribute value set on `<vaadin-date-picker-light>`
+ *
+ * <ul>
+ * <li><code>&lt;vaadin-date-picker-overlay&gt;</code></li>
+ * <li><code>&lt;vaadin-date-picker-overlay-content&gt;</code></li>
+ * <li><code>&lt;vaadin-month-calendar&gt;</code></li>
+ * </ul>
+ * Note: the <code>theme</code> attribute value set on <code>&lt;vaadin-date-picker-light&gt;</code>
  * is propagated to the internal themable components listed above.
  */
 @NpmPackage(

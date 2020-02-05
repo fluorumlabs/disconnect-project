@@ -15,7 +15,7 @@ import js.web.dom.Element;
 )
 public interface ButtonsMixin extends Element {
 	/**
-	 * Call this method after updating menu bar `items` dynamically, including changing
+	 * Call this method after updating menu bar <code>items</code> dynamically, including changing
 	 * any property on the item object corresponding to one of the menu bar buttons.
 	 */
 	void render();

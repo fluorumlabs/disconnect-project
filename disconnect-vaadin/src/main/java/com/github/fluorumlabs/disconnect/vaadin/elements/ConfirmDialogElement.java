@@ -11,38 +11,43 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-confirm-dialog>` is a Web Component for showing alerts and asking for user confirmation.
- * <p>
- * ```
- * <vaadin-confirm-dialog on-confirm="_doConfirm">
- * Sample confirmation question
- * </vaadin-confirm-dialog>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-confirm-dialog&gt;</code> is a Web Component for showing alerts and asking for user confirmation.
+ *
+ * <pre><code>&lt;vaadin-confirm-dialog on-confirm=&quot;_doConfirm&quot;&gt;
+ *  Sample confirmation question
+ * &lt;/vaadin-confirm-dialog&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following Shadow DOM parts are available for styling the dialog parts:
- * <p>
- * Part name  | Description
- * -----------|---------------------------------------------------------|
- * `header`   | Header of the confirmation dialog
- * `message`  | Container for the message of the dialog
- * `footer`   | Container for the buttons
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
- * <p>
- * ### Custom content
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>header</code></td><td>Header of the confirmation dialog</td></tr>
+ * <tr><td><code>message</code></td><td>Container for the message of the dialog</td></tr>
+ * <tr><td><code>footer</code></td><td>Container for the buttons</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
+ *
+ * <h3>Custom content</h3>
  * The following parts are available for replacement:
- * <p>
- * Slot name         | Description
- * ------------------|---------------------------------------------------------|
- * `header`          | Header of the confirmation dialog
- * `message`         | Container for the message of the dialog
- * `cancel-button`   | Container for the Cancel button
- * `reject-button`   | Container for the Reject button
- * `confirm-button`  | Container for the Confirm button
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Slot name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>header</code></td><td>Header of the confirmation dialog</td></tr>
+ * <tr><td><code>message</code></td><td>Container for the message of the dialog</td></tr>
+ * <tr><td><code>cancel-button</code></td><td>Container for the Cancel button</td></tr>
+ * <tr><td><code>reject-button</code></td><td>Container for the Reject button</td></tr>
+ * <tr><td><code>confirm-button</code></td><td>Container for the Confirm button</td></tr>
+ * </tbody>
+ * </table>
  * See examples of setting custom buttons into slots in the live demos.
  */
 @NpmPackage(

@@ -19,8 +19,8 @@ public interface ResolveUrl extends Any {
 	 * Resolves the given URL against the provided `baseUri'.
 	 * <p>
 	 * Note that this function performs no resolution for URLs that start
-	 * with `/` (absolute URLs) or `#` (hash identifiers).  For general purpose
-	 * URL resolution, use `window.URL`.
+	 * with <code>/</code> (absolute URLs) or <code>#</code> (hash identifiers).  For general purpose
+	 * URL resolution, use <code>window.URL</code>.
 	 *
 	 * @param url     Input URL to resolve
 	 * @param baseURI Base URI to resolve the URL against
@@ -37,7 +37,7 @@ public interface ResolveUrl extends Any {
 
 	/**
 	 * Resolves any relative URL's in the given CSS text against the provided
-	 * `ownerDocument`'s `baseURI`.
+	 * <code>ownerDocument</code>'s <code>baseURI</code>.
 	 *
 	 * @param cssText CSS text to process
 	 * @param baseURI Base URI to resolve the URL against
@@ -53,8 +53,8 @@ public interface ResolveUrl extends Any {
 	}
 
 	/**
-	 * Returns a path from a given `url`. The path includes the trailing
-	 * `/` from the url.
+	 * Returns a path from a given <code>url</code>. The path includes the trailing
+	 * <code>/</code> from the url.
 	 *
 	 * @param url Input URL to transform
 	 *

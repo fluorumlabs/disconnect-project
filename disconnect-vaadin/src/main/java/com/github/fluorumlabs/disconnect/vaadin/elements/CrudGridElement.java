@@ -8,11 +8,13 @@ import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
 
 /**
- * `<vaadin-crud-grid>` is a `<vaadin-grid>` which automatically configures all its columns based
+ * <code>&lt;vaadin-crud-grid&gt;</code> is a <code>&lt;vaadin-grid&gt;</code> which automatically configures all its
+ * columns based
  * on the JSON structure of the first item received.
  * <p>
  * You cannot manually configure columns but you can still style the grid as it's described in
- * `<vaadin-grid>` [Documentation](https://vaadin.com/components/vaadin-grid/html-api/elements/Vaadin.GridElement)
+ * <code>&lt;vaadin-grid&gt;</code>
+ * <a href="https://vaadin.com/components/vaadin-grid/html-api/elements/Vaadin.GridElement">Documentation</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

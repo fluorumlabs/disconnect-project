@@ -6,30 +6,36 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import org.teavm.jso.JSProperty;
 
 /**
- * `<vaadin-password-field>` is a Web Component for password field control in forms.
- * <p>
- * ```html
- * <vaadin-password-field label="Password">
- * </vaadin-password-field>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-password-field&gt;</code> is a Web Component for password field control in forms.
+ *
+ * <pre><code class="language-html">&lt;vaadin-password-field label=&quot;Password&quot;&gt;
+ * &lt;/vaadin-password-field&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * See vaadin-text-field.html for the styling documentation
  * <p>
  * In addition to vaadin-text-field parts, here's the list of vaadin-password-field specific parts
- * <p>
- * Part name       | Description
- * ----------------|----------------------------------------------------
- * `reveal-button` | The eye icon which toggles the password visibility
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>reveal-button</code></td><td>The eye icon which toggles the password visibility</td></tr>
+ * </tbody>
+ * </table>
  * In addition to vaadin-text-field state attributes, here's the list of vaadin-password-field specific attributes
- * <p>
- * Attribute    | Description | Part name
- * -------------|-------------|------------
- * `password-visible` | Set when the password is visible | :host
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>password-visible</code></td><td>Set when the password is visible</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

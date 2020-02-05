@@ -8,26 +8,28 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 
 /**
- * `<vaadin-list-box>` is a Web Component for creating menus.
- * <p>
- * ```
- * <vaadin-list-box selected="2">
- * <vaadin-item>Item 1</vaadin-item>
- * <vaadin-item>Item 2</vaadin-item>
- * <vaadin-item>Item 3</vaadin-item>
- * <vaadin-item>Item 4</vaadin-item>
- * </vaadin-list-box>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-list-box&gt;</code> is a Web Component for creating menus.
+ *
+ * <pre><code>  &lt;vaadin-list-box selected=&quot;2&quot;&gt;
+ *     &lt;vaadin-item&gt;Item 1&lt;/vaadin-item&gt;
+ *     &lt;vaadin-item&gt;Item 2&lt;/vaadin-item&gt;
+ *     &lt;vaadin-item&gt;Item 3&lt;/vaadin-item&gt;
+ *     &lt;vaadin-item&gt;Item 4&lt;/vaadin-item&gt;
+ *   &lt;/vaadin-list-box&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name         | Description
- * ------------------|------------------------
- * `items`           | The items container
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>items</code></td><td>The items container</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinListBox extends AbstractComponent<ListBoxElement>
 		implements HasMultiSelectListMixin<ListBoxElement, VaadinListBox>,

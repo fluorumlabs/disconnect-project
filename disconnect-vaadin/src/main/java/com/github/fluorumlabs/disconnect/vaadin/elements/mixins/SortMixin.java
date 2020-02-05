@@ -16,13 +16,13 @@ import org.teavm.jso.JSProperty;
 )
 public interface SortMixin extends Element {
 	/**
-	 * When `true`, all `<vaadin-grid-sorter>` are applied for sorting.
+	 * When <code>true</code>, all <code>&lt;vaadin-grid-sorter&gt;</code> are applied for sorting.
 	 */
 	@JSProperty
 	boolean isMultiSort();
 
 	/**
-	 * When `true`, all `<vaadin-grid-sorter>` are applied for sorting.
+	 * When <code>true</code>, all <code>&lt;vaadin-grid-sorter&gt;</code> are applied for sorting.
 	 */
 	@JSProperty
 	void setMultiSort(boolean multiSort);

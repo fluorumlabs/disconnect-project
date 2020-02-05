@@ -11,26 +11,24 @@ import js.lang.Any;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-grid-selection-column>` is a helper element for the `<vaadin-grid>`
+ * <code>&lt;vaadin-grid-selection-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code>
  * that provides default templates and functionality for item selection.
- * <p>
- * #### Example:
- * ```html
- * <vaadin-grid items="[[items]]">
- * <vaadin-grid-selection-column frozen auto-select></vaadin-grid-selection-column>
- * <p>
- * <vaadin-grid-column>
- * ...
- * ```
- * <p>
- * By default the selection column displays `<vaadin-checkbox>` elements in the
+ *
+ * <h4>Example:</h4>
+ * <pre><code class="language-html">&lt;vaadin-grid items=&quot;[[items]]&quot;&gt;
+ *  &lt;vaadin-grid-selection-column frozen auto-select&gt;&lt;/vaadin-grid-selection-column&gt;
+ *
+ *  &lt;vaadin-grid-column&gt;
+ *    ...
+ * </code></pre>
+ * By default the selection column displays <code>&lt;vaadin-checkbox&gt;</code> elements in the
  * column cells. The checkboxes in the body rows toggle selection of the corresponding row items.
  * <p>
- * When the grid data is provided as an array of [`items`](#/elements/vaadin-grid#property-items),
+ * When the grid data is provided as an array of <a href="#/elements/vaadin-grid#property-items"><code>items</code></a>,
  * the column header gets an additional checkbox that can be used for toggling
  * selection for all the items at once.
- * <p>
- * __The default content can also be overridden__
+ *
+ * <strong>The default content can also be overridden</strong>
  */
 public class VaadinGridSelectionColumn<ITEM extends Any> extends AbstractComponent<GridSelectionColumnElement<ITEM>>
 		implements HasComponents<GridSelectionColumnElement<ITEM>, VaadinGridSelectionColumn<ITEM>, Component<?>> {
@@ -100,7 +98,7 @@ public class VaadinGridSelectionColumn<ITEM extends Any> extends AbstractCompone
 	}
 
 	/**
-	 * Fired when the `selectAll` property changes.
+	 * Fired when the <code>selectAll</code> property changes.
 	 */
 	public ObservableEvent<BooleanPropertyChangeEvent> selectAllChangedEvent() {
 		return createEvent("select-all-changed");

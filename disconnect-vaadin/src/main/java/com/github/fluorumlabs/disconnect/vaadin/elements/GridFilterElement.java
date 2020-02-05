@@ -9,18 +9,18 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-grid-filter>` is a helper element for the `<vaadin-grid>` that provides out-of-the-box UI controls,
+ * <code>&lt;vaadin-grid-filter&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code> that provides
+ * out-of-the-box UI controls,
  * and handlers for filtering the grid data.
- * <p>
- * #### Example:
- * ```html
- * <vaadin-grid-column>
- * <template class="header">
- * <vaadin-grid-filter path="name.first"></vaadin-grid-filter>
- * </template>
- * <template>[[item.name.first]]</template>
- * </vaadin-grid-column>
- * ```
+ *
+ * <h4>Example:</h4>
+ * <pre><code class="language-html">&lt;vaadin-grid-column&gt;
+ *   &lt;template class=&quot;header&quot;&gt;
+ *     &lt;vaadin-grid-filter path=&quot;name.first&quot;&gt;&lt;/vaadin-grid-filter&gt;
+ *   &lt;/template&gt;
+ *   &lt;template&gt;[[item.name.first]]&lt;/template&gt;
+ * &lt;/vaadin-grid-column&gt;
+ * </code></pre>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

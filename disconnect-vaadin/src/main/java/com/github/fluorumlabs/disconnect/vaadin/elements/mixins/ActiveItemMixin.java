@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 )
 public interface ActiveItemMixin<ITEM extends Any> extends Element {
 	/**
-	 * The item user has last interacted with. Turns to `null` after user deactivates
+	 * The item user has last interacted with. Turns to <code>null</code> after user deactivates
 	 * the item by re-interacting with the currently active item.
 	 */
 	@Nullable
@@ -27,7 +27,7 @@ public interface ActiveItemMixin<ITEM extends Any> extends Element {
 	ITEM getActiveItem();
 
 	/**
-	 * The item user has last interacted with. Turns to `null` after user deactivates
+	 * The item user has last interacted with. Turns to <code>null</code> after user deactivates
 	 * the item by re-interacting with the currently active item.
 	 */
 	@JSProperty

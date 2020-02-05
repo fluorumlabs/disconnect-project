@@ -9,12 +9,11 @@ import javax.annotation.Nullable;
 
 /**
  * The Drawer Toggle component controls the drawer in App Layout component.
- * <p>
- * ```
- * <vaadin-app-layout>
- * <vaadin-drawer-toggle slot="navbar">Toggle drawer</vaadin-drawer-toggle>
- * </vaadin-app-layout>
- * ```
+ *
+ * <pre><code>&lt;vaadin-app-layout&gt;
+ *   &lt;vaadin-drawer-toggle slot=&quot;navbar&quot;&gt;Toggle drawer&lt;/vaadin-drawer-toggle&gt;
+ * &lt;/vaadin-app-layout&gt;
+ * </code></pre>
  */
 public class VaadinDrawerToggle extends AbstractComponent<DrawerToggleElement>
 		implements HasComponents<DrawerToggleElement, VaadinDrawerToggle, Component<?>> {

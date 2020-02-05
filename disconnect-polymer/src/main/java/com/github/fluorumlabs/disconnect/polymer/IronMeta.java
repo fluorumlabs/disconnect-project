@@ -8,39 +8,40 @@ import js.lang.Any;
 import js.util.collections.Array;
 
 /**
- * `iron-meta` is a generic element you can use for sharing information across the
- * DOM tree. It uses [monostate pattern](http://c2.com/cgi/wiki?MonostatePattern)
+ * <code>iron-meta</code> is a generic element you can use for sharing information across the
+ * DOM tree. It uses <a href="http://c2.com/cgi/wiki?MonostatePattern">monostate pattern</a>
  * such that any instance of iron-meta has access to the shared information. You
- * can use `iron-meta` to share whatever you want (or create an extension [like
+ * can use <code>iron-meta</code> to share whatever you want (or create an extension [like
  * x-meta] for enhancements).
  * <p>
- * The `iron-meta` instances containing your actual data can be loaded in an
+ * The <code>iron-meta</code> instances containing your actual data can be loaded in an
  * import, or constructed in any way you see fit. The only requirement is that you
  * create them before you try to access them.
  * <p>
  * Examples:
  * <p>
  * If I create an instance like this:
- * <p>
- * <iron-meta key="info" value="foo/bar"></iron-meta>
- * <p>
- * Note that value="foo/bar" is the metadata I've defined. I could define more
+ *
+ * <pre><code>&lt;iron-meta key=&quot;info&quot; value=&quot;foo/bar&quot;&gt;&lt;/iron-meta&gt;
+ * </code></pre>
+ * Note that value=&quot;foo/bar&quot; is the metadata I've defined. I could define more
  * attributes or use child nodes to define additional metadata.
  * <p>
  * Now I can access that element (and it's metadata) from any iron-meta instance
  * via the byKey method, e.g.
- * <p>
- * meta.byKey('info');
- * <p>
+ *
+ * <pre><code>meta.byKey('info');
+ * </code></pre>
  * Pure imperative form would be like:
- * <p>
- * document.createElement('iron-meta').byKey('info');
- * <p>
+ *
+ * <pre><code>document.createElement('iron-meta').byKey('info');
+ * </code></pre>
  * Or, in a Polymer element, you can include a meta in your template:
- * <p>
- * <iron-meta id="meta"></iron-meta>
+ *
+ * <pre><code>&lt;iron-meta id=&quot;meta&quot;&gt;&lt;/iron-meta&gt;
  * ...
  * this.$.meta.byKey('info');
+ * </code></pre>
  */
 public class IronMeta<ITEM extends Any>
 		extends AbstractComponent<IronMetaElement<ITEM>> {
@@ -66,14 +67,14 @@ public class IronMeta<ITEM extends Any>
 	}
 
 	/**
-	 * The key used to store `value` under the `type` namespace.
+	 * The key used to store <code>value</code> under the <code>type</code> namespace.
 	 */
 	public String key() {
 		return getNode().getKey();
 	}
 
 	/**
-	 * The key used to store `value` under the `type` namespace.
+	 * The key used to store <code>value</code> under the <code>type</code> namespace.
 	 */
 	public IronMeta<ITEM> key(String key) {
 		getNode().setKey(key);
@@ -96,14 +97,14 @@ public class IronMeta<ITEM extends Any>
 	}
 
 	/**
-	 * If true, `value` is set to the iron-meta instance itself.
+	 * If true, <code>value</code> is set to the iron-meta instance itself.
 	 */
 	public boolean self() {
 		return getNode().isSelf();
 	}
 
 	/**
-	 * If true, `value` is set to the iron-meta instance itself.
+	 * If true, <code>value</code> is set to the iron-meta instance itself.
 	 */
 	public IronMeta<ITEM> self(boolean self) {
 		getNode().setSelf(self);
@@ -127,7 +128,7 @@ public class IronMeta<ITEM extends Any>
 	}
 
 	/**
-	 * Fired when the `value` property changes.
+	 * Fired when the <code>value</code> property changes.
 	 */
 	public ObservableEvent<PropertyChangeEvent<ITEM>> ValueChangedEvent() {
 		return createEvent("value-changed");

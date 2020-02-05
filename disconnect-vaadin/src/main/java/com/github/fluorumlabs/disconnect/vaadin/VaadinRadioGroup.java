@@ -12,37 +12,43 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-radio-group>` is a Web Component for grouping vaadin-radio-buttons.
- * <p>
- * ```html
- * <vaadin-radio-group>
- * <vaadin-radio-button name="foo">Foo</vaadin-radio-button>
- * <vaadin-radio-button name="bar">Bar</vaadin-radio-button>
- * <vaadin-radio-button name="baz">Baz</vaadin-radio-button>
- * </vaadin-radio-group>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-radio-group&gt;</code> is a Web Component for grouping vaadin-radio-buttons.
+ *
+ * <pre><code class="language-html">&lt;vaadin-radio-group&gt;
+ *   &lt;vaadin-radio-button name=&quot;foo&quot;&gt;Foo&lt;/vaadin-radio-button&gt;
+ *   &lt;vaadin-radio-button name=&quot;bar&quot;&gt;Bar&lt;/vaadin-radio-button&gt;
+ *   &lt;vaadin-radio-button name=&quot;baz&quot;&gt;Baz&lt;/vaadin-radio-button&gt;
+ * &lt;/vaadin-radio-group&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `label` | The label element
- * `group-field` | The element that wraps radio-buttons
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>label</code></td><td>The label element</td></tr>
+ * <tr><td><code>group-field</code></td><td>The element that wraps radio-buttons</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute  | Description | Part name
- * -----------|-------------|------------
- * `disabled`   | Set when the radio group and its children are disabled. | :host
- * `readonly` | Set to a readonly radio group | :host
- * `invalid` | Set when the element is invalid | :host
- * `has-label` | Set when the element has a label | :host
- * `has-value` | Set when the element has a value | :host
- * `focused` | Set when the element contains focus | :host
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>disabled</code></td><td>Set when the radio group and its children are disabled.</td><td>:host</td></tr>
+ * <tr><td><code>readonly</code></td><td>Set to a readonly radio group</td><td>:host</td></tr>
+ * <tr><td><code>invalid</code></td><td>Set when the element is invalid</td><td>:host</td></tr>
+ * <tr><td><code>has-label</code></td><td>Set when the element has a label</td><td>:host</td></tr>
+ * <tr><td><code>has-value</code></td><td>Set when the element has a value</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the element contains focus</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinRadioGroup extends AbstractComponent<RadioGroupElement>
 		implements HasThemableMixin<RadioGroupElement, VaadinRadioGroup>,

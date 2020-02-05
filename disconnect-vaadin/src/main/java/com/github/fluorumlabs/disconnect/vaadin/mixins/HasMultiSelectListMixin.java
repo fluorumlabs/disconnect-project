@@ -8,7 +8,7 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import javax.annotation.Nullable;
 
 /**
- * A mixin for `nav` elements, facilitating multiple selection of childNodes.
+ * A mixin for <code>nav</code> elements, facilitating multiple selection of childNodes.
  */
 public interface HasMultiSelectListMixin<E extends MultiSelectListMixin, T extends Component<E>>
 		extends HasListMixin<E, T> {

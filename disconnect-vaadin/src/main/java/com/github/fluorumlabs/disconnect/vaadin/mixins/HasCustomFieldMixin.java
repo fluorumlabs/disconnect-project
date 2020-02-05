@@ -22,29 +22,30 @@ public interface HasCustomFieldMixin<E extends CustomFieldMixin, T extends Compo
 	/**
 	 * The object used to localize this component.
 	 * To change the default localization, replace the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
 	 * The object has the following JSON structure:
-	 * <p>
-	 * {
-	 * // A function to format given `Array` as
-	 * // component value. Array is list of all internal values
-	 * // in the order of their presence in the DOM
-	 * // This function is called each time the internal input
-	 * // value is changed.
-	 * formatValue: inputValues => {
-	 * // returns a representation of the given array of values
-	 * // in the form of string with delimiter characters
-	 * },
-	 * <p>
-	 * // A function to parse the given value to an `Array` in the format
-	 * // of the list of all internal values
-	 * // in the order of their presence in the DOM
-	 * // This function is called when value of the
-	 * // custom field is set.
-	 * parseValue: value => {
-	 * // returns the array of values from parsed value string.
-	 * }
+	 *
+	 * <pre><code>     {
+	 *        // A function to format given `Array` as
+	 *        // component value. Array is list of all internal values
+	 *        // in the order of their presence in the DOM
+	 *        // This function is called each time the internal input
+	 *        // value is changed.
+	 *        formatValue: inputValues =&gt; {
+	 *          // returns a representation of the given array of values
+	 *          // in the form of string with delimiter characters
+	 *        },
+	 *
+	 *        // A function to parse the given value to an `Array` in the format
+	 *        // of the list of all internal values
+	 *        // in the order of their presence in the DOM
+	 *        // This function is called when value of the
+	 *        // custom field is set.
+	 *        parseValue: value =&gt; {
+	 *          // returns the array of values from parsed value string.
+	 *        }
+	 * </code></pre>
 	 */
 	@Nullable
 	default CustomFieldI18n i18n() {
@@ -54,29 +55,30 @@ public interface HasCustomFieldMixin<E extends CustomFieldMixin, T extends Compo
 	/**
 	 * The object used to localize this component.
 	 * To change the default localization, replace the entire
-	 * _i18n_ object or just the property you want to modify.
+	 * <em>i18n</em> object or just the property you want to modify.
 	 * <p>
 	 * The object has the following JSON structure:
-	 * <p>
-	 * {
-	 * // A function to format given `Array` as
-	 * // component value. Array is list of all internal values
-	 * // in the order of their presence in the DOM
-	 * // This function is called each time the internal input
-	 * // value is changed.
-	 * formatValue: inputValues => {
-	 * // returns a representation of the given array of values
-	 * // in the form of string with delimiter characters
-	 * },
-	 * <p>
-	 * // A function to parse the given value to an `Array` in the format
-	 * // of the list of all internal values
-	 * // in the order of their presence in the DOM
-	 * // This function is called when value of the
-	 * // custom field is set.
-	 * parseValue: value => {
-	 * // returns the array of values from parsed value string.
-	 * }
+	 *
+	 * <pre><code>     {
+	 *        // A function to format given `Array` as
+	 *        // component value. Array is list of all internal values
+	 *        // in the order of their presence in the DOM
+	 *        // This function is called each time the internal input
+	 *        // value is changed.
+	 *        formatValue: inputValues =&gt; {
+	 *          // returns a representation of the given array of values
+	 *          // in the form of string with delimiter characters
+	 *        },
+	 *
+	 *        // A function to parse the given value to an `Array` in the format
+	 *        // of the list of all internal values
+	 *        // in the order of their presence in the DOM
+	 *        // This function is called when value of the
+	 *        // custom field is set.
+	 *        parseValue: value =&gt; {
+	 *          // returns the array of values from parsed value string.
+	 *        }
+	 * </code></pre>
 	 */
 	default T i18n(CustomFieldI18n i18n) {
 		getNode().setI18n(i18n);

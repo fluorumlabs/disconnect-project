@@ -10,9 +10,9 @@ import js.web.dom.svg.SVGSVGElement;
 import javax.annotation.Nullable;
 
 /**
- * The `iron-iconset-svg` element allows users to define their own icon sets
+ * The <code>iron-iconset-svg</code> element allows users to define their own icon sets
  * that contain svg icons. The svg icon elements should be children of the
- * `iron-iconset-svg` element. Multiple icons should be given distinct id's.
+ * <code>iron-iconset-svg</code> element. Multiple icons should be given distinct id's.
  * <p>
  * Using svg elements to create icons has a few advantages over traditional
  * bitmap graphics like jpg or png. Icons that use svg are vector based so
@@ -20,25 +20,26 @@ import javax.annotation.Nullable;
  * are stylable via css. Icons can be themed, colorized, and even animated.
  * <p>
  * Example:
- * <p>
- * <iron-iconset-svg name="my-svg-icons" size="24">
- * <svg>
- * <defs>
- * <g id="shape">
- * <rect x="12" y="0" width="12" height="24" />
- * <circle cx="12" cy="12" r="12" />
- * </g>
- * </defs>
- * </svg>
- * </iron-iconset-svg>
- * <p>
- * This will automatically register the icon set "my-svg-icons" to the iconset
+ *
+ * <pre><code>&lt;iron-iconset-svg name=&quot;my-svg-icons&quot; size=&quot;24&quot;&gt;
+ *   &lt;svg&gt;
+ *     &lt;defs&gt;
+ *       &lt;g id=&quot;shape&quot;&gt;
+ *         &lt;rect x=&quot;12&quot; y=&quot;0&quot; width=&quot;12&quot; height=&quot;24&quot; /&gt;
+ *         &lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;12&quot; /&gt;
+ *       &lt;/g&gt;
+ *     &lt;/defs&gt;
+ *   &lt;/svg&gt;
+ * &lt;/iron-iconset-svg&gt;
+ * </code></pre>
+ * This will automatically register the icon set &quot;my-svg-icons&quot; to the iconset
  * database.  To use these icons from within another element, make a
- * `iron-iconset` element and call the `byId` method
+ * <code>iron-iconset</code> element and call the <code>byId</code> method
  * to retrieve a given iconset. To apply a particular icon inside an
- * element use the `applyIcon` method. For example:
- * <p>
- * iconset.applyIcon(iconNode, 'car');
+ * element use the <code>applyIcon</code> method. For example:
+ *
+ * <pre><code>iconset.applyIcon(iconNode, 'car');
+ * </code></pre>
  */
 public class IronIconsetSvg
 		extends AbstractComponent<IronIconsetSvgElement>
@@ -81,7 +82,7 @@ public class IronIconsetSvg
 	/**
 	 * Set to true to enable mirroring of icons where specified when they are
 	 * stamped. Icons that should be mirrored should be decorated with a
-	 * `mirror-in-rtl` attribute.
+	 * <code>mirror-in-rtl</code> attribute.
 	 * <p>
 	 * NOTE: For performance reasons, direction will be resolved once per
 	 * document per iconset, so moving icons in and out of RTL subtrees will
@@ -94,7 +95,7 @@ public class IronIconsetSvg
 	/**
 	 * Set to true to enable mirroring of icons where specified when they are
 	 * stamped. Icons that should be mirrored should be decorated with a
-	 * `mirror-in-rtl` attribute.
+	 * <code>mirror-in-rtl</code> attribute.
 	 * <p>
 	 * NOTE: For performance reasons, direction will be resolved once per
 	 * document per iconset, so moving icons in and out of RTL subtrees will
@@ -156,7 +157,7 @@ public class IronIconsetSvg
 
 	/**
 	 * Remove an icon from the given element by undoing the changes effected
-	 * by `applyIcon`.
+	 * by <code>applyIcon</code>.
 	 *
 	 * @param element The element from which the icon is removed.
 	 */

@@ -15,32 +15,39 @@ import js.web.dom.Event;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-radio-button>` is a Web Component for radio buttons.
- * <p>
- * ```html
- * <vaadin-radio-button value="foo">Foo</vaadin-radio-button>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-radio-button&gt;</code> is a Web Component for radio buttons.
+ *
+ * <pre><code class="language-html">&lt;vaadin-radio-button value=&quot;foo&quot;&gt;Foo&lt;/vaadin-radio-button&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name         | Description
- * ------------------|----------------
- * `radio`           | The radio button element
- * `label`           | The label content element
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>radio</code></td><td>The radio button element</td></tr>
+ * <tr><td><code>label</code></td><td>The label content element</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute  | Description | Part name
- * -----------|-------------|------------
- * `disabled`   | Set when the radio button is disabled. | :host
- * `focus-ring` | Set when the radio button is focused using the keyboard. | :host
- * `focused`    | Set when the radio button is focused. | :host
- * `checked`    | Set when the radio button is checked. | :host
- * `empty`      | Set when there is no label provided. | label
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>disabled</code></td><td>Set when the radio button is disabled.</td><td>:host</td></tr>
+ * <tr><td><code>focus-ring</code></td><td>Set when the radio button is focused using the keyboard
+ * .</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the radio button is focused.</td><td>:host</td></tr>
+ * <tr><td><code>checked</code></td><td>Set when the radio button is checked.</td><td>:host</td></tr>
+ * <tr><td><code>empty</code></td><td>Set when there is no label provided.</td><td>label</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinRadioButton extends AbstractComponent<RadioButtonElement>
 		implements HasElementMixin<RadioButtonElement, VaadinRadioButton>,
@@ -107,7 +114,7 @@ public class VaadinRadioButton extends AbstractComponent<RadioButtonElement>
 	}
 
 	/**
-	 * Fired when the `checked` property changes.
+	 * Fired when the <code>checked</code> property changes.
 	 */
 	public ObservableEvent<BooleanPropertyChangeEvent> checkedChangedEvent() {
 		return createEvent("checked-changed");

@@ -5,18 +5,16 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 
 /**
- * `<vaadin-email-field>` is a Web Component for email field control in forms.
- * <p>
- * ```html
- * <vaadin-email-field label="Email">
- * </vaadin-email-field>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-email-field&gt;</code> is a Web Component for email field control in forms.
+ *
+ * <pre><code class="language-html">&lt;vaadin-email-field label=&quot;Email&quot;&gt;
+ * &lt;/vaadin-email-field&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * See vaadin-text-field.html for the styling documentation
  * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

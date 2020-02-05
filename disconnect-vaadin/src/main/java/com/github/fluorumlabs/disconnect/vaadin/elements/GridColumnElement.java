@@ -12,12 +12,13 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * A `<vaadin-grid-column>` is used to configure how a column in `<vaadin-grid>`
+ * A <code>&lt;vaadin-grid-column&gt;</code> is used to configure how a column in <code>&lt;vaadin-grid&gt;</code>
  * should look like.
  * <p>
- * See `<vaadin-grid>` documentation and demos for instructions and examples on how
- * to configure the `<vaadin-grid-column>`.
- * ```
+ * See <code>&lt;vaadin-grid&gt;</code> documentation and demos for instructions and examples on how
+ * to configure the <code>&lt;vaadin-grid-column&gt;</code>.
+ *
+ * <pre><code></code></pre>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
@@ -56,16 +57,21 @@ public interface GridColumnElement<ITEM extends Any> extends HTMLElement, Column
 	/**
 	 * Custom function for rendering the cell content.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>root</code> The cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@Nullable
 	@JSProperty
@@ -74,16 +80,21 @@ public interface GridColumnElement<ITEM extends Any> extends HTMLElement, Column
 	/**
 	 * Custom function for rendering the cell content.
 	 * Receives three arguments:
-	 * <p>
-	 * - `root` The cell content DOM element. Append your content to it.
-	 * - `column` The `<vaadin-grid-column>` element.
-	 * - `rowData` The object with the properties related with
+	 *
+	 * <ul>
+	 * <li><code>root</code> The cell content DOM element. Append your content to it.</li>
+	 * <li><code>column</code> The <code>&lt;vaadin-grid-column&gt;</code> element.</li>
+	 * <li><code>rowData</code> The object with the properties related with
 	 * the rendered item, contains:
-	 * - `rowData.index` The index of the item.
-	 * - `rowData.item` The item.
-	 * - `rowData.expanded` Sublevel toggle state.
-	 * - `rowData.level` Level of the tree represented with a horizontal offset of the toggle button.
-	 * - `rowData.selected` Selected state.
+	 * <ul>
+	 * <li><code>rowData.index</code> The index of the item.</li>
+	 * <li><code>rowData.item</code> The item.</li>
+	 * <li><code>rowData.expanded</code> Sublevel toggle state.</li>
+	 * <li><code>rowData.level</code> Level of the tree represented with a horizontal offset of the toggle button.</li>
+	 * <li><code>rowData.selected</code> Selected state.</li>
+	 * </ul>
+	 * </li>
+	 * </ul>
 	 */
 	@JSProperty
 	void setRenderer(CellRenderer<ITEM> renderer);
@@ -104,7 +115,7 @@ public interface GridColumnElement<ITEM extends Any> extends HTMLElement, Column
 	void setPath(String path);
 
 	/**
-	 * Automatically sets the width of the column based on the column contents when this is set to `true`.
+	 * Automatically sets the width of the column based on the column contents when this is set to <code>true</code>.
 	 * <p>
 	 * For performance reasons the column width is calculated automatically only once when the grid items
 	 * are rendered for the first time and the calculation only considers the rows which are currently
@@ -114,15 +125,15 @@ public interface GridColumnElement<ITEM extends Any> extends HTMLElement, Column
 	 * Hidden columns are ignored in the calculation and their widths are not automatically updated when
 	 * you show a column that was initially hidden.
 	 * <p>
-	 * You can manually trigger the auto sizing behavior again by calling `grid.recalculateColumnWidths()`.
+	 * You can manually trigger the auto sizing behavior again by calling <code>grid.recalculateColumnWidths()</code>.
 	 * <p>
-	 * The column width may still grow larger when `flexGrow` is not 0.
+	 * The column width may still grow larger when <code>flexGrow</code> is not 0.
 	 */
 	@JSProperty
 	boolean isAutoWidth();
 
 	/**
-	 * Automatically sets the width of the column based on the column contents when this is set to `true`.
+	 * Automatically sets the width of the column based on the column contents when this is set to <code>true</code>.
 	 * <p>
 	 * For performance reasons the column width is calculated automatically only once when the grid items
 	 * are rendered for the first time and the calculation only considers the rows which are currently
@@ -132,9 +143,9 @@ public interface GridColumnElement<ITEM extends Any> extends HTMLElement, Column
 	 * Hidden columns are ignored in the calculation and their widths are not automatically updated when
 	 * you show a column that was initially hidden.
 	 * <p>
-	 * You can manually trigger the auto sizing behavior again by calling `grid.recalculateColumnWidths()`.
+	 * You can manually trigger the auto sizing behavior again by calling <code>grid.recalculateColumnWidths()</code>.
 	 * <p>
-	 * The column width may still grow larger when `flexGrow` is not 0.
+	 * The column width may still grow larger when <code>flexGrow</code> is not 0.
 	 */
 	@JSProperty
 	void setAutoWidth(boolean autoWidth);

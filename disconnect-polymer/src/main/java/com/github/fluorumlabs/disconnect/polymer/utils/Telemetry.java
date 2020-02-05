@@ -23,7 +23,7 @@ public interface Telemetry extends Any {
 	}
 
 	/**
-	 * Logs all elements registered with an `is` to the console.
+	 * Logs all elements registered with an <code>is</code> to the console.
 	 */
 	@JSBody(
 			script = "dumpRegistrations()"

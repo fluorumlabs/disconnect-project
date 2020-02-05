@@ -31,7 +31,7 @@ public interface HasInlineEditingMixin<ITEM extends Any, E extends InlineEditing
 	 * When true, after moving to next or previous editable cell using
 	 * Tab / Shift+Tab, it will be focused without edit mode.
 	 * <p>
-	 * When `enterNextRow` is true, pressing Enter will also
+	 * When <code>enterNextRow</code> is true, pressing Enter will also
 	 * preserve edit mode, otherwise, it will have no effect.
 	 */
 	default boolean singleCellEdit() {
@@ -42,7 +42,7 @@ public interface HasInlineEditingMixin<ITEM extends Any, E extends InlineEditing
 	 * When true, after moving to next or previous editable cell using
 	 * Tab / Shift+Tab, it will be focused without edit mode.
 	 * <p>
-	 * When `enterNextRow` is true, pressing Enter will also
+	 * When <code>enterNextRow</code> is true, pressing Enter will also
 	 * preserve edit mode, otherwise, it will have no effect.
 	 */
 	default T singleCellEdit(boolean singleCellEdit) {

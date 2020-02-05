@@ -9,19 +9,19 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.dom.Event;
 
 /**
- * The `<dom-if>` element will stamp a light-dom `<template>` child when
- * the `if` property becomes truthy, and the template can use Polymer
+ * The <code>&lt;dom-if&gt;</code> element will stamp a light-dom <code>&lt;template&gt;</code> child when
+ * the <code>if</code> property becomes truthy, and the template can use Polymer
  * data-binding and declarative event features when used in the context of
  * a Polymer element's template.
  * <p>
- * When `if` becomes falsy, the stamped content is hidden but not
- * removed from dom. When `if` subsequently becomes truthy again, the content
+ * When <code>if</code> becomes falsy, the stamped content is hidden but not
+ * removed from dom. When <code>if</code> subsequently becomes truthy again, the content
  * is simply re-shown. This approach is used due to its favorable performance
  * characteristics: the expense of creating template content is paid only
  * once and lazily.
  * <p>
- * Set the `restamp` property to true to force the stamped content to be
- * created / destroyed when the `if` condition changes.
+ * Set the <code>restamp</code> property to true to force the stamped content to be
+ * created / destroyed when the <code>if</code> condition changes.
  */
 public class DomIf
 		extends AbstractComponent<DomIfElement>
@@ -53,10 +53,10 @@ public class DomIf
 	}
 
 	/**
-	 * When true, elements will be removed from DOM and discarded when `if`
-	 * becomes false and re-created and added back to the DOM when `if`
+	 * When true, elements will be removed from DOM and discarded when <code>if</code>
+	 * becomes false and re-created and added back to the DOM when <code>if</code>
 	 * becomes true.  By default, stamped elements will be hidden but left
-	 * in the DOM when `if` becomes false, which is generally results
+	 * in the DOM when <code>if</code> becomes false, which is generally results
 	 * in better performance.
 	 */
 	public boolean restamp() {
@@ -64,10 +64,10 @@ public class DomIf
 	}
 
 	/**
-	 * When true, elements will be removed from DOM and discarded when `if`
-	 * becomes false and re-created and added back to the DOM when `if`
+	 * When true, elements will be removed from DOM and discarded when <code>if</code>
+	 * becomes false and re-created and added back to the DOM when <code>if</code>
 	 * becomes true.  By default, stamped elements will be hidden but left
-	 * in the DOM when `if` becomes false, which is generally results
+	 * in the DOM when <code>if</code> becomes false, which is generally results
 	 * in better performance.
 	 */
 	public DomIf restamp(boolean restamp) {
@@ -89,7 +89,7 @@ public class DomIf
 	/**
 	 * Fired whenever DOM is added or removed/hidden by this template (by
 	 * default, rendering occurs lazily).  To force immediate rendering, call
-	 * `render`.
+	 * <code>render</code>.
 	 */
 	public ObservableEvent<Event> domChangeEvent() {
 		return createEvent("dom-change");

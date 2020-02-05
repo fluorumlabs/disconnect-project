@@ -24,7 +24,7 @@ public interface Gestures extends Any {
 	/**
 	 * Finds the element rendered on the screen at the provided coordinates.
 	 * <p>
-	 * Similar to `document.elementFromPoint`, but pierces through
+	 * Similar to <code>document.elementFromPoint</code>, but pierces through
 	 * shadow roots.
 	 *
 	 * @param x Horizontal pixel coordinate
@@ -45,8 +45,7 @@ public interface Gestures extends Any {
 	 * Adds an event listener to a node for the given gesture type.
 	 *
 	 * @param node    Node to add listener on
-	 * @param evType  Gesture type: `down`, `up`, `track`, or `tap`
-	 *                FIXME param handler: !function (!Event): void
+	 * @param evType  Gesture type: <code>down</code>, <code>up</code>, <code>track</code>, or <code>tap</code>
 	 * @param handler Event listener function to call
 	 *
 	 * @return Returns true if a gesture event listener was added.
@@ -63,10 +62,9 @@ public interface Gestures extends Any {
 	 * Removes an event listener from a node for the given gesture type.
 	 *
 	 * @param node    Node to remove listener from
-	 * @param evType  Gesture type: `down`, `up`, `track`, or `tap`
-	 *                FIXME param handler: !function (!Event): void
+	 * @param evType  Gesture type: <code>down</code>, <code>up</code>, <code>track</code>, or <code>tap</code>
 	 * @param handler Event listener function previously passed to
-	 *                `addListener`.
+	 *                <code>addListener</code>.
 	 *
 	 * @return Returns true if a gesture event listener was removed.
 	 */
@@ -81,7 +79,6 @@ public interface Gestures extends Any {
 	/**
 	 * Registers a new gesture event recognizer for adding new custom
 	 * gesture event types.
-	 * FIXME param recog: !GestureRecognizer
 	 *
 	 * @param recog Gesture recognizer descriptor
 	 */

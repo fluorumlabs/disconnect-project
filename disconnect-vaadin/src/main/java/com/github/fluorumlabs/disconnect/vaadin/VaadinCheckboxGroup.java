@@ -12,38 +12,45 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-checkbox-group>` is a Polymer element for grouping vaadin-checkboxes.
- * <p>
- * ```html
- * <vaadin-checkbox-group label="Preferred language of contact:">
- * <vaadin-checkbox value="en">English</vaadin-checkbox>
- * <vaadin-checkbox value="fr">Français</vaadin-checkbox>
- * <vaadin-checkbox value="de">Deutsch</vaadin-checkbox>
- * </vaadin-checkbox-group>
- * ```
- * <p>
- * ### Styling
- * <p>
+ * <code>&lt;vaadin-checkbox-group&gt;</code> is a Polymer element for grouping vaadin-checkboxes.
+ *
+ * <pre><code class="language-html">&lt;vaadin-checkbox-group label=&quot;Preferred language of contact:&quot;&gt;
+ *  &lt;vaadin-checkbox value=&quot;en&quot;&gt;English&lt;/vaadin-checkbox&gt;
+ *  &lt;vaadin-checkbox value=&quot;fr&quot;&gt;Français&lt;/vaadin-checkbox&gt;
+ *  &lt;vaadin-checkbox value=&quot;de&quot;&gt;Deutsch&lt;/vaadin-checkbox&gt;
+ * &lt;/vaadin-checkbox-group&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
  * The following shadow DOM parts are available for styling:
- * <p>
- * Part name | Description
- * ----------------|----------------
- * `label` | The label element
- * `group-field` | The element that wraps checkboxes
- * `error-message` | The error message element
- * <p>
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Part name</th><th>Description</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>label</code></td><td>The label element</td></tr>
+ * <tr><td><code>group-field</code></td><td>The element that wraps checkboxes</td></tr>
+ * <tr><td><code>error-message</code></td><td>The error message element</td></tr>
+ * </tbody>
+ * </table>
  * The following state attributes are available for styling:
- * <p>
- * Attribute  | Description | Part name
- * -----------|-------------|------------
- * `disabled`   | Set when the checkbox group and its children are disabled. | :host
- * `focused` | Set when the checkbox group contains focus | :host
- * `has-label` | Set when the element has a label | :host
- * `has-value` | Set when the element has a value | :host
- * `required` | Set when the element is required | :host
- * `invalid` | Set when the element is invalid | :host
- * <p>
- * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * <table>
+ * <thead>
+ * <tr><th>Attribute</th><th>Description</th><th>Part name</th></tr>
+ * </thead>
+ * <tbody>
+ * <tr><td><code>disabled</code></td><td>Set when the checkbox group and its children are disabled
+ * .</td><td>:host</td></tr>
+ * <tr><td><code>focused</code></td><td>Set when the checkbox group contains focus</td><td>:host</td></tr>
+ * <tr><td><code>has-label</code></td><td>Set when the element has a label</td><td>:host</td></tr>
+ * <tr><td><code>has-value</code></td><td>Set when the element has a value</td><td>:host</td></tr>
+ * <tr><td><code>required</code></td><td>Set when the element is required</td><td>:host</td></tr>
+ * <tr><td><code>invalid</code></td><td>Set when the element is invalid</td><td>:host</td></tr>
+ * </tbody>
+ * </table>
+ * See
+ * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinCheckboxGroup extends AbstractComponent<CheckboxGroupElement>
 		implements HasThemableMixin<CheckboxGroupElement, VaadinCheckboxGroup>,
@@ -152,8 +159,8 @@ public class VaadinCheckboxGroup extends AbstractComponent<CheckboxGroupElement>
 	}
 
 	/**
-	 * Returns true if `value` is valid.
-	 * `<iron-form>` uses this to check the validity or all its elements.
+	 * Returns true if <code>value</code> is valid.
+	 * <code>&lt;iron-form&gt;</code> uses this to check the validity or all its elements.
 	 *
 	 * @return True if the value is valid.
 	 */
@@ -162,14 +169,14 @@ public class VaadinCheckboxGroup extends AbstractComponent<CheckboxGroupElement>
 	}
 
 	/**
-	 * Fired when the `value` property changes.
+	 * Fired when the <code>value</code> property changes.
 	 */
 	public ObservableEvent<StringArrayPropertyChangeEvent> valueChangedEvent() {
 		return createEvent("value-changed");
 	}
 
 	/**
-	 * Fired when the `invalid` property changes.
+	 * Fired when the <code>invalid</code> property changes.
 	 */
 	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
 		return createEvent("invalid-changed");

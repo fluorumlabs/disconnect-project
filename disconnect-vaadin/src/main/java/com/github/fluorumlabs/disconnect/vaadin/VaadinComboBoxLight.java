@@ -13,47 +13,43 @@ import js.web.dom.Element;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-combo-box-light>` is a customizable version of the `<vaadin-combo-box>` providing
+ * <code>&lt;vaadin-combo-box-light&gt;</code> is a customizable version of the <code>&lt;vaadin-combo-box&gt;</code>
+ * providing
  * only the dropdown functionality and leaving the input field definition to the user.
  * <p>
- * The element has the same API as `<vaadin-combo-box>`.
+ * The element has the same API as <code>&lt;vaadin-combo-box&gt;</code>.
  * <p>
  * To create a custom input field, you need to add a child element which has a two-way
  * data-bindable property representing the input value. The property name is expected
- * to be `value` by default. See the example below for a simplest possible example
- * using a `<vaadin-text-field>` element.
- * <p>
- * ```html
- * <vaadin-combo-box-light>
- * <vaadin-text-field>
- * </vaadin-text-field>
- * </vaadin-combo-box-light>
- * ```
- * <p>
- * If you are using other custom input fields like `<iron-input>`, you
- * need to define the name of the bindable property with the `attrForValue` attribute.
- * <p>
- * ```html
- * <vaadin-combo-box-light attr-for-value="bind-value">
- * <iron-input>
- * <input>
- * </iron-input>
- * </vaadin-combo-box-light>
- * ```
- * <p>
+ * to be <code>value</code> by default. See the example below for a simplest possible example
+ * using a <code>&lt;vaadin-text-field&gt;</code> element.
+ *
+ * <pre><code class="language-html">&lt;vaadin-combo-box-light&gt;
+ *   &lt;vaadin-text-field&gt;
+ *   &lt;/vaadin-text-field&gt;
+ * &lt;/vaadin-combo-box-light&gt;
+ * </code></pre>
+ * If you are using other custom input fields like <code>&lt;iron-input&gt;</code>, you
+ * need to define the name of the bindable property with the <code>attrForValue</code> attribute.
+ *
+ * <pre><code class="language-html">&lt;vaadin-combo-box-light attr-for-value=&quot;bind-value&quot;&gt;
+ *   &lt;iron-input&gt;
+ *     &lt;input&gt;
+ *   &lt;/iron-input&gt;
+ * &lt;/vaadin-combo-box-light&gt;
+ * </code></pre>
  * In the next example you can see how to create a custom input field based
- * on a `<paper-input>` decorated with a custom `<iron-icon>` and
- * two `<paper-button>`s to act as the clear and toggle controls.
- * <p>
- * ```html
- * <vaadin-combo-box-light>
- * <paper-input label="Elements" class="input">
- * <iron-icon icon="toll" slot="prefix"></iron-icon>
- * <paper-button slot="suffix" class="clear-button">Clear</paper-button>
- * <paper-button slot="suffix" class="toggle-button">Toggle</paper-button>
- * </paper-input>
- * </vaadin-combo-box-light>
- * ```
+ * on a <code>&lt;paper-input&gt;</code> decorated with a custom <code>&lt;iron-icon&gt;</code> and
+ * two <code>&lt;paper-button&gt;</code>s to act as the clear and toggle controls.
+ *
+ * <pre><code class="language-html">&lt;vaadin-combo-box-light&gt;
+ *   &lt;paper-input label=&quot;Elements&quot; class=&quot;input&quot;&gt;
+ *     &lt;iron-icon icon=&quot;toll&quot; slot=&quot;prefix&quot;&gt;&lt;/iron-icon&gt;
+ *     &lt;paper-button slot=&quot;suffix&quot; class=&quot;clear-button&quot;&gt;Clear&lt;/paper-button&gt;
+ *     &lt;paper-button slot=&quot;suffix&quot; class=&quot;toggle-button&quot;&gt;Toggle&lt;/paper-button&gt;
+ *   &lt;/paper-input&gt;
+ * &lt;/vaadin-combo-box-light&gt;
+ * </code></pre>
  */
 public class VaadinComboBoxLight<ITEM extends Any> extends AbstractComponent<ComboBoxLightElement<ITEM>>
 		implements HasComboBoxDataProviderMixin<ITEM, ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,

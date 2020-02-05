@@ -8,7 +8,8 @@ public interface HasIncludedMixin<E extends IncludedMixin, T extends Component<E
 	/**
 	 * A list of item fields that should not be mapped to form fields.
 	 * <p>
-	 * When [`include`](#/elements/vaadin-crud-form#property-include) is defined, this property is ignored.
+	 * When <a href="#/elements/vaadin-crud-form#property-include"><code>include</code></a>
+	 * is defined, this property is ignored.
 	 * <p>
 	 * Default is to exclude any private property.
 	 */
@@ -19,7 +20,8 @@ public interface HasIncludedMixin<E extends IncludedMixin, T extends Component<E
 	/**
 	 * A list of item fields that should not be mapped to form fields.
 	 * <p>
-	 * When [`include`](#/elements/vaadin-crud-form#property-include) is defined, this property is ignored.
+	 * When <a href="#/elements/vaadin-crud-form#property-include"><code>include</code></a>
+	 * is defined, this property is ignored.
 	 * <p>
 	 * Default is to exclude any private property.
 	 */
@@ -36,7 +38,7 @@ public interface HasIncludedMixin<E extends IncludedMixin, T extends Component<E
 	/**
 	 * A list of item properties that should be mapped to form fields.
 	 * <p>
-	 * When it is defined [`exclude`](#/elements/vaadin-crud-form#property-exclude) is ignored.
+	 * When it is defined <a href="#/elements/vaadin-crud-form#property-exclude"><code>exclude</code></a> is ignored.
 	 */
 	default String[] include() {
 		return getNode().getInclude();
@@ -45,7 +47,7 @@ public interface HasIncludedMixin<E extends IncludedMixin, T extends Component<E
 	/**
 	 * A list of item properties that should be mapped to form fields.
 	 * <p>
-	 * When it is defined [`exclude`](#/elements/vaadin-crud-form#property-exclude) is ignored.
+	 * When it is defined <a href="#/elements/vaadin-crud-form#property-exclude"><code>exclude</code></a> is ignored.
 	 */
 	default T include(String include) {
 		getNode().setInclude(include);

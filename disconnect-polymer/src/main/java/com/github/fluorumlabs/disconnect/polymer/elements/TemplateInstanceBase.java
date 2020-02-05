@@ -32,7 +32,7 @@ public interface TemplateInstanceBase extends HTMLElement, PropertyEffects {
 
 	/**
 	 * Find the parent model of this template instance.  The parent model
-	 * is either another templatize instance that had option `parentModel: true`,
+	 * is either another templatize instance that had option <code>parentModel: true</code>,
 	 * or else the host element.
 	 */
 	@JSProperty
@@ -40,7 +40,7 @@ public interface TemplateInstanceBase extends HTMLElement, PropertyEffects {
 
 	/**
 	 * Forwards a host property to this instance.  This method should be
-	 * called on instances from the `options.forwardHostProp` callback
+	 * called on instances from the <code>options.forwardHostProp</code> callback
 	 * to propagate changes of host properties to each instance.
 	 * <p>
 	 * Note this method enqueues the change, which are flushed as a batch.

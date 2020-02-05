@@ -19,8 +19,8 @@ import org.teavm.jso.JSBody;
 )
 public interface Settings extends Any {
 	/**
-	 * Sets the global rootPath property used by `ElementMixin` and
-	 * available via `rootPath`.
+	 * Sets the global rootPath property used by <code>ElementMixin</code> and
+	 * available via <code>rootPath</code>.
 	 *
 	 * @param path The new root path
 	 */
@@ -30,8 +30,9 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets the global sanitizeDOMValue available via this module's exported
-	 * `sanitizeDOMValue` variable.
+	 * Sets the global
+	 * sanitizeDOMValue available via this module's exported
+	 * <code>sanitizeDOMValue</code> variable.
 	 *
 	 * @param newSanitizeDOMValue the global sanitizeDOMValue callback
 	 */
@@ -41,7 +42,7 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets `passiveTouchGestures` globally for all elements using Polymer Gestures.
+	 * Sets <code>passiveTouchGestures</code> globally for all elements using Polymer Gestures.
 	 *
 	 * @param usePassive enable or disable passive touch gestures globally
 	 */
@@ -51,7 +52,7 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets `strictTemplatePolicy` globally for all elements
+	 * Sets <code>strictTemplatePolicy</code> globally for all elements
 	 *
 	 * @param useStrictPolicy enable or disable strict template policy
 	 *                        globally
@@ -62,7 +63,7 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets `lookupTemplateFromDomModule` globally for all elements
+	 * Sets <code>lookupTemplateFromDomModule</code> globally for all elements
 	 *
 	 * @param allowDomModule enable or disable template lookup
 	 *                       globally
@@ -73,7 +74,7 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets `legacyOptimizations` globally for all elements to enable optimizations
+	 * Sets <code>legacyOptimizations</code> globally for all elements to enable optimizations
 	 * when only legacy based elements are used.
 	 *
 	 * @param useLegacyOptimizations enable or disable legacy optimizations
@@ -85,7 +86,7 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets `syncInitialRender` globally for all elements to enable synchronous
+	 * Sets <code>syncInitialRender</code> globally for all elements to enable synchronous
 	 * initial rendering.
 	 *
 	 * @param useSyncInitialRender enable or disable synchronous initial
@@ -97,7 +98,7 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets `setCancelSyntheticEvents` globally for all elements to cancel synthetic click events.
+	 * Sets <code>setCancelSyntheticEvents</code> globally for all elements to cancel synthetic click events.
 	 *
 	 * @param useCancelSyntheticClickEvents enable or disable cancelling synthetic
 	 *                                      events

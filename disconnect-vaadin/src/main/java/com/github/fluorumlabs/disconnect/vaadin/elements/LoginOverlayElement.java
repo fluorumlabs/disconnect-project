@@ -12,20 +12,20 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * `<vaadin-login-overlay>` is a wrapper of the `<vaadin-login-form>` which opens a login form in an overlay and
- * having an additional `brand` part for application title and description. Using `<vaadin-login-overlay>` allows
+ * <code>&lt;vaadin-login-overlay&gt;</code> is a wrapper of the <code>&lt;vaadin-login-form&gt;</code> which opens a
+ * login form in an overlay and
+ * having an additional <code>brand</code> part for application title and description. Using <code>&lt;
+ * vaadin-login-overlay&gt;</code> allows
  * password managers to work with login form.
- * <p>
- * ```
- * <vaadin-login-overlay opened></vaadin-login-overlay>
- * ```
- * <p>
- * ### Styling
- * <p>
- * To style the element check: [`<vaadin-login-overlay-wrapper>`](#/elements/vaadin-login-overlay-wrapper),
- * [`<vaadin-login-form-wrapper>`](#/elements/vaadin-login-form-wrapper), [`<vaadin-login-form>`]
- * (#/elements/vaadin-login-form)
- * and `<vaadin-overlay>` elements
+ *
+ * <pre><code>&lt;vaadin-login-overlay opened&gt;&lt;/vaadin-login-overlay&gt;
+ * </code></pre>
+ * <h3>Styling</h3>
+ * To style the element check:
+ * <a href="#/elements/vaadin-login-overlay-wrapper"><code>&lt;vaadin-login-overlay-wrapper&gt;</code></a>,
+ * <a href="#/elements/vaadin-login-form-wrapper"><code>&lt;vaadin-login-form-wrapper&gt;</code></a>
+ * , <a href="#/elements/vaadin-login-form"><code>&lt;vaadin-login-form&gt;</code></a>
+ * and <code>&lt;vaadin-overlay&gt;</code> elements
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",

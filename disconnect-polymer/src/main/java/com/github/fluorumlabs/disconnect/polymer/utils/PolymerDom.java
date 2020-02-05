@@ -15,7 +15,7 @@ import org.teavm.jso.JSBody;
 public interface PolymerDom {
 
 	/**
-	 * Cross-platform `element.matches` shim.
+	 * Cross-platform <code>element.matches</code> shim.
 	 *
 	 * @param node     Node to check selector against
 	 * @param selector Selector to match

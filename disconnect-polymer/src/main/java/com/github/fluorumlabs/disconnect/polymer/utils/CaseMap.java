@@ -16,8 +16,8 @@ import org.teavm.jso.JSBody;
 )
 public interface CaseMap extends Any {
 	/**
-	 * Converts "dash-case" identifier (e.g. `foo-bar-baz`) to "camelCase"
-	 * (e.g. `fooBarBaz`).
+	 * Converts &quot;dash-case&quot; identifier (e.g. <code>foo-bar-baz</code>) to &quot;camelCase&quot;
+	 * (e.g. <code>fooBarBaz</code>).
 	 *
 	 * @param dash Dash-case identifier
 	 *
@@ -29,8 +29,8 @@ public interface CaseMap extends Any {
 	}
 
 	/**
-	 * Converts "camelCase" identifier (e.g. `fooBarBaz`) to "dash-case"
-	 * (e.g. `foo-bar-baz`).
+	 * Converts &quot;camelCase&quot; identifier (e.g. <code>fooBarBaz</code>) to &quot;dash-case&quot;
+	 * (e.g. <code>foo-bar-baz</code>).
 	 *
 	 * @param camel Camel-case identifier
 	 *

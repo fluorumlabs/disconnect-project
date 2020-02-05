@@ -6,17 +6,16 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import js.lang.Any;
 
 /**
- * `<vaadin-grid-filter-column>` is a helper element for the `<vaadin-grid>`
+ * <code>&lt;vaadin-grid-filter-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code>
  * that provides default header template and functionality for filtering.
- * <p>
- * #### Example:
- * ```html
- * <vaadin-grid items="[[items]]">
- * <vaadin-grid-filter-column path="name.first"></vaadin-grid-filter-column>
- * <p>
- * <vaadin-grid-column>
- * ...
- * ```
+ *
+ * <h4>Example:</h4>
+ * <pre><code class="language-html">&lt;vaadin-grid items=&quot;[[items]]&quot;&gt;
+ *  &lt;vaadin-grid-filter-column path=&quot;name.first&quot;&gt;&lt;/vaadin-grid-filter-column&gt;
+ *
+ *  &lt;vaadin-grid-column&gt;
+ *    ...
+ * </code></pre>
  */
 @NpmPackage(
 		name = "@vaadin/vaadin",
