@@ -2,10 +2,7 @@ package com.github.fluorumlabs.disconnect;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
-import com.github.fluorumlabs.disconnect.zero.component.HasSlottedComponents;
+import com.github.fluorumlabs.disconnect.zero.component.*;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import com.squareup.javapoet.*;
 import js.lang.Any;
@@ -561,9 +558,7 @@ public class App {
         }
 
         if (!slots.isEmpty()) {
-            javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(HasSlottedComponents.class),
-                    jsMixinClass, javaReturnType, ClassName.get(Component.class)
-            ));
+            javaMixin.addSuperinterface(ClassName.get(HasSlots.class));
         } else if (!(javaReturnType instanceof TypeVariableName)) {
             javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(HasComponents.class),
                     jsMixinClass, javaReturnType, ParameterizedTypeName.get(ClassName.get(Component.class), WildcardTypeName.subtypeOf(Object.class))
@@ -573,106 +568,23 @@ public class App {
         for (Object oSlot : slots) {
             JSONObject slot = (JSONObject) oSlot;
             String slotName = slot.getString("name");
-            String slotMethodNameBase = StringUtils.capitalize(toCamelCase(slotName));
+            String slotMethodNameBase = toCamelCase(slotName);
             String description = slot.optString("description");
 
-            MethodSpec.Builder setContent = MethodSpec.methodBuilder("set" + slotMethodNameBase)
+            MethodSpec.Builder slotted = MethodSpec.methodBuilder(slotMethodNameBase)
                     .addModifiers(Modifier.PUBLIC)
-                    .returns(javaReturnType);
+                    .returns(HasSlots.Container.class)
+                    .addStatement("return slotted($S)", slotName);
+
+            if (!description.isEmpty()) {
+                slotted.addJavadoc("$L", description);
+            }
+
             if (javaReturnType instanceof TypeVariableName) {
-                setContent.addModifiers(Modifier.DEFAULT);
+                slotted.addModifiers(Modifier.DEFAULT);
             }
 
-            setContent.addParameter(ClassName.get(Component.class), "component");
-            if (StringUtils.isNotEmpty(description)) {
-                setContent.addJavadoc("$L", description);
-            }
-            setContent.addStatement("return replaceSlotted($S, component)", slotName);
-
-            MethodSpec.Builder setContents = MethodSpec.methodBuilder("set" + slotMethodNameBase)
-                    .addModifiers(Modifier.PUBLIC)
-                    .returns(javaReturnType);
-            if (javaReturnType instanceof TypeVariableName) {
-                setContents.addModifiers(Modifier.DEFAULT);
-            }
-
-            setContents.addParameter(ArrayTypeName.of(ClassName.get(Component.class)), "components").varargs();
-            if (StringUtils.isNotEmpty(description)) {
-                setContents.addJavadoc("$L", description);
-            }
-            setContents.addStatement("return replaceSlotted($S, components)", slotName);
-
-            MethodSpec.Builder addContent = MethodSpec.methodBuilder("addTo" + slotMethodNameBase)
-                    .addModifiers(Modifier.PUBLIC)
-                    .returns(javaReturnType);
-            if (javaReturnType instanceof TypeVariableName) {
-                addContent.addModifiers(Modifier.DEFAULT);
-            }
-
-            addContent.addParameter(ClassName.get(Component.class), "component");
-            if (StringUtils.isNotEmpty(description)) {
-                addContent.addJavadoc("$L", description);
-            }
-            addContent.addStatement("return addSlotted($S, component)", slotName);
-
-            MethodSpec.Builder addContents = MethodSpec.methodBuilder("addTo" + slotMethodNameBase)
-                    .addModifiers(Modifier.PUBLIC)
-                    .returns(javaReturnType);
-            if (javaReturnType instanceof TypeVariableName) {
-                addContents.addModifiers(Modifier.DEFAULT);
-            }
-
-            addContents.addParameter(ArrayTypeName.of(ClassName.get(Component.class)), "components").varargs();
-            if (StringUtils.isNotEmpty(description)) {
-                addContents.addJavadoc("$L", description);
-            }
-            addContents.addStatement("return addSlotted($S, components)", slotName);
-
-            MethodSpec.Builder insertContent = MethodSpec.methodBuilder("insertTo" + slotMethodNameBase)
-                    .addModifiers(Modifier.PUBLIC)
-                    .returns(javaReturnType);
-            if (javaReturnType instanceof TypeVariableName) {
-                insertContent.addModifiers(Modifier.DEFAULT);
-            }
-
-            insertContent.addParameter(ClassName.get(Component.class), "component");
-            if (StringUtils.isNotEmpty(description)) {
-                insertContent.addJavadoc("$L", description);
-            }
-            insertContent.addStatement("return insertSlotted($S, component)", slotName);
-
-            MethodSpec.Builder insertContents = MethodSpec.methodBuilder("insertTo" + slotMethodNameBase)
-                    .addModifiers(Modifier.PUBLIC)
-                    .returns(javaReturnType);
-            if (javaReturnType instanceof TypeVariableName) {
-                insertContents.addModifiers(Modifier.DEFAULT);
-            }
-
-            insertContents.addParameter(ArrayTypeName.of(ClassName.get(Component.class)), "components").varargs();
-            if (StringUtils.isNotEmpty(description)) {
-                insertContents.addJavadoc("$L", description);
-            }
-            insertContents.addStatement("return insertSlotted($S, components)", slotName);
-
-            MethodSpec.Builder clear = MethodSpec.methodBuilder("clear" + slotMethodNameBase)
-                    .addModifiers(Modifier.PUBLIC)
-                    .returns(javaReturnType);
-            if (javaReturnType instanceof TypeVariableName) {
-                clear.addModifiers(Modifier.DEFAULT);
-            }
-
-            if (StringUtils.isNotEmpty(description)) {
-                clear.addJavadoc("$L", description);
-            }
-            clear.addStatement("return removeAllSlotted($S)", slotName);
-
-            javaMixin.addMethod(setContent.build());
-            javaMixin.addMethod(setContents.build());
-            javaMixin.addMethod(addContent.build());
-            javaMixin.addMethod(addContents.build());
-            javaMixin.addMethod(insertContent.build());
-            javaMixin.addMethod(insertContents.build());
-            javaMixin.addMethod(clear.build());
+            javaMixin.addMethod(slotted.build());
         }
     }
 
@@ -685,7 +597,7 @@ public class App {
             }
 
             String eventName = event.getString("name");
-            String eventMethodName = StringUtils.capitalize(toCamelCase(eventName)) + "Event";
+            String eventMethodName = toCamelCase(eventName) + "Event";
             String typeRaw = event.optString("type", "CustomEvent");
             TypeName type = parsePolymerType(typeRaw);
             String description = event.optString("description");

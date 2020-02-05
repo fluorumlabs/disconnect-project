@@ -1,6 +1,6 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
-import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEvent;
+import com.github.fluorumlabs.disconnect.polymer.types.IntPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.AccordionElement;
 import com.github.fluorumlabs.disconnect.vaadin.elements.AccordionPanelElement;
@@ -68,7 +68,7 @@ public class VaadinAccordion extends AbstractComponent<AccordionElement> impleme
      * default. Only one panel can be opened at the same time.
      * Setting null or undefined closes all the accordion panels.
      */
-    public double opened() {
+    public int opened() {
         return getNode().getOpened();
     }
 
@@ -77,7 +77,7 @@ public class VaadinAccordion extends AbstractComponent<AccordionElement> impleme
      * default. Only one panel can be opened at the same time.
      * Setting null or undefined closes all the accordion panels.
      */
-    public VaadinAccordion opened(double opened) {
+    public VaadinAccordion opened(int opened) {
         getNode().setOpened(opened);
         return this;
     }
@@ -95,7 +95,7 @@ public class VaadinAccordion extends AbstractComponent<AccordionElement> impleme
     /**
      * Fired when the `opened` property changes.
      */
-    public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
+    public ObservableEvent<IntPropertyChangeEvent> openedChangedEvent() {
         return createEvent("opened-changed");
     }
 

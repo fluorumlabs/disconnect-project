@@ -67,7 +67,7 @@ public interface AccordionElement extends HTMLElement, ElementMixin, ThemableMix
      * Setting null or undefined closes all the accordion panels.
      */
     @JSProperty
-    double getOpened();
+    int getOpened();
 
     /**
      * The index of currently opened panel. First panel is opened by
@@ -75,7 +75,7 @@ public interface AccordionElement extends HTMLElement, ElementMixin, ThemableMix
      * Setting null or undefined closes all the accordion panels.
      */
     @JSProperty
-    void setOpened(double opened);
+    void setOpened(int opened);
 
     /**
      * The list of `<vaadin-accordion-panel>` child elements.
