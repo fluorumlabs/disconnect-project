@@ -39,13 +39,13 @@ import org.teavm.jso.JSMethod;
  *
  * &lt;custom-style&gt;
  *   &lt;style&gt;
- * html {
- * --custom-color: blue;
- * --custom-mixin: {
- * font-weight: bold;
- * color: red;
- * };
- * }
+ *     html {
+ *       --custom-color: blue;
+ *       --custom-mixin: {
+ *         font-weight: bold;
+ *         color: red;
+ *       };
+ *     }
  *   &lt;/style&gt;
  * &lt;/custom-style&gt;
  * </code></pre>

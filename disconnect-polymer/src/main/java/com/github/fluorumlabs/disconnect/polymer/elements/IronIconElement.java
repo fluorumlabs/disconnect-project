@@ -21,10 +21,10 @@ import javax.annotation.Nullable;
  * <pre><code>&lt;iron-icon class=&quot;big&quot; src=&quot;big_star.png&quot;&gt;&lt;/iron-icon&gt;
  *
  * &lt;style is=&quot;custom-style&quot;&gt;
- * .big {
- * --iron-icon-height: 32px;
- * --iron-icon-width: 32px;
- * }
+ *   .big {
+ *     --iron-icon-height: 32px;
+ *     --iron-icon-width: 32px;
+ *   }
  * &lt;/style&gt;
  * </code></pre>
  * The iron elements include several sets of icons. To use the default set of

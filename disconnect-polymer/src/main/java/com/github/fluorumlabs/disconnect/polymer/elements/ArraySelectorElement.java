@@ -27,8 +27,8 @@ import js.lang.Any;
  * import '@polymer/polymer/lib/elements/array-selector.js';
  *
  * class EmployeeList extends PolymerElement {
- * static get _template() {
- * return html`
+ *   static get _template() {
+ *     return html`
  *         &lt;div&gt; Employee list: &lt;/div&gt;
  *         &lt;dom-repeat id=&quot;employeeList&quot; items=&quot;{{employees}}&quot;&gt;
  *           &lt;template&gt;
@@ -50,25 +50,25 @@ import js.lang.Any;
  *             &lt;div&gt;Last name: &lt;span&gt;{{item.last}}&lt;/span&gt;&lt;/div&gt;
  *           &lt;/template&gt;
  *         &lt;/dom-repeat&gt;`;
- * }
- * static get is() { return 'employee-list'; }
- * static get properties() {
- * return {
- * employees: {
- * value() {
- * return [
- * {first: 'Bob', last: 'Smith'},
- * {first: 'Sally', last: 'Johnson'},
- * ...
- * ];
- * }
- * }
- * };
- * }
- * toggleSelection(e) {
- * const item = this.$.employeeList.itemForElement(e.target);
- * this.$.selector.select(item);
- * }
+ *   }
+ *   static get is() { return 'employee-list'; }
+ *   static get properties() {
+ *     return {
+ *       employees: {
+ *         value() {
+ *           return [
+ *             {first: 'Bob', last: 'Smith'},
+ *             {first: 'Sally', last: 'Johnson'},
+ *             ...
+ *           ];
+ *         }
+ *       }
+ *     };
+ *   }
+ *   toggleSelection(e) {
+ *     const item = this.$.employeeList.itemForElement(e.target);
+ *     this.$.selector.select(item);
+ *   }
  * }
  * </code></pre>
  */

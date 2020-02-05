@@ -143,7 +143,7 @@ public interface IronIconsetSvgElement extends HTMLElement {
 
 	/**
 	 * Remove an icon from the given element by undoing the changes effected
-	 * by `applyIcon`.
+	 * by <code>applyIcon</code>.
 	 *
 	 * @param element The element from which the icon is removed.
 	 */

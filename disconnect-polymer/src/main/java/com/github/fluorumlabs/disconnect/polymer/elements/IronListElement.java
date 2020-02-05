@@ -33,22 +33,22 @@ import javax.annotation.Nullable;
  * <h4>Flexbox - <a href="https://jsbin.com/vejoni/edit?html,output">jsbin</a></h4>
  * <pre><code class="language-html">&lt;template is=&quot;x-list&quot;&gt;
  *   &lt;style&gt;
- * :host {
- * display: block;
- * height: 100vh;
- * display: flex;
- * flex-direction: column;
- * }
+ *     :host {
+ *       display: block;
+ *       height: 100vh;
+ *       display: flex;
+ *       flex-direction: column;
+ *     }
  *
- * iron-list {
- * flex: 1 1 auto;
- * }
+ *     iron-list {
+ *       flex: 1 1 auto;
+ *     }
  *   &lt;/style&gt;
  *   &lt;app-toolbar&gt;App name&lt;/app-toolbar&gt;
  *   &lt;iron-list items=&quot;[[items]]&quot;&gt;
  *     &lt;template&gt;
  *       &lt;div&gt;
- * ...
+ *         ...
  *       &lt;/div&gt;
  *     &lt;/template&gt;
  *   &lt;/iron-list&gt;
@@ -57,19 +57,19 @@ import javax.annotation.Nullable;
  * <h4>Explicit size - <a href="https://jsbin.com/vopucus/edit?html,output">jsbin</a></h4>
  * <pre><code class="language-html">&lt;template is=&quot;x-list&quot;&gt;
  *   &lt;style&gt;
- * :host {
- * display: block;
- * }
- * <p>
- * iron-list {
- * height: 100vh; /* don't use % values unless the parent element is sized.
+ *     :host {
+ *       display: block;
+ *     }
+ *
+ *     iron-list {
+ *       height: 100vh; /* don't use % values unless the parent element is sized.
  * \/
- * }
+ *     }
  *   &lt;/style&gt;
  *   &lt;iron-list items=&quot;[[items]]&quot;&gt;
  *     &lt;template&gt;
  *       &lt;div&gt;
- * ...
+ *         ...
  *       &lt;/div&gt;
  *     &lt;/template&gt;
  *   &lt;/iron-list&gt;
@@ -80,24 +80,24 @@ import javax.annotation.Nullable;
  *
  * <pre><code class="language-html">&lt;head&gt;
  *   &lt;style&gt;
- * body {
- * height: 100vh;
- * margin: 0;
- * display: flex;
- * flex-direction: column;
- * }
+ *     body {
+ *       height: 100vh;
+ *       margin: 0;
+ *       display: flex;
+ *       flex-direction: column;
+ *     }
  *
- * app-toolbar {
- * position: fixed;
- * top: 0;
- * left: 0;
- * right: 0;
- * }
+ *     app-toolbar {
+ *       position: fixed;
+ *       top: 0;
+ *       left: 0;
+ *       right: 0;
+ *     }
  *
- * iron-list {
- * /* add padding since the app-toolbar is fixed at the top *\/
- * padding-top: 64px;
- * }
+ *     iron-list {
+ *       /* add padding since the app-toolbar is fixed at the top *\/
+ *       padding-top: 64px;
+ *     }
  *   &lt;/style&gt;
  * &lt;/head&gt;
  * &lt;body&gt;
@@ -105,7 +105,7 @@ import javax.annotation.Nullable;
  *   &lt;iron-list scroll-target=&quot;document&quot;&gt;
  *     &lt;template&gt;
  *       &lt;div&gt;
- * ...
+ *         ...
  *       &lt;/div&gt;
  *     &lt;/template&gt;
  *   &lt;/iron-list&gt;
@@ -119,10 +119,10 @@ import javax.annotation.Nullable;
  * List item templates should bind to template models of the following structure:
  *
  * <pre><code class="language-js">{
- * index: 0,        // index in the item array
- * selected: false, // true if the current item is selected
- * tabIndex: -1,    // a dynamically generated tabIndex for focus management
- * item: {}         // user data corresponding to items[index]
+ *   index: 0,        // index in the item array
+ *   selected: false, // true if the current item is selected
+ *   tabIndex: -1,    // a dynamically generated tabIndex for focus management
+ *   item: {}         // user data corresponding to items[index]
  * }
  * </code></pre>
  * Alternatively, you can change the property name used as data index by changing
@@ -146,7 +146,7 @@ import javax.annotation.Nullable;
  * &lt;iron-list items=&quot;[[data]]&quot; as=&quot;item&quot;&gt;
  *   &lt;template&gt;
  *     &lt;div&gt;
- * Name: [[item.name]]
+ *       Name: [[item.name]]
  *     &lt;/div&gt;
  *   &lt;/template&gt;
  * &lt;/iron-list&gt;
@@ -166,7 +166,7 @@ import javax.annotation.Nullable;
  * <pre><code class="language-html">&lt;iron-list items=&quot;[[data]]&quot; as=&quot;item&quot;&gt;
  *   &lt;template&gt;
  *     &lt;div tabindex$=&quot;[[tabIndex]]&quot;&gt;
- * Name: [[item.name]]
+ *       Name: [[item.name]]
  *     &lt;/div&gt;
  *   &lt;/template&gt;
  * &lt;/iron-list&gt;
@@ -176,9 +176,9 @@ import javax.annotation.Nullable;
  * items:
  *
  * <pre><code class="language-css">iron-list {
- * --iron-list-items-container: {
- * margin: auto;
- * };
+ *  --iron-list-items-container: {
+ *     margin: auto;
+ *   };
  * }
  * </code></pre>
  * <h3>Resizing</h3>

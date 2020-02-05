@@ -47,20 +47,20 @@ import javax.annotation.Nullable;
  * With the following custom element definition:
  *
  * <pre><code class="language-js">class EmployeeList extends PolymerElement {
- * static get is() { return 'employee-list'; }
- * static get properties() {
- * return {
- * employees: {
- * value() {
- * return [
- * {first: 'Bob', last: 'Smith'},
- * {first: 'Sally', last: 'Johnson'},
- * ...
- * ];
- * }
- * }
- * };
- * }
+ *   static get is() { return 'employee-list'; }
+ *   static get properties() {
+ *     return {
+ *       employees: {
+ *         value() {
+ *           return [
+ *             {first: 'Bob', last: 'Smith'},
+ *             {first: 'Sally', last: 'Johnson'},
+ *             ...
+ *           ];
+ *         }
+ *       }
+ *     };
+ *   }
  * }
  * </code></pre>
  * Notifications for changes to items sub-properties will be forwarded to template
@@ -98,7 +98,7 @@ import javax.annotation.Nullable;
  * For example, for an <code>dom-repeat</code> with a filter of the following:
  *
  * <pre><code class="language-js">isEngineer(item) {
- * return item.type == 'engineer' || item.manager.type == 'engineer';
+ *   return item.type == 'engineer' || item.manager.type == 'engineer';
  * }
  * </code></pre>
  * Then the <code>observe</code> property should be configured as follows:

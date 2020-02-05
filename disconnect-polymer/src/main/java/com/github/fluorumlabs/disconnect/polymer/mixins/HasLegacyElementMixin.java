@@ -421,10 +421,10 @@ public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends C
 	 * at microtask timing (guaranteed before paint).
 	 *
 	 * <pre><code>debouncedClickAction(e) {
-	 * // will not call `processClick` more than once per 100ms
-	 * this.debounce('click', function() {
-	 * this.processClick();
-	 * } 100);
+	 *   // will not call `processClick` more than once per 100ms
+	 *   this.debounce('click', function() {
+	 *    this.processClick();
+	 *   } 100);
 	 * }
 	 * </code></pre>
 	 *

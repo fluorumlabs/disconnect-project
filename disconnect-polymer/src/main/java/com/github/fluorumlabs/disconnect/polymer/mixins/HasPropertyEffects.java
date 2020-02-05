@@ -123,10 +123,10 @@ public interface HasPropertyEffects<E extends PropertyEffects, T extends Compone
 	 * this.items.splice(1, 1, {name: 'Sam'});
 	 * this.items.push({name: 'Bob'});
 	 * this.notifySplices('items', [
-	 * { index: 1, removed: [{name: 'Todd'}], addedCount: 1,
-	 * object: this.items, type: 'splice' },
-	 * { index: 3, removed: [], addedCount: 1,
-	 * object: this.items, type: 'splice'}
+	 *   { index: 1, removed: [{name: 'Todd'}], addedCount: 1,
+	 *     object: this.items, type: 'splice' },
+	 *   { index: 3, removed: [], addedCount: 1,
+	 *     object: this.items, type: 'splice'}
 	 * ]);
 	 * </code></pre>
 	 *
