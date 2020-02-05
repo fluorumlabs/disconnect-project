@@ -45,63 +45,63 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "CheckboxElement",
-        module = "@vaadin/vaadin-checkbox/src/vaadin-checkbox.js"
+		symbols = "CheckboxElement",
+		module = "@vaadin/vaadin-checkbox/src/vaadin-checkbox.js"
 )
 public interface CheckboxElement
-        extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
-    /**
-     * Name of the element.
-     */
-    @JSProperty
-    String getName();
+		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
+	/**
+	 * Name of the element.
+	 */
+	@JSProperty
+	String getName();
 
-    /**
-     * Name of the element.
-     */
-    @JSProperty
-    void setName(String name);
+	/**
+	 * Name of the element.
+	 */
+	@JSProperty
+	void setName(String name);
 
-    /**
-     * True if the checkbox is checked.
-     */
-    @JSProperty
-    boolean isChecked();
+	/**
+	 * True if the checkbox is checked.
+	 */
+	@JSProperty
+	boolean isChecked();
 
-    /**
-     * True if the checkbox is checked.
-     */
-    @JSProperty
-    void setChecked(boolean checked);
+	/**
+	 * True if the checkbox is checked.
+	 */
+	@JSProperty
+	void setChecked(boolean checked);
 
-    /**
-     * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
-     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
-     */
-    @JSProperty
-    boolean isIndeterminate();
+	/**
+	 * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
+	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
+	 */
+	@JSProperty
+	boolean isIndeterminate();
 
-    /**
-     * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
-     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
-     */
-    @JSProperty
-    void setIndeterminate(boolean indeterminate);
+	/**
+	 * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
+	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
+	 */
+	@JSProperty
+	void setIndeterminate(boolean indeterminate);
 
-    /**
-     * The value given to the data submitted with the checkbox's name to the server when the control is inside a form.
-     */
-    @Nullable
-    @JSProperty
-    String getValue();
+	/**
+	 * The value given to the data submitted with the checkbox's name to the server when the control is inside a form.
+	 */
+	@Nullable
+	@JSProperty
+	String getValue();
 
-    /**
-     * The value given to the data submitted with the checkbox's name to the server when the control is inside a form.
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 * The value given to the data submitted with the checkbox's name to the server when the control is inside a form.
+	 */
+	@JSProperty
+	void setValue(String value);
 }

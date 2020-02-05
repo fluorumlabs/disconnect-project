@@ -18,17 +18,17 @@ import org.teavm.jso.JSProperty;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "SelectTextFieldElement",
-        module = "@vaadin/vaadin-select/src/vaadin-select-text-field.js"
+		symbols = "SelectTextFieldElement",
+		module = "@vaadin/vaadin-select/src/vaadin-select-text-field.js"
 )
 public interface SelectTextFieldElement extends TextFieldElement {
-    /**
-     * FIXME type ?
-     */
-    @JSProperty
-    Element getInputElement();
+	/**
+	 * FIXME type ?
+	 */
+	@JSProperty
+	Element getInputElement();
 }

@@ -9,16 +9,16 @@ import js.web.dom.CustomEvent;
 import org.teavm.jso.JSProperty;
 
 public interface HasColumnResizingMixin<ITEM extends Any, E extends ColumnResizingMixin, T extends Component<E>>
-        extends Component<E> {
-    /**
-     * Fired when a column in the grid is resized by the user.
-     */
-    default ObservableEvent<CustomEvent<ColumnResizeDetail<ITEM>>> columnResizeEvent() {
-        return createEvent("column-resize");
-    }
+		extends Component<E> {
+	/**
+	 * Fired when a column in the grid is resized by the user.
+	 */
+	default ObservableEvent<CustomEvent<ColumnResizeDetail<ITEM>>> columnResizeEvent() {
+		return createEvent("column-resize");
+	}
 
-    interface ColumnResizeDetail<ITEM extends Any> extends Any {
-        @JSProperty
-        GridColumnElement<ITEM> getResizedColumn();
-    }
+	interface ColumnResizeDetail<ITEM extends Any> extends Any {
+		@JSProperty
+		GridColumnElement<ITEM> getResizedColumn();
+	}
 }

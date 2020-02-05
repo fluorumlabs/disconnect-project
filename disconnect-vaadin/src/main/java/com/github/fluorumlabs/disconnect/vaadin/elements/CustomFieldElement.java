@@ -44,106 +44,106 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "CustomFieldElement",
-        module = "@vaadin/vaadin-custom-field/src/vaadin-custom-field.js"
+		symbols = "CustomFieldElement",
+		module = "@vaadin/vaadin-custom-field/src/vaadin-custom-field.js"
 )
 public interface CustomFieldElement extends HTMLElement, ElementMixin, ThemableMixin, CustomFieldMixin {
-    /**
-     * String used for the label element.
-     */
-    @Nullable
-    @JSProperty
-    String getLabel();
+	/**
+	 * String used for the label element.
+	 */
+	@Nullable
+	@JSProperty
+	String getLabel();
 
-    /**
-     * String used for the label element.
-     */
-    @JSProperty
-    void setLabel(String label);
+	/**
+	 * String used for the label element.
+	 */
+	@JSProperty
+	void setLabel(String label);
 
-    /**
-     * The name of the control, which is submitted with the form data.
-     */
-    @Nullable
-    @JSProperty
-    String getName();
+	/**
+	 * The name of the control, which is submitted with the form data.
+	 */
+	@Nullable
+	@JSProperty
+	String getName();
 
-    /**
-     * The name of the control, which is submitted with the form data.
-     */
-    @JSProperty
-    void setName(String name);
+	/**
+	 * The name of the control, which is submitted with the form data.
+	 */
+	@JSProperty
+	void setName(String name);
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    @JSProperty
-    boolean isRequired();
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	@JSProperty
+	boolean isRequired();
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    @JSProperty
-    void setRequired(boolean required);
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	@JSProperty
+	void setRequired(boolean required);
 
-    /**
-     * The value of the field. When wrapping several inputs, it will contain `\t`
-     * (Tab character) as a delimiter indicating parts intended to be used as the
-     * corresponding inputs values. Use the [`i18n`](#/elements/vaadin-custom-field#property-i18n)
-     * property to customize this behavior.
-     */
-    @Nullable
-    @JSProperty
-    String getValue();
+	/**
+	 * The value of the field. When wrapping several inputs, it will contain `\t`
+	 * (Tab character) as a delimiter indicating parts intended to be used as the
+	 * corresponding inputs values. Use the [`i18n`](#/elements/vaadin-custom-field#property-i18n)
+	 * property to customize this behavior.
+	 */
+	@Nullable
+	@JSProperty
+	String getValue();
 
-    /**
-     * The value of the field. When wrapping several inputs, it will contain `\t`
-     * (Tab character) as a delimiter indicating parts intended to be used as the
-     * corresponding inputs values. Use the [`i18n`](#/elements/vaadin-custom-field#property-i18n)
-     * property to customize this behavior.
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 * The value of the field. When wrapping several inputs, it will contain `\t`
+	 * (Tab character) as a delimiter indicating parts intended to be used as the
+	 * corresponding inputs values. Use the [`i18n`](#/elements/vaadin-custom-field#property-i18n)
+	 * property to customize this behavior.
+	 */
+	@JSProperty
+	void setValue(String value);
 
-    /**
-     * This property is set to true when the control value is invalid.
-     */
-    @JSProperty
-    boolean isInvalid();
+	/**
+	 * This property is set to true when the control value is invalid.
+	 */
+	@JSProperty
+	boolean isInvalid();
 
-    /**
-     * This property is set to true when the control value is invalid.
-     */
-    @JSProperty
-    void setInvalid(boolean invalid);
+	/**
+	 * This property is set to true when the control value is invalid.
+	 */
+	@JSProperty
+	void setInvalid(boolean invalid);
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    @Nullable
-    @JSProperty
-    String getErrorMessage();
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	@Nullable
+	@JSProperty
+	String getErrorMessage();
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    @JSProperty
-    void setErrorMessage(String errorMessage);
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	@JSProperty
+	void setErrorMessage(String errorMessage);
 
-    /**
-     * Returns true if `value` is valid.
-     * `<iron-form>` uses this to check the validity or all its elements.
-     *
-     * @return True if the value is valid.
-     */
-    boolean validate();
+	/**
+	 * Returns true if `value` is valid.
+	 * `<iron-form>` uses this to check the validity or all its elements.
+	 *
+	 * @return True if the value is valid.
+	 */
+	boolean validate();
 
-    /**
-     * Returns true if the current inputs values satisfy all constraints (if any)
-     */
-    boolean checkValidity();
+	/**
+	 * Returns true if the current inputs values satisfy all constraints (if any)
+	 */
+	boolean checkValidity();
 }

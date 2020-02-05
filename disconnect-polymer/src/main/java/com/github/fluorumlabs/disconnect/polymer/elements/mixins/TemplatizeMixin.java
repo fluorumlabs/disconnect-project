@@ -6,12 +6,12 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.Element;
 
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "TemplatizeMixin",
-        module = "@polymer/polymer/lib/legacy/legacy-data-mixin.js"
+		symbols = "TemplatizeMixin",
+		module = "@polymer/polymer/lib/legacy/legacy-data-mixin.js"
 )
 public interface TemplatizeMixin extends Element {
 }

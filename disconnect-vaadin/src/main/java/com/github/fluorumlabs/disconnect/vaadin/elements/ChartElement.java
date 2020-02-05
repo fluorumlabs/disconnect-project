@@ -254,331 +254,331 @@ import javax.annotation.Nullable;
  * to validate your license by signing in to vaadin.com.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ChartElement",
-        module = "@vaadin/vaadin-charts/src/vaadin-chart.js"
+		symbols = "ChartElement",
+		module = "@vaadin/vaadin-charts/src/vaadin-chart.js"
 )
 public interface ChartElement extends HTMLElement {
-    /**
-     * FIXME type ?
-     */
-    @JSProperty
-    Unknown getOptions();
+	/**
+	 * FIXME type ?
+	 */
+	@JSProperty
+	Unknown getOptions();
 
-    /**
-     * FIXME type Object
-     * Configuration object that exposes the JS Api to configure the chart.
-     * <p>
-     * Most important methods are:
-     * - `addSeries (Object options, [Boolean redraw], [Mixed animation])`
-     * - `addAxis (Object options, [Boolean isX], [Boolean redraw], [Mixed animation])`
-     * - `setTitle (Object title, object subtitle, Boolean redraw)`
-     * <p>
-     * Most important properties are:
-     * - `configuration.series`: An array of the chart's series. Detailed API for Series object is
-     * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Series)
-     * - `configuration.xAxis`: An array of the chart's x axes. Detailed API for Axis object is
-     * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Axis)
-     * - `configuration.yAxis`: An array of the chart's y axes. Detailed API for Axis object is
-     * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Axis)
-     * - `configuration.title`: The chart title.
-     * <p>
-     * For detailed documentation of available API check the [API site](http://api.highcharts
-     * .com/class-reference/classes.list)
-     */
-    @JSProperty
-    Unknown getConfiguration();
+	/**
+	 * FIXME type Object
+	 * Configuration object that exposes the JS Api to configure the chart.
+	 * <p>
+	 * Most important methods are:
+	 * - `addSeries (Object options, [Boolean redraw], [Mixed animation])`
+	 * - `addAxis (Object options, [Boolean isX], [Boolean redraw], [Mixed animation])`
+	 * - `setTitle (Object title, object subtitle, Boolean redraw)`
+	 * <p>
+	 * Most important properties are:
+	 * - `configuration.series`: An array of the chart's series. Detailed API for Series object is
+	 * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Series)
+	 * - `configuration.xAxis`: An array of the chart's x axes. Detailed API for Axis object is
+	 * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Axis)
+	 * - `configuration.yAxis`: An array of the chart's y axes. Detailed API for Axis object is
+	 * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Axis)
+	 * - `configuration.title`: The chart title.
+	 * <p>
+	 * For detailed documentation of available API check the [API site](http://api.highcharts
+	 * .com/class-reference/classes.list)
+	 */
+	@JSProperty
+	Unknown getConfiguration();
 
-    /**
-     * FIXME type Object
-     * Configuration object that exposes the JS Api to configure the chart.
-     * <p>
-     * Most important methods are:
-     * - `addSeries (Object options, [Boolean redraw], [Mixed animation])`
-     * - `addAxis (Object options, [Boolean isX], [Boolean redraw], [Mixed animation])`
-     * - `setTitle (Object title, object subtitle, Boolean redraw)`
-     * <p>
-     * Most important properties are:
-     * - `configuration.series`: An array of the chart's series. Detailed API for Series object is
-     * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Series)
-     * - `configuration.xAxis`: An array of the chart's x axes. Detailed API for Axis object is
-     * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Axis)
-     * - `configuration.yAxis`: An array of the chart's y axes. Detailed API for Axis object is
-     * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Axis)
-     * - `configuration.title`: The chart title.
-     * <p>
-     * For detailed documentation of available API check the [API site](http://api.highcharts
-     * .com/class-reference/classes.list)
-     */
-    @JSProperty
-    void setConfiguration(Unknown configuration);
+	/**
+	 * FIXME type Object
+	 * Configuration object that exposes the JS Api to configure the chart.
+	 * <p>
+	 * Most important methods are:
+	 * - `addSeries (Object options, [Boolean redraw], [Mixed animation])`
+	 * - `addAxis (Object options, [Boolean isX], [Boolean redraw], [Mixed animation])`
+	 * - `setTitle (Object title, object subtitle, Boolean redraw)`
+	 * <p>
+	 * Most important properties are:
+	 * - `configuration.series`: An array of the chart's series. Detailed API for Series object is
+	 * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Series)
+	 * - `configuration.xAxis`: An array of the chart's x axes. Detailed API for Axis object is
+	 * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Axis)
+	 * - `configuration.yAxis`: An array of the chart's y axes. Detailed API for Axis object is
+	 * available in [API Site](http://api.highcharts.com/class-reference/Highcharts.Axis)
+	 * - `configuration.title`: The chart title.
+	 * <p>
+	 * For detailed documentation of available API check the [API site](http://api.highcharts
+	 * .com/class-reference/classes.list)
+	 */
+	@JSProperty
+	void setConfiguration(Unknown configuration);
 
-    /**
-     * If categories are present names are used instead of numbers for the category axis.
-     * The format of categories can be an `Array` with a list of categories, such as `['2010', '2011', '2012']`
-     * or a mapping `Object`, like `{0:'1',9:'Target (10)', 15: 'Max'}`.
-     */
-    @Nullable
-    @JSProperty
-    String[] getCategories();
+	/**
+	 * If categories are present names are used instead of numbers for the category axis.
+	 * The format of categories can be an `Array` with a list of categories, such as `['2010', '2011', '2012']`
+	 * or a mapping `Object`, like `{0:'1',9:'Target (10)', 15: 'Max'}`.
+	 */
+	@Nullable
+	@JSProperty
+	String[] getCategories();
 
-    /**
-     * If categories are present names are used instead of numbers for the category axis.
-     * The format of categories can be an `Array` with a list of categories, such as `['2010', '2011', '2012']`
-     * or a mapping `Object`, like `{0:'1',9:'Target (10)', 15: 'Max'}`.
-     */
-    @JSProperty
-    void setCategories(@JSByRef String... categories);
+	/**
+	 * If categories are present names are used instead of numbers for the category axis.
+	 * The format of categories can be an `Array` with a list of categories, such as `['2010', '2011', '2012']`
+	 * or a mapping `Object`, like `{0:'1',9:'Target (10)', 15: 'Max'}`.
+	 */
+	@JSProperty
+	void setCategories(@JSByRef String... categories);
 
-    /**
-     * Category-axis maximum value. Defaults to `undefined`.
-     */
-    @JSProperty
-    double getCategoryMax();
+	/**
+	 * Category-axis maximum value. Defaults to `undefined`.
+	 */
+	@JSProperty
+	double getCategoryMax();
 
-    /**
-     * Category-axis maximum value. Defaults to `undefined`.
-     */
-    @JSProperty
-    void setCategoryMax(double categoryMax);
+	/**
+	 * Category-axis maximum value. Defaults to `undefined`.
+	 */
+	@JSProperty
+	void setCategoryMax(double categoryMax);
 
-    /**
-     * Category-axis minimum value. Defaults to `undefined`.
-     */
-    @JSProperty
-    double getCategoryMin();
+	/**
+	 * Category-axis minimum value. Defaults to `undefined`.
+	 */
+	@JSProperty
+	double getCategoryMin();
 
-    /**
-     * Category-axis minimum value. Defaults to `undefined`.
-     */
-    @JSProperty
-    void setCategoryMin(double categoryMin);
+	/**
+	 * Category-axis minimum value. Defaults to `undefined`.
+	 */
+	@JSProperty
+	void setCategoryMin(double categoryMin);
 
-    /**
-     * The position of the category axis. Acceptable values are `left`, `right`, `top` and `bottom`
-     * except for bar charts which only accept `left` and `right`.
-     * With the default value, charts appear as though they have `category-position="bottom"`
-     * except for bar charts that appear as though they have `category-position="left"`.
-     * <p>
-     * Defaults to `undefined`
-     */
-    @Nullable
-    @JSProperty
-    AxisPosition getCategoryPosition();
+	/**
+	 * The position of the category axis. Acceptable values are `left`, `right`, `top` and `bottom`
+	 * except for bar charts which only accept `left` and `right`.
+	 * With the default value, charts appear as though they have `category-position="bottom"`
+	 * except for bar charts that appear as though they have `category-position="left"`.
+	 * <p>
+	 * Defaults to `undefined`
+	 */
+	@Nullable
+	@JSProperty
+	AxisPosition getCategoryPosition();
 
-    /**
-     * The position of the category axis. Acceptable values are `left`, `right`, `top` and `bottom`
-     * except for bar charts which only accept `left` and `right`.
-     * With the default value, charts appear as though they have `category-position="bottom"`
-     * except for bar charts that appear as though they have `category-position="left"`.
-     * <p>
-     * Defaults to `undefined`
-     */
-    @JSProperty
-    void setCategoryPosition(AxisPosition categoryPosition);
+	/**
+	 * The position of the category axis. Acceptable values are `left`, `right`, `top` and `bottom`
+	 * except for bar charts which only accept `left` and `right`.
+	 * With the default value, charts appear as though they have `category-position="bottom"`
+	 * except for bar charts that appear as though they have `category-position="left"`.
+	 * <p>
+	 * Defaults to `undefined`
+	 */
+	@JSProperty
+	void setCategoryPosition(AxisPosition categoryPosition);
 
-    /**
-     * Specifies whether to hide legend or show.
-     * Legend configuration can be set up via additionalOptions property
-     */
-    @JSProperty
-    boolean isNoLegend();
+	/**
+	 * Specifies whether to hide legend or show.
+	 * Legend configuration can be set up via additionalOptions property
+	 */
+	@JSProperty
+	boolean isNoLegend();
 
-    /**
-     * Specifies whether to hide legend or show.
-     * Legend configuration can be set up via additionalOptions property
-     */
-    @JSProperty
-    void setNoLegend(boolean noLegend);
+	/**
+	 * Specifies whether to hide legend or show.
+	 * Legend configuration can be set up via additionalOptions property
+	 */
+	@JSProperty
+	void setNoLegend(boolean noLegend);
 
-    /**
-     * Specifies how series are stacked on top of each other.
-     * Possible values are null, "normal" or "percent".
-     * If "stack" property is not defined on the vaadin-chart-series elements, then series will be put into
-     * the default stack.
-     */
-    @Nullable
-    @JSProperty
-    Stacking getStacking();
+	/**
+	 * Specifies how series are stacked on top of each other.
+	 * Possible values are null, "normal" or "percent".
+	 * If "stack" property is not defined on the vaadin-chart-series elements, then series will be put into
+	 * the default stack.
+	 */
+	@Nullable
+	@JSProperty
+	Stacking getStacking();
 
-    /**
-     * Specifies how series are stacked on top of each other.
-     * Possible values are null, "normal" or "percent".
-     * If "stack" property is not defined on the vaadin-chart-series elements, then series will be put into
-     * the default stack.
-     */
-    @JSProperty
-    void setStacking(Stacking stacking);
+	/**
+	 * Specifies how series are stacked on top of each other.
+	 * Possible values are null, "normal" or "percent".
+	 * If "stack" property is not defined on the vaadin-chart-series elements, then series will be put into
+	 * the default stack.
+	 */
+	@JSProperty
+	void setStacking(Stacking stacking);
 
-    /**
-     * Specifies whether the chart is a normal chart or a timeline chart.
-     */
-    @JSProperty
-    boolean isTimeline();
+	/**
+	 * Specifies whether the chart is a normal chart or a timeline chart.
+	 */
+	@JSProperty
+	boolean isTimeline();
 
-    /**
-     * Specifies whether the chart is a normal chart or a timeline chart.
-     */
-    @JSProperty
-    void setTimeline(boolean timeline);
+	/**
+	 * Specifies whether the chart is a normal chart or a timeline chart.
+	 */
+	@JSProperty
+	void setTimeline(boolean timeline);
 
-    /**
-     * Whether or not to show tooltip when hovering data points.
-     */
-    @JSProperty
-    boolean isTooltip();
+	/**
+	 * Whether or not to show tooltip when hovering data points.
+	 */
+	@JSProperty
+	boolean isTooltip();
 
-    /**
-     * Whether or not to show tooltip when hovering data points.
-     */
-    @JSProperty
-    void setTooltip(boolean tooltip);
+	/**
+	 * Whether or not to show tooltip when hovering data points.
+	 */
+	@JSProperty
+	void setTooltip(boolean tooltip);
 
-    /**
-     * Sets the default series type of the chart.
-     * Note that `'bar'`, `'gauge'` and `'solidgauge'` should be set as default series type.
-     */
-    @Nullable
-    @JSProperty
-    String getType();
+	/**
+	 * Sets the default series type of the chart.
+	 * Note that `'bar'`, `'gauge'` and `'solidgauge'` should be set as default series type.
+	 */
+	@Nullable
+	@JSProperty
+	String getType();
 
-    /**
-     * Sets the default series type of the chart.
-     * Note that `'bar'`, `'gauge'` and `'solidgauge'` should be set as default series type.
-     */
-    @JSProperty
-    void setType(String type);
+	/**
+	 * Sets the default series type of the chart.
+	 * Note that `'bar'`, `'gauge'` and `'solidgauge'` should be set as default series type.
+	 */
+	@JSProperty
+	void setType(String type);
 
-    /**
-     * Represents the subtitle of the chart.
-     */
-    @Nullable
-    @JSProperty
-    String getSubtitle();
+	/**
+	 * Represents the subtitle of the chart.
+	 */
+	@Nullable
+	@JSProperty
+	String getSubtitle();
 
-    /**
-     * Represents the subtitle of the chart.
-     */
-    @JSProperty
-    void setSubtitle(String subtitle);
+	/**
+	 * Represents the subtitle of the chart.
+	 */
+	@JSProperty
+	void setSubtitle(String subtitle);
 
-    /**
-     * Specifies whether to show chart in 3 or in 2 dimensions.
-     * Some display angles are added by default to the "chart.options3d" (`{alpha: 15, beta: 15, depth: 50}`).
-     * 3D display options can be modified via `additionalOptions`.
-     * The thickness of a Pie chart can be set on `additionalOptions` through `plotOptions.pie.depth`.
-     * 3D is supported by Bar, Column, Pie and Scatter3D charts.
-     * More info available at [Highcharts](https://www.highcharts.com/docs/chart-concepts/3d-charts).
-     */
-    @JSProperty
-    boolean isChart3d();
+	/**
+	 * Specifies whether to show chart in 3 or in 2 dimensions.
+	 * Some display angles are added by default to the "chart.options3d" (`{alpha: 15, beta: 15, depth: 50}`).
+	 * 3D display options can be modified via `additionalOptions`.
+	 * The thickness of a Pie chart can be set on `additionalOptions` through `plotOptions.pie.depth`.
+	 * 3D is supported by Bar, Column, Pie and Scatter3D charts.
+	 * More info available at [Highcharts](https://www.highcharts.com/docs/chart-concepts/3d-charts).
+	 */
+	@JSProperty
+	boolean isChart3d();
 
-    /**
-     * Specifies whether to show chart in 3 or in 2 dimensions.
-     * Some display angles are added by default to the "chart.options3d" (`{alpha: 15, beta: 15, depth: 50}`).
-     * 3D display options can be modified via `additionalOptions`.
-     * The thickness of a Pie chart can be set on `additionalOptions` through `plotOptions.pie.depth`.
-     * 3D is supported by Bar, Column, Pie and Scatter3D charts.
-     * More info available at [Highcharts](https://www.highcharts.com/docs/chart-concepts/3d-charts).
-     */
-    @JSProperty
-    void setChart3d(boolean chart3d);
+	/**
+	 * Specifies whether to show chart in 3 or in 2 dimensions.
+	 * Some display angles are added by default to the "chart.options3d" (`{alpha: 15, beta: 15, depth: 50}`).
+	 * 3D display options can be modified via `additionalOptions`.
+	 * The thickness of a Pie chart can be set on `additionalOptions` through `plotOptions.pie.depth`.
+	 * 3D is supported by Bar, Column, Pie and Scatter3D charts.
+	 * More info available at [Highcharts](https://www.highcharts.com/docs/chart-concepts/3d-charts).
+	 */
+	@JSProperty
+	void setChart3d(boolean chart3d);
 
-    /**
-     * Specifies the message displayed on a chart without displayable data.
-     */
-    @Nullable
-    @JSProperty
-    String getEmptyText();
+	/**
+	 * Specifies the message displayed on a chart without displayable data.
+	 */
+	@Nullable
+	@JSProperty
+	String getEmptyText();
 
-    /**
-     * Specifies the message displayed on a chart without displayable data.
-     */
-    @JSProperty
-    void setEmptyText(String emptyText);
+	/**
+	 * Specifies the message displayed on a chart without displayable data.
+	 */
+	@JSProperty
+	void setEmptyText(String emptyText);
 
-    /**
-     * FIXME type Object | null | undefined
-     * Represents additional JSON configuration.
-     */
-    @Nullable
-    @JSProperty
-    Unknown getAdditionalOptions();
+	/**
+	 * FIXME type Object | null | undefined
+	 * Represents additional JSON configuration.
+	 */
+	@Nullable
+	@JSProperty
+	Unknown getAdditionalOptions();
 
-    /**
-     * FIXME type Object | null | undefined
-     * Represents additional JSON configuration.
-     */
-    @JSProperty
-    void setAdditionalOptions(Unknown additionalOptions);
+	/**
+	 * FIXME type Object | null | undefined
+	 * Represents additional JSON configuration.
+	 */
+	@JSProperty
+	void setAdditionalOptions(Unknown additionalOptions);
 
-    /**
-     * When present, cartesian charts like line, spline, area and column are transformed
-     * into the polar coordinate system.
-     */
-    @JSProperty
-    boolean isPolar();
+	/**
+	 * When present, cartesian charts like line, spline, area and column are transformed
+	 * into the polar coordinate system.
+	 */
+	@JSProperty
+	boolean isPolar();
 
-    /**
-     * When present, cartesian charts like line, spline, area and column are transformed
-     * into the polar coordinate system.
-     */
-    @JSProperty
-    void setPolar(boolean polar);
+	/**
+	 * When present, cartesian charts like line, spline, area and column are transformed
+	 * into the polar coordinate system.
+	 */
+	@JSProperty
+	void setPolar(boolean polar);
 
-    /**
-     * Update the chart configuration.
-     * This JSON API provides a simple single-argument alternative to the configuration property.
-     * <p>
-     * Styling properties specified in this configuration will be ignored. To learn about chart styling
-     * please see the CSS Styling section above.
-     * FIXME param jsonConfiguration: Object
-     *
-     * @param jsonConfiguration  Object chart configuration. Most important properties are:
-     *                           <p>
-     *                           - chart `Object` with options regarding the chart area and plot area as well as
-     *                           general chart options.
-     *                           Detailed API for chart object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/chart)
-     *                           - credits `Object` with options regarding the chart area and plot area as well as
-     *                           general chart options.
-     *                           Detailed API for credits object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/credits)
-     *                           - labels `Object[]` with HTML labels that can be positioned anywhere in the chart area
-     *                           Detailed API for labels object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/labels)
-     *                           - plotOptions `Object` wrapper for config objects for each series type.
-     *                           Detailed API for plotOptions object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/plotOptions)
-     *                           - series `Object[]` the actual series to append to the chart.
-     *                           Detailed API for series object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/series)
-     *                           - subtitle `Object` the chart's subtitle.
-     *                           Detailed API for subtitle object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/subtitle)
-     *                           - title `Object` the chart's main title.
-     *                           Detailed API for title object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/title)
-     *                           - tooltip `Object` Options for the tooltip that appears when the user hovers over a
-     *                           series or point.
-     *                           Detailed API for tooltip object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/tooltip)
-     *                           - xAxis `Object[]` The X axis or category axis. Normally this is the horizontal axis.
-     *                           Detailed API for xAxis object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/xAxis)
-     *                           - yAxis `Object[]` The Y axis or value axis. Normally this is the vertical axis.
-     *                           Detailed API for yAxis object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/yAxis)
-     *                           - zAxis `Object[]` The Z axis or depth axis for 3D plots.
-     *                           Detailed API for zAxis object is available in [API Site](http://api.highcharts
-     *                           .com/highcharts/zAxis)
-     *                           FIXME param resetConfiguration: Boolean
-     * @param resetConfiguration Optional boolean that should be set to true if no other chart configuration was set
-     *                           before or
-     *                           if existing configuration should be discarded.
-     */
-    void update(Unknown jsonConfiguration, Unknown resetConfiguration);
+	/**
+	 * Update the chart configuration.
+	 * This JSON API provides a simple single-argument alternative to the configuration property.
+	 * <p>
+	 * Styling properties specified in this configuration will be ignored. To learn about chart styling
+	 * please see the CSS Styling section above.
+	 * FIXME param jsonConfiguration: Object
+	 *
+	 * @param jsonConfiguration  Object chart configuration. Most important properties are:
+	 *                           <p>
+	 *                           - chart `Object` with options regarding the chart area and plot area as well as
+	 *                           general chart options.
+	 *                           Detailed API for chart object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/chart)
+	 *                           - credits `Object` with options regarding the chart area and plot area as well as
+	 *                           general chart options.
+	 *                           Detailed API for credits object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/credits)
+	 *                           - labels `Object[]` with HTML labels that can be positioned anywhere in the chart area
+	 *                           Detailed API for labels object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/labels)
+	 *                           - plotOptions `Object` wrapper for config objects for each series type.
+	 *                           Detailed API for plotOptions object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/plotOptions)
+	 *                           - series `Object[]` the actual series to append to the chart.
+	 *                           Detailed API for series object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/series)
+	 *                           - subtitle `Object` the chart's subtitle.
+	 *                           Detailed API for subtitle object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/subtitle)
+	 *                           - title `Object` the chart's main title.
+	 *                           Detailed API for title object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/title)
+	 *                           - tooltip `Object` Options for the tooltip that appears when the user hovers over a
+	 *                           series or point.
+	 *                           Detailed API for tooltip object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/tooltip)
+	 *                           - xAxis `Object[]` The X axis or category axis. Normally this is the horizontal axis.
+	 *                           Detailed API for xAxis object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/xAxis)
+	 *                           - yAxis `Object[]` The Y axis or value axis. Normally this is the vertical axis.
+	 *                           Detailed API for yAxis object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/yAxis)
+	 *                           - zAxis `Object[]` The Z axis or depth axis for 3D plots.
+	 *                           Detailed API for zAxis object is available in [API Site](http://api.highcharts
+	 *                           .com/highcharts/zAxis)
+	 *                           FIXME param resetConfiguration: Boolean
+	 * @param resetConfiguration Optional boolean that should be set to true if no other chart configuration was set
+	 *                           before or
+	 *                           if existing configuration should be discarded.
+	 */
+	void update(Unknown jsonConfiguration, Unknown resetConfiguration);
 }

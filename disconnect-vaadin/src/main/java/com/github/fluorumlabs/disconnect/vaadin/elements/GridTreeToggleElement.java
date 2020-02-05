@@ -49,49 +49,49 @@ import org.teavm.jso.JSProperty;
  * `--vaadin-grid-tree-toggle-level-offset` | Visual offset step for each tree sublevel | `1em`
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridTreeToggleElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-tree-toggle.js"
+		symbols = "GridTreeToggleElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-tree-toggle.js"
 )
 public interface GridTreeToggleElement extends HTMLElement, ThemableMixin {
-    /**
-     * Current level of the tree represented with a horizontal offset
-     * of the toggle button.
-     */
-    @JSProperty
-    double getLevel();
+	/**
+	 * Current level of the tree represented with a horizontal offset
+	 * of the toggle button.
+	 */
+	@JSProperty
+	double getLevel();
 
-    /**
-     * Current level of the tree represented with a horizontal offset
-     * of the toggle button.
-     */
-    @JSProperty
-    void setLevel(double level);
+	/**
+	 * Current level of the tree represented with a horizontal offset
+	 * of the toggle button.
+	 */
+	@JSProperty
+	void setLevel(double level);
 
-    /**
-     * Hides the toggle icon and disables toggling a tree sublevel.
-     */
-    @JSProperty
-    boolean isLeaf();
+	/**
+	 * Hides the toggle icon and disables toggling a tree sublevel.
+	 */
+	@JSProperty
+	boolean isLeaf();
 
-    /**
-     * Hides the toggle icon and disables toggling a tree sublevel.
-     */
-    @JSProperty
-    void setLeaf(boolean leaf);
+	/**
+	 * Hides the toggle icon and disables toggling a tree sublevel.
+	 */
+	@JSProperty
+	void setLeaf(boolean leaf);
 
-    /**
-     * Sublevel toggle state.
-     */
-    @JSProperty
-    boolean isExpanded();
+	/**
+	 * Sublevel toggle state.
+	 */
+	@JSProperty
+	boolean isExpanded();
 
-    /**
-     * Sublevel toggle state.
-     */
-    @JSProperty
-    void setExpanded(boolean expanded);
+	/**
+	 * Sublevel toggle state.
+	 */
+	@JSProperty
+	void setExpanded(boolean expanded);
 }

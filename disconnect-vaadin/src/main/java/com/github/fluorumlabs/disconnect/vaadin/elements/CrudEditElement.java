@@ -14,12 +14,12 @@ import js.web.dom.HTMLElement;
  * a `<vaadin-crud>` to enable editing.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "CrudEditElement",
-        module = "@vaadin/vaadin-crud/src/vaadin-crud-edit-column.js"
+		symbols = "CrudEditElement",
+		module = "@vaadin/vaadin-crud/src/vaadin-crud-edit-column.js"
 )
 public interface CrudEditElement extends HTMLElement {
 }

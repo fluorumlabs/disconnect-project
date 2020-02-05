@@ -224,119 +224,119 @@ import javax.annotation.Nullable;
  * to internal `vaadin-context-menu-list-box` and `vaadin-context-menu-item`'s.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ContextMenuElement",
-        module = "@vaadin/vaadin-context-menu/src/vaadin-context-menu.js"
+		symbols = "ContextMenuElement",
+		module = "@vaadin/vaadin-context-menu/src/vaadin-context-menu.js"
 )
 public interface ContextMenuElement
-        extends HTMLElement, ElementMixin, ThemePropertyMixin, ItemsMixin, GestureEventListeners {
-    /**
-     * CSS selector that can be used to target any child element
-     * of the context menu to listen for `openOn` events.
-     */
-    @Nullable
-    @JSProperty
-    String getSelector();
+		extends HTMLElement, ElementMixin, ThemePropertyMixin, ItemsMixin, GestureEventListeners {
+	/**
+	 * CSS selector that can be used to target any child element
+	 * of the context menu to listen for `openOn` events.
+	 */
+	@Nullable
+	@JSProperty
+	String getSelector();
 
-    /**
-     * CSS selector that can be used to target any child element
-     * of the context menu to listen for `openOn` events.
-     */
-    @JSProperty
-    void setSelector(String selector);
+	/**
+	 * CSS selector that can be used to target any child element
+	 * of the context menu to listen for `openOn` events.
+	 */
+	@JSProperty
+	void setSelector(String selector);
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * Event name to listen for opening the context menu.
-     */
-    @Nullable
-    @JSProperty
-    String getOpenOn();
+	/**
+	 * Event name to listen for opening the context menu.
+	 */
+	@Nullable
+	@JSProperty
+	String getOpenOn();
 
-    /**
-     * Event name to listen for opening the context menu.
-     */
-    @JSProperty
-    void setOpenOn(String openOn);
+	/**
+	 * Event name to listen for opening the context menu.
+	 */
+	@JSProperty
+	void setOpenOn(String openOn);
 
-    /**
-     * The target element that's listened to for context menu opening events.
-     * By default the vaadin-context-menu listens to the target's `vaadin-contextmenu`
-     * events.
-     */
-    @JSProperty
-    HTMLElement getListenOn();
+	/**
+	 * The target element that's listened to for context menu opening events.
+	 * By default the vaadin-context-menu listens to the target's `vaadin-contextmenu`
+	 * events.
+	 */
+	@JSProperty
+	HTMLElement getListenOn();
 
-    /**
-     * The target element that's listened to for context menu opening events.
-     * By default the vaadin-context-menu listens to the target's `vaadin-contextmenu`
-     * events.
-     */
-    @JSProperty
-    void setListenOn(HTMLElement listenOn);
+	/**
+	 * The target element that's listened to for context menu opening events.
+	 * By default the vaadin-context-menu listens to the target's `vaadin-contextmenu`
+	 * events.
+	 */
+	@JSProperty
+	void setListenOn(HTMLElement listenOn);
 
-    /**
-     * Event name to listen for closing the context menu.
-     */
-    @Nullable
-    @JSProperty
-    String getCloseOn();
+	/**
+	 * Event name to listen for closing the context menu.
+	 */
+	@Nullable
+	@JSProperty
+	String getCloseOn();
 
-    /**
-     * Event name to listen for closing the context menu.
-     */
-    @JSProperty
-    void setCloseOn(String closeOn);
+	/**
+	 * Event name to listen for closing the context menu.
+	 */
+	@JSProperty
+	void setCloseOn(String closeOn);
 
-    /**
-     * Custom function for rendering the content of the menu overlay.
-     * Receives three arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `contextMenu` The reference to the `<vaadin-context-menu>` element.
-     * - `context` The object with the menu context, contains:
-     * - `context.target`  the target of the menu opening event,
-     * - `context.detail` the menu opening event detail.
-     */
-    @Nullable
-    @JSProperty
-    ContextMenuRenderer getRenderer();
+	/**
+	 * Custom function for rendering the content of the menu overlay.
+	 * Receives three arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `contextMenu` The reference to the `<vaadin-context-menu>` element.
+	 * - `context` The object with the menu context, contains:
+	 * - `context.target`  the target of the menu opening event,
+	 * - `context.detail` the menu opening event detail.
+	 */
+	@Nullable
+	@JSProperty
+	ContextMenuRenderer getRenderer();
 
-    /**
-     * Custom function for rendering the content of the menu overlay.
-     * Receives three arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `contextMenu` The reference to the `<vaadin-context-menu>` element.
-     * - `context` The object with the menu context, contains:
-     * - `context.target`  the target of the menu opening event,
-     * - `context.detail` the menu opening event detail.
-     */
-    @JSProperty
-    void setRenderer(ContextMenuRenderer renderer);
+	/**
+	 * Custom function for rendering the content of the menu overlay.
+	 * Receives three arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `contextMenu` The reference to the `<vaadin-context-menu>` element.
+	 * - `context` The object with the menu context, contains:
+	 * - `context.target`  the target of the menu opening event,
+	 * - `context.detail` the menu opening event detail.
+	 */
+	@JSProperty
+	void setRenderer(ContextMenuRenderer renderer);
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    void render();
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	void render();
 
-    /**
-     * Closes the overlay.
-     */
-    void close();
+	/**
+	 * Closes the overlay.
+	 */
+	void close();
 
-    /**
-     * Opens the overlay.
-     *
-     * @param e used as the context for the menu. Overlay coordinates are taken from this event.
-     */
-    void open(Event e);
+	/**
+	 * Opens the overlay.
+	 *
+	 * @param e used as the context for the menu. Overlay coordinates are taken from this event.
+	 */
+	void open(Event e);
 }

@@ -24,12 +24,12 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
  * - Opting out of the global direction styling is permanent
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "DirMixin",
-        module = "@polymer/polymer/lib/mixins/dir-mixin.js"
+		symbols = "DirMixin",
+		module = "@polymer/polymer/lib/mixins/dir-mixin.js"
 )
 public interface DirMixin extends PropertyAccessors {
 }

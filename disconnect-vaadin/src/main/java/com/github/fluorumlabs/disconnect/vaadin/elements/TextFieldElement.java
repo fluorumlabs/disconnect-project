@@ -65,41 +65,41 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "TextFieldElement",
-        module = "@vaadin/vaadin-text-field/src/vaadin-text-field.js"
+		symbols = "TextFieldElement",
+		module = "@vaadin/vaadin-text-field/src/vaadin-text-field.js"
 )
 public interface TextFieldElement extends HTMLElement, TextFieldMixin, ThemableMixin {
-    /**
-     * Identifies a list of pre-defined options to suggest to the user.
-     * The value must be the id of a <datalist> element in the same document.
-     */
-    @Nullable
-    @JSProperty
-    String getList();
+	/**
+	 * Identifies a list of pre-defined options to suggest to the user.
+	 * The value must be the id of a <datalist> element in the same document.
+	 */
+	@Nullable
+	@JSProperty
+	String getList();
 
-    /**
-     * Identifies a list of pre-defined options to suggest to the user.
-     * The value must be the id of a <datalist> element in the same document.
-     */
-    @JSProperty
-    void setList(String list);
+	/**
+	 * Identifies a list of pre-defined options to suggest to the user.
+	 * The value must be the id of a <datalist> element in the same document.
+	 */
+	@JSProperty
+	void setList(String list);
 
-    /**
-     * A regular expression that the value is checked against.
-     * The pattern must match the entire value, not just some subset.
-     */
-    @Nullable
-    @JSProperty
-    String getPattern();
+	/**
+	 * A regular expression that the value is checked against.
+	 * The pattern must match the entire value, not just some subset.
+	 */
+	@Nullable
+	@JSProperty
+	String getPattern();
 
-    /**
-     * A regular expression that the value is checked against.
-     * The pattern must match the entire value, not just some subset.
-     */
-    @JSProperty
-    void setPattern(String pattern);
+	/**
+	 * A regular expression that the value is checked against.
+	 * The pattern must match the entire value, not just some subset.
+	 */
+	@JSProperty
+	void setPattern(String pattern);
 }

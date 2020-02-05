@@ -57,37 +57,37 @@ import javax.annotation.Nullable;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ComboBoxLightElement",
-        module = "@vaadin/vaadin-combo-box/src/vaadin-combo-box-light.js"
+		symbols = "ComboBoxLightElement",
+		module = "@vaadin/vaadin-combo-box/src/vaadin-combo-box-light.js"
 )
 public interface ComboBoxLightElement<ITEM extends Any>
-        extends HTMLElement, ComboBoxDataProviderMixin<ITEM>, ComboBoxMixin<ITEM>, ThemableMixin {
-    /**
-     *
-     */
-    @JSProperty
-    Element getFocused();
+		extends HTMLElement, ComboBoxDataProviderMixin<ITEM>, ComboBoxMixin<ITEM>, ThemableMixin {
+	/**
+	 *
+	 */
+	@JSProperty
+	Element getFocused();
 
-    /**
-     * Name of the two-way data-bindable property representing the
-     * value of the custom input field.
-     */
-    @Nullable
-    @JSProperty
-    String getAttrForValue();
+	/**
+	 * Name of the two-way data-bindable property representing the
+	 * value of the custom input field.
+	 */
+	@Nullable
+	@JSProperty
+	String getAttrForValue();
 
-    /**
-     * Name of the two-way data-bindable property representing the
-     * value of the custom input field.
-     */
-    @JSProperty
-    void setAttrForValue(String attrForValue);
+	/**
+	 * Name of the two-way data-bindable property representing the
+	 * value of the custom input field.
+	 */
+	@JSProperty
+	void setAttrForValue(String attrForValue);
 
-    @Nullable
-    @JSProperty
-    Element getInputElement();
+	@Nullable
+	@JSProperty
+	Element getInputElement();
 }

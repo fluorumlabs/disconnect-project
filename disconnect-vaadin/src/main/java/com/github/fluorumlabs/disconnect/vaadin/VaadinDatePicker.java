@@ -87,147 +87,147 @@ import javax.annotation.Nullable;
  * propagated to the internal themable components listed above.
  */
 public class VaadinDatePicker extends AbstractComponent<DatePickerElement>
-        implements HasElementMixin<DatePickerElement, VaadinDatePicker>,
-        HasControlStateMixin<DatePickerElement, VaadinDatePicker>,
-        HasThemableMixin<DatePickerElement, VaadinDatePicker>,
-        HasDatePickerMixin<DatePickerElement, VaadinDatePicker>,
-        HasGestureEventListeners<DatePickerElement, VaadinDatePicker>,
-        HasSlottedComponents<DatePickerElement, VaadinDatePicker, Component<? extends Element>> {
-    public VaadinDatePicker() {
-        super("vaadin-date-picker");
-    }
+		implements HasElementMixin<DatePickerElement, VaadinDatePicker>,
+		HasControlStateMixin<DatePickerElement, VaadinDatePicker>,
+		HasThemableMixin<DatePickerElement, VaadinDatePicker>,
+		HasDatePickerMixin<DatePickerElement, VaadinDatePicker>,
+		HasGestureEventListeners<DatePickerElement, VaadinDatePicker>,
+		HasSlottedComponents<DatePickerElement, VaadinDatePicker, Component<? extends Element>> {
+	public VaadinDatePicker() {
+		super("vaadin-date-picker");
+	}
 
-    /**
-     * Focussable element used by vaadin-control-state-mixin
-     */
-    public Element focusElement() {
-        return getNode().getFocusElement();
-    }
+	/**
+	 * Focussable element used by vaadin-control-state-mixin
+	 */
+	public Element focusElement() {
+		return getNode().getFocusElement();
+	}
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    public boolean clearButtonVisible() {
-        return getNode().isClearButtonVisible();
-    }
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	public boolean clearButtonVisible() {
+		return getNode().isClearButtonVisible();
+	}
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    public VaadinDatePicker clearButtonVisible(boolean clearButtonVisible) {
-        getNode().setClearButtonVisible(clearButtonVisible);
-        return this;
-    }
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	public VaadinDatePicker clearButtonVisible(boolean clearButtonVisible) {
+		getNode().setClearButtonVisible(clearButtonVisible);
+		return this;
+	}
 
-    /**
-     * Set to true to disable this element.
-     */
-    public boolean disabled() {
-        return getNode().isDisabled();
-    }
+	/**
+	 * Set to true to disable this element.
+	 */
+	public boolean disabled() {
+		return getNode().isDisabled();
+	}
 
-    /**
-     * Set to true to disable this element.
-     */
-    public VaadinDatePicker disabled(boolean disabled) {
-        getNode().setDisabled(disabled);
-        return this;
-    }
+	/**
+	 * Set to true to disable this element.
+	 */
+	public VaadinDatePicker disabled(boolean disabled) {
+		getNode().setDisabled(disabled);
+		return this;
+	}
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    @Nullable
-    public String errorMessage() {
-        return getNode().getErrorMessage();
-    }
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	@Nullable
+	public String errorMessage() {
+		return getNode().getErrorMessage();
+	}
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    public VaadinDatePicker errorMessage(String errorMessage) {
-        getNode().setErrorMessage(errorMessage);
-        return this;
-    }
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	public VaadinDatePicker errorMessage(String errorMessage) {
+		getNode().setErrorMessage(errorMessage);
+		return this;
+	}
 
-    /**
-     * A placeholder string in addition to the label. If this is set, the label will always float.
-     */
-    @Nullable
-    public String placeholder() {
-        return getNode().getPlaceholder();
-    }
+	/**
+	 * A placeholder string in addition to the label. If this is set, the label will always float.
+	 */
+	@Nullable
+	public String placeholder() {
+		return getNode().getPlaceholder();
+	}
 
-    /**
-     * A placeholder string in addition to the label. If this is set, the label will always float.
-     */
-    public VaadinDatePicker placeholder(String placeholder) {
-        getNode().setPlaceholder(placeholder);
-        return this;
-    }
+	/**
+	 * A placeholder string in addition to the label. If this is set, the label will always float.
+	 */
+	public VaadinDatePicker placeholder(String placeholder) {
+		getNode().setPlaceholder(placeholder);
+		return this;
+	}
 
-    /**
-     * Set to true to make this element read-only.
-     */
-    public boolean readonly() {
-        return getNode().isReadonly();
-    }
+	/**
+	 * Set to true to make this element read-only.
+	 */
+	public boolean readonly() {
+		return getNode().isReadonly();
+	}
 
-    /**
-     * Set to true to make this element read-only.
-     */
-    public VaadinDatePicker readonly(boolean readonly) {
-        getNode().setReadonly(readonly);
-        return this;
-    }
+	/**
+	 * Set to true to make this element read-only.
+	 */
+	public VaadinDatePicker readonly(boolean readonly) {
+		getNode().setReadonly(readonly);
+		return this;
+	}
 
-    /**
-     * This property is set to true when the control value invalid.
-     */
-    public boolean invalid() {
-        return getNode().isInvalid();
-    }
+	/**
+	 * This property is set to true when the control value invalid.
+	 */
+	public boolean invalid() {
+		return getNode().isInvalid();
+	}
 
-    /**
-     * This property is set to true when the control value invalid.
-     */
-    public VaadinDatePicker invalid(boolean invalid) {
-        getNode().setInvalid(invalid);
-        return this;
-    }
+	/**
+	 * This property is set to true when the control value invalid.
+	 */
+	public VaadinDatePicker invalid(boolean invalid) {
+		getNode().setInvalid(invalid);
+		return this;
+	}
 
-    /**
-     * Fired when the `invalid` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
-        return createEvent("invalid-changed");
-    }
+	/**
+	 * Fired when the `invalid` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
+		return createEvent("invalid-changed");
+	}
 
-    public VaadinDatePicker setPrefix(Component<? extends Element> component) {
-        return replaceSlotted("prefix", component);
-    }
+	public VaadinDatePicker setPrefix(Component<? extends Element> component) {
+		return replaceSlotted("prefix", component);
+	}
 
-    public VaadinDatePicker setPrefix(Component<? extends Element>... components) {
-        return replaceSlotted("prefix", components);
-    }
+	public VaadinDatePicker setPrefix(Component<? extends Element>... components) {
+		return replaceSlotted("prefix", components);
+	}
 
-    public VaadinDatePicker addToPrefix(Component<? extends Element> component) {
-        return addSlotted("prefix", component);
-    }
+	public VaadinDatePicker addToPrefix(Component<? extends Element> component) {
+		return addSlotted("prefix", component);
+	}
 
-    public VaadinDatePicker addToPrefix(Component<? extends Element>... components) {
-        return addSlotted("prefix", components);
-    }
+	public VaadinDatePicker addToPrefix(Component<? extends Element>... components) {
+		return addSlotted("prefix", components);
+	}
 
-    public VaadinDatePicker insertToPrefix(Component<? extends Element> component) {
-        return insertSlotted("prefix", component);
-    }
+	public VaadinDatePicker insertToPrefix(Component<? extends Element> component) {
+		return insertSlotted("prefix", component);
+	}
 
-    public VaadinDatePicker insertToPrefix(Component<? extends Element>... components) {
-        return insertSlotted("prefix", components);
-    }
+	public VaadinDatePicker insertToPrefix(Component<? extends Element>... components) {
+		return insertSlotted("prefix", components);
+	}
 
-    public VaadinDatePicker clearPrefix() {
-        return removeAllSlotted("prefix");
-    }
+	public VaadinDatePicker clearPrefix() {
+		return removeAllSlotted("prefix");
+	}
 }

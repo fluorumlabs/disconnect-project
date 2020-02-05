@@ -17,15 +17,15 @@ import js.lang.Any;
  * a `<vaadin-crud>` to enable editing.
  */
 public class VaadinCrudEdit<ITEM extends Any> extends AbstractComponent<CrudEditElement>
-        implements HasComponents<CrudEditElement, VaadinCrudEdit<ITEM>, Component<?>> {
-    public VaadinCrudEdit() {
-        super("vaadin-crud-edit");
-    }
+		implements HasComponents<CrudEditElement, VaadinCrudEdit<ITEM>, Component<?>> {
+	public VaadinCrudEdit() {
+		super("vaadin-crud-edit");
+	}
 
-    /**
-     * Fired when user on the icon.
-     */
-    public ObservableEvent<ItemIndexEvent<ITEM>> editEvent() {
-        return createEvent("edit");
-    }
+	/**
+	 * Fired when user on the icon.
+	 */
+	public ObservableEvent<ItemIndexEvent<ITEM>> editEvent() {
+		return createEvent("edit");
+	}
 }

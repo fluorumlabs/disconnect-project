@@ -32,30 +32,30 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinPasswordField extends AbstractComponent<PasswordFieldElement>
-        implements HasComponents<PasswordFieldElement, VaadinPasswordField, Component<?>> {
-    public VaadinPasswordField() {
-        super("vaadin-password-field");
-    }
+		implements HasComponents<PasswordFieldElement, VaadinPasswordField, Component<?>> {
+	public VaadinPasswordField() {
+		super("vaadin-password-field");
+	}
 
-    /**
-     * Set to true to hide the eye icon which toggles the password visibility.
-     */
-    public boolean revealButtonHidden() {
-        return getNode().isRevealButtonHidden();
-    }
+	/**
+	 * Set to true to hide the eye icon which toggles the password visibility.
+	 */
+	public boolean revealButtonHidden() {
+		return getNode().isRevealButtonHidden();
+	}
 
-    /**
-     * Set to true to hide the eye icon which toggles the password visibility.
-     */
-    public VaadinPasswordField revealButtonHidden(boolean revealButtonHidden) {
-        getNode().setRevealButtonHidden(revealButtonHidden);
-        return this;
-    }
+	/**
+	 * Set to true to hide the eye icon which toggles the password visibility.
+	 */
+	public VaadinPasswordField revealButtonHidden(boolean revealButtonHidden) {
+		getNode().setRevealButtonHidden(revealButtonHidden);
+		return this;
+	}
 
-    /**
-     * True if the password is visible ([type=text]).
-     */
-    public boolean passwordVisible() {
-        return getNode().isPasswordVisible();
-    }
+	/**
+	 * True if the password is visible ([type=text]).
+	 */
+	public boolean passwordVisible() {
+		return getNode().isPasswordVisible();
+	}
 }

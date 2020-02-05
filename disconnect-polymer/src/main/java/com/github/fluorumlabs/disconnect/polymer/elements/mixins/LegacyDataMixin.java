@@ -21,12 +21,12 @@ import js.web.dom.Element;
  * the mixin in Polymer 2.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "LegacyDataMixin",
-        module = "@polymer/polymer/lib/legacy/legacy-data-mixin.js"
+		symbols = "LegacyDataMixin",
+		module = "@polymer/polymer/lib/legacy/legacy-data-mixin.js"
 )
 @Deprecated
 public interface LegacyDataMixin extends Element {

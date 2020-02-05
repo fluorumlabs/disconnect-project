@@ -77,103 +77,104 @@ import javax.annotation.Untainted;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "RichTextEditorElement",
-        module = "@vaadin/vaadin-rich-text-editor/src/vaadin-rich-text-editor.js"
+		symbols = "RichTextEditorElement",
+		module = "@vaadin/vaadin-rich-text-editor/src/vaadin-rich-text-editor.js"
 )
 public interface RichTextEditorElement extends HTMLElement, ElementMixin, ThemableMixin {
-    /**
-     * Value is a list of the operations which describe change to the document.
-     * Each of those operations describe the change at the current index.
-     * They can be an `insert`, `delete` or `retain`. The format is as follows:
-     * <p>
-     * ```js
-     * [
-     * { insert: 'Hello World' },
-     * { insert: '!', attributes: { bold: true }}
-     * ]
-     * ```
-     * <p>
-     * See also https://github.com/quilljs/delta for detailed documentation.
-     */
-    @Nullable
-    @JSProperty
-    String getValue();
+	/**
+	 * Value is a list of the operations which describe change to the document.
+	 * Each of those operations describe the change at the current index.
+	 * They can be an `insert`, `delete` or `retain`. The format is as follows:
+	 * <p>
+	 * ```js
+	 * [
+	 * { insert: 'Hello World' },
+	 * { insert: '!', attributes: { bold: true }}
+	 * ]
+	 * ```
+	 * <p>
+	 * See also https://github.com/quilljs/delta for detailed documentation.
+	 */
+	@Nullable
+	@JSProperty
+	String getValue();
 
-    /**
-     * Value is a list of the operations which describe change to the document.
-     * Each of those operations describe the change at the current index.
-     * They can be an `insert`, `delete` or `retain`. The format is as follows:
-     * <p>
-     * ```js
-     * [
-     * { insert: 'Hello World' },
-     * { insert: '!', attributes: { bold: true }}
-     * ]
-     * ```
-     * <p>
-     * See also https://github.com/quilljs/delta for detailed documentation.
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 * Value is a list of the operations which describe change to the document.
+	 * Each of those operations describe the change at the current index.
+	 * They can be an `insert`, `delete` or `retain`. The format is as follows:
+	 * <p>
+	 * ```js
+	 * [
+	 * { insert: 'Hello World' },
+	 * { insert: '!', attributes: { bold: true }}
+	 * ]
+	 * ```
+	 * <p>
+	 * See also https://github.com/quilljs/delta for detailed documentation.
+	 */
+	@JSProperty
+	void setValue(String value);
 
-    /**
-     * HTML representation of the rich text editor content.
-     */
-    @Nullable
-    @JSProperty
-    String getHtmlValue();
+	/**
+	 * HTML representation of the rich text editor content.
+	 */
+	@Nullable
+	@JSProperty
+	String getHtmlValue();
 
-    /**
-     * When true, the user can not modify, nor copy the editor content.
-     */
-    @JSProperty
-    boolean isDisabled();
+	/**
+	 * When true, the user can not modify, nor copy the editor content.
+	 */
+	@JSProperty
+	boolean isDisabled();
 
-    /**
-     * When true, the user can not modify, nor copy the editor content.
-     */
-    @JSProperty
-    void setDisabled(boolean disabled);
+	/**
+	 * When true, the user can not modify, nor copy the editor content.
+	 */
+	@JSProperty
+	void setDisabled(boolean disabled);
 
-    /**
-     * When true, the user can not modify the editor content, but can copy it.
-     */
-    @JSProperty
-    boolean isReadonly();
+	/**
+	 * When true, the user can not modify the editor content, but can copy it.
+	 */
+	@JSProperty
+	boolean isReadonly();
 
-    /**
-     * When true, the user can not modify the editor content, but can copy it.
-     */
-    @JSProperty
-    void setReadonly(boolean readonly);
+	/**
+	 * When true, the user can not modify the editor content, but can copy it.
+	 */
+	@JSProperty
+	void setReadonly(boolean readonly);
 
-    /**
-     * An object used to localize this component. The properties are used
-     * e.g. as the tooltips for the editor toolbar buttons.
-     */
-    @Nullable
-    @JSProperty
-    RichTextEditorI18n getI18n();
+	/**
+	 * An object used to localize this component. The properties are used
+	 * e.g. as the tooltips for the editor toolbar buttons.
+	 */
+	@Nullable
+	@JSProperty
+	RichTextEditorI18n getI18n();
 
-    /**
-     * An object used to localize this component. The properties are used
-     * e.g. as the tooltips for the editor toolbar buttons.
-     */
-    @JSProperty
-    void setI18n(RichTextEditorI18n i18n);
+	/**
+	 * An object used to localize this component. The properties are used
+	 * e.g. as the tooltips for the editor toolbar buttons.
+	 */
+	@JSProperty
+	void setI18n(RichTextEditorI18n i18n);
 
-    /**
-     * Sets content represented by HTML snippet into the editor.
-     * The snippet is interpreted by [Quill's Clipboard matchers](https://quilljs.com/docs/modules/clipboard/#matchers),
-     * which may not produce the exactly input HTML.
-     * <p>
-     * **NOTE:** Improper handling of HTML can lead to cross site scripting (XSS) and failure to sanitize
-     * properly is both notoriously error-prone and a leading cause of web vulnerabilities.
-     * This method is aptly named to ensure the developer has taken the necessary precautions.
-     */
-    void dangerouslySetHtmlValue(@Untainted String htmlValue);
+	/**
+	 * Sets content represented by HTML snippet into the editor.
+	 * The snippet is interpreted by [Quill's Clipboard matchers](https://quilljs
+	 * .com/docs/modules/clipboard/#matchers),
+	 * which may not produce the exactly input HTML.
+	 * <p>
+	 * **NOTE:** Improper handling of HTML can lead to cross site scripting (XSS) and failure to sanitize
+	 * properly is both notoriously error-prone and a leading cause of web vulnerabilities.
+	 * This method is aptly named to ensure the developer has taken the necessary precautions.
+	 */
+	void dangerouslySetHtmlValue(@Untainted String htmlValue);
 }

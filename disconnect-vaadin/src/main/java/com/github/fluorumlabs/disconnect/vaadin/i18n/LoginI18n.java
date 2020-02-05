@@ -7,87 +7,87 @@ import org.teavm.jso.JSProperty;
  * Created by Artem Godin on 2/4/2020.
  */
 public interface LoginI18n extends Any {
-    @JSProperty
-    Header getHeader();
+	@JSProperty
+	Header getHeader();
 
-    @JSProperty
-    void setHeader(Header header);
+	@JSProperty
+	void setHeader(Header header);
 
-    @JSProperty
-    Form getForm();
+	@JSProperty
+	Form getForm();
 
-    @JSProperty
-    void setForm(Form form);
+	@JSProperty
+	void setForm(Form form);
 
-    @JSProperty
-    ErrorMessage getErrorMessage();
+	@JSProperty
+	ErrorMessage getErrorMessage();
 
-    @JSProperty
-    void setErrorMessage(ErrorMessage errorMessage);
+	@JSProperty
+	void setErrorMessage(ErrorMessage errorMessage);
 
-    @JSProperty
-    String getAdditionalInformation();
+	@JSProperty
+	String getAdditionalInformation();
 
-    @JSProperty
-    void setAdditionalInformation(String additionalInformation);
+	@JSProperty
+	void setAdditionalInformation(String additionalInformation);
 
-    interface Header extends Any {
-        @JSProperty
-        String getTitle();
+	interface Header extends Any {
+		@JSProperty
+		String getTitle();
 
-        @JSProperty
-        void setTitle(String title);
+		@JSProperty
+		void setTitle(String title);
 
-        @JSProperty
-        String getDescription();
+		@JSProperty
+		String getDescription();
 
-        @JSProperty
-        void setDescription(String description);
-    }
+		@JSProperty
+		void setDescription(String description);
+	}
 
-    interface Form extends Any {
-        @JSProperty
-        String getTitle();
+	interface Form extends Any {
+		@JSProperty
+		String getTitle();
 
-        @JSProperty
-        void setTitle(String title);
+		@JSProperty
+		void setTitle(String title);
 
-        @JSProperty
-        String getUsername();
+		@JSProperty
+		String getUsername();
 
-        @JSProperty
-        void setUsername(String username);
+		@JSProperty
+		void setUsername(String username);
 
-        @JSProperty
-        String getPassword();
+		@JSProperty
+		String getPassword();
 
-        @JSProperty
-        void setPassword(String password);
+		@JSProperty
+		void setPassword(String password);
 
-        @JSProperty
-        String getSubmit();
+		@JSProperty
+		String getSubmit();
 
-        @JSProperty
-        void setSubmit(String submit);
+		@JSProperty
+		void setSubmit(String submit);
 
-        @JSProperty
-        String getForgotPassword();
+		@JSProperty
+		String getForgotPassword();
 
-        @JSProperty
-        void setForgotPassword(String forgotPassword);
-    }
+		@JSProperty
+		void setForgotPassword(String forgotPassword);
+	}
 
-    interface ErrorMessage extends Any {
-        @JSProperty
-        String getTitle();
+	interface ErrorMessage extends Any {
+		@JSProperty
+		String getTitle();
 
-        @JSProperty
-        void setTitle(String title);
+		@JSProperty
+		void setTitle(String title);
 
-        @JSProperty
-        String getMessage();
+		@JSProperty
+		String getMessage();
 
-        @JSProperty
-        void setMessage(String message);
-    }
+		@JSProperty
+		void setMessage(String message);
+	}
 }

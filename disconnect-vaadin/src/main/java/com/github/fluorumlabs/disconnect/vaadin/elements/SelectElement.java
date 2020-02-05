@@ -106,187 +106,187 @@ import javax.annotation.Nullable;
  * propagated to the internal themable components listed above.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "SelectElement",
-        module = "@vaadin/vaadin-select/src/vaadin-select.js"
+		symbols = "SelectElement",
+		module = "@vaadin/vaadin-select/src/vaadin-select.js"
 )
 public interface SelectElement extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin {
-    /**
-     * Set when the select is open
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * Set when the select is open
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * Set when the select is open
-     */
-    @JSProperty
-    void setOpened(boolean opened);
+	/**
+	 * Set when the select is open
+	 */
+	@JSProperty
+	void setOpened(boolean opened);
 
-    /**
-     * Custom function for rendering the content of the `<vaadin-select>`.
-     * Receives two arguments:
-     * <p>
-     * - `root` The `<vaadin-select-overlay>` internal container
-     * DOM element. Append your content to it.
-     * - `select` The reference to the `<vaadin-select>` element.
-     */
-    @Nullable
-    @JSProperty
-    SelectRenderer getRenderer();
+	/**
+	 * Custom function for rendering the content of the `<vaadin-select>`.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The `<vaadin-select-overlay>` internal container
+	 * DOM element. Append your content to it.
+	 * - `select` The reference to the `<vaadin-select>` element.
+	 */
+	@Nullable
+	@JSProperty
+	SelectRenderer getRenderer();
 
-    /**
-     * Custom function for rendering the content of the `<vaadin-select>`.
-     * Receives two arguments:
-     * <p>
-     * - `root` The `<vaadin-select-overlay>` internal container
-     * DOM element. Append your content to it.
-     * - `select` The reference to the `<vaadin-select>` element.
-     */
-    @JSProperty
-    void setRenderer(SelectRenderer renderer);
+	/**
+	 * Custom function for rendering the content of the `<vaadin-select>`.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The `<vaadin-select-overlay>` internal container
+	 * DOM element. Append your content to it.
+	 * - `select` The reference to the `<vaadin-select>` element.
+	 */
+	@JSProperty
+	void setRenderer(SelectRenderer renderer);
 
-    /**
-     * The error message to display when the select value is invalid
-     */
-    @Nullable
-    @JSProperty
-    String getErrorMessage();
+	/**
+	 * The error message to display when the select value is invalid
+	 */
+	@Nullable
+	@JSProperty
+	String getErrorMessage();
 
-    /**
-     * The error message to display when the select value is invalid
-     */
-    @JSProperty
-    void setErrorMessage(String errorMessage);
+	/**
+	 * The error message to display when the select value is invalid
+	 */
+	@JSProperty
+	void setErrorMessage(String errorMessage);
 
-    /**
-     * String used for the label element.
-     */
-    @Nullable
-    @JSProperty
-    String getLabel();
+	/**
+	 * String used for the label element.
+	 */
+	@Nullable
+	@JSProperty
+	String getLabel();
 
-    /**
-     * String used for the label element.
-     */
-    @JSProperty
-    void setLabel(String label);
+	/**
+	 * String used for the label element.
+	 */
+	@JSProperty
+	void setLabel(String label);
 
-    /**
-     * It stores the the `value` property of the selected item, providing the
-     * value for iron-form.
-     * When there’s an item selected, it's the value of that item, otherwise
-     * it's an empty string.
-     * On change or initialization, the component finds the item which matches the
-     * value and displays it.
-     * If no value is provided to the component, it selects the first item without
-     * value or empty value.
-     * Hint: If you do not want to select any item by default, you can either set all
-     * the values of inner vaadin-items, or set the vaadin-select value to
-     * an inexistent value in the items list.
-     */
-    @Nullable
-    @JSProperty
-    String getValue();
+	/**
+	 * It stores the the `value` property of the selected item, providing the
+	 * value for iron-form.
+	 * When there’s an item selected, it's the value of that item, otherwise
+	 * it's an empty string.
+	 * On change or initialization, the component finds the item which matches the
+	 * value and displays it.
+	 * If no value is provided to the component, it selects the first item without
+	 * value or empty value.
+	 * Hint: If you do not want to select any item by default, you can either set all
+	 * the values of inner vaadin-items, or set the vaadin-select value to
+	 * an inexistent value in the items list.
+	 */
+	@Nullable
+	@JSProperty
+	String getValue();
 
-    /**
-     * It stores the the `value` property of the selected item, providing the
-     * value for iron-form.
-     * When there’s an item selected, it's the value of that item, otherwise
-     * it's an empty string.
-     * On change or initialization, the component finds the item which matches the
-     * value and displays it.
-     * If no value is provided to the component, it selects the first item without
-     * value or empty value.
-     * Hint: If you do not want to select any item by default, you can either set all
-     * the values of inner vaadin-items, or set the vaadin-select value to
-     * an inexistent value in the items list.
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 * It stores the the `value` property of the selected item, providing the
+	 * value for iron-form.
+	 * When there’s an item selected, it's the value of that item, otherwise
+	 * it's an empty string.
+	 * On change or initialization, the component finds the item which matches the
+	 * value and displays it.
+	 * If no value is provided to the component, it selects the first item without
+	 * value or empty value.
+	 * Hint: If you do not want to select any item by default, you can either set all
+	 * the values of inner vaadin-items, or set the vaadin-select value to
+	 * an inexistent value in the items list.
+	 */
+	@JSProperty
+	void setValue(String value);
 
-    /**
-     * The current required state of the select. True if required.
-     */
-    @JSProperty
-    boolean isRequired();
+	/**
+	 * The current required state of the select. True if required.
+	 */
+	@JSProperty
+	boolean isRequired();
 
-    /**
-     * The current required state of the select. True if required.
-     */
-    @JSProperty
-    void setRequired(boolean required);
+	/**
+	 * The current required state of the select. True if required.
+	 */
+	@JSProperty
+	void setRequired(boolean required);
 
-    /**
-     * Set to true if the value is invalid.
-     */
-    @JSProperty
-    boolean isInvalid();
+	/**
+	 * Set to true if the value is invalid.
+	 */
+	@JSProperty
+	boolean isInvalid();
 
-    /**
-     * Set to true if the value is invalid.
-     */
-    @JSProperty
-    void setInvalid(boolean invalid);
+	/**
+	 * Set to true if the value is invalid.
+	 */
+	@JSProperty
+	void setInvalid(boolean invalid);
 
-    /**
-     * The name of this element.
-     */
-    @Nullable
-    @JSProperty
-    String getName();
+	/**
+	 * The name of this element.
+	 */
+	@Nullable
+	@JSProperty
+	String getName();
 
-    /**
-     * The name of this element.
-     */
-    @JSProperty
-    void setName(String name);
+	/**
+	 * The name of this element.
+	 */
+	@JSProperty
+	void setName(String name);
 
-    /**
-     * A hint to the user of what can be entered in the control.
-     * The placeholder will be displayed in the case that there
-     * is no item selected, or the selected item has an empty
-     * string label, or the selected item has no label and it's
-     * DOM content is empty.
-     */
-    @Nullable
-    @JSProperty
-    String getPlaceholder();
+	/**
+	 * A hint to the user of what can be entered in the control.
+	 * The placeholder will be displayed in the case that there
+	 * is no item selected, or the selected item has an empty
+	 * string label, or the selected item has no label and it's
+	 * DOM content is empty.
+	 */
+	@Nullable
+	@JSProperty
+	String getPlaceholder();
 
-    /**
-     * A hint to the user of what can be entered in the control.
-     * The placeholder will be displayed in the case that there
-     * is no item selected, or the selected item has an empty
-     * string label, or the selected item has no label and it's
-     * DOM content is empty.
-     */
-    @JSProperty
-    void setPlaceholder(String placeholder);
+	/**
+	 * A hint to the user of what can be entered in the control.
+	 * The placeholder will be displayed in the case that there
+	 * is no item selected, or the selected item has an empty
+	 * string label, or the selected item has no label and it's
+	 * DOM content is empty.
+	 */
+	@JSProperty
+	void setPlaceholder(String placeholder);
 
-    /**
-     * When present, it specifies that the element is read-only.
-     */
-    @JSProperty
-    boolean isReadonly();
+	/**
+	 * When present, it specifies that the element is read-only.
+	 */
+	@JSProperty
+	boolean isReadonly();
 
-    /**
-     * When present, it specifies that the element is read-only.
-     */
-    @JSProperty
-    void setReadonly(boolean readonly);
+	/**
+	 * When present, it specifies that the element is read-only.
+	 */
+	@JSProperty
+	void setReadonly(boolean readonly);
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    void render();
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	void render();
 
-    /**
-     * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
-     *
-     * @return True if the value is valid and sets the `invalid` flag appropriately
-     */
-    boolean validate();
+	/**
+	 * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
+	 *
+	 * @return True if the value is valid and sets the `invalid` flag appropriately
+	 */
+	boolean validate();
 }

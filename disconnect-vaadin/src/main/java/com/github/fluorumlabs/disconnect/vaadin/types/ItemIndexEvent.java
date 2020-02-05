@@ -8,11 +8,11 @@ import org.teavm.jso.JSProperty;
  * Created by Artem Godin on 2/4/2020.
  */
 public interface ItemIndexEvent<ITEM extends Any> extends CustomEvent<ItemIndexEvent.Details<ITEM>> {
-    interface Details<ITEM extends Any> extends Any {
-        @JSProperty
-        ITEM getItem();
+	interface Details<ITEM extends Any> extends Any {
+		@JSProperty
+		ITEM getItem();
 
-        @JSProperty
-        int getIndex();
-    }
+		@JSProperty
+		int getIndex();
+	}
 }

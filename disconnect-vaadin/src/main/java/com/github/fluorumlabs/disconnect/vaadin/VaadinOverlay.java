@@ -112,267 +112,267 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinOverlay extends AbstractComponent<OverlayElement>
-        implements HasThemableMixin<OverlayElement, VaadinOverlay>,
-        HasComponents<OverlayElement, VaadinOverlay, Component<?>> {
-    public VaadinOverlay() {
-        super("vaadin-overlay");
-    }
+		implements HasThemableMixin<OverlayElement, VaadinOverlay>,
+		HasComponents<OverlayElement, VaadinOverlay, Component<?>> {
+	public VaadinOverlay() {
+		super("vaadin-overlay");
+	}
 
-    public boolean opened() {
-        return getNode().isOpened();
-    }
+	public boolean opened() {
+		return getNode().isOpened();
+	}
 
-    public VaadinOverlay opened(boolean opened) {
-        getNode().setOpened(opened);
-        return this;
-    }
+	public VaadinOverlay opened(boolean opened) {
+		getNode().setOpened(opened);
+		return this;
+	}
 
-    /**
-     * Owner element passed with renderer function
-     */
-    @Nullable
-    public Element owner() {
-        return getNode().getOwner();
-    }
+	/**
+	 * Owner element passed with renderer function
+	 */
+	@Nullable
+	public Element owner() {
+		return getNode().getOwner();
+	}
 
-    /**
-     * Owner element passed with renderer function
-     */
-    public VaadinOverlay owner(Element owner) {
-        getNode().setOwner(owner);
-        return this;
-    }
+	/**
+	 * Owner element passed with renderer function
+	 */
+	public VaadinOverlay owner(Element owner) {
+		getNode().setOwner(owner);
+		return this;
+	}
 
-    /**
-     * Custom function for rendering the content of the overlay.
-     * Receives three arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `owner` The host element of the renderer function.
-     * - `model` The object with the properties related with rendering.
-     */
-    @Nullable
-    public OverlayRenderer renderer() {
-        return getNode().getRenderer();
-    }
+	/**
+	 * Custom function for rendering the content of the overlay.
+	 * Receives three arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `owner` The host element of the renderer function.
+	 * - `model` The object with the properties related with rendering.
+	 */
+	@Nullable
+	public OverlayRenderer renderer() {
+		return getNode().getRenderer();
+	}
 
-    /**
-     * Custom function for rendering the content of the overlay.
-     * Receives three arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `owner` The host element of the renderer function.
-     * - `model` The object with the properties related with rendering.
-     */
-    public VaadinOverlay renderer(OverlayRenderer renderer) {
-        getNode().setRenderer(renderer);
-        return this;
-    }
+	/**
+	 * Custom function for rendering the content of the overlay.
+	 * Receives three arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `owner` The host element of the renderer function.
+	 * - `model` The object with the properties related with rendering.
+	 */
+	public VaadinOverlay renderer(OverlayRenderer renderer) {
+		getNode().setRenderer(renderer);
+		return this;
+	}
 
-    /**
-     * The template of the overlay content.
-     */
-    @Nullable
-    public HTMLTemplateElement template() {
-        return getNode().getTemplate();
-    }
+	/**
+	 * The template of the overlay content.
+	 */
+	@Nullable
+	public HTMLTemplateElement template() {
+		return getNode().getTemplate();
+	}
 
-    /**
-     * The template of the overlay content.
-     */
-    public VaadinOverlay template(HTMLTemplateElement template) {
-        getNode().setTemplate(template);
-        return this;
-    }
+	/**
+	 * The template of the overlay content.
+	 */
+	public VaadinOverlay template(HTMLTemplateElement template) {
+		getNode().setTemplate(template);
+		return this;
+	}
 
-    /**
-     * Optional argument for `Polymer.Templatize.templatize`.
-     */
-    @Nullable
-    public Record<Unknown> instanceProps() {
-        return getNode().getInstanceProps();
-    }
+	/**
+	 * Optional argument for `Polymer.Templatize.templatize`.
+	 */
+	@Nullable
+	public Record<Unknown> instanceProps() {
+		return getNode().getInstanceProps();
+	}
 
-    /**
-     * Optional argument for `Polymer.Templatize.templatize`.
-     */
-    public VaadinOverlay instanceProps(Record<Unknown> instanceProps) {
-        getNode().setInstanceProps(instanceProps);
-        return this;
-    }
+	/**
+	 * Optional argument for `Polymer.Templatize.templatize`.
+	 */
+	public VaadinOverlay instanceProps(Record<Unknown> instanceProps) {
+		getNode().setInstanceProps(instanceProps);
+		return this;
+	}
 
-    /**
-     * References the content container after the template is stamped.
-     */
-    @Nullable
-    public ParentNode content() {
-        return getNode().getContent();
-    }
+	/**
+	 * References the content container after the template is stamped.
+	 */
+	@Nullable
+	public ParentNode content() {
+		return getNode().getContent();
+	}
 
-    public boolean withBackdrop() {
-        return getNode().isWithBackdrop();
-    }
+	public boolean withBackdrop() {
+		return getNode().isWithBackdrop();
+	}
 
-    public VaadinOverlay withBackdrop(boolean withBackdrop) {
-        getNode().setWithBackdrop(withBackdrop);
-        return this;
-    }
+	public VaadinOverlay withBackdrop(boolean withBackdrop) {
+		getNode().setWithBackdrop(withBackdrop);
+		return this;
+	}
 
-    /**
-     * Object with properties that is passed to `renderer` function
-     */
-    @Nullable
-    public Record<Unknown> model() {
-        return getNode().getModel();
-    }
+	/**
+	 * Object with properties that is passed to `renderer` function
+	 */
+	@Nullable
+	public Record<Unknown> model() {
+		return getNode().getModel();
+	}
 
-    /**
-     * Object with properties that is passed to `renderer` function
-     */
-    public VaadinOverlay model(Record<Unknown> model) {
-        getNode().setModel(model);
-        return this;
-    }
+	/**
+	 * Object with properties that is passed to `renderer` function
+	 */
+	public VaadinOverlay model(Record<Unknown> model) {
+		getNode().setModel(model);
+		return this;
+	}
 
-    /**
-     * When true the overlay won't disable the main content, showing
-     * it doesn’t change the functionality of the user interface.
-     */
-    public boolean modeless() {
-        return getNode().isModeless();
-    }
+	/**
+	 * When true the overlay won't disable the main content, showing
+	 * it doesn’t change the functionality of the user interface.
+	 */
+	public boolean modeless() {
+		return getNode().isModeless();
+	}
 
-    /**
-     * When true the overlay won't disable the main content, showing
-     * it doesn’t change the functionality of the user interface.
-     */
-    public VaadinOverlay modeless(boolean modeless) {
-        getNode().setModeless(modeless);
-        return this;
-    }
+	/**
+	 * When true the overlay won't disable the main content, showing
+	 * it doesn’t change the functionality of the user interface.
+	 */
+	public VaadinOverlay modeless(boolean modeless) {
+		getNode().setModeless(modeless);
+		return this;
+	}
 
-    /**
-     * When set to true, the overlay is hidden. This also closes the overlay
-     * immediately in case there is a closing animation in progress.
-     */
-    public boolean hidden() {
-        return getNode().isHidden();
-    }
+	/**
+	 * When set to true, the overlay is hidden. This also closes the overlay
+	 * immediately in case there is a closing animation in progress.
+	 */
+	public boolean hidden() {
+		return getNode().isHidden();
+	}
 
-    /**
-     * When set to true, the overlay is hidden. This also closes the overlay
-     * immediately in case there is a closing animation in progress.
-     */
-    public VaadinOverlay hidden(boolean hidden) {
-        getNode().setHidden(hidden);
-        return this;
-    }
+	/**
+	 * When set to true, the overlay is hidden. This also closes the overlay
+	 * immediately in case there is a closing animation in progress.
+	 */
+	public VaadinOverlay hidden(boolean hidden) {
+		getNode().setHidden(hidden);
+		return this;
+	}
 
-    /**
-     * When true move focus to the first focusable element in the overlay,
-     * or to the overlay if there are no focusable elements.
-     */
-    public boolean focusTrap() {
-        return getNode().isFocusTrap();
-    }
+	/**
+	 * When true move focus to the first focusable element in the overlay,
+	 * or to the overlay if there are no focusable elements.
+	 */
+	public boolean focusTrap() {
+		return getNode().isFocusTrap();
+	}
 
-    /**
-     * When true move focus to the first focusable element in the overlay,
-     * or to the overlay if there are no focusable elements.
-     */
-    public VaadinOverlay focusTrap(boolean focusTrap) {
-        getNode().setFocusTrap(focusTrap);
-        return this;
-    }
+	/**
+	 * When true move focus to the first focusable element in the overlay,
+	 * or to the overlay if there are no focusable elements.
+	 */
+	public VaadinOverlay focusTrap(boolean focusTrap) {
+		getNode().setFocusTrap(focusTrap);
+		return this;
+	}
 
-    /**
-     * Set to true to enable restoring of focus when overlay is closed.
-     */
-    public boolean restoreFocusOnClose() {
-        return getNode().isRestoreFocusOnClose();
-    }
+	/**
+	 * Set to true to enable restoring of focus when overlay is closed.
+	 */
+	public boolean restoreFocusOnClose() {
+		return getNode().isRestoreFocusOnClose();
+	}
 
-    /**
-     * Set to true to enable restoring of focus when overlay is closed.
-     */
-    public VaadinOverlay restoreFocusOnClose(boolean restoreFocusOnClose) {
-        getNode().setRestoreFocusOnClose(restoreFocusOnClose);
-        return this;
-    }
+	/**
+	 * Set to true to enable restoring of focus when overlay is closed.
+	 */
+	public VaadinOverlay restoreFocusOnClose(boolean restoreFocusOnClose) {
+		getNode().setRestoreFocusOnClose(restoreFocusOnClose);
+		return this;
+	}
 
-    /**
-     *
-     */
-    public void close(Event sourceEvent) {
-        getNode().close(sourceEvent);
-    }
+	/**
+	 *
+	 */
+	public void close(Event sourceEvent) {
+		getNode().close(sourceEvent);
+	}
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    public void render() {
-        getNode().render();
-    }
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	public void render() {
+		getNode().render();
+	}
 
-    /**
-     * Brings the overlay as visually the frontmost one
-     */
-    public void bringToFront() {
-        getNode().bringToFront();
-    }
+	/**
+	 * Brings the overlay as visually the frontmost one
+	 */
+	public void bringToFront() {
+		getNode().bringToFront();
+	}
 
-    /**
-     * vaadin-overlay-close
-     * fired before the `vaadin-overlay` will be closed. If canceled the closing of the overlay is canceled as well.
-     */
-    public ObservableEvent<WrappedSourceEvent<Event>> vaadinOverlayCloseEvent() {
-        return createEvent("vaadin-overlay-close");
-    }
+	/**
+	 * vaadin-overlay-close
+	 * fired before the `vaadin-overlay` will be closed. If canceled the closing of the overlay is canceled as well.
+	 */
+	public ObservableEvent<WrappedSourceEvent<Event>> vaadinOverlayCloseEvent() {
+		return createEvent("vaadin-overlay-close");
+	}
 
-    /**
-     * vaadin-overlay-escape-press
-     * fired before the `vaadin-overlay` will be closed on ESC button press. If canceled the closing of the overlay
-     * is canceled as well.
-     */
-    public ObservableEvent<WrappedSourceEvent<KeyboardEvent>> vaadinOverlayEscapePressEvent() {
-        return createEvent("vaadin-overlay-escape-press");
-    }
+	/**
+	 * vaadin-overlay-escape-press
+	 * fired before the `vaadin-overlay` will be closed on ESC button press. If canceled the closing of the overlay
+	 * is canceled as well.
+	 */
+	public ObservableEvent<WrappedSourceEvent<KeyboardEvent>> vaadinOverlayEscapePressEvent() {
+		return createEvent("vaadin-overlay-escape-press");
+	}
 
-    /**
-     * vaadin-overlay-open
-     * fired after the `vaadin-overlay` is opened.
-     */
-    public ObservableEvent<Event> vaadinOverlayOpenEvent() {
-        return createEvent("vaadin-overlay-open");
-    }
+	/**
+	 * vaadin-overlay-open
+	 * fired after the `vaadin-overlay` is opened.
+	 */
+	public ObservableEvent<Event> vaadinOverlayOpenEvent() {
+		return createEvent("vaadin-overlay-open");
+	}
 
-    /**
-     * We need to listen on 'click' / 'tap' event and capture it and close the overlay before
-     * propagating the event to the listener in the button. Otherwise, if the clicked button would call
-     * open(), this would happen: https://www.youtube.com/watch?v=Z86V_ICUCD4
-     */
-    public ObservableEvent<WrappedSourceEvent<Event>> vaadinOverlayOutsideClickEvent() {
-        return createEvent("vaadin-overlay-outside-click");
-    }
+	/**
+	 * We need to listen on 'click' / 'tap' event and capture it and close the overlay before
+	 * propagating the event to the listener in the button. Otherwise, if the clicked button would call
+	 * open(), this would happen: https://www.youtube.com/watch?v=Z86V_ICUCD4
+	 */
+	public ObservableEvent<WrappedSourceEvent<Event>> vaadinOverlayOutsideClickEvent() {
+		return createEvent("vaadin-overlay-outside-click");
+	}
 
-    /**
-     * Fired when the `opened` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
-        return createEvent("opened-changed");
-    }
+	/**
+	 * Fired when the `opened` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
+		return createEvent("opened-changed");
+	}
 
-    /**
-     * Fired when the `template` property changes.
-     */
-    public ObservableEvent<PropertyChangeEvent<HTMLTemplateElement>> templateChangedEvent() {
-        return createEvent("template-changed");
-    }
+	/**
+	 * Fired when the `template` property changes.
+	 */
+	public ObservableEvent<PropertyChangeEvent<HTMLTemplateElement>> templateChangedEvent() {
+		return createEvent("template-changed");
+	}
 
-    /**
-     * Fired when the `content` property changes.
-     */
-    public ObservableEvent<PropertyChangeEvent<ParentNode>> contentChangedEvent() {
-        return createEvent("content-changed");
-    }
+	/**
+	 * Fired when the `content` property changes.
+	 */
+	public ObservableEvent<PropertyChangeEvent<ParentNode>> contentChangedEvent() {
+		return createEvent("content-changed");
+	}
 }

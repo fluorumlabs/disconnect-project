@@ -24,5 +24,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * MyClass = DisableUpgradeMixin(class extends BaseClass {...});
  */
 public interface HasDisableUpgradeMixin<E extends DisableUpgradeMixin, T extends Component<E>>
-        extends HasElementMixin<E, T> {
+		extends HasElementMixin<E, T> {
 }

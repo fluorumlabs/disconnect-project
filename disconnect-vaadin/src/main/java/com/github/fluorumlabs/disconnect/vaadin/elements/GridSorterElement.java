@@ -40,41 +40,41 @@ import javax.annotation.Nullable;
  * `direction` | Sort direction of a sorter | :host
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridSorterElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-sorter.js"
+		symbols = "GridSorterElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-sorter.js"
 )
 public interface GridSorterElement extends HTMLElement {
-    /**
-     * JS Path of the property in the item used for sorting the data.
-     */
-    @Nullable
-    @JSProperty
-    String getPath();
+	/**
+	 * JS Path of the property in the item used for sorting the data.
+	 */
+	@Nullable
+	@JSProperty
+	String getPath();
 
-    /**
-     * JS Path of the property in the item used for sorting the data.
-     */
-    @JSProperty
-    void setPath(String path);
+	/**
+	 * JS Path of the property in the item used for sorting the data.
+	 */
+	@JSProperty
+	void setPath(String path);
 
-    /**
-     * How to sort the data.
-     * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
-     * descending direction, or `null` for not sorting the data.
-     */
-    @Nullable
-    @JSProperty
-    SortDirection getDirection();
+	/**
+	 * How to sort the data.
+	 * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
+	 * descending direction, or `null` for not sorting the data.
+	 */
+	@Nullable
+	@JSProperty
+	SortDirection getDirection();
 
-    /**
-     * How to sort the data.
-     * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
-     * descending direction, or `null` for not sorting the data.
-     */
-    @JSProperty
-    void setDirection(SortDirection direction);
+	/**
+	 * How to sort the data.
+	 * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
+	 * descending direction, or `null` for not sorting the data.
+	 */
+	@JSProperty
+	void setDirection(SortDirection direction);
 }

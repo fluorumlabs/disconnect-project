@@ -15,12 +15,12 @@ import js.web.dom.Element;
  * optimization)
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "TemplateStamp",
-        module = "@polymer/polymer/lib/mixins/template-stamp.js"
+		symbols = "TemplateStamp",
+		module = "@polymer/polymer/lib/mixins/template-stamp.js"
 )
 public interface TemplateStamp extends Element {
 }

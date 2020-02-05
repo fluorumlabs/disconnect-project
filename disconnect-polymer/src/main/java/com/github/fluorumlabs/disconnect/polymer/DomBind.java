@@ -22,37 +22,37 @@ import js.web.dom.Event;
  * binding scope.
  */
 public class DomBind
-        extends AbstractComponent<DomBindElement>
-        implements HasPropertyEffects<DomBindElement, DomBind>,
-        HasOptionalMutableData<DomBindElement, DomBind>,
-        HasGestureEventListeners<DomBindElement, DomBind>,
-        HasComponent<DomBindElement, DomBind, Template> {
-    public DomBind() {
-        super("dom-bind");
-    }
+		extends AbstractComponent<DomBindElement>
+		implements HasPropertyEffects<DomBindElement, DomBind>,
+		HasOptionalMutableData<DomBindElement, DomBind>,
+		HasGestureEventListeners<DomBindElement, DomBind>,
+		HasComponent<DomBindElement, DomBind, Template> {
+	public DomBind() {
+		super("dom-bind");
+	}
 
-    public DomBind(Component<?>... components) {
-        this();
-        Template template = new Template();
-        template.add(components);
-        setContent(template);
-    }
+	public DomBind(Component<?>... components) {
+		this();
+		Template template = new Template();
+		template.add(components);
+		setContent(template);
+	}
 
-    /**
-     * Forces the element to render its content. This is typically only
-     * necessary to call if HTMLImports with the async attribute are used.
-     */
-    public void render() {
-        getNode().render();
-    }
+	/**
+	 * Forces the element to render its content. This is typically only
+	 * necessary to call if HTMLImports with the async attribute are used.
+	 */
+	public void render() {
+		getNode().render();
+	}
 
-    /**
-     * Fired whenever DOM is added or removed/hidden by this template (by
-     * default, rendering occurs lazily).  To force immediate rendering, call
-     * `render`.
-     */
-    public ObservableEvent<Event> domChangeEvent() {
-        return createEvent("dom-change");
-    }
+	/**
+	 * Fired whenever DOM is added or removed/hidden by this template (by
+	 * default, rendering occurs lazily).  To force immediate rendering, call
+	 * `render`.
+	 */
+	public ObservableEvent<Event> domChangeEvent() {
+		return createEvent("dom-change");
+	}
 
 }

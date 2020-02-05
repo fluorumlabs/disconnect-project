@@ -66,131 +66,131 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinDialog extends AbstractComponent<DialogElement>
-        implements HasElementMixin<DialogElement, VaadinDialog>,
-        HasThemePropertyMixin<DialogElement, VaadinDialog>,
-        HasComponents<DialogElement, VaadinDialog, Component<?>> {
-    public VaadinDialog() {
-        super("vaadin-dialog");
-    }
+		implements HasElementMixin<DialogElement, VaadinDialog>,
+		HasThemePropertyMixin<DialogElement, VaadinDialog>,
+		HasComponents<DialogElement, VaadinDialog, Component<?>> {
+	public VaadinDialog() {
+		super("vaadin-dialog");
+	}
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    public boolean opened() {
-        return getNode().isOpened();
-    }
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	public boolean opened() {
+		return getNode().isOpened();
+	}
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    public VaadinDialog opened(boolean opened) {
-        getNode().setOpened(opened);
-        return this;
-    }
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	public VaadinDialog opened(boolean opened) {
+		getNode().setOpened(opened);
+		return this;
+	}
 
-    /**
-     * Set to true to disable closing dialog on outside click
-     */
-    public boolean noCloseOnOutsideClick() {
-        return getNode().isNoCloseOnOutsideClick();
-    }
+	/**
+	 * Set to true to disable closing dialog on outside click
+	 */
+	public boolean noCloseOnOutsideClick() {
+		return getNode().isNoCloseOnOutsideClick();
+	}
 
-    /**
-     * Set to true to disable closing dialog on outside click
-     */
-    public VaadinDialog noCloseOnOutsideClick(boolean noCloseOnOutsideClick) {
-        getNode().setNoCloseOnOutsideClick(noCloseOnOutsideClick);
-        return this;
-    }
+	/**
+	 * Set to true to disable closing dialog on outside click
+	 */
+	public VaadinDialog noCloseOnOutsideClick(boolean noCloseOnOutsideClick) {
+		getNode().setNoCloseOnOutsideClick(noCloseOnOutsideClick);
+		return this;
+	}
 
-    /**
-     * Set to true to disable closing dialog on Escape press
-     */
-    public boolean noCloseOnEsc() {
-        return getNode().isNoCloseOnEsc();
-    }
+	/**
+	 * Set to true to disable closing dialog on Escape press
+	 */
+	public boolean noCloseOnEsc() {
+		return getNode().isNoCloseOnEsc();
+	}
 
-    /**
-     * Set to true to disable closing dialog on Escape press
-     */
-    public VaadinDialog noCloseOnEsc(boolean noCloseOnEsc) {
-        getNode().setNoCloseOnEsc(noCloseOnEsc);
-        return this;
-    }
+	/**
+	 * Set to true to disable closing dialog on Escape press
+	 */
+	public VaadinDialog noCloseOnEsc(boolean noCloseOnEsc) {
+		getNode().setNoCloseOnEsc(noCloseOnEsc);
+		return this;
+	}
 
-    /**
-     * Set the `aria-label` attribute for assistive technologies like
-     * screen readers. An `undefined` value for this property (the
-     * default) means that the `aria-label` attribute is not present at
-     * all.
-     */
-    @Nullable
-    public String ariaLabel() {
-        return getNode().getAriaLabel();
-    }
+	/**
+	 * Set the `aria-label` attribute for assistive technologies like
+	 * screen readers. An `undefined` value for this property (the
+	 * default) means that the `aria-label` attribute is not present at
+	 * all.
+	 */
+	@Nullable
+	public String ariaLabel() {
+		return getNode().getAriaLabel();
+	}
 
-    /**
-     * Set the `aria-label` attribute for assistive technologies like
-     * screen readers. An `undefined` value for this property (the
-     * default) means that the `aria-label` attribute is not present at
-     * all.
-     */
-    public VaadinDialog ariaLabel(String ariaLabel) {
-        getNode().setAriaLabel(ariaLabel);
-        return this;
-    }
+	/**
+	 * Set the `aria-label` attribute for assistive technologies like
+	 * screen readers. An `undefined` value for this property (the
+	 * default) means that the `aria-label` attribute is not present at
+	 * all.
+	 */
+	public VaadinDialog ariaLabel(String ariaLabel) {
+		getNode().setAriaLabel(ariaLabel);
+		return this;
+	}
 
-    /**
-     * Theme to apply to the overlay element
-     */
-    @Nullable
-    public String theme() {
-        return getNode().getTheme();
-    }
+	/**
+	 * Theme to apply to the overlay element
+	 */
+	@Nullable
+	public String theme() {
+		return getNode().getTheme();
+	}
 
-    /**
-     * Theme to apply to the overlay element
-     */
-    public VaadinDialog theme(String theme) {
-        getNode().setTheme(theme);
-        return this;
-    }
+	/**
+	 * Theme to apply to the overlay element
+	 */
+	public VaadinDialog theme(String theme) {
+		getNode().setTheme(theme);
+		return this;
+	}
 
-    /**
-     * Custom function for rendering the content of the dialog.
-     * Receives two arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `dialog` The reference to the `<vaadin-dialog>` element.
-     */
-    @Nullable
-    public DialogRenderer renderer() {
-        return getNode().getRenderer();
-    }
+	/**
+	 * Custom function for rendering the content of the dialog.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `dialog` The reference to the `<vaadin-dialog>` element.
+	 */
+	@Nullable
+	public DialogRenderer renderer() {
+		return getNode().getRenderer();
+	}
 
-    /**
-     * Custom function for rendering the content of the dialog.
-     * Receives two arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `dialog` The reference to the `<vaadin-dialog>` element.
-     */
-    public VaadinDialog renderer(DialogRenderer renderer) {
-        getNode().setRenderer(renderer);
-        return this;
-    }
+	/**
+	 * Custom function for rendering the content of the dialog.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `dialog` The reference to the `<vaadin-dialog>` element.
+	 */
+	public VaadinDialog renderer(DialogRenderer renderer) {
+		getNode().setRenderer(renderer);
+		return this;
+	}
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    public void render() {
-        getNode().render();
-    }
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	public void render() {
+		getNode().render();
+	}
 
-    /**
-     * Fired when the `opened` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
-        return createEvent("opened-changed");
-    }
+	/**
+	 * Fired when the `opened` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
+		return createEvent("opened-changed");
+	}
 }

@@ -39,12 +39,12 @@ import js.web.dom.HTMLElement;
  * `indeterminate` | Set to an indeterminate progress bar | :host
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ProgressBarElement",
-        module = "@vaadin/vaadin-progress-bar/src/vaadin-progress-bar.js"
+		symbols = "ProgressBarElement",
+		module = "@vaadin/vaadin-progress-bar/src/vaadin-progress-bar.js"
 )
 public interface ProgressBarElement extends HTMLElement, ProgressMixin, ThemableMixin {
 }

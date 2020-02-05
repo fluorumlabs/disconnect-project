@@ -10,12 +10,12 @@ import js.web.dom.Element;
  * No need to expose these properties in the API docs.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "TabIndexMixin",
-        module = "@vaadin/vaadin-control-state-mixin/vaadin-control-state-mixin.js"
+		symbols = "TabIndexMixin",
+		module = "@vaadin/vaadin-control-state-mixin/vaadin-control-state-mixin.js"
 )
 public interface TabIndexMixin extends Element {
 }

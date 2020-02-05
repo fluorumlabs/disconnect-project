@@ -16,12 +16,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "TimePickerTextFieldElement",
-        module = "@vaadin/vaadin-time-picker/src/vaadin-time-picker-text-field.js"
+		symbols = "TimePickerTextFieldElement",
+		module = "@vaadin/vaadin-time-picker/src/vaadin-time-picker-text-field.js"
 )
 public interface TimePickerTextFieldElement extends TextFieldElement {
 }

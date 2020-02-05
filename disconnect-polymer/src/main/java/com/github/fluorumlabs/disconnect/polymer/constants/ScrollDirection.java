@@ -7,11 +7,11 @@ import js.extras.JsEnum;
  */
 @Deprecated
 public abstract class ScrollDirection extends JsEnum {
-    public static final ScrollDirection ALL = JsEnum.of("all");
+	public static final ScrollDirection ALL = JsEnum.of("all");
 
-    public static final ScrollDirection X = JsEnum.of("x");
+	public static final ScrollDirection X = JsEnum.of("x");
 
-    public static final ScrollDirection Y = JsEnum.of("y");
+	public static final ScrollDirection Y = JsEnum.of("y");
 
-    public static final ScrollDirection NONE = JsEnum.of("none");
+	public static final ScrollDirection NONE = JsEnum.of("none");
 }

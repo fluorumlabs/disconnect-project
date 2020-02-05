@@ -8,12 +8,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
  * The vaadin-context-menu-list-box element.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ContextMenuListBoxElement",
-        module = "@vaadin/vaadin-context-menu/src/vaadin-contextmenu-items-mixin.js"
+		symbols = "ContextMenuListBoxElement",
+		module = "@vaadin/vaadin-context-menu/src/vaadin-contextmenu-items-mixin.js"
 )
 public interface ContextMenuListBoxElement extends ListBoxElement {
 }

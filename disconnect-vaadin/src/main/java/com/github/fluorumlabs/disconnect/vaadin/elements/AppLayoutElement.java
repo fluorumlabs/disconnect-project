@@ -101,63 +101,63 @@ import javax.annotation.Nullable;
  * On this case, the toolbars on mobile device won't collapse.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "AppLayoutElement",
-        module = "@vaadin/vaadin-app-layout/src/vaadin-app-layout.js"
+		symbols = "AppLayoutElement",
+		module = "@vaadin/vaadin-app-layout/src/vaadin-app-layout.js"
 )
 public interface AppLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
-    /**
-     * Helper static method that dispatches a `close-overlay-drawer` event
-     */
-    @JSBody(
-            script = "AppLayoutElement.dispatchCloseOverlayDrawerEvent()"
-    )
-    static void dispatchCloseOverlayDrawerEvent() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
+	/**
+	 * Helper static method that dispatches a `close-overlay-drawer` event
+	 */
+	@JSBody(
+			script = "AppLayoutElement.dispatchCloseOverlayDrawerEvent()"
+	)
+	static void dispatchCloseOverlayDrawerEvent() {
+		throw new UnsupportedOperationException("Available only in JavaScript");
+	}
 
-    /**
-     * Defines whether navbar or drawer will come first visually.
-     * - By default (`primary-section="navbar"`), the navbar takes the full available width and moves the drawer down.
-     * - If `primary-section="drawer"` is set, then the drawer will move the navbar, taking the full available height.
-     */
-    @Nullable
-    @JSProperty
-    PrimarySection getPrimarySection();
+	/**
+	 * Defines whether navbar or drawer will come first visually.
+	 * - By default (`primary-section="navbar"`), the navbar takes the full available width and moves the drawer down.
+	 * - If `primary-section="drawer"` is set, then the drawer will move the navbar, taking the full available height.
+	 */
+	@Nullable
+	@JSProperty
+	PrimarySection getPrimarySection();
 
-    /**
-     * Defines whether navbar or drawer will come first visually.
-     * - By default (`primary-section="navbar"`), the navbar takes the full available width and moves the drawer down.
-     * - If `primary-section="drawer"` is set, then the drawer will move the navbar, taking the full available height.
-     */
-    @JSProperty
-    void setPrimarySection(PrimarySection primarySection);
+	/**
+	 * Defines whether navbar or drawer will come first visually.
+	 * - By default (`primary-section="navbar"`), the navbar takes the full available width and moves the drawer down.
+	 * - If `primary-section="drawer"` is set, then the drawer will move the navbar, taking the full available height.
+	 */
+	@JSProperty
+	void setPrimarySection(PrimarySection primarySection);
 
-    /**
-     * Controls whether the drawer is opened (visible) or not.
-     * Its default value depends on the viewport:
-     * - `true`, for desktop size views
-     * - `false`, for mobile size views
-     */
-    @JSProperty
-    boolean isDrawerOpened();
+	/**
+	 * Controls whether the drawer is opened (visible) or not.
+	 * Its default value depends on the viewport:
+	 * - `true`, for desktop size views
+	 * - `false`, for mobile size views
+	 */
+	@JSProperty
+	boolean isDrawerOpened();
 
-    /**
-     * Controls whether the drawer is opened (visible) or not.
-     * Its default value depends on the viewport:
-     * - `true`, for desktop size views
-     * - `false`, for mobile size views
-     */
-    @JSProperty
-    void setDrawerOpened(boolean drawerOpened);
+	/**
+	 * Controls whether the drawer is opened (visible) or not.
+	 * Its default value depends on the viewport:
+	 * - `true`, for desktop size views
+	 * - `false`, for mobile size views
+	 */
+	@JSProperty
+	void setDrawerOpened(boolean drawerOpened);
 
-    /**
-     * Drawer is an overlay on top of the content
-     * Controlled via CSS using `--vaadin-app-layout-drawer-overlay: true|false`;
-     */
-    @JSProperty
-    boolean isOverlay();
+	/**
+	 * Drawer is an overlay on top of the content
+	 * Controlled via CSS using `--vaadin-app-layout-drawer-overlay: true|false`;
+	 */
+	@JSProperty
+	boolean isOverlay();
 }

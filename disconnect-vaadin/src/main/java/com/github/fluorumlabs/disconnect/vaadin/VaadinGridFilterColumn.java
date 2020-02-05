@@ -22,40 +22,40 @@ import javax.annotation.Nullable;
  * ```
  */
 public class VaadinGridFilterColumn<ITEM extends Any> extends AbstractComponent<GridFilterColumnElement<ITEM>>
-        implements HasComponents<GridFilterColumnElement<ITEM>, VaadinGridFilterColumn<ITEM>, Component<?>> {
-    public VaadinGridFilterColumn() {
-        super("vaadin-grid-filter-column");
-    }
+		implements HasComponents<GridFilterColumnElement<ITEM>, VaadinGridFilterColumn<ITEM>, Component<?>> {
+	public VaadinGridFilterColumn() {
+		super("vaadin-grid-filter-column");
+	}
 
-    /**
-     * JS Path of the property in the item used for filtering the data.
-     */
-    @Nullable
-    public String path() {
-        return getNode().getPath();
-    }
+	/**
+	 * JS Path of the property in the item used for filtering the data.
+	 */
+	@Nullable
+	public String path() {
+		return getNode().getPath();
+	}
 
-    /**
-     * JS Path of the property in the item used for filtering the data.
-     */
-    public VaadinGridFilterColumn<ITEM> path(String path) {
-        getNode().setPath(path);
-        return this;
-    }
+	/**
+	 * JS Path of the property in the item used for filtering the data.
+	 */
+	public VaadinGridFilterColumn<ITEM> path(String path) {
+		getNode().setPath(path);
+		return this;
+	}
 
-    /**
-     * Text to display as the label of the column filter text-field.
-     */
-    @Nullable
-    public String header() {
-        return getNode().getHeader();
-    }
+	/**
+	 * Text to display as the label of the column filter text-field.
+	 */
+	@Nullable
+	public String header() {
+		return getNode().getHeader();
+	}
 
-    /**
-     * Text to display as the label of the column filter text-field.
-     */
-    public VaadinGridFilterColumn<ITEM> header(String header) {
-        getNode().setHeader(header);
-        return this;
-    }
+	/**
+	 * Text to display as the label of the column filter text-field.
+	 */
+	public VaadinGridFilterColumn<ITEM> header(String header) {
+		getNode().setHeader(header);
+		return this;
+	}
 }

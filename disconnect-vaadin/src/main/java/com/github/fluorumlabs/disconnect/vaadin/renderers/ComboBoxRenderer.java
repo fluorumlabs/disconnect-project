@@ -12,13 +12,13 @@ import org.teavm.jso.JSProperty;
 @JSFunctor
 @FunctionalInterface
 public interface ComboBoxRenderer<ITEM extends Any> extends Any {
-    void render(Element root, ComboBoxElement comboBox, Model<ITEM> model);
+	void render(Element root, ComboBoxElement comboBox, Model<ITEM> model);
 
-    interface Model<ITEM extends Any> extends Any {
-        @JSProperty
-        int getIndex();
+	interface Model<ITEM extends Any> extends Any {
+		@JSProperty
+		int getIndex();
 
-        @JSProperty
-        ITEM getItem();
-    }
+		@JSProperty
+		ITEM getItem();
+	}
 }

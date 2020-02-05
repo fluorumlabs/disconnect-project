@@ -15,12 +15,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "SelectOverlayElement",
-        module = "@vaadin/vaadin-select/src/vaadin-select-overlay.js"
+		symbols = "SelectOverlayElement",
+		module = "@vaadin/vaadin-select/src/vaadin-select-overlay.js"
 )
 public interface SelectOverlayElement extends OverlayElement {
 }

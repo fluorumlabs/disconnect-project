@@ -74,12 +74,12 @@ import js.lang.Any;
  * ```
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "ArraySelector",
-        module = "@polymer/polymer/lib/elements/array-selector.js"
+		symbols = "ArraySelector",
+		module = "@polymer/polymer/lib/elements/array-selector.js"
 )
 public interface ArraySelectorElement<ITEM extends Any> extends PolymerElement, ArraySelectorMixin<ITEM> {
 }

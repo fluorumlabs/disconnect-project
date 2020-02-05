@@ -57,28 +57,28 @@ import javax.annotation.Nullable;
  * is propagated to the internal themable components listed above.
  */
 public class VaadinDatePickerLight extends AbstractComponent<DatePickerLightElement>
-        implements HasThemableMixin<DatePickerLightElement, VaadinDatePickerLight>,
-        HasDatePickerMixin<DatePickerLightElement, VaadinDatePickerLight>,
-        HasComponents<DatePickerLightElement, VaadinDatePickerLight, Component<?>> {
-    public VaadinDatePickerLight() {
-        super("vaadin-date-picker-light");
-    }
+		implements HasThemableMixin<DatePickerLightElement, VaadinDatePickerLight>,
+		HasDatePickerMixin<DatePickerLightElement, VaadinDatePickerLight>,
+		HasComponents<DatePickerLightElement, VaadinDatePickerLight, Component<?>> {
+	public VaadinDatePickerLight() {
+		super("vaadin-date-picker-light");
+	}
 
-    /**
-     * Name of the two-way data-bindable property representing the
-     * value of the custom input field.
-     */
-    @Nullable
-    public String attrForValue() {
-        return getNode().getAttrForValue();
-    }
+	/**
+	 * Name of the two-way data-bindable property representing the
+	 * value of the custom input field.
+	 */
+	@Nullable
+	public String attrForValue() {
+		return getNode().getAttrForValue();
+	}
 
-    /**
-     * Name of the two-way data-bindable property representing the
-     * value of the custom input field.
-     */
-    public VaadinDatePickerLight attrForValue(String attrForValue) {
-        getNode().setAttrForValue(attrForValue);
-        return this;
-    }
+	/**
+	 * Name of the two-way data-bindable property representing the
+	 * value of the custom input field.
+	 */
+	public VaadinDatePickerLight attrForValue(String attrForValue) {
+		getNode().setAttrForValue(attrForValue);
+		return this;
+	}
 }

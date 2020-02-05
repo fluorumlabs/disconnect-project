@@ -30,12 +30,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "AccordionPanelElement",
-        module = "@vaadin/vaadin-accordion/src/vaadin-accordion-panel.js"
+		symbols = "AccordionPanelElement",
+		module = "@vaadin/vaadin-accordion/src/vaadin-accordion-panel.js"
 )
 public interface AccordionPanelElement extends DetailsElement {
 }

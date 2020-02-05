@@ -48,20 +48,20 @@ import js.web.dom.HTMLStyleElement;
  * ```
  */
 public class CustomStyle
-        extends AbstractComponent<CustomStyleElement>
-        implements HasComponent<CustomStyleElement, CustomStyle, Component<HTMLStyleElement>> {
-    public CustomStyle() {
-        super("custom-style");
-    }
+		extends AbstractComponent<CustomStyleElement>
+		implements HasComponent<CustomStyleElement, CustomStyle, Component<HTMLStyleElement>> {
+	public CustomStyle() {
+		super("custom-style");
+	}
 
-    /**
-     * Returns the light-DOM `<style>` child this element wraps.  Upon first
-     * call any style modules referenced via the `include` attribute will be
-     * concatenated to this element's `<style>`.
-     *
-     * @return This element's light-DOM `<style>`
-     */
-    public HTMLStyleElement getStyle() {
-        return getNode().getStyleElement();
-    }
+	/**
+	 * Returns the light-DOM `<style>` child this element wraps.  Upon first
+	 * call any style modules referenced via the `include` attribute will be
+	 * concatenated to this element's `<style>`.
+	 *
+	 * @return This element's light-DOM `<style>`
+	 */
+	public HTMLStyleElement getStyle() {
+		return getNode().getStyleElement();
+	}
 }

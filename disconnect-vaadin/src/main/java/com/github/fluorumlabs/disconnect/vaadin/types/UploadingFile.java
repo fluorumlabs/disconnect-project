@@ -24,94 +24,94 @@ import javax.annotation.Nullable;
  * - `uploading`: True while transferring data to the server.
  */
 public interface UploadingFile extends File {
-    @JSProperty
-    String getUploadTarget();
+	@JSProperty
+	String getUploadTarget();
 
-    @JSProperty
-    void setUploadTarget(String uploadTarget);
+	@JSProperty
+	void setUploadTarget(String uploadTarget);
 
-    @JSProperty
-    double getElapsed();
+	@JSProperty
+	double getElapsed();
 
-    @JSProperty
-    void setElapsed(double elapsed);
+	@JSProperty
+	void setElapsed(double elapsed);
 
-    @JSProperty
-    String getElapsedStr();
+	@JSProperty
+	String getElapsedStr();
 
-    @JSProperty
-    void setElapsedStr(String elapsedStr);
+	@JSProperty
+	void setElapsedStr(String elapsedStr);
 
-    @JSProperty
-    double getRemaining();
+	@JSProperty
+	double getRemaining();
 
-    @JSProperty
-    void setRemaining(double remaining);
+	@JSProperty
+	void setRemaining(double remaining);
 
-    @JSProperty
-    String getRemainingStr();
+	@JSProperty
+	String getRemainingStr();
 
-    @JSProperty
-    void setRemainingStr(String remainingStr);
+	@JSProperty
+	void setRemainingStr(String remainingStr);
 
-    @JSProperty
-    double getProgress();
+	@JSProperty
+	double getProgress();
 
-    @JSProperty
-    void setProgress(double progress);
+	@JSProperty
+	void setProgress(double progress);
 
-    @JSProperty
-    double getSpeed();
+	@JSProperty
+	double getSpeed();
 
-    @JSProperty
-    void setSpeed(double speed);
+	@JSProperty
+	void setSpeed(double speed);
 
-    @JSProperty
-    String getTotalStr();
+	@JSProperty
+	String getTotalStr();
 
-    @JSProperty
-    void setTotalStr(String totalStr);
+	@JSProperty
+	void setTotalStr(String totalStr);
 
-    @JSProperty
-    int getLoaded();
+	@JSProperty
+	int getLoaded();
 
-    @JSProperty
-    void setLoaded(int loaded);
+	@JSProperty
+	void setLoaded(int loaded);
 
-    @JSProperty
-    String getLoadedStr();
+	@JSProperty
+	String getLoadedStr();
 
-    @JSProperty
-    void setLoadedStr(String loadedStr);
+	@JSProperty
+	void setLoadedStr(String loadedStr);
 
-    @JSProperty
-    String getStatus();
+	@JSProperty
+	String getStatus();
 
-    @JSProperty
-    void setStatus(String status);
+	@JSProperty
+	void setStatus(String status);
 
-    @Nullable
-    @JSProperty
-    String getError();
+	@Nullable
+	@JSProperty
+	String getError();
 
-    @JSProperty
-    void setError(String error);
+	@JSProperty
+	void setError(String error);
 
-    @JSProperty
-    boolean getAbort();
+	@JSProperty
+	boolean getAbort();
 
-    @JSProperty
-    void setAbort(boolean abort);
+	@JSProperty
+	void setAbort(boolean abort);
 
-    @JSProperty
-    boolean getComplete();
+	@JSProperty
+	boolean getComplete();
 
-    @JSProperty
-    void setComplete(boolean complete);
+	@JSProperty
+	void setComplete(boolean complete);
 
-    @JSProperty
-    boolean getUploading();
+	@JSProperty
+	boolean getUploading();
 
-    @JSProperty
-    void setUploading(boolean uploading);
+	@JSProperty
+	void setUploading(boolean uploading);
 }

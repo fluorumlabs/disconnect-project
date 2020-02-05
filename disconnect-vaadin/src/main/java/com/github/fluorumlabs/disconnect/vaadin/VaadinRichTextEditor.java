@@ -79,139 +79,139 @@ import javax.annotation.Untainted;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinRichTextEditor extends AbstractComponent<RichTextEditorElement>
-        implements HasElementMixin<RichTextEditorElement, VaadinRichTextEditor>,
-        HasThemableMixin<RichTextEditorElement, VaadinRichTextEditor>,
-        HasComponents<RichTextEditorElement, VaadinRichTextEditor, Component<?>> {
-    public VaadinRichTextEditor() {
-        super("vaadin-rich-text-editor");
-    }
+		implements HasElementMixin<RichTextEditorElement, VaadinRichTextEditor>,
+		HasThemableMixin<RichTextEditorElement, VaadinRichTextEditor>,
+		HasComponents<RichTextEditorElement, VaadinRichTextEditor, Component<?>> {
+	public VaadinRichTextEditor() {
+		super("vaadin-rich-text-editor");
+	}
 
-    /**
-     * Value is a list of the operations which describe change to the document.
-     * Each of those operations describe the change at the current index.
-     * They can be an `insert`, `delete` or `retain`. The format is as follows:
-     * <p>
-     * ```js
-     * [
-     * { insert: 'Hello World' },
-     * { insert: '!', attributes: { bold: true }}
-     * ]
-     * ```
-     * <p>
-     * See also https://github.com/quilljs/delta for detailed documentation.
-     */
-    @Nullable
-    public String value() {
-        return getNode().getValue();
-    }
+	/**
+	 * Value is a list of the operations which describe change to the document.
+	 * Each of those operations describe the change at the current index.
+	 * They can be an `insert`, `delete` or `retain`. The format is as follows:
+	 * <p>
+	 * ```js
+	 * [
+	 * { insert: 'Hello World' },
+	 * { insert: '!', attributes: { bold: true }}
+	 * ]
+	 * ```
+	 * <p>
+	 * See also https://github.com/quilljs/delta for detailed documentation.
+	 */
+	@Nullable
+	public String value() {
+		return getNode().getValue();
+	}
 
-    /**
-     * Value is a list of the operations which describe change to the document.
-     * Each of those operations describe the change at the current index.
-     * They can be an `insert`, `delete` or `retain`. The format is as follows:
-     * <p>
-     * ```js
-     * [
-     * { insert: 'Hello World' },
-     * { insert: '!', attributes: { bold: true }}
-     * ]
-     * ```
-     * <p>
-     * See also https://github.com/quilljs/delta for detailed documentation.
-     */
-    public VaadinRichTextEditor value(String value) {
-        getNode().setValue(value);
-        return this;
-    }
+	/**
+	 * Value is a list of the operations which describe change to the document.
+	 * Each of those operations describe the change at the current index.
+	 * They can be an `insert`, `delete` or `retain`. The format is as follows:
+	 * <p>
+	 * ```js
+	 * [
+	 * { insert: 'Hello World' },
+	 * { insert: '!', attributes: { bold: true }}
+	 * ]
+	 * ```
+	 * <p>
+	 * See also https://github.com/quilljs/delta for detailed documentation.
+	 */
+	public VaadinRichTextEditor value(String value) {
+		getNode().setValue(value);
+		return this;
+	}
 
-    /**
-     * HTML representation of the rich text editor content.
-     */
-    @Nullable
-    public String htmlValue() {
-        return getNode().getHtmlValue();
-    }
+	/**
+	 * HTML representation of the rich text editor content.
+	 */
+	@Nullable
+	public String htmlValue() {
+		return getNode().getHtmlValue();
+	}
 
-    /**
-     * When true, the user can not modify, nor copy the editor content.
-     */
-    public boolean disabled() {
-        return getNode().isDisabled();
-    }
+	/**
+	 * When true, the user can not modify, nor copy the editor content.
+	 */
+	public boolean disabled() {
+		return getNode().isDisabled();
+	}
 
-    /**
-     * When true, the user can not modify, nor copy the editor content.
-     */
-    public VaadinRichTextEditor disabled(boolean disabled) {
-        getNode().setDisabled(disabled);
-        return this;
-    }
+	/**
+	 * When true, the user can not modify, nor copy the editor content.
+	 */
+	public VaadinRichTextEditor disabled(boolean disabled) {
+		getNode().setDisabled(disabled);
+		return this;
+	}
 
-    /**
-     * When true, the user can not modify the editor content, but can copy it.
-     */
-    public boolean readonly() {
-        return getNode().isReadonly();
-    }
+	/**
+	 * When true, the user can not modify the editor content, but can copy it.
+	 */
+	public boolean readonly() {
+		return getNode().isReadonly();
+	}
 
-    /**
-     * When true, the user can not modify the editor content, but can copy it.
-     */
-    public VaadinRichTextEditor readonly(boolean readonly) {
-        getNode().setReadonly(readonly);
-        return this;
-    }
+	/**
+	 * When true, the user can not modify the editor content, but can copy it.
+	 */
+	public VaadinRichTextEditor readonly(boolean readonly) {
+		getNode().setReadonly(readonly);
+		return this;
+	}
 
-    /**
-     * An object used to localize this component. The properties are used
-     * e.g. as the tooltips for the editor toolbar buttons.
-     */
-    @Nullable
-    public RichTextEditorI18n i18n() {
-        return getNode().getI18n();
-    }
+	/**
+	 * An object used to localize this component. The properties are used
+	 * e.g. as the tooltips for the editor toolbar buttons.
+	 */
+	@Nullable
+	public RichTextEditorI18n i18n() {
+		return getNode().getI18n();
+	}
 
-    /**
-     * An object used to localize this component. The properties are used
-     * e.g. as the tooltips for the editor toolbar buttons.
-     */
-    public VaadinRichTextEditor i18n(RichTextEditorI18n i18n) {
-        getNode().setI18n(i18n);
-        return this;
-    }
+	/**
+	 * An object used to localize this component. The properties are used
+	 * e.g. as the tooltips for the editor toolbar buttons.
+	 */
+	public VaadinRichTextEditor i18n(RichTextEditorI18n i18n) {
+		getNode().setI18n(i18n);
+		return this;
+	}
 
-    /**
-     * Sets content represented by HTML snippet into the editor.
-     * The snippet is interpreted by [Quill's Clipboard matchers](https://quilljs.com/docs/modules/clipboard
-     * /#matchers),
-     * which may not produce the exactly input HTML.
-     * <p>
-     * **NOTE:** Improper handling of HTML can lead to cross site scripting (XSS) and failure to sanitize
-     * properly is both notoriously error-prone and a leading cause of web vulnerabilities.
-     * This method is aptly named to ensure the developer has taken the necessary precautions.
-     */
-    public void dangerouslySetHtmlValue(@Untainted String htmlValue) {
-        getNode().dangerouslySetHtmlValue(htmlValue);
-    }
+	/**
+	 * Sets content represented by HTML snippet into the editor.
+	 * The snippet is interpreted by [Quill's Clipboard matchers](https://quilljs.com/docs/modules/clipboard
+	 * /#matchers),
+	 * which may not produce the exactly input HTML.
+	 * <p>
+	 * **NOTE:** Improper handling of HTML can lead to cross site scripting (XSS) and failure to sanitize
+	 * properly is both notoriously error-prone and a leading cause of web vulnerabilities.
+	 * This method is aptly named to ensure the developer has taken the necessary precautions.
+	 */
+	public void dangerouslySetHtmlValue(@Untainted String htmlValue) {
+		getNode().dangerouslySetHtmlValue(htmlValue);
+	}
 
-    /**
-     * Fired when the user commits a value change.
-     */
-    public ObservableEvent<Event> changeEvent() {
-        return createEvent("change");
-    }
+	/**
+	 * Fired when the user commits a value change.
+	 */
+	public ObservableEvent<Event> changeEvent() {
+		return createEvent("change");
+	}
 
-    /**
-     * Fired when the `value` property changes.
-     */
-    public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
-        return createEvent("value-changed");
-    }
+	/**
+	 * Fired when the `value` property changes.
+	 */
+	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
+		return createEvent("value-changed");
+	}
 
-    /**
-     * Fired when the `htmlValue` property changes.
-     */
-    public ObservableEvent<StringPropertyChangeEvent> htmlValueChangedEvent() {
-        return createEvent("html-value-changed");
-    }
+	/**
+	 * Fired when the `htmlValue` property changes.
+	 */
+	public ObservableEvent<StringPropertyChangeEvent> htmlValueChangedEvent() {
+		return createEvent("html-value-changed");
+	}
 }

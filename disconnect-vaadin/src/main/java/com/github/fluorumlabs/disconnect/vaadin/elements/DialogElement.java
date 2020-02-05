@@ -65,105 +65,105 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "DialogElement",
-        module = "@vaadin/vaadin-dialog/src/vaadin-dialog.js"
+		symbols = "DialogElement",
+		module = "@vaadin/vaadin-dialog/src/vaadin-dialog.js"
 )
 public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyMixin {
-    /**
-     * True if the overlay is currently displayed.
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    @JSProperty
-    void setOpened(boolean opened);
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	@JSProperty
+	void setOpened(boolean opened);
 
-    /**
-     * Set to true to disable closing dialog on outside click
-     */
-    @JSProperty
-    boolean isNoCloseOnOutsideClick();
+	/**
+	 * Set to true to disable closing dialog on outside click
+	 */
+	@JSProperty
+	boolean isNoCloseOnOutsideClick();
 
-    /**
-     * Set to true to disable closing dialog on outside click
-     */
-    @JSProperty
-    void setNoCloseOnOutsideClick(boolean noCloseOnOutsideClick);
+	/**
+	 * Set to true to disable closing dialog on outside click
+	 */
+	@JSProperty
+	void setNoCloseOnOutsideClick(boolean noCloseOnOutsideClick);
 
-    /**
-     * Set to true to disable closing dialog on Escape press
-     */
-    @JSProperty
-    boolean isNoCloseOnEsc();
+	/**
+	 * Set to true to disable closing dialog on Escape press
+	 */
+	@JSProperty
+	boolean isNoCloseOnEsc();
 
-    /**
-     * Set to true to disable closing dialog on Escape press
-     */
-    @JSProperty
-    void setNoCloseOnEsc(boolean noCloseOnEsc);
+	/**
+	 * Set to true to disable closing dialog on Escape press
+	 */
+	@JSProperty
+	void setNoCloseOnEsc(boolean noCloseOnEsc);
 
-    /**
-     * Set the `aria-label` attribute for assistive technologies like
-     * screen readers. An `undefined` value for this property (the
-     * default) means that the `aria-label` attribute is not present at
-     * all.
-     */
-    @Nullable
-    @JSProperty
-    String getAriaLabel();
+	/**
+	 * Set the `aria-label` attribute for assistive technologies like
+	 * screen readers. An `undefined` value for this property (the
+	 * default) means that the `aria-label` attribute is not present at
+	 * all.
+	 */
+	@Nullable
+	@JSProperty
+	String getAriaLabel();
 
-    /**
-     * Set the `aria-label` attribute for assistive technologies like
-     * screen readers. An `undefined` value for this property (the
-     * default) means that the `aria-label` attribute is not present at
-     * all.
-     */
-    @JSProperty
-    void setAriaLabel(String ariaLabel);
+	/**
+	 * Set the `aria-label` attribute for assistive technologies like
+	 * screen readers. An `undefined` value for this property (the
+	 * default) means that the `aria-label` attribute is not present at
+	 * all.
+	 */
+	@JSProperty
+	void setAriaLabel(String ariaLabel);
 
-    /**
-     * Theme to apply to the overlay element
-     */
-    @Nullable
-    @JSProperty
-    String getTheme();
+	/**
+	 * Theme to apply to the overlay element
+	 */
+	@Nullable
+	@JSProperty
+	String getTheme();
 
-    /**
-     * Theme to apply to the overlay element
-     */
-    @JSProperty
-    void setTheme(String theme);
+	/**
+	 * Theme to apply to the overlay element
+	 */
+	@JSProperty
+	void setTheme(String theme);
 
-    /**
-     * Custom function for rendering the content of the dialog.
-     * Receives two arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `dialog` The reference to the `<vaadin-dialog>` element.
-     */
-    @Nullable
-    @JSProperty
-    DialogRenderer getRenderer();
+	/**
+	 * Custom function for rendering the content of the dialog.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `dialog` The reference to the `<vaadin-dialog>` element.
+	 */
+	@Nullable
+	@JSProperty
+	DialogRenderer getRenderer();
 
-    /**
-     * Custom function for rendering the content of the dialog.
-     * Receives two arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `dialog` The reference to the `<vaadin-dialog>` element.
-     */
-    @JSProperty
-    void setRenderer(DialogRenderer renderer);
+	/**
+	 * Custom function for rendering the content of the dialog.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `dialog` The reference to the `<vaadin-dialog>` element.
+	 */
+	@JSProperty
+	void setRenderer(DialogRenderer renderer);
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    void render();
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	void render();
 }

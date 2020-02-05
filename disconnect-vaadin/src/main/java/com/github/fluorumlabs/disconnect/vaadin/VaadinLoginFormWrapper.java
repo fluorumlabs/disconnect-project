@@ -42,39 +42,39 @@ import js.web.dom.Element;
  * See examples of setting the content into slots in the live demos.
  */
 public class VaadinLoginFormWrapper extends AbstractComponent<LoginFormWrapperElement>
-        implements HasElementMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
-        HasThemableMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
-        HasLoginMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
-        HasSlottedComponents<LoginFormWrapperElement, VaadinLoginFormWrapper, Component<? extends Element>> {
-    public VaadinLoginFormWrapper() {
-        super("vaadin-login-form-wrapper");
-    }
+		implements HasElementMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
+		HasThemableMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
+		HasLoginMixin<LoginFormWrapperElement, VaadinLoginFormWrapper>,
+		HasSlottedComponents<LoginFormWrapperElement, VaadinLoginFormWrapper, Component<? extends Element>> {
+	public VaadinLoginFormWrapper() {
+		super("vaadin-login-form-wrapper");
+	}
 
-    public VaadinLoginFormWrapper setForm(Component<? extends Element> component) {
-        return replaceSlotted("form", component);
-    }
+	public VaadinLoginFormWrapper setForm(Component<? extends Element> component) {
+		return replaceSlotted("form", component);
+	}
 
-    public VaadinLoginFormWrapper setForm(Component<? extends Element>... components) {
-        return replaceSlotted("form", components);
-    }
+	public VaadinLoginFormWrapper setForm(Component<? extends Element>... components) {
+		return replaceSlotted("form", components);
+	}
 
-    public VaadinLoginFormWrapper addToForm(Component<? extends Element> component) {
-        return addSlotted("form", component);
-    }
+	public VaadinLoginFormWrapper addToForm(Component<? extends Element> component) {
+		return addSlotted("form", component);
+	}
 
-    public VaadinLoginFormWrapper addToForm(Component<? extends Element>... components) {
-        return addSlotted("form", components);
-    }
+	public VaadinLoginFormWrapper addToForm(Component<? extends Element>... components) {
+		return addSlotted("form", components);
+	}
 
-    public VaadinLoginFormWrapper insertToForm(Component<? extends Element> component) {
-        return insertSlotted("form", component);
-    }
+	public VaadinLoginFormWrapper insertToForm(Component<? extends Element> component) {
+		return insertSlotted("form", component);
+	}
 
-    public VaadinLoginFormWrapper insertToForm(Component<? extends Element>... components) {
-        return insertSlotted("form", components);
-    }
+	public VaadinLoginFormWrapper insertToForm(Component<? extends Element>... components) {
+		return insertSlotted("form", components);
+	}
 
-    public VaadinLoginFormWrapper clearForm() {
-        return removeAllSlotted("form");
-    }
+	public VaadinLoginFormWrapper clearForm() {
+		return removeAllSlotted("form");
+	}
 }

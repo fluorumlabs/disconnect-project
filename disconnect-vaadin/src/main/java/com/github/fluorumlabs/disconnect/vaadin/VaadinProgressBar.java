@@ -39,10 +39,10 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * `indeterminate` | Set to an indeterminate progress bar | :host
  */
 public class VaadinProgressBar extends AbstractComponent<ProgressBarElement>
-        implements HasProgressMixin<ProgressBarElement, VaadinProgressBar>,
-        HasThemableMixin<ProgressBarElement, VaadinProgressBar>,
-        HasComponents<ProgressBarElement, VaadinProgressBar, Component<?>> {
-    public VaadinProgressBar() {
-        super("vaadin-progress-bar");
-    }
+		implements HasProgressMixin<ProgressBarElement, VaadinProgressBar>,
+		HasThemableMixin<ProgressBarElement, VaadinProgressBar>,
+		HasComponents<ProgressBarElement, VaadinProgressBar, Component<?>> {
+	public VaadinProgressBar() {
+		super("vaadin-progress-bar");
+	}
 }

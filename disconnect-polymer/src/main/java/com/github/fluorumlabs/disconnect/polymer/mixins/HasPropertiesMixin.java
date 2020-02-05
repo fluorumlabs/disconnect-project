@@ -15,5 +15,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * implementing `_propertiesChanged`.
  */
 public interface HasPropertiesMixin<E extends PropertiesMixin, T extends Component<E>>
-        extends HasPropertiesChanged<E, T> {
+		extends HasPropertiesChanged<E, T> {
 }

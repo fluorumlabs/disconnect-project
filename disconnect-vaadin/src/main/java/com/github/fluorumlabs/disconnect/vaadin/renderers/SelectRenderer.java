@@ -11,5 +11,5 @@ import org.teavm.jso.JSFunctor;
 @JSFunctor
 @FunctionalInterface
 public interface SelectRenderer extends Any {
-    void render(SelectOverlayElement root, SelectElement select);
+	void render(SelectOverlayElement root, SelectElement select);
 }

@@ -23,24 +23,24 @@ import javax.annotation.Nullable;
  * ```
  */
 public class VaadinCrudEditColumn extends AbstractComponent<CrudEditColumnElement>
-        implements HasComponents<CrudEditColumnElement, VaadinCrudEditColumn, Component<?>> {
-    public VaadinCrudEditColumn() {
-        super("vaadin-crud-edit-column");
-    }
+		implements HasComponents<CrudEditColumnElement, VaadinCrudEditColumn, Component<?>> {
+	public VaadinCrudEditColumn() {
+		super("vaadin-crud-edit-column");
+	}
 
-    /**
-     * The arial-label for the edit button
-     */
-    @Nullable
-    public String ariaLabel() {
-        return getNode().getAriaLabel();
-    }
+	/**
+	 * The arial-label for the edit button
+	 */
+	@Nullable
+	public String ariaLabel() {
+		return getNode().getAriaLabel();
+	}
 
-    /**
-     * The arial-label for the edit button
-     */
-    public VaadinCrudEditColumn ariaLabel(String ariaLabel) {
-        getNode().setAriaLabel(ariaLabel);
-        return this;
-    }
+	/**
+	 * The arial-label for the edit button
+	 */
+	public VaadinCrudEditColumn ariaLabel(String ariaLabel) {
+		getNode().setAriaLabel(ariaLabel);
+		return this;
+	}
 }

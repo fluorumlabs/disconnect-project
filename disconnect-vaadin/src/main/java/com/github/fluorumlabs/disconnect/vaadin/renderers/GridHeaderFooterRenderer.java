@@ -11,5 +11,5 @@ import org.teavm.jso.JSFunctor;
 @JSFunctor
 @FunctionalInterface
 public interface GridHeaderFooterRenderer<ITEM extends Any> extends Any {
-    void renderHeader(Element root, GridColumnElement<ITEM> column);
+	void renderHeader(Element root, GridColumnElement<ITEM> column);
 }

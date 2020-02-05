@@ -11,12 +11,12 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
  * handle more cases, with the potential performance hit.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "StrictBindingParser",
-        module = "@polymer/polymer/lib/mixins/strict-binding-parser.js"
+		symbols = "StrictBindingParser",
+		module = "@polymer/polymer/lib/mixins/strict-binding-parser.js"
 )
 public interface StrictBindingParser extends PropertyEffects {
 }

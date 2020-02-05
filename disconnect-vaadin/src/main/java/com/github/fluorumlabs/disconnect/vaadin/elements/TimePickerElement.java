@@ -60,324 +60,324 @@ import javax.annotation.Nullable;
  * propagated to the internal themable components listed above.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "TimePickerElement",
-        module = "@vaadin/vaadin-time-picker/src/vaadin-time-picker.js"
+		symbols = "TimePickerElement",
+		module = "@vaadin/vaadin-time-picker/src/vaadin-time-picker.js"
 )
 public interface TimePickerElement extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin {
-    /**
-     * The name of this element.
-     */
-    @Nullable
-    @JSProperty
-    String getName();
+	/**
+	 * The name of this element.
+	 */
+	@Nullable
+	@JSProperty
+	String getName();
 
-    /**
-     * The name of this element.
-     */
-    @JSProperty
-    void setName(String name);
+	/**
+	 * The name of this element.
+	 */
+	@JSProperty
+	void setName(String name);
 
-    /**
-     * The time value for this element.
-     * <p>
-     * Supported time formats are in ISO 8601:
-     * - `hh:mm` (default)
-     * - `hh:mm:ss`
-     * - `hh:mm:ss.fff`
-     */
-    @Nullable
-    @JSProperty
-    String getValue();
+	/**
+	 * The time value for this element.
+	 * <p>
+	 * Supported time formats are in ISO 8601:
+	 * - `hh:mm` (default)
+	 * - `hh:mm:ss`
+	 * - `hh:mm:ss.fff`
+	 */
+	@Nullable
+	@JSProperty
+	String getValue();
 
-    /**
-     * The time value for this element.
-     * <p>
-     * Supported time formats are in ISO 8601:
-     * - `hh:mm` (default)
-     * - `hh:mm:ss`
-     * - `hh:mm:ss.fff`
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 * The time value for this element.
+	 * <p>
+	 * Supported time formats are in ISO 8601:
+	 * - `hh:mm` (default)
+	 * - `hh:mm:ss`
+	 * - `hh:mm:ss.fff`
+	 */
+	@JSProperty
+	void setValue(String value);
 
-    /**
-     * The label for this element.
-     */
-    @Nullable
-    @JSProperty
-    String getLabel();
+	/**
+	 * The label for this element.
+	 */
+	@Nullable
+	@JSProperty
+	String getLabel();
 
-    /**
-     * The label for this element.
-     */
-    @JSProperty
-    void setLabel(String label);
+	/**
+	 * The label for this element.
+	 */
+	@JSProperty
+	void setLabel(String label);
 
-    /**
-     * Set to true to mark the input as required.
-     */
-    @JSProperty
-    boolean isRequired();
+	/**
+	 * Set to true to mark the input as required.
+	 */
+	@JSProperty
+	boolean isRequired();
 
-    /**
-     * Set to true to mark the input as required.
-     */
-    @JSProperty
-    void setRequired(boolean required);
+	/**
+	 * Set to true to mark the input as required.
+	 */
+	@JSProperty
+	void setRequired(boolean required);
 
-    /**
-     * Set to true to prevent the user from entering invalid input.
-     */
-    @JSProperty
-    boolean isPreventInvalidInput();
+	/**
+	 * Set to true to prevent the user from entering invalid input.
+	 */
+	@JSProperty
+	boolean isPreventInvalidInput();
 
-    /**
-     * Set to true to prevent the user from entering invalid input.
-     */
-    @JSProperty
-    void setPreventInvalidInput(boolean preventInvalidInput);
+	/**
+	 * Set to true to prevent the user from entering invalid input.
+	 */
+	@JSProperty
+	void setPreventInvalidInput(boolean preventInvalidInput);
 
-    /**
-     * A pattern to validate the `input` with.
-     */
-    @Nullable
-    @JSProperty
-    String getPattern();
+	/**
+	 * A pattern to validate the `input` with.
+	 */
+	@Nullable
+	@JSProperty
+	String getPattern();
 
-    /**
-     * A pattern to validate the `input` with.
-     */
-    @JSProperty
-    void setPattern(String pattern);
+	/**
+	 * A pattern to validate the `input` with.
+	 */
+	@JSProperty
+	void setPattern(String pattern);
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    @Nullable
-    @JSProperty
-    String getErrorMessage();
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	@Nullable
+	@JSProperty
+	String getErrorMessage();
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    @JSProperty
-    void setErrorMessage(String errorMessage);
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	@JSProperty
+	void setErrorMessage(String errorMessage);
 
-    /**
-     * A placeholder string in addition to the label.
-     */
-    @Nullable
-    @JSProperty
-    String getPlaceholder();
+	/**
+	 * A placeholder string in addition to the label.
+	 */
+	@Nullable
+	@JSProperty
+	String getPlaceholder();
 
-    /**
-     * A placeholder string in addition to the label.
-     */
-    @JSProperty
-    void setPlaceholder(String placeholder);
+	/**
+	 * A placeholder string in addition to the label.
+	 */
+	@JSProperty
+	void setPlaceholder(String placeholder);
 
-    /**
-     * Set to true to prevent user picking a date or typing in the input.
-     */
-    @JSProperty
-    boolean isReadonly();
+	/**
+	 * Set to true to prevent user picking a date or typing in the input.
+	 */
+	@JSProperty
+	boolean isReadonly();
 
-    /**
-     * Set to true to prevent user picking a date or typing in the input.
-     */
-    @JSProperty
-    void setReadonly(boolean readonly);
+	/**
+	 * Set to true to prevent user picking a date or typing in the input.
+	 */
+	@JSProperty
+	void setReadonly(boolean readonly);
 
-    /**
-     * Set to true if the value is invalid.
-     */
-    @JSProperty
-    boolean isInvalid();
+	/**
+	 * Set to true if the value is invalid.
+	 */
+	@JSProperty
+	boolean isInvalid();
 
-    /**
-     * Set to true if the value is invalid.
-     */
-    @JSProperty
-    void setInvalid(boolean invalid);
+	/**
+	 * Set to true if the value is invalid.
+	 */
+	@JSProperty
+	void setInvalid(boolean invalid);
 
-    /**
-     * Minimum time allowed.
-     * <p>
-     * Supported time formats are in ISO 8601:
-     * - `hh:mm`
-     * - `hh:mm:ss`
-     * - `hh:mm:ss.fff`
-     */
-    @Nullable
-    @JSProperty
-    String getMin();
+	/**
+	 * Minimum time allowed.
+	 * <p>
+	 * Supported time formats are in ISO 8601:
+	 * - `hh:mm`
+	 * - `hh:mm:ss`
+	 * - `hh:mm:ss.fff`
+	 */
+	@Nullable
+	@JSProperty
+	String getMin();
 
-    /**
-     * Minimum time allowed.
-     * <p>
-     * Supported time formats are in ISO 8601:
-     * - `hh:mm`
-     * - `hh:mm:ss`
-     * - `hh:mm:ss.fff`
-     */
-    @JSProperty
-    void setMin(String min);
+	/**
+	 * Minimum time allowed.
+	 * <p>
+	 * Supported time formats are in ISO 8601:
+	 * - `hh:mm`
+	 * - `hh:mm:ss`
+	 * - `hh:mm:ss.fff`
+	 */
+	@JSProperty
+	void setMin(String min);
 
-    /**
-     * Maximum time allowed.
-     * <p>
-     * Supported time formats are in ISO 8601:
-     * - `hh:mm`
-     * - `hh:mm:ss`
-     * - `hh:mm:ss.fff`
-     */
-    @Nullable
-    @JSProperty
-    String getMax();
+	/**
+	 * Maximum time allowed.
+	 * <p>
+	 * Supported time formats are in ISO 8601:
+	 * - `hh:mm`
+	 * - `hh:mm:ss`
+	 * - `hh:mm:ss.fff`
+	 */
+	@Nullable
+	@JSProperty
+	String getMax();
 
-    /**
-     * Maximum time allowed.
-     * <p>
-     * Supported time formats are in ISO 8601:
-     * - `hh:mm`
-     * - `hh:mm:ss`
-     * - `hh:mm:ss.fff`
-     */
-    @JSProperty
-    void setMax(String max);
+	/**
+	 * Maximum time allowed.
+	 * <p>
+	 * Supported time formats are in ISO 8601:
+	 * - `hh:mm`
+	 * - `hh:mm:ss`
+	 * - `hh:mm:ss.fff`
+	 */
+	@JSProperty
+	void setMax(String max);
 
-    /**
-     * Specifies the number of valid intervals in a day used for
-     * configuring the items displayed in the selection box.
-     * <p>
-     * It also configures the precision of the value string. By default
-     * the component formats values as `hh:mm` but setting a step value
-     * lower than one minute or one second, format resolution changes to
-     * `hh:mm:ss` and `hh:mm:ss.fff` respectively.
-     * <p>
-     * Unit must be set in seconds, and for correctly configuring intervals
-     * in the dropdown, it need to evenly divide a day.
-     * <p>
-     * Note: it is possible to define step that is dividing an hour in inexact
-     * fragments (i.e. 5760 seconds which equals 1 hour 36 minutes), but it is
-     * not recommended to use it for better UX experience.
-     */
-    @JSProperty
-    double getStep();
+	/**
+	 * Specifies the number of valid intervals in a day used for
+	 * configuring the items displayed in the selection box.
+	 * <p>
+	 * It also configures the precision of the value string. By default
+	 * the component formats values as `hh:mm` but setting a step value
+	 * lower than one minute or one second, format resolution changes to
+	 * `hh:mm:ss` and `hh:mm:ss.fff` respectively.
+	 * <p>
+	 * Unit must be set in seconds, and for correctly configuring intervals
+	 * in the dropdown, it need to evenly divide a day.
+	 * <p>
+	 * Note: it is possible to define step that is dividing an hour in inexact
+	 * fragments (i.e. 5760 seconds which equals 1 hour 36 minutes), but it is
+	 * not recommended to use it for better UX experience.
+	 */
+	@JSProperty
+	double getStep();
 
-    /**
-     * Specifies the number of valid intervals in a day used for
-     * configuring the items displayed in the selection box.
-     * <p>
-     * It also configures the precision of the value string. By default
-     * the component formats values as `hh:mm` but setting a step value
-     * lower than one minute or one second, format resolution changes to
-     * `hh:mm:ss` and `hh:mm:ss.fff` respectively.
-     * <p>
-     * Unit must be set in seconds, and for correctly configuring intervals
-     * in the dropdown, it need to evenly divide a day.
-     * <p>
-     * Note: it is possible to define step that is dividing an hour in inexact
-     * fragments (i.e. 5760 seconds which equals 1 hour 36 minutes), but it is
-     * not recommended to use it for better UX experience.
-     */
-    @JSProperty
-    void setStep(double step);
+	/**
+	 * Specifies the number of valid intervals in a day used for
+	 * configuring the items displayed in the selection box.
+	 * <p>
+	 * It also configures the precision of the value string. By default
+	 * the component formats values as `hh:mm` but setting a step value
+	 * lower than one minute or one second, format resolution changes to
+	 * `hh:mm:ss` and `hh:mm:ss.fff` respectively.
+	 * <p>
+	 * Unit must be set in seconds, and for correctly configuring intervals
+	 * in the dropdown, it need to evenly divide a day.
+	 * <p>
+	 * Note: it is possible to define step that is dividing an hour in inexact
+	 * fragments (i.e. 5760 seconds which equals 1 hour 36 minutes), but it is
+	 * not recommended to use it for better UX experience.
+	 */
+	@JSProperty
+	void setStep(double step);
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    @JSProperty
-    boolean isClearButtonVisible();
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	@JSProperty
+	boolean isClearButtonVisible();
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    @JSProperty
-    void setClearButtonVisible(boolean clearButtonVisible);
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	@JSProperty
+	void setClearButtonVisible(boolean clearButtonVisible);
 
-    /**
-     * The object used to localize this component.
-     * To change the default localization, replace the entire
-     * _i18n_ object or just the property you want to modify.
-     * <p>
-     * The object has the following JSON structure:
-     * <p>
-     * {
-     * // A function to format given `Object` as
-     * // time string. Object is in the format `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`
-     * formatTime: (time) => {
-     * // returns a string representation of the given
-     * // object in `hh` / 'hh:mm' / 'hh:mm:ss' / 'hh:mm:ss.fff' - formats
-     * },
-     * <p>
-     * // A function to parse the given text to an `Object` in the format
-     * // `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`.
-     * // Must properly parse (at least) text
-     * // formatted by `formatTime`.
-     * parseTime: text => {
-     * // Parses a string in object/string that can be formatted by`formatTime`.
-     * }
-     * <p>
-     * // Translation of the time selector icon button title.
-     * selector: 'Time selector',
-     * <p>
-     * // Translation of the time selector clear button title.
-     * clear: 'Clear'
-     * }
-     */
-    @Nullable
-    @JSProperty
-    TimePickerI18n getI18n();
+	/**
+	 * The object used to localize this component.
+	 * To change the default localization, replace the entire
+	 * _i18n_ object or just the property you want to modify.
+	 * <p>
+	 * The object has the following JSON structure:
+	 * <p>
+	 * {
+	 * // A function to format given `Object` as
+	 * // time string. Object is in the format `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`
+	 * formatTime: (time) => {
+	 * // returns a string representation of the given
+	 * // object in `hh` / 'hh:mm' / 'hh:mm:ss' / 'hh:mm:ss.fff' - formats
+	 * },
+	 * <p>
+	 * // A function to parse the given text to an `Object` in the format
+	 * // `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`.
+	 * // Must properly parse (at least) text
+	 * // formatted by `formatTime`.
+	 * parseTime: text => {
+	 * // Parses a string in object/string that can be formatted by`formatTime`.
+	 * }
+	 * <p>
+	 * // Translation of the time selector icon button title.
+	 * selector: 'Time selector',
+	 * <p>
+	 * // Translation of the time selector clear button title.
+	 * clear: 'Clear'
+	 * }
+	 */
+	@Nullable
+	@JSProperty
+	TimePickerI18n getI18n();
 
-    /**
-     * The object used to localize this component.
-     * To change the default localization, replace the entire
-     * _i18n_ object or just the property you want to modify.
-     * <p>
-     * The object has the following JSON structure:
-     * <p>
-     * {
-     * // A function to format given `Object` as
-     * // time string. Object is in the format `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`
-     * formatTime: (time) => {
-     * // returns a string representation of the given
-     * // object in `hh` / 'hh:mm' / 'hh:mm:ss' / 'hh:mm:ss.fff' - formats
-     * },
-     * <p>
-     * // A function to parse the given text to an `Object` in the format
-     * // `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`.
-     * // Must properly parse (at least) text
-     * // formatted by `formatTime`.
-     * parseTime: text => {
-     * // Parses a string in object/string that can be formatted by`formatTime`.
-     * }
-     * <p>
-     * // Translation of the time selector icon button title.
-     * selector: 'Time selector',
-     * <p>
-     * // Translation of the time selector clear button title.
-     * clear: 'Clear'
-     * }
-     */
-    @JSProperty
-    void setI18n(TimePickerI18n i18n);
+	/**
+	 * The object used to localize this component.
+	 * To change the default localization, replace the entire
+	 * _i18n_ object or just the property you want to modify.
+	 * <p>
+	 * The object has the following JSON structure:
+	 * <p>
+	 * {
+	 * // A function to format given `Object` as
+	 * // time string. Object is in the format `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`
+	 * formatTime: (time) => {
+	 * // returns a string representation of the given
+	 * // object in `hh` / 'hh:mm' / 'hh:mm:ss' / 'hh:mm:ss.fff' - formats
+	 * },
+	 * <p>
+	 * // A function to parse the given text to an `Object` in the format
+	 * // `{ hours: ..., minutes: ..., seconds: ..., milliseconds: ... }`.
+	 * // Must properly parse (at least) text
+	 * // formatted by `formatTime`.
+	 * parseTime: text => {
+	 * // Parses a string in object/string that can be formatted by`formatTime`.
+	 * }
+	 * <p>
+	 * // Translation of the time selector icon button title.
+	 * selector: 'Time selector',
+	 * <p>
+	 * // Translation of the time selector clear button title.
+	 * clear: 'Clear'
+	 * }
+	 */
+	@JSProperty
+	void setI18n(TimePickerI18n i18n);
 
-    /**
-     * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
-     *
-     * @return True if the value is valid and sets the `invalid` flag appropriately
-     */
-    boolean validate();
+	/**
+	 * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
+	 *
+	 * @return True if the value is valid and sets the `invalid` flag appropriately
+	 */
+	boolean validate();
 
-    /**
-     * Returns true if the current input value satisfies all constraints (if any)
-     * <p>
-     * You can override the `checkValidity` method for custom validations.
-     */
-    boolean checkValidity();
+	/**
+	 * Returns true if the current input value satisfies all constraints (if any)
+	 * <p>
+	 * You can override the `checkValidity` method for custom validations.
+	 */
+	boolean checkValidity();
 }

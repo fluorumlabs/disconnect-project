@@ -25,51 +25,51 @@ import javax.annotation.Nullable;
  * ```
  */
 public class VaadinGridSortColumn<ITEM extends Any> extends AbstractComponent<GridSortColumnElement<ITEM>>
-        implements HasComponents<GridSortColumnElement<ITEM>, VaadinGridSortColumn<ITEM>, Component<?>> {
-    public VaadinGridSortColumn() {
-        super("vaadin-grid-sort-column");
-    }
+		implements HasComponents<GridSortColumnElement<ITEM>, VaadinGridSortColumn<ITEM>, Component<?>> {
+	public VaadinGridSortColumn() {
+		super("vaadin-grid-sort-column");
+	}
 
-    /**
-     * JS Path of the property in the item used for sorting the data.
-     */
-    @Nullable
-    public String path() {
-        return getNode().getPath();
-    }
+	/**
+	 * JS Path of the property in the item used for sorting the data.
+	 */
+	@Nullable
+	public String path() {
+		return getNode().getPath();
+	}
 
-    /**
-     * JS Path of the property in the item used for sorting the data.
-     */
-    public VaadinGridSortColumn<ITEM> path(String path) {
-        getNode().setPath(path);
-        return this;
-    }
+	/**
+	 * JS Path of the property in the item used for sorting the data.
+	 */
+	public VaadinGridSortColumn<ITEM> path(String path) {
+		getNode().setPath(path);
+		return this;
+	}
 
-    /**
-     * How to sort the data.
-     * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
-     * descending direction, or `null` for not sorting the data.
-     */
-    @Nullable
-    public SortDirection direction() {
-        return getNode().getDirection();
-    }
+	/**
+	 * How to sort the data.
+	 * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
+	 * descending direction, or `null` for not sorting the data.
+	 */
+	@Nullable
+	public SortDirection direction() {
+		return getNode().getDirection();
+	}
 
-    /**
-     * How to sort the data.
-     * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
-     * descending direction, or `null` for not sorting the data.
-     */
-    public VaadinGridSortColumn<ITEM> direction(SortDirection direction) {
-        getNode().setDirection(direction);
-        return this;
-    }
+	/**
+	 * How to sort the data.
+	 * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
+	 * descending direction, or `null` for not sorting the data.
+	 */
+	public VaadinGridSortColumn<ITEM> direction(SortDirection direction) {
+		getNode().setDirection(direction);
+		return this;
+	}
 
-    /**
-     * Fired when the `direction` property changes.
-     */
-    public ObservableEvent<PropertyChangeEvent<SortDirection>> directionChangedEvent() {
-        return createEvent("direction-changed");
-    }
+	/**
+	 * Fired when the `direction` property changes.
+	 */
+	public ObservableEvent<PropertyChangeEvent<SortDirection>> directionChangedEvent() {
+		return createEvent("direction-changed");
+	}
 }

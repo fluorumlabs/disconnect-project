@@ -71,58 +71,58 @@ import javax.annotation.Nullable;
  * `--iron-icon-stroke-color` | Stroke color of the svg icon | none
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "IronIcon",
-        module = "@polymer/iron-icon/iron-icon.js"
+		symbols = "IronIcon",
+		module = "@polymer/iron-icon/iron-icon.js"
 )
 public interface IronIconElement extends HTMLElement {
-    /**
-     * The name of the icon to use. The name should be of the form:
-     * `iconset_name:icon_name`.
-     */
-    @Nullable
-    @JSProperty
-    String getIcon();
+	/**
+	 * The name of the icon to use. The name should be of the form:
+	 * `iconset_name:icon_name`.
+	 */
+	@Nullable
+	@JSProperty
+	String getIcon();
 
-    /**
-     * The name of the icon to use. The name should be of the form:
-     * `iconset_name:icon_name`.
-     */
-    @JSProperty
-    void setIcon(String icon);
+	/**
+	 * The name of the icon to use. The name should be of the form:
+	 * `iconset_name:icon_name`.
+	 */
+	@JSProperty
+	void setIcon(String icon);
 
-    /**
-     * The name of the theme to used, if one is specified by the
-     * iconset.
-     */
-    @Nullable
-    @JSProperty
-    String getTheme();
+	/**
+	 * The name of the theme to used, if one is specified by the
+	 * iconset.
+	 */
+	@Nullable
+	@JSProperty
+	String getTheme();
 
-    /**
-     * The name of the theme to used, if one is specified by the
-     * iconset.
-     */
-    @JSProperty
-    void setTheme(String theme);
+	/**
+	 * The name of the theme to used, if one is specified by the
+	 * iconset.
+	 */
+	@JSProperty
+	void setTheme(String theme);
 
-    /**
-     * If using iron-icon without an iconset, you can set the src to be
-     * the URL of an individual icon image file. Note that this will take
-     * precedence over a given icon attribute.
-     */
-    @Nullable
-    @JSProperty
-    String getSrc();
+	/**
+	 * If using iron-icon without an iconset, you can set the src to be
+	 * the URL of an individual icon image file. Note that this will take
+	 * precedence over a given icon attribute.
+	 */
+	@Nullable
+	@JSProperty
+	String getSrc();
 
-    /**
-     * If using iron-icon without an iconset, you can set the src to be
-     * the URL of an individual icon image file. Note that this will take
-     * precedence over a given icon attribute.
-     */
-    @JSProperty
-    void setSrc(String src);
+	/**
+	 * If using iron-icon without an iconset, you can set the src to be
+	 * the URL of an individual icon image file. Note that this will take
+	 * precedence over a given icon attribute.
+	 */
+	@JSProperty
+	void setSrc(String src);
 }

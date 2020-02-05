@@ -15,24 +15,24 @@ import javax.annotation.Nullable;
 @JSFunctor
 @FunctionalInterface
 public interface GridDataProvider<ITEM extends Any> extends Any {
-    void provide(Params params, DataProviderCallback<ITEM> callback);
+	void provide(Params params, DataProviderCallback<ITEM> callback);
 
-    interface Params<ITEM extends Any> extends Any {
-        @JSProperty
-        int getPage();
+	interface Params<ITEM extends Any> extends Any {
+		@JSProperty
+		int getPage();
 
-        @JSProperty
-        int getPageSize();
+		@JSProperty
+		int getPageSize();
 
-        @JSProperty
-        Array<Filter> getFilters();
+		@JSProperty
+		Array<Filter> getFilters();
 
-        @JSProperty
-        Array<SortOrder> getSortOrders();
+		@JSProperty
+		Array<SortOrder> getSortOrders();
 
-        @Nullable
-        @JSProperty
-        ITEM getParentItem();
-    }
+		@Nullable
+		@JSProperty
+		ITEM getParentItem();
+	}
 
 }

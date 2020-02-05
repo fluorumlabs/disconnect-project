@@ -11,5 +11,5 @@ import org.teavm.jso.JSFunctor;
 @JSFunctor
 @FunctionalInterface
 public interface NotificationRenderer extends Any {
-    void render(NotificationCard root, NotificationElement notification);
+	void render(NotificationCard root, NotificationElement notification);
 }

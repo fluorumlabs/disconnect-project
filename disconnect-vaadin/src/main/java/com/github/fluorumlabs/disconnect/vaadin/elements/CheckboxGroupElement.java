@@ -45,100 +45,100 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "CheckboxGroupElement",
-        module = "@vaadin/vaadin-checkbox/src/vaadin-checkbox-group.js"
+		symbols = "CheckboxGroupElement",
+		module = "@vaadin/vaadin-checkbox/src/vaadin-checkbox-group.js"
 )
 public interface CheckboxGroupElement extends HTMLElement, ThemableMixin {
-    /**
-     * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
-     */
-    @JSProperty
-    boolean isDisabled();
+	/**
+	 * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
+	 */
+	@JSProperty
+	boolean isDisabled();
 
-    /**
-     * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
-     */
-    @JSProperty
-    void setDisabled(boolean disabled);
+	/**
+	 * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
+	 */
+	@JSProperty
+	void setDisabled(boolean disabled);
 
-    /**
-     * String used for the label element.
-     */
-    @Nullable
-    @JSProperty
-    String getLabel();
+	/**
+	 * String used for the label element.
+	 */
+	@Nullable
+	@JSProperty
+	String getLabel();
 
-    /**
-     * String used for the label element.
-     */
-    @JSProperty
-    void setLabel(String label);
+	/**
+	 * String used for the label element.
+	 */
+	@JSProperty
+	void setLabel(String label);
 
-    /**
-     * Value of the checkbox group.
-     * Note: toggling the checkboxes modifies the value by creating new
-     * array each time, to override Polymer dirty-checking for arrays.
-     * You can still use Polymer array mutation methods to update the value.
-     */
-    @Nullable
-    @JSProperty
-    String[] getValue();
+	/**
+	 * Value of the checkbox group.
+	 * Note: toggling the checkboxes modifies the value by creating new
+	 * array each time, to override Polymer dirty-checking for arrays.
+	 * You can still use Polymer array mutation methods to update the value.
+	 */
+	@Nullable
+	@JSProperty
+	String[] getValue();
 
-    /**
-     * Value of the checkbox group.
-     * Note: toggling the checkboxes modifies the value by creating new
-     * array each time, to override Polymer dirty-checking for arrays.
-     * You can still use Polymer array mutation methods to update the value.
-     */
-    @JSProperty
-    void setValue(@JSByRef String... value);
+	/**
+	 * Value of the checkbox group.
+	 * Note: toggling the checkboxes modifies the value by creating new
+	 * array each time, to override Polymer dirty-checking for arrays.
+	 * You can still use Polymer array mutation methods to update the value.
+	 */
+	@JSProperty
+	void setValue(@JSByRef String... value);
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    @Nullable
-    @JSProperty
-    String getErrorMessage();
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	@Nullable
+	@JSProperty
+	String getErrorMessage();
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    @JSProperty
-    void setErrorMessage(String errorMessage);
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	@JSProperty
+	void setErrorMessage(String errorMessage);
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    @JSProperty
-    boolean isRequired();
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	@JSProperty
+	boolean isRequired();
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    @JSProperty
-    void setRequired(boolean required);
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	@JSProperty
+	void setRequired(boolean required);
 
-    /**
-     * This property is set to true when the control value is invalid.
-     */
-    @JSProperty
-    boolean isInvalid();
+	/**
+	 * This property is set to true when the control value is invalid.
+	 */
+	@JSProperty
+	boolean isInvalid();
 
-    /**
-     * This property is set to true when the control value is invalid.
-     */
-    @JSProperty
-    void setInvalid(boolean invalid);
+	/**
+	 * This property is set to true when the control value is invalid.
+	 */
+	@JSProperty
+	void setInvalid(boolean invalid);
 
-    /**
-     * Returns true if `value` is valid.
-     * `<iron-form>` uses this to check the validity or all its elements.
-     *
-     * @return True if the value is valid.
-     */
-    boolean validate();
+	/**
+	 * Returns true if `value` is valid.
+	 * `<iron-form>` uses this to check the validity or all its elements.
+	 *
+	 * @return True if the value is valid.
+	 */
+	boolean validate();
 }

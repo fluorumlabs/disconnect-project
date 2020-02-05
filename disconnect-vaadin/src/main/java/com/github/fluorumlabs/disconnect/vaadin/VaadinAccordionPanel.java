@@ -31,8 +31,8 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinAccordionPanel extends AbstractComponent<AccordionPanelElement>
-        implements HasComponents<AccordionPanelElement, VaadinAccordionPanel, Component<?>> {
-    public VaadinAccordionPanel() {
-        super("vaadin-accordion-panel");
-    }
+		implements HasComponents<AccordionPanelElement, VaadinAccordionPanel, Component<?>> {
+	public VaadinAccordionPanel() {
+		super("vaadin-accordion-panel");
+	}
 }

@@ -110,12 +110,12 @@ import js.web.dom.HTMLElement;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "FormItemElement",
-        module = "@vaadin/vaadin-form-layout/src/vaadin-form-item.js"
+		symbols = "FormItemElement",
+		module = "@vaadin/vaadin-form-layout/src/vaadin-form-item.js"
 )
 public interface FormItemElement extends HTMLElement, ThemableMixin {
 }

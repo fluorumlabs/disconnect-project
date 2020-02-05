@@ -6,12 +6,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import js.web.dom.Element;
 
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ThemePropertyMixin",
-        module = "@vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js"
+		symbols = "ThemePropertyMixin",
+		module = "@vaadin/vaadin-themable-mixin/vaadin-theme-property-mixin.js"
 )
 public interface ThemePropertyMixin extends Element {
 }

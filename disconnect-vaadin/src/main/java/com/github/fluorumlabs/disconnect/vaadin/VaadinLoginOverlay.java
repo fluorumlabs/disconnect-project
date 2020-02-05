@@ -29,83 +29,83 @@ import javax.annotation.Nullable;
  * and `<vaadin-overlay>` elements
  */
 public class VaadinLoginOverlay extends AbstractComponent<LoginOverlayElement>
-        implements HasElementMixin<LoginOverlayElement, VaadinLoginOverlay>,
-        HasThemableMixin<LoginOverlayElement, VaadinLoginOverlay>,
-        HasLoginMixin<LoginOverlayElement, VaadinLoginOverlay>,
-        HasComponents<LoginOverlayElement, VaadinLoginOverlay, Component<?>> {
-    public VaadinLoginOverlay() {
-        super("vaadin-login-overlay");
-    }
+		implements HasElementMixin<LoginOverlayElement, VaadinLoginOverlay>,
+		HasThemableMixin<LoginOverlayElement, VaadinLoginOverlay>,
+		HasLoginMixin<LoginOverlayElement, VaadinLoginOverlay>,
+		HasComponents<LoginOverlayElement, VaadinLoginOverlay, Component<?>> {
+	public VaadinLoginOverlay() {
+		super("vaadin-login-overlay");
+	}
 
-    /**
-     * Defines the application description
-     */
-    @Nullable
-    public String description() {
-        return getNode().getDescription();
-    }
+	/**
+	 * Defines the application description
+	 */
+	@Nullable
+	public String description() {
+		return getNode().getDescription();
+	}
 
-    /**
-     * Defines the application description
-     */
-    public VaadinLoginOverlay description(String description) {
-        getNode().setDescription(description);
-        return this;
-    }
+	/**
+	 * Defines the application description
+	 */
+	public VaadinLoginOverlay description(String description) {
+		getNode().setDescription(description);
+		return this;
+	}
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    public boolean opened() {
-        return getNode().isOpened();
-    }
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	public boolean opened() {
+		return getNode().isOpened();
+	}
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    public VaadinLoginOverlay opened(boolean opened) {
-        getNode().setOpened(opened);
-        return this;
-    }
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	public VaadinLoginOverlay opened(boolean opened) {
+		getNode().setOpened(opened);
+		return this;
+	}
 
-    /**
-     * Defines the application title
-     */
-    @Nullable
-    public String title() {
-        return getNode().getTitle();
-    }
+	/**
+	 * Defines the application title
+	 */
+	@Nullable
+	public String title() {
+		return getNode().getTitle();
+	}
 
-    /**
-     * Defines the application title
-     */
-    public VaadinLoginOverlay title(String title) {
-        getNode().setTitle(title);
-        return this;
-    }
+	/**
+	 * Defines the application title
+	 */
+	public VaadinLoginOverlay title(String title) {
+		getNode().setTitle(title);
+		return this;
+	}
 
-    /**
-     * Defines the theme of the element.
-     * The value is propagated to vaadin-login-overlay-wrapper element.
-     */
-    @Nullable
-    public String theme() {
-        return getNode().getTheme();
-    }
+	/**
+	 * Defines the theme of the element.
+	 * The value is propagated to vaadin-login-overlay-wrapper element.
+	 */
+	@Nullable
+	public String theme() {
+		return getNode().getTheme();
+	}
 
-    /**
-     * Defines the theme of the element.
-     * The value is propagated to vaadin-login-overlay-wrapper element.
-     */
-    public VaadinLoginOverlay theme(String theme) {
-        getNode().setTheme(theme);
-        return this;
-    }
+	/**
+	 * Defines the theme of the element.
+	 * The value is propagated to vaadin-login-overlay-wrapper element.
+	 */
+	public VaadinLoginOverlay theme(String theme) {
+		getNode().setTheme(theme);
+		return this;
+	}
 
-    /**
-     * Fired when the `description` property changes.
-     */
-    public ObservableEvent<StringPropertyChangeEvent> descriptionChangedEvent() {
-        return createEvent("description-changed");
-    }
+	/**
+	 * Fired when the `description` property changes.
+	 */
+	public ObservableEvent<StringPropertyChangeEvent> descriptionChangedEvent() {
+		return createEvent("description-changed");
+	}
 }

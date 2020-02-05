@@ -16,12 +16,12 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
  * implementing `_propertiesChanged`.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "PropertiesMixin",
-        module = "@polymer/polymer/lib/mixins/properties-mixin.js"
+		symbols = "PropertiesMixin",
+		module = "@polymer/polymer/lib/mixins/properties-mixin.js"
 )
 public interface PropertiesMixin extends PropertiesChanged {
 }

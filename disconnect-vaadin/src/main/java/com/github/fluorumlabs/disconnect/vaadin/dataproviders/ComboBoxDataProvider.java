@@ -10,17 +10,17 @@ import org.teavm.jso.JSProperty;
 @JSFunctor
 @FunctionalInterface
 public interface ComboBoxDataProvider<ITEM extends Any> extends Any {
-    void provide(Params params, DataProviderCallback<ITEM> callback);
+	void provide(Params params, DataProviderCallback<ITEM> callback);
 
-    interface Params extends Any {
-        @JSProperty
-        int getPage();
+	interface Params extends Any {
+		@JSProperty
+		int getPage();
 
-        @JSProperty
-        int getPageSize();
+		@JSProperty
+		int getPageSize();
 
-        @JSProperty
-        String getFilter();
-    }
+		@JSProperty
+		String getFilter();
+	}
 
 }

@@ -43,84 +43,84 @@ import js.util.collections.Array;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinMenuBar extends AbstractComponent<MenuBarElement>
-        implements HasButtonsMixin<MenuBarElement, VaadinMenuBar>,
-        HasInteractionsMixin<MenuBarElement, VaadinMenuBar>,
-        HasElementMixin<MenuBarElement, VaadinMenuBar>,
-        HasThemableMixin<MenuBarElement, VaadinMenuBar>,
-        HasComponents<MenuBarElement, VaadinMenuBar, Component<?>> {
-    public VaadinMenuBar() {
-        super("vaadin-menu-bar");
-    }
+		implements HasButtonsMixin<MenuBarElement, VaadinMenuBar>,
+		HasInteractionsMixin<MenuBarElement, VaadinMenuBar>,
+		HasElementMixin<MenuBarElement, VaadinMenuBar>,
+		HasThemableMixin<MenuBarElement, VaadinMenuBar>,
+		HasComponents<MenuBarElement, VaadinMenuBar, Component<?>> {
+	public VaadinMenuBar() {
+		super("vaadin-menu-bar");
+	}
 
-    /**
-     * Defines a hierarchical structure, where root level items represent menu bar buttons,
-     * and `children` property configures a submenu with items to be opened below
-     * the button on click, Enter, Space, Up and Down arrow keys.
-     * <p>
-     * #### Example
-     * <p>
-     * ```js
-     * menubar.items = [
-     * {
-     * text: 'File',
-     * children: [
-     * {text: 'Open'}
-     * {text: 'Auto Save', checked: true},
-     * ]
-     * },
-     * {component: 'hr'},
-     * {
-     * text: 'Edit',
-     * children: [
-     * {text: 'Undo', disabled: true},
-     * {text: 'Redo'}
-     * ]
-     * },
-     * {text: 'Help'}
-     * ];
-     * ```
-     */
-    public Array<MenuItem> items() {
-        return getNode().getItems();
-    }
+	/**
+	 * Defines a hierarchical structure, where root level items represent menu bar buttons,
+	 * and `children` property configures a submenu with items to be opened below
+	 * the button on click, Enter, Space, Up and Down arrow keys.
+	 * <p>
+	 * #### Example
+	 * <p>
+	 * ```js
+	 * menubar.items = [
+	 * {
+	 * text: 'File',
+	 * children: [
+	 * {text: 'Open'}
+	 * {text: 'Auto Save', checked: true},
+	 * ]
+	 * },
+	 * {component: 'hr'},
+	 * {
+	 * text: 'Edit',
+	 * children: [
+	 * {text: 'Undo', disabled: true},
+	 * {text: 'Redo'}
+	 * ]
+	 * },
+	 * {text: 'Help'}
+	 * ];
+	 * ```
+	 */
+	public Array<MenuItem> items() {
+		return getNode().getItems();
+	}
 
-    /**
-     * Defines a hierarchical structure, where root level items represent menu bar buttons,
-     * and `children` property configures a submenu with items to be opened below
-     * the button on click, Enter, Space, Up and Down arrow keys.
-     * <p>
-     * #### Example
-     * <p>
-     * ```js
-     * menubar.items = [
-     * {
-     * text: 'File',
-     * children: [
-     * {text: 'Open'}
-     * {text: 'Auto Save', checked: true},
-     * ]
-     * },
-     * {component: 'hr'},
-     * {
-     * text: 'Edit',
-     * children: [
-     * {text: 'Undo', disabled: true},
-     * {text: 'Redo'}
-     * ]
-     * },
-     * {text: 'Help'}
-     * ];
-     * ```
-     */
-    public VaadinMenuBar items(MenuItem... items) {
-        getNode().setItems(items);
-        return this;
-    }
+	/**
+	 * Defines a hierarchical structure, where root level items represent menu bar buttons,
+	 * and `children` property configures a submenu with items to be opened below
+	 * the button on click, Enter, Space, Up and Down arrow keys.
+	 * <p>
+	 * #### Example
+	 * <p>
+	 * ```js
+	 * menubar.items = [
+	 * {
+	 * text: 'File',
+	 * children: [
+	 * {text: 'Open'}
+	 * {text: 'Auto Save', checked: true},
+	 * ]
+	 * },
+	 * {component: 'hr'},
+	 * {
+	 * text: 'Edit',
+	 * children: [
+	 * {text: 'Undo', disabled: true},
+	 * {text: 'Redo'}
+	 * ]
+	 * },
+	 * {text: 'Help'}
+	 * ];
+	 * ```
+	 */
+	public VaadinMenuBar items(MenuItem... items) {
+		getNode().setItems(items);
+		return this;
+	}
 
-    /**
-     * Fired when either a submenu item or menu bar button without nested children is clicked.
-     */
-    public ObservableEvent<ItemSelectedEvent<MenuItem>> itemSelectedEvent() {
-        return createEvent("item-selected");
-    }
+	/**
+	 * Fired when either a submenu item or menu bar button without nested children is clicked.
+	 */
+	public ObservableEvent<ItemSelectedEvent<MenuItem>> itemSelectedEvent() {
+		return createEvent("item-selected");
+	}
 }

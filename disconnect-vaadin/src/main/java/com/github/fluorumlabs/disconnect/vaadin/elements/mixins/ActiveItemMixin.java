@@ -10,26 +10,26 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ActiveItemMixin",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-active-item-mixin.js"
+		symbols = "ActiveItemMixin",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-active-item-mixin.js"
 )
 public interface ActiveItemMixin<ITEM extends Any> extends Element {
-    /**
-     * The item user has last interacted with. Turns to `null` after user deactivates
-     * the item by re-interacting with the currently active item.
-     */
-    @Nullable
-    @JSProperty
-    ITEM getActiveItem();
+	/**
+	 * The item user has last interacted with. Turns to `null` after user deactivates
+	 * the item by re-interacting with the currently active item.
+	 */
+	@Nullable
+	@JSProperty
+	ITEM getActiveItem();
 
-    /**
-     * The item user has last interacted with. Turns to `null` after user deactivates
-     * the item by re-interacting with the currently active item.
-     */
-    @JSProperty
-    void setActiveItem(ITEM activeItem);
+	/**
+	 * The item user has last interacted with. Turns to `null` after user deactivates
+	 * the item by re-interacting with the currently active item.
+	 */
+	@JSProperty
+	void setActiveItem(ITEM activeItem);
 }

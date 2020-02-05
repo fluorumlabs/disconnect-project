@@ -15,47 +15,47 @@ import org.teavm.jso.JSProperty;
  * `<vaadin-grid>` [Documentation](https://vaadin.com/components/vaadin-grid/html-api/elements/Vaadin.GridElement)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "CrudGridElement",
-        module = "@vaadin/vaadin-crud/src/vaadin-crud-grid.js"
+		symbols = "CrudGridElement",
+		module = "@vaadin/vaadin-crud/src/vaadin-crud-grid.js"
 )
 public interface CrudGridElement extends HTMLElement, IncludedMixin {
-    /**
-     * Disable filtering in the generated columns.
-     */
-    @JSProperty
-    boolean isNoFilter();
+	/**
+	 * Disable filtering in the generated columns.
+	 */
+	@JSProperty
+	boolean isNoFilter();
 
-    /**
-     * Disable filtering in the generated columns.
-     */
-    @JSProperty
-    void setNoFilter(boolean noFilter);
+	/**
+	 * Disable filtering in the generated columns.
+	 */
+	@JSProperty
+	void setNoFilter(boolean noFilter);
 
-    /**
-     * Disable sorting in the generated columns.
-     */
-    @JSProperty
-    boolean isNoSort();
+	/**
+	 * Disable sorting in the generated columns.
+	 */
+	@JSProperty
+	boolean isNoSort();
 
-    /**
-     * Disable sorting in the generated columns.
-     */
-    @JSProperty
-    void setNoSort(boolean noSort);
+	/**
+	 * Disable sorting in the generated columns.
+	 */
+	@JSProperty
+	void setNoSort(boolean noSort);
 
-    /**
-     * Do not add headers to columns.
-     */
-    @JSProperty
-    boolean isNoHead();
+	/**
+	 * Do not add headers to columns.
+	 */
+	@JSProperty
+	boolean isNoHead();
 
-    /**
-     * Do not add headers to columns.
-     */
-    @JSProperty
-    void setNoHead(boolean noHead);
+	/**
+	 * Do not add headers to columns.
+	 */
+	@JSProperty
+	void setNoHead(boolean noHead);
 }

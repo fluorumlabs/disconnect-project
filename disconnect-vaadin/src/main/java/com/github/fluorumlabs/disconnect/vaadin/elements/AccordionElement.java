@@ -53,36 +53,36 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "AccordionElement",
-        module = "@vaadin/vaadin-accordion/src/vaadin-accordion.js"
+		symbols = "AccordionElement",
+		module = "@vaadin/vaadin-accordion/src/vaadin-accordion.js"
 )
 public interface AccordionElement extends HTMLElement, ElementMixin, ThemableMixin {
-    /**
-     * The index of currently opened panel. First panel is opened by
-     * default. Only one panel can be opened at the same time.
-     * Setting null or undefined closes all the accordion panels.
-     */
-    @JSProperty
-    int getOpened();
+	/**
+	 * The index of currently opened panel. First panel is opened by
+	 * default. Only one panel can be opened at the same time.
+	 * Setting null or undefined closes all the accordion panels.
+	 */
+	@JSProperty
+	int getOpened();
 
-    /**
-     * The index of currently opened panel. First panel is opened by
-     * default. Only one panel can be opened at the same time.
-     * Setting null or undefined closes all the accordion panels.
-     */
-    @JSProperty
-    void setOpened(int opened);
+	/**
+	 * The index of currently opened panel. First panel is opened by
+	 * default. Only one panel can be opened at the same time.
+	 * Setting null or undefined closes all the accordion panels.
+	 */
+	@JSProperty
+	void setOpened(int opened);
 
-    /**
-     * The list of `<vaadin-accordion-panel>` child elements.
-     * It is populated from the elements passed to the light DOM,
-     * and updated dynamically when adding or removing panels.
-     */
-    @Nullable
-    @JSProperty
-    Array<AccordionPanelElement> getItems();
+	/**
+	 * The list of `<vaadin-accordion-panel>` child elements.
+	 * It is populated from the elements passed to the light DOM,
+	 * and updated dynamically when adding or removing panels.
+	 */
+	@Nullable
+	@JSProperty
+	Array<AccordionPanelElement> getItems();
 }

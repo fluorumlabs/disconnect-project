@@ -45,68 +45,68 @@ import js.web.dom.Element;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinButton extends AbstractComponent<ButtonElement>
-        implements HasElementMixin<ButtonElement, VaadinButton>,
-        HasControlStateMixin<ButtonElement, VaadinButton>,
-        HasThemableMixin<ButtonElement, VaadinButton>,
-        HasGestureEventListeners<ButtonElement, VaadinButton>,
-        HasSlottedComponents<ButtonElement, VaadinButton, Component<? extends Element>> {
-    public VaadinButton() {
-        super("vaadin-button");
-    }
+		implements HasElementMixin<ButtonElement, VaadinButton>,
+		HasControlStateMixin<ButtonElement, VaadinButton>,
+		HasThemableMixin<ButtonElement, VaadinButton>,
+		HasGestureEventListeners<ButtonElement, VaadinButton>,
+		HasSlottedComponents<ButtonElement, VaadinButton, Component<? extends Element>> {
+	public VaadinButton() {
+		super("vaadin-button");
+	}
 
-    public VaadinButton setPrefix(Component<? extends Element> component) {
-        return replaceSlotted("prefix", component);
-    }
+	public VaadinButton setPrefix(Component<? extends Element> component) {
+		return replaceSlotted("prefix", component);
+	}
 
-    public VaadinButton setPrefix(Component<? extends Element>... components) {
-        return replaceSlotted("prefix", components);
-    }
+	public VaadinButton setPrefix(Component<? extends Element>... components) {
+		return replaceSlotted("prefix", components);
+	}
 
-    public VaadinButton addToPrefix(Component<? extends Element> component) {
-        return addSlotted("prefix", component);
-    }
+	public VaadinButton addToPrefix(Component<? extends Element> component) {
+		return addSlotted("prefix", component);
+	}
 
-    public VaadinButton addToPrefix(Component<? extends Element>... components) {
-        return addSlotted("prefix", components);
-    }
+	public VaadinButton addToPrefix(Component<? extends Element>... components) {
+		return addSlotted("prefix", components);
+	}
 
-    public VaadinButton insertToPrefix(Component<? extends Element> component) {
-        return insertSlotted("prefix", component);
-    }
+	public VaadinButton insertToPrefix(Component<? extends Element> component) {
+		return insertSlotted("prefix", component);
+	}
 
-    public VaadinButton insertToPrefix(Component<? extends Element>... components) {
-        return insertSlotted("prefix", components);
-    }
+	public VaadinButton insertToPrefix(Component<? extends Element>... components) {
+		return insertSlotted("prefix", components);
+	}
 
-    public VaadinButton clearPrefix() {
-        return removeAllSlotted("prefix");
-    }
+	public VaadinButton clearPrefix() {
+		return removeAllSlotted("prefix");
+	}
 
-    public VaadinButton setSuffix(Component<? extends Element> component) {
-        return replaceSlotted("suffix", component);
-    }
+	public VaadinButton setSuffix(Component<? extends Element> component) {
+		return replaceSlotted("suffix", component);
+	}
 
-    public VaadinButton setSuffix(Component<? extends Element>... components) {
-        return replaceSlotted("suffix", components);
-    }
+	public VaadinButton setSuffix(Component<? extends Element>... components) {
+		return replaceSlotted("suffix", components);
+	}
 
-    public VaadinButton addToSuffix(Component<? extends Element> component) {
-        return addSlotted("suffix", component);
-    }
+	public VaadinButton addToSuffix(Component<? extends Element> component) {
+		return addSlotted("suffix", component);
+	}
 
-    public VaadinButton addToSuffix(Component<? extends Element>... components) {
-        return addSlotted("suffix", components);
-    }
+	public VaadinButton addToSuffix(Component<? extends Element>... components) {
+		return addSlotted("suffix", components);
+	}
 
-    public VaadinButton insertToSuffix(Component<? extends Element> component) {
-        return insertSlotted("suffix", component);
-    }
+	public VaadinButton insertToSuffix(Component<? extends Element> component) {
+		return insertSlotted("suffix", component);
+	}
 
-    public VaadinButton insertToSuffix(Component<? extends Element>... components) {
-        return insertSlotted("suffix", components);
-    }
+	public VaadinButton insertToSuffix(Component<? extends Element>... components) {
+		return insertSlotted("suffix", components);
+	}
 
-    public VaadinButton clearSuffix() {
-        return removeAllSlotted("suffix");
-    }
+	public VaadinButton clearSuffix() {
+		return removeAllSlotted("suffix");
+	}
 }

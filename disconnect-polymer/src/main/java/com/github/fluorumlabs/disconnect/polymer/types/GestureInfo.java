@@ -14,75 +14,75 @@ import javax.annotation.Nullable;
  * Created by Artem Godin on 2/3/2020.
  */
 public interface GestureInfo extends Any {
-    @Nullable
-    @JSProperty
-    String getState();
+	@Nullable
+	@JSProperty
+	String getState();
 
-    @JSProperty
-    void setState(String state);
+	@JSProperty
+	void setState(String state);
 
-    @JSProperty
-    boolean getStarted();
+	@JSProperty
+	boolean getStarted();
 
-    @JSProperty
-    void setStarted(boolean started);
+	@JSProperty
+	void setStarted(boolean started);
 
-    @JSProperty
-    Array<Move> getMoves();
+	@JSProperty
+	Array<Move> getMoves();
 
-    @JSProperty
-    void setMoves(Array<Move> moves);
+	@JSProperty
+	void setMoves(Array<Move> moves);
 
-    @JSProperty
-    double getX();
+	@JSProperty
+	double getX();
 
-    @JSProperty
-    void setX(double x);
+	@JSProperty
+	void setX(double x);
 
-    @JSProperty
-    double getY();
+	@JSProperty
+	double getY();
 
-    @JSProperty
-    void setY(double y);
+	@JSProperty
+	void setY(double y);
 
-    @JSProperty
-    boolean getPrevent();
+	@JSProperty
+	boolean getPrevent();
 
-    @JSProperty
-    void setPrevent(boolean prevent);
+	@JSProperty
+	void setPrevent(boolean prevent);
 
-    @JSBody(params = "move", script = "this.addMove(move)")
-    void addMove(Move move);
+	@JSBody(params = "move", script = "this.addMove(move)")
+	void addMove(Move move);
 
-    @JSProperty
-    JsConsumer<Move> getAddMove();
+	@JSProperty
+	JsConsumer<Move> getAddMove();
 
-    @JSProperty
-    void setAddMove(JsConsumer<Move> addMove);
+	@JSProperty
+	void setAddMove(JsConsumer<Move> addMove);
 
-    @JSProperty
-    EventListener<MouseEvent> getMoveFn();
+	@JSProperty
+	EventListener<MouseEvent> getMoveFn();
 
-    @JSProperty
-    void setMoveFn(EventListener<MouseEvent> movefn);
+	@JSProperty
+	void setMoveFn(EventListener<MouseEvent> movefn);
 
-    @JSProperty
-    EventListener<MouseEvent> getUpFn();
+	@JSProperty
+	EventListener<MouseEvent> getUpFn();
 
-    @JSProperty
-    void setUpFn(EventListener<MouseEvent> upFn);
+	@JSProperty
+	void setUpFn(EventListener<MouseEvent> upFn);
 
-    interface Move extends Any {
-        @JSProperty
-        double getX();
+	interface Move extends Any {
+		@JSProperty
+		double getX();
 
-        @JSProperty
-        void setX(double x);
+		@JSProperty
+		void setX(double x);
 
-        @JSProperty
-        double getY();
+		@JSProperty
+		double getY();
 
-        @JSProperty
-        void setY(double y);
-    }
+		@JSProperty
+		void setY(double y);
+	}
 }

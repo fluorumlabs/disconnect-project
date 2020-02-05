@@ -4,5 +4,5 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.KeyboardNavigati
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 
 public interface HasKeyboardNavigationMixin<E extends KeyboardNavigationMixin, T extends Component<E>>
-        extends Component<E> {
+		extends Component<E> {
 }

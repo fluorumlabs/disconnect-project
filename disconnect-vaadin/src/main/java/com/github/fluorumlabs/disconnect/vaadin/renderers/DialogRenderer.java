@@ -11,5 +11,5 @@ import org.teavm.jso.JSFunctor;
 @JSFunctor
 @FunctionalInterface
 public interface DialogRenderer extends Any {
-    void render(Element root, DialogElement dialog);
+	void render(Element root, DialogElement dialog);
 }

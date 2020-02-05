@@ -19,12 +19,12 @@ import js.web.dom.Element;
  * `connectedCallback` to enable the accessors.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "PropertiesChanged",
-        module = "@polymer/polymer/lib/mixins/properties-changed.js"
+		symbols = "PropertiesChanged",
+		module = "@polymer/polymer/lib/mixins/properties-changed.js"
 )
 public interface PropertiesChanged extends Element {
 }

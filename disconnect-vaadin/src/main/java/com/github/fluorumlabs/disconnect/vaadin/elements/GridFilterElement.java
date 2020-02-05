@@ -23,37 +23,37 @@ import javax.annotation.Nullable;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridFilterElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-filter.js"
+		symbols = "GridFilterElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-filter.js"
 )
 public interface GridFilterElement extends HTMLElement {
-    /**
-     * JS Path of the property in the item used for filtering the data.
-     */
-    @Nullable
-    @JSProperty
-    String getPath();
+	/**
+	 * JS Path of the property in the item used for filtering the data.
+	 */
+	@Nullable
+	@JSProperty
+	String getPath();
 
-    /**
-     * JS Path of the property in the item used for filtering the data.
-     */
-    @JSProperty
-    void setPath(String path);
+	/**
+	 * JS Path of the property in the item used for filtering the data.
+	 */
+	@JSProperty
+	void setPath(String path);
 
-    /**
-     * Current filter value.
-     */
-    @Nullable
-    @JSProperty
-    String getValue();
+	/**
+	 * Current filter value.
+	 */
+	@Nullable
+	@JSProperty
+	String getValue();
 
-    /**
-     * Current filter value.
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 * Current filter value.
+	 */
+	@JSProperty
+	void setValue(String value);
 }

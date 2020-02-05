@@ -65,92 +65,92 @@ import js.web.webcomponents.ShadowRoot;
  * of dash-cased attributes based on `properties`)
  */
 public interface HasElementMixin<E extends ElementMixin, T extends Component<E>>
-        extends HasPropertyEffects<E, T>, HasPropertiesMixin<E, T> {
-    default String rootPath() {
-        return getNode().getRootPath();
-    }
+		extends HasPropertyEffects<E, T>, HasPropertiesMixin<E, T> {
+	default String rootPath() {
+		return getNode().getRootPath();
+	}
 
-    default T rootPath(String rootPath) {
-        getNode().setRootPath(rootPath);
-        return (T) this;
-    }
+	default T rootPath(String rootPath) {
+		getNode().setRootPath(rootPath);
+		return (T) this;
+	}
 
-    default String importPath() {
-        return getNode().getImportPath();
-    }
+	default String importPath() {
+		return getNode().getImportPath();
+	}
 
-    default T importPath(String importPath) {
-        getNode().setImportPath(importPath);
-        return (T) this;
-    }
+	default T importPath(String importPath) {
+		getNode().setImportPath(importPath);
+		return (T) this;
+	}
 
-    /**
-     *
-     */
-    default ParentNode root() {
-        return getNode().getRoot();
-    }
+	/**
+	 *
+	 */
+	default ParentNode root() {
+		return getNode().getRoot();
+	}
 
-    /**
-     *
-     */
-    default T root(HTMLElement root) {
-        getNode().setRoot(root);
-        return (T) this;
-    }
+	/**
+	 *
+	 */
+	default T root(HTMLElement root) {
+		getNode().setRoot(root);
+		return (T) this;
+	}
 
-    default T root(ShadowRoot root) {
-        getNode().setRoot(root);
-        return (T) this;
-    }
+	default T root(ShadowRoot root) {
+		getNode().setRoot(root);
+		return (T) this;
+	}
 
-    /**
-     *
-     */
-    default Record<Element> $() {
-        return getNode().$();
-    }
+	/**
+	 *
+	 */
+	default Record<Element> $() {
+		return getNode().$();
+	}
 
-    /**
-     * When using the ShadyCSS scoping and custom property shim, causes all
-     * shimmed styles in this element (and its subtree) to be updated
-     * based on current custom property values.
-     * <p>
-     * The optional parameter overrides inline custom property styles with an
-     * object of properties where the keys are CSS properties, and the values
-     * are strings.
-     * <p>
-     * Example: `this.updateStyles({'--color': 'blue'})`
-     * <p>
-     * These properties are retained unless a value of `null` is set.
-     * <p>
-     * Note: This function does not support updating CSS mixins.
-     * You can not dynamically change the value of an `@apply`.
-     *
-     * @param properties Bag of custom property key/values to
-     *                   apply to this element.
-     */
-    default void updateStyles(StringRecord properties) {
-        getNode().updateStyles(properties);
-    }
+	/**
+	 * When using the ShadyCSS scoping and custom property shim, causes all
+	 * shimmed styles in this element (and its subtree) to be updated
+	 * based on current custom property values.
+	 * <p>
+	 * The optional parameter overrides inline custom property styles with an
+	 * object of properties where the keys are CSS properties, and the values
+	 * are strings.
+	 * <p>
+	 * Example: `this.updateStyles({'--color': 'blue'})`
+	 * <p>
+	 * These properties are retained unless a value of `null` is set.
+	 * <p>
+	 * Note: This function does not support updating CSS mixins.
+	 * You can not dynamically change the value of an `@apply`.
+	 *
+	 * @param properties Bag of custom property key/values to
+	 *                   apply to this element.
+	 */
+	default void updateStyles(StringRecord properties) {
+		getNode().updateStyles(properties);
+	}
 
-    /**
-     * Rewrites a given URL relative to a base URL. The base URL defaults to
-     * the original location of the document containing the `dom-module` for
-     * this element. This method will return the same URL before and after
-     * bundling.
-     * <p>
-     * Note that this function performs no resolution for URLs that start
-     * with `/` (absolute URLs) or `#` (hash identifiers).  For general purpose
-     * URL resolution, use `window.URL`.
-     *
-     * @param url  URL to resolve.
-     * @param base Optional base URL to resolve against, defaults
-     *             to the element's `importPath`
-     *
-     * @return Rewritten URL relative to base
-     */
-    default String resolveUrl(String url, String base) {
-        return getNode().resolveUrl(url, base);
-    }
+	/**
+	 * Rewrites a given URL relative to a base URL. The base URL defaults to
+	 * the original location of the document containing the `dom-module` for
+	 * this element. This method will return the same URL before and after
+	 * bundling.
+	 * <p>
+	 * Note that this function performs no resolution for URLs that start
+	 * with `/` (absolute URLs) or `#` (hash identifiers).  For general purpose
+	 * URL resolution, use `window.URL`.
+	 *
+	 * @param url  URL to resolve.
+	 * @param base Optional base URL to resolve against, defaults
+	 *             to the element's `importPath`
+	 *
+	 * @return Rewritten URL relative to base
+	 */
+	default String resolveUrl(String url, String base) {
+		return getNode().resolveUrl(url, base);
+	}
 }

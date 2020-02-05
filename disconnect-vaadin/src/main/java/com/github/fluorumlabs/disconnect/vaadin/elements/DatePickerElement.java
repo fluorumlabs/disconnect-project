@@ -85,86 +85,86 @@ import javax.annotation.Nullable;
  * propagated to the internal themable components listed above.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "DatePickerElement",
-        module = "@vaadin/vaadin-date-picker/src/vaadin-date-picker.js"
+		symbols = "DatePickerElement",
+		module = "@vaadin/vaadin-date-picker/src/vaadin-date-picker.js"
 )
 public interface DatePickerElement
-        extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, DatePickerMixin, GestureEventListeners {
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    @JSProperty
-    boolean isClearButtonVisible();
+		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, DatePickerMixin, GestureEventListeners {
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	@JSProperty
+	boolean isClearButtonVisible();
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    @JSProperty
-    void setClearButtonVisible(boolean clearButtonVisible);
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	@JSProperty
+	void setClearButtonVisible(boolean clearButtonVisible);
 
-    /**
-     * Set to true to disable this element.
-     */
-    @JSProperty
-    boolean isDisabled();
+	/**
+	 * Set to true to disable this element.
+	 */
+	@JSProperty
+	boolean isDisabled();
 
-    /**
-     * Set to true to disable this element.
-     */
-    @JSProperty
-    void setDisabled(boolean disabled);
+	/**
+	 * Set to true to disable this element.
+	 */
+	@JSProperty
+	void setDisabled(boolean disabled);
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    @Nullable
-    @JSProperty
-    String getErrorMessage();
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	@Nullable
+	@JSProperty
+	String getErrorMessage();
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    @JSProperty
-    void setErrorMessage(String errorMessage);
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	@JSProperty
+	void setErrorMessage(String errorMessage);
 
-    /**
-     * A placeholder string in addition to the label. If this is set, the label will always float.
-     */
-    @Nullable
-    @JSProperty
-    String getPlaceholder();
+	/**
+	 * A placeholder string in addition to the label. If this is set, the label will always float.
+	 */
+	@Nullable
+	@JSProperty
+	String getPlaceholder();
 
-    /**
-     * A placeholder string in addition to the label. If this is set, the label will always float.
-     */
-    @JSProperty
-    void setPlaceholder(String placeholder);
+	/**
+	 * A placeholder string in addition to the label. If this is set, the label will always float.
+	 */
+	@JSProperty
+	void setPlaceholder(String placeholder);
 
-    /**
-     * Set to true to make this element read-only.
-     */
-    @JSProperty
-    boolean isReadonly();
+	/**
+	 * Set to true to make this element read-only.
+	 */
+	@JSProperty
+	boolean isReadonly();
 
-    /**
-     * Set to true to make this element read-only.
-     */
-    @JSProperty
-    void setReadonly(boolean readonly);
+	/**
+	 * Set to true to make this element read-only.
+	 */
+	@JSProperty
+	void setReadonly(boolean readonly);
 
-    /**
-     * This property is set to true when the control value invalid.
-     */
-    @JSProperty
-    boolean isInvalid();
+	/**
+	 * This property is set to true when the control value invalid.
+	 */
+	@JSProperty
+	boolean isInvalid();
 
-    /**
-     * This property is set to true when the control value invalid.
-     */
-    @JSProperty
-    void setInvalid(boolean invalid);
+	/**
+	 * This property is set to true when the control value invalid.
+	 */
+	@JSProperty
+	void setInvalid(boolean invalid);
 }

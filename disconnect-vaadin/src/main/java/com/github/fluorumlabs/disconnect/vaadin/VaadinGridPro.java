@@ -19,9 +19,9 @@ import js.lang.Any;
  * ```
  */
 public class VaadinGridPro<ITEM extends Any> extends AbstractComponent<GridProElement>
-        implements HasInlineEditingMixin<ITEM, GridProElement, VaadinGridPro<ITEM>>,
-        HasComponents<GridProElement, VaadinGridPro<ITEM>, Component<?>> {
-    public VaadinGridPro() {
-        super("vaadin-grid-pro");
-    }
+		implements HasInlineEditingMixin<ITEM, GridProElement, VaadinGridPro<ITEM>>,
+		HasComponents<GridProElement, VaadinGridPro<ITEM>, Component<?>> {
+	public VaadinGridPro() {
+		super("vaadin-grid-pro");
+	}
 }

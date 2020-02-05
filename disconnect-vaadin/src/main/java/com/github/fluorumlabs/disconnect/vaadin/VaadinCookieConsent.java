@@ -37,118 +37,118 @@ import javax.annotation.Nullable;
  * `cc-link`       | Learn more link element
  */
 public class VaadinCookieConsent extends AbstractComponent<CookieConsentElement>
-        implements HasElementMixin<CookieConsentElement, VaadinCookieConsent>,
-        HasThemableMixin<CookieConsentElement, VaadinCookieConsent>,
-        HasComponents<CookieConsentElement, VaadinCookieConsent, Component<?>> {
-    public VaadinCookieConsent() {
-        super("vaadin-cookie-consent");
-    }
+		implements HasElementMixin<CookieConsentElement, VaadinCookieConsent>,
+		HasThemableMixin<CookieConsentElement, VaadinCookieConsent>,
+		HasComponents<CookieConsentElement, VaadinCookieConsent, Component<?>> {
+	public VaadinCookieConsent() {
+		super("vaadin-cookie-consent");
+	}
 
-    /**
-     * The message to show in the popup.
-     */
-    @Nullable
-    public String message() {
-        return getNode().getMessage();
-    }
+	/**
+	 * The message to show in the popup.
+	 */
+	@Nullable
+	public String message() {
+		return getNode().getMessage();
+	}
 
-    /**
-     * The message to show in the popup.
-     */
-    public VaadinCookieConsent message(String message) {
-        getNode().setMessage(message);
-        return this;
-    }
+	/**
+	 * The message to show in the popup.
+	 */
+	public VaadinCookieConsent message(String message) {
+		getNode().setMessage(message);
+		return this;
+	}
 
-    /**
-     * The text to show on the dismiss/consent button.
-     */
-    @Nullable
-    public String dismiss() {
-        return getNode().getDismiss();
-    }
+	/**
+	 * The text to show on the dismiss/consent button.
+	 */
+	@Nullable
+	public String dismiss() {
+		return getNode().getDismiss();
+	}
 
-    /**
-     * The text to show on the dismiss/consent button.
-     */
-    public VaadinCookieConsent dismiss(String dismiss) {
-        getNode().setDismiss(dismiss);
-        return this;
-    }
+	/**
+	 * The text to show on the dismiss/consent button.
+	 */
+	public VaadinCookieConsent dismiss(String dismiss) {
+		getNode().setDismiss(dismiss);
+		return this;
+	}
 
-    /**
-     * The text to show on the 'learn more' link.
-     */
-    @Nullable
-    public String learnMore() {
-        return getNode().getLearnMore();
-    }
+	/**
+	 * The text to show on the 'learn more' link.
+	 */
+	@Nullable
+	public String learnMore() {
+		return getNode().getLearnMore();
+	}
 
-    /**
-     * The text to show on the 'learn more' link.
-     */
-    public VaadinCookieConsent learnMore(String learnMore) {
-        getNode().setLearnMore(learnMore);
-        return this;
-    }
+	/**
+	 * The text to show on the 'learn more' link.
+	 */
+	public VaadinCookieConsent learnMore(String learnMore) {
+		getNode().setLearnMore(learnMore);
+		return this;
+	}
 
-    /**
-     * The URL the 'learn more' link should open.
-     */
-    @Nullable
-    public String learnMoreLink() {
-        return getNode().getLearnMoreLink();
-    }
+	/**
+	 * The URL the 'learn more' link should open.
+	 */
+	@Nullable
+	public String learnMoreLink() {
+		return getNode().getLearnMoreLink();
+	}
 
-    /**
-     * The URL the 'learn more' link should open.
-     */
-    public VaadinCookieConsent learnMoreLink(String learnMoreLink) {
-        getNode().setLearnMoreLink(learnMoreLink);
-        return this;
-    }
+	/**
+	 * The URL the 'learn more' link should open.
+	 */
+	public VaadinCookieConsent learnMoreLink(String learnMoreLink) {
+		getNode().setLearnMoreLink(learnMoreLink);
+		return this;
+	}
 
-    /**
-     * Determines the position of the banner.
-     * <p>
-     * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
-     * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
-     * it is shown as a smaller popup.
-     */
-    @Nullable
-    public CookieConsentPosition position() {
-        return getNode().getPosition();
-    }
+	/**
+	 * Determines the position of the banner.
+	 * <p>
+	 * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
+	 * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
+	 * it is shown as a smaller popup.
+	 */
+	@Nullable
+	public CookieConsentPosition position() {
+		return getNode().getPosition();
+	}
 
-    /**
-     * Determines the position of the banner.
-     * <p>
-     * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
-     * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
-     * it is shown as a smaller popup.
-     */
-    public VaadinCookieConsent position(CookieConsentPosition position) {
-        getNode().setPosition(position);
-        return this;
-    }
+	/**
+	 * Determines the position of the banner.
+	 * <p>
+	 * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
+	 * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
+	 * it is shown as a smaller popup.
+	 */
+	public VaadinCookieConsent position(CookieConsentPosition position) {
+		getNode().setPosition(position);
+		return this;
+	}
 
-    /**
-     * The name of the cookie to set to remember that the user has consented.
-     * <p>
-     * This rarely needs to be changed.
-     */
-    @Nullable
-    public String cookieName() {
-        return getNode().getCookieName();
-    }
+	/**
+	 * The name of the cookie to set to remember that the user has consented.
+	 * <p>
+	 * This rarely needs to be changed.
+	 */
+	@Nullable
+	public String cookieName() {
+		return getNode().getCookieName();
+	}
 
-    /**
-     * The name of the cookie to set to remember that the user has consented.
-     * <p>
-     * This rarely needs to be changed.
-     */
-    public VaadinCookieConsent cookieName(String cookieName) {
-        getNode().setCookieName(cookieName);
-        return this;
-    }
+	/**
+	 * The name of the cookie to set to remember that the user has consented.
+	 * <p>
+	 * This rarely needs to be changed.
+	 */
+	public VaadinCookieConsent cookieName(String cookieName) {
+		getNode().setCookieName(cookieName);
+		return this;
+	}
 }

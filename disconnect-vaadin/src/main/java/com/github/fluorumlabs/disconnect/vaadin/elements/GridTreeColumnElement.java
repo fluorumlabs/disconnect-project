@@ -22,24 +22,24 @@ import javax.annotation.Nullable;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridTreeColumnElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-tree-column.js"
+		symbols = "GridTreeColumnElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-tree-column.js"
 )
 public interface GridTreeColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
-    /**
-     * JS Path of the property in the item that indicates whether the item has child items.
-     */
-    @Nullable
-    @JSProperty
-    String getItemHasChildrenPath();
+	/**
+	 * JS Path of the property in the item that indicates whether the item has child items.
+	 */
+	@Nullable
+	@JSProperty
+	String getItemHasChildrenPath();
 
-    /**
-     * JS Path of the property in the item that indicates whether the item has child items.
-     */
-    @JSProperty
-    void setItemHasChildrenPath(String itemHasChildrenPath);
+	/**
+	 * JS Path of the property in the item that indicates whether the item has child items.
+	 */
+	@JSProperty
+	void setItemHasChildrenPath(String itemHasChildrenPath);
 }

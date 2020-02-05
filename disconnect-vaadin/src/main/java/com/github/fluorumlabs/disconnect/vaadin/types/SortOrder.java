@@ -10,11 +10,11 @@ import javax.annotation.Nullable;
  * Created by Artem Godin on 2/4/2020.
  */
 public interface SortOrder extends Any {
-    @JSProperty
-    String getPath();
+	@JSProperty
+	String getPath();
 
-    @Nullable
-    @JSProperty
-    SortDirection getDirection();
+	@Nullable
+	@JSProperty
+	SortDirection getDirection();
 
 }

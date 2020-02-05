@@ -56,53 +56,53 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinAccordion extends AbstractComponent<AccordionElement> implements
-        HasElementMixin<AccordionElement, VaadinAccordion>,
-        HasThemableMixin<AccordionElement, VaadinAccordion>,
-        HasComponents<AccordionElement, VaadinAccordion, Component<?>> {
-    public VaadinAccordion() {
-        super("vaadin-accordion");
-    }
+		HasElementMixin<AccordionElement, VaadinAccordion>,
+		HasThemableMixin<AccordionElement, VaadinAccordion>,
+		HasComponents<AccordionElement, VaadinAccordion, Component<?>> {
+	public VaadinAccordion() {
+		super("vaadin-accordion");
+	}
 
-    /**
-     * The index of currently opened panel. First panel is opened by
-     * default. Only one panel can be opened at the same time.
-     * Setting null or undefined closes all the accordion panels.
-     */
-    public int opened() {
-        return getNode().getOpened();
-    }
+	/**
+	 * The index of currently opened panel. First panel is opened by
+	 * default. Only one panel can be opened at the same time.
+	 * Setting null or undefined closes all the accordion panels.
+	 */
+	public int opened() {
+		return getNode().getOpened();
+	}
 
-    /**
-     * The index of currently opened panel. First panel is opened by
-     * default. Only one panel can be opened at the same time.
-     * Setting null or undefined closes all the accordion panels.
-     */
-    public VaadinAccordion opened(int opened) {
-        getNode().setOpened(opened);
-        return this;
-    }
+	/**
+	 * The index of currently opened panel. First panel is opened by
+	 * default. Only one panel can be opened at the same time.
+	 * Setting null or undefined closes all the accordion panels.
+	 */
+	public VaadinAccordion opened(int opened) {
+		getNode().setOpened(opened);
+		return this;
+	}
 
-    /**
-     * The list of `<vaadin-accordion-panel>` child elements.
-     * It is populated from the elements passed to the light DOM,
-     * and updated dynamically when adding or removing panels.
-     */
-    @Nullable
-    public Array<AccordionPanelElement> items() {
-        return getNode().getItems();
-    }
+	/**
+	 * The list of `<vaadin-accordion-panel>` child elements.
+	 * It is populated from the elements passed to the light DOM,
+	 * and updated dynamically when adding or removing panels.
+	 */
+	@Nullable
+	public Array<AccordionPanelElement> items() {
+		return getNode().getItems();
+	}
 
-    /**
-     * Fired when the `opened` property changes.
-     */
-    public ObservableEvent<IntPropertyChangeEvent> openedChangedEvent() {
-        return createEvent("opened-changed");
-    }
+	/**
+	 * Fired when the `opened` property changes.
+	 */
+	public ObservableEvent<IntPropertyChangeEvent> openedChangedEvent() {
+		return createEvent("opened-changed");
+	}
 
-    /**
-     * Fired when the `items` property changes.
-     */
-    public ObservableEvent<PropertyChangeEvent<Array<AccordionPanelElement>>> itemsChangedEvent() {
-        return createEvent("items-changed");
-    }
+	/**
+	 * Fired when the `items` property changes.
+	 */
+	public ObservableEvent<PropertyChangeEvent<Array<AccordionPanelElement>>> itemsChangedEvent() {
+		return createEvent("items-changed");
+	}
 }

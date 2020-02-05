@@ -12,41 +12,41 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "SelectionMixin",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-selection-mixin.js"
+		symbols = "SelectionMixin",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-selection-mixin.js"
 )
 public interface SelectionMixin<ITEM extends Any> extends Element {
-    /**
-     * An array that contains the selected items.
-     */
-    @Nullable
-    @JSProperty
-    Array<ITEM> getSelectedItems();
+	/**
+	 * An array that contains the selected items.
+	 */
+	@Nullable
+	@JSProperty
+	Array<ITEM> getSelectedItems();
 
-    /**
-     * An array that contains the selected items.
-     */
-    @JSProperty
-    void setSelectedItems(@JSByRef ITEM... selectedItems);
+	/**
+	 * An array that contains the selected items.
+	 */
+	@JSProperty
+	void setSelectedItems(@JSByRef ITEM... selectedItems);
 
-    @JSProperty
-    void setSelectedItems(Array<ITEM> selectedItems);
+	@JSProperty
+	void setSelectedItems(Array<ITEM> selectedItems);
 
-    /**
-     * Selects the given item.
-     *
-     * @param item The item object
-     */
-    void selectItem(ITEM item);
+	/**
+	 * Selects the given item.
+	 *
+	 * @param item The item object
+	 */
+	void selectItem(ITEM item);
 
-    /**
-     * Deselects the given item if it is already selected.
-     *
-     * @param item The item object
-     */
-    void deselectItem(ITEM item);
+	/**
+	 * Deselects the given item if it is already selected.
+	 *
+	 * @param item The item object
+	 */
+	void deselectItem(ITEM item);
 }

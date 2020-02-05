@@ -43,73 +43,73 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinRadioButton extends AbstractComponent<RadioButtonElement>
-        implements HasElementMixin<RadioButtonElement, VaadinRadioButton>,
-        HasControlStateMixin<RadioButtonElement, VaadinRadioButton>,
-        HasThemableMixin<RadioButtonElement, VaadinRadioButton>,
-        HasGestureEventListeners<RadioButtonElement, VaadinRadioButton>,
-        HasComponents<RadioButtonElement, VaadinRadioButton, Component<?>> {
-    public VaadinRadioButton() {
-        super("vaadin-radio-button");
-    }
+		implements HasElementMixin<RadioButtonElement, VaadinRadioButton>,
+		HasControlStateMixin<RadioButtonElement, VaadinRadioButton>,
+		HasThemableMixin<RadioButtonElement, VaadinRadioButton>,
+		HasGestureEventListeners<RadioButtonElement, VaadinRadioButton>,
+		HasComponents<RadioButtonElement, VaadinRadioButton, Component<?>> {
+	public VaadinRadioButton() {
+		super("vaadin-radio-button");
+	}
 
-    /**
-     * Name of the element.
-     */
-    @Nullable
-    public String name() {
-        return getNode().getName();
-    }
+	/**
+	 * Name of the element.
+	 */
+	@Nullable
+	public String name() {
+		return getNode().getName();
+	}
 
-    /**
-     * Name of the element.
-     */
-    public VaadinRadioButton name(String name) {
-        getNode().setName(name);
-        return this;
-    }
+	/**
+	 * Name of the element.
+	 */
+	public VaadinRadioButton name(String name) {
+		getNode().setName(name);
+		return this;
+	}
 
-    /**
-     * True if the radio button is checked.
-     */
-    public boolean checked() {
-        return getNode().isChecked();
-    }
+	/**
+	 * True if the radio button is checked.
+	 */
+	public boolean checked() {
+		return getNode().isChecked();
+	}
 
-    /**
-     * True if the radio button is checked.
-     */
-    public VaadinRadioButton checked(boolean checked) {
-        getNode().setChecked(checked);
-        return this;
-    }
+	/**
+	 * True if the radio button is checked.
+	 */
+	public VaadinRadioButton checked(boolean checked) {
+		getNode().setChecked(checked);
+		return this;
+	}
 
-    /**
-     * The value for this element.
-     */
-    @Nullable
-    public String value() {
-        return getNode().getValue();
-    }
+	/**
+	 * The value for this element.
+	 */
+	@Nullable
+	public String value() {
+		return getNode().getValue();
+	}
 
-    /**
-     * The value for this element.
-     */
-    public VaadinRadioButton value(String value) {
-        getNode().setValue(value);
-        return this;
-    }
+	/**
+	 * The value for this element.
+	 */
+	public VaadinRadioButton value(String value) {
+		getNode().setValue(value);
+		return this;
+	}
 
-    /**
-     * Fired when the user toggles the radio button.
-     */
-    public ObservableEvent<Event> changeEvent() {
-        return createEvent("change");
-    }
+	/**
+	 * Fired when the user toggles the radio button.
+	 */
+	public ObservableEvent<Event> changeEvent() {
+		return createEvent("change");
+	}
 
-    /**
-     * Fired when the `checked` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> checkedChangedEvent() {
-        return createEvent("checked-changed");
-    }
+	/**
+	 * Fired when the `checked` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> checkedChangedEvent() {
+		return createEvent("checked-changed");
+	}
 }

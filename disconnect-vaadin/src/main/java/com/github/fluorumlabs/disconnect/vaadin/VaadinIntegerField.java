@@ -14,8 +14,8 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * ```
  */
 public class VaadinIntegerField extends AbstractComponent<IntegerFieldElement>
-        implements HasComponents<IntegerFieldElement, VaadinIntegerField, Component<?>> {
-    public VaadinIntegerField() {
-        super("vaadin-integer-field");
-    }
+		implements HasComponents<IntegerFieldElement, VaadinIntegerField, Component<?>> {
+	public VaadinIntegerField() {
+		super("vaadin-integer-field");
+	}
 }

@@ -17,18 +17,18 @@ import javax.annotation.Nullable;
  * ```
  */
 public class VaadinDrawerToggle extends AbstractComponent<DrawerToggleElement>
-        implements HasComponents<DrawerToggleElement, VaadinDrawerToggle, Component<?>> {
-    public VaadinDrawerToggle() {
-        super("vaadin-drawer-toggle");
-    }
+		implements HasComponents<DrawerToggleElement, VaadinDrawerToggle, Component<?>> {
+	public VaadinDrawerToggle() {
+		super("vaadin-drawer-toggle");
+	}
 
-    @Nullable
-    public String ariaLabel() {
-        return getNode().getAriaLabel();
-    }
+	@Nullable
+	public String ariaLabel() {
+		return getNode().getAriaLabel();
+	}
 
-    public VaadinDrawerToggle ariaLabel(String ariaLabel) {
-        getNode().setAriaLabel(ariaLabel);
-        return this;
-    }
+	public VaadinDrawerToggle ariaLabel(String ariaLabel) {
+		getNode().setAriaLabel(ariaLabel);
+		return this;
+	}
 }

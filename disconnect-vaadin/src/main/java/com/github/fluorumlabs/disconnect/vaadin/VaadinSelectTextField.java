@@ -18,22 +18,22 @@ import js.web.dom.Element;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinSelectTextField extends AbstractComponent<SelectTextFieldElement>
-        implements HasComponents<SelectTextFieldElement, VaadinSelectTextField, Component<?>> {
-    public VaadinSelectTextField() {
-        super("vaadin-select-text-field");
-    }
+		implements HasComponents<SelectTextFieldElement, VaadinSelectTextField, Component<?>> {
+	public VaadinSelectTextField() {
+		super("vaadin-select-text-field");
+	}
 
-    /**
-     *
-     */
-    public Element focusElement() {
-        return getNode().getFocusElement();
-    }
+	/**
+	 *
+	 */
+	public Element focusElement() {
+		return getNode().getFocusElement();
+	}
 
-    /**
-     *
-     */
-    public Element inputElement() {
-        return getNode().getInputElement();
-    }
+	/**
+	 *
+	 */
+	public Element inputElement() {
+		return getNode().getInputElement();
+	}
 }

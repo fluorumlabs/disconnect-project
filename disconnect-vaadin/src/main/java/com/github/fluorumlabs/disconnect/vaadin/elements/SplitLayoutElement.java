@@ -155,24 +155,24 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "SplitLayoutElement",
-        module = "@vaadin/vaadin-split-layout/src/vaadin-split-layout.js"
+		symbols = "SplitLayoutElement",
+		module = "@vaadin/vaadin-split-layout/src/vaadin-split-layout.js"
 )
 public interface SplitLayoutElement extends HTMLElement, ThemableMixin, GestureEventListeners {
-    /**
-     * The split layout's orientation. Possible values are: `horizontal|vertical`.
-     */
-    @Nullable
-    @JSProperty
-    Orientation getOrientation();
+	/**
+	 * The split layout's orientation. Possible values are: `horizontal|vertical`.
+	 */
+	@Nullable
+	@JSProperty
+	Orientation getOrientation();
 
-    /**
-     * The split layout's orientation. Possible values are: `horizontal|vertical`.
-     */
-    @JSProperty
-    void setOrientation(Orientation orientation);
+	/**
+	 * The split layout's orientation. Possible values are: `horizontal|vertical`.
+	 */
+	@JSProperty
+	void setOrientation(Orientation orientation);
 }

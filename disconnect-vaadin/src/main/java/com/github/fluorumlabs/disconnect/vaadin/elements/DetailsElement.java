@@ -43,23 +43,23 @@ import org.teavm.jso.JSProperty;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "DetailsElement",
-        module = "@vaadin/vaadin-details/src/vaadin-details.js"
+		symbols = "DetailsElement",
+		module = "@vaadin/vaadin-details/src/vaadin-details.js"
 )
 public interface DetailsElement extends HTMLElement, ControlStateMixin, ElementMixin, ThemableMixin {
-    /**
-     * If true, the details content is visible.
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * If true, the details content is visible.
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * If true, the details content is visible.
-     */
-    @JSProperty
-    void setOpened(boolean opened);
+	/**
+	 * If true, the details content is visible.
+	 */
+	@JSProperty
+	void setOpened(boolean opened);
 }

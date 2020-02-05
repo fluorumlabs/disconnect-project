@@ -30,10 +30,10 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinListBox extends AbstractComponent<ListBoxElement>
-        implements HasMultiSelectListMixin<ListBoxElement, VaadinListBox>,
-        HasThemableMixin<ListBoxElement, VaadinListBox>,
-        HasComponents<ListBoxElement, VaadinListBox, Component<?>> {
-    public VaadinListBox() {
-        super("vaadin-list-box");
-    }
+		implements HasMultiSelectListMixin<ListBoxElement, VaadinListBox>,
+		HasThemableMixin<ListBoxElement, VaadinListBox>,
+		HasComponents<ListBoxElement, VaadinListBox, Component<?>> {
+	public VaadinListBox() {
+		super("vaadin-list-box");
+	}
 }

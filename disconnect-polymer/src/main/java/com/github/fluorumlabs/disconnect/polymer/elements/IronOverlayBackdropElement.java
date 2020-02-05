@@ -22,43 +22,43 @@ import org.teavm.jso.JSProperty;
  * `--iron-overlay-backdrop-opened`           | Mixin applied to `iron-overlay-backdrop` when it is displayed | {}
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "IronOverlayBackdrop",
-        module = "@polymer/iron-overlay-behavior/iron-overlay-backdrop.js"
+		symbols = "IronOverlayBackdrop",
+		module = "@polymer/iron-overlay-behavior/iron-overlay-backdrop.js"
 )
 public interface IronOverlayBackdropElement extends HTMLElement {
-    /**
-     * Returns true if the backdrop is opened.
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * Returns true if the backdrop is opened.
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * Returns true if the backdrop is opened.
-     */
-    @JSProperty
-    void setOpened(boolean opened);
+	/**
+	 * Returns true if the backdrop is opened.
+	 */
+	@JSProperty
+	void setOpened(boolean opened);
 
-    /**
-     * Appends the backdrop to document body if needed.
-     */
-    void prepare();
+	/**
+	 * Appends the backdrop to document body if needed.
+	 */
+	void prepare();
 
-    /**
-     * Shows the backdrop.
-     */
-    void open();
+	/**
+	 * Shows the backdrop.
+	 */
+	void open();
 
-    /**
-     * Hides the backdrop.
-     */
-    void close();
+	/**
+	 * Hides the backdrop.
+	 */
+	void close();
 
-    /**
-     * Removes the backdrop from document body if needed.
-     */
-    void complete();
+	/**
+	 * Removes the backdrop from document body if needed.
+	 */
+	void complete();
 }

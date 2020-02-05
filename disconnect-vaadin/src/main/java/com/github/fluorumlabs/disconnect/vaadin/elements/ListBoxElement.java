@@ -30,12 +30,12 @@ import js.web.dom.HTMLElement;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ListBoxElement",
-        module = "@vaadin/vaadin-list-box/src/vaadin-list-box.js"
+		symbols = "ListBoxElement",
+		module = "@vaadin/vaadin-list-box/src/vaadin-list-box.js"
 )
 public interface ListBoxElement extends HTMLElement, MultiSelectListMixin, ThemableMixin {
 }

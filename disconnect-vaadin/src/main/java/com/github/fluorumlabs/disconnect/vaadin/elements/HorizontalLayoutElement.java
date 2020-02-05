@@ -27,12 +27,12 @@ import js.web.dom.HTMLElement;
  * `theme="spacing"` | Applies the default amount of CSS margin between items (specified by the theme)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "HorizontalLayoutElement",
-        module = "@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js"
+		symbols = "HorizontalLayoutElement",
+		module = "@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js"
 )
 public interface HorizontalLayoutElement extends HTMLElement, ThemableMixin {
 }

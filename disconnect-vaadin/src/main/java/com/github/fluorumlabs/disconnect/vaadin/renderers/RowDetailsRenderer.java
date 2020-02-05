@@ -12,13 +12,13 @@ import org.teavm.jso.JSProperty;
 @JSFunctor
 @FunctionalInterface
 public interface RowDetailsRenderer<ITEM extends Any> extends Any {
-    void render(Element root, GridElement grid, RowData<ITEM> rowData);
+	void render(Element root, GridElement grid, RowData<ITEM> rowData);
 
-    interface RowData<ITEM extends Any> extends Any {
-        @JSProperty
-        int getIndex();
+	interface RowData<ITEM extends Any> extends Any {
+		@JSProperty
+		int getIndex();
 
-        @JSProperty
-        ITEM getItem();
-    }
+		@JSProperty
+		ITEM getItem();
+	}
 }

@@ -30,33 +30,33 @@ import javax.annotation.Nullable;
  * See examples of setting the content into slots in the live demos.
  */
 public class VaadinLoginForm extends AbstractComponent<LoginFormElement>
-        implements HasElementMixin<LoginFormElement, VaadinLoginForm>,
-        HasThemableMixin<LoginFormElement, VaadinLoginForm>,
-        HasLoginMixin<LoginFormElement, VaadinLoginForm>,
-        HasComponents<LoginFormElement, VaadinLoginForm, Component<?>> {
-    public VaadinLoginForm() {
-        super("vaadin-login-form");
-    }
+		implements HasElementMixin<LoginFormElement, VaadinLoginForm>,
+		HasThemableMixin<LoginFormElement, VaadinLoginForm>,
+		HasLoginMixin<LoginFormElement, VaadinLoginForm>,
+		HasComponents<LoginFormElement, VaadinLoginForm, Component<?>> {
+	public VaadinLoginForm() {
+		super("vaadin-login-form");
+	}
 
-    /**
-     * Defines the theme of the element.
-     * The value is propagated to vaadin-login-form-wrapper element.
-     */
-    @Nullable
-    public String theme() {
-        return getNode().getTheme();
-    }
+	/**
+	 * Defines the theme of the element.
+	 * The value is propagated to vaadin-login-form-wrapper element.
+	 */
+	@Nullable
+	public String theme() {
+		return getNode().getTheme();
+	}
 
-    /**
-     * Defines the theme of the element.
-     * The value is propagated to vaadin-login-form-wrapper element.
-     */
-    public VaadinLoginForm theme(String theme) {
-        getNode().setTheme(theme);
-        return this;
-    }
+	/**
+	 * Defines the theme of the element.
+	 * The value is propagated to vaadin-login-form-wrapper element.
+	 */
+	public VaadinLoginForm theme(String theme) {
+		getNode().setTheme(theme);
+		return this;
+	}
 
-    public void submit() {
-        getNode().submit();
-    }
+	public void submit() {
+		getNode().submit();
+	}
 }

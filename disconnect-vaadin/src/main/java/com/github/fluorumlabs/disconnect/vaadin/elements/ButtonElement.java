@@ -44,13 +44,13 @@ import js.web.dom.HTMLElement;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ButtonElement",
-        module = "@vaadin/vaadin-button/src/vaadin-button.js"
+		symbols = "ButtonElement",
+		module = "@vaadin/vaadin-button/src/vaadin-button.js"
 )
 public interface ButtonElement
-        extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
+		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
 }

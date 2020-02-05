@@ -7,88 +7,88 @@ import org.teavm.jso.JSProperty;
  * Created by Artem Godin on 2/4/2020.
  */
 public interface CrudI18n extends Any {
-    @JSProperty
-    String getNewItem();
+	@JSProperty
+	String getNewItem();
 
-    @JSProperty
-    void setNewItem(String newItem);
+	@JSProperty
+	void setNewItem(String newItem);
 
-    @JSProperty
-    String getEditItem();
+	@JSProperty
+	String getEditItem();
 
-    @JSProperty
-    void setEditItem(String editItem);
+	@JSProperty
+	void setEditItem(String editItem);
 
-    @JSProperty
-    String getSaveItem();
+	@JSProperty
+	String getSaveItem();
 
-    @JSProperty
-    void setSaveItem(String saveItem);
+	@JSProperty
+	void setSaveItem(String saveItem);
 
-    @JSProperty
-    String getCancel();
+	@JSProperty
+	String getCancel();
 
-    @JSProperty
-    void setCancel(String cancel);
+	@JSProperty
+	void setCancel(String cancel);
 
-    @JSProperty
-    String getDeleteItem();
+	@JSProperty
+	String getDeleteItem();
 
-    @JSProperty
-    void setDeleteItem(String deleteItem);
+	@JSProperty
+	void setDeleteItem(String deleteItem);
 
-    @JSProperty
-    String getEditLabel();
+	@JSProperty
+	String getEditLabel();
 
-    @JSProperty
-    void setEditLabel(String editLabel);
+	@JSProperty
+	void setEditLabel(String editLabel);
 
-    interface Confirm extends Any {
-        @JSProperty
-        Action getDelete();
+	interface Confirm extends Any {
+		@JSProperty
+		Action getDelete();
 
-        @JSProperty
-        void setDelete(Action delete);
+		@JSProperty
+		void setDelete(Action delete);
 
-        @JSProperty
-        Action getCancel();
+		@JSProperty
+		Action getCancel();
 
-        @JSProperty
-        void setCancel(Action cancel);
-    }
+		@JSProperty
+		void setCancel(Action cancel);
+	}
 
-    interface Action extends Any {
-        @JSProperty
-        String getTitle();
+	interface Action extends Any {
+		@JSProperty
+		String getTitle();
 
-        @JSProperty
-        void setTitle(String title);
+		@JSProperty
+		void setTitle(String title);
 
-        @JSProperty
-        String getMessage();
+		@JSProperty
+		String getMessage();
 
-        @JSProperty
-        void setMessage(String message);
+		@JSProperty
+		void setMessage(String message);
 
-        @JSProperty
-        Button getButton();
+		@JSProperty
+		Button getButton();
 
-        @JSProperty
-        void setButton(Button button);
+		@JSProperty
+		void setButton(Button button);
 
-    }
+	}
 
-    interface Button extends Any {
-        @JSProperty
-        String getConfirm();
+	interface Button extends Any {
+		@JSProperty
+		String getConfirm();
 
-        @JSProperty
-        void setConfirm(String confirm);
+		@JSProperty
+		void setConfirm(String confirm);
 
-        @JSProperty
-        String getDismiss();
+		@JSProperty
+		String getDismiss();
 
-        @JSProperty
-        void setDismiss(String dismiss);
-    }
+		@JSProperty
+		void setDismiss(String dismiss);
+	}
 }

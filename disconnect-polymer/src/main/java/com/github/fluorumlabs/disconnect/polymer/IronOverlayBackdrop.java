@@ -21,52 +21,52 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * `--iron-overlay-backdrop-opened`           | Mixin applied to `iron-overlay-backdrop` when it is displayed | {}
  */
 public class IronOverlayBackdrop
-        extends AbstractComponent<IronOverlayBackdropElement>
-        implements HasComponents<IronOverlayBackdropElement, IronOverlayBackdrop, Component<?>> {
-    public IronOverlayBackdrop() {
-        super("iron-overlay-backdrop");
-    }
+		extends AbstractComponent<IronOverlayBackdropElement>
+		implements HasComponents<IronOverlayBackdropElement, IronOverlayBackdrop, Component<?>> {
+	public IronOverlayBackdrop() {
+		super("iron-overlay-backdrop");
+	}
 
-    /**
-     * Returns true if the backdrop is opened.
-     */
-    public boolean opened() {
-        return getNode().isOpened();
-    }
+	/**
+	 * Returns true if the backdrop is opened.
+	 */
+	public boolean opened() {
+		return getNode().isOpened();
+	}
 
-    /**
-     * Returns true if the backdrop is opened.
-     */
-    public IronOverlayBackdrop opened(boolean opened) {
-        getNode().setOpened(opened);
-        return this;
-    }
+	/**
+	 * Returns true if the backdrop is opened.
+	 */
+	public IronOverlayBackdrop opened(boolean opened) {
+		getNode().setOpened(opened);
+		return this;
+	}
 
-    /**
-     * Appends the backdrop to document body if needed.
-     */
-    public void prepare() {
-        getNode().prepare();
-    }
+	/**
+	 * Appends the backdrop to document body if needed.
+	 */
+	public void prepare() {
+		getNode().prepare();
+	}
 
-    /**
-     * Shows the backdrop.
-     */
-    public void open() {
-        getNode().open();
-    }
+	/**
+	 * Shows the backdrop.
+	 */
+	public void open() {
+		getNode().open();
+	}
 
-    /**
-     * Hides the backdrop.
-     */
-    public void close() {
-        getNode().close();
-    }
+	/**
+	 * Hides the backdrop.
+	 */
+	public void close() {
+		getNode().close();
+	}
 
-    /**
-     * Removes the backdrop from document body if needed.
-     */
-    public void complete() {
-        getNode().complete();
-    }
+	/**
+	 * Removes the backdrop from document body if needed.
+	 */
+	public void complete() {
+		getNode().complete();
+	}
 }

@@ -9,9 +9,9 @@ import org.teavm.jso.JSProperty;
  */
 @Deprecated
 public interface LegacyEventInit extends Event.EventInit {
-    @JSProperty
-    EventTarget getNode();
+	@JSProperty
+	EventTarget getNode();
 
-    @JSProperty
-    void setNode(EventTarget node);
+	@JSProperty
+	void setNode(EventTarget node);
 }

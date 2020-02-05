@@ -6,8 +6,8 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 
 public class VaadinMaterialStyles extends AbstractComponent<Material>
-        implements HasComponents<Material, VaadinMaterialStyles, Component<?>> {
-    public VaadinMaterialStyles() {
-        super("vaadin-material-styles");
-    }
+		implements HasComponents<Material, VaadinMaterialStyles, Component<?>> {
+	public VaadinMaterialStyles() {
+		super("vaadin-material-styles");
+	}
 }

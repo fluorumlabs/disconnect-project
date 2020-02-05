@@ -26,19 +26,19 @@ import js.web.dom.HTMLElement;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "BoardElement",
-        module = "@vaadin/vaadin-board/src/vaadin-board.js"
+		symbols = "BoardElement",
+		module = "@vaadin/vaadin-board/src/vaadin-board.js"
 )
 public interface BoardElement extends HTMLElement, ElementMixin {
-    /**
-     * Redraws the board and all rows inside it, if necessary.
-     * <p>
-     * In most cases, board will redraw itself if your reconfigure it. If you dynamically change CSS
-     * which affects this element, then you need to call this method.
-     */
-    void redraw();
+	/**
+	 * Redraws the board and all rows inside it, if necessary.
+	 * <p>
+	 * In most cases, board will redraw itself if your reconfigure it. If you dynamically change CSS
+	 * which affects this element, then you need to call this method.
+	 */
+	void redraw();
 }

@@ -34,24 +34,24 @@ import javax.annotation.Nullable;
  * ```
  */
 public class VaadinGridColumnGroup<ITEM extends Any> extends AbstractComponent<GridColumnGroupElement<ITEM>>
-        implements HasColumnBaseMixin<ITEM, GridColumnGroupElement<ITEM>, VaadinGridColumnGroup<ITEM>>,
-        HasComponents<GridColumnGroupElement<ITEM>, VaadinGridColumnGroup<ITEM>, Component<?>> {
-    public VaadinGridColumnGroup() {
-        super("vaadin-grid-column-group");
-    }
+		implements HasColumnBaseMixin<ITEM, GridColumnGroupElement<ITEM>, VaadinGridColumnGroup<ITEM>>,
+		HasComponents<GridColumnGroupElement<ITEM>, VaadinGridColumnGroup<ITEM>, Component<?>> {
+	public VaadinGridColumnGroup() {
+		super("vaadin-grid-column-group");
+	}
 
-    /**
-     * Flex grow ratio for the column group as the sum of the ratios of its child columns.
-     */
-    public double flexGrow() {
-        return getNode().getFlexGrow();
-    }
+	/**
+	 * Flex grow ratio for the column group as the sum of the ratios of its child columns.
+	 */
+	public double flexGrow() {
+		return getNode().getFlexGrow();
+	}
 
-    /**
-     * Width of the column group as the sum of the widths of its child columns.
-     */
-    @Nullable
-    public String width() {
-        return getNode().getWidth();
-    }
+	/**
+	 * Width of the column group as the sum of the widths of its child columns.
+	 */
+	@Nullable
+	public String width() {
+		return getNode().getWidth();
+	}
 }

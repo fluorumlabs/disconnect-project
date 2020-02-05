@@ -6,12 +6,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import js.web.dom.Element;
 
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ElementMixin",
-        module = "@vaadin/vaadin-element-mixin/vaadin-element-mixin.js"
+		symbols = "ElementMixin",
+		module = "@vaadin/vaadin-element-mixin/vaadin-element-mixin.js"
 )
 public interface ElementMixin extends Element {
 }

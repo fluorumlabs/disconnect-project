@@ -32,29 +32,29 @@ import org.teavm.jso.JSProperty;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "PasswordFieldElement",
-        module = "@vaadin/vaadin-text-field/src/vaadin-password-field.js"
+		symbols = "PasswordFieldElement",
+		module = "@vaadin/vaadin-text-field/src/vaadin-password-field.js"
 )
 public interface PasswordFieldElement extends TextFieldElement {
-    /**
-     * Set to true to hide the eye icon which toggles the password visibility.
-     */
-    @JSProperty
-    boolean isRevealButtonHidden();
+	/**
+	 * Set to true to hide the eye icon which toggles the password visibility.
+	 */
+	@JSProperty
+	boolean isRevealButtonHidden();
 
-    /**
-     * Set to true to hide the eye icon which toggles the password visibility.
-     */
-    @JSProperty
-    void setRevealButtonHidden(boolean revealButtonHidden);
+	/**
+	 * Set to true to hide the eye icon which toggles the password visibility.
+	 */
+	@JSProperty
+	void setRevealButtonHidden(boolean revealButtonHidden);
 
-    /**
-     * True if the password is visible ([type=text]).
-     */
-    @JSProperty
-    boolean isPasswordVisible();
+	/**
+	 * True if the password is visible ([type=text]).
+	 */
+	@JSProperty
+	boolean isPasswordVisible();
 }

@@ -19,17 +19,17 @@ import js.web.dom.HTMLElement;
  * binding scope.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "DomBind",
-        module = "@polymer/polymer/lib/elements/dom-bind.js"
+		symbols = "DomBind",
+		module = "@polymer/polymer/lib/elements/dom-bind.js"
 )
 public interface DomBindElement extends HTMLElement, PropertyEffects, OptionalMutableData, GestureEventListeners {
-    /**
-     * Forces the element to render its content. This is typically only
-     * necessary to call if HTMLImports with the async attribute are used.
-     */
-    void render();
+	/**
+	 * Forces the element to render its content. This is typically only
+	 * necessary to call if HTMLImports with the async attribute are used.
+	 */
+	void render();
 }

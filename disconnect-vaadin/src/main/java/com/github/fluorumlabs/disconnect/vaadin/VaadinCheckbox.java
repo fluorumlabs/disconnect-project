@@ -47,96 +47,96 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinCheckbox extends AbstractComponent<CheckboxElement>
-        implements HasElementMixin<CheckboxElement, VaadinCheckbox>,
-        HasControlStateMixin<CheckboxElement, VaadinCheckbox>,
-        HasThemableMixin<CheckboxElement, VaadinCheckbox>,
-        HasGestureEventListeners<CheckboxElement, VaadinCheckbox>,
-        HasComponents<CheckboxElement, VaadinCheckbox, Component<?>> {
-    public VaadinCheckbox() {
-        super("vaadin-checkbox");
-    }
+		implements HasElementMixin<CheckboxElement, VaadinCheckbox>,
+		HasControlStateMixin<CheckboxElement, VaadinCheckbox>,
+		HasThemableMixin<CheckboxElement, VaadinCheckbox>,
+		HasGestureEventListeners<CheckboxElement, VaadinCheckbox>,
+		HasComponents<CheckboxElement, VaadinCheckbox, Component<?>> {
+	public VaadinCheckbox() {
+		super("vaadin-checkbox");
+	}
 
-    /**
-     * Name of the element.
-     */
-    public String name() {
-        return getNode().getName();
-    }
+	/**
+	 * Name of the element.
+	 */
+	public String name() {
+		return getNode().getName();
+	}
 
-    /**
-     * Name of the element.
-     */
-    public VaadinCheckbox name(String name) {
-        getNode().setName(name);
-        return this;
-    }
+	/**
+	 * Name of the element.
+	 */
+	public VaadinCheckbox name(String name) {
+		getNode().setName(name);
+		return this;
+	}
 
-    /**
-     * True if the checkbox is checked.
-     */
-    public boolean checked() {
-        return getNode().isChecked();
-    }
+	/**
+	 * True if the checkbox is checked.
+	 */
+	public boolean checked() {
+		return getNode().isChecked();
+	}
 
-    /**
-     * True if the checkbox is checked.
-     */
-    public VaadinCheckbox checked(boolean checked) {
-        getNode().setChecked(checked);
-        return this;
-    }
+	/**
+	 * True if the checkbox is checked.
+	 */
+	public VaadinCheckbox checked(boolean checked) {
+		getNode().setChecked(checked);
+		return this;
+	}
 
-    /**
-     * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
-     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
-     */
-    public boolean indeterminate() {
-        return getNode().isIndeterminate();
-    }
+	/**
+	 * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
+	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
+	 */
+	public boolean indeterminate() {
+		return getNode().isIndeterminate();
+	}
 
-    /**
-     * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
-     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
-     */
-    public VaadinCheckbox indeterminate(boolean indeterminate) {
-        getNode().setIndeterminate(indeterminate);
-        return this;
-    }
+	/**
+	 * Indeterminate state of the checkbox when it's neither checked nor unchecked, but undetermined.
+	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes
+	 */
+	public VaadinCheckbox indeterminate(boolean indeterminate) {
+		getNode().setIndeterminate(indeterminate);
+		return this;
+	}
 
-    /**
-     * The value given to the data submitted with the checkbox's name to the server when the control is inside a form.
-     */
-    @Nullable
-    public String value() {
-        return getNode().getValue();
-    }
+	/**
+	 * The value given to the data submitted with the checkbox's name to the server when the control is inside a form.
+	 */
+	@Nullable
+	public String value() {
+		return getNode().getValue();
+	}
 
-    /**
-     * The value given to the data submitted with the checkbox's name to the server when the control is inside a form.
-     */
-    public VaadinCheckbox value(String value) {
-        getNode().setValue(value);
-        return this;
-    }
+	/**
+	 * The value given to the data submitted with the checkbox's name to the server when the control is inside a form.
+	 */
+	public VaadinCheckbox value(String value) {
+		getNode().setValue(value);
+		return this;
+	}
 
-    /**
-     * Fired when the user commits a value change.
-     */
-    public ObservableEvent<Event> changeEvent() {
-        return createEvent("change");
-    }
+	/**
+	 * Fired when the user commits a value change.
+	 */
+	public ObservableEvent<Event> changeEvent() {
+		return createEvent("change");
+	}
 
-    /**
-     * Fired when the `checked` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> checkedChangedEvent() {
-        return createEvent("checked-changed");
-    }
+	/**
+	 * Fired when the `checked` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> checkedChangedEvent() {
+		return createEvent("checked-changed");
+	}
 
-    /**
-     * Fired when the `indeterminate` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> indeterminateChangedEvent() {
-        return createEvent("indeterminate-changed");
-    }
+	/**
+	 * Fired when the `indeterminate` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> indeterminateChangedEvent() {
+		return createEvent("indeterminate-changed");
+	}
 }

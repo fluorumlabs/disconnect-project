@@ -28,52 +28,52 @@ import org.teavm.jso.JSProperty;
  * let img = customElements.get('dom-module').import('foo', 'img');
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "DomModule",
-        module = "@polymer/polymer/lib/elements/dom-module.js"
+		symbols = "DomModule",
+		module = "@polymer/polymer/lib/elements/dom-module.js"
 )
 public interface DomModuleElement extends HTMLElement {
-    /**
-     * Retrieves the element specified by the css `selector` in the module
-     * registered by `id`. For example, this.import('foo', 'img');
-     *
-     * @param id       The id of the dom-module in which to search.
-     * @param selector The css selector by which to find the element.
-     *
-     * @return Returns the element which matches `selector` in the
-     *         module registered at the specified `id`.
-     */
-    @JSBody(
-            params = {"id", "selector"},
-            script = "return DomModule.import(id, selector)"
-    )
-    static Element doImport(String id, String selector) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
+	/**
+	 * Retrieves the element specified by the css `selector` in the module
+	 * registered by `id`. For example, this.import('foo', 'img');
+	 *
+	 * @param id       The id of the dom-module in which to search.
+	 * @param selector The css selector by which to find the element.
+	 *
+	 * @return Returns the element which matches `selector` in the
+	 * 		module registered at the specified `id`.
+	 */
+	@JSBody(
+			params = {"id", "selector"},
+			script = "return DomModule.import(id, selector)"
+	)
+	static Element doImport(String id, String selector) {
+		throw new UnsupportedOperationException("Available only in JavaScript");
+	}
 
-    /**
-     * The absolute URL of the original location of this `dom-module`.
-     * <p>
-     * This value will differ from this element's `ownerDocument` in the
-     * following ways:
-     * - Takes into account any `assetpath` attribute added during bundling
-     * to indicate the original location relative to the bundled location
-     * - Uses the HTMLImports polyfill's `importForElement` API to ensure
-     * the path is relative to the import document's location since
-     * `ownerDocument` is not currently polyfilled
-     */
-    @JSProperty
-    String getAssetpath();
+	/**
+	 * The absolute URL of the original location of this `dom-module`.
+	 * <p>
+	 * This value will differ from this element's `ownerDocument` in the
+	 * following ways:
+	 * - Takes into account any `assetpath` attribute added during bundling
+	 * to indicate the original location relative to the bundled location
+	 * - Uses the HTMLImports polyfill's `importForElement` API to ensure
+	 * the path is relative to the import document's location since
+	 * `ownerDocument` is not currently polyfilled
+	 */
+	@JSProperty
+	String getAssetpath();
 
-    /**
-     * Registers the dom-module at a given id. This method should only be called
-     * when a dom-module is imperatively created. For
-     * example, `document.createElement('dom-module').register('foo')`.
-     *
-     * @param id The id at which to register the dom-module.
-     */
-    void register(String id);
+	/**
+	 * Registers the dom-module at a given id. This method should only be called
+	 * when a dom-module is imperatively created. For
+	 * example, `document.createElement('dom-module').register('foo')`.
+	 *
+	 * @param id The id at which to register the dom-module.
+	 */
+	void register(String id);
 }

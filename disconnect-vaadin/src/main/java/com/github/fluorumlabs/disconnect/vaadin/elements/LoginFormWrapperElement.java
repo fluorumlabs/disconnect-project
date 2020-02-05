@@ -41,12 +41,12 @@ import js.web.dom.HTMLElement;
  * See examples of setting the content into slots in the live demos.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "LoginFormWrapperElement",
-        module = "@vaadin/vaadin-login/src/vaadin-login-form-wrapper.js"
+		symbols = "LoginFormWrapperElement",
+		module = "@vaadin/vaadin-login/src/vaadin-login-form-wrapper.js"
 )
 public interface LoginFormWrapperElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
 }

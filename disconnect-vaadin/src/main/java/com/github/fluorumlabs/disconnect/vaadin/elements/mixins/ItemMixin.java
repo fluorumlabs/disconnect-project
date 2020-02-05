@@ -12,47 +12,47 @@ import org.teavm.jso.JSProperty;
  * `focused`, `active` and `focus-ring` are set as only as attributes.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ItemMixin",
-        module = "@vaadin/vaadin-item/src/vaadin-item-mixin.js"
+		symbols = "ItemMixin",
+		module = "@vaadin/vaadin-item/src/vaadin-item-mixin.js"
 )
 public interface ItemMixin extends Element {
-    /**
-     *
-     */
-    @JSProperty
-    String getValue();
+	/**
+	 *
+	 */
+	@JSProperty
+	String getValue();
 
-    /**
-     *
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 *
+	 */
+	@JSProperty
+	void setValue(String value);
 
-    /**
-     * If true, the user cannot interact with this element.
-     */
-    @JSProperty
-    boolean isDisabled();
+	/**
+	 * If true, the user cannot interact with this element.
+	 */
+	@JSProperty
+	boolean isDisabled();
 
-    /**
-     * If true, the user cannot interact with this element.
-     */
-    @JSProperty
-    void setDisabled(boolean disabled);
+	/**
+	 * If true, the user cannot interact with this element.
+	 */
+	@JSProperty
+	void setDisabled(boolean disabled);
 
-    /**
-     * If true, the item is in selected state.
-     */
-    @JSProperty
-    boolean isSelected();
+	/**
+	 * If true, the item is in selected state.
+	 */
+	@JSProperty
+	boolean isSelected();
 
-    /**
-     * If true, the item is in selected state.
-     */
-    @JSProperty
-    void setSelected(boolean selected);
+	/**
+	 * If true, the item is in selected state.
+	 */
+	@JSProperty
+	void setSelected(boolean selected);
 }

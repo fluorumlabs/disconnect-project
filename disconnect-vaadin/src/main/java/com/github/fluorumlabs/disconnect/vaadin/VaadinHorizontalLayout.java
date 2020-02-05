@@ -27,9 +27,9 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * `theme="spacing"` | Applies the default amount of CSS margin between items (specified by the theme)
  */
 public class VaadinHorizontalLayout extends AbstractComponent<HorizontalLayoutElement>
-        implements HasThemableMixin<HorizontalLayoutElement, VaadinHorizontalLayout>,
-        HasComponents<HorizontalLayoutElement, VaadinHorizontalLayout, Component<?>> {
-    public VaadinHorizontalLayout() {
-        super("vaadin-horizontal-layout");
-    }
+		implements HasThemableMixin<HorizontalLayoutElement, VaadinHorizontalLayout>,
+		HasComponents<HorizontalLayoutElement, VaadinHorizontalLayout, Component<?>> {
+	public VaadinHorizontalLayout() {
+		super("vaadin-horizontal-layout");
+	}
 }

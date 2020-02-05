@@ -6,17 +6,17 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import js.web.dom.Element;
 
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ButtonsMixin",
-        module = "@vaadin/vaadin-menu-bar/src/vaadin-menu-bar-buttons-mixin.js"
+		symbols = "ButtonsMixin",
+		module = "@vaadin/vaadin-menu-bar/src/vaadin-menu-bar-buttons-mixin.js"
 )
 public interface ButtonsMixin extends Element {
-    /**
-     * Call this method after updating menu bar `items` dynamically, including changing
-     * any property on the item object corresponding to one of the menu bar buttons.
-     */
-    void render();
+	/**
+	 * Call this method after updating menu bar `items` dynamically, including changing
+	 * any property on the item object corresponding to one of the menu bar buttons.
+	 */
+	void render();
 }

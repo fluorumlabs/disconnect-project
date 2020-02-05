@@ -15,12 +15,12 @@ import js.web.dom.Element;
  * `TemplateStamp`.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "GestureEventListeners",
-        module = "@polymer/polymer/lib/mixins/gesture-event-listeners.js"
+		symbols = "GestureEventListeners",
+		module = "@polymer/polymer/lib/mixins/gesture-event-listeners.js"
 )
 public interface GestureEventListeners extends Element {
 }

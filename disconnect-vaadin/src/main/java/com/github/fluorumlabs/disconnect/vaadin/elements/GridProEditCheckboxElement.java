@@ -16,12 +16,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridProEditCheckboxElement",
-        module = "@vaadin/vaadin-grid-pro/src/vaadin-grid-pro-edit-checkbox.js"
+		symbols = "GridProEditCheckboxElement",
+		module = "@vaadin/vaadin-grid-pro/src/vaadin-grid-pro-edit-checkbox.js"
 )
 public interface GridProEditCheckboxElement extends CheckboxElement {
 }

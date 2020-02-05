@@ -19,12 +19,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "EmailFieldElement",
-        module = "@vaadin/vaadin-text-field/src/vaadin-email-field.js"
+		symbols = "EmailFieldElement",
+		module = "@vaadin/vaadin-text-field/src/vaadin-email-field.js"
 )
 public interface EmailFieldElement extends TextFieldElement {
 }

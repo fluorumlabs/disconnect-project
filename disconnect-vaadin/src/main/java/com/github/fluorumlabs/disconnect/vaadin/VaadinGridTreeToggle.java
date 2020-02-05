@@ -50,63 +50,63 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
  * `--vaadin-grid-tree-toggle-level-offset` | Visual offset step for each tree sublevel | `1em`
  */
 public class VaadinGridTreeToggle extends AbstractComponent<GridTreeToggleElement>
-        implements HasThemableMixin<GridTreeToggleElement, VaadinGridTreeToggle>,
-        HasComponents<GridTreeToggleElement, VaadinGridTreeToggle, Component<?>> {
-    public VaadinGridTreeToggle() {
-        super("vaadin-grid-tree-toggle");
-    }
+		implements HasThemableMixin<GridTreeToggleElement, VaadinGridTreeToggle>,
+		HasComponents<GridTreeToggleElement, VaadinGridTreeToggle, Component<?>> {
+	public VaadinGridTreeToggle() {
+		super("vaadin-grid-tree-toggle");
+	}
 
-    /**
-     * Current level of the tree represented with a horizontal offset
-     * of the toggle button.
-     */
-    public double level() {
-        return getNode().getLevel();
-    }
+	/**
+	 * Current level of the tree represented with a horizontal offset
+	 * of the toggle button.
+	 */
+	public double level() {
+		return getNode().getLevel();
+	}
 
-    /**
-     * Current level of the tree represented with a horizontal offset
-     * of the toggle button.
-     */
-    public VaadinGridTreeToggle level(double level) {
-        getNode().setLevel(level);
-        return this;
-    }
+	/**
+	 * Current level of the tree represented with a horizontal offset
+	 * of the toggle button.
+	 */
+	public VaadinGridTreeToggle level(double level) {
+		getNode().setLevel(level);
+		return this;
+	}
 
-    /**
-     * Hides the toggle icon and disables toggling a tree sublevel.
-     */
-    public boolean leaf() {
-        return getNode().isLeaf();
-    }
+	/**
+	 * Hides the toggle icon and disables toggling a tree sublevel.
+	 */
+	public boolean leaf() {
+		return getNode().isLeaf();
+	}
 
-    /**
-     * Hides the toggle icon and disables toggling a tree sublevel.
-     */
-    public VaadinGridTreeToggle leaf(boolean leaf) {
-        getNode().setLeaf(leaf);
-        return this;
-    }
+	/**
+	 * Hides the toggle icon and disables toggling a tree sublevel.
+	 */
+	public VaadinGridTreeToggle leaf(boolean leaf) {
+		getNode().setLeaf(leaf);
+		return this;
+	}
 
-    /**
-     * Sublevel toggle state.
-     */
-    public boolean expanded() {
-        return getNode().isExpanded();
-    }
+	/**
+	 * Sublevel toggle state.
+	 */
+	public boolean expanded() {
+		return getNode().isExpanded();
+	}
 
-    /**
-     * Sublevel toggle state.
-     */
-    public VaadinGridTreeToggle expanded(boolean expanded) {
-        getNode().setExpanded(expanded);
-        return this;
-    }
+	/**
+	 * Sublevel toggle state.
+	 */
+	public VaadinGridTreeToggle expanded(boolean expanded) {
+		getNode().setExpanded(expanded);
+		return this;
+	}
 
-    /**
-     * Fired when the `expanded` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> expandedChangedEvent() {
-        return createEvent("expanded-changed");
-    }
+	/**
+	 * Fired when the `expanded` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> expandedChangedEvent() {
+		return createEvent("expanded-changed");
+	}
 }

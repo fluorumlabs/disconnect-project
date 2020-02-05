@@ -58,26 +58,26 @@ import javax.annotation.Nullable;
  * is propagated to the internal themable components listed above.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "DatePickerLightElement",
-        module = "@vaadin/vaadin-date-picker/src/vaadin-date-picker-light.js"
+		symbols = "DatePickerLightElement",
+		module = "@vaadin/vaadin-date-picker/src/vaadin-date-picker-light.js"
 )
 public interface DatePickerLightElement extends HTMLElement, ThemableMixin, DatePickerMixin {
-    /**
-     * Name of the two-way data-bindable property representing the
-     * value of the custom input field.
-     */
-    @Nullable
-    @JSProperty
-    String getAttrForValue();
+	/**
+	 * Name of the two-way data-bindable property representing the
+	 * value of the custom input field.
+	 */
+	@Nullable
+	@JSProperty
+	String getAttrForValue();
 
-    /**
-     * Name of the two-way data-bindable property representing the
-     * value of the custom input field.
-     */
-    @JSProperty
-    void setAttrForValue(String attrForValue);
+	/**
+	 * Name of the two-way data-bindable property representing the
+	 * value of the custom input field.
+	 */
+	@JSProperty
+	void setAttrForValue(String attrForValue);
 }

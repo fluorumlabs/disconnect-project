@@ -8,12 +8,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
  * The vaadin-context-menu-item element.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ContextMenuItemElement",
-        module = "@vaadin/vaadin-context-menu/src/vaadin-contextmenu-items-mixin.js"
+		symbols = "ContextMenuItemElement",
+		module = "@vaadin/vaadin-context-menu/src/vaadin-contextmenu-items-mixin.js"
 )
 public interface ContextMenuItemElement extends ItemElement {
 }

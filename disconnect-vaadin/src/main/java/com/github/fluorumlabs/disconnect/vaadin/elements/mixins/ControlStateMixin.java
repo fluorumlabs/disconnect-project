@@ -11,42 +11,42 @@ import org.teavm.jso.JSProperty;
  * implementation fails in the shadow dom, so we have this for vaadin elements.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ControlStateMixin",
-        module = "@vaadin/vaadin-control-state-mixin/vaadin-control-state-mixin.js"
+		symbols = "ControlStateMixin",
+		module = "@vaadin/vaadin-control-state-mixin/vaadin-control-state-mixin.js"
 )
 public interface ControlStateMixin extends Element {
-    /**
-     * Any element extending this mixin is required to implement this getter.
-     * It returns the actual focusable element in the component.
-     */
-    @JSProperty
-    Element getFocusElement();
+	/**
+	 * Any element extending this mixin is required to implement this getter.
+	 * It returns the actual focusable element in the component.
+	 */
+	@JSProperty
+	Element getFocusElement();
 
-    /**
-     * Specify that this control should have input focus when the page loads.
-     */
-    @JSProperty
-    boolean isAutofocus();
+	/**
+	 * Specify that this control should have input focus when the page loads.
+	 */
+	@JSProperty
+	boolean isAutofocus();
 
-    /**
-     * Specify that this control should have input focus when the page loads.
-     */
-    @JSProperty
-    void setAutofocus(boolean autofocus);
+	/**
+	 * Specify that this control should have input focus when the page loads.
+	 */
+	@JSProperty
+	void setAutofocus(boolean autofocus);
 
-    /**
-     * If true, the user cannot interact with this element.
-     */
-    @JSProperty
-    boolean isDisabled();
+	/**
+	 * If true, the user cannot interact with this element.
+	 */
+	@JSProperty
+	boolean isDisabled();
 
-    /**
-     * If true, the user cannot interact with this element.
-     */
-    @JSProperty
-    void setDisabled(boolean disabled);
+	/**
+	 * If true, the user cannot interact with this element.
+	 */
+	@JSProperty
+	void setDisabled(boolean disabled);
 }

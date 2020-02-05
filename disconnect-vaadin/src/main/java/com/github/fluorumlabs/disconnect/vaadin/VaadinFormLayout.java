@@ -101,105 +101,105 @@ import js.util.collections.Array;
  * `--vaadin-form-layout-column-spacing` | Length of the spacing between columns | `2em`
  */
 public class VaadinFormLayout extends AbstractComponent<FormLayoutElement>
-        implements HasElementMixin<FormLayoutElement, VaadinFormLayout>,
-        HasThemableMixin<FormLayoutElement, VaadinFormLayout>,
-        HasComponents<FormLayoutElement, VaadinFormLayout, Component<?>> {
-    public VaadinFormLayout() {
-        super("vaadin-form-layout");
-    }
+		implements HasElementMixin<FormLayoutElement, VaadinFormLayout>,
+		HasThemableMixin<FormLayoutElement, VaadinFormLayout>,
+		HasComponents<FormLayoutElement, VaadinFormLayout, Component<?>> {
+	public VaadinFormLayout() {
+		super("vaadin-form-layout");
+	}
 
-    /**
-     * Allows specifying a responsive behavior with the number of columns
-     * and the label position depending on the layout width.
-     * <p>
-     * Format: array of objects, each object defines one responsive step
-     * with `minWidth` CSS length, `columns` number, and optional
-     * `labelsPosition` string of `"aside"` or `"top"`. At least one item is required.
-     * <p>
-     * #### Examples
-     * <p>
-     * ```javascript
-     * formLayout.responsiveSteps = [{columns: 1}];
-     * // The layout is always a single column, labels aside.
-     * ```
-     * <p>
-     * ```javascript
-     * formLayout.responsiveSteps = [
-     * {minWidth: 0, columns: 1},
-     * {minWidth: '40em', columns: 2}
-     * ];
-     * // Sets two responsive steps:
-     * // 1. When the layout width is < 40em, one column, labels aside.
-     * // 2. Width >= 40em, two columns, labels aside.
-     * ```
-     * <p>
-     * ```javascript
-     * formLayout.responsiveSteps = [
-     * {minWidth: 0, columns: 1, labelsPosition: 'top'},
-     * {minWidth: '20em', columns: 1},
-     * {minWidth: '40em', columns: 2}
-     * ];
-     * // Default value. Three responsive steps:
-     * // 1. Width < 20em, one column, labels on top.
-     * // 2. 20em <= width < 40em, one column, labels aside.
-     * // 3. Width >= 40em, two columns, labels aside.
-     * ```
-     */
-    public Array<ResponsiveStep> responsiveSteps() {
-        return getNode().getResponsiveSteps();
-    }
+	/**
+	 * Allows specifying a responsive behavior with the number of columns
+	 * and the label position depending on the layout width.
+	 * <p>
+	 * Format: array of objects, each object defines one responsive step
+	 * with `minWidth` CSS length, `columns` number, and optional
+	 * `labelsPosition` string of `"aside"` or `"top"`. At least one item is required.
+	 * <p>
+	 * #### Examples
+	 * <p>
+	 * ```javascript
+	 * formLayout.responsiveSteps = [{columns: 1}];
+	 * // The layout is always a single column, labels aside.
+	 * ```
+	 * <p>
+	 * ```javascript
+	 * formLayout.responsiveSteps = [
+	 * {minWidth: 0, columns: 1},
+	 * {minWidth: '40em', columns: 2}
+	 * ];
+	 * // Sets two responsive steps:
+	 * // 1. When the layout width is < 40em, one column, labels aside.
+	 * // 2. Width >= 40em, two columns, labels aside.
+	 * ```
+	 * <p>
+	 * ```javascript
+	 * formLayout.responsiveSteps = [
+	 * {minWidth: 0, columns: 1, labelsPosition: 'top'},
+	 * {minWidth: '20em', columns: 1},
+	 * {minWidth: '40em', columns: 2}
+	 * ];
+	 * // Default value. Three responsive steps:
+	 * // 1. Width < 20em, one column, labels on top.
+	 * // 2. 20em <= width < 40em, one column, labels aside.
+	 * // 3. Width >= 40em, two columns, labels aside.
+	 * ```
+	 */
+	public Array<ResponsiveStep> responsiveSteps() {
+		return getNode().getResponsiveSteps();
+	}
 
-    /**
-     * Allows specifying a responsive behavior with the number of columns
-     * and the label position depending on the layout width.
-     * <p>
-     * Format: array of objects, each object defines one responsive step
-     * with `minWidth` CSS length, `columns` number, and optional
-     * `labelsPosition` string of `"aside"` or `"top"`. At least one item is required.
-     * <p>
-     * #### Examples
-     * <p>
-     * ```javascript
-     * formLayout.responsiveSteps = [{columns: 1}];
-     * // The layout is always a single column, labels aside.
-     * ```
-     * <p>
-     * ```javascript
-     * formLayout.responsiveSteps = [
-     * {minWidth: 0, columns: 1},
-     * {minWidth: '40em', columns: 2}
-     * ];
-     * // Sets two responsive steps:
-     * // 1. When the layout width is < 40em, one column, labels aside.
-     * // 2. Width >= 40em, two columns, labels aside.
-     * ```
-     * <p>
-     * ```javascript
-     * formLayout.responsiveSteps = [
-     * {minWidth: 0, columns: 1, labelsPosition: 'top'},
-     * {minWidth: '20em', columns: 1},
-     * {minWidth: '40em', columns: 2}
-     * ];
-     * // Default value. Three responsive steps:
-     * // 1. Width < 20em, one column, labels on top.
-     * // 2. 20em <= width < 40em, one column, labels aside.
-     * // 3. Width >= 40em, two columns, labels aside.
-     * ```
-     */
-    public VaadinFormLayout responsiveSteps(ResponsiveStep... responsiveSteps) {
-        getNode().setResponsiveSteps(responsiveSteps);
-        return this;
-    }
+	/**
+	 * Allows specifying a responsive behavior with the number of columns
+	 * and the label position depending on the layout width.
+	 * <p>
+	 * Format: array of objects, each object defines one responsive step
+	 * with `minWidth` CSS length, `columns` number, and optional
+	 * `labelsPosition` string of `"aside"` or `"top"`. At least one item is required.
+	 * <p>
+	 * #### Examples
+	 * <p>
+	 * ```javascript
+	 * formLayout.responsiveSteps = [{columns: 1}];
+	 * // The layout is always a single column, labels aside.
+	 * ```
+	 * <p>
+	 * ```javascript
+	 * formLayout.responsiveSteps = [
+	 * {minWidth: 0, columns: 1},
+	 * {minWidth: '40em', columns: 2}
+	 * ];
+	 * // Sets two responsive steps:
+	 * // 1. When the layout width is < 40em, one column, labels aside.
+	 * // 2. Width >= 40em, two columns, labels aside.
+	 * ```
+	 * <p>
+	 * ```javascript
+	 * formLayout.responsiveSteps = [
+	 * {minWidth: 0, columns: 1, labelsPosition: 'top'},
+	 * {minWidth: '20em', columns: 1},
+	 * {minWidth: '40em', columns: 2}
+	 * ];
+	 * // Default value. Three responsive steps:
+	 * // 1. Width < 20em, one column, labels on top.
+	 * // 2. 20em <= width < 40em, one column, labels aside.
+	 * // 3. Width >= 40em, two columns, labels aside.
+	 * ```
+	 */
+	public VaadinFormLayout responsiveSteps(ResponsiveStep... responsiveSteps) {
+		getNode().setResponsiveSteps(responsiveSteps);
+		return this;
+	}
 
-    public VaadinFormLayout responsiveSteps(Array<ResponsiveStep> responsiveSteps) {
-        getNode().setResponsiveSteps(responsiveSteps);
-        return this;
-    }
+	public VaadinFormLayout responsiveSteps(Array<ResponsiveStep> responsiveSteps) {
+		getNode().setResponsiveSteps(responsiveSteps);
+		return this;
+	}
 
-    /**
-     * Set custom CSS property values and update the layout.
-     */
-    public void updateStyles(StringRecord args) {
-        getNode().updateStyles(args);
-    }
+	/**
+	 * Set custom CSS property values and update the layout.
+	 */
+	public void updateStyles(StringRecord args) {
+		getNode().updateStyles(args);
+	}
 }

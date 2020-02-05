@@ -43,111 +43,111 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "RadioGroupElement",
-        module = "@vaadin/vaadin-radio-button/src/vaadin-radio-group.js"
+		symbols = "RadioGroupElement",
+		module = "@vaadin/vaadin-radio-button/src/vaadin-radio-group.js"
 )
 public interface RadioGroupElement extends HTMLElement, ThemableMixin {
-    /**
-     * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
-     */
-    @JSProperty
-    boolean isDisabled();
+	/**
+	 * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
+	 */
+	@JSProperty
+	boolean isDisabled();
 
-    /**
-     * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
-     */
-    @JSProperty
-    void setDisabled(boolean disabled);
+	/**
+	 * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
+	 */
+	@JSProperty
+	void setDisabled(boolean disabled);
 
-    /**
-     * This attribute indicates that the user cannot modify the value of the control.
-     */
-    @JSProperty
-    boolean isReadonly();
+	/**
+	 * This attribute indicates that the user cannot modify the value of the control.
+	 */
+	@JSProperty
+	boolean isReadonly();
 
-    /**
-     * This attribute indicates that the user cannot modify the value of the control.
-     */
-    @JSProperty
-    void setReadonly(boolean readonly);
+	/**
+	 * This attribute indicates that the user cannot modify the value of the control.
+	 */
+	@JSProperty
+	void setReadonly(boolean readonly);
 
-    /**
-     * This property is set to true when the value is invalid.
-     */
-    @JSProperty
-    boolean isInvalid();
+	/**
+	 * This property is set to true when the value is invalid.
+	 */
+	@JSProperty
+	boolean isInvalid();
 
-    /**
-     * This property is set to true when the value is invalid.
-     */
-    @JSProperty
-    void setInvalid(boolean invalid);
+	/**
+	 * This property is set to true when the value is invalid.
+	 */
+	@JSProperty
+	void setInvalid(boolean invalid);
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    @JSProperty
-    boolean isRequired();
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	@JSProperty
+	boolean isRequired();
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    @JSProperty
-    void setRequired(boolean required);
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	@JSProperty
+	void setRequired(boolean required);
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    @Nullable
-    @JSProperty
-    String getErrorMessage();
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	@Nullable
+	@JSProperty
+	String getErrorMessage();
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    @JSProperty
-    void setErrorMessage(String errorMessage);
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	@JSProperty
+	void setErrorMessage(String errorMessage);
 
-    /**
-     * String used for the label element.
-     */
-    @Nullable
-    @JSProperty
-    String getLabel();
+	/**
+	 * String used for the label element.
+	 */
+	@Nullable
+	@JSProperty
+	String getLabel();
 
-    /**
-     * String used for the label element.
-     */
-    @JSProperty
-    void setLabel(String label);
+	/**
+	 * String used for the label element.
+	 */
+	@JSProperty
+	void setLabel(String label);
 
-    /**
-     * Value of the radio group.
-     */
-    @Nullable
-    @JSProperty
-    String getValue();
+	/**
+	 * Value of the radio group.
+	 */
+	@Nullable
+	@JSProperty
+	String getValue();
 
-    /**
-     * Value of the radio group.
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 * Value of the radio group.
+	 */
+	@JSProperty
+	void setValue(String value);
 
-    /**
-     * Returns true if `value` is valid.
-     * `<iron-form>` uses this to check the validity or all its elements.
-     *
-     * @return True if the value is valid.
-     */
-    boolean validate();
+	/**
+	 * Returns true if `value` is valid.
+	 * `<iron-form>` uses this to check the validity or all its elements.
+	 *
+	 * @return True if the value is valid.
+	 */
+	boolean validate();
 
-    /**
-     * Returns true if the current input value satisfies all constraints (if any)
-     */
-    boolean checkValidity();
+	/**
+	 * Returns true if the current input value satisfies all constraints (if any)
+	 */
+	boolean checkValidity();
 }

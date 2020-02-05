@@ -8,8 +8,8 @@ import org.teavm.jso.JSProperty;
  * Created by Artem Godin on 2/4/2020.
  */
 public interface UploadEvent extends CustomEvent<UploadEvent.Details> {
-    interface Details extends UploadFileEvent.Details {
-        @JSProperty
-        XMLHttpRequest getXhr();
-    }
+	interface Details extends UploadFileEvent.Details {
+		@JSProperty
+		XMLHttpRequest getXhr();
+	}
 }

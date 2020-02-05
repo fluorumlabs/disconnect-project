@@ -10,9 +10,9 @@ import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
  * and property change observation.
  */
 public abstract class AbstractPolymerElement<E extends PolymerElement, T extends AbstractPolymerElement<E, T>>
-        extends AbstractComponent<E>
-        implements HasElementMixin<E, T> {
-    protected AbstractPolymerElement(String tagName) {
-        super(tagName);
-    }
+		extends AbstractComponent<E>
+		implements HasElementMixin<E, T> {
+	protected AbstractPolymerElement(String tagName) {
+		super(tagName);
+	}
 }

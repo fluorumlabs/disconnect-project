@@ -40,19 +40,19 @@ import js.web.dom.HTMLElement;
  * `--vaadin-board-width-medium` | Determines the width where mode changes from `medium` to `large` | `960px`
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "BoardRowElement",
-        module = "@vaadin/vaadin-board/src/vaadin-board-row.js"
+		symbols = "BoardRowElement",
+		module = "@vaadin/vaadin-board/src/vaadin-board-row.js"
 )
 public interface BoardRowElement extends HTMLElement, ElementMixin {
-    /**
-     * Redraws the row, if necessary.
-     * <p>
-     * In most cases, a board row will redraw itself if your reconfigure it. If you dynamically change CSS which
-     * affects the row, then you need to call this method.
-     */
-    void redraw();
+	/**
+	 * Redraws the row, if necessary.
+	 * <p>
+	 * In most cases, a board row will redraw itself if your reconfigure it. If you dynamically change CSS which
+	 * affects the row, then you need to call this method.
+	 */
+	void redraw();
 }

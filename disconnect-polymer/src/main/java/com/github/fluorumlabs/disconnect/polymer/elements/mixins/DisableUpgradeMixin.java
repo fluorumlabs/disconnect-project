@@ -25,12 +25,12 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
  * MyClass = DisableUpgradeMixin(class extends BaseClass {...});
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "DisableUpgradeMixin",
-        module = "@polymer/polymer/lib/mixins/disable-upgrade-mixin.js"
+		symbols = "DisableUpgradeMixin",
+		module = "@polymer/polymer/lib/mixins/disable-upgrade-mixin.js"
 )
 public interface DisableUpgradeMixin extends ElementMixin {
 }

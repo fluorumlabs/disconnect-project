@@ -68,110 +68,110 @@ import org.teavm.jso.JSProperty;
  * of dash-cased attributes based on `properties`)
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "ElementMixin",
-        module = "@polymer/polymer/lib/mixins/element-mixin.js"
+		symbols = "ElementMixin",
+		module = "@polymer/polymer/lib/mixins/element-mixin.js"
 )
 public interface ElementMixin extends PropertyEffects, PropertiesMixin {
-    /**
-     * When using the ShadyCSS scoping and custom property shim, causes all
-     * shimmed `styles` (via `custom-style`) in the document (and its subtree)
-     * to be updated based on current custom property values.
-     * <p>
-     * The optional parameter overrides inline custom property styles with an
-     * object of properties where the keys are CSS properties, and the values
-     * are strings.
-     * <p>
-     * Example: `updateStyles({'--color': 'blue'})`
-     * <p>
-     * These properties are retained unless a value of `null` is set.
-     * FIXME param props: Object=
-     *
-     * @param props Bag of custom property key/values to
-     *              apply to the document.
-     */
-    @JSBody(params = "props", script = "updateStyles(props)")
-    static void updateStylesGlobally(StringRecord props) {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
+	/**
+	 * When using the ShadyCSS scoping and custom property shim, causes all
+	 * shimmed `styles` (via `custom-style`) in the document (and its subtree)
+	 * to be updated based on current custom property values.
+	 * <p>
+	 * The optional parameter overrides inline custom property styles with an
+	 * object of properties where the keys are CSS properties, and the values
+	 * are strings.
+	 * <p>
+	 * Example: `updateStyles({'--color': 'blue'})`
+	 * <p>
+	 * These properties are retained unless a value of `null` is set.
+	 * FIXME param props: Object=
+	 *
+	 * @param props Bag of custom property key/values to
+	 *              apply to the document.
+	 */
+	@JSBody(params = "props", script = "updateStyles(props)")
+	static void updateStylesGlobally(StringRecord props) {
+		throw new UnsupportedOperationException("Available only in JavaScript");
+	}
 
-    @JSProperty
-    String getRootPath();
+	@JSProperty
+	String getRootPath();
 
-    @JSProperty
-    void setRootPath(String rootPath);
+	@JSProperty
+	void setRootPath(String rootPath);
 
-    @JSProperty
-    String getImportPath();
+	@JSProperty
+	String getImportPath();
 
-    @JSProperty
-    void setImportPath(String importPath);
+	@JSProperty
+	void setImportPath(String importPath);
 
-    /**
-     *
-     */
-    @JSProperty
-    ParentNode getRoot();
+	/**
+	 *
+	 */
+	@JSProperty
+	ParentNode getRoot();
 
-    @JSProperty
-    void setRoot(ParentNode node);
+	@JSProperty
+	void setRoot(ParentNode node);
 
-    /**
-     *
-     */
-    @JSProperty
-    void setRoot(HTMLElement root);
+	/**
+	 *
+	 */
+	@JSProperty
+	void setRoot(HTMLElement root);
 
-    @JSProperty
-    void setRoot(ShadowRoot root);
+	@JSProperty
+	void setRoot(ShadowRoot root);
 
-    /**
-     *
-     */
-    @JSProperty
-    Record<Element> $();
+	/**
+	 *
+	 */
+	@JSProperty
+	Record<Element> $();
 
-    /**
-     * When using the ShadyCSS scoping and custom property shim, causes all
-     * shimmed styles in this element (and its subtree) to be updated
-     * based on current custom property values.
-     * <p>
-     * The optional parameter overrides inline custom property styles with an
-     * object of properties where the keys are CSS properties, and the values
-     * are strings.
-     * <p>
-     * Example: `this.updateStyles({'--color': 'blue'})`
-     * <p>
-     * These properties are retained unless a value of `null` is set.
-     * <p>
-     * Note: This function does not support updating CSS mixins.
-     * You can not dynamically change the value of an `@apply`.
-     * FIXME param properties: Object=
-     *
-     * @param properties Bag of custom property key/values to
-     *                   apply to this element.
-     */
-    void updateStyles(StringRecord properties);
+	/**
+	 * When using the ShadyCSS scoping and custom property shim, causes all
+	 * shimmed styles in this element (and its subtree) to be updated
+	 * based on current custom property values.
+	 * <p>
+	 * The optional parameter overrides inline custom property styles with an
+	 * object of properties where the keys are CSS properties, and the values
+	 * are strings.
+	 * <p>
+	 * Example: `this.updateStyles({'--color': 'blue'})`
+	 * <p>
+	 * These properties are retained unless a value of `null` is set.
+	 * <p>
+	 * Note: This function does not support updating CSS mixins.
+	 * You can not dynamically change the value of an `@apply`.
+	 * FIXME param properties: Object=
+	 *
+	 * @param properties Bag of custom property key/values to
+	 *                   apply to this element.
+	 */
+	void updateStyles(StringRecord properties);
 
-    /**
-     * Rewrites a given URL relative to a base URL. The base URL defaults to
-     * the original location of the document containing the `dom-module` for
-     * this element. This method will return the same URL before and after
-     * bundling.
-     * <p>
-     * Note that this function performs no resolution for URLs that start
-     * with `/` (absolute URLs) or `#` (hash identifiers).  For general purpose
-     * URL resolution, use `window.URL`.
-     *
-     * @param url  URL to resolve.
-     * @param base Optional base URL to resolve against, defaults
-     *             to the element's `importPath`
-     *
-     * @return Rewritten URL relative to base
-     */
-    String resolveUrl(String url, String base);
+	/**
+	 * Rewrites a given URL relative to a base URL. The base URL defaults to
+	 * the original location of the document containing the `dom-module` for
+	 * this element. This method will return the same URL before and after
+	 * bundling.
+	 * <p>
+	 * Note that this function performs no resolution for URLs that start
+	 * with `/` (absolute URLs) or `#` (hash identifiers).  For general purpose
+	 * URL resolution, use `window.URL`.
+	 *
+	 * @param url  URL to resolve.
+	 * @param base Optional base URL to resolve against, defaults
+	 *             to the element's `importPath`
+	 *
+	 * @return Rewritten URL relative to base
+	 */
+	String resolveUrl(String url, String base);
 
 }

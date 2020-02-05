@@ -13,5 +13,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * `TemplateStamp`.
  */
 public interface HasGestureEventListeners<E extends GestureEventListeners, T extends Component<E>>
-        extends Component<E> {
+		extends Component<E> {
 }

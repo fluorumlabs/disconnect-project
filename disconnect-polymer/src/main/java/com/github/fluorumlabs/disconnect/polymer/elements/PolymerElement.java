@@ -12,12 +12,12 @@ import js.web.dom.HTMLElement;
  * and property change observation.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "PolymerElement",
-        module = "@polymer/polymer/polymer-element.js"
+		symbols = "PolymerElement",
+		module = "@polymer/polymer/polymer-element.js"
 )
 public interface PolymerElement extends HTMLElement, ElementMixin {
 }

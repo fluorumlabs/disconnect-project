@@ -17,8 +17,8 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinTimePickerTextField extends AbstractComponent<TimePickerTextFieldElement>
-        implements HasComponents<TimePickerTextFieldElement, VaadinTimePickerTextField, Component<?>> {
-    public VaadinTimePickerTextField() {
-        super("vaadin-time-picker-text-field");
-    }
+		implements HasComponents<TimePickerTextFieldElement, VaadinTimePickerTextField, Component<?>> {
+	public VaadinTimePickerTextField() {
+		super("vaadin-time-picker-text-field");
+	}
 }

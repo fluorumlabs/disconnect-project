@@ -10,23 +10,23 @@ import org.teavm.jso.JSProperty;
  * The container element for all notifications.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "NotificationContainer",
-        module = "@vaadin/vaadin-notification/src/vaadin-notification.js"
+		symbols = "NotificationContainer",
+		module = "@vaadin/vaadin-notification/src/vaadin-notification.js"
 )
 public interface NotificationContainer extends HTMLElement {
-    /**
-     * True when the container is opened
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * True when the container is opened
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * True when the container is opened
-     */
-    @JSProperty
-    void setOpened(boolean opened);
+	/**
+	 * True when the container is opened
+	 */
+	@JSProperty
+	void setOpened(boolean opened);
 }

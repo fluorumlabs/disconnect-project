@@ -43,76 +43,76 @@ import org.teavm.jso.JSProperty;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "MenuBarElement",
-        module = "@vaadin/vaadin-menu-bar/src/vaadin-menu-bar.js"
+		symbols = "MenuBarElement",
+		module = "@vaadin/vaadin-menu-bar/src/vaadin-menu-bar.js"
 )
 public interface MenuBarElement extends HTMLElement, ButtonsMixin, InteractionsMixin, ElementMixin, ThemableMixin {
-    /**
-     * Defines a hierarchical structure, where root level items represent menu bar buttons,
-     * and `children` property configures a submenu with items to be opened below
-     * the button on click, Enter, Space, Up and Down arrow keys.
-     * <p>
-     * #### Example
-     * <p>
-     * ```js
-     * menubar.items = [
-     * {
-     * text: 'File',
-     * children: [
-     * {text: 'Open'}
-     * {text: 'Auto Save', checked: true},
-     * ]
-     * },
-     * {component: 'hr'},
-     * {
-     * text: 'Edit',
-     * children: [
-     * {text: 'Undo', disabled: true},
-     * {text: 'Redo'}
-     * ]
-     * },
-     * {text: 'Help'}
-     * ];
-     * ```
-     */
-    @JSProperty
-    Array<MenuItem> getItems();
+	/**
+	 * Defines a hierarchical structure, where root level items represent menu bar buttons,
+	 * and `children` property configures a submenu with items to be opened below
+	 * the button on click, Enter, Space, Up and Down arrow keys.
+	 * <p>
+	 * #### Example
+	 * <p>
+	 * ```js
+	 * menubar.items = [
+	 * {
+	 * text: 'File',
+	 * children: [
+	 * {text: 'Open'}
+	 * {text: 'Auto Save', checked: true},
+	 * ]
+	 * },
+	 * {component: 'hr'},
+	 * {
+	 * text: 'Edit',
+	 * children: [
+	 * {text: 'Undo', disabled: true},
+	 * {text: 'Redo'}
+	 * ]
+	 * },
+	 * {text: 'Help'}
+	 * ];
+	 * ```
+	 */
+	@JSProperty
+	Array<MenuItem> getItems();
 
-    /**
-     * Defines a hierarchical structure, where root level items represent menu bar buttons,
-     * and `children` property configures a submenu with items to be opened below
-     * the button on click, Enter, Space, Up and Down arrow keys.
-     * <p>
-     * #### Example
-     * <p>
-     * ```js
-     * menubar.items = [
-     * {
-     * text: 'File',
-     * children: [
-     * {text: 'Open'}
-     * {text: 'Auto Save', checked: true},
-     * ]
-     * },
-     * {component: 'hr'},
-     * {
-     * text: 'Edit',
-     * children: [
-     * {text: 'Undo', disabled: true},
-     * {text: 'Redo'}
-     * ]
-     * },
-     * {text: 'Help'}
-     * ];
-     * ```
-     */
-    @JSProperty
-    void setItems(@JSByRef MenuItem... items);
+	/**
+	 * Defines a hierarchical structure, where root level items represent menu bar buttons,
+	 * and `children` property configures a submenu with items to be opened below
+	 * the button on click, Enter, Space, Up and Down arrow keys.
+	 * <p>
+	 * #### Example
+	 * <p>
+	 * ```js
+	 * menubar.items = [
+	 * {
+	 * text: 'File',
+	 * children: [
+	 * {text: 'Open'}
+	 * {text: 'Auto Save', checked: true},
+	 * ]
+	 * },
+	 * {component: 'hr'},
+	 * {
+	 * text: 'Edit',
+	 * children: [
+	 * {text: 'Undo', disabled: true},
+	 * {text: 'Redo'}
+	 * ]
+	 * },
+	 * {text: 'Help'}
+	 * ];
+	 * ```
+	 */
+	@JSProperty
+	void setItems(@JSByRef MenuItem... items);
 
-    @JSProperty
-    void setItems(Array<MenuItem> items);
+	@JSProperty
+	void setItems(Array<MenuItem> items);
 }

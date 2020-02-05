@@ -40,19 +40,19 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * `--vaadin-board-width-medium` | Determines the width where mode changes from `medium` to `large` | `960px`
  */
 public class VaadinBoardRow extends AbstractComponent<BoardRowElement>
-        implements HasElementMixin<BoardRowElement, VaadinBoardRow>,
-        HasComponents<BoardRowElement, VaadinBoardRow, Component<?>> {
-    public VaadinBoardRow() {
-        super("vaadin-board-row");
-    }
+		implements HasElementMixin<BoardRowElement, VaadinBoardRow>,
+		HasComponents<BoardRowElement, VaadinBoardRow, Component<?>> {
+	public VaadinBoardRow() {
+		super("vaadin-board-row");
+	}
 
-    /**
-     * Redraws the row, if necessary.
-     * <p>
-     * In most cases, a board row will redraw itself if your reconfigure it. If you dynamically change CSS which
-     * affects the row, then you need to call this method.
-     */
-    public void redraw() {
-        getNode().redraw();
-    }
+	/**
+	 * Redraws the row, if necessary.
+	 * <p>
+	 * In most cases, a board row will redraw itself if your reconfigure it. If you dynamically change CSS which
+	 * affects the row, then you need to call this method.
+	 */
+	public void redraw() {
+		getNode().redraw();
+	}
 }

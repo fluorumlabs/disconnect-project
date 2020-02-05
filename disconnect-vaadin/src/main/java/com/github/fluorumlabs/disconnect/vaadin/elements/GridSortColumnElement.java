@@ -23,28 +23,28 @@ import javax.annotation.Nullable;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridSortColumnElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-sort-column.js"
+		symbols = "GridSortColumnElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-sort-column.js"
 )
 public interface GridSortColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
-    /**
-     * How to sort the data.
-     * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
-     * descending direction, or `null` for not sorting the data.
-     */
-    @Nullable
-    @JSProperty
-    SortDirection getDirection();
+	/**
+	 * How to sort the data.
+	 * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
+	 * descending direction, or `null` for not sorting the data.
+	 */
+	@Nullable
+	@JSProperty
+	SortDirection getDirection();
 
-    /**
-     * How to sort the data.
-     * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
-     * descending direction, or `null` for not sorting the data.
-     */
-    @JSProperty
-    void setDirection(SortDirection direction);
+	/**
+	 * How to sort the data.
+	 * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
+	 * descending direction, or `null` for not sorting the data.
+	 */
+	@JSProperty
+	void setDirection(SortDirection direction);
 }

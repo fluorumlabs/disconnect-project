@@ -28,51 +28,51 @@ import javax.annotation.Nullable;
  * and `<vaadin-overlay>` elements
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "LoginOverlayElement",
-        module = "@vaadin/vaadin-login/src/vaadin-login-overlay.js"
+		symbols = "LoginOverlayElement",
+		module = "@vaadin/vaadin-login/src/vaadin-login-overlay.js"
 )
 public interface LoginOverlayElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
-    /**
-     * Defines the application description
-     */
-    @Nullable
-    @JSProperty
-    String getDescription();
+	/**
+	 * Defines the application description
+	 */
+	@Nullable
+	@JSProperty
+	String getDescription();
 
-    /**
-     * Defines the application description
-     */
-    @JSProperty
-    void setDescription(String description);
+	/**
+	 * Defines the application description
+	 */
+	@JSProperty
+	void setDescription(String description);
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    @JSProperty
-    void setOpened(boolean opened);
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	@JSProperty
+	void setOpened(boolean opened);
 
-    /**
-     * Defines the theme of the element.
-     * The value is propagated to vaadin-login-overlay-wrapper element.
-     */
-    @Nullable
-    @JSProperty
-    String getTheme();
+	/**
+	 * Defines the theme of the element.
+	 * The value is propagated to vaadin-login-overlay-wrapper element.
+	 */
+	@Nullable
+	@JSProperty
+	String getTheme();
 
-    /**
-     * Defines the theme of the element.
-     * The value is propagated to vaadin-login-overlay-wrapper element.
-     */
-    @JSProperty
-    void setTheme(String theme);
+	/**
+	 * Defines the theme of the element.
+	 * The value is propagated to vaadin-login-overlay-wrapper element.
+	 */
+	@JSProperty
+	void setTheme(String theme);
 }

@@ -6,12 +6,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import js.web.dom.Element;
 
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ColumnResizingMixin",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-column-resizing-mixin.js"
+		symbols = "ColumnResizingMixin",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-column-resizing-mixin.js"
 )
 public interface ColumnResizingMixin extends Element {
 }

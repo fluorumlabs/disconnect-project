@@ -10,43 +10,43 @@ import js.web.dom.ParentNode;
 import org.teavm.jso.JSProperty;
 
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "TemplateInstanceBase",
-        module = "@polymer/polymer/lib/utils/templatize.js"
+		symbols = "TemplateInstanceBase",
+		module = "@polymer/polymer/lib/utils/templatize.js"
 )
 public interface TemplateInstanceBase extends HTMLElement, PropertyEffects {
-    /**
-     *
-     */
-    @JSProperty
-    ParentNode getRoot();
+	/**
+	 *
+	 */
+	@JSProperty
+	ParentNode getRoot();
 
-    /**
-     *
-     */
-    @JSProperty
-    void setRoot(ParentNode root);
+	/**
+	 *
+	 */
+	@JSProperty
+	void setRoot(ParentNode root);
 
-    /**
-     * Find the parent model of this template instance.  The parent model
-     * is either another templatize instance that had option `parentModel: true`,
-     * or else the host element.
-     */
-    @JSProperty
-    PropertyEffects getParentModel();
+	/**
+	 * Find the parent model of this template instance.  The parent model
+	 * is either another templatize instance that had option `parentModel: true`,
+	 * or else the host element.
+	 */
+	@JSProperty
+	PropertyEffects getParentModel();
 
-    /**
-     * Forwards a host property to this instance.  This method should be
-     * called on instances from the `options.forwardHostProp` callback
-     * to propagate changes of host properties to each instance.
-     * <p>
-     * Note this method enqueues the change, which are flushed as a batch.
-     *
-     * @param prop  Property or path name
-     * @param value Value of the property to forward
-     */
-    void forwardHostProp(String prop, Any value);
+	/**
+	 * Forwards a host property to this instance.  This method should be
+	 * called on instances from the `options.forwardHostProp` callback
+	 * to propagate changes of host properties to each instance.
+	 * <p>
+	 * Note this method enqueues the change, which are flushed as a batch.
+	 *
+	 * @param prop  Property or path name
+	 * @param value Value of the property to forward
+	 */
+	void forwardHostProp(String prop, Any value);
 }

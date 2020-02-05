@@ -14,54 +14,54 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * `<vaadin-grid>` [Documentation](https://vaadin.com/components/vaadin-grid/html-api/elements/Vaadin.GridElement)
  */
 public class VaadinCrudGrid extends AbstractComponent<CrudGridElement>
-        implements HasIncludedMixin<CrudGridElement, VaadinCrudGrid>,
-        HasComponents<CrudGridElement, VaadinCrudGrid, Component<?>> {
-    public VaadinCrudGrid() {
-        super("vaadin-crud-grid");
-    }
+		implements HasIncludedMixin<CrudGridElement, VaadinCrudGrid>,
+		HasComponents<CrudGridElement, VaadinCrudGrid, Component<?>> {
+	public VaadinCrudGrid() {
+		super("vaadin-crud-grid");
+	}
 
-    /**
-     * Disable filtering in the generated columns.
-     */
-    public boolean noFilter() {
-        return getNode().isNoFilter();
-    }
+	/**
+	 * Disable filtering in the generated columns.
+	 */
+	public boolean noFilter() {
+		return getNode().isNoFilter();
+	}
 
-    /**
-     * Disable filtering in the generated columns.
-     */
-    public VaadinCrudGrid noFilter(boolean noFilter) {
-        getNode().setNoFilter(noFilter);
-        return this;
-    }
+	/**
+	 * Disable filtering in the generated columns.
+	 */
+	public VaadinCrudGrid noFilter(boolean noFilter) {
+		getNode().setNoFilter(noFilter);
+		return this;
+	}
 
-    /**
-     * Disable sorting in the generated columns.
-     */
-    public boolean noSort() {
-        return getNode().isNoSort();
-    }
+	/**
+	 * Disable sorting in the generated columns.
+	 */
+	public boolean noSort() {
+		return getNode().isNoSort();
+	}
 
-    /**
-     * Disable sorting in the generated columns.
-     */
-    public VaadinCrudGrid noSort(boolean noSort) {
-        getNode().setNoSort(noSort);
-        return this;
-    }
+	/**
+	 * Disable sorting in the generated columns.
+	 */
+	public VaadinCrudGrid noSort(boolean noSort) {
+		getNode().setNoSort(noSort);
+		return this;
+	}
 
-    /**
-     * Do not add headers to columns.
-     */
-    public boolean noHead() {
-        return getNode().isNoHead();
-    }
+	/**
+	 * Do not add headers to columns.
+	 */
+	public boolean noHead() {
+		return getNode().isNoHead();
+	}
 
-    /**
-     * Do not add headers to columns.
-     */
-    public VaadinCrudGrid noHead(boolean noHead) {
-        getNode().setNoHead(noHead);
-        return this;
-    }
+	/**
+	 * Do not add headers to columns.
+	 */
+	public VaadinCrudGrid noHead(boolean noHead) {
+		getNode().setNoHead(noHead);
+		return this;
+	}
 }

@@ -42,27 +42,27 @@ import org.teavm.jso.JSProperty;
  * API.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "OptionalMutableData",
-        module = "@polymer/polymer/lib/mixins/mutable-data.js"
+		symbols = "OptionalMutableData",
+		module = "@polymer/polymer/lib/mixins/mutable-data.js"
 )
 public interface OptionalMutableData extends Element {
-    /**
-     * Instance-level flag for configuring the dirty-checking strategy
-     * for this element.  When true, Objects and Arrays will skip dirty
-     * checking, otherwise strict equality checking will be used.
-     */
-    @JSProperty
-    boolean isMutableData();
+	/**
+	 * Instance-level flag for configuring the dirty-checking strategy
+	 * for this element.  When true, Objects and Arrays will skip dirty
+	 * checking, otherwise strict equality checking will be used.
+	 */
+	@JSProperty
+	boolean isMutableData();
 
-    /**
-     * Instance-level flag for configuring the dirty-checking strategy
-     * for this element.  When true, Objects and Arrays will skip dirty
-     * checking, otherwise strict equality checking will be used.
-     */
-    @JSProperty
-    void setMutableData(boolean mutableData);
+	/**
+	 * Instance-level flag for configuring the dirty-checking strategy
+	 * for this element.  When true, Objects and Arrays will skip dirty
+	 * checking, otherwise strict equality checking will be used.
+	 */
+	@JSProperty
+	void setMutableData(boolean mutableData);
 }

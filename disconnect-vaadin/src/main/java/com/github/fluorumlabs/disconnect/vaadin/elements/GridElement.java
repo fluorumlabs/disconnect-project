@@ -227,59 +227,59 @@ import org.teavm.jso.JSProperty;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid.js"
+		symbols = "GridElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid.js"
 )
 public interface GridElement<ITEM extends Any> extends HTMLElement,
-        ThemableMixin,
-        A11yMixin,
-        ActiveItemMixin<ITEM>,
-        ArrayDataProviderMixin<ITEM>,
-        ColumnResizingMixin,
-        DataProviderMixin<ITEM>,
-        DynamicColumnsMixin,
-        FilterMixin,
-        RowDetailsMixin<ITEM>,
-        ScrollMixin,
-        SelectionMixin<ITEM>,
-        SortMixin,
-        KeyboardNavigationMixin,
-        ColumnReorderingMixin,
-        EventContextMixin<ITEM>,
-        StylingMixin<ITEM>,
-        DragAndDropMixin<ITEM> {
-    /**
-     * If true, the grid's height is defined by the number of its rows.
-     */
-    @JSProperty
-    boolean isHeightByRows();
+		ThemableMixin,
+		A11yMixin,
+		ActiveItemMixin<ITEM>,
+		ArrayDataProviderMixin<ITEM>,
+		ColumnResizingMixin,
+		DataProviderMixin<ITEM>,
+		DynamicColumnsMixin,
+		FilterMixin,
+		RowDetailsMixin<ITEM>,
+		ScrollMixin,
+		SelectionMixin<ITEM>,
+		SortMixin,
+		KeyboardNavigationMixin,
+		ColumnReorderingMixin,
+		EventContextMixin<ITEM>,
+		StylingMixin<ITEM>,
+		DragAndDropMixin<ITEM> {
+	/**
+	 * If true, the grid's height is defined by the number of its rows.
+	 */
+	@JSProperty
+	boolean isHeightByRows();
 
-    /**
-     * If true, the grid's height is defined by the number of its rows.
-     */
-    @JSProperty
-    void setHeightByRows(boolean heightByRows);
+	/**
+	 * If true, the grid's height is defined by the number of its rows.
+	 */
+	@JSProperty
+	void setHeightByRows(boolean heightByRows);
 
-    /**
-     * Updates the `width` of all columns which have `autoWidth` set to `true`.
-     */
-    void recalculateColumnWidths();
+	/**
+	 * Updates the `width` of all columns which have `autoWidth` set to `true`.
+	 */
+	void recalculateColumnWidths();
 
-    /**
-     * Manually invoke existing renderers for all the columns
-     * (header, footer and body cells) and opened row details.
-     */
-    void render();
+	/**
+	 * Manually invoke existing renderers for all the columns
+	 * (header, footer and body cells) and opened row details.
+	 */
+	void render();
 
-    /**
-     * Updates the computed metrics and positioning of internal grid parts
-     * (row/details cell positioning etc). Needs to be invoked whenever the sizing of grid
-     * content changes asynchronously to ensure consistent appearance (e.g. when a
-     * contained image whose bounds aren't known beforehand finishes loading).
-     */
-    void notifyResize();
+	/**
+	 * Updates the computed metrics and positioning of internal grid parts
+	 * (row/details cell positioning etc). Needs to be invoked whenever the sizing of grid
+	 * content changes asynchronously to ensure consistent appearance (e.g. when a
+	 * contained image whose bounds aren't known beforehand finishes loading).
+	 */
+	void notifyResize();
 }

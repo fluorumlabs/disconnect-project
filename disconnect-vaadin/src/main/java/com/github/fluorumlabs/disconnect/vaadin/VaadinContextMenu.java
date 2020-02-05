@@ -228,155 +228,155 @@ import javax.annotation.Nullable;
  * to internal `vaadin-context-menu-list-box` and `vaadin-context-menu-item`'s.
  */
 public class VaadinContextMenu extends AbstractComponent<ContextMenuElement>
-        implements HasElementMixin<ContextMenuElement, VaadinContextMenu>,
-        HasThemePropertyMixin<ContextMenuElement, VaadinContextMenu>,
-        HasItemsMixin<ContextMenuElement, VaadinContextMenu>,
-        HasGestureEventListeners<ContextMenuElement, VaadinContextMenu>,
-        HasComponents<ContextMenuElement, VaadinContextMenu, Component<?>> {
-    public VaadinContextMenu() {
-        super("vaadin-context-menu");
-    }
+		implements HasElementMixin<ContextMenuElement, VaadinContextMenu>,
+		HasThemePropertyMixin<ContextMenuElement, VaadinContextMenu>,
+		HasItemsMixin<ContextMenuElement, VaadinContextMenu>,
+		HasGestureEventListeners<ContextMenuElement, VaadinContextMenu>,
+		HasComponents<ContextMenuElement, VaadinContextMenu, Component<?>> {
+	public VaadinContextMenu() {
+		super("vaadin-context-menu");
+	}
 
-    /**
-     * CSS selector that can be used to target any child element
-     * of the context menu to listen for `openOn` events.
-     */
-    @Nullable
-    public String selector() {
-        return getNode().getSelector();
-    }
+	/**
+	 * CSS selector that can be used to target any child element
+	 * of the context menu to listen for `openOn` events.
+	 */
+	@Nullable
+	public String selector() {
+		return getNode().getSelector();
+	}
 
-    /**
-     * CSS selector that can be used to target any child element
-     * of the context menu to listen for `openOn` events.
-     */
-    public VaadinContextMenu selector(String selector) {
-        getNode().setSelector(selector);
-        return this;
-    }
+	/**
+	 * CSS selector that can be used to target any child element
+	 * of the context menu to listen for `openOn` events.
+	 */
+	public VaadinContextMenu selector(String selector) {
+		getNode().setSelector(selector);
+		return this;
+	}
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    public boolean opened() {
-        return getNode().isOpened();
-    }
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	public boolean opened() {
+		return getNode().isOpened();
+	}
 
-    /**
-     * Event name to listen for opening the context menu.
-     */
-    @Nullable
-    public String openOn() {
-        return getNode().getOpenOn();
-    }
+	/**
+	 * Event name to listen for opening the context menu.
+	 */
+	@Nullable
+	public String openOn() {
+		return getNode().getOpenOn();
+	}
 
-    /**
-     * Event name to listen for opening the context menu.
-     */
-    public VaadinContextMenu openOn(String openOn) {
-        getNode().setOpenOn(openOn);
-        return this;
-    }
+	/**
+	 * Event name to listen for opening the context menu.
+	 */
+	public VaadinContextMenu openOn(String openOn) {
+		getNode().setOpenOn(openOn);
+		return this;
+	}
 
-    /**
-     * The target element that's listened to for context menu opening events.
-     * By default the vaadin-context-menu listens to the target's `vaadin-contextmenu`
-     * events.
-     */
-    public HTMLElement listenOn() {
-        return getNode().getListenOn();
-    }
+	/**
+	 * The target element that's listened to for context menu opening events.
+	 * By default the vaadin-context-menu listens to the target's `vaadin-contextmenu`
+	 * events.
+	 */
+	public HTMLElement listenOn() {
+		return getNode().getListenOn();
+	}
 
-    /**
-     * The target element that's listened to for context menu opening events.
-     * By default the vaadin-context-menu listens to the target's `vaadin-contextmenu`
-     * events.
-     */
-    public VaadinContextMenu listenOn(HTMLElement listenOn) {
-        getNode().setListenOn(listenOn);
-        return this;
-    }
+	/**
+	 * The target element that's listened to for context menu opening events.
+	 * By default the vaadin-context-menu listens to the target's `vaadin-contextmenu`
+	 * events.
+	 */
+	public VaadinContextMenu listenOn(HTMLElement listenOn) {
+		getNode().setListenOn(listenOn);
+		return this;
+	}
 
-    /**
-     * Event name to listen for closing the context menu.
-     */
-    @Nullable
-    public String closeOn() {
-        return getNode().getCloseOn();
-    }
+	/**
+	 * Event name to listen for closing the context menu.
+	 */
+	@Nullable
+	public String closeOn() {
+		return getNode().getCloseOn();
+	}
 
-    /**
-     * Event name to listen for closing the context menu.
-     */
-    public VaadinContextMenu closeOn(String closeOn) {
-        getNode().setCloseOn(closeOn);
-        return this;
-    }
+	/**
+	 * Event name to listen for closing the context menu.
+	 */
+	public VaadinContextMenu closeOn(String closeOn) {
+		getNode().setCloseOn(closeOn);
+		return this;
+	}
 
-    /**
-     * Custom function for rendering the content of the menu overlay.
-     * Receives three arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `contextMenu` The reference to the `<vaadin-context-menu>` element.
-     * - `context` The object with the menu context, contains:
-     * - `context.target`  the target of the menu opening event,
-     * - `context.detail` the menu opening event detail.
-     */
-    @Nullable
-    public ContextMenuRenderer renderer() {
-        return getNode().getRenderer();
-    }
+	/**
+	 * Custom function for rendering the content of the menu overlay.
+	 * Receives three arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `contextMenu` The reference to the `<vaadin-context-menu>` element.
+	 * - `context` The object with the menu context, contains:
+	 * - `context.target`  the target of the menu opening event,
+	 * - `context.detail` the menu opening event detail.
+	 */
+	@Nullable
+	public ContextMenuRenderer renderer() {
+		return getNode().getRenderer();
+	}
 
-    /**
-     * Custom function for rendering the content of the menu overlay.
-     * Receives three arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `contextMenu` The reference to the `<vaadin-context-menu>` element.
-     * - `context` The object with the menu context, contains:
-     * - `context.target`  the target of the menu opening event,
-     * - `context.detail` the menu opening event detail.
-     */
-    public VaadinContextMenu renderer(ContextMenuRenderer renderer) {
-        getNode().setRenderer(renderer);
-        return this;
-    }
+	/**
+	 * Custom function for rendering the content of the menu overlay.
+	 * Receives three arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `contextMenu` The reference to the `<vaadin-context-menu>` element.
+	 * - `context` The object with the menu context, contains:
+	 * - `context.target`  the target of the menu opening event,
+	 * - `context.detail` the menu opening event detail.
+	 */
+	public VaadinContextMenu renderer(ContextMenuRenderer renderer) {
+		getNode().setRenderer(renderer);
+		return this;
+	}
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    public void render() {
-        getNode().render();
-    }
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	public void render() {
+		getNode().render();
+	}
 
-    /**
-     * Closes the overlay.
-     */
-    public void close() {
-        getNode().close();
-    }
+	/**
+	 * Closes the overlay.
+	 */
+	public void close() {
+		getNode().close();
+	}
 
-    /**
-     * Opens the overlay.
-     *
-     * @param e used as the context for the menu. Overlay coordinates are taken from this event.
-     */
-    public void open(Event e) {
-        getNode().open(e);
-    }
+	/**
+	 * Opens the overlay.
+	 *
+	 * @param e used as the context for the menu. Overlay coordinates are taken from this event.
+	 */
+	public void open(Event e) {
+		getNode().open(e);
+	}
 
-    /**
-     * Fired when an item is selected when the context menu is populated using the `items` API.
-     */
-    public ObservableEvent<CustomEvent<MenuItem>> itemSelectedEvent() {
-        return createEvent("item-selected");
-    }
+	/**
+	 * Fired when an item is selected when the context menu is populated using the `items` API.
+	 */
+	public ObservableEvent<CustomEvent<MenuItem>> itemSelectedEvent() {
+		return createEvent("item-selected");
+	}
 
-    /**
-     * Fired when the `opened` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
-        return createEvent("opened-changed");
-    }
+	/**
+	 * Fired when the `opened` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
+		return createEvent("opened-changed");
+	}
 }

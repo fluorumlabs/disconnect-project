@@ -14,19 +14,19 @@ import org.teavm.jso.JSProperty;
 @JSFunctor
 @FunctionalInterface
 public interface ContextMenuRenderer extends Any {
-    void render(Element root, ContextMenuElement contextMenu, Context context);
+	void render(Element root, ContextMenuElement contextMenu, Context context);
 
-    interface Context extends Any {
-        @JSProperty
-        EventTarget getTarget();
+	interface Context extends Any {
+		@JSProperty
+		EventTarget getTarget();
 
-        @JSProperty
-        void setTarget(EventTarget target);
+		@JSProperty
+		void setTarget(EventTarget target);
 
-        @JSProperty
-        Unknown getDetail();
+		@JSProperty
+		Unknown getDetail();
 
-        @JSProperty
-        void setDetail(Unknown detail);
-    }
+		@JSProperty
+		void setDetail(Unknown detail);
+	}
 }

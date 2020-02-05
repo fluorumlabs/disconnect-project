@@ -31,10 +31,10 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinTab extends AbstractComponent<TabElement> implements HasElementMixin<TabElement, VaadinTab>,
-        HasThemableMixin<TabElement, VaadinTab>,
-        HasItemMixin<TabElement, VaadinTab>,
-        HasComponents<TabElement, VaadinTab, Component<?>> {
-    public VaadinTab() {
-        super("vaadin-tab");
-    }
+		HasThemableMixin<TabElement, VaadinTab>,
+		HasItemMixin<TabElement, VaadinTab>,
+		HasComponents<TabElement, VaadinTab, Component<?>> {
+	public VaadinTab() {
+		super("vaadin-tab");
+	}
 }

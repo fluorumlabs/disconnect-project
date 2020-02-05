@@ -31,28 +31,28 @@ import javax.annotation.Nullable;
  * See examples of setting the content into slots in the live demos.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "LoginFormElement",
-        module = "@vaadin/vaadin-login/src/vaadin-login-form.js"
+		symbols = "LoginFormElement",
+		module = "@vaadin/vaadin-login/src/vaadin-login-form.js"
 )
 public interface LoginFormElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
-    /**
-     * Defines the theme of the element.
-     * The value is propagated to vaadin-login-form-wrapper element.
-     */
-    @Nullable
-    @JSProperty
-    String getTheme();
+	/**
+	 * Defines the theme of the element.
+	 * The value is propagated to vaadin-login-form-wrapper element.
+	 */
+	@Nullable
+	@JSProperty
+	String getTheme();
 
-    /**
-     * Defines the theme of the element.
-     * The value is propagated to vaadin-login-form-wrapper element.
-     */
-    @JSProperty
-    void setTheme(String theme);
+	/**
+	 * Defines the theme of the element.
+	 * The value is propagated to vaadin-login-form-wrapper element.
+	 */
+	@JSProperty
+	void setTheme(String theme);
 
-    void submit();
+	void submit();
 }

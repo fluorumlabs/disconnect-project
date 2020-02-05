@@ -14,60 +14,60 @@ import org.teavm.jso.JSProperty;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "NumberFieldElement",
-        module = "@vaadin/vaadin-text-field/src/vaadin-number-field.js"
+		symbols = "NumberFieldElement",
+		module = "@vaadin/vaadin-text-field/src/vaadin-number-field.js"
 )
 public interface NumberFieldElement extends TextFieldElement {
-    /**
-     * Set to true to display value increase/decrease controls.
-     */
-    @JSProperty
-    boolean isHasControls();
+	/**
+	 * Set to true to display value increase/decrease controls.
+	 */
+	@JSProperty
+	boolean isHasControls();
 
-    /**
-     * Set to true to display value increase/decrease controls.
-     */
-    @JSProperty
-    void setHasControls(boolean hasControls);
+	/**
+	 * Set to true to display value increase/decrease controls.
+	 */
+	@JSProperty
+	void setHasControls(boolean hasControls);
 
-    /**
-     * The minimum value of the field.
-     */
-    @JSProperty
-    double getMin();
+	/**
+	 * The minimum value of the field.
+	 */
+	@JSProperty
+	double getMin();
 
-    /**
-     * The minimum value of the field.
-     */
-    @JSProperty
-    void setMin(double min);
+	/**
+	 * The minimum value of the field.
+	 */
+	@JSProperty
+	void setMin(double min);
 
-    /**
-     * The maximum value of the field.
-     */
-    @JSProperty
-    double getMax();
+	/**
+	 * The maximum value of the field.
+	 */
+	@JSProperty
+	double getMax();
 
-    /**
-     * The maximum value of the field.
-     */
-    @JSProperty
-    void setMax(double max);
+	/**
+	 * The maximum value of the field.
+	 */
+	@JSProperty
+	void setMax(double max);
 
-    /**
-     * Specifies the allowed number intervals of the field.
-     */
-    @JSProperty
-    double getStep();
+	/**
+	 * Specifies the allowed number intervals of the field.
+	 */
+	@JSProperty
+	double getStep();
 
-    /**
-     * Specifies the allowed number intervals of the field.
-     */
-    @JSProperty
-    void setStep(double step);
+	/**
+	 * Specifies the allowed number intervals of the field.
+	 */
+	@JSProperty
+	void setStep(double step);
 
 }

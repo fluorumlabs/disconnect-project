@@ -66,92 +66,92 @@ import javax.annotation.Nullable;
  * propagated to the internal `<vaadin-notification-card>`.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "NotificationElement",
-        module = "@vaadin/vaadin-notification/src/vaadin-notification.js"
+		symbols = "NotificationElement",
+		module = "@vaadin/vaadin-notification/src/vaadin-notification.js"
 )
 public interface NotificationElement extends HTMLElement, ThemePropertyMixin {
-    /**
-     * The duration in milliseconds to show the notification.
-     * Set to `0` or a negative number to disable the notification auto-closing.
-     */
-    @JSProperty
-    double getDuration();
+	/**
+	 * The duration in milliseconds to show the notification.
+	 * Set to `0` or a negative number to disable the notification auto-closing.
+	 */
+	@JSProperty
+	double getDuration();
 
-    /**
-     * The duration in milliseconds to show the notification.
-     * Set to `0` or a negative number to disable the notification auto-closing.
-     */
-    @JSProperty
-    void setDuration(double duration);
+	/**
+	 * The duration in milliseconds to show the notification.
+	 * Set to `0` or a negative number to disable the notification auto-closing.
+	 */
+	@JSProperty
+	void setDuration(double duration);
 
-    /**
-     * True if the notification is currently displayed.
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * True if the notification is currently displayed.
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * True if the notification is currently displayed.
-     */
-    @JSProperty
-    void setOpened(boolean opened);
+	/**
+	 * True if the notification is currently displayed.
+	 */
+	@JSProperty
+	void setOpened(boolean opened);
 
-    /**
-     * Alignment of the notification in the viewport
-     * Valid values are `top-stretch|top-start|top-center|top-end|middle|bottom-start|bottom-center|bottom-end|bottom
-     * -stretch`
-     */
-    @Nullable
-    @JSProperty
-    NotificationPosition getPosition();
+	/**
+	 * Alignment of the notification in the viewport
+	 * Valid values are `top-stretch|top-start|top-center|top-end|middle|bottom-start|bottom-center|bottom-end|bottom
+	 * -stretch`
+	 */
+	@Nullable
+	@JSProperty
+	NotificationPosition getPosition();
 
-    /**
-     * Alignment of the notification in the viewport
-     * Valid values are `top-stretch|top-start|top-center|top-end|middle|bottom-start|bottom-center|bottom-end|bottom
-     * -stretch`
-     */
-    @JSProperty
-    void setPosition(NotificationPosition position);
+	/**
+	 * Alignment of the notification in the viewport
+	 * Valid values are `top-stretch|top-start|top-center|top-end|middle|bottom-start|bottom-center|bottom-end|bottom
+	 * -stretch`
+	 */
+	@JSProperty
+	void setPosition(NotificationPosition position);
 
-    /**
-     * Custom function for rendering the content of the notification.
-     * Receives two arguments:
-     * <p>
-     * - `root` The `<vaadin-notification-card>` DOM element. Append
-     * your content to it.
-     * - `notification` The reference to the `<vaadin-notification>` element.
-     */
-    @Nullable
-    @JSProperty
-    NotificationRenderer getRenderer();
+	/**
+	 * Custom function for rendering the content of the notification.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The `<vaadin-notification-card>` DOM element. Append
+	 * your content to it.
+	 * - `notification` The reference to the `<vaadin-notification>` element.
+	 */
+	@Nullable
+	@JSProperty
+	NotificationRenderer getRenderer();
 
-    /**
-     * Custom function for rendering the content of the notification.
-     * Receives two arguments:
-     * <p>
-     * - `root` The `<vaadin-notification-card>` DOM element. Append
-     * your content to it.
-     * - `notification` The reference to the `<vaadin-notification>` element.
-     */
-    @JSProperty
-    void setRenderer(NotificationRenderer renderer);
+	/**
+	 * Custom function for rendering the content of the notification.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The `<vaadin-notification-card>` DOM element. Append
+	 * your content to it.
+	 * - `notification` The reference to the `<vaadin-notification>` element.
+	 */
+	@JSProperty
+	void setRenderer(NotificationRenderer renderer);
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    void render();
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	void render();
 
-    /**
-     * Opens the notification.
-     */
-    void open();
+	/**
+	 * Opens the notification.
+	 */
+	void open();
 
-    /**
-     * Closes the notification.
-     */
-    void close();
+	/**
+	 * Closes the notification.
+	 */
+	void close();
 }

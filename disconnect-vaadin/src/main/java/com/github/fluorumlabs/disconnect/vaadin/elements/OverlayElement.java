@@ -108,160 +108,160 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "OverlayElement",
-        module = "@vaadin/vaadin-overlay/src/vaadin-overlay.js"
+		symbols = "OverlayElement",
+		module = "@vaadin/vaadin-overlay/src/vaadin-overlay.js"
 )
 public interface OverlayElement extends HTMLElement, ThemableMixin {
-    @JSProperty
-    boolean isOpened();
+	@JSProperty
+	boolean isOpened();
 
-    @JSProperty
-    void setOpened(boolean opened);
+	@JSProperty
+	void setOpened(boolean opened);
 
-    /**
-     * Owner element passed with renderer function
-     */
-    @Nullable
-    @JSProperty
-    Element getOwner();
+	/**
+	 * Owner element passed with renderer function
+	 */
+	@Nullable
+	@JSProperty
+	Element getOwner();
 
-    /**
-     * Owner element passed with renderer function
-     */
-    @JSProperty
-    void setOwner(Element owner);
+	/**
+	 * Owner element passed with renderer function
+	 */
+	@JSProperty
+	void setOwner(Element owner);
 
-    /**
-     * Custom function for rendering the content of the overlay.
-     * Receives three arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `owner` The host element of the renderer function.
-     * - `model` The object with the properties related with rendering.
-     */
-    @Nullable
-    @JSProperty
-    OverlayRenderer getRenderer();
+	/**
+	 * Custom function for rendering the content of the overlay.
+	 * Receives three arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `owner` The host element of the renderer function.
+	 * - `model` The object with the properties related with rendering.
+	 */
+	@Nullable
+	@JSProperty
+	OverlayRenderer getRenderer();
 
-    /**
-     * Custom function for rendering the content of the overlay.
-     * Receives three arguments:
-     * <p>
-     * - `root` The root container DOM element. Append your content to it.
-     * - `owner` The host element of the renderer function.
-     * - `model` The object with the properties related with rendering.
-     */
-    @JSProperty
-    void setRenderer(OverlayRenderer renderer);
+	/**
+	 * Custom function for rendering the content of the overlay.
+	 * Receives three arguments:
+	 * <p>
+	 * - `root` The root container DOM element. Append your content to it.
+	 * - `owner` The host element of the renderer function.
+	 * - `model` The object with the properties related with rendering.
+	 */
+	@JSProperty
+	void setRenderer(OverlayRenderer renderer);
 
-    /**
-     * The template of the overlay content.
-     */
-    @Nullable
-    @JSProperty
-    HTMLTemplateElement getTemplate();
+	/**
+	 * The template of the overlay content.
+	 */
+	@Nullable
+	@JSProperty
+	HTMLTemplateElement getTemplate();
 
-    /**
-     * The template of the overlay content.
-     */
-    @JSProperty
-    void setTemplate(HTMLTemplateElement template);
+	/**
+	 * The template of the overlay content.
+	 */
+	@JSProperty
+	void setTemplate(HTMLTemplateElement template);
 
-    /**
-     * Optional argument for `Polymer.Templatize.templatize`.
-     */
-    @Nullable
-    @JSProperty
-    Record<Unknown> getInstanceProps();
+	/**
+	 * Optional argument for `Polymer.Templatize.templatize`.
+	 */
+	@Nullable
+	@JSProperty
+	Record<Unknown> getInstanceProps();
 
-    /**
-     * Optional argument for `Polymer.Templatize.templatize`.
-     */
-    @JSProperty
-    void setInstanceProps(Record<Unknown> instanceProps);
+	/**
+	 * Optional argument for `Polymer.Templatize.templatize`.
+	 */
+	@JSProperty
+	void setInstanceProps(Record<Unknown> instanceProps);
 
-    /**
-     * References the content container after the template is stamped.
-     */
-    @Nullable
-    @JSProperty
-    ParentNode getContent();
+	/**
+	 * References the content container after the template is stamped.
+	 */
+	@Nullable
+	@JSProperty
+	ParentNode getContent();
 
-    @JSProperty
-    boolean isWithBackdrop();
+	@JSProperty
+	boolean isWithBackdrop();
 
-    @JSProperty
-    void setWithBackdrop(boolean withBackdrop);
+	@JSProperty
+	void setWithBackdrop(boolean withBackdrop);
 
-    /**
-     * Object with properties that is passed to `renderer` function
-     */
-    @Nullable
-    @JSProperty
-    Record<Unknown> getModel();
+	/**
+	 * Object with properties that is passed to `renderer` function
+	 */
+	@Nullable
+	@JSProperty
+	Record<Unknown> getModel();
 
-    /**
-     * Object with properties that is passed to `renderer` function
-     */
-    @JSProperty
-    void setModel(Record<Unknown> model);
+	/**
+	 * Object with properties that is passed to `renderer` function
+	 */
+	@JSProperty
+	void setModel(Record<Unknown> model);
 
-    /**
-     * When true the overlay won't disable the main content, showing
-     * it doesn’t change the functionality of the user interface.
-     */
-    @JSProperty
-    boolean isModeless();
+	/**
+	 * When true the overlay won't disable the main content, showing
+	 * it doesn’t change the functionality of the user interface.
+	 */
+	@JSProperty
+	boolean isModeless();
 
-    /**
-     * When true the overlay won't disable the main content, showing
-     * it doesn’t change the functionality of the user interface.
-     */
-    @JSProperty
-    void setModeless(boolean modeless);
+	/**
+	 * When true the overlay won't disable the main content, showing
+	 * it doesn’t change the functionality of the user interface.
+	 */
+	@JSProperty
+	void setModeless(boolean modeless);
 
-    /**
-     * When true move focus to the first focusable element in the overlay,
-     * or to the overlay if there are no focusable elements.
-     */
-    @JSProperty
-    boolean isFocusTrap();
+	/**
+	 * When true move focus to the first focusable element in the overlay,
+	 * or to the overlay if there are no focusable elements.
+	 */
+	@JSProperty
+	boolean isFocusTrap();
 
-    /**
-     * When true move focus to the first focusable element in the overlay,
-     * or to the overlay if there are no focusable elements.
-     */
-    @JSProperty
-    void setFocusTrap(boolean focusTrap);
+	/**
+	 * When true move focus to the first focusable element in the overlay,
+	 * or to the overlay if there are no focusable elements.
+	 */
+	@JSProperty
+	void setFocusTrap(boolean focusTrap);
 
-    /**
-     * Set to true to enable restoring of focus when overlay is closed.
-     */
-    @JSProperty
-    boolean isRestoreFocusOnClose();
+	/**
+	 * Set to true to enable restoring of focus when overlay is closed.
+	 */
+	@JSProperty
+	boolean isRestoreFocusOnClose();
 
-    /**
-     * Set to true to enable restoring of focus when overlay is closed.
-     */
-    @JSProperty
-    void setRestoreFocusOnClose(boolean restoreFocusOnClose);
+	/**
+	 * Set to true to enable restoring of focus when overlay is closed.
+	 */
+	@JSProperty
+	void setRestoreFocusOnClose(boolean restoreFocusOnClose);
 
-    /**
-     *
-     */
-    void close(Event sourceEvent);
+	/**
+	 *
+	 */
+	void close(Event sourceEvent);
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    void render();
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	void render();
 
-    /**
-     * Brings the overlay as visually the frontmost one
-     */
-    void bringToFront();
+	/**
+	 * Brings the overlay as visually the frontmost one
+	 */
+	void bringToFront();
 }

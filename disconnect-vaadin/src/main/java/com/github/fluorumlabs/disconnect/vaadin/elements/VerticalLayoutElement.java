@@ -27,12 +27,12 @@ import js.web.dom.HTMLElement;
  * `theme="spacing"` | Applies the default amount of CSS margin between items (specified by the theme)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "VerticalLayoutElement",
-        module = "@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js"
+		symbols = "VerticalLayoutElement",
+		module = "@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js"
 )
 public interface VerticalLayoutElement extends HTMLElement, ThemableMixin {
 }

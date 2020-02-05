@@ -68,64 +68,64 @@ import javax.annotation.Nullable;
  * `--iron-icon-stroke-color` | Stroke color of the svg icon | none
  */
 public class IronIcon
-        extends AbstractComponent<IronIconElement> {
-    public IronIcon() {
-        super("iron-icon");
-    }
+		extends AbstractComponent<IronIconElement> {
+	public IronIcon() {
+		super("iron-icon");
+	}
 
-    /**
-     * The name of the icon to use. The name should be of the form:
-     * `iconset_name:icon_name`.
-     */
-    @Nullable
-    public String icon() {
-        return getNode().getIcon();
-    }
+	/**
+	 * The name of the icon to use. The name should be of the form:
+	 * `iconset_name:icon_name`.
+	 */
+	@Nullable
+	public String icon() {
+		return getNode().getIcon();
+	}
 
-    /**
-     * The name of the icon to use. The name should be of the form:
-     * `iconset_name:icon_name`.
-     */
-    public IronIcon icon(String icon) {
-        getNode().setIcon(icon);
-        return this;
-    }
+	/**
+	 * The name of the icon to use. The name should be of the form:
+	 * `iconset_name:icon_name`.
+	 */
+	public IronIcon icon(String icon) {
+		getNode().setIcon(icon);
+		return this;
+	}
 
-    /**
-     * The name of the theme to used, if one is specified by the
-     * iconset.
-     */
-    @Nullable
-    public String theme() {
-        return getNode().getTheme();
-    }
+	/**
+	 * The name of the theme to used, if one is specified by the
+	 * iconset.
+	 */
+	@Nullable
+	public String theme() {
+		return getNode().getTheme();
+	}
 
-    /**
-     * The name of the theme to used, if one is specified by the
-     * iconset.
-     */
-    public IronIcon theme(String theme) {
-        getNode().setTheme(theme);
-        return this;
-    }
+	/**
+	 * The name of the theme to used, if one is specified by the
+	 * iconset.
+	 */
+	public IronIcon theme(String theme) {
+		getNode().setTheme(theme);
+		return this;
+	}
 
-    /**
-     * If using iron-icon without an iconset, you can set the src to be
-     * the URL of an individual icon image file. Note that this will take
-     * precedence over a given icon attribute.
-     */
-    @Nullable
-    public String src() {
-        return getNode().getSrc();
-    }
+	/**
+	 * If using iron-icon without an iconset, you can set the src to be
+	 * the URL of an individual icon image file. Note that this will take
+	 * precedence over a given icon attribute.
+	 */
+	@Nullable
+	public String src() {
+		return getNode().getSrc();
+	}
 
-    /**
-     * If using iron-icon without an iconset, you can set the src to be
-     * the URL of an individual icon image file. Note that this will take
-     * precedence over a given icon attribute.
-     */
-    public IronIcon src(String src) {
-        getNode().setSrc(src);
-        return this;
-    }
+	/**
+	 * If using iron-icon without an iconset, you can set the src to be
+	 * the URL of an individual icon image file. Note that this will take
+	 * precedence over a given icon attribute.
+	 */
+	public IronIcon src(String src) {
+		getNode().setSrc(src);
+		return this;
+	}
 }

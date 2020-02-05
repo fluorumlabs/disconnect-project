@@ -7,23 +7,23 @@ import js.web.dom.Element;
 import org.teavm.jso.JSProperty;
 
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ColumnReorderingMixin",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-column-reordering-mixin.js"
+		symbols = "ColumnReorderingMixin",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-column-reordering-mixin.js"
 )
 public interface ColumnReorderingMixin extends Element {
-    /**
-     * Set to true to allow column reordering.
-     */
-    @JSProperty
-    boolean isColumnReorderingAllowed();
+	/**
+	 * Set to true to allow column reordering.
+	 */
+	@JSProperty
+	boolean isColumnReorderingAllowed();
 
-    /**
-     * Set to true to allow column reordering.
-     */
-    @JSProperty
-    void setColumnReorderingAllowed(boolean columnReorderingAllowed);
+	/**
+	 * Set to true to allow column reordering.
+	 */
+	@JSProperty
+	void setColumnReorderingAllowed(boolean columnReorderingAllowed);
 }

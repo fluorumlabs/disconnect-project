@@ -227,93 +227,93 @@ import js.web.dom.Element;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinGrid<ITEM extends Any> extends AbstractComponent<GridElement<ITEM>>
-        implements HasThemableMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasA11yMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasActiveItemMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasArrayDataProviderMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasColumnResizingMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasDataProviderMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasDynamicColumnsMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasFilterMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasRowDetailsMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasScrollMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasSelectionMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasSortMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasKeyboardNavigationMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasColumnReorderingMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasEventContextMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasStylingMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasDragAndDropMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
-        HasSlottedComponents<GridElement<ITEM>, VaadinGrid<ITEM>, Component<? extends Element>> {
-    public VaadinGrid() {
-        super("vaadin-grid");
-    }
+		implements HasThemableMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasA11yMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasActiveItemMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasArrayDataProviderMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasColumnResizingMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasDataProviderMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasDynamicColumnsMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasFilterMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasRowDetailsMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasScrollMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasSelectionMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasSortMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasKeyboardNavigationMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasColumnReorderingMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasEventContextMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasStylingMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasDragAndDropMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
+		HasSlottedComponents<GridElement<ITEM>, VaadinGrid<ITEM>, Component<? extends Element>> {
+	public VaadinGrid() {
+		super("vaadin-grid");
+	}
 
-    /**
-     * If true, the grid's height is defined by the number of its rows.
-     */
-    public boolean heightByRows() {
-        return getNode().isHeightByRows();
-    }
+	/**
+	 * If true, the grid's height is defined by the number of its rows.
+	 */
+	public boolean heightByRows() {
+		return getNode().isHeightByRows();
+	}
 
-    /**
-     * If true, the grid's height is defined by the number of its rows.
-     */
-    public VaadinGrid<ITEM> heightByRows(boolean heightByRows) {
-        getNode().setHeightByRows(heightByRows);
-        return this;
-    }
+	/**
+	 * If true, the grid's height is defined by the number of its rows.
+	 */
+	public VaadinGrid<ITEM> heightByRows(boolean heightByRows) {
+		getNode().setHeightByRows(heightByRows);
+		return this;
+	}
 
-    /**
-     * Updates the `width` of all columns which have `autoWidth` set to `true`.
-     */
-    public void recalculateColumnWidths() {
-        getNode().recalculateColumnWidths();
-    }
+	/**
+	 * Updates the `width` of all columns which have `autoWidth` set to `true`.
+	 */
+	public void recalculateColumnWidths() {
+		getNode().recalculateColumnWidths();
+	}
 
-    /**
-     * Manually invoke existing renderers for all the columns
-     * (header, footer and body cells) and opened row details.
-     */
-    public void render() {
-        getNode().render();
-    }
+	/**
+	 * Manually invoke existing renderers for all the columns
+	 * (header, footer and body cells) and opened row details.
+	 */
+	public void render() {
+		getNode().render();
+	}
 
-    /**
-     * Updates the computed metrics and positioning of internal grid parts
-     * (row/details cell positioning etc). Needs to be invoked whenever the sizing of grid
-     * content changes asynchronously to ensure consistent appearance (e.g. when a
-     * contained image whose bounds aren't known beforehand finishes loading).
-     */
-    public void notifyResize() {
-        getNode().notifyResize();
-    }
+	/**
+	 * Updates the computed metrics and positioning of internal grid parts
+	 * (row/details cell positioning etc). Needs to be invoked whenever the sizing of grid
+	 * content changes asynchronously to ensure consistent appearance (e.g. when a
+	 * contained image whose bounds aren't known beforehand finishes loading).
+	 */
+	public void notifyResize() {
+		getNode().notifyResize();
+	}
 
-    public VaadinGrid<ITEM> setNodistribute(Component<? extends Element> component) {
-        return replaceSlotted("nodistribute", component);
-    }
+	public VaadinGrid<ITEM> setNodistribute(Component<? extends Element> component) {
+		return replaceSlotted("nodistribute", component);
+	}
 
-    public VaadinGrid<ITEM> setNodistribute(Component<? extends Element>... components) {
-        return replaceSlotted("nodistribute", components);
-    }
+	public VaadinGrid<ITEM> setNodistribute(Component<? extends Element>... components) {
+		return replaceSlotted("nodistribute", components);
+	}
 
-    public VaadinGrid<ITEM> addToNodistribute(Component<? extends Element> component) {
-        return addSlotted("nodistribute", component);
-    }
+	public VaadinGrid<ITEM> addToNodistribute(Component<? extends Element> component) {
+		return addSlotted("nodistribute", component);
+	}
 
-    public VaadinGrid<ITEM> addToNodistribute(Component<? extends Element>... components) {
-        return addSlotted("nodistribute", components);
-    }
+	public VaadinGrid<ITEM> addToNodistribute(Component<? extends Element>... components) {
+		return addSlotted("nodistribute", components);
+	}
 
-    public VaadinGrid<ITEM> insertToNodistribute(Component<? extends Element> component) {
-        return insertSlotted("nodistribute", component);
-    }
+	public VaadinGrid<ITEM> insertToNodistribute(Component<? extends Element> component) {
+		return insertSlotted("nodistribute", component);
+	}
 
-    public VaadinGrid<ITEM> insertToNodistribute(Component<? extends Element>... components) {
-        return insertSlotted("nodistribute", components);
-    }
+	public VaadinGrid<ITEM> insertToNodistribute(Component<? extends Element>... components) {
+		return insertSlotted("nodistribute", components);
+	}
 
-    public VaadinGrid<ITEM> clearNodistribute() {
-        return removeAllSlotted("nodistribute");
-    }
+	public VaadinGrid<ITEM> clearNodistribute() {
+		return removeAllSlotted("nodistribute");
+	}
 }

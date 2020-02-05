@@ -11,45 +11,45 @@ import org.teavm.jso.JSProperty;
  * Created by Artem Godin on 2/3/2020.
  */
 public interface TemplatizeOptions extends Any {
-    @JSProperty
-    Record<Unknown> getInstanceProps();
+	@JSProperty
+	Record<Unknown> getInstanceProps();
 
-    @JSProperty
-    void setInstanceProps(Record<Unknown> instanceProps);
+	@JSProperty
+	void setInstanceProps(Record<Unknown> instanceProps);
 
-    @JSProperty
-    boolean getMutableData();
+	@JSProperty
+	boolean getMutableData();
 
-    @JSProperty
-    void setMutableData(boolean mutableData);
+	@JSProperty
+	void setMutableData(boolean mutableData);
 
-    @JSProperty
-    boolean getParentModel();
+	@JSProperty
+	boolean getParentModel();
 
-    @JSProperty
-    void setParentModel(boolean parentModel);
+	@JSProperty
+	void setParentModel(boolean parentModel);
 
-    @JSProperty
-    HostPropForwarder getForwardHostProp();
+	@JSProperty
+	HostPropForwarder getForwardHostProp();
 
-    @JSProperty
-    void setForwardHostProp(HostPropForwarder forwardHostProp);
+	@JSProperty
+	void setForwardHostProp(HostPropForwarder forwardHostProp);
 
-    @JSProperty
-    InstancePropNotifier getNotifyInstanceProp();
+	@JSProperty
+	InstancePropNotifier getNotifyInstanceProp();
 
-    @JSProperty
-    void setNotifyInstanceProp(InstancePropNotifier notifyInstanceProp);
+	@JSProperty
+	void setNotifyInstanceProp(InstancePropNotifier notifyInstanceProp);
 
-    @JSFunctor
-    @FunctionalInterface
-    interface HostPropForwarder extends Any {
-        void forwardHostProp(String property, Any value);
-    }
+	@JSFunctor
+	@FunctionalInterface
+	interface HostPropForwarder extends Any {
+		void forwardHostProp(String property, Any value);
+	}
 
-    @JSFunctor
-    @FunctionalInterface
-    interface InstancePropNotifier extends Any {
-        void notifyInstanceProp(TemplateInstanceBase instance, String property, Any value);
-    }
+	@JSFunctor
+	@FunctionalInterface
+	interface InstancePropNotifier extends Any {
+		void notifyInstanceProp(TemplateInstanceBase instance, String property, Any value);
+	}
 }

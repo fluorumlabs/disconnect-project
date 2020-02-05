@@ -45,148 +45,148 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinRadioGroup extends AbstractComponent<RadioGroupElement>
-        implements HasThemableMixin<RadioGroupElement, VaadinRadioGroup>,
-        HasComponents<RadioGroupElement, VaadinRadioGroup, Component<?>> {
-    public VaadinRadioGroup() {
-        super("vaadin-radio-group");
-    }
+		implements HasThemableMixin<RadioGroupElement, VaadinRadioGroup>,
+		HasComponents<RadioGroupElement, VaadinRadioGroup, Component<?>> {
+	public VaadinRadioGroup() {
+		super("vaadin-radio-group");
+	}
 
-    /**
-     * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
-     */
-    public boolean disabled() {
-        return getNode().isDisabled();
-    }
+	/**
+	 * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
+	 */
+	public boolean disabled() {
+		return getNode().isDisabled();
+	}
 
-    /**
-     * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
-     */
-    public VaadinRadioGroup disabled(boolean disabled) {
-        getNode().setDisabled(disabled);
-        return this;
-    }
+	/**
+	 * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
+	 */
+	public VaadinRadioGroup disabled(boolean disabled) {
+		getNode().setDisabled(disabled);
+		return this;
+	}
 
-    /**
-     * This attribute indicates that the user cannot modify the value of the control.
-     */
-    public boolean readonly() {
-        return getNode().isReadonly();
-    }
+	/**
+	 * This attribute indicates that the user cannot modify the value of the control.
+	 */
+	public boolean readonly() {
+		return getNode().isReadonly();
+	}
 
-    /**
-     * This attribute indicates that the user cannot modify the value of the control.
-     */
-    public VaadinRadioGroup readonly(boolean readonly) {
-        getNode().setReadonly(readonly);
-        return this;
-    }
+	/**
+	 * This attribute indicates that the user cannot modify the value of the control.
+	 */
+	public VaadinRadioGroup readonly(boolean readonly) {
+		getNode().setReadonly(readonly);
+		return this;
+	}
 
-    /**
-     * This property is set to true when the value is invalid.
-     */
-    public boolean invalid() {
-        return getNode().isInvalid();
-    }
+	/**
+	 * This property is set to true when the value is invalid.
+	 */
+	public boolean invalid() {
+		return getNode().isInvalid();
+	}
 
-    /**
-     * This property is set to true when the value is invalid.
-     */
-    public VaadinRadioGroup invalid(boolean invalid) {
-        getNode().setInvalid(invalid);
-        return this;
-    }
+	/**
+	 * This property is set to true when the value is invalid.
+	 */
+	public VaadinRadioGroup invalid(boolean invalid) {
+		getNode().setInvalid(invalid);
+		return this;
+	}
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    public boolean required() {
-        return getNode().isRequired();
-    }
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	public boolean required() {
+		return getNode().isRequired();
+	}
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    public VaadinRadioGroup required(boolean required) {
-        getNode().setRequired(required);
-        return this;
-    }
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	public VaadinRadioGroup required(boolean required) {
+		getNode().setRequired(required);
+		return this;
+	}
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    @Nullable
-    public String errorMessage() {
-        return getNode().getErrorMessage();
-    }
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	@Nullable
+	public String errorMessage() {
+		return getNode().getErrorMessage();
+	}
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    public VaadinRadioGroup errorMessage(String errorMessage) {
-        getNode().setErrorMessage(errorMessage);
-        return this;
-    }
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	public VaadinRadioGroup errorMessage(String errorMessage) {
+		getNode().setErrorMessage(errorMessage);
+		return this;
+	}
 
-    /**
-     * String used for the label element.
-     */
-    @Nullable
-    public String label() {
-        return getNode().getLabel();
-    }
+	/**
+	 * String used for the label element.
+	 */
+	@Nullable
+	public String label() {
+		return getNode().getLabel();
+	}
 
-    /**
-     * String used for the label element.
-     */
-    public VaadinRadioGroup label(String label) {
-        getNode().setLabel(label);
-        return this;
-    }
+	/**
+	 * String used for the label element.
+	 */
+	public VaadinRadioGroup label(String label) {
+		getNode().setLabel(label);
+		return this;
+	}
 
-    /**
-     * Value of the radio group.
-     */
-    @Nullable
-    public String value() {
-        return getNode().getValue();
-    }
+	/**
+	 * Value of the radio group.
+	 */
+	@Nullable
+	public String value() {
+		return getNode().getValue();
+	}
 
-    /**
-     * Value of the radio group.
-     */
-    public VaadinRadioGroup value(String value) {
-        getNode().setValue(value);
-        return this;
-    }
+	/**
+	 * Value of the radio group.
+	 */
+	public VaadinRadioGroup value(String value) {
+		getNode().setValue(value);
+		return this;
+	}
 
-    /**
-     * Returns true if `value` is valid.
-     * `<iron-form>` uses this to check the validity or all its elements.
-     *
-     * @return True if the value is valid.
-     */
-    public boolean validate() {
-        return getNode().validate();
-    }
+	/**
+	 * Returns true if `value` is valid.
+	 * `<iron-form>` uses this to check the validity or all its elements.
+	 *
+	 * @return True if the value is valid.
+	 */
+	public boolean validate() {
+		return getNode().validate();
+	}
 
-    /**
-     * Returns true if the current input value satisfies all constraints (if any)
-     */
-    public boolean checkValidity() {
-        return getNode().checkValidity();
-    }
+	/**
+	 * Returns true if the current input value satisfies all constraints (if any)
+	 */
+	public boolean checkValidity() {
+		return getNode().checkValidity();
+	}
 
-    /**
-     * Fired when the `invalid` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
-        return createEvent("invalid-changed");
-    }
+	/**
+	 * Fired when the `invalid` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
+		return createEvent("invalid-changed");
+	}
 
-    /**
-     * Fired when the `value` property changes.
-     */
-    public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
-        return createEvent("value-changed");
-    }
+	/**
+	 * Fired when the `value` property changes.
+	 */
+	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
+		return createEvent("value-changed");
+	}
 }

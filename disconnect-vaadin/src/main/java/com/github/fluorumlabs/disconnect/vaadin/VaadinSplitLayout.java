@@ -157,97 +157,97 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinSplitLayout extends AbstractComponent<SplitLayoutElement>
-        implements HasThemableMixin<SplitLayoutElement, VaadinSplitLayout>,
-        HasGestureEventListeners<SplitLayoutElement, VaadinSplitLayout>,
-        HasSlottedComponents<SplitLayoutElement, VaadinSplitLayout, Component<? extends Element>> {
-    public VaadinSplitLayout() {
-        super("vaadin-split-layout");
-    }
+		implements HasThemableMixin<SplitLayoutElement, VaadinSplitLayout>,
+		HasGestureEventListeners<SplitLayoutElement, VaadinSplitLayout>,
+		HasSlottedComponents<SplitLayoutElement, VaadinSplitLayout, Component<? extends Element>> {
+	public VaadinSplitLayout() {
+		super("vaadin-split-layout");
+	}
 
-    /**
-     * The split layout's orientation. Possible values are: `horizontal|vertical`.
-     */
-    @Nullable
-    public Orientation orientation() {
-        return getNode().getOrientation();
-    }
+	/**
+	 * The split layout's orientation. Possible values are: `horizontal|vertical`.
+	 */
+	@Nullable
+	public Orientation orientation() {
+		return getNode().getOrientation();
+	}
 
-    /**
-     * The split layout's orientation. Possible values are: `horizontal|vertical`.
-     */
-    public VaadinSplitLayout orientation(Orientation orientation) {
-        getNode().setOrientation(orientation);
-        return this;
-    }
+	/**
+	 * The split layout's orientation. Possible values are: `horizontal|vertical`.
+	 */
+	public VaadinSplitLayout orientation(Orientation orientation) {
+		getNode().setOrientation(orientation);
+		return this;
+	}
 
-    /**
-     * Fired when the splitter is dragged. Non-bubbling. Fired for the splitter
-     * element and any nested elements with `IronResizableBehavior`.
-     */
-    public ObservableEvent<Event> ironResizeEvent() {
-        return createEvent("iron-resize");
-    }
+	/**
+	 * Fired when the splitter is dragged. Non-bubbling. Fired for the splitter
+	 * element and any nested elements with `IronResizableBehavior`.
+	 */
+	public ObservableEvent<Event> ironResizeEvent() {
+		return createEvent("iron-resize");
+	}
 
-    /**
-     * Fired after dragging the splitter have ended.
-     */
-    public ObservableEvent<Event> splitterDragendEvent() {
-        return createEvent("splitter-dragend");
-    }
+	/**
+	 * Fired after dragging the splitter have ended.
+	 */
+	public ObservableEvent<Event> splitterDragendEvent() {
+		return createEvent("splitter-dragend");
+	}
 
-    public VaadinSplitLayout setPrimary(Component<? extends Element> component) {
-        return replaceSlotted("primary", component);
-    }
+	public VaadinSplitLayout setPrimary(Component<? extends Element> component) {
+		return replaceSlotted("primary", component);
+	}
 
-    public VaadinSplitLayout setPrimary(Component<? extends Element>... components) {
-        return replaceSlotted("primary", components);
-    }
+	public VaadinSplitLayout setPrimary(Component<? extends Element>... components) {
+		return replaceSlotted("primary", components);
+	}
 
-    public VaadinSplitLayout addToPrimary(Component<? extends Element> component) {
-        return addSlotted("primary", component);
-    }
+	public VaadinSplitLayout addToPrimary(Component<? extends Element> component) {
+		return addSlotted("primary", component);
+	}
 
-    public VaadinSplitLayout addToPrimary(Component<? extends Element>... components) {
-        return addSlotted("primary", components);
-    }
+	public VaadinSplitLayout addToPrimary(Component<? extends Element>... components) {
+		return addSlotted("primary", components);
+	}
 
-    public VaadinSplitLayout insertToPrimary(Component<? extends Element> component) {
-        return insertSlotted("primary", component);
-    }
+	public VaadinSplitLayout insertToPrimary(Component<? extends Element> component) {
+		return insertSlotted("primary", component);
+	}
 
-    public VaadinSplitLayout insertToPrimary(Component<? extends Element>... components) {
-        return insertSlotted("primary", components);
-    }
+	public VaadinSplitLayout insertToPrimary(Component<? extends Element>... components) {
+		return insertSlotted("primary", components);
+	}
 
-    public VaadinSplitLayout clearPrimary() {
-        return removeAllSlotted("primary");
-    }
+	public VaadinSplitLayout clearPrimary() {
+		return removeAllSlotted("primary");
+	}
 
-    public VaadinSplitLayout setSecondary(Component<? extends Element> component) {
-        return replaceSlotted("secondary", component);
-    }
+	public VaadinSplitLayout setSecondary(Component<? extends Element> component) {
+		return replaceSlotted("secondary", component);
+	}
 
-    public VaadinSplitLayout setSecondary(Component<? extends Element>... components) {
-        return replaceSlotted("secondary", components);
-    }
+	public VaadinSplitLayout setSecondary(Component<? extends Element>... components) {
+		return replaceSlotted("secondary", components);
+	}
 
-    public VaadinSplitLayout addToSecondary(Component<? extends Element> component) {
-        return addSlotted("secondary", component);
-    }
+	public VaadinSplitLayout addToSecondary(Component<? extends Element> component) {
+		return addSlotted("secondary", component);
+	}
 
-    public VaadinSplitLayout addToSecondary(Component<? extends Element>... components) {
-        return addSlotted("secondary", components);
-    }
+	public VaadinSplitLayout addToSecondary(Component<? extends Element>... components) {
+		return addSlotted("secondary", components);
+	}
 
-    public VaadinSplitLayout insertToSecondary(Component<? extends Element> component) {
-        return insertSlotted("secondary", component);
-    }
+	public VaadinSplitLayout insertToSecondary(Component<? extends Element> component) {
+		return insertSlotted("secondary", component);
+	}
 
-    public VaadinSplitLayout insertToSecondary(Component<? extends Element>... components) {
-        return insertSlotted("secondary", components);
-    }
+	public VaadinSplitLayout insertToSecondary(Component<? extends Element>... components) {
+		return insertSlotted("secondary", components);
+	}
 
-    public VaadinSplitLayout clearSecondary() {
-        return removeAllSlotted("secondary");
-    }
+	public VaadinSplitLayout clearSecondary() {
+		return removeAllSlotted("secondary");
+	}
 }

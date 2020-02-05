@@ -46,151 +46,151 @@ import javax.annotation.Nullable;
  * See examples of setting custom buttons into slots in the live demos.
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ConfirmDialogElement",
-        module = "@vaadin/vaadin-confirm-dialog/src/vaadin-confirm-dialog.js"
+		symbols = "ConfirmDialogElement",
+		module = "@vaadin/vaadin-confirm-dialog/src/vaadin-confirm-dialog.js"
 )
 public interface ConfirmDialogElement extends HTMLElement, ElementMixin, ThemableMixin {
-    /**
-     * True if the overlay is currently displayed.
-     */
-    @JSProperty
-    boolean isOpened();
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	@JSProperty
+	boolean isOpened();
 
-    /**
-     * True if the overlay is currently displayed.
-     */
-    @JSProperty
-    void setOpened(boolean opened);
+	/**
+	 * True if the overlay is currently displayed.
+	 */
+	@JSProperty
+	void setOpened(boolean opened);
 
-    /**
-     * Set the confirmation dialog title.
-     */
-    @Nullable
-    @JSProperty
-    String getHeader();
+	/**
+	 * Set the confirmation dialog title.
+	 */
+	@Nullable
+	@JSProperty
+	String getHeader();
 
-    /**
-     * Set the confirmation dialog title.
-     */
-    @JSProperty
-    void setHeader(String header);
+	/**
+	 * Set the confirmation dialog title.
+	 */
+	@JSProperty
+	void setHeader(String header);
 
-    /**
-     * Set the message or confirmation question.
-     */
-    @Nullable
-    @JSProperty
-    String getMessage();
+	/**
+	 * Set the message or confirmation question.
+	 */
+	@Nullable
+	@JSProperty
+	String getMessage();
 
-    /**
-     * Set the message or confirmation question.
-     */
-    @JSProperty
-    void setMessage(String message);
+	/**
+	 * Set the message or confirmation question.
+	 */
+	@JSProperty
+	void setMessage(String message);
 
-    /**
-     * Text displayed on confirm-button.
-     */
-    @Nullable
-    @JSProperty
-    String getConfirmText();
+	/**
+	 * Text displayed on confirm-button.
+	 */
+	@Nullable
+	@JSProperty
+	String getConfirmText();
 
-    /**
-     * Text displayed on confirm-button.
-     */
-    @JSProperty
-    void setConfirmText(String confirmText);
+	/**
+	 * Text displayed on confirm-button.
+	 */
+	@JSProperty
+	void setConfirmText(String confirmText);
 
-    /**
-     * Theme for a confirm-button.
-     */
-    @Nullable
-    @JSProperty
-    String getConfirmTheme();
+	/**
+	 * Theme for a confirm-button.
+	 */
+	@Nullable
+	@JSProperty
+	String getConfirmTheme();
 
-    /**
-     * Theme for a confirm-button.
-     */
-    @JSProperty
-    void setConfirmTheme(String confirmTheme);
+	/**
+	 * Theme for a confirm-button.
+	 */
+	@JSProperty
+	void setConfirmTheme(String confirmTheme);
 
-    /**
-     * Whether to show cancel button or not.
-     */
-    @JSProperty
-    boolean isReject();
+	/**
+	 * Whether to show cancel button or not.
+	 */
+	@JSProperty
+	boolean isReject();
 
-    /**
-     * Whether to show cancel button or not.
-     */
-    @JSProperty
-    void setReject(boolean reject);
+	/**
+	 * Whether to show cancel button or not.
+	 */
+	@JSProperty
+	void setReject(boolean reject);
 
-    /**
-     * Text displayed on reject-button.
-     */
-    @Nullable
-    @JSProperty
-    String getRejectText();
+	/**
+	 * Text displayed on reject-button.
+	 */
+	@Nullable
+	@JSProperty
+	String getRejectText();
 
-    /**
-     * Text displayed on reject-button.
-     */
-    @JSProperty
-    void setRejectText(String rejectText);
+	/**
+	 * Text displayed on reject-button.
+	 */
+	@JSProperty
+	void setRejectText(String rejectText);
 
-    /**
-     * Theme for a reject-button.
-     */
-    @Nullable
-    @JSProperty
-    String getRejectTheme();
+	/**
+	 * Theme for a reject-button.
+	 */
+	@Nullable
+	@JSProperty
+	String getRejectTheme();
 
-    /**
-     * Theme for a reject-button.
-     */
-    @JSProperty
-    void setRejectTheme(String rejectTheme);
+	/**
+	 * Theme for a reject-button.
+	 */
+	@JSProperty
+	void setRejectTheme(String rejectTheme);
 
-    /**
-     * Whether to show cancel button or not.
-     */
-    @JSProperty
-    boolean isCancel();
+	/**
+	 * Whether to show cancel button or not.
+	 */
+	@JSProperty
+	boolean isCancel();
 
-    /**
-     * Whether to show cancel button or not.
-     */
-    @JSProperty
-    void setCancel(boolean cancel);
+	/**
+	 * Whether to show cancel button or not.
+	 */
+	@JSProperty
+	void setCancel(boolean cancel);
 
-    /**
-     * Text displayed on cancel-button.
-     */
-    @Nullable
-    @JSProperty
-    String getCancelText();
+	/**
+	 * Text displayed on cancel-button.
+	 */
+	@Nullable
+	@JSProperty
+	String getCancelText();
 
-    /**
-     * Text displayed on cancel-button.
-     */
-    @JSProperty
-    void setCancelText(String cancelText);
+	/**
+	 * Text displayed on cancel-button.
+	 */
+	@JSProperty
+	void setCancelText(String cancelText);
 
-    /**
-     * Theme for a cancel-button.
-     */
-    @Nullable
-    @JSProperty
-    String getCancelTheme();
+	/**
+	 * Theme for a cancel-button.
+	 */
+	@Nullable
+	@JSProperty
+	String getCancelTheme();
 
-    /**
-     * Theme for a cancel-button.
-     */
-    @JSProperty
-    void setCancelTheme(String cancelTheme);
+	/**
+	 * Theme for a cancel-button.
+	 */
+	@JSProperty
+	void setCancelTheme(String cancelTheme);
 }

@@ -19,12 +19,12 @@ import js.lang.Any;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridFilterColumnElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-filter-column.js"
+		symbols = "GridFilterColumnElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-filter-column.js"
 )
 public interface GridFilterColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
 }

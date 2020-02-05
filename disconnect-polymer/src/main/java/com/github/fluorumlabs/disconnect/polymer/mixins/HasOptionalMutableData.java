@@ -39,22 +39,22 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * API.
  */
 public interface HasOptionalMutableData<E extends OptionalMutableData, T extends Component<E>> extends Component<E> {
-    /**
-     * Instance-level flag for configuring the dirty-checking strategy
-     * for this element.  When true, Objects and Arrays will skip dirty
-     * checking, otherwise strict equality checking will be used.
-     */
-    default boolean mutableData() {
-        return getNode().isMutableData();
-    }
+	/**
+	 * Instance-level flag for configuring the dirty-checking strategy
+	 * for this element.  When true, Objects and Arrays will skip dirty
+	 * checking, otherwise strict equality checking will be used.
+	 */
+	default boolean mutableData() {
+		return getNode().isMutableData();
+	}
 
-    /**
-     * Instance-level flag for configuring the dirty-checking strategy
-     * for this element.  When true, Objects and Arrays will skip dirty
-     * checking, otherwise strict equality checking will be used.
-     */
-    default T mutableData(boolean mutableData) {
-        getNode().setMutableData(mutableData);
-        return (T) this;
-    }
+	/**
+	 * Instance-level flag for configuring the dirty-checking strategy
+	 * for this element.  When true, Objects and Arrays will skip dirty
+	 * checking, otherwise strict equality checking will be used.
+	 */
+	default T mutableData(boolean mutableData) {
+		getNode().setMutableData(mutableData);
+		return (T) this;
+	}
 }

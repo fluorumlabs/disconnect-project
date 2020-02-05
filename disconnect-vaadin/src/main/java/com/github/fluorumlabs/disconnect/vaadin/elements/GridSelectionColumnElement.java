@@ -29,35 +29,35 @@ import org.teavm.jso.JSProperty;
  * __The default content can also be overridden__
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridSelectionColumnElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-selection-column.js"
+		symbols = "GridSelectionColumnElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-selection-column.js"
 )
 public interface GridSelectionColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
-    /**
-     * When true, all the items are selected.
-     */
-    @JSProperty
-    boolean isSelectAll();
+	/**
+	 * When true, all the items are selected.
+	 */
+	@JSProperty
+	boolean isSelectAll();
 
-    /**
-     * When true, all the items are selected.
-     */
-    @JSProperty
-    void setSelectAll(boolean selectAll);
+	/**
+	 * When true, all the items are selected.
+	 */
+	@JSProperty
+	void setSelectAll(boolean selectAll);
 
-    /**
-     * When true, the active gets automatically selected.
-     */
-    @JSProperty
-    boolean isAutoSelect();
+	/**
+	 * When true, the active gets automatically selected.
+	 */
+	@JSProperty
+	boolean isAutoSelect();
 
-    /**
-     * When true, the active gets automatically selected.
-     */
-    @JSProperty
-    void setAutoSelect(boolean autoSelect);
+	/**
+	 * When true, the active gets automatically selected.
+	 */
+	@JSProperty
+	void setAutoSelect(boolean autoSelect);
 }

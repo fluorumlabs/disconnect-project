@@ -111,37 +111,37 @@ import js.web.dom.Element;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinFormItem extends AbstractComponent<FormItemElement>
-        implements HasThemableMixin<FormItemElement, VaadinFormItem>,
-        HasSlottedComponents<FormItemElement, VaadinFormItem, Component<? extends Element>> {
-    public VaadinFormItem() {
-        super("vaadin-form-item");
-    }
+		implements HasThemableMixin<FormItemElement, VaadinFormItem>,
+		HasSlottedComponents<FormItemElement, VaadinFormItem, Component<? extends Element>> {
+	public VaadinFormItem() {
+		super("vaadin-form-item");
+	}
 
-    public VaadinFormItem setLabel(Component<? extends Element> component) {
-        return replaceSlotted("label", component);
-    }
+	public VaadinFormItem setLabel(Component<? extends Element> component) {
+		return replaceSlotted("label", component);
+	}
 
-    public VaadinFormItem setLabel(Component<? extends Element>... components) {
-        return replaceSlotted("label", components);
-    }
+	public VaadinFormItem setLabel(Component<? extends Element>... components) {
+		return replaceSlotted("label", components);
+	}
 
-    public VaadinFormItem addToLabel(Component<? extends Element> component) {
-        return addSlotted("label", component);
-    }
+	public VaadinFormItem addToLabel(Component<? extends Element> component) {
+		return addSlotted("label", component);
+	}
 
-    public VaadinFormItem addToLabel(Component<? extends Element>... components) {
-        return addSlotted("label", components);
-    }
+	public VaadinFormItem addToLabel(Component<? extends Element>... components) {
+		return addSlotted("label", components);
+	}
 
-    public VaadinFormItem insertToLabel(Component<? extends Element> component) {
-        return insertSlotted("label", component);
-    }
+	public VaadinFormItem insertToLabel(Component<? extends Element> component) {
+		return insertSlotted("label", component);
+	}
 
-    public VaadinFormItem insertToLabel(Component<? extends Element>... components) {
-        return insertSlotted("label", components);
-    }
+	public VaadinFormItem insertToLabel(Component<? extends Element>... components) {
+		return insertSlotted("label", components);
+	}
 
-    public VaadinFormItem clearLabel() {
-        return removeAllSlotted("label");
-    }
+	public VaadinFormItem clearLabel() {
+		return removeAllSlotted("label");
+	}
 }

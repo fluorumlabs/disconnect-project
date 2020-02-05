@@ -43,12 +43,12 @@ import js.web.dom.HTMLElement;
  * `active` | Set when mousedown or enter/spacebar pressed | :host
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ItemElement",
-        module = "@vaadin/vaadin-item/src/vaadin-item.js"
+		symbols = "ItemElement",
+		module = "@vaadin/vaadin-item/src/vaadin-item.js"
 )
 public interface ItemElement extends HTMLElement, ItemMixin, ThemableMixin {
 }

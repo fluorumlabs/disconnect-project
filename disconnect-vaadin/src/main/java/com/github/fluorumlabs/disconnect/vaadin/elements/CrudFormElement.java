@@ -19,24 +19,24 @@ import javax.annotation.Nullable;
  * .FormLayoutElement)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "CrudFormElement",
-        module = "@vaadin/vaadin-crud/src/vaadin-crud-form.js"
+		symbols = "CrudFormElement",
+		module = "@vaadin/vaadin-crud/src/vaadin-crud-form.js"
 )
 public interface CrudFormElement<ITEM extends Any> extends HTMLElement, IncludedMixin {
-    /**
-     * The item being edited.
-     */
-    @Nullable
-    @JSProperty
-    ITEM getItem();
+	/**
+	 * The item being edited.
+	 */
+	@Nullable
+	@JSProperty
+	ITEM getItem();
 
-    /**
-     * The item being edited.
-     */
-    @JSProperty
-    void setItem(ITEM item);
+	/**
+	 * The item being edited.
+	 */
+	@JSProperty
+	void setItem(ITEM item);
 }

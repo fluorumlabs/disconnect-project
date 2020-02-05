@@ -13,12 +13,12 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "IntegerFieldElement",
-        module = "@vaadin/vaadin-text-field/src/vaadin-integer-field.js"
+		symbols = "IntegerFieldElement",
+		module = "@vaadin/vaadin-text-field/src/vaadin-integer-field.js"
 )
 public interface IntegerFieldElement extends NumberFieldElement {
 }

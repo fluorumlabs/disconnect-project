@@ -23,51 +23,51 @@ import javax.annotation.Nullable;
  * ```
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "IronMediaQuery",
-        module = "@polymer/iron-media-query/iron-media-query.js"
+		symbols = "IronMediaQuery",
+		module = "@polymer/iron-media-query/iron-media-query.js"
 )
 public interface IronMediaQueryElement extends HTMLElement {
-    /**
-     * The Boolean return value of the media query.
-     */
-    @JSProperty
-    boolean isQueryMatches();
+	/**
+	 * The Boolean return value of the media query.
+	 */
+	@JSProperty
+	boolean isQueryMatches();
 
-    /**
-     * The CSS media query to evaluate.
-     */
-    @Nullable
-    @JSProperty
-    String getQuery();
+	/**
+	 * The CSS media query to evaluate.
+	 */
+	@Nullable
+	@JSProperty
+	String getQuery();
 
-    /**
-     * The CSS media query to evaluate.
-     */
-    @JSProperty
-    void setQuery(String query);
+	/**
+	 * The CSS media query to evaluate.
+	 */
+	@JSProperty
+	void setQuery(String query);
 
-    /**
-     * If true, the query attribute is assumed to be a complete media query
-     * string rather than a single media feature.
-     */
-    @JSProperty
-    boolean isFull();
+	/**
+	 * If true, the query attribute is assumed to be a complete media query
+	 * string rather than a single media feature.
+	 */
+	@JSProperty
+	boolean isFull();
 
-    /**
-     * If true, the query attribute is assumed to be a complete media query
-     * string rather than a single media feature.
-     */
-    @JSProperty
-    void setFull(boolean full);
+	/**
+	 * If true, the query attribute is assumed to be a complete media query
+	 * string rather than a single media feature.
+	 */
+	@JSProperty
+	void setFull(boolean full);
 
-    void queryChanged();
+	void queryChanged();
 
-    /**
-     *
-     */
-    void queryHandler(MediaQueryList mq);
+	/**
+	 *
+	 */
+	void queryHandler(MediaQueryList mq);
 }

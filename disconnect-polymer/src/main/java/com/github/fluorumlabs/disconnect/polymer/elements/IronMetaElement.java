@@ -44,74 +44,74 @@ import org.teavm.jso.JSProperty;
  * this.$.meta.byKey('info');
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "IronMeta",
-        module = "@polymer/iron-meta/iron-meta.js"
+		symbols = "IronMeta",
+		module = "@polymer/iron-meta/iron-meta.js"
 )
 public interface IronMetaElement<ITEM extends Any> extends HTMLElement {
-    /**
-     * The type of meta-data.  All meta-data of the same type is stored
-     * together.
-     */
-    @JSProperty
-    String getType();
+	/**
+	 * The type of meta-data.  All meta-data of the same type is stored
+	 * together.
+	 */
+	@JSProperty
+	String getType();
 
-    /**
-     * The type of meta-data.  All meta-data of the same type is stored
-     * together.
-     */
-    @JSProperty
-    void setType(String type);
+	/**
+	 * The type of meta-data.  All meta-data of the same type is stored
+	 * together.
+	 */
+	@JSProperty
+	void setType(String type);
 
-    /**
-     * The key used to store `value` under the `type` namespace.
-     */
-    @JSProperty
-    String getKey();
+	/**
+	 * The key used to store `value` under the `type` namespace.
+	 */
+	@JSProperty
+	String getKey();
 
-    /**
-     * The key used to store `value` under the `type` namespace.
-     */
-    @JSProperty
-    void setKey(String key);
+	/**
+	 * The key used to store `value` under the `type` namespace.
+	 */
+	@JSProperty
+	void setKey(String key);
 
-    /**
-     * The meta-data to store or retrieve.
-     */
-    @JSProperty
-    ITEM getValue();
+	/**
+	 * The meta-data to store or retrieve.
+	 */
+	@JSProperty
+	ITEM getValue();
 
-    /**
-     * The meta-data to store or retrieve.
-     */
-    @JSProperty
-    void setValue(ITEM value);
+	/**
+	 * The meta-data to store or retrieve.
+	 */
+	@JSProperty
+	void setValue(ITEM value);
 
-    /**
-     * If true, `value` is set to the iron-meta instance itself.
-     */
-    @JSProperty
-    boolean isSelf();
+	/**
+	 * If true, `value` is set to the iron-meta instance itself.
+	 */
+	@JSProperty
+	boolean isSelf();
 
-    /**
-     * If true, `value` is set to the iron-meta instance itself.
-     */
-    @JSProperty
-    void setSelf(boolean self);
+	/**
+	 * If true, `value` is set to the iron-meta instance itself.
+	 */
+	@JSProperty
+	void setSelf(boolean self);
 
-    /**
-     *
-     */
-    @JSProperty
-    Array<ITEM> getList();
+	/**
+	 *
+	 */
+	@JSProperty
+	Array<ITEM> getList();
 
-    /**
-     * Retrieves meta data value by key.
-     *
-     * @param key The key of the meta-data to be returned.
-     */
-    ITEM byKey(String key);
+	/**
+	 * Retrieves meta data value by key.
+	 *
+	 * @param key The key of the meta-data to be returned.
+	 */
+	ITEM byKey(String key);
 }

@@ -10,31 +10,31 @@ import js.web.dom.CustomEvent;
 import org.teavm.jso.JSProperty;
 
 public interface HasColumnReorderingMixin<ITEM extends Any, E extends ColumnReorderingMixin, T extends Component<E>>
-        extends Component<E> {
-    /**
-     * Set to true to allow column reordering.
-     */
-    default boolean columnReorderingAllowed() {
-        return getNode().isColumnReorderingAllowed();
-    }
+		extends Component<E> {
+	/**
+	 * Set to true to allow column reordering.
+	 */
+	default boolean columnReorderingAllowed() {
+		return getNode().isColumnReorderingAllowed();
+	}
 
-    /**
-     * Set to true to allow column reordering.
-     */
-    default T columnReorderingAllowed(boolean columnReorderingAllowed) {
-        getNode().setColumnReorderingAllowed(columnReorderingAllowed);
-        return (T) this;
-    }
+	/**
+	 * Set to true to allow column reordering.
+	 */
+	default T columnReorderingAllowed(boolean columnReorderingAllowed) {
+		getNode().setColumnReorderingAllowed(columnReorderingAllowed);
+		return (T) this;
+	}
 
-    /**
-     * Fired when the columns in the grid are reordered.
-     */
-    default ObservableEvent<CustomEvent<ColumnReorderDetails<ITEM>>> columnReorderEvent() {
-        return createEvent("column-reorder");
-    }
+	/**
+	 * Fired when the columns in the grid are reordered.
+	 */
+	default ObservableEvent<CustomEvent<ColumnReorderDetails<ITEM>>> columnReorderEvent() {
+		return createEvent("column-reorder");
+	}
 
-    interface ColumnReorderDetails<ITEM extends Any> extends Any {
-        @JSProperty
-        Array<GridColumnElement<ITEM>> getColumns();
-    }
+	interface ColumnReorderDetails<ITEM extends Any> extends Any {
+		@JSProperty
+		Array<GridColumnElement<ITEM>> getColumns();
+	}
 }

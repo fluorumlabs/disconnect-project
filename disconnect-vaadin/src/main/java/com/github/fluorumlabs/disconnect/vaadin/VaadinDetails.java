@@ -45,61 +45,61 @@ import js.web.dom.Element;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinDetails extends AbstractComponent<DetailsElement>
-        implements HasControlStateMixin<DetailsElement, VaadinDetails>,
-        HasElementMixin<DetailsElement, VaadinDetails>,
-        HasThemableMixin<DetailsElement, VaadinDetails>,
-        HasSlottedComponents<DetailsElement, VaadinDetails, Component<? extends Element>> {
-    public VaadinDetails() {
-        super("vaadin-details");
-    }
+		implements HasControlStateMixin<DetailsElement, VaadinDetails>,
+		HasElementMixin<DetailsElement, VaadinDetails>,
+		HasThemableMixin<DetailsElement, VaadinDetails>,
+		HasSlottedComponents<DetailsElement, VaadinDetails, Component<? extends Element>> {
+	public VaadinDetails() {
+		super("vaadin-details");
+	}
 
-    /**
-     * If true, the details content is visible.
-     */
-    public boolean opened() {
-        return getNode().isOpened();
-    }
+	/**
+	 * If true, the details content is visible.
+	 */
+	public boolean opened() {
+		return getNode().isOpened();
+	}
 
-    /**
-     * If true, the details content is visible.
-     */
-    public VaadinDetails opened(boolean opened) {
-        getNode().setOpened(opened);
-        return this;
-    }
+	/**
+	 * If true, the details content is visible.
+	 */
+	public VaadinDetails opened(boolean opened) {
+		getNode().setOpened(opened);
+		return this;
+	}
 
-    /**
-     * Fired when the `opened` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
-        return createEvent("opened-changed");
-    }
+	/**
+	 * Fired when the `opened` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
+		return createEvent("opened-changed");
+	}
 
-    public VaadinDetails setSummary(Component<? extends Element> component) {
-        return replaceSlotted("summary", component);
-    }
+	public VaadinDetails setSummary(Component<? extends Element> component) {
+		return replaceSlotted("summary", component);
+	}
 
-    public VaadinDetails setSummary(Component<? extends Element>... components) {
-        return replaceSlotted("summary", components);
-    }
+	public VaadinDetails setSummary(Component<? extends Element>... components) {
+		return replaceSlotted("summary", components);
+	}
 
-    public VaadinDetails addToSummary(Component<? extends Element> component) {
-        return addSlotted("summary", component);
-    }
+	public VaadinDetails addToSummary(Component<? extends Element> component) {
+		return addSlotted("summary", component);
+	}
 
-    public VaadinDetails addToSummary(Component<? extends Element>... components) {
-        return addSlotted("summary", components);
-    }
+	public VaadinDetails addToSummary(Component<? extends Element>... components) {
+		return addSlotted("summary", components);
+	}
 
-    public VaadinDetails insertToSummary(Component<? extends Element> component) {
-        return insertSlotted("summary", component);
-    }
+	public VaadinDetails insertToSummary(Component<? extends Element> component) {
+		return insertSlotted("summary", component);
+	}
 
-    public VaadinDetails insertToSummary(Component<? extends Element>... components) {
-        return insertSlotted("summary", components);
-    }
+	public VaadinDetails insertToSummary(Component<? extends Element>... components) {
+		return insertSlotted("summary", components);
+	}
 
-    public VaadinDetails clearSummary() {
-        return removeAllSlotted("summary");
-    }
+	public VaadinDetails clearSummary() {
+		return removeAllSlotted("summary");
+	}
 }

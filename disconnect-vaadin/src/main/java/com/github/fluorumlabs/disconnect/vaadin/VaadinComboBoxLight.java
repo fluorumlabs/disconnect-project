@@ -56,41 +56,41 @@ import javax.annotation.Nullable;
  * ```
  */
 public class VaadinComboBoxLight<ITEM extends Any> extends AbstractComponent<ComboBoxLightElement<ITEM>>
-        implements HasComboBoxDataProviderMixin<ITEM, ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
-        HasComboBoxMixin<ITEM, ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
-        HasThemableMixin<ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
-        HasComponents<ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>, Component<?>> {
-    public VaadinComboBoxLight() {
-        super("vaadin-combo-box-light");
-    }
+		implements HasComboBoxDataProviderMixin<ITEM, ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
+		HasComboBoxMixin<ITEM, ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
+		HasThemableMixin<ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
+		HasComponents<ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>, Component<?>> {
+	public VaadinComboBoxLight() {
+		super("vaadin-combo-box-light");
+	}
 
-    /**
-     *
-     */
-    public Element focused() {
-        return getNode().getFocused();
-    }
+	/**
+	 *
+	 */
+	public Element focused() {
+		return getNode().getFocused();
+	}
 
-    /**
-     * Name of the two-way data-bindable property representing the
-     * value of the custom input field.
-     */
-    @Nullable
-    public String attrForValue() {
-        return getNode().getAttrForValue();
-    }
+	/**
+	 * Name of the two-way data-bindable property representing the
+	 * value of the custom input field.
+	 */
+	@Nullable
+	public String attrForValue() {
+		return getNode().getAttrForValue();
+	}
 
-    /**
-     * Name of the two-way data-bindable property representing the
-     * value of the custom input field.
-     */
-    public VaadinComboBoxLight<ITEM> attrForValue(String attrForValue) {
-        getNode().setAttrForValue(attrForValue);
-        return this;
-    }
+	/**
+	 * Name of the two-way data-bindable property representing the
+	 * value of the custom input field.
+	 */
+	public VaadinComboBoxLight<ITEM> attrForValue(String attrForValue) {
+		getNode().setAttrForValue(attrForValue);
+		return this;
+	}
 
-    @Nullable
-    public Element inputElement() {
-        return getNode().getInputElement();
-    }
+	@Nullable
+	public Element inputElement() {
+		return getNode().getInputElement();
+	}
 }

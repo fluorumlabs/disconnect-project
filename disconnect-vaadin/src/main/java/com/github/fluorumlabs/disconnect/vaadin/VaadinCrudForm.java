@@ -18,25 +18,25 @@ import javax.annotation.Nullable;
  * .FormLayoutElement)
  */
 public class VaadinCrudForm<ITEM extends Any> extends AbstractComponent<CrudFormElement<ITEM>>
-        implements HasIncludedMixin<CrudFormElement<ITEM>, VaadinCrudForm<ITEM>>,
-        HasComponents<CrudFormElement<ITEM>, VaadinCrudForm<ITEM>, Component<?>> {
-    public VaadinCrudForm() {
-        super("vaadin-crud-form");
-    }
+		implements HasIncludedMixin<CrudFormElement<ITEM>, VaadinCrudForm<ITEM>>,
+		HasComponents<CrudFormElement<ITEM>, VaadinCrudForm<ITEM>, Component<?>> {
+	public VaadinCrudForm() {
+		super("vaadin-crud-form");
+	}
 
-    /**
-     * The item being edited.
-     */
-    @Nullable
-    public ITEM item() {
-        return getNode().getItem();
-    }
+	/**
+	 * The item being edited.
+	 */
+	@Nullable
+	public ITEM item() {
+		return getNode().getItem();
+	}
 
-    /**
-     * The item being edited.
-     */
-    public VaadinCrudForm<ITEM> item(ITEM item) {
-        getNode().setItem(item);
-        return this;
-    }
+	/**
+	 * The item being edited.
+	 */
+	public VaadinCrudForm<ITEM> item(ITEM item) {
+		getNode().setItem(item);
+		return this;
+	}
 }

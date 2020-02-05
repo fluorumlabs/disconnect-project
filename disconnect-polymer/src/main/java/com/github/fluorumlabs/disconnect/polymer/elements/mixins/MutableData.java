@@ -40,12 +40,12 @@ import js.web.dom.Element;
  * patterns or Polymer's path notification API.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "MutableData",
-        module = "@polymer/polymer/lib/mixins/mutable-data.js"
+		symbols = "MutableData",
+		module = "@polymer/polymer/lib/mixins/mutable-data.js"
 )
 public interface MutableData extends Element {
 }

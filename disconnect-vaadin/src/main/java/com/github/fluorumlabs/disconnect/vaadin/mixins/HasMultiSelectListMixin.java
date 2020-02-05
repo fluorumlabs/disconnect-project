@@ -11,45 +11,45 @@ import javax.annotation.Nullable;
  * A mixin for `nav` elements, facilitating multiple selection of childNodes.
  */
 public interface HasMultiSelectListMixin<E extends MultiSelectListMixin, T extends Component<E>>
-        extends HasListMixin<E, T> {
-    /**
-     * Specifies that multiple options can be selected at once.
-     */
-    default boolean multiple() {
-        return getNode().isMultiple();
-    }
+		extends HasListMixin<E, T> {
+	/**
+	 * Specifies that multiple options can be selected at once.
+	 */
+	default boolean multiple() {
+		return getNode().isMultiple();
+	}
 
-    /**
-     * Specifies that multiple options can be selected at once.
-     */
-    default T multiple(boolean multiple) {
-        getNode().setMultiple(multiple);
-        return (T) this;
-    }
+	/**
+	 * Specifies that multiple options can be selected at once.
+	 */
+	default T multiple(boolean multiple) {
+		getNode().setMultiple(multiple);
+		return (T) this;
+	}
 
-    /**
-     * Array of indexes of the items selected in the items array
-     * Note: Not updated when used in single selection mode.
-     */
-    @Nullable
-    default int[] selectedValues() {
-        return getNode().getSelectedValues();
-    }
+	/**
+	 * Array of indexes of the items selected in the items array
+	 * Note: Not updated when used in single selection mode.
+	 */
+	@Nullable
+	default int[] selectedValues() {
+		return getNode().getSelectedValues();
+	}
 
-    /**
-     * Array of indexes of the items selected in the items array
-     * Note: Not updated when used in single selection mode.
-     */
-    default T selectedValues(int... selectedValues) {
-        getNode().setSelectedValues(selectedValues);
-        return (T) this;
-    }
+	/**
+	 * Array of indexes of the items selected in the items array
+	 * Note: Not updated when used in single selection mode.
+	 */
+	default T selectedValues(int... selectedValues) {
+		getNode().setSelectedValues(selectedValues);
+		return (T) this;
+	}
 
-    /**
-     * Fired when the selection is changed.
-     * Not fired in single selection mode.
-     */
-    default ObservableEvent<IntArrayPropertyChangeEvent> selectedValuesChangedEvent() {
-        return createEvent("selected-values-changed");
-    }
+	/**
+	 * Fired when the selection is changed.
+	 * Not fired in single selection mode.
+	 */
+	default ObservableEvent<IntArrayPropertyChangeEvent> selectedValuesChangedEvent() {
+		return createEvent("selected-values-changed");
+	}
 }

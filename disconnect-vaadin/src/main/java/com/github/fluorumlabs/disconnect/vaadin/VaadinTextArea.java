@@ -58,101 +58,101 @@ import js.web.dom.Event;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinTextArea extends AbstractComponent<TextAreaElement>
-        implements HasTextFieldMixin<TextAreaElement, VaadinTextArea>,
-        HasThemableMixin<TextAreaElement, VaadinTextArea>,
-        HasSlottedComponents<TextAreaElement, VaadinTextArea, Component<? extends Element>> {
-    public VaadinTextArea() {
-        super("vaadin-text-area");
-    }
+		implements HasTextFieldMixin<TextAreaElement, VaadinTextArea>,
+		HasThemableMixin<TextAreaElement, VaadinTextArea>,
+		HasSlottedComponents<TextAreaElement, VaadinTextArea, Component<? extends Element>> {
+	public VaadinTextArea() {
+		super("vaadin-text-area");
+	}
 
-    /**
-     * Fired when the text-area height changes.
-     */
-    public ObservableEvent<Event> ironResizeEvent() {
-        return createEvent("iron-resize");
-    }
+	/**
+	 * Fired when the text-area height changes.
+	 */
+	public ObservableEvent<Event> ironResizeEvent() {
+		return createEvent("iron-resize");
+	}
 
-    public VaadinTextArea setPrefix(Component<? extends Element> component) {
-        return replaceSlotted("prefix", component);
-    }
+	public VaadinTextArea setPrefix(Component<? extends Element> component) {
+		return replaceSlotted("prefix", component);
+	}
 
-    public VaadinTextArea setPrefix(Component<? extends Element>... components) {
-        return replaceSlotted("prefix", components);
-    }
+	public VaadinTextArea setPrefix(Component<? extends Element>... components) {
+		return replaceSlotted("prefix", components);
+	}
 
-    public VaadinTextArea addToPrefix(Component<? extends Element> component) {
-        return addSlotted("prefix", component);
-    }
+	public VaadinTextArea addToPrefix(Component<? extends Element> component) {
+		return addSlotted("prefix", component);
+	}
 
-    public VaadinTextArea addToPrefix(Component<? extends Element>... components) {
-        return addSlotted("prefix", components);
-    }
+	public VaadinTextArea addToPrefix(Component<? extends Element>... components) {
+		return addSlotted("prefix", components);
+	}
 
-    public VaadinTextArea insertToPrefix(Component<? extends Element> component) {
-        return insertSlotted("prefix", component);
-    }
+	public VaadinTextArea insertToPrefix(Component<? extends Element> component) {
+		return insertSlotted("prefix", component);
+	}
 
-    public VaadinTextArea insertToPrefix(Component<? extends Element>... components) {
-        return insertSlotted("prefix", components);
-    }
+	public VaadinTextArea insertToPrefix(Component<? extends Element>... components) {
+		return insertSlotted("prefix", components);
+	}
 
-    public VaadinTextArea clearPrefix() {
-        return removeAllSlotted("prefix");
-    }
+	public VaadinTextArea clearPrefix() {
+		return removeAllSlotted("prefix");
+	}
 
-    public VaadinTextArea setTextarea(Component<? extends Element> component) {
-        return replaceSlotted("textarea", component);
-    }
+	public VaadinTextArea setTextarea(Component<? extends Element> component) {
+		return replaceSlotted("textarea", component);
+	}
 
-    public VaadinTextArea setTextarea(Component<? extends Element>... components) {
-        return replaceSlotted("textarea", components);
-    }
+	public VaadinTextArea setTextarea(Component<? extends Element>... components) {
+		return replaceSlotted("textarea", components);
+	}
 
-    public VaadinTextArea addToTextarea(Component<? extends Element> component) {
-        return addSlotted("textarea", component);
-    }
+	public VaadinTextArea addToTextarea(Component<? extends Element> component) {
+		return addSlotted("textarea", component);
+	}
 
-    public VaadinTextArea addToTextarea(Component<? extends Element>... components) {
-        return addSlotted("textarea", components);
-    }
+	public VaadinTextArea addToTextarea(Component<? extends Element>... components) {
+		return addSlotted("textarea", components);
+	}
 
-    public VaadinTextArea insertToTextarea(Component<? extends Element> component) {
-        return insertSlotted("textarea", component);
-    }
+	public VaadinTextArea insertToTextarea(Component<? extends Element> component) {
+		return insertSlotted("textarea", component);
+	}
 
-    public VaadinTextArea insertToTextarea(Component<? extends Element>... components) {
-        return insertSlotted("textarea", components);
-    }
+	public VaadinTextArea insertToTextarea(Component<? extends Element>... components) {
+		return insertSlotted("textarea", components);
+	}
 
-    public VaadinTextArea clearTextarea() {
-        return removeAllSlotted("textarea");
-    }
+	public VaadinTextArea clearTextarea() {
+		return removeAllSlotted("textarea");
+	}
 
-    public VaadinTextArea setSuffix(Component<? extends Element> component) {
-        return replaceSlotted("suffix", component);
-    }
+	public VaadinTextArea setSuffix(Component<? extends Element> component) {
+		return replaceSlotted("suffix", component);
+	}
 
-    public VaadinTextArea setSuffix(Component<? extends Element>... components) {
-        return replaceSlotted("suffix", components);
-    }
+	public VaadinTextArea setSuffix(Component<? extends Element>... components) {
+		return replaceSlotted("suffix", components);
+	}
 
-    public VaadinTextArea addToSuffix(Component<? extends Element> component) {
-        return addSlotted("suffix", component);
-    }
+	public VaadinTextArea addToSuffix(Component<? extends Element> component) {
+		return addSlotted("suffix", component);
+	}
 
-    public VaadinTextArea addToSuffix(Component<? extends Element>... components) {
-        return addSlotted("suffix", components);
-    }
+	public VaadinTextArea addToSuffix(Component<? extends Element>... components) {
+		return addSlotted("suffix", components);
+	}
 
-    public VaadinTextArea insertToSuffix(Component<? extends Element> component) {
-        return insertSlotted("suffix", component);
-    }
+	public VaadinTextArea insertToSuffix(Component<? extends Element> component) {
+		return insertSlotted("suffix", component);
+	}
 
-    public VaadinTextArea insertToSuffix(Component<? extends Element>... components) {
-        return insertSlotted("suffix", components);
-    }
+	public VaadinTextArea insertToSuffix(Component<? extends Element>... components) {
+		return insertSlotted("suffix", components);
+	}
 
-    public VaadinTextArea clearSuffix() {
-        return removeAllSlotted("suffix");
-    }
+	public VaadinTextArea clearSuffix() {
+		return removeAllSlotted("suffix");
+	}
 }

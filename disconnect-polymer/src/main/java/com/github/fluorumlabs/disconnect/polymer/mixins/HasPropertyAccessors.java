@@ -28,15 +28,15 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * property using `dash-case`-to-`camelCase` convention.
  */
 public interface HasPropertyAccessors<E extends PropertyAccessors, T extends Component<E>>
-        extends HasPropertiesChanged<E, T> {
-    /**
-     * Generates property accessors for all attributes in the standard
-     * static `observedAttributes` array.
-     * <p>
-     * Attribute names are mapped to property names using the `dash-case` to
-     * `camelCase` convention
-     */
-    static void createPropertiesForAttributes() {
-        PropertyAccessors.createPropertiesForAttributes();
-    }
+		extends HasPropertiesChanged<E, T> {
+	/**
+	 * Generates property accessors for all attributes in the standard
+	 * static `observedAttributes` array.
+	 * <p>
+	 * Attribute names are mapped to property names using the `dash-case` to
+	 * `camelCase` convention
+	 */
+	static void createPropertiesForAttributes() {
+		PropertyAccessors.createPropertiesForAttributes();
+	}
 }

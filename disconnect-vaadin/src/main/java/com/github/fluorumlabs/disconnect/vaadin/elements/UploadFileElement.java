@@ -45,24 +45,24 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "UploadFileElement",
-        module = "@vaadin/vaadin-upload/src/vaadin-upload-file.js"
+		symbols = "UploadFileElement",
+		module = "@vaadin/vaadin-upload/src/vaadin-upload-file.js"
 )
 public interface UploadFileElement extends HTMLElement, ThemableMixin {
-    /**
-     *
-     */
-    @Nullable
-    @JSProperty
-    UploadingFile getFile();
+	/**
+	 *
+	 */
+	@Nullable
+	@JSProperty
+	UploadingFile getFile();
 
-    /**
-     *
-     */
-    @JSProperty
-    void setFile(UploadingFile file);
+	/**
+	 *
+	 */
+	@JSProperty
+	void setFile(UploadingFile file);
 }

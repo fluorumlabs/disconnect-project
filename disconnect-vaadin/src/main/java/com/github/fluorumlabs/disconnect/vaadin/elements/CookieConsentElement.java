@@ -38,101 +38,101 @@ import javax.annotation.Nullable;
  * `cc-link`       | Learn more link element
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "CookieConsentElement",
-        module = "@vaadin/vaadin-cookie-consent/src/vaadin-cookie-consent.js"
+		symbols = "CookieConsentElement",
+		module = "@vaadin/vaadin-cookie-consent/src/vaadin-cookie-consent.js"
 )
 public interface CookieConsentElement extends HTMLElement, ElementMixin, ThemableMixin {
-    /**
-     * The message to show in the popup.
-     */
-    @Nullable
-    @JSProperty
-    String getMessage();
+	/**
+	 * The message to show in the popup.
+	 */
+	@Nullable
+	@JSProperty
+	String getMessage();
 
-    /**
-     * The message to show in the popup.
-     */
-    @JSProperty
-    void setMessage(String message);
+	/**
+	 * The message to show in the popup.
+	 */
+	@JSProperty
+	void setMessage(String message);
 
-    /**
-     * The text to show on the dismiss/consent button.
-     */
-    @Nullable
-    @JSProperty
-    String getDismiss();
+	/**
+	 * The text to show on the dismiss/consent button.
+	 */
+	@Nullable
+	@JSProperty
+	String getDismiss();
 
-    /**
-     * The text to show on the dismiss/consent button.
-     */
-    @JSProperty
-    void setDismiss(String dismiss);
+	/**
+	 * The text to show on the dismiss/consent button.
+	 */
+	@JSProperty
+	void setDismiss(String dismiss);
 
-    /**
-     * The text to show on the 'learn more' link.
-     */
-    @Nullable
-    @JSProperty
-    String getLearnMore();
+	/**
+	 * The text to show on the 'learn more' link.
+	 */
+	@Nullable
+	@JSProperty
+	String getLearnMore();
 
-    /**
-     * The text to show on the 'learn more' link.
-     */
-    @JSProperty
-    void setLearnMore(String learnMore);
+	/**
+	 * The text to show on the 'learn more' link.
+	 */
+	@JSProperty
+	void setLearnMore(String learnMore);
 
-    /**
-     * The URL the 'learn more' link should open.
-     */
-    @Nullable
-    @JSProperty
-    String getLearnMoreLink();
+	/**
+	 * The URL the 'learn more' link should open.
+	 */
+	@Nullable
+	@JSProperty
+	String getLearnMoreLink();
 
-    /**
-     * The URL the 'learn more' link should open.
-     */
-    @JSProperty
-    void setLearnMoreLink(String learnMoreLink);
+	/**
+	 * The URL the 'learn more' link should open.
+	 */
+	@JSProperty
+	void setLearnMoreLink(String learnMoreLink);
 
-    /**
-     * Determines the position of the banner.
-     * <p>
-     * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
-     * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
-     * it is shown as a smaller popup.
-     */
-    @Nullable
-    @JSProperty
-    CookieConsentPosition getPosition();
+	/**
+	 * Determines the position of the banner.
+	 * <p>
+	 * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
+	 * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
+	 * it is shown as a smaller popup.
+	 */
+	@Nullable
+	@JSProperty
+	CookieConsentPosition getPosition();
 
-    /**
-     * Determines the position of the banner.
-     * <p>
-     * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
-     * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
-     * it is shown as a smaller popup.
-     */
-    @JSProperty
-    void setPosition(CookieConsentPosition position);
+	/**
+	 * Determines the position of the banner.
+	 * <p>
+	 * Possible values are: `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right`
+	 * For `top` and `bottom`, the banner is shown with full width. For the corner positions,
+	 * it is shown as a smaller popup.
+	 */
+	@JSProperty
+	void setPosition(CookieConsentPosition position);
 
-    /**
-     * The name of the cookie to set to remember that the user has consented.
-     * <p>
-     * This rarely needs to be changed.
-     */
-    @Nullable
-    @JSProperty
-    String getCookieName();
+	/**
+	 * The name of the cookie to set to remember that the user has consented.
+	 * <p>
+	 * This rarely needs to be changed.
+	 */
+	@Nullable
+	@JSProperty
+	String getCookieName();
 
-    /**
-     * The name of the cookie to set to remember that the user has consented.
-     * <p>
-     * This rarely needs to be changed.
-     */
-    @JSProperty
-    void setCookieName(String cookieName);
+	/**
+	 * The name of the cookie to set to remember that the user has consented.
+	 * <p>
+	 * This rarely needs to be changed.
+	 */
+	@JSProperty
+	void setCookieName(String cookieName);
 }

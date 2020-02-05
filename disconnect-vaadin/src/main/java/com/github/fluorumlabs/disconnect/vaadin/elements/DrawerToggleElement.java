@@ -17,18 +17,18 @@ import javax.annotation.Nullable;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "DrawerToggleElement",
-        module = "@vaadin/vaadin-app-layout/src/vaadin-drawer-toggle.js"
+		symbols = "DrawerToggleElement",
+		module = "@vaadin/vaadin-app-layout/src/vaadin-drawer-toggle.js"
 )
 public interface DrawerToggleElement extends ButtonElement {
-    @Nullable
-    @JSProperty
-    String getAriaLabel();
+	@Nullable
+	@JSProperty
+	String getAriaLabel();
 
-    @JSProperty
-    void setAriaLabel(String ariaLabel);
+	@JSProperty
+	void setAriaLabel(String ariaLabel);
 }

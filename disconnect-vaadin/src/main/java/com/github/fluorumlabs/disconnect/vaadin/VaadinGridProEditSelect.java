@@ -18,18 +18,18 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinGridProEditSelect extends AbstractComponent<GridProEditSelectElement>
-        implements HasComponents<GridProEditSelectElement, VaadinGridProEditSelect, Component<?>> {
-    public VaadinGridProEditSelect() {
-        super("vaadin-grid-pro-edit-select");
-    }
+		implements HasComponents<GridProEditSelectElement, VaadinGridProEditSelect, Component<?>> {
+	public VaadinGridProEditSelect() {
+		super("vaadin-grid-pro-edit-select");
+	}
 
-    @Nullable
-    public String[] options() {
-        return getNode().getOptions();
-    }
+	@Nullable
+	public String[] options() {
+		return getNode().getOptions();
+	}
 
-    public VaadinGridProEditSelect options(String... options) {
-        getNode().setOptions(options);
-        return this;
-    }
+	public VaadinGridProEditSelect options(String... options) {
+		getNode().setOptions(options);
+		return this;
+	}
 }

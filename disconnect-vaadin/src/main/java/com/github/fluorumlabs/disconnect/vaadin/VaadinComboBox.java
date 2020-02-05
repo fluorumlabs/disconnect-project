@@ -167,197 +167,197 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinComboBox<ITEM extends Any> extends AbstractComponent<ComboBoxElement<ITEM>>
-        implements HasElementMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
-        HasControlStateMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
-        HasComboBoxDataProviderMixin<ITEM, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
-        HasComboBoxMixin<ITEM, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
-        HasThemableMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
-        HasSlottedComponents<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>, Component<? extends Element>> {
-    public VaadinComboBox() {
-        super("vaadin-combo-box");
-    }
+		implements HasElementMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
+		HasControlStateMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
+		HasComboBoxDataProviderMixin<ITEM, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
+		HasComboBoxMixin<ITEM, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
+		HasThemableMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
+		HasSlottedComponents<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>, Component<? extends Element>> {
+	public VaadinComboBox() {
+		super("vaadin-combo-box");
+	}
 
-    /**
-     *
-     */
-    public Element inputElement() {
-        return getNode().getInputElement();
-    }
+	/**
+	 *
+	 */
+	public Element inputElement() {
+		return getNode().getInputElement();
+	}
 
-    /**
-     * Focusable element used by vaadin-control-state-mixin
-     */
-    public Element focusElement() {
-        return getNode().getFocusElement();
-    }
+	/**
+	 * Focusable element used by vaadin-control-state-mixin
+	 */
+	public Element focusElement() {
+		return getNode().getFocusElement();
+	}
 
-    /**
-     * The label for this element.
-     */
-    @Nullable
-    public String label() {
-        return getNode().getLabel();
-    }
+	/**
+	 * The label for this element.
+	 */
+	@Nullable
+	public String label() {
+		return getNode().getLabel();
+	}
 
-    /**
-     * The label for this element.
-     */
-    public VaadinComboBox<ITEM> label(String label) {
-        getNode().setLabel(label);
-        return this;
-    }
+	/**
+	 * The label for this element.
+	 */
+	public VaadinComboBox<ITEM> label(String label) {
+		getNode().setLabel(label);
+		return this;
+	}
 
-    /**
-     * Set to true to mark the input as required.
-     */
-    public boolean required() {
-        return getNode().isRequired();
-    }
+	/**
+	 * Set to true to mark the input as required.
+	 */
+	public boolean required() {
+		return getNode().isRequired();
+	}
 
-    /**
-     * Set to true to mark the input as required.
-     */
-    public VaadinComboBox<ITEM> required(boolean required) {
-        getNode().setRequired(required);
-        return this;
-    }
+	/**
+	 * Set to true to mark the input as required.
+	 */
+	public VaadinComboBox<ITEM> required(boolean required) {
+		getNode().setRequired(required);
+		return this;
+	}
 
-    /**
-     * Set to true to disable this input.
-     */
-    public boolean disabled() {
-        return getNode().isDisabled();
-    }
+	/**
+	 * Set to true to disable this input.
+	 */
+	public boolean disabled() {
+		return getNode().isDisabled();
+	}
 
-    /**
-     * Set to true to disable this input.
-     */
-    public VaadinComboBox<ITEM> disabled(boolean disabled) {
-        getNode().setDisabled(disabled);
-        return this;
-    }
+	/**
+	 * Set to true to disable this input.
+	 */
+	public VaadinComboBox<ITEM> disabled(boolean disabled) {
+		getNode().setDisabled(disabled);
+		return this;
+	}
 
-    /**
-     * Set to true to prevent the user from entering invalid input.
-     */
-    public boolean preventInvalidInput() {
-        return getNode().isPreventInvalidInput();
-    }
+	/**
+	 * Set to true to prevent the user from entering invalid input.
+	 */
+	public boolean preventInvalidInput() {
+		return getNode().isPreventInvalidInput();
+	}
 
-    /**
-     * Set to true to prevent the user from entering invalid input.
-     */
-    public VaadinComboBox<ITEM> preventInvalidInput(boolean preventInvalidInput) {
-        getNode().setPreventInvalidInput(preventInvalidInput);
-        return this;
-    }
+	/**
+	 * Set to true to prevent the user from entering invalid input.
+	 */
+	public VaadinComboBox<ITEM> preventInvalidInput(boolean preventInvalidInput) {
+		getNode().setPreventInvalidInput(preventInvalidInput);
+		return this;
+	}
 
-    /**
-     * A pattern to validate the `input` with.
-     */
-    @Nullable
-    public String pattern() {
-        return getNode().getPattern();
-    }
+	/**
+	 * A pattern to validate the `input` with.
+	 */
+	@Nullable
+	public String pattern() {
+		return getNode().getPattern();
+	}
 
-    /**
-     * A pattern to validate the `input` with.
-     */
-    public VaadinComboBox<ITEM> pattern(String pattern) {
-        getNode().setPattern(pattern);
-        return this;
-    }
+	/**
+	 * A pattern to validate the `input` with.
+	 */
+	public VaadinComboBox<ITEM> pattern(String pattern) {
+		getNode().setPattern(pattern);
+		return this;
+	}
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    @Nullable
-    public String errorMessage() {
-        return getNode().getErrorMessage();
-    }
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	@Nullable
+	public String errorMessage() {
+		return getNode().getErrorMessage();
+	}
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    public VaadinComboBox<ITEM> errorMessage(String errorMessage) {
-        getNode().setErrorMessage(errorMessage);
-        return this;
-    }
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	public VaadinComboBox<ITEM> errorMessage(String errorMessage) {
+		getNode().setErrorMessage(errorMessage);
+		return this;
+	}
 
-    public boolean autofocus() {
-        return getNode().isAutofocus();
-    }
+	public boolean autofocus() {
+		return getNode().isAutofocus();
+	}
 
-    public VaadinComboBox<ITEM> autofocus(boolean autofocus) {
-        getNode().setAutofocus(autofocus);
-        return this;
-    }
+	public VaadinComboBox<ITEM> autofocus(boolean autofocus) {
+		getNode().setAutofocus(autofocus);
+		return this;
+	}
 
-    /**
-     * A placeholder string in addition to the label.
-     */
-    @Nullable
-    public String placeholder() {
-        return getNode().getPlaceholder();
-    }
+	/**
+	 * A placeholder string in addition to the label.
+	 */
+	@Nullable
+	public String placeholder() {
+		return getNode().getPlaceholder();
+	}
 
-    /**
-     * A placeholder string in addition to the label.
-     */
-    public VaadinComboBox<ITEM> placeholder(String placeholder) {
-        getNode().setPlaceholder(placeholder);
-        return this;
-    }
+	/**
+	 * A placeholder string in addition to the label.
+	 */
+	public VaadinComboBox<ITEM> placeholder(String placeholder) {
+		getNode().setPlaceholder(placeholder);
+		return this;
+	}
 
-    public boolean readonly() {
-        return getNode().isReadonly();
-    }
+	public boolean readonly() {
+		return getNode().isReadonly();
+	}
 
-    public VaadinComboBox<ITEM> readonly(boolean readonly) {
-        getNode().setReadonly(readonly);
-        return this;
-    }
+	public VaadinComboBox<ITEM> readonly(boolean readonly) {
+		getNode().setReadonly(readonly);
+		return this;
+	}
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    public boolean clearButtonVisible() {
-        return getNode().isClearButtonVisible();
-    }
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	public boolean clearButtonVisible() {
+		return getNode().isClearButtonVisible();
+	}
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    public VaadinComboBox<ITEM> clearButtonVisible(boolean clearButtonVisible) {
-        getNode().setClearButtonVisible(clearButtonVisible);
-        return this;
-    }
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	public VaadinComboBox<ITEM> clearButtonVisible(boolean clearButtonVisible) {
+		getNode().setClearButtonVisible(clearButtonVisible);
+		return this;
+	}
 
-    public VaadinComboBox<ITEM> setPrefix(Component<? extends Element> component) {
-        return replaceSlotted("prefix", component);
-    }
+	public VaadinComboBox<ITEM> setPrefix(Component<? extends Element> component) {
+		return replaceSlotted("prefix", component);
+	}
 
-    public VaadinComboBox<ITEM> setPrefix(Component<? extends Element>... components) {
-        return replaceSlotted("prefix", components);
-    }
+	public VaadinComboBox<ITEM> setPrefix(Component<? extends Element>... components) {
+		return replaceSlotted("prefix", components);
+	}
 
-    public VaadinComboBox<ITEM> addToPrefix(Component<? extends Element> component) {
-        return addSlotted("prefix", component);
-    }
+	public VaadinComboBox<ITEM> addToPrefix(Component<? extends Element> component) {
+		return addSlotted("prefix", component);
+	}
 
-    public VaadinComboBox<ITEM> addToPrefix(Component<? extends Element>... components) {
-        return addSlotted("prefix", components);
-    }
+	public VaadinComboBox<ITEM> addToPrefix(Component<? extends Element>... components) {
+		return addSlotted("prefix", components);
+	}
 
-    public VaadinComboBox<ITEM> insertToPrefix(Component<? extends Element> component) {
-        return insertSlotted("prefix", component);
-    }
+	public VaadinComboBox<ITEM> insertToPrefix(Component<? extends Element> component) {
+		return insertSlotted("prefix", component);
+	}
 
-    public VaadinComboBox<ITEM> insertToPrefix(Component<? extends Element>... components) {
-        return insertSlotted("prefix", components);
-    }
+	public VaadinComboBox<ITEM> insertToPrefix(Component<? extends Element>... components) {
+		return insertSlotted("prefix", components);
+	}
 
-    public VaadinComboBox<ITEM> clearPrefix() {
-        return removeAllSlotted("prefix");
-    }
+	public VaadinComboBox<ITEM> clearPrefix() {
+		return removeAllSlotted("prefix");
+	}
 }

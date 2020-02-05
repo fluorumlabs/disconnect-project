@@ -11,54 +11,54 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "IncludedMixin",
-        module = "@vaadin/vaadin-crud/src/vaadin-crud-include-mixin.js"
+		symbols = "IncludedMixin",
+		module = "@vaadin/vaadin-crud/src/vaadin-crud-include-mixin.js"
 )
 public interface IncludedMixin extends Element {
-    /**
-     * A list of item fields that should not be mapped to form fields.
-     * <p>
-     * When [`include`](#/elements/vaadin-crud-form#property-include) is defined, this property is ignored.
-     * <p>
-     * Default is to exclude any private property.
-     */
-    @Nullable
-    @JSProperty
-    RegExp getExclude();
+	/**
+	 * A list of item fields that should not be mapped to form fields.
+	 * <p>
+	 * When [`include`](#/elements/vaadin-crud-form#property-include) is defined, this property is ignored.
+	 * <p>
+	 * Default is to exclude any private property.
+	 */
+	@Nullable
+	@JSProperty
+	RegExp getExclude();
 
-    /**
-     * A list of item fields that should not be mapped to form fields.
-     * <p>
-     * When [`include`](#/elements/vaadin-crud-form#property-include) is defined, this property is ignored.
-     * <p>
-     * Default is to exclude any private property.
-     */
-    @JSProperty
-    void setExclude(RegExp exclude);
+	/**
+	 * A list of item fields that should not be mapped to form fields.
+	 * <p>
+	 * When [`include`](#/elements/vaadin-crud-form#property-include) is defined, this property is ignored.
+	 * <p>
+	 * Default is to exclude any private property.
+	 */
+	@JSProperty
+	void setExclude(RegExp exclude);
 
-    @JSProperty
-    void setExclude(String exclude);
+	@JSProperty
+	void setExclude(String exclude);
 
-    /**
-     * A list of item properties that should be mapped to form fields.
-     * <p>
-     * When it is defined [`exclude`](#/elements/vaadin-crud-form#property-exclude) is ignored.
-     */
-    @JSProperty
-    String[] getInclude();
+	/**
+	 * A list of item properties that should be mapped to form fields.
+	 * <p>
+	 * When it is defined [`exclude`](#/elements/vaadin-crud-form#property-exclude) is ignored.
+	 */
+	@JSProperty
+	String[] getInclude();
 
-    /**
-     * A list of item properties that should be mapped to form fields.
-     * <p>
-     * When it is defined [`exclude`](#/elements/vaadin-crud-form#property-exclude) is ignored.
-     */
-    @JSProperty
-    void setInclude(String include);
+	/**
+	 * A list of item properties that should be mapped to form fields.
+	 * <p>
+	 * When it is defined [`exclude`](#/elements/vaadin-crud-form#property-exclude) is ignored.
+	 */
+	@JSProperty
+	void setInclude(String include);
 
-    @JSProperty
-    void setInclude(@JSByRef String... include);
+	@JSProperty
+	void setInclude(@JSByRef String... include);
 }

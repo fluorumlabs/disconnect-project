@@ -43,24 +43,24 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * `active` | Set when mousedown or enter/spacebar pressed | :host
  */
 public class VaadinItem extends AbstractComponent<ItemElement> implements HasItemMixin<ItemElement, VaadinItem>,
-        HasThemableMixin<ItemElement, VaadinItem>,
-        HasComponents<ItemElement, VaadinItem, Component<?>> {
-    public VaadinItem() {
-        super("vaadin-item");
-    }
+		HasThemableMixin<ItemElement, VaadinItem>,
+		HasComponents<ItemElement, VaadinItem, Component<?>> {
+	public VaadinItem() {
+		super("vaadin-item");
+	}
 
-    /**
-     * Submittable string value. The default value is the trimmed text content of the element.
-     */
-    public String value() {
-        return getNode().getValue();
-    }
+	/**
+	 * Submittable string value. The default value is the trimmed text content of the element.
+	 */
+	public String value() {
+		return getNode().getValue();
+	}
 
-    /**
-     * Submittable string value. The default value is the trimmed text content of the element.
-     */
-    public VaadinItem value(String value) {
-        getNode().setValue(value);
-        return this;
-    }
+	/**
+	 * Submittable string value. The default value is the trimmed text content of the element.
+	 */
+	public VaadinItem value(String value) {
+		getNode().setValue(value);
+		return this;
+	}
 }

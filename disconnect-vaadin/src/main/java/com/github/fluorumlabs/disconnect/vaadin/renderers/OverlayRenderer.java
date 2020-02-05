@@ -12,5 +12,5 @@ import org.teavm.jso.JSFunctor;
 @JSFunctor
 @FunctionalInterface
 public interface OverlayRenderer extends Any {
-    void render(Element root, Element owner, Record<Unknown> model);
+	void render(Element root, Element owner, Record<Unknown> model);
 }

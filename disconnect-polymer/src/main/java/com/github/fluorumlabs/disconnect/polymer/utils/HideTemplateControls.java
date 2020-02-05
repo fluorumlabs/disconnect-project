@@ -7,18 +7,18 @@ import js.lang.Any;
 import org.teavm.jso.JSBody;
 
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(symbols = "hideElementsGlobally", module = "@polymer/polymer/lib/utils/hide-template-controls.js")
 public interface HideTemplateControls extends Any {
-    /**
-     * @return True if elements will be hidden globally
-     */
-    @JSBody(
-            script = "return hideElementsGlobally()"
-    )
-    static boolean hideElementsGlobally() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
+	/**
+	 * @return True if elements will be hidden globally
+	 */
+	@JSBody(
+			script = "return hideElementsGlobally()"
+	)
+	static boolean hideElementsGlobally() {
+		throw new UnsupportedOperationException("Available only in JavaScript");
+	}
 }

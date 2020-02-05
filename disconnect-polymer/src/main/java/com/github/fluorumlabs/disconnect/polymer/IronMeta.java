@@ -43,93 +43,93 @@ import js.util.collections.Array;
  * this.$.meta.byKey('info');
  */
 public class IronMeta<ITEM extends Any>
-        extends AbstractComponent<IronMetaElement<ITEM>> {
-    public IronMeta() {
-        super("iron-meta");
-    }
+		extends AbstractComponent<IronMetaElement<ITEM>> {
+	public IronMeta() {
+		super("iron-meta");
+	}
 
-    /**
-     * The type of meta-data.  All meta-data of the same type is stored
-     * together.
-     */
-    public String type() {
-        return getNode().getType();
-    }
+	/**
+	 * The type of meta-data.  All meta-data of the same type is stored
+	 * together.
+	 */
+	public String type() {
+		return getNode().getType();
+	}
 
-    /**
-     * The type of meta-data.  All meta-data of the same type is stored
-     * together.
-     */
-    public IronMeta<ITEM> type(String type) {
-        getNode().setType(type);
-        return this;
-    }
+	/**
+	 * The type of meta-data.  All meta-data of the same type is stored
+	 * together.
+	 */
+	public IronMeta<ITEM> type(String type) {
+		getNode().setType(type);
+		return this;
+	}
 
-    /**
-     * The key used to store `value` under the `type` namespace.
-     */
-    public String key() {
-        return getNode().getKey();
-    }
+	/**
+	 * The key used to store `value` under the `type` namespace.
+	 */
+	public String key() {
+		return getNode().getKey();
+	}
 
-    /**
-     * The key used to store `value` under the `type` namespace.
-     */
-    public IronMeta<ITEM> key(String key) {
-        getNode().setKey(key);
-        return this;
-    }
+	/**
+	 * The key used to store `value` under the `type` namespace.
+	 */
+	public IronMeta<ITEM> key(String key) {
+		getNode().setKey(key);
+		return this;
+	}
 
-    /**
-     * The meta-data to store or retrieve.
-     */
-    public ITEM value() {
-        return getNode().getValue();
-    }
+	/**
+	 * The meta-data to store or retrieve.
+	 */
+	public ITEM value() {
+		return getNode().getValue();
+	}
 
-    /**
-     * The meta-data to store or retrieve.
-     */
-    public IronMeta<ITEM> value(ITEM value) {
-        getNode().setValue(value);
-        return this;
-    }
+	/**
+	 * The meta-data to store or retrieve.
+	 */
+	public IronMeta<ITEM> value(ITEM value) {
+		getNode().setValue(value);
+		return this;
+	}
 
-    /**
-     * If true, `value` is set to the iron-meta instance itself.
-     */
-    public boolean self() {
-        return getNode().isSelf();
-    }
+	/**
+	 * If true, `value` is set to the iron-meta instance itself.
+	 */
+	public boolean self() {
+		return getNode().isSelf();
+	}
 
-    /**
-     * If true, `value` is set to the iron-meta instance itself.
-     */
-    public IronMeta<ITEM> self(boolean self) {
-        getNode().setSelf(self);
-        return this;
-    }
+	/**
+	 * If true, `value` is set to the iron-meta instance itself.
+	 */
+	public IronMeta<ITEM> self(boolean self) {
+		getNode().setSelf(self);
+		return this;
+	}
 
-    /**
-     *
-     */
-    public Array<ITEM> list() {
-        return getNode().getList();
-    }
+	/**
+	 *
+	 */
+	public Array<ITEM> list() {
+		return getNode().getList();
+	}
 
-    /**
-     * Retrieves meta data value by key.
-     *
-     * @param key The key of the meta-data to be returned.
-     */
-    public ITEM byKey(String key) {
-        return getNode().byKey(key);
-    }
+	/**
+	 * Retrieves meta data value by key.
+	 *
+	 * @param key The key of the meta-data to be returned.
+	 */
+	public ITEM byKey(String key) {
+		return getNode().byKey(key);
+	}
 
-    /**
-     * Fired when the `value` property changes.
-     */
-    public ObservableEvent<PropertyChangeEvent<ITEM>> ValueChangedEvent() {
-        return createEvent("value-changed");
-    }
+	/**
+	 * Fired when the `value` property changes.
+	 */
+	public ObservableEvent<PropertyChangeEvent<ITEM>> ValueChangedEvent() {
+		return createEvent("value-changed");
+	}
 }

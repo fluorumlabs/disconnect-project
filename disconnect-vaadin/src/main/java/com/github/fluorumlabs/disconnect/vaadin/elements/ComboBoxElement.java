@@ -168,134 +168,134 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "ComboBoxElement",
-        module = "@vaadin/vaadin-combo-box/src/vaadin-combo-box.js"
+		symbols = "ComboBoxElement",
+		module = "@vaadin/vaadin-combo-box/src/vaadin-combo-box.js"
 )
 public interface ComboBoxElement<ITEM extends Any> extends HTMLElement,
-        ElementMixin,
-        ControlStateMixin,
-        ComboBoxDataProviderMixin<ITEM>,
-        ComboBoxMixin<ITEM>,
-        ThemableMixin {
-    /**
-     * FIXME type ?
-     */
-    @JSProperty
-    Element getInputElement();
+		ElementMixin,
+		ControlStateMixin,
+		ComboBoxDataProviderMixin<ITEM>,
+		ComboBoxMixin<ITEM>,
+		ThemableMixin {
+	/**
+	 * FIXME type ?
+	 */
+	@JSProperty
+	Element getInputElement();
 
-    /**
-     * The label for this element.
-     */
-    @Nullable
-    @JSProperty
-    String getLabel();
+	/**
+	 * The label for this element.
+	 */
+	@Nullable
+	@JSProperty
+	String getLabel();
 
-    /**
-     * The label for this element.
-     */
-    @JSProperty
-    void setLabel(String label);
+	/**
+	 * The label for this element.
+	 */
+	@JSProperty
+	void setLabel(String label);
 
-    /**
-     * Set to true to mark the input as required.
-     */
-    @JSProperty
-    boolean isRequired();
+	/**
+	 * Set to true to mark the input as required.
+	 */
+	@JSProperty
+	boolean isRequired();
 
-    /**
-     * Set to true to mark the input as required.
-     */
-    @JSProperty
-    void setRequired(boolean required);
+	/**
+	 * Set to true to mark the input as required.
+	 */
+	@JSProperty
+	void setRequired(boolean required);
 
-    /**
-     * Set to true to disable this input.
-     */
-    @JSProperty
-    boolean isDisabled();
+	/**
+	 * Set to true to disable this input.
+	 */
+	@JSProperty
+	boolean isDisabled();
 
-    /**
-     * Set to true to disable this input.
-     */
-    @JSProperty
-    void setDisabled(boolean disabled);
+	/**
+	 * Set to true to disable this input.
+	 */
+	@JSProperty
+	void setDisabled(boolean disabled);
 
-    /**
-     * Set to true to prevent the user from entering invalid input.
-     */
-    @JSProperty
-    boolean isPreventInvalidInput();
+	/**
+	 * Set to true to prevent the user from entering invalid input.
+	 */
+	@JSProperty
+	boolean isPreventInvalidInput();
 
-    /**
-     * Set to true to prevent the user from entering invalid input.
-     */
-    @JSProperty
-    void setPreventInvalidInput(boolean preventInvalidInput);
+	/**
+	 * Set to true to prevent the user from entering invalid input.
+	 */
+	@JSProperty
+	void setPreventInvalidInput(boolean preventInvalidInput);
 
-    /**
-     * A pattern to validate the `input` with.
-     */
-    @Nullable
-    @JSProperty
-    String getPattern();
+	/**
+	 * A pattern to validate the `input` with.
+	 */
+	@Nullable
+	@JSProperty
+	String getPattern();
 
-    /**
-     * A pattern to validate the `input` with.
-     */
-    @JSProperty
-    void setPattern(String pattern);
+	/**
+	 * A pattern to validate the `input` with.
+	 */
+	@JSProperty
+	void setPattern(String pattern);
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    @Nullable
-    @JSProperty
-    String getErrorMessage();
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	@Nullable
+	@JSProperty
+	String getErrorMessage();
 
-    /**
-     * The error message to display when the input is invalid.
-     */
-    @JSProperty
-    void setErrorMessage(String errorMessage);
+	/**
+	 * The error message to display when the input is invalid.
+	 */
+	@JSProperty
+	void setErrorMessage(String errorMessage);
 
-    @JSProperty
-    boolean isAutofocus();
+	@JSProperty
+	boolean isAutofocus();
 
-    @JSProperty
-    void setAutofocus(boolean autofocus);
+	@JSProperty
+	void setAutofocus(boolean autofocus);
 
-    /**
-     * A placeholder string in addition to the label.
-     */
-    @Nullable
-    @JSProperty
-    String getPlaceholder();
+	/**
+	 * A placeholder string in addition to the label.
+	 */
+	@Nullable
+	@JSProperty
+	String getPlaceholder();
 
-    /**
-     * A placeholder string in addition to the label.
-     */
-    @JSProperty
-    void setPlaceholder(String placeholder);
+	/**
+	 * A placeholder string in addition to the label.
+	 */
+	@JSProperty
+	void setPlaceholder(String placeholder);
 
-    @JSProperty
-    boolean isReadonly();
+	@JSProperty
+	boolean isReadonly();
 
-    @JSProperty
-    void setReadonly(boolean readonly);
+	@JSProperty
+	void setReadonly(boolean readonly);
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    @JSProperty
-    boolean isClearButtonVisible();
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	@JSProperty
+	boolean isClearButtonVisible();
 
-    /**
-     * Set to true to display the clear icon which clears the input.
-     */
-    @JSProperty
-    void setClearButtonVisible(boolean clearButtonVisible);
+	/**
+	 * Set to true to display the clear icon which clears the input.
+	 */
+	@JSProperty
+	void setClearButtonVisible(boolean clearButtonVisible);
 }

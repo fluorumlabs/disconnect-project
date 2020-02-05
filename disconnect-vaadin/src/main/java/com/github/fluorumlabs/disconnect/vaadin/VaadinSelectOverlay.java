@@ -16,8 +16,8 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinSelectOverlay extends AbstractComponent<SelectOverlayElement>
-        implements HasComponents<SelectOverlayElement, VaadinSelectOverlay, Component<?>> {
-    public VaadinSelectOverlay() {
-        super("vaadin-select-overlay");
-    }
+		implements HasComponents<SelectOverlayElement, VaadinSelectOverlay, Component<?>> {
+	public VaadinSelectOverlay() {
+		super("vaadin-select-overlay");
+	}
 }

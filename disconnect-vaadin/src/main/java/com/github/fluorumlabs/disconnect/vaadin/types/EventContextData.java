@@ -11,29 +11,29 @@ import javax.annotation.Nullable;
  * Created by Artem Godin on 2/4/2020.
  */
 public interface EventContextData<ITEM extends Any> extends Any {
-    @Nullable
-    @JSProperty
-    ITEM getItem();
+	@Nullable
+	@JSProperty
+	ITEM getItem();
 
-    @JSProperty
-    GridColumnElement<ITEM> getColumn();
+	@JSProperty
+	GridColumnElement<ITEM> getColumn();
 
-    @JSProperty
-    Section getSection();
+	@JSProperty
+	Section getSection();
 
-    @JSProperty
-    int getIndex();
+	@JSProperty
+	int getIndex();
 
-    @JSProperty
-    boolean getSelected();
+	@JSProperty
+	boolean getSelected();
 
-    @JSProperty
-    boolean getDetailsOpened();
+	@JSProperty
+	boolean getDetailsOpened();
 
-    @JSProperty
-    boolean getExpanded();
+	@JSProperty
+	boolean getExpanded();
 
-    @JSProperty
-    int getLevel();
+	@JSProperty
+	int getLevel();
 
 }

@@ -49,21 +49,21 @@ import org.teavm.jso.JSMethod;
  * ```
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "CustomStyle",
-        module = "@polymer/polymer/lib/elements/custom-style.js"
+		symbols = "CustomStyle",
+		module = "@polymer/polymer/lib/elements/custom-style.js"
 )
 public interface CustomStyleElement extends HTMLElement {
-    /**
-     * Returns the light-DOM `<style>` child this element wraps.  Upon first
-     * call any style modules referenced via the `include` attribute will be
-     * concatenated to this element's `<style>`.
-     *
-     * @return This element's light-DOM `<style>`
-     */
-    @JSMethod("getStyle")
-    HTMLStyleElement getStyleElement();
+	/**
+	 * Returns the light-DOM `<style>` child this element wraps.  Upon first
+	 * call any style modules referenced via the `include` attribute will be
+	 * concatenated to this element's `<style>`.
+	 *
+	 * @return This element's light-DOM `<style>`
+	 */
+	@JSMethod("getStyle")
+	HTMLStyleElement getStyleElement();
 }

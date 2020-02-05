@@ -15,75 +15,75 @@ import javax.annotation.Nullable;
  * A mixin for `nav` elements, facilitating navigation and selection of childNodes.
  */
 public interface HasListMixin<E extends ListMixin, T extends Component<E>> extends Component<E> {
-    /**
-     *
-     */
-    default Element focused() {
-        return getNode().getFocused();
-    }
+	/**
+	 *
+	 */
+	default Element focused() {
+		return getNode().getFocused();
+	}
 
-    /**
-     * The index of the item selected in the items array.
-     * Note: Not updated when used in `multiple` selection mode.
-     */
-    default int selected() {
-        return getNode().getSelected();
-    }
+	/**
+	 * The index of the item selected in the items array.
+	 * Note: Not updated when used in `multiple` selection mode.
+	 */
+	default int selected() {
+		return getNode().getSelected();
+	}
 
-    /**
-     * The index of the item selected in the items array.
-     * Note: Not updated when used in `multiple` selection mode.
-     */
-    default T selected(int selected) {
-        getNode().setSelected(selected);
-        return (T) this;
-    }
+	/**
+	 * The index of the item selected in the items array.
+	 * Note: Not updated when used in `multiple` selection mode.
+	 */
+	default T selected(int selected) {
+		getNode().setSelected(selected);
+		return (T) this;
+	}
 
-    /**
-     * Define how items are disposed in the dom.
-     * Possible values are: `horizontal|vertical`.
-     * It also changes navigation keys from left/right to up/down.
-     */
-    @Nullable
-    default Orientation orientation() {
-        return getNode().getOrientation();
-    }
+	/**
+	 * Define how items are disposed in the dom.
+	 * Possible values are: `horizontal|vertical`.
+	 * It also changes navigation keys from left/right to up/down.
+	 */
+	@Nullable
+	default Orientation orientation() {
+		return getNode().getOrientation();
+	}
 
-    /**
-     * Define how items are disposed in the dom.
-     * Possible values are: `horizontal|vertical`.
-     * It also changes navigation keys from left/right to up/down.
-     */
-    default T orientation(Orientation orientation) {
-        getNode().setOrientation(orientation);
-        return (T) this;
-    }
+	/**
+	 * Define how items are disposed in the dom.
+	 * Possible values are: `horizontal|vertical`.
+	 * It also changes navigation keys from left/right to up/down.
+	 */
+	default T orientation(Orientation orientation) {
+		getNode().setOrientation(orientation);
+		return (T) this;
+	}
 
-    /**
-     * The list of items from which a selection can be made.
-     * It is populated from the elements passed to the light DOM,
-     * and updated dynamically when adding or removing items.
-     * <p>
-     * The item elements must implement `Vaadin.ItemMixin`.
-     * <p>
-     * Note: unlike `<vaadin-combo-box>`, this property is read-only,
-     * so if you want to provide items by iterating array of data,
-     * you have to use `dom-repeat` and place it to the light DOM.
-     */
-    @Nullable
-    default Array<ItemMixin> items() {
-        return getNode().getItems();
-    }
+	/**
+	 * The list of items from which a selection can be made.
+	 * It is populated from the elements passed to the light DOM,
+	 * and updated dynamically when adding or removing items.
+	 * <p>
+	 * The item elements must implement `Vaadin.ItemMixin`.
+	 * <p>
+	 * Note: unlike `<vaadin-combo-box>`, this property is read-only,
+	 * so if you want to provide items by iterating array of data,
+	 * you have to use `dom-repeat` and place it to the light DOM.
+	 */
+	@Nullable
+	default Array<ItemMixin> items() {
+		return getNode().getItems();
+	}
 
-    default void focus() {
-        getNode().focus();
-    }
+	default void focus() {
+		getNode().focus();
+	}
 
-    /**
-     * Fired when the selection is changed.
-     * Not fired when used in `multiple` selection mode.
-     */
-    default ObservableEvent<IntPropertyChangeEvent> selectedChangedEvent() {
-        return createEvent("selected-changed");
-    }
+	/**
+	 * Fired when the selection is changed.
+	 * Not fired when used in `multiple` selection mode.
+	 */
+	default ObservableEvent<IntPropertyChangeEvent> selectedChangedEvent() {
+		return createEvent("selected-changed");
+	}
 }

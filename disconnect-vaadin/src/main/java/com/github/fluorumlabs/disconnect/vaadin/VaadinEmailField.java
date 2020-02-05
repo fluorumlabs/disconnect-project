@@ -20,8 +20,8 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinEmailField extends AbstractComponent<EmailFieldElement>
-        implements HasComponents<EmailFieldElement, VaadinEmailField, Component<?>> {
-    public VaadinEmailField() {
-        super("vaadin-email-field");
-    }
+		implements HasComponents<EmailFieldElement, VaadinEmailField, Component<?>> {
+	public VaadinEmailField() {
+		super("vaadin-email-field");
+	}
 }

@@ -11,5 +11,5 @@ import org.teavm.jso.JSFunctor;
 @FunctionalInterface
 public
 interface DataProviderCallback<ITEM extends Any> extends Any {
-    void accept(Array<ITEM> items, int size);
+	void accept(Array<ITEM> items, int size);
 }

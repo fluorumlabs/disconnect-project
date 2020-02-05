@@ -46,132 +46,132 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinCheckboxGroup extends AbstractComponent<CheckboxGroupElement>
-        implements HasThemableMixin<CheckboxGroupElement, VaadinCheckboxGroup>,
-        HasComponents<CheckboxGroupElement, VaadinCheckboxGroup, Component<?>> {
-    public VaadinCheckboxGroup() {
-        super("vaadin-checkbox-group");
-    }
+		implements HasThemableMixin<CheckboxGroupElement, VaadinCheckboxGroup>,
+		HasComponents<CheckboxGroupElement, VaadinCheckboxGroup, Component<?>> {
+	public VaadinCheckboxGroup() {
+		super("vaadin-checkbox-group");
+	}
 
-    /**
-     * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
-     */
-    public boolean disabled() {
-        return getNode().isDisabled();
-    }
+	/**
+	 * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
+	 */
+	public boolean disabled() {
+		return getNode().isDisabled();
+	}
 
-    /**
-     * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
-     */
-    public VaadinCheckboxGroup disabled(boolean disabled) {
-        getNode().setDisabled(disabled);
-        return this;
-    }
+	/**
+	 * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
+	 */
+	public VaadinCheckboxGroup disabled(boolean disabled) {
+		getNode().setDisabled(disabled);
+		return this;
+	}
 
-    /**
-     * String used for the label element.
-     */
-    @Nullable
-    public String label() {
-        return getNode().getLabel();
-    }
+	/**
+	 * String used for the label element.
+	 */
+	@Nullable
+	public String label() {
+		return getNode().getLabel();
+	}
 
-    /**
-     * String used for the label element.
-     */
-    public VaadinCheckboxGroup label(String label) {
-        getNode().setLabel(label);
-        return this;
-    }
+	/**
+	 * String used for the label element.
+	 */
+	public VaadinCheckboxGroup label(String label) {
+		getNode().setLabel(label);
+		return this;
+	}
 
-    /**
-     * Value of the checkbox group.
-     * Note: toggling the checkboxes modifies the value by creating new
-     * array each time, to override Polymer dirty-checking for arrays.
-     * You can still use Polymer array mutation methods to update the value.
-     */
-    @Nullable
-    public String[] value() {
-        return getNode().getValue();
-    }
+	/**
+	 * Value of the checkbox group.
+	 * Note: toggling the checkboxes modifies the value by creating new
+	 * array each time, to override Polymer dirty-checking for arrays.
+	 * You can still use Polymer array mutation methods to update the value.
+	 */
+	@Nullable
+	public String[] value() {
+		return getNode().getValue();
+	}
 
-    /**
-     * Value of the checkbox group.
-     * Note: toggling the checkboxes modifies the value by creating new
-     * array each time, to override Polymer dirty-checking for arrays.
-     * You can still use Polymer array mutation methods to update the value.
-     */
-    public VaadinCheckboxGroup value(String... value) {
-        getNode().setValue(value);
-        return this;
-    }
+	/**
+	 * Value of the checkbox group.
+	 * Note: toggling the checkboxes modifies the value by creating new
+	 * array each time, to override Polymer dirty-checking for arrays.
+	 * You can still use Polymer array mutation methods to update the value.
+	 */
+	public VaadinCheckboxGroup value(String... value) {
+		getNode().setValue(value);
+		return this;
+	}
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    @Nullable
-    public String errorMessage() {
-        return getNode().getErrorMessage();
-    }
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	@Nullable
+	public String errorMessage() {
+		return getNode().getErrorMessage();
+	}
 
-    /**
-     * Error to show when the input value is invalid.
-     */
-    public VaadinCheckboxGroup errorMessage(String errorMessage) {
-        getNode().setErrorMessage(errorMessage);
-        return this;
-    }
+	/**
+	 * Error to show when the input value is invalid.
+	 */
+	public VaadinCheckboxGroup errorMessage(String errorMessage) {
+		getNode().setErrorMessage(errorMessage);
+		return this;
+	}
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    public boolean required() {
-        return getNode().isRequired();
-    }
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	public boolean required() {
+		return getNode().isRequired();
+	}
 
-    /**
-     * Specifies that the user must fill in a value.
-     */
-    public VaadinCheckboxGroup required(boolean required) {
-        getNode().setRequired(required);
-        return this;
-    }
+	/**
+	 * Specifies that the user must fill in a value.
+	 */
+	public VaadinCheckboxGroup required(boolean required) {
+		getNode().setRequired(required);
+		return this;
+	}
 
-    /**
-     * This property is set to true when the control value is invalid.
-     */
-    public boolean invalid() {
-        return getNode().isInvalid();
-    }
+	/**
+	 * This property is set to true when the control value is invalid.
+	 */
+	public boolean invalid() {
+		return getNode().isInvalid();
+	}
 
-    /**
-     * This property is set to true when the control value is invalid.
-     */
-    public VaadinCheckboxGroup invalid(boolean invalid) {
-        getNode().setInvalid(invalid);
-        return this;
-    }
+	/**
+	 * This property is set to true when the control value is invalid.
+	 */
+	public VaadinCheckboxGroup invalid(boolean invalid) {
+		getNode().setInvalid(invalid);
+		return this;
+	}
 
-    /**
-     * Returns true if `value` is valid.
-     * `<iron-form>` uses this to check the validity or all its elements.
-     *
-     * @return True if the value is valid.
-     */
-    public boolean validate() {
-        return getNode().validate();
-    }
+	/**
+	 * Returns true if `value` is valid.
+	 * `<iron-form>` uses this to check the validity or all its elements.
+	 *
+	 * @return True if the value is valid.
+	 */
+	public boolean validate() {
+		return getNode().validate();
+	}
 
-    /**
-     * Fired when the `value` property changes.
-     */
-    public ObservableEvent<StringArrayPropertyChangeEvent> valueChangedEvent() {
-        return createEvent("value-changed");
-    }
+	/**
+	 * Fired when the `value` property changes.
+	 */
+	public ObservableEvent<StringArrayPropertyChangeEvent> valueChangedEvent() {
+		return createEvent("value-changed");
+	}
 
-    /**
-     * Fired when the `invalid` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
-        return createEvent("invalid-changed");
-    }
+	/**
+	 * Fired when the `invalid` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
+		return createEvent("invalid-changed");
+	}
 }

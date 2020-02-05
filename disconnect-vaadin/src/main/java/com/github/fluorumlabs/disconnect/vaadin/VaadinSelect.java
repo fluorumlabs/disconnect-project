@@ -110,277 +110,277 @@ import javax.annotation.Nullable;
  * propagated to the internal themable components listed above.
  */
 public class VaadinSelect extends AbstractComponent<SelectElement>
-        implements HasElementMixin<SelectElement, VaadinSelect>,
-        HasControlStateMixin<SelectElement, VaadinSelect>,
-        HasThemableMixin<SelectElement, VaadinSelect>,
-        HasSlottedComponents<SelectElement, VaadinSelect, Component<? extends Element>> {
-    public VaadinSelect() {
-        super("vaadin-select");
-    }
+		implements HasElementMixin<SelectElement, VaadinSelect>,
+		HasControlStateMixin<SelectElement, VaadinSelect>,
+		HasThemableMixin<SelectElement, VaadinSelect>,
+		HasSlottedComponents<SelectElement, VaadinSelect, Component<? extends Element>> {
+	public VaadinSelect() {
+		super("vaadin-select");
+	}
 
-    /**
-     * Set when the select is open
-     */
-    public boolean opened() {
-        return getNode().isOpened();
-    }
+	/**
+	 * Set when the select is open
+	 */
+	public boolean opened() {
+		return getNode().isOpened();
+	}
 
-    /**
-     * Set when the select is open
-     */
-    public VaadinSelect opened(boolean opened) {
-        getNode().setOpened(opened);
-        return this;
-    }
+	/**
+	 * Set when the select is open
+	 */
+	public VaadinSelect opened(boolean opened) {
+		getNode().setOpened(opened);
+		return this;
+	}
 
-    /**
-     * Custom function for rendering the content of the `<vaadin-select>`.
-     * Receives two arguments:
-     * <p>
-     * - `root` The `<vaadin-select-overlay>` internal container
-     * DOM element. Append your content to it.
-     * - `select` The reference to the `<vaadin-select>` element.
-     */
-    @Nullable
-    public SelectRenderer renderer() {
-        return getNode().getRenderer();
-    }
+	/**
+	 * Custom function for rendering the content of the `<vaadin-select>`.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The `<vaadin-select-overlay>` internal container
+	 * DOM element. Append your content to it.
+	 * - `select` The reference to the `<vaadin-select>` element.
+	 */
+	@Nullable
+	public SelectRenderer renderer() {
+		return getNode().getRenderer();
+	}
 
-    /**
-     * Custom function for rendering the content of the `<vaadin-select>`.
-     * Receives two arguments:
-     * <p>
-     * - `root` The `<vaadin-select-overlay>` internal container
-     * DOM element. Append your content to it.
-     * - `select` The reference to the `<vaadin-select>` element.
-     */
-    public VaadinSelect renderer(SelectRenderer renderer) {
-        getNode().setRenderer(renderer);
-        return this;
-    }
+	/**
+	 * Custom function for rendering the content of the `<vaadin-select>`.
+	 * Receives two arguments:
+	 * <p>
+	 * - `root` The `<vaadin-select-overlay>` internal container
+	 * DOM element. Append your content to it.
+	 * - `select` The reference to the `<vaadin-select>` element.
+	 */
+	public VaadinSelect renderer(SelectRenderer renderer) {
+		getNode().setRenderer(renderer);
+		return this;
+	}
 
-    /**
-     * The error message to display when the select value is invalid
-     */
-    @Nullable
-    public String errorMessage() {
-        return getNode().getErrorMessage();
-    }
+	/**
+	 * The error message to display when the select value is invalid
+	 */
+	@Nullable
+	public String errorMessage() {
+		return getNode().getErrorMessage();
+	}
 
-    /**
-     * The error message to display when the select value is invalid
-     */
-    public VaadinSelect errorMessage(String errorMessage) {
-        getNode().setErrorMessage(errorMessage);
-        return this;
-    }
+	/**
+	 * The error message to display when the select value is invalid
+	 */
+	public VaadinSelect errorMessage(String errorMessage) {
+		getNode().setErrorMessage(errorMessage);
+		return this;
+	}
 
-    /**
-     * String used for the label element.
-     */
-    @Nullable
-    public String label() {
-        return getNode().getLabel();
-    }
+	/**
+	 * String used for the label element.
+	 */
+	@Nullable
+	public String label() {
+		return getNode().getLabel();
+	}
 
-    /**
-     * String used for the label element.
-     */
-    public VaadinSelect label(String label) {
-        getNode().setLabel(label);
-        return this;
-    }
+	/**
+	 * String used for the label element.
+	 */
+	public VaadinSelect label(String label) {
+		getNode().setLabel(label);
+		return this;
+	}
 
-    /**
-     * It stores the the `value` property of the selected item, providing the
-     * value for iron-form.
-     * When there’s an item selected, it's the value of that item, otherwise
-     * it's an empty string.
-     * On change or initialization, the component finds the item which matches the
-     * value and displays it.
-     * If no value is provided to the component, it selects the first item without
-     * value or empty value.
-     * Hint: If you do not want to select any item by default, you can either set all
-     * the values of inner vaadin-items, or set the vaadin-select value to
-     * an inexistent value in the items list.
-     */
-    @Nullable
-    public String value() {
-        return getNode().getValue();
-    }
+	/**
+	 * It stores the the `value` property of the selected item, providing the
+	 * value for iron-form.
+	 * When there’s an item selected, it's the value of that item, otherwise
+	 * it's an empty string.
+	 * On change or initialization, the component finds the item which matches the
+	 * value and displays it.
+	 * If no value is provided to the component, it selects the first item without
+	 * value or empty value.
+	 * Hint: If you do not want to select any item by default, you can either set all
+	 * the values of inner vaadin-items, or set the vaadin-select value to
+	 * an inexistent value in the items list.
+	 */
+	@Nullable
+	public String value() {
+		return getNode().getValue();
+	}
 
-    /**
-     * It stores the the `value` property of the selected item, providing the
-     * value for iron-form.
-     * When there’s an item selected, it's the value of that item, otherwise
-     * it's an empty string.
-     * On change or initialization, the component finds the item which matches the
-     * value and displays it.
-     * If no value is provided to the component, it selects the first item without
-     * value or empty value.
-     * Hint: If you do not want to select any item by default, you can either set all
-     * the values of inner vaadin-items, or set the vaadin-select value to
-     * an inexistent value in the items list.
-     */
-    public VaadinSelect value(String value) {
-        getNode().setValue(value);
-        return this;
-    }
+	/**
+	 * It stores the the `value` property of the selected item, providing the
+	 * value for iron-form.
+	 * When there’s an item selected, it's the value of that item, otherwise
+	 * it's an empty string.
+	 * On change or initialization, the component finds the item which matches the
+	 * value and displays it.
+	 * If no value is provided to the component, it selects the first item without
+	 * value or empty value.
+	 * Hint: If you do not want to select any item by default, you can either set all
+	 * the values of inner vaadin-items, or set the vaadin-select value to
+	 * an inexistent value in the items list.
+	 */
+	public VaadinSelect value(String value) {
+		getNode().setValue(value);
+		return this;
+	}
 
-    /**
-     * The current required state of the select. True if required.
-     */
-    public boolean required() {
-        return getNode().isRequired();
-    }
+	/**
+	 * The current required state of the select. True if required.
+	 */
+	public boolean required() {
+		return getNode().isRequired();
+	}
 
-    /**
-     * The current required state of the select. True if required.
-     */
-    public VaadinSelect required(boolean required) {
-        getNode().setRequired(required);
-        return this;
-    }
+	/**
+	 * The current required state of the select. True if required.
+	 */
+	public VaadinSelect required(boolean required) {
+		getNode().setRequired(required);
+		return this;
+	}
 
-    /**
-     * Set to true if the value is invalid.
-     */
-    public boolean invalid() {
-        return getNode().isInvalid();
-    }
+	/**
+	 * Set to true if the value is invalid.
+	 */
+	public boolean invalid() {
+		return getNode().isInvalid();
+	}
 
-    /**
-     * Set to true if the value is invalid.
-     */
-    public VaadinSelect invalid(boolean invalid) {
-        getNode().setInvalid(invalid);
-        return this;
-    }
+	/**
+	 * Set to true if the value is invalid.
+	 */
+	public VaadinSelect invalid(boolean invalid) {
+		getNode().setInvalid(invalid);
+		return this;
+	}
 
-    /**
-     * The name of this element.
-     */
-    @Nullable
-    public String name() {
-        return getNode().getName();
-    }
+	/**
+	 * The name of this element.
+	 */
+	@Nullable
+	public String name() {
+		return getNode().getName();
+	}
 
-    /**
-     * The name of this element.
-     */
-    public VaadinSelect name(String name) {
-        getNode().setName(name);
-        return this;
-    }
+	/**
+	 * The name of this element.
+	 */
+	public VaadinSelect name(String name) {
+		getNode().setName(name);
+		return this;
+	}
 
-    /**
-     * A hint to the user of what can be entered in the control.
-     * The placeholder will be displayed in the case that there
-     * is no item selected, or the selected item has an empty
-     * string label, or the selected item has no label and it's
-     * DOM content is empty.
-     */
-    @Nullable
-    public String placeholder() {
-        return getNode().getPlaceholder();
-    }
+	/**
+	 * A hint to the user of what can be entered in the control.
+	 * The placeholder will be displayed in the case that there
+	 * is no item selected, or the selected item has an empty
+	 * string label, or the selected item has no label and it's
+	 * DOM content is empty.
+	 */
+	@Nullable
+	public String placeholder() {
+		return getNode().getPlaceholder();
+	}
 
-    /**
-     * A hint to the user of what can be entered in the control.
-     * The placeholder will be displayed in the case that there
-     * is no item selected, or the selected item has an empty
-     * string label, or the selected item has no label and it's
-     * DOM content is empty.
-     */
-    public VaadinSelect placeholder(String placeholder) {
-        getNode().setPlaceholder(placeholder);
-        return this;
-    }
+	/**
+	 * A hint to the user of what can be entered in the control.
+	 * The placeholder will be displayed in the case that there
+	 * is no item selected, or the selected item has an empty
+	 * string label, or the selected item has no label and it's
+	 * DOM content is empty.
+	 */
+	public VaadinSelect placeholder(String placeholder) {
+		getNode().setPlaceholder(placeholder);
+		return this;
+	}
 
-    /**
-     * When present, it specifies that the element is read-only.
-     */
-    public boolean readonly() {
-        return getNode().isReadonly();
-    }
+	/**
+	 * When present, it specifies that the element is read-only.
+	 */
+	public boolean readonly() {
+		return getNode().isReadonly();
+	}
 
-    /**
-     * When present, it specifies that the element is read-only.
-     */
-    public VaadinSelect readonly(boolean readonly) {
-        getNode().setReadonly(readonly);
-        return this;
-    }
+	/**
+	 * When present, it specifies that the element is read-only.
+	 */
+	public VaadinSelect readonly(boolean readonly) {
+		getNode().setReadonly(readonly);
+		return this;
+	}
 
-    /**
-     * Manually invoke existing renderer.
-     */
-    public void render() {
-        getNode().render();
-    }
+	/**
+	 * Manually invoke existing renderer.
+	 */
+	public void render() {
+		getNode().render();
+	}
 
-    /**
-     * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
-     *
-     * @return True if the value is valid and sets the `invalid` flag appropriately
-     */
-    public boolean validate() {
-        return getNode().validate();
-    }
+	/**
+	 * Returns true if `value` is valid, and sets the `invalid` flag appropriately.
+	 *
+	 * @return True if the value is valid and sets the `invalid` flag appropriately
+	 */
+	public boolean validate() {
+		return getNode().validate();
+	}
 
-    /**
-     * Fired when the user commits a value change.
-     */
-    public ObservableEvent<Event> changeEvent() {
-        return createEvent("change");
-    }
+	/**
+	 * Fired when the user commits a value change.
+	 */
+	public ObservableEvent<Event> changeEvent() {
+		return createEvent("change");
+	}
 
-    /**
-     * Fired when the `opened` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
-        return createEvent("opened-changed");
-    }
+	/**
+	 * Fired when the `opened` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> openedChangedEvent() {
+		return createEvent("opened-changed");
+	}
 
-    /**
-     * Fired when the `value` property changes.
-     */
-    public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
-        return createEvent("value-changed");
-    }
+	/**
+	 * Fired when the `value` property changes.
+	 */
+	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
+		return createEvent("value-changed");
+	}
 
-    /**
-     * Fired when the `invalid` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> InvalidChangedEvent() {
-        return createEvent("invalid-changed");
-    }
+	/**
+	 * Fired when the `invalid` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> InvalidChangedEvent() {
+		return createEvent("invalid-changed");
+	}
 
-    public VaadinSelect setPrefix(Component<? extends Element> component) {
-        return replaceSlotted("prefix", component);
-    }
+	public VaadinSelect setPrefix(Component<? extends Element> component) {
+		return replaceSlotted("prefix", component);
+	}
 
-    public VaadinSelect setPrefix(Component<? extends Element>... components) {
-        return replaceSlotted("prefix", components);
-    }
+	public VaadinSelect setPrefix(Component<? extends Element>... components) {
+		return replaceSlotted("prefix", components);
+	}
 
-    public VaadinSelect addToPrefix(Component<? extends Element> component) {
-        return addSlotted("prefix", component);
-    }
+	public VaadinSelect addToPrefix(Component<? extends Element> component) {
+		return addSlotted("prefix", component);
+	}
 
-    public VaadinSelect addToPrefix(Component<? extends Element>... components) {
-        return addSlotted("prefix", components);
-    }
+	public VaadinSelect addToPrefix(Component<? extends Element>... components) {
+		return addSlotted("prefix", components);
+	}
 
-    public VaadinSelect insertToPrefix(Component<? extends Element> component) {
-        return insertSlotted("prefix", component);
-    }
+	public VaadinSelect insertToPrefix(Component<? extends Element> component) {
+		return insertSlotted("prefix", component);
+	}
 
-    public VaadinSelect insertToPrefix(Component<? extends Element>... components) {
-        return insertSlotted("prefix", components);
-    }
+	public VaadinSelect insertToPrefix(Component<? extends Element>... components) {
+		return insertSlotted("prefix", components);
+	}
 
-    public VaadinSelect clearPrefix() {
-        return removeAllSlotted("prefix");
-    }
+	public VaadinSelect clearPrefix() {
+		return removeAllSlotted("prefix");
+	}
 }

@@ -30,25 +30,25 @@ import org.teavm.jso.JSBody;
  * property using `dash-case`-to-`camelCase` convention.
  */
 @NpmPackage(
-        name = "@polymer/polymer",
-        version = Polymer.VERSION
+		name = "@polymer/polymer",
+		version = Polymer.VERSION
 )
 @Import(
-        symbols = "PropertyAccessors",
-        module = "@polymer/polymer/lib/mixins/property-accessors.js"
+		symbols = "PropertyAccessors",
+		module = "@polymer/polymer/lib/mixins/property-accessors.js"
 )
 public interface PropertyAccessors extends PropertiesChanged {
-    /**
-     * Generates property accessors for all attributes in the standard
-     * static `observedAttributes` array.
-     * <p>
-     * Attribute names are mapped to property names using the `dash-case` to
-     * `camelCase` convention
-     */
-    @JSBody(
-            script = "PropertyAccessors.createPropertiesForAttributes()"
-    )
-    static void createPropertiesForAttributes() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
+	/**
+	 * Generates property accessors for all attributes in the standard
+	 * static `observedAttributes` array.
+	 * <p>
+	 * Attribute names are mapped to property names using the `dash-case` to
+	 * `camelCase` convention
+	 */
+	@JSBody(
+			script = "PropertyAccessors.createPropertiesForAttributes()"
+	)
+	static void createPropertiesForAttributes() {
+		throw new UnsupportedOperationException("Available only in JavaScript");
+	}
 }

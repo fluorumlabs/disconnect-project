@@ -10,5 +10,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * handle more cases, with the potential performance hit.
  */
 public interface HasStrictBindingParser<E extends StrictBindingParser, T extends Component<E>>
-        extends HasPropertyEffects<E, T> {
+		extends HasPropertyEffects<E, T> {
 }

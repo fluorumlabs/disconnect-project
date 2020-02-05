@@ -17,8 +17,8 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinGridProEditCheckbox extends AbstractComponent<GridProEditCheckboxElement>
-        implements HasComponents<GridProEditCheckboxElement, VaadinGridProEditCheckbox, Component<?>> {
-    public VaadinGridProEditCheckbox() {
-        super("vaadin-grid-pro-edit-checkbox");
-    }
+		implements HasComponents<GridProEditCheckboxElement, VaadinGridProEditCheckbox, Component<?>> {
+	public VaadinGridProEditCheckbox() {
+		super("vaadin-grid-pro-edit-checkbox");
+	}
 }

@@ -43,41 +43,41 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinTabs extends AbstractComponent<TabsElement> implements HasElementMixin<TabsElement, VaadinTabs>,
-        HasListMixin<TabsElement, VaadinTabs>,
-        HasThemableMixin<TabsElement, VaadinTabs>,
-        HasComponents<TabsElement, VaadinTabs, Component<?>> {
-    public VaadinTabs() {
-        super("vaadin-tabs");
-    }
+		HasListMixin<TabsElement, VaadinTabs>,
+		HasThemableMixin<TabsElement, VaadinTabs>,
+		HasComponents<TabsElement, VaadinTabs, Component<?>> {
+	public VaadinTabs() {
+		super("vaadin-tabs");
+	}
 
-    /**
-     * Set tabs disposition. Possible values are `horizontal|vertical`
-     */
-    @Nullable
-    public Orientation orientation() {
-        return getNode().getOrientation();
-    }
+	/**
+	 * Set tabs disposition. Possible values are `horizontal|vertical`
+	 */
+	@Nullable
+	public Orientation orientation() {
+		return getNode().getOrientation();
+	}
 
-    /**
-     * Set tabs disposition. Possible values are `horizontal|vertical`
-     */
-    public VaadinTabs orientation(Orientation orientation) {
-        getNode().setOrientation(orientation);
-        return this;
-    }
+	/**
+	 * Set tabs disposition. Possible values are `horizontal|vertical`
+	 */
+	public VaadinTabs orientation(Orientation orientation) {
+		getNode().setOrientation(orientation);
+		return this;
+	}
 
-    /**
-     * The index of the selected tab.
-     */
-    public int selected() {
-        return getNode().getSelected();
-    }
+	/**
+	 * The index of the selected tab.
+	 */
+	public int selected() {
+		return getNode().getSelected();
+	}
 
-    /**
-     * The index of the selected tab.
-     */
-    public VaadinTabs selected(int selected) {
-        getNode().setSelected(selected);
-        return this;
-    }
+	/**
+	 * The index of the selected tab.
+	 */
+	public VaadinTabs selected(int selected) {
+		getNode().setSelected(selected);
+		return this;
+	}
 }

@@ -35,24 +35,24 @@ import javax.annotation.Nullable;
  * ```
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "GridColumnGroupElement",
-        module = "@vaadin/vaadin-grid/src/vaadin-grid-column-group.js"
+		symbols = "GridColumnGroupElement",
+		module = "@vaadin/vaadin-grid/src/vaadin-grid-column-group.js"
 )
 public interface GridColumnGroupElement<ITEM extends Any> extends HTMLElement, ColumnBaseMixin<ITEM> {
-    /**
-     * Flex grow ratio for the column group as the sum of the ratios of its child columns.
-     */
-    @JSProperty
-    double getFlexGrow();
+	/**
+	 * Flex grow ratio for the column group as the sum of the ratios of its child columns.
+	 */
+	@JSProperty
+	double getFlexGrow();
 
-    /**
-     * Width of the column group as the sum of the widths of its child columns.
-     */
-    @Nullable
-    @JSProperty
-    String getWidth();
+	/**
+	 * Width of the column group as the sum of the widths of its child columns.
+	 */
+	@Nullable
+	@JSProperty
+	String getWidth();
 }

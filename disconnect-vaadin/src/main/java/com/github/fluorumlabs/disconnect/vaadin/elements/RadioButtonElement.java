@@ -41,50 +41,50 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 @NpmPackage(
-        name = "@vaadin/vaadin",
-        version = Vaadin.VERSION
+		name = "@vaadin/vaadin",
+		version = Vaadin.VERSION
 )
 @Import(
-        symbols = "RadioButtonElement",
-        module = "@vaadin/vaadin-radio-button/src/vaadin-radio-button.js"
+		symbols = "RadioButtonElement",
+		module = "@vaadin/vaadin-radio-button/src/vaadin-radio-button.js"
 )
 public interface RadioButtonElement
-        extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
-    /**
-     * Name of the element.
-     */
-    @Nullable
-    @JSProperty
-    String getName();
+		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
+	/**
+	 * Name of the element.
+	 */
+	@Nullable
+	@JSProperty
+	String getName();
 
-    /**
-     * Name of the element.
-     */
-    @JSProperty
-    void setName(String name);
+	/**
+	 * Name of the element.
+	 */
+	@JSProperty
+	void setName(String name);
 
-    /**
-     * True if the radio button is checked.
-     */
-    @JSProperty
-    boolean isChecked();
+	/**
+	 * True if the radio button is checked.
+	 */
+	@JSProperty
+	boolean isChecked();
 
-    /**
-     * True if the radio button is checked.
-     */
-    @JSProperty
-    void setChecked(boolean checked);
+	/**
+	 * True if the radio button is checked.
+	 */
+	@JSProperty
+	void setChecked(boolean checked);
 
-    /**
-     * The value for this element.
-     */
-    @Nullable
-    @JSProperty
-    String getValue();
+	/**
+	 * The value for this element.
+	 */
+	@Nullable
+	@JSProperty
+	String getValue();
 
-    /**
-     * The value for this element.
-     */
-    @JSProperty
-    void setValue(String value);
+	/**
+	 * The value for this element.
+	 */
+	@JSProperty
+	void setValue(String value);
 }

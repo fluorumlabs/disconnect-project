@@ -104,183 +104,183 @@ import javax.annotation.Nullable;
  * On this case, the toolbars on mobile device won't collapse.
  */
 public class VaadinAppLayout extends AbstractComponent<AppLayoutElement>
-        implements HasElementMixin<AppLayoutElement, VaadinAppLayout>,
-        HasThemableMixin<AppLayoutElement, VaadinAppLayout>,
-        HasSlottedComponents<AppLayoutElement, VaadinAppLayout, Component<? extends Element>> {
-    public VaadinAppLayout() {
-        super("vaadin-app-layout");
-    }
+		implements HasElementMixin<AppLayoutElement, VaadinAppLayout>,
+		HasThemableMixin<AppLayoutElement, VaadinAppLayout>,
+		HasSlottedComponents<AppLayoutElement, VaadinAppLayout, Component<? extends Element>> {
+	public VaadinAppLayout() {
+		super("vaadin-app-layout");
+	}
 
-    /**
-     * Helper static method that dispatches a `close-overlay-drawer` event
-     */
-    public static void dispatchCloseOverlayDrawerEvent() {
-        AppLayoutElement.dispatchCloseOverlayDrawerEvent();
-    }
+	/**
+	 * Helper static method that dispatches a `close-overlay-drawer` event
+	 */
+	public static void dispatchCloseOverlayDrawerEvent() {
+		AppLayoutElement.dispatchCloseOverlayDrawerEvent();
+	}
 
-    /**
-     * Defines whether navbar or drawer will come first visually.
-     * - By default (`primary-section="navbar"`), the navbar takes the full available width and moves the drawer down.
-     * - If `primary-section="drawer"` is set, then the drawer will move the navbar, taking the full available height.
-     */
-    @Nullable
-    public PrimarySection primarySection() {
-        return getNode().getPrimarySection();
-    }
+	/**
+	 * Defines whether navbar or drawer will come first visually.
+	 * - By default (`primary-section="navbar"`), the navbar takes the full available width and moves the drawer down.
+	 * - If `primary-section="drawer"` is set, then the drawer will move the navbar, taking the full available height.
+	 */
+	@Nullable
+	public PrimarySection primarySection() {
+		return getNode().getPrimarySection();
+	}
 
-    /**
-     * Defines whether navbar or drawer will come first visually.
-     * - By default (`primary-section="navbar"`), the navbar takes the full available width and moves the drawer down.
-     * - If `primary-section="drawer"` is set, then the drawer will move the navbar, taking the full available height.
-     */
-    public VaadinAppLayout primarySection(PrimarySection primarySection) {
-        getNode().setPrimarySection(primarySection);
-        return this;
-    }
+	/**
+	 * Defines whether navbar or drawer will come first visually.
+	 * - By default (`primary-section="navbar"`), the navbar takes the full available width and moves the drawer down.
+	 * - If `primary-section="drawer"` is set, then the drawer will move the navbar, taking the full available height.
+	 */
+	public VaadinAppLayout primarySection(PrimarySection primarySection) {
+		getNode().setPrimarySection(primarySection);
+		return this;
+	}
 
-    /**
-     * Controls whether the drawer is opened (visible) or not.
-     * Its default value depends on the viewport:
-     * - `true`, for desktop size views
-     * - `false`, for mobile size views
-     */
-    public boolean drawerOpened() {
-        return getNode().isDrawerOpened();
-    }
+	/**
+	 * Controls whether the drawer is opened (visible) or not.
+	 * Its default value depends on the viewport:
+	 * - `true`, for desktop size views
+	 * - `false`, for mobile size views
+	 */
+	public boolean drawerOpened() {
+		return getNode().isDrawerOpened();
+	}
 
-    /**
-     * Controls whether the drawer is opened (visible) or not.
-     * Its default value depends on the viewport:
-     * - `true`, for desktop size views
-     * - `false`, for mobile size views
-     */
-    public VaadinAppLayout drawerOpened(boolean drawerOpened) {
-        getNode().setDrawerOpened(drawerOpened);
-        return this;
-    }
+	/**
+	 * Controls whether the drawer is opened (visible) or not.
+	 * Its default value depends on the viewport:
+	 * - `true`, for desktop size views
+	 * - `false`, for mobile size views
+	 */
+	public VaadinAppLayout drawerOpened(boolean drawerOpened) {
+		getNode().setDrawerOpened(drawerOpened);
+		return this;
+	}
 
-    /**
-     * Drawer is an overlay on top of the content
-     * Controlled via CSS using `--vaadin-app-layout-drawer-overlay: true|false`;
-     */
-    public boolean overlay() {
-        return getNode().isOverlay();
-    }
+	/**
+	 * Drawer is an overlay on top of the content
+	 * Controlled via CSS using `--vaadin-app-layout-drawer-overlay: true|false`;
+	 */
+	public boolean overlay() {
+		return getNode().isOverlay();
+	}
 
-    /**
-     * App Layout listens to `close-overlay-drawer` on the window level.
-     * A custom event can be dispatched and the App Layout will close the drawer in overlay.
-     * <p>
-     * That can be used, for instance, when a navigation occurs when user clicks in a menu item inside the drawer.
-     * <p>
-     * See `dispatchCloseOverlayDrawerEvent()` helper method.
-     */
-    public ObservableEvent<Event> closeOverlayDrawerEvent() {
-        return createEvent("close-overlay-drawer");
-    }
+	/**
+	 * App Layout listens to `close-overlay-drawer` on the window level.
+	 * A custom event can be dispatched and the App Layout will close the drawer in overlay.
+	 * <p>
+	 * That can be used, for instance, when a navigation occurs when user clicks in a menu item inside the drawer.
+	 * <p>
+	 * See `dispatchCloseOverlayDrawerEvent()` helper method.
+	 */
+	public ObservableEvent<Event> closeOverlayDrawerEvent() {
+		return createEvent("close-overlay-drawer");
+	}
 
-    /**
-     * Fired when the `primarySection` property changes.
-     */
-    public ObservableEvent<PropertyChangeEvent<PrimarySection>> primarySectionChangedEvent() {
-        return createEvent("primary-section-changed");
-    }
+	/**
+	 * Fired when the `primarySection` property changes.
+	 */
+	public ObservableEvent<PropertyChangeEvent<PrimarySection>> primarySectionChangedEvent() {
+		return createEvent("primary-section-changed");
+	}
 
-    /**
-     * Fired when the `drawerOpened` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> drawerOpenedChangedEvent() {
-        return createEvent("drawer-opened-changed");
-    }
+	/**
+	 * Fired when the `drawerOpened` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> drawerOpenedChangedEvent() {
+		return createEvent("drawer-opened-changed");
+	}
 
-    /**
-     * Fired when the `overlay` property changes.
-     */
-    public ObservableEvent<BooleanPropertyChangeEvent> overlayChangedEvent() {
-        return createEvent("overlay-changed");
-    }
+	/**
+	 * Fired when the `overlay` property changes.
+	 */
+	public ObservableEvent<BooleanPropertyChangeEvent> overlayChangedEvent() {
+		return createEvent("overlay-changed");
+	}
 
-    public VaadinAppLayout setNavbar(Component<? extends Element> component) {
-        return replaceSlotted("navbar", component);
-    }
+	public VaadinAppLayout setNavbar(Component<? extends Element> component) {
+		return replaceSlotted("navbar", component);
+	}
 
-    public VaadinAppLayout setNavbar(Component<? extends Element>... components) {
-        return replaceSlotted("navbar", components);
-    }
+	public VaadinAppLayout setNavbar(Component<? extends Element>... components) {
+		return replaceSlotted("navbar", components);
+	}
 
-    public VaadinAppLayout addToNavbar(Component<? extends Element> component) {
-        return addSlotted("navbar", component);
-    }
+	public VaadinAppLayout addToNavbar(Component<? extends Element> component) {
+		return addSlotted("navbar", component);
+	}
 
-    public VaadinAppLayout addToNavbar(Component<? extends Element>... components) {
-        return addSlotted("navbar", components);
-    }
+	public VaadinAppLayout addToNavbar(Component<? extends Element>... components) {
+		return addSlotted("navbar", components);
+	}
 
-    public VaadinAppLayout insertToNavbar(Component<? extends Element> component) {
-        return insertSlotted("navbar", component);
-    }
+	public VaadinAppLayout insertToNavbar(Component<? extends Element> component) {
+		return insertSlotted("navbar", component);
+	}
 
-    public VaadinAppLayout insertToNavbar(Component<? extends Element>... components) {
-        return insertSlotted("navbar", components);
-    }
+	public VaadinAppLayout insertToNavbar(Component<? extends Element>... components) {
+		return insertSlotted("navbar", components);
+	}
 
-    public VaadinAppLayout clearNavbar() {
-        return removeAllSlotted("navbar");
-    }
+	public VaadinAppLayout clearNavbar() {
+		return removeAllSlotted("navbar");
+	}
 
-    public VaadinAppLayout setDrawer(Component<? extends Element> component) {
-        return replaceSlotted("drawer", component);
-    }
+	public VaadinAppLayout setDrawer(Component<? extends Element> component) {
+		return replaceSlotted("drawer", component);
+	}
 
-    public VaadinAppLayout setDrawer(Component<? extends Element>... components) {
-        return replaceSlotted("drawer", components);
-    }
+	public VaadinAppLayout setDrawer(Component<? extends Element>... components) {
+		return replaceSlotted("drawer", components);
+	}
 
-    public VaadinAppLayout addToDrawer(Component<? extends Element> component) {
-        return addSlotted("drawer", component);
-    }
+	public VaadinAppLayout addToDrawer(Component<? extends Element> component) {
+		return addSlotted("drawer", component);
+	}
 
-    public VaadinAppLayout addToDrawer(Component<? extends Element>... components) {
-        return addSlotted("drawer", components);
-    }
+	public VaadinAppLayout addToDrawer(Component<? extends Element>... components) {
+		return addSlotted("drawer", components);
+	}
 
-    public VaadinAppLayout insertToDrawer(Component<? extends Element> component) {
-        return insertSlotted("drawer", component);
-    }
+	public VaadinAppLayout insertToDrawer(Component<? extends Element> component) {
+		return insertSlotted("drawer", component);
+	}
 
-    public VaadinAppLayout insertToDrawer(Component<? extends Element>... components) {
-        return insertSlotted("drawer", components);
-    }
+	public VaadinAppLayout insertToDrawer(Component<? extends Element>... components) {
+		return insertSlotted("drawer", components);
+	}
 
-    public VaadinAppLayout clearDrawer() {
-        return removeAllSlotted("drawer");
-    }
+	public VaadinAppLayout clearDrawer() {
+		return removeAllSlotted("drawer");
+	}
 
-    public VaadinAppLayout setNavbarBottom(Component<? extends Element> component) {
-        return replaceSlotted("navbar-bottom", component);
-    }
+	public VaadinAppLayout setNavbarBottom(Component<? extends Element> component) {
+		return replaceSlotted("navbar-bottom", component);
+	}
 
-    public VaadinAppLayout setNavbarBottom(Component<? extends Element>... components) {
-        return replaceSlotted("navbar-bottom", components);
-    }
+	public VaadinAppLayout setNavbarBottom(Component<? extends Element>... components) {
+		return replaceSlotted("navbar-bottom", components);
+	}
 
-    public VaadinAppLayout addToNavbarBottom(Component<? extends Element> component) {
-        return addSlotted("navbar-bottom", component);
-    }
+	public VaadinAppLayout addToNavbarBottom(Component<? extends Element> component) {
+		return addSlotted("navbar-bottom", component);
+	}
 
-    public VaadinAppLayout addToNavbarBottom(Component<? extends Element>... components) {
-        return addSlotted("navbar-bottom", components);
-    }
+	public VaadinAppLayout addToNavbarBottom(Component<? extends Element>... components) {
+		return addSlotted("navbar-bottom", components);
+	}
 
-    public VaadinAppLayout insertToNavbarBottom(Component<? extends Element> component) {
-        return insertSlotted("navbar-bottom", component);
-    }
+	public VaadinAppLayout insertToNavbarBottom(Component<? extends Element> component) {
+		return insertSlotted("navbar-bottom", component);
+	}
 
-    public VaadinAppLayout insertToNavbarBottom(Component<? extends Element>... components) {
-        return insertSlotted("navbar-bottom", components);
-    }
+	public VaadinAppLayout insertToNavbarBottom(Component<? extends Element>... components) {
+		return insertSlotted("navbar-bottom", components);
+	}
 
-    public VaadinAppLayout clearNavbarBottom() {
-        return removeAllSlotted("navbar-bottom");
-    }
+	public VaadinAppLayout clearNavbarBottom() {
+		return removeAllSlotted("navbar-bottom");
+	}
 }

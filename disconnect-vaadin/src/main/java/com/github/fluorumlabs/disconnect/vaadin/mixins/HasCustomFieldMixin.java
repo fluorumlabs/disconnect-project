@@ -11,90 +11,90 @@ import js.web.dom.Event;
 import javax.annotation.Nullable;
 
 public interface HasCustomFieldMixin<E extends CustomFieldMixin, T extends Component<E>> extends Component<E> {
-    /**
-     * Array of available input nodes
-     */
-    @Nullable
-    default Array<Element> inputs() {
-        return getNode().getInputs();
-    }
+	/**
+	 * Array of available input nodes
+	 */
+	@Nullable
+	default Array<Element> inputs() {
+		return getNode().getInputs();
+	}
 
-    /**
-     * The object used to localize this component.
-     * To change the default localization, replace the entire
-     * _i18n_ object or just the property you want to modify.
-     * <p>
-     * The object has the following JSON structure:
-     * <p>
-     * {
-     * // A function to format given `Array` as
-     * // component value. Array is list of all internal values
-     * // in the order of their presence in the DOM
-     * // This function is called each time the internal input
-     * // value is changed.
-     * formatValue: inputValues => {
-     * // returns a representation of the given array of values
-     * // in the form of string with delimiter characters
-     * },
-     * <p>
-     * // A function to parse the given value to an `Array` in the format
-     * // of the list of all internal values
-     * // in the order of their presence in the DOM
-     * // This function is called when value of the
-     * // custom field is set.
-     * parseValue: value => {
-     * // returns the array of values from parsed value string.
-     * }
-     */
-    @Nullable
-    default CustomFieldI18n i18n() {
-        return getNode().getI18n();
-    }
+	/**
+	 * The object used to localize this component.
+	 * To change the default localization, replace the entire
+	 * _i18n_ object or just the property you want to modify.
+	 * <p>
+	 * The object has the following JSON structure:
+	 * <p>
+	 * {
+	 * // A function to format given `Array` as
+	 * // component value. Array is list of all internal values
+	 * // in the order of their presence in the DOM
+	 * // This function is called each time the internal input
+	 * // value is changed.
+	 * formatValue: inputValues => {
+	 * // returns a representation of the given array of values
+	 * // in the form of string with delimiter characters
+	 * },
+	 * <p>
+	 * // A function to parse the given value to an `Array` in the format
+	 * // of the list of all internal values
+	 * // in the order of their presence in the DOM
+	 * // This function is called when value of the
+	 * // custom field is set.
+	 * parseValue: value => {
+	 * // returns the array of values from parsed value string.
+	 * }
+	 */
+	@Nullable
+	default CustomFieldI18n i18n() {
+		return getNode().getI18n();
+	}
 
-    /**
-     * The object used to localize this component.
-     * To change the default localization, replace the entire
-     * _i18n_ object or just the property you want to modify.
-     * <p>
-     * The object has the following JSON structure:
-     * <p>
-     * {
-     * // A function to format given `Array` as
-     * // component value. Array is list of all internal values
-     * // in the order of their presence in the DOM
-     * // This function is called each time the internal input
-     * // value is changed.
-     * formatValue: inputValues => {
-     * // returns a representation of the given array of values
-     * // in the form of string with delimiter characters
-     * },
-     * <p>
-     * // A function to parse the given value to an `Array` in the format
-     * // of the list of all internal values
-     * // in the order of their presence in the DOM
-     * // This function is called when value of the
-     * // custom field is set.
-     * parseValue: value => {
-     * // returns the array of values from parsed value string.
-     * }
-     */
-    default T i18n(CustomFieldI18n i18n) {
-        getNode().setI18n(i18n);
-        return (T) this;
-    }
+	/**
+	 * The object used to localize this component.
+	 * To change the default localization, replace the entire
+	 * _i18n_ object or just the property you want to modify.
+	 * <p>
+	 * The object has the following JSON structure:
+	 * <p>
+	 * {
+	 * // A function to format given `Array` as
+	 * // component value. Array is list of all internal values
+	 * // in the order of their presence in the DOM
+	 * // This function is called each time the internal input
+	 * // value is changed.
+	 * formatValue: inputValues => {
+	 * // returns a representation of the given array of values
+	 * // in the form of string with delimiter characters
+	 * },
+	 * <p>
+	 * // A function to parse the given value to an `Array` in the format
+	 * // of the list of all internal values
+	 * // in the order of their presence in the DOM
+	 * // This function is called when value of the
+	 * // custom field is set.
+	 * parseValue: value => {
+	 * // returns the array of values from parsed value string.
+	 * }
+	 */
+	default T i18n(CustomFieldI18n i18n) {
+		getNode().setI18n(i18n);
+		return (T) this;
+	}
 
-    /**
-     * Fired when the user commits a value change for any of the internal inputs.
-     */
-    default ObservableEvent<Event> ChangeEvent() {
-        return createEvent("change");
-    }
+	/**
+	 * Fired when the user commits a value change for any of the internal inputs.
+	 */
+	default ObservableEvent<Event> ChangeEvent() {
+		return createEvent("change");
+	}
 
-    /**
-     * Fired on Tab keydown triggered from the internal inputs,
-     * meaning focus will not leave the inputs.
-     */
-    default ObservableEvent<Event> InternalTabEvent() {
-        return createEvent("internal-tab");
-    }
+	/**
+	 * Fired on Tab keydown triggered from the internal inputs,
+	 * meaning focus will not leave the inputs.
+	 */
+	default ObservableEvent<Event> InternalTabEvent() {
+		return createEvent("internal-tab");
+	}
 }

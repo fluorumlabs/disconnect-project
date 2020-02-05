@@ -65,146 +65,146 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinTextField extends AbstractComponent<TextFieldElement>
-        implements HasTextFieldMixin<TextFieldElement, VaadinTextField>,
-        HasThemableMixin<TextFieldElement, VaadinTextField>,
-        HasSlottedComponents<TextFieldElement, VaadinTextField, Component<? extends Element>> {
-    public VaadinTextField() {
-        super("vaadin-text-field");
-    }
+		implements HasTextFieldMixin<TextFieldElement, VaadinTextField>,
+		HasThemableMixin<TextFieldElement, VaadinTextField>,
+		HasSlottedComponents<TextFieldElement, VaadinTextField, Component<? extends Element>> {
+	public VaadinTextField() {
+		super("vaadin-text-field");
+	}
 
-    /**
-     * Identifies a list of pre-defined options to suggest to the user.
-     * The value must be the id of a <datalist> element in the same document.
-     */
-    @Nullable
-    public String list() {
-        return getNode().getList();
-    }
+	/**
+	 * Identifies a list of pre-defined options to suggest to the user.
+	 * The value must be the id of a <datalist> element in the same document.
+	 */
+	@Nullable
+	public String list() {
+		return getNode().getList();
+	}
 
-    /**
-     * Identifies a list of pre-defined options to suggest to the user.
-     * The value must be the id of a <datalist> element in the same document.
-     */
-    public VaadinTextField list(String list) {
-        getNode().setList(list);
-        return this;
-    }
+	/**
+	 * Identifies a list of pre-defined options to suggest to the user.
+	 * The value must be the id of a <datalist> element in the same document.
+	 */
+	public VaadinTextField list(String list) {
+		getNode().setList(list);
+		return this;
+	}
 
-    /**
-     * A regular expression that the value is checked against.
-     * The pattern must match the entire value, not just some subset.
-     */
-    @Nullable
-    public String pattern() {
-        return getNode().getPattern();
-    }
+	/**
+	 * A regular expression that the value is checked against.
+	 * The pattern must match the entire value, not just some subset.
+	 */
+	@Nullable
+	public String pattern() {
+		return getNode().getPattern();
+	}
 
-    /**
-     * A regular expression that the value is checked against.
-     * The pattern must match the entire value, not just some subset.
-     */
-    public VaadinTextField pattern(String pattern) {
-        getNode().setPattern(pattern);
-        return this;
-    }
+	/**
+	 * A regular expression that the value is checked against.
+	 * The pattern must match the entire value, not just some subset.
+	 */
+	public VaadinTextField pattern(String pattern) {
+		getNode().setPattern(pattern);
+		return this;
+	}
 
-    /**
-     * The text usually displayed in a tooltip popup when the mouse is over the field.
-     */
-    @Nullable
-    public String title() {
-        return getNode().getTitle();
-    }
+	/**
+	 * The text usually displayed in a tooltip popup when the mouse is over the field.
+	 */
+	@Nullable
+	public String title() {
+		return getNode().getTitle();
+	}
 
-    /**
-     * The text usually displayed in a tooltip popup when the mouse is over the field.
-     */
-    public VaadinTextField title(String title) {
-        getNode().setTitle(title);
-        return this;
-    }
+	/**
+	 * The text usually displayed in a tooltip popup when the mouse is over the field.
+	 */
+	public VaadinTextField title(String title) {
+		getNode().setTitle(title);
+		return this;
+	}
 
-    public VaadinTextField setPrefix(Component<? extends Element> component) {
-        return replaceSlotted("prefix", component);
-    }
+	public VaadinTextField setPrefix(Component<? extends Element> component) {
+		return replaceSlotted("prefix", component);
+	}
 
-    public VaadinTextField setPrefix(Component<? extends Element>... components) {
-        return replaceSlotted("prefix", components);
-    }
+	public VaadinTextField setPrefix(Component<? extends Element>... components) {
+		return replaceSlotted("prefix", components);
+	}
 
-    public VaadinTextField addToPrefix(Component<? extends Element> component) {
-        return addSlotted("prefix", component);
-    }
+	public VaadinTextField addToPrefix(Component<? extends Element> component) {
+		return addSlotted("prefix", component);
+	}
 
-    public VaadinTextField addToPrefix(Component<? extends Element>... components) {
-        return addSlotted("prefix", components);
-    }
+	public VaadinTextField addToPrefix(Component<? extends Element>... components) {
+		return addSlotted("prefix", components);
+	}
 
-    public VaadinTextField insertToPrefix(Component<? extends Element> component) {
-        return insertSlotted("prefix", component);
-    }
+	public VaadinTextField insertToPrefix(Component<? extends Element> component) {
+		return insertSlotted("prefix", component);
+	}
 
-    public VaadinTextField insertToPrefix(Component<? extends Element>... components) {
-        return insertSlotted("prefix", components);
-    }
+	public VaadinTextField insertToPrefix(Component<? extends Element>... components) {
+		return insertSlotted("prefix", components);
+	}
 
-    public VaadinTextField clearPrefix() {
-        return removeAllSlotted("prefix");
-    }
+	public VaadinTextField clearPrefix() {
+		return removeAllSlotted("prefix");
+	}
 
-    public VaadinTextField setInput(Component<? extends Element> component) {
-        return replaceSlotted("input", component);
-    }
+	public VaadinTextField setInput(Component<? extends Element> component) {
+		return replaceSlotted("input", component);
+	}
 
-    public VaadinTextField setInput(Component<? extends Element>... components) {
-        return replaceSlotted("input", components);
-    }
+	public VaadinTextField setInput(Component<? extends Element>... components) {
+		return replaceSlotted("input", components);
+	}
 
-    public VaadinTextField addToInput(Component<? extends Element> component) {
-        return addSlotted("input", component);
-    }
+	public VaadinTextField addToInput(Component<? extends Element> component) {
+		return addSlotted("input", component);
+	}
 
-    public VaadinTextField addToInput(Component<? extends Element>... components) {
-        return addSlotted("input", components);
-    }
+	public VaadinTextField addToInput(Component<? extends Element>... components) {
+		return addSlotted("input", components);
+	}
 
-    public VaadinTextField insertToInput(Component<? extends Element> component) {
-        return insertSlotted("input", component);
-    }
+	public VaadinTextField insertToInput(Component<? extends Element> component) {
+		return insertSlotted("input", component);
+	}
 
-    public VaadinTextField insertToInput(Component<? extends Element>... components) {
-        return insertSlotted("input", components);
-    }
+	public VaadinTextField insertToInput(Component<? extends Element>... components) {
+		return insertSlotted("input", components);
+	}
 
-    public VaadinTextField clearInput() {
-        return removeAllSlotted("input");
-    }
+	public VaadinTextField clearInput() {
+		return removeAllSlotted("input");
+	}
 
-    public VaadinTextField setSuffix(Component<? extends Element> component) {
-        return replaceSlotted("suffix", component);
-    }
+	public VaadinTextField setSuffix(Component<? extends Element> component) {
+		return replaceSlotted("suffix", component);
+	}
 
-    public VaadinTextField setSuffix(Component<? extends Element>... components) {
-        return replaceSlotted("suffix", components);
-    }
+	public VaadinTextField setSuffix(Component<? extends Element>... components) {
+		return replaceSlotted("suffix", components);
+	}
 
-    public VaadinTextField addToSuffix(Component<? extends Element> component) {
-        return addSlotted("suffix", component);
-    }
+	public VaadinTextField addToSuffix(Component<? extends Element> component) {
+		return addSlotted("suffix", component);
+	}
 
-    public VaadinTextField addToSuffix(Component<? extends Element>... components) {
-        return addSlotted("suffix", components);
-    }
+	public VaadinTextField addToSuffix(Component<? extends Element>... components) {
+		return addSlotted("suffix", components);
+	}
 
-    public VaadinTextField insertToSuffix(Component<? extends Element> component) {
-        return insertSlotted("suffix", component);
-    }
+	public VaadinTextField insertToSuffix(Component<? extends Element> component) {
+		return insertSlotted("suffix", component);
+	}
 
-    public VaadinTextField insertToSuffix(Component<? extends Element>... components) {
-        return insertSlotted("suffix", components);
-    }
+	public VaadinTextField insertToSuffix(Component<? extends Element>... components) {
+		return insertSlotted("suffix", components);
+	}
 
-    public VaadinTextField clearSuffix() {
-        return removeAllSlotted("suffix");
-    }
+	public VaadinTextField clearSuffix() {
+		return removeAllSlotted("suffix");
+	}
 }

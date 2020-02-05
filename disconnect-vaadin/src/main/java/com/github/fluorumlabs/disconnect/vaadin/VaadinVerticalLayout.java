@@ -27,9 +27,9 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * `theme="spacing"` | Applies the default amount of CSS margin between items (specified by the theme)
  */
 public class VaadinVerticalLayout extends AbstractComponent<VerticalLayoutElement>
-        implements HasThemableMixin<VerticalLayoutElement, VaadinVerticalLayout>,
-        HasComponents<VerticalLayoutElement, VaadinVerticalLayout, Component<?>> {
-    public VaadinVerticalLayout() {
-        super("vaadin-vertical-layout");
-    }
+		implements HasThemableMixin<VerticalLayoutElement, VaadinVerticalLayout>,
+		HasComponents<VerticalLayoutElement, VaadinVerticalLayout, Component<?>> {
+	public VaadinVerticalLayout() {
+		super("vaadin-vertical-layout");
+	}
 }

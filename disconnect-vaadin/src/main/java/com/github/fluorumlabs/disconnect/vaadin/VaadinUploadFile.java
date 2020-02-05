@@ -46,59 +46,59 @@ import javax.annotation.Nullable;
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
 public class VaadinUploadFile extends AbstractComponent<UploadFileElement>
-        implements HasThemableMixin<UploadFileElement, VaadinUploadFile>,
-        HasComponents<UploadFileElement, VaadinUploadFile, Component<?>> {
-    public VaadinUploadFile() {
-        super("vaadin-upload-file");
-    }
+		implements HasThemableMixin<UploadFileElement, VaadinUploadFile>,
+		HasComponents<UploadFileElement, VaadinUploadFile, Component<?>> {
+	public VaadinUploadFile() {
+		super("vaadin-upload-file");
+	}
 
-    /**
-     *
-     */
-    @Nullable
-    public UploadingFile file() {
-        return getNode().getFile();
-    }
+	/**
+	 *
+	 */
+	@Nullable
+	public UploadingFile file() {
+		return getNode().getFile();
+	}
 
-    /**
-     *
-     */
-    public VaadinUploadFile file(UploadingFile file) {
-        getNode().setFile(file);
-        return this;
-    }
+	/**
+	 *
+	 */
+	public VaadinUploadFile file(UploadingFile file) {
+		getNode().setFile(file);
+		return this;
+	}
 
-    /**
-     * Fired when abort button is pressed. It is listened by `vaadin-upload` which
-     * will abort the upload in progress, but will not remove the file from the list
-     * to allow the animation to hide the element to be run.
-     */
-    public ObservableEvent<UploadFileEvent> fileAbortEvent() {
-        return createEvent("file-abort");
-    }
+	/**
+	 * Fired when abort button is pressed. It is listened by `vaadin-upload` which
+	 * will abort the upload in progress, but will not remove the file from the list
+	 * to allow the animation to hide the element to be run.
+	 */
+	public ObservableEvent<UploadFileEvent> fileAbortEvent() {
+		return createEvent("file-abort");
+	}
 
-    /**
-     * Fired after the animation to hide the element has finished. It is listened
-     * by `vaadin-upload` which will actually remove the file from the upload
-     * file list.
-     */
-    public ObservableEvent<UploadFileEvent> fileRemoveEvent() {
-        return createEvent("file-remove");
-    }
+	/**
+	 * Fired after the animation to hide the element has finished. It is listened
+	 * by `vaadin-upload` which will actually remove the file from the upload
+	 * file list.
+	 */
+	public ObservableEvent<UploadFileEvent> fileRemoveEvent() {
+		return createEvent("file-remove");
+	}
 
-    /**
-     * Fired when the retry button is pressed. It is listened by `vaadin-upload`
-     * which will start a new upload process of this file.
-     */
-    public ObservableEvent<UploadFileEvent> fileRetryEvent() {
-        return createEvent("file-retry");
-    }
+	/**
+	 * Fired when the retry button is pressed. It is listened by `vaadin-upload`
+	 * which will start a new upload process of this file.
+	 */
+	public ObservableEvent<UploadFileEvent> fileRetryEvent() {
+		return createEvent("file-retry");
+	}
 
-    /**
-     * Fired when the start button is pressed. It is listened by `vaadin-upload`
-     * which will start a new upload process of this file.
-     */
-    public ObservableEvent<UploadFileEvent> fileStartEvent() {
-        return createEvent("file-start");
-    }
+	/**
+	 * Fired when the start button is pressed. It is listened by `vaadin-upload`
+	 * which will start a new upload process of this file.
+	 */
+	public ObservableEvent<UploadFileEvent> fileStartEvent() {
+		return createEvent("file-start");
+	}
 }

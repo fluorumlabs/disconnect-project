@@ -11,22 +11,22 @@ import org.teavm.jso.JSProperty;
 @JSFunctor
 @FunctionalInterface
 public interface CellClassNameGenerator<ITEM extends Any> extends Any {
-    String getClassNames(GridColumnElement<ITEM> column, RowData<ITEM> rowData);
+	String getClassNames(GridColumnElement<ITEM> column, RowData<ITEM> rowData);
 
-    interface RowData<ITEM> extends Any {
-        @JSProperty
-        int getIndex();
+	interface RowData<ITEM> extends Any {
+		@JSProperty
+		int getIndex();
 
-        @JSProperty
-        ITEM getItem();
+		@JSProperty
+		ITEM getItem();
 
-        @JSProperty
-        boolean getExpanded();
+		@JSProperty
+		boolean getExpanded();
 
-        @JSProperty
-        int getLevel();
+		@JSProperty
+		int getLevel();
 
-        @JSProperty
-        boolean getSelected();
-    }
+		@JSProperty
+		boolean getSelected();
+	}
 }
