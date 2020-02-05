@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
-import com.github.fluorumlabs.disconnect.polymer.utils.SpliceRecord;
+import com.github.fluorumlabs.disconnect.polymer.types.SpliceRecord;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.Record;

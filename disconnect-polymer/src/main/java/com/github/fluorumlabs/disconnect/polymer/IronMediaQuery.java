@@ -3,9 +3,8 @@ package com.github.fluorumlabs.disconnect.polymer;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronMediaQueryElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.lang.JsVoid;
 import js.web.cssom.MediaQueryList;
-import js.web.dom.CustomEvent;
+import js.web.dom.Event;
 
 import javax.annotation.Nullable;
 
@@ -75,7 +74,7 @@ public class IronMediaQuery
 
 	/**
 	 * Fired when the `queryMatches` property changes. */
-	public ObservableEvent<CustomEvent<JsVoid>> QueryMatchesChangedEvent() {
+	public ObservableEvent<Event> QueryMatchesChangedEvent() {
 		return createEvent("query-matches-changed");
 	}
 }

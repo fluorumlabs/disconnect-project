@@ -6,8 +6,7 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.lang.JsVoid;
-import js.web.dom.CustomEvent;
+import js.web.dom.Event;
 
 /**
  * The `<dom-if>` element will stamp a light-dom `<template>` child when
@@ -83,7 +82,7 @@ public class DomIf
      * should be called if, for example, template rendering is required to
      * validate application state.
      */
-    public void doRender() {
+    public void render() {
         getNode().render();
     }
 
@@ -92,7 +91,7 @@ public class DomIf
      * default, rendering occurs lazily).  To force immediate rendering, call
      * `render`.
      */
-    public ObservableEvent<CustomEvent<JsVoid>> DomChangeEvent() {
+    public ObservableEvent<Event> domChangeEvent() {
         return createEvent("dom-change");
     }
 }

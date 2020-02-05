@@ -3,6 +3,7 @@ package com.github.fluorumlabs.disconnect.polymer.utils;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
+import com.github.fluorumlabs.disconnect.polymer.types.ReadonlySpliceRecord;
 import js.lang.Any;
 import js.util.collections.Array;
 import org.teavm.jso.JSBody;

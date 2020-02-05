@@ -23,6 +23,11 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.github.fluorumlabs.disconnect</groupId>
+            <artifactId>disconnect-polymer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.teavm</groupId>
             <artifactId>teavm-jso</artifactId>
         </dependency>

@@ -1,14 +1,13 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.IronListElement;
-import com.github.fluorumlabs.disconnect.polymer.utils.PropertyChangeDetails;
+import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
 import js.util.collections.Array;
-import js.web.dom.CustomEvent;
 
 import javax.annotation.Nullable;
 
@@ -592,14 +591,14 @@ public class IronList<ITEM extends Any>
     /**
      * Fired when the `selectedItem` property changes.
      */
-    public ObservableEvent<CustomEvent<PropertyChangeDetails<ITEM>>> SelectedItemChangedEvent() {
+    public ObservableEvent<PropertyChangeEvent<ITEM>> SelectedItemChangedEvent() {
         return createEvent("selected-item-changed");
     }
 
     /**
      * Fired when the `selectedItems` property changes.
      */
-    public ObservableEvent<CustomEvent<PropertyChangeDetails<Array<ITEM>>>> SelectedItemsChangedEvent() {
+    public ObservableEvent<PropertyChangeEvent<ITEM>> SelectedItemsChangedEvent() {
         return createEvent("selected-items-changed");
     }
 }

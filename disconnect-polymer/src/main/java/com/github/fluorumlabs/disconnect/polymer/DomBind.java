@@ -9,8 +9,7 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.lang.JsVoid;
-import js.web.dom.CustomEvent;
+import js.web.dom.Event;
 
 /**
  * Custom element to allow using Polymer's template features (data binding,
@@ -43,7 +42,7 @@ public class DomBind
      * Forces the element to render its content. This is typically only
      * necessary to call if HTMLImports with the async attribute are used.
      */
-    public void doRender() {
+    public void render() {
         getNode().render();
     }
 
@@ -52,7 +51,7 @@ public class DomBind
      * default, rendering occurs lazily).  To force immediate rendering, call
      * `render`.
      */
-    public ObservableEvent<CustomEvent<JsVoid>> DomChangeEvent() {
+    public ObservableEvent<Event> domChangeEvent() {
         return createEvent("dom-change");
     }
 

@@ -42,23 +42,23 @@ import java.util.stream.Stream;
  * Hello world!
  */
 public class App {
-    //public static String rootPackage = "com.github.fluorumlabs.disconnect.vaadin";
-    public static String rootPackage = "com.github.fluorumlabs.disconnect.polymer";
+    public static String rootPackage = "com.github.fluorumlabs.disconnect.vaadin";
+    //public static String rootPackage = "com.github.fluorumlabs.disconnect.polymer";
 
-    //public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit\\zzz\\@vaadin\\";
-    public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit\\zzz\\@polymer\\";
+    public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit2\\zzz\\@vaadin\\";
+    //public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit\\zzz\\@polymer\\";
 
-    //public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-vaadin";
-    public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-polymer";
+    public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-vaadin";
+    //public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-polymer";
 
-    //public static String npmPackage = "@vaadin/vaadin";
-    public static String npmPackage = "@polymer/polymer";
+    public static String npmPackage = "@vaadin/vaadin";
+    //public static String npmPackage = "@polymer/polymer";
 
-    //public static String importRoot = "@vaadin";
-    public static String importRoot = "@polymer";
+    public static String importRoot = "@vaadin";
+    //public static String importRoot = "@polymer";
 
-    //public static String npmVersion = "14.1.16";
-    public static String npmVersion = "3.3.1";
+    public static String npmVersion = "15.0.0-alpha15";
+    //public static String npmVersion = "3.3.1";
 
     private static final Pattern KEBAB_SPLIT = Pattern.compile("-");
 
@@ -195,21 +195,32 @@ public class App {
 
         JSONObject analysis = new JSONObject(new JSONTokener(json));
 
-        TypeSpec.Builder packageBuilder = TypeSpec.interfaceBuilder(commonPackageClassName)
-                .addModifiers(Modifier.PUBLIC);
+        TypeSpec.Builder packageBuilder = TypeSpec.classBuilder(commonPackageClassName)
+                .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
 
-        AnnotationSpec npmModule = AnnotationSpec.builder(NpmPackage.class)
-                .addMember("name", "$S", npmPackage)
-                .addMember("version", "$S", npmVersion)
-                .build();
+        packageBuilder.addField(FieldSpec.builder(String.class, "VERSION")
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .initializer("$S", npmVersion)
+                .build());
 
-        packageBuilder.addAnnotation(npmModule);
+        packageBuilder.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PRIVATE).build());
+
+        addNpmImport(commonPackageClassName, packageBuilder);
 
         processPolymerAnalysis(rootPath, commonPackageClassName, analysis, packageBuilder);
 
         JavaFile.builder(rootPackage, packageBuilder.build())
                 .build()
                 .writeTo(Paths.get(targetPath, "src", "main", "java"));
+    }
+
+    private static void addNpmImport(String commonPackageClassName, TypeSpec.Builder packageBuilder) {
+        AnnotationSpec npmModule = AnnotationSpec.builder(NpmPackage.class)
+                .addMember("name", "$S", npmPackage)
+                .addMember("version", "$T.VERSION", ClassName.get(rootPackage, commonPackageClassName))
+                .build();
+
+        packageBuilder.addAnnotation(npmModule);
     }
 
     private static void processPolymerAnalysis(String rootPath, String commonPackageClassName, JSONObject analysis, TypeSpec.Builder packageBuilder) throws IOException {
@@ -248,11 +259,12 @@ public class App {
             }
             for (Map.Entry<String, List<JSONObject>> stringListEntry : functions.entrySet()) {
                 TypeSpec.Builder utilBuilder = TypeSpec.interfaceBuilder(stringListEntry.getKey())
-                        .addSuperinterface(ClassName.get(rootPackage, commonPackageClassName))
+                        .addSuperinterface(ClassName.get(Any.class))
                         .addModifiers(Modifier.PUBLIC);
                 Map<String, Set<String>> importNames = new HashMap<>();
                 stringListEntry.getValue().forEach(function -> processPolymerFunctions(rootPath, commonPackageClassName, utilBuilder, function, importNames));
 
+                addNpmImport(commonPackageClassName, utilBuilder);
                 importNames.forEach((file, names) -> {
                     AnnotationSpec importAnnotation = AnnotationSpec.builder(Import.class)
                             .addMember("symbols", "{$L}", names.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", ")))
@@ -399,7 +411,7 @@ public class App {
 
         TypeSpec.Builder jsElement = TypeSpec.interfaceBuilder(shortElementName)
                 .addModifiers(Modifier.PUBLIC)
-                .addSuperinterface(ClassName.get(rootPackage, commonPackageClassName))
+                .addSuperinterface(ClassName.get(Any.class))
                 .addSuperinterface(safePolymerType(superClass));
 
         TypeSpec.Builder javaElement = TypeSpec.classBuilder(shortComponentName)
@@ -428,6 +440,7 @@ public class App {
             javaElement.addJavadoc("$L", description);
         }
 
+        addNpmImport(commonPackageClassName, jsElement);
         if (importPath != null) {
             AnnotationSpec importAnnotation = AnnotationSpec.builder(Import.class)
                     .addMember("symbols", "$S", shortElementName)
@@ -487,7 +500,6 @@ public class App {
 
         TypeSpec.Builder jsMixin = TypeSpec.interfaceBuilder(mixinName)
                 .addModifiers(Modifier.PUBLIC)
-                .addSuperinterface(ClassName.get(rootPackage, commonPackageClassName))
                 .addSuperinterface(Element.class);
 
         TypeSpec.Builder javaMixin = TypeSpec.interfaceBuilder(shortJavaMixinName)
@@ -511,6 +523,7 @@ public class App {
             javaMixin.addJavadoc("$L", description);
         }
 
+        addNpmImport(commonPackageClassName, jsMixin);
         if (importPath != null) {
             AnnotationSpec importAnnotation = AnnotationSpec.builder(Import.class)
                     .addMember("symbols", "$S", shortMixinName)
@@ -589,7 +602,7 @@ public class App {
             }
             setContents.addStatement("return replaceSlotted($S, components)", slotName);
 
-            MethodSpec.Builder addContent = MethodSpec.methodBuilder("add" + slotMethodNameBase)
+            MethodSpec.Builder addContent = MethodSpec.methodBuilder("addTo" + slotMethodNameBase)
                     .addModifiers(Modifier.PUBLIC)
                     .returns(javaReturnType);
             if (javaReturnType instanceof TypeVariableName) {
@@ -602,7 +615,7 @@ public class App {
             }
             addContent.addStatement("return addSlotted($S, component)", slotName);
 
-            MethodSpec.Builder addContents = MethodSpec.methodBuilder("add" + slotMethodNameBase)
+            MethodSpec.Builder addContents = MethodSpec.methodBuilder("addTo" + slotMethodNameBase)
                     .addModifiers(Modifier.PUBLIC)
                     .returns(javaReturnType);
             if (javaReturnType instanceof TypeVariableName) {
@@ -615,7 +628,7 @@ public class App {
             }
             addContents.addStatement("return addSlotted($S, components)", slotName);
 
-            MethodSpec.Builder insertContent = MethodSpec.methodBuilder("insert" + slotMethodNameBase)
+            MethodSpec.Builder insertContent = MethodSpec.methodBuilder("insertTo" + slotMethodNameBase)
                     .addModifiers(Modifier.PUBLIC)
                     .returns(javaReturnType);
             if (javaReturnType instanceof TypeVariableName) {
@@ -628,7 +641,7 @@ public class App {
             }
             insertContent.addStatement("return insertSlotted($S, component)", slotName);
 
-            MethodSpec.Builder insertContents = MethodSpec.methodBuilder("insert" + slotMethodNameBase)
+            MethodSpec.Builder insertContents = MethodSpec.methodBuilder("insertTo" + slotMethodNameBase)
                     .addModifiers(Modifier.PUBLIC)
                     .returns(javaReturnType);
             if (javaReturnType instanceof TypeVariableName) {

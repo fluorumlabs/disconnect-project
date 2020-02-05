@@ -3,18 +3,17 @@ package com.github.fluorumlabs.disconnect.polymer;
 import com.github.fluorumlabs.disconnect.polymer.elements.DomRepeatElement;
 import com.github.fluorumlabs.disconnect.polymer.elements.TemplateInstanceBase;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasOptionalMutableData;
-import com.github.fluorumlabs.disconnect.polymer.utils.IntPropertyChangeDetails;
+import com.github.fluorumlabs.disconnect.polymer.types.IntPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
-import js.lang.JsVoid;
 import js.util.collections.Array;
 import js.util.function.IntKeyPredicate;
 import js.util.function.JsComparator;
-import js.web.dom.CustomEvent;
+import js.web.dom.Event;
 import js.web.dom.HTMLElement;
 
 import javax.annotation.Nullable;
@@ -381,7 +380,7 @@ public class DomRepeat<ITEM extends Any>
      * should be called if, for example, template rendering is required to
      * validate application state.
      */
-    public void doRender() {
+    public void render() {
         getNode().render();
     }
 
@@ -442,14 +441,14 @@ public class DomRepeat<ITEM extends Any>
      * default, rendering occurs lazily).  To force immediate rendering, call
      * `render`.
      */
-    public ObservableEvent<CustomEvent<JsVoid>> DomChangeEvent() {
+    public ObservableEvent<Event> domChangeEvent() {
         return createEvent("dom-change");
     }
 
     /**
      * Fired when the `renderedItemCount` property changes.
      */
-    public ObservableEvent<CustomEvent<IntPropertyChangeDetails>> RenderedItemCountChangedEvent() {
+    public ObservableEvent<IntPropertyChangeEvent> renderedItemCountChangedEvent() {
         return createEvent("rendered-item-count-changed");
     }
 }

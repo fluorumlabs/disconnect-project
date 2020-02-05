@@ -1,12 +1,11 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.IronMetaElement;
-import com.github.fluorumlabs.disconnect.polymer.utils.PropertyChangeDetails;
+import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
 import js.util.collections.Array;
-import js.web.dom.CustomEvent;
 
 /**
  * `iron-meta` is a generic element you can use for sharing information across the
@@ -132,7 +131,7 @@ public class IronMeta<ITEM extends Any>
     /**
      * Fired when the `value` property changes.
      */
-    public ObservableEvent<CustomEvent<PropertyChangeDetails<ITEM>>> ValueChangedEvent() {
+    public ObservableEvent<PropertyChangeEvent<ITEM>> ValueChangedEvent() {
         return createEvent("value-changed");
     }
 }

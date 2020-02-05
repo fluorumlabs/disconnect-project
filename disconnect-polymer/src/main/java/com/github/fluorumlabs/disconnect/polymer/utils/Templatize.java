@@ -5,6 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.elements.TemplateInstanceBase;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.PropertyEffects;
+import com.github.fluorumlabs.disconnect.polymer.types.TemplatizeOptions;
 import js.lang.Any;
 import js.util.function.JsSupplier;
 import js.web.dom.Node;

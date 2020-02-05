@@ -1,6 +1,10 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
+import com.github.fluorumlabs.disconnect.polymer.constants.PolymerType;
+import com.github.fluorumlabs.disconnect.polymer.constants.ScrollDirection;
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.LegacyElementMixin;
+import com.github.fluorumlabs.disconnect.polymer.types.Debouncer;
+import com.github.fluorumlabs.disconnect.polymer.types.LegacyEventInit;
 import com.github.fluorumlabs.disconnect.polymer.utils.*;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import js.lang.Any;

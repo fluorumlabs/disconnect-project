@@ -31,10 +31,10 @@ public interface HTMLElement extends Element, DocumentAndElementEventHandlers, E
     String getAccessKeyLabel();
 
     @JSProperty
-    String getAutocapitalize();
+    Autocapitalize getAutocapitalize();
 
     @JSProperty
-    void setAutocapitalize(String autocapitalize);
+    void setAutocapitalize(Autocapitalize autocapitalize);
 
     @JSProperty
     String getDir();
