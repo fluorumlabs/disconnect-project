@@ -85,7 +85,6 @@ public class App {
 
     static {
         flexmarkOptions.set(FlexmarkHtmlParserPatched.BR_AS_EXTRA_BLANK_LINES, false);
-        flexmarkOptions.set(FlexmarkHtmlParserPatched.BR_AS_PARA_BREAKS, true);
 
         parser = Parser.builder(flexmarkOptions).extensions(extensionList).build();
         htmlRenderer = HtmlRenderer.builder(flexmarkOptions).extensions(extensionList).build();
@@ -102,7 +101,8 @@ public class App {
     }
 
     private static String renderMarkdown(String markdown) {
-        return htmlRenderer.render(parser.parse(markdown));
+        String render = htmlRenderer.render(parser.parse(markdown));
+        return StringUtils.replaceEach(render, new String[]{"<p>","</p>"}, new String[]{"", "\n"});
     }
 
     /**
