@@ -2,9 +2,21 @@ package com.github.fluorumlabs.disconnect;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.zero.component.*;
+import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
+import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import com.squareup.javapoet.*;
+import com.vladsch.flexmark.Extension;
+import com.vladsch.flexmark.ext.autolink.AutolinkExtension;
+import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension;
+import com.vladsch.flexmark.ext.ins.InsExtension;
+import com.vladsch.flexmark.ext.tables.TablesExtension;
+import com.vladsch.flexmark.formatter.internal.Formatter;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.util.options.MutableDataSet;
 import js.lang.Any;
 import js.lang.JsFunction;
 import js.lang.Unknown;
@@ -46,7 +58,8 @@ public class App {
     //public static String sourcePath = "C:\\Users\\arigy\\Documents\\Marketing\\zzz\\shit\\zzz\\@polymer\\";
 
     public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-vaadin";
-    //public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect-polymer";
+    //public static String targetPath = "C:\\Users\\arigy\\Documents\\Marketing\\disconnect-project\\disconnect
+    // -polymer";
 
     public static String npmPackage = "@vaadin/vaadin";
     //public static String npmPackage = "@polymer/polymer";
@@ -57,12 +70,39 @@ public class App {
     public static String npmVersion = "15.0.0-alpha15";
     //public static String npmVersion = "3.3.1";
 
+    private static final MutableDataSet flexmarkOptions = new MutableDataSet();
+
+    private static final Parser parser;
+
+    private static final HtmlRenderer htmlRenderer;
+
+    private static final com.vladsch.flexmark.formatter.internal.Formatter formatter;
+
+    private static final List<Extension> extensionList = Arrays.asList(TablesExtension.create(),
+            StrikethroughExtension.create(),
+            AutolinkExtension.create(),
+            InsExtension.create());
+
+    static {
+        flexmarkOptions.set(FlexmarkHtmlParserPatched.BR_AS_EXTRA_BLANK_LINES, false);
+        flexmarkOptions.set(FlexmarkHtmlParserPatched.BR_AS_PARA_BREAKS, true);
+
+        parser = Parser.builder(flexmarkOptions).extensions(extensionList).build();
+        htmlRenderer = HtmlRenderer.builder(flexmarkOptions).extensions(extensionList).build();
+        formatter = Formatter.builder(flexmarkOptions).extensions(extensionList).build();
+    }
+
+
     private static final Pattern KEBAB_SPLIT = Pattern.compile("-");
 
     private static String toCamelCase(String kebabCase) {
         return StringUtils.uncapitalize(Stream.of(KEBAB_SPLIT.split(kebabCase))
                 .map(StringUtils::capitalize)
                 .collect(Collectors.joining()));
+    }
+
+    private static String renderMarkdown(String markdown) {
+        return htmlRenderer.render(parser.parse(markdown));
     }
 
     /**
@@ -88,9 +128,11 @@ public class App {
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PRIVATE).build());
 
-        FieldSpec.Builder npmPackageNameField = FieldSpec.builder(String.class, "PACKAGE", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+        FieldSpec.Builder npmPackageNameField = FieldSpec.builder(String.class, "PACKAGE", Modifier.PUBLIC,
+                Modifier.STATIC, Modifier.FINAL)
                 .initializer("$S", npmPackage);
-        FieldSpec.Builder npmPackageVersion = FieldSpec.builder(String.class, "VERSION", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+        FieldSpec.Builder npmPackageVersion = FieldSpec.builder(String.class, "VERSION", Modifier.PUBLIC,
+                Modifier.STATIC, Modifier.FINAL)
                 .initializer("$S", npmVersion);
 
         packageBuilder.addField(npmPackageNameField.build());
@@ -99,7 +141,8 @@ public class App {
         for (Object o : analysis) {
             JSONObject element = (JSONObject) o;
             String tagName = element.getString("tagName");
-            String className = StringUtils.removeStart(StringUtils.capitalize(toCamelCase(tagName)), commonPackageClassName);
+            String className = StringUtils.removeStart(StringUtils.capitalize(toCamelCase(tagName)),
+                    commonPackageClassName);
             String interfaceName = className + "Element";
 
             AnnotationSpec.Builder packageAnnotation = AnnotationSpec.builder(NpmPackage.class)
@@ -115,7 +158,8 @@ public class App {
 
             TypeSpec.Builder classBuilder = TypeSpec.classBuilder(className)
                     .addModifiers(Modifier.PUBLIC)
-                    .superclass(ParameterizedTypeName.get(ClassName.get(AbstractComponent.class), ClassName.get(rootPackage + ".elements", interfaceName)))
+                    .superclass(ParameterizedTypeName.get(ClassName.get(AbstractComponent.class),
+                            ClassName.get(rootPackage + ".elements", interfaceName)))
                     .addAnnotation(packageAnnotation.build())
                     .addAnnotation(importAnnotation.build());
 
@@ -128,8 +172,8 @@ public class App {
             String jsDocText = getJsDoc(declaration);
 
             if (!jsDocText.isEmpty()) {
-                interfaceBuilder.addJavadoc("$L", jsDocText);
-                classBuilder.addJavadoc("$L", jsDocText);
+                interfaceBuilder.addJavadoc("$L", renderMarkdown(jsDocText));
+                classBuilder.addJavadoc("$L", renderMarkdown(jsDocText));
             }
 
             JSONArray members = declaration.optJSONArray("members");
@@ -220,7 +264,9 @@ public class App {
         packageBuilder.addAnnotation(npmModule);
     }
 
-    private static void processPolymerAnalysis(String rootPath, String commonPackageClassName, JSONObject analysis, TypeSpec.Builder packageBuilder) throws IOException {
+    private static void processPolymerAnalysis(String rootPath, String commonPackageClassName, JSONObject analysis,
+                                               TypeSpec.Builder packageBuilder) throws
+                                                                                                                                                     IOException {
         if (analysis.has("namespaces")) {
             for (Object oNs : analysis.getJSONArray("namespaces")) {
                 JSONObject ns = (JSONObject) oNs;
@@ -243,13 +289,15 @@ public class App {
                 JSONObject function = (JSONObject) oFunction;
                 String methodName = function.getString("name");
                 if (methodName.contains(".")) {
-                    String className = StringUtils.capitalize(toCamelCase(StringUtils.substringBefore(methodName, ".")));
+                    String className = StringUtils.capitalize(toCamelCase(StringUtils.substringBefore(methodName,
+                            ".")));
                     functions.computeIfAbsent(className, key -> new ArrayList<>()).add(function);
                 } else {
                     String importFile = function.getJSONObject("sourceRange").getString("file");
                     String importFileName = StringUtils.substringAfterLast(importFile, "/");
                     if (StringUtils.isNotEmpty(importFileName)) {
-                        String className = StringUtils.capitalize(toCamelCase(StringUtils.substringBefore(importFileName, ".")));
+                        String className =
+                                StringUtils.capitalize(toCamelCase(StringUtils.substringBefore(importFileName, ".")));
                         functions.computeIfAbsent(className, key -> new ArrayList<>()).add(function);
                     }
                 }
@@ -259,12 +307,14 @@ public class App {
                         .addSuperinterface(ClassName.get(Any.class))
                         .addModifiers(Modifier.PUBLIC);
                 Map<String, Set<String>> importNames = new HashMap<>();
-                stringListEntry.getValue().forEach(function -> processPolymerFunctions(rootPath, commonPackageClassName, utilBuilder, function, importNames));
+                stringListEntry.getValue().forEach(function -> processPolymerFunctions(rootPath,
+                        commonPackageClassName, utilBuilder, function, importNames));
 
                 addNpmImport(commonPackageClassName, utilBuilder);
                 importNames.forEach((file, names) -> {
                     AnnotationSpec importAnnotation = AnnotationSpec.builder(Import.class)
-                            .addMember("symbols", "{$L}", names.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", ")))
+                            .addMember("symbols", "{$L}",
+                                    names.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", ")))
                             .addMember("module", "$S", importRoot + "/" + file)
                             .build();
 
@@ -294,7 +344,9 @@ public class App {
         }
     }
 
-    private static void processPolymerFunctions(String rootPath, String commonPackageClassName, TypeSpec.Builder functionBuilder, JSONObject function, Map<String, Set<String>> imports) {
+    private static void processPolymerFunctions(String rootPath, String commonPackageClassName,
+                                                TypeSpec.Builder functionBuilder, JSONObject function, Map<String,
+            Set<String>> imports) {
         String methodName = function.getString("name");
         String visibility = function.getString("privacy");
         String description = function.optString("description");
@@ -311,11 +363,13 @@ public class App {
         imports.computeIfAbsent(importFile, file -> new HashSet<>())
                 .add(importName);
 
-        MethodSpec.Builder javaMethod = MethodSpec.methodBuilder(StringUtils.defaultIfEmpty(StringUtils.substringAfterLast(methodName, "."), methodName))
+        MethodSpec.Builder javaMethod =
+                MethodSpec.methodBuilder(StringUtils.defaultIfEmpty(StringUtils.substringAfterLast(methodName, "."),
+                        methodName))
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC);
 
         if (StringUtils.isNotEmpty(description)) {
-            javaMethod.addJavadoc("$L", description);
+            javaMethod.addJavadoc("$L", renderMarkdown(description));
         }
 
         JSONObject returnObject = function.optJSONObject("return");
@@ -359,7 +413,7 @@ public class App {
             }
             jsBodyBuilder.append(paramName);
 
-            javaMethod.addJavadoc("\n@param $L $L", paramName, paramDescription);
+            javaMethod.addJavadoc("\n@param $L $L", paramName, renderMarkdown(paramDescription));
 
             shouldAddComma = true;
         }
@@ -368,24 +422,28 @@ public class App {
 
         AnnotationSpec.Builder jsBodyAnnotation = AnnotationSpec.builder(JSBody.class);
         if (!parameterNames.isEmpty()) {
-            jsBodyAnnotation.addMember("params", "{$L}", parameterNames.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", ")));
+            jsBodyAnnotation.addMember("params", "{$L}",
+                    parameterNames.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", ")));
         }
         jsBodyAnnotation.addMember("script", "$S", jsBodyBuilder.toString());
 
         javaMethod.addAnnotation(jsBodyAnnotation.build());
 
-        javaMethod.addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only in JavaScript");
+        javaMethod.addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only in " +
+                "JavaScript");
 
         if (returnType != TypeName.VOID && returnObject != null) {
             String returnTypeDescription = returnObject.optString("description", returnObject.optString("desc", ""));
 
-            javaMethod.addJavadoc("\n@return $L", returnTypeDescription);
+            javaMethod.addJavadoc("\n@return $L", renderMarkdown(returnTypeDescription));
         }
 
         functionBuilder.addMethod(javaMethod.build());
     }
 
-    private static void processPolymerElement(String rootPath, String commonPackageClassName, JSONObject element, boolean isElement) throws IOException {
+    private static void processPolymerElement(String rootPath, String commonPackageClassName, JSONObject element,
+                                              boolean isElement) throws
+                                                                                                                                     IOException {
         String visibility = element.getString("privacy");
         String tagName = element.optString("tagname", "");
         String elementName = element.optString("name", StringUtils.capitalize(toCamelCase(tagName)));
@@ -400,8 +458,10 @@ public class App {
         String superClass = element.optString("superclass", "js.lang.Any");
         String description = element.optString("description");
 
-        String shortElementName = StringUtils.defaultIfBlank(StringUtils.substringAfterLast(elementName, "."), elementName);
-        String shortComponentName = StringUtils.defaultIfBlank(StringUtils.capitalize(toCamelCase(tagName)), "Abstract" + shortElementName);
+        String shortElementName = StringUtils.defaultIfBlank(StringUtils.substringAfterLast(elementName, "."),
+                elementName);
+        String shortComponentName = StringUtils.defaultIfBlank(StringUtils.capitalize(toCamelCase(tagName)),
+                "Abstract" + shortElementName);
 
         TypeName jsElementClass = ClassName.get(rootPackage + (isElement ? ".elements" : ".classes"), shortElementName);
         TypeName javaElementClass = ClassName.get(rootPackage, shortComponentName);
@@ -419,22 +479,25 @@ public class App {
             javaElement.addMethod(MethodSpec.constructorBuilder().addStatement("super($S)", tagName).addModifiers(Modifier.PUBLIC).build());
         } else {
             javaElement.addModifiers(Modifier.ABSTRACT);
-            javaElement.addMethod(MethodSpec.constructorBuilder().addParameter(String.class, "tagName").addStatement("super(tagName)").addModifiers(Modifier.PROTECTED).build());
+            javaElement.addMethod(MethodSpec.constructorBuilder().addParameter(String.class, "tagName").addStatement(
+                    "super(tagName)").addModifiers(Modifier.PROTECTED).build());
         }
 
         JSONArray mixins = element.optJSONArray("mixins");
         if (mixins != null) {
             for (Object mixin : mixins) {
-                String shortMixinName = StringUtils.defaultIfBlank(StringUtils.substringAfterLast((String) mixin, "."), (String) mixin);
+                String shortMixinName = StringUtils.defaultIfBlank(StringUtils.substringAfterLast((String) mixin,
+                        "."), (String) mixin);
                 String shortJavaMixinName = "Has" + shortMixinName;
                 jsElement.addSuperinterface(ClassName.get(rootPackage + ".elements.mixins", shortMixinName));
-                javaElement.addSuperinterface(ParameterizedTypeName.get(ClassName.get(rootPackage + ".mixins", shortJavaMixinName), jsElementClass, javaElementClass));
+                javaElement.addSuperinterface(ParameterizedTypeName.get(ClassName.get(rootPackage + ".mixins",
+                        shortJavaMixinName), jsElementClass, javaElementClass));
             }
         }
 
         if (StringUtils.isNotEmpty(description)) {
-            jsElement.addJavadoc("$L", description);
-            javaElement.addJavadoc("$L", description);
+            jsElement.addJavadoc("$L", renderMarkdown(description));
+            javaElement.addJavadoc("$L", renderMarkdown(description));
         }
 
         addNpmImport(commonPackageClassName, jsElement);
@@ -447,19 +510,24 @@ public class App {
         }
 
         if (element.has("staticMethods")) {
-            processPolymerMethods(element.getJSONArray("staticMethods"), jsElementClass, jsElement, javaElement, elementName, shortElementName, true, javaElementClass);
+            processPolymerMethods(element.getJSONArray("staticMethods"), jsElementClass, jsElement, javaElement,
+                    elementName, shortElementName, true, javaElementClass);
         }
         if (element.has("properties")) {
-            processPolymerProperties(element.getJSONArray("properties"), jsElementClass, javaElementClass, jsElement, javaElement, elementName, shortElementName, javaElementClass);
+            processPolymerProperties(element.getJSONArray("properties"), jsElementClass, javaElementClass, jsElement,
+                    javaElement, elementName, shortElementName, javaElementClass);
         }
         if (element.has("methods")) {
-            processPolymerMethods(element.getJSONArray("methods"), jsElementClass, jsElement, javaElement, elementName, shortElementName, false, javaElementClass);
+            processPolymerMethods(element.getJSONArray("methods"), jsElementClass, jsElement, javaElement,
+                    elementName, shortElementName, false, javaElementClass);
         }
         if (element.has("events")) {
-            processPolymerEventsMethods(element.getJSONArray("events"), jsElement, javaElement, elementName, shortElementName, javaElementClass, jsElementClass);
+            processPolymerEventsMethods(element.getJSONArray("events"), jsElement, javaElement, elementName,
+                    shortElementName, javaElementClass, jsElementClass);
         }
         if (element.has("slots")) {
-            processPolymerSlotsMethods(rootPath, importPath, element.getJSONArray("slots"), jsElementClass, javaElementClass, jsElement, javaElement, elementName, shortElementName, javaElementClass);
+            processPolymerSlotsMethods(rootPath, importPath, element.getJSONArray("slots"), jsElementClass,
+                    javaElementClass, jsElement, javaElement, elementName, shortElementName, javaElementClass);
         }
 
         JavaFile.builder(rootPackage + (isElement ? ".elements" : ".classes"), jsElement.build())
@@ -475,7 +543,8 @@ public class App {
         }
     }
 
-    private static void processPolymerMixin(String rootPath, String commonPackageClassName, JSONObject mixin) throws IOException {
+    private static void processPolymerMixin(String rootPath, String commonPackageClassName, JSONObject mixin) throws
+                                                                                                              IOException {
         String visibility = mixin.getString("privacy");
         String mixinName = mixin.getString("name");
         if (!"public".equals(visibility) || StringUtils.isEmpty(mixinName)) {
@@ -501,23 +570,26 @@ public class App {
 
         TypeSpec.Builder javaMixin = TypeSpec.interfaceBuilder(shortJavaMixinName)
                 .addTypeVariable(TypeVariableName.get("E", jsMixinClass))
-                .addTypeVariable(TypeVariableName.get("T", ParameterizedTypeName.get(ClassName.get(Component.class), TypeVariableName.get("E"))))
+                .addTypeVariable(TypeVariableName.get("T", ParameterizedTypeName.get(ClassName.get(Component.class),
+                        TypeVariableName.get("E"))))
                 .addSuperinterface(ParameterizedTypeName.get(ClassName.get(Component.class), TypeVariableName.get("E")))
                 .addModifiers(Modifier.PUBLIC);
 
         JSONArray mixins = mixin.optJSONArray("mixins");
         if (mixins != null) {
             for (Object xmixin : mixins) {
-                String shortXMixinName = StringUtils.defaultIfBlank(StringUtils.substringAfterLast((String) xmixin, "."), (String) xmixin);
+                String shortXMixinName = StringUtils.defaultIfBlank(StringUtils.substringAfterLast((String) xmixin,
+                        "."), (String) xmixin);
                 String shortXJavaMixinName = "Has" + shortXMixinName;
                 jsMixin.addSuperinterface(ClassName.get(rootPackage + ".elements.mixins", shortXMixinName));
-                javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(rootPackage + ".mixins", shortXJavaMixinName), TypeVariableName.get("E"), TypeVariableName.get("T")));
+                javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(rootPackage + ".mixins",
+                        shortXJavaMixinName), TypeVariableName.get("E"), TypeVariableName.get("T")));
             }
         }
 
         if (StringUtils.isNotEmpty(description)) {
-            jsMixin.addJavadoc("$L", description);
-            javaMixin.addJavadoc("$L", description);
+            jsMixin.addJavadoc("$L", renderMarkdown(description));
+            javaMixin.addJavadoc("$L", renderMarkdown(description));
         }
 
         addNpmImport(commonPackageClassName, jsMixin);
@@ -529,11 +601,16 @@ public class App {
             jsMixin.addAnnotation(importAnnotation);
         }
 
-        processPolymerMethods(mixin.getJSONArray("staticMethods"), jsMixinClass, jsMixin, javaMixin, mixinName, shortMixinName, true, javaReturnType);
-        processPolymerProperties(mixin.getJSONArray("properties"), jsMixinClass, javaMixinClass, jsMixin, javaMixin, mixinName, shortMixinName, javaReturnType);
-        processPolymerMethods(mixin.getJSONArray("methods"), jsMixinClass, jsMixin, javaMixin, mixinName, shortMixinName, false, javaReturnType);
-        processPolymerEventsMethods(mixin.getJSONArray("events"), jsMixin, javaMixin, mixinName, shortMixinName, javaReturnType, jsMixinClass);
-        processPolymerSlotsMethods(rootPath, importPath, mixin.getJSONArray("slots"), jsMixinClass, javaMixinClass, jsMixin, javaMixin, mixinName, shortMixinName, javaReturnType);
+        processPolymerMethods(mixin.getJSONArray("staticMethods"), jsMixinClass, jsMixin, javaMixin, mixinName,
+                shortMixinName, true, javaReturnType);
+        processPolymerProperties(mixin.getJSONArray("properties"), jsMixinClass, javaMixinClass, jsMixin, javaMixin,
+                mixinName, shortMixinName, javaReturnType);
+        processPolymerMethods(mixin.getJSONArray("methods"), jsMixinClass, jsMixin, javaMixin, mixinName,
+                shortMixinName, false, javaReturnType);
+        processPolymerEventsMethods(mixin.getJSONArray("events"), jsMixin, javaMixin, mixinName, shortMixinName,
+                javaReturnType, jsMixinClass);
+        processPolymerSlotsMethods(rootPath, importPath, mixin.getJSONArray("slots"), jsMixinClass, javaMixinClass,
+                jsMixin, javaMixin, mixinName, shortMixinName, javaReturnType);
 
         JavaFile.builder(rootPackage + ".elements.mixins", jsMixin.build())
                 .indent("\t")
@@ -546,7 +623,11 @@ public class App {
                 .writeTo(Paths.get(targetPath, "src", "main", "java"));
     }
 
-    private static void processPolymerSlotsMethods(String rootPath, String importPath, JSONArray slots, TypeName jsMixinClass, TypeName javaMixinClass, TypeSpec.Builder jsMixin, TypeSpec.Builder javaMixin, String mixinName, String shortMixinName, TypeName javaReturnType) throws IOException {
+    private static void processPolymerSlotsMethods(String rootPath, String importPath, JSONArray slots,
+                                                   TypeName jsMixinClass, TypeName javaMixinClass,
+                                                   TypeSpec.Builder jsMixin, TypeSpec.Builder javaMixin,
+                                                   String mixinName, String shortMixinName, TypeName javaReturnType) throws
+                                                                                                                                                                                                                                                                                IOException {
         if (slots.isEmpty()) {
             // try to empirically find slots
             Document kindaDocument = Jsoup.parse(Paths.get(rootPath, importPath).toFile(), "UTF-8");
@@ -561,7 +642,8 @@ public class App {
             javaMixin.addSuperinterface(ClassName.get(HasSlots.class));
         } else if (!(javaReturnType instanceof TypeVariableName)) {
             javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(HasComponents.class),
-                    jsMixinClass, javaReturnType, ParameterizedTypeName.get(ClassName.get(Component.class), WildcardTypeName.subtypeOf(Object.class))
+                    jsMixinClass, javaReturnType, ParameterizedTypeName.get(ClassName.get(Component.class),
+                            WildcardTypeName.subtypeOf(Object.class))
             ));
         }
 
@@ -577,7 +659,7 @@ public class App {
                     .addStatement("return slotted($S)", slotName);
 
             if (!description.isEmpty()) {
-                slotted.addJavadoc("$L", description);
+                slotted.addJavadoc("$L", renderMarkdown(description));
             }
 
             if (javaReturnType instanceof TypeVariableName) {
@@ -588,7 +670,9 @@ public class App {
         }
     }
 
-    private static void processPolymerEventsMethods(JSONArray events, TypeSpec.Builder jsMixin, TypeSpec.Builder javaMixin, String mixinName, String shortMixinName, TypeName javaClass, TypeName jsClass) {
+    private static void processPolymerEventsMethods(JSONArray events, TypeSpec.Builder jsMixin,
+                                                    TypeSpec.Builder javaMixin, String mixinName,
+                                                    String shortMixinName, TypeName javaClass, TypeName jsClass) {
         for (Object oEvent : events) {
             JSONObject event = (JSONObject) oEvent;
 
@@ -616,14 +700,16 @@ public class App {
             javaEvent.returns(ParameterizedTypeName.get(ClassName.get(ObservableEvent.class), type));
             javaEvent.addStatement("return createEvent($S)", eventName);
             if (StringUtils.isNotEmpty(description)) {
-                javaEvent.addJavadoc("$L", description);
+                javaEvent.addJavadoc("$L", renderMarkdown(description));
             }
 
             javaMixin.addMethod(javaEvent.build());
         }
     }
 
-    private static void processPolymerProperties(JSONArray properties, TypeName jsMixinClass, TypeName javaMixinClass, TypeSpec.Builder jsMixin, TypeSpec.Builder javaMixin, String mixinName, String shortMixinName, TypeName javaReturnType) {
+    private static void processPolymerProperties(JSONArray properties, TypeName jsMixinClass, TypeName javaMixinClass
+            , TypeSpec.Builder jsMixin, TypeSpec.Builder javaMixin, String mixinName, String shortMixinName,
+                                                 TypeName javaReturnType) {
         for (Object oProperty : properties) {
             JSONObject property = (JSONObject) oProperty;
             String propertyName = property.getString("name");
@@ -658,9 +744,11 @@ public class App {
                     .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT);
             MethodSpec.Builder jsSetterMethod = MethodSpec.methodBuilder(setterName)
                     .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT);
-            MethodSpec.Builder javaSetterMethod = MethodSpec.methodBuilder(SourceVersion.isKeyword(propertyName) ? setterName : propertyName)
+            MethodSpec.Builder javaSetterMethod = MethodSpec.methodBuilder(SourceVersion.isKeyword(propertyName) ?
+                    setterName : propertyName)
                     .addModifiers(Modifier.PUBLIC);
-            MethodSpec.Builder javaGetterMethod = MethodSpec.methodBuilder(SourceVersion.isKeyword(propertyName) ? getterName : propertyName)
+            MethodSpec.Builder javaGetterMethod = MethodSpec.methodBuilder(SourceVersion.isKeyword(propertyName) ?
+                    getterName : propertyName)
                     .addModifiers(Modifier.PUBLIC);
 
             if (javaReturnType instanceof TypeVariableName) {
@@ -684,7 +772,8 @@ public class App {
             TypeName argType = type;
             if (type instanceof ArrayTypeName) {
                 ArrayTypeName arrayType = (ArrayTypeName) type;
-                argType = ArrayTypeName.of(arrayType.componentType.annotated(AnnotationSpec.builder(JSByRef.class).build()));
+                argType =
+                        ArrayTypeName.of(arrayType.componentType.annotated(AnnotationSpec.builder(JSByRef.class).build()));
             }
 
             jsSetterMethod.addParameter(argType, SourceVersion.isKeyword(propertyName) ? "value" : propertyName);
@@ -704,14 +793,15 @@ public class App {
             jsSetterMethod.addAnnotation(JSProperty.class);
 
             if (StringUtils.isNotEmpty(description)) {
-                jsGetterMethod.addJavadoc("$L", description);
-                jsSetterMethod.addJavadoc("$L", description);
-                javaGetterMethod.addJavadoc("$L", description);
-                javaSetterMethod.addJavadoc("$L", description);
+                jsGetterMethod.addJavadoc("$L", renderMarkdown(description));
+                jsSetterMethod.addJavadoc("$L", renderMarkdown(description));
+                javaGetterMethod.addJavadoc("$L", renderMarkdown(description));
+                javaSetterMethod.addJavadoc("$L", renderMarkdown(description));
             }
 
             javaGetterMethod.addStatement("return getNode().$L()", getterName);
-            javaSetterMethod.addStatement("getNode().$L($L)", setterName, SourceVersion.isKeyword(propertyName) ? "value" : propertyName);
+            javaSetterMethod.addStatement("getNode().$L($L)", setterName, SourceVersion.isKeyword(propertyName) ?
+                    "value" : propertyName);
 
             if (javaReturnType instanceof TypeVariableName) {
                 javaSetterMethod.addStatement("return ($T)this", javaReturnType);
@@ -728,7 +818,9 @@ public class App {
         }
     }
 
-    private static void processPolymerMethods(JSONArray methods, TypeName jsMixinClass, TypeSpec.Builder jsMixin, TypeSpec.Builder javaMixin, String mixinName, String shortMixinName, boolean isStatic, TypeName javaElementClass) {
+    private static void processPolymerMethods(JSONArray methods, TypeName jsMixinClass, TypeSpec.Builder jsMixin,
+                                              TypeSpec.Builder javaMixin, String mixinName, String shortMixinName,
+                                              boolean isStatic, TypeName javaElementClass) {
         for (Object oMethod : methods) {
             JSONObject method = (JSONObject) oMethod;
             String methodName = method.getString("name");
@@ -756,12 +848,13 @@ public class App {
                     .addModifiers(Modifier.PUBLIC);
 
             if (!methodName.equals(originalMethodName) && !isStatic) {
-                jsMethod.addAnnotation(AnnotationSpec.builder(JSMethod.class).addMember("name", "$S", originalMethodName).build());
+                jsMethod.addAnnotation(AnnotationSpec.builder(JSMethod.class).addMember("name", "$S",
+                        originalMethodName).build());
             }
 
             if (StringUtils.isNotEmpty(description)) {
-                jsMethod.addJavadoc("$L", description);
-                javaMethod.addJavadoc("$L", description);
+                jsMethod.addJavadoc("$L", renderMarkdown(description));
+                javaMethod.addJavadoc("$L", renderMarkdown(description));
             }
 
             if (isStatic) {
@@ -775,7 +868,8 @@ public class App {
             }
 
             JSONObject returnObject = method.optJSONObject("return");
-            String returnTypeRaw = returnObject == null ? "<unspecified>" : returnObject.optString("type", "<unspecified>");
+            String returnTypeRaw = returnObject == null ? "<unspecified>" : returnObject.optString("type",
+                    "<unspecified>");
             TypeName returnType = parsePolymerType(returnTypeRaw);
 
             if (returnType == null) {
@@ -829,8 +923,8 @@ public class App {
                 jsBodyBuilder.append(paramName);
                 javaBodyBuilder.append(paramName);
 
-                jsMethod.addJavadoc("\n@param $L $L", paramName, paramDescription);
-                javaMethod.addJavadoc("\n@param $L $L", paramName, paramDescription);
+                jsMethod.addJavadoc("\n@param $L $L", paramName, renderMarkdown(paramDescription));
+                javaMethod.addJavadoc("\n@param $L $L", paramName, renderMarkdown(paramDescription));
 
                 shouldAddComma = true;
             }
@@ -843,13 +937,15 @@ public class App {
 
                 AnnotationSpec.Builder jsBodyAnnotation = AnnotationSpec.builder(JSBody.class);
                 if (!parameterNames.isEmpty()) {
-                    jsBodyAnnotation.addMember("params", "{$L}", parameterNames.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", ")));
+                    jsBodyAnnotation.addMember("params", "{$L}",
+                            parameterNames.stream().map(s -> "\"" + s + "\"").collect(Collectors.joining(", ")));
                 }
                 jsBodyAnnotation.addMember("script", "$S", jsBodyBuilder.toString());
 
                 jsMethod.addAnnotation(jsBodyAnnotation.build());
 
-                jsMethod.addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only in JavaScript");
+                jsMethod.addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only in " +
+                        "JavaScript");
             } else {
                 javaMethod.addStatement(javaBodyBuilder.toString());
             }
@@ -857,8 +953,8 @@ public class App {
             if (returnType != TypeName.VOID && returnObject != null) {
                 String returnTypeDescription = returnObject.optString("desc", "");
 
-                jsMethod.addJavadoc("\n@return $L", returnTypeDescription);
-                javaMethod.addJavadoc("\n@return $L", returnTypeDescription);
+                jsMethod.addJavadoc("\n@return $L", renderMarkdown(returnTypeDescription));
+                javaMethod.addJavadoc("\n@return $L", renderMarkdown(returnTypeDescription));
             }
 
             jsMixin.addMethod(jsMethod.build());
@@ -941,7 +1037,8 @@ public class App {
 
     private static TypeName buildPolymerDataObjects(String owner, String rawType) throws IOException {
         String className = StringUtils.capitalize(owner);
-        //{ credits: { enabled: boolean; }; exporting: { enabled: boolean; }; title: { text: null; }; series: never[]; xAxis: {}; yAxis: { axisGenerated: boolean; }; }
+        //{ credits: { enabled: boolean; }; exporting: { enabled: boolean; }; title: { text: null; }; series:
+        // never[]; xAxis: {}; yAxis: { axisGenerated: boolean; }; }
         String definition = StringUtils.removeEnd(StringUtils.removeStart(rawType, "{"), "}").trim();
         String tail = definition;
 
@@ -1005,7 +1102,9 @@ public class App {
         return ClassName.get(rootPackage, className);
     }
 
-    private static void processMethod(JSONObject method, TypeSpec.Builder interfaceBuilder, TypeSpec.Builder classBuilder, String interfaceName, String className) throws IOException {
+    private static void processMethod(JSONObject method, TypeSpec.Builder interfaceBuilder,
+                                      TypeSpec.Builder classBuilder, String interfaceName, String className) throws
+                                                                                                                                                                   IOException {
         String methodName = method.getString("name");
 
         if ("ready".equals(methodName) || "connectedCallback".equals(methodName) || "disconnectedCallback".equals(methodName)) {
@@ -1054,7 +1153,9 @@ public class App {
                 argumentName = StringUtils.removeEnd(argumentName, "?");
             }
             callStatementParams.append(argumentName);
-            TypeName type = computeType(className + StringUtils.capitalize(methodName) + StringUtils.capitalize(argumentName), argumentParts[1]);
+            TypeName type =
+                    computeType(className + StringUtils.capitalize(methodName) + StringUtils.capitalize(argumentName)
+                            , argumentParts[1]);
 
             if ("js.lang.Unknown".equals(type.toString())) {
                 fixme = true;
@@ -1077,8 +1178,8 @@ public class App {
         String jsDocText = getJsDoc(method);
 
         if (!jsDocText.isEmpty()) {
-            jsMethod.addJavadoc("$L", jsDocText);
-            javaMethod.addJavadoc("$L", jsDocText);
+            jsMethod.addJavadoc("$L", renderMarkdown(jsDocText));
+            javaMethod.addJavadoc("$L", renderMarkdown(jsDocText));
         }
 
         interfaceBuilder.addMethod(jsMethod.build());
@@ -1109,7 +1210,9 @@ public class App {
     }
 
 
-    private static void processEvent(JSONObject event, TypeSpec.Builder interfaceBuilder, TypeSpec.Builder classBuilder, String interfaceName, String className) throws IOException {
+    private static void processEvent(JSONObject event, TypeSpec.Builder interfaceBuilder,
+                                     TypeSpec.Builder classBuilder, String interfaceName, String className) throws
+                                                                                                                                                                 IOException {
         String eventName = event.getString("name");
         String rawType = removeTypeTags(event.optString("type", "{TYPE:any}"));
         rawType = event.optString("typeHint", rawType);
@@ -1127,7 +1230,9 @@ public class App {
         classBuilder.addMethod(method.build());
     }
 
-    private static void processProperty(JSONObject member, TypeSpec.Builder interfaceBuilder, TypeSpec.Builder classBuilder, String interfaceName, String className) throws IOException {
+    private static void processProperty(JSONObject member, TypeSpec.Builder interfaceBuilder,
+                                        TypeSpec.Builder classBuilder, String interfaceName, String className) throws
+                                                                                                                                                                     IOException {
         String propName = member.getString("propName");
         String rawType = removeTypeTags(member.optString("type", "{TYPE:any}"));
         rawType = member.optString("typeHint", rawType);
@@ -1186,11 +1291,11 @@ public class App {
         String jsDocText = getJsDoc(member);
 
         if (!jsDocText.isEmpty()) {
-            jsGetter.addJavadoc("$L", jsDocText);
-            javaGetter.addJavadoc("$L", jsDocText);
+            jsGetter.addJavadoc("$L", renderMarkdown(jsDocText));
+            javaGetter.addJavadoc("$L", renderMarkdown(jsDocText));
             if (!readonly) {
-                jsSetter.addJavadoc("$L", jsDocText);
-                javaSetter.addJavadoc("$L", jsDocText);
+                jsSetter.addJavadoc("$L", renderMarkdown(jsDocText));
+                javaSetter.addJavadoc("$L", renderMarkdown(jsDocText));
             }
         }
         interfaceBuilder.addMethod(jsGetter.build());
@@ -1202,7 +1307,8 @@ public class App {
     }
 
     private static String removeTypeTags(String rawType) {
-        return StringUtils.removeEnd(StringUtils.removeStart(StringUtils.removeStart(rawType, "{TYPE:"), "{SIMPLE_TYPE:"), "}");
+        return StringUtils.removeEnd(StringUtils.removeStart(StringUtils.removeStart(rawType, "{TYPE:"),
+                "{SIMPLE_TYPE:"), "}");
     }
 
     private static TypeName computeType(String owner, String rawType) throws IOException {
@@ -1237,7 +1343,8 @@ public class App {
 
     private static TypeName buildDataObjects(String owner, String rawType) throws IOException {
         String className = StringUtils.capitalize(owner);
-        //{ credits: { enabled: boolean; }; exporting: { enabled: boolean; }; title: { text: null; }; series: never[]; xAxis: {}; yAxis: { axisGenerated: boolean; }; }
+        //{ credits: { enabled: boolean; }; exporting: { enabled: boolean; }; title: { text: null; }; series:
+        // never[]; xAxis: {}; yAxis: { axisGenerated: boolean; }; }
         String definition = StringUtils.removeEnd(StringUtils.removeStart(rawType, "{"), "}").trim();
         String tail = definition;
 
