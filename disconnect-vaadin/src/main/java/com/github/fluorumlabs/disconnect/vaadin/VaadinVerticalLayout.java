@@ -35,6 +35,6 @@ public class VaadinVerticalLayout extends AbstractComponent<VerticalLayoutElemen
 		implements HasThemableMixin<VerticalLayoutElement, VaadinVerticalLayout>,
 		HasComponents<VerticalLayoutElement, VaadinVerticalLayout, Component<?>> {
 	public VaadinVerticalLayout() {
-		super(VerticalLayoutElement.TAGNAME);
+		super(VerticalLayoutElement.TAGNAME());
 	}
 }

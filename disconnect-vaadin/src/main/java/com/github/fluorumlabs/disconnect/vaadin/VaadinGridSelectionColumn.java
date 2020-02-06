@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 public class VaadinGridSelectionColumn<ITEM extends Any> extends AbstractComponent<GridSelectionColumnElement<ITEM>>
 		implements HasComponents<GridSelectionColumnElement<ITEM>, VaadinGridSelectionColumn<ITEM>, Component<?>> {
 	public VaadinGridSelectionColumn() {
-		super(GridSelectionColumnElement.TAGNAME);
+		super(GridSelectionColumnElement.TAGNAME());
 	}
 
 	/**

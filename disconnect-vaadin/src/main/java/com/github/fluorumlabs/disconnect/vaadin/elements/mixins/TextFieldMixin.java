@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Autocorrect;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.TextFieldI18n;
 import js.web.dom.Autocapitalize;
@@ -11,14 +8,7 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "TextFieldMixin",
-		module = "@vaadin/vaadin-text-field/src/vaadin-text-field-mixin.js"
-)
+
 public interface TextFieldMixin extends ControlStateMixin {
 	/**
 	 * Whether the value of the control can be automatically completed by the browser.

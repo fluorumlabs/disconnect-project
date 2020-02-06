@@ -14,5 +14,7 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-material-styles/version.js"
 )
 public interface Material extends HTMLElement {
-	String TAGNAME = "vaadin-material-styles";
+	static String TAGNAME() {
+		return "vaadin-material-styles";
+	}
 }

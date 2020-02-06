@@ -52,12 +52,15 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "RadioButtonElement",
+
 		module = "@vaadin/vaadin-radio-button/vaadin-radio-button.js"
 )
 public interface RadioButtonElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
-	String TAGNAME = "vaadin-radio-button";
+	static String TAGNAME() {
+		return "vaadin-radio-button";
+	}
+
 	/**
 	 * Name of the element.
 	 */

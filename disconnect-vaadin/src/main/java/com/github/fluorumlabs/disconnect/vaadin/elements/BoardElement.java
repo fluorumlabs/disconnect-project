@@ -29,11 +29,12 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "BoardElement",
 		module = "@vaadin/vaadin-board/vaadin-board.js"
 )
 public interface BoardElement extends HTMLElement, ElementMixin {
-	String TAGNAME = "vaadin-board";
+	static String TAGNAME() {
+		return "vaadin-board";
+	}
 
 	/**
 	 * Redraws the board and all rows inside it, if necessary.

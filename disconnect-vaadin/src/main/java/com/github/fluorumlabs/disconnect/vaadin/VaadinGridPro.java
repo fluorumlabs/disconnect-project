@@ -23,6 +23,6 @@ public class VaadinGridPro<ITEM extends Any> extends AbstractComponent<GridProEl
 		implements HasInlineEditingMixin<ITEM, GridProElement, VaadinGridPro<ITEM>>,
 		HasComponents<GridProElement, VaadinGridPro<ITEM>, Component<?>> {
 	public VaadinGridPro() {
-		super(GridProElement.TAGNAME);
+		super(GridProElement.TAGNAME());
 	}
 }

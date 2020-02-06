@@ -57,12 +57,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ComboBoxLightElement",
+
 		module = "@vaadin/vaadin-combo-box/vaadin-combo-box-light.js"
 )
 public interface ComboBoxLightElement<ITEM extends Any>
 		extends HTMLElement, ComboBoxDataProviderMixin<ITEM>, ComboBoxMixin<ITEM>, ThemableMixin {
-	String TAGNAME = "vaadin-combo-box-light";
+	static String TAGNAME() {
+		return "vaadin-combo-box-light";
+	}
 
 	/**
 	 *

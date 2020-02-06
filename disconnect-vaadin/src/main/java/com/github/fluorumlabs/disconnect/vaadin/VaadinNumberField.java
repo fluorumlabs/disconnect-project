@@ -15,7 +15,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinNumberField extends AbstractComponent<NumberFieldElement>
 		implements HasComponents<NumberFieldElement, VaadinNumberField, Component<?>> {
 	public VaadinNumberField() {
-		super(NumberFieldElement.TAGNAME);
+		super(NumberFieldElement.TAGNAME());
 	}
 
 	/**

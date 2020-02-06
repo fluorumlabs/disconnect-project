@@ -63,7 +63,7 @@ public class VaadinDatePickerLight extends AbstractComponent<DatePickerLightElem
 		HasDatePickerMixin<DatePickerLightElement, VaadinDatePickerLight>,
 		HasComponents<DatePickerLightElement, VaadinDatePickerLight, Component<?>> {
 	public VaadinDatePickerLight() {
-		super(DatePickerLightElement.TAGNAME);
+		super(DatePickerLightElement.TAGNAME());
 	}
 
 	/**

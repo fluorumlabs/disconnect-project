@@ -183,7 +183,7 @@ public class VaadinComboBox<ITEM extends Any> extends AbstractComponent<ComboBox
 		HasSlots<ComboBoxElement<ITEM>>,
 		HasComponents<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>, Component<?>> {
 	public VaadinComboBox() {
-		super(ComboBoxElement.TAGNAME);
+		super(ComboBoxElement.TAGNAME());
 	}
 
 	/**

@@ -20,9 +20,11 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "SelectOverlayElement",
+
 		module = "@vaadin/vaadin-select/vaadin-select-overlay.js"
 )
 public interface SelectOverlayElement extends OverlayElement {
-	String TAGNAME = "vaadin-select-overlay";
+	static String TAGNAME() {
+		return "vaadin-select-overlay";
+	}
 }

@@ -32,7 +32,7 @@ public class IronOverlayBackdrop
 		extends AbstractComponent<IronOverlayBackdropElement>
 		implements HasComponents<IronOverlayBackdropElement, IronOverlayBackdrop, Component<?>> {
 	public IronOverlayBackdrop() {
-		super(IronOverlayBackdropElement.TAGNAME);
+		super(IronOverlayBackdropElement.TAGNAME());
 	}
 
 	/**

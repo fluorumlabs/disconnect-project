@@ -19,6 +19,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinGridProEditCheckbox extends AbstractComponent<GridProEditCheckboxElement>
 		implements HasComponents<GridProEditCheckboxElement, VaadinGridProEditCheckbox, Component<?>> {
 	public VaadinGridProEditCheckbox() {
-		super(GridProEditCheckboxElement.TAGNAME);
+		super(GridProEditCheckboxElement.TAGNAME());
 	}
 }

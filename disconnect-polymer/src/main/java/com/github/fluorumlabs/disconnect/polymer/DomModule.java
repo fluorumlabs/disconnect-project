@@ -30,7 +30,7 @@ public class DomModule
 		extends AbstractComponent<DomModuleElement>
 		implements HasComponents<DomModuleElement, DomModule, Component<?>> {
 	public DomModule() {
-		super(DomModuleElement.TAGNAME);
+		super(DomModuleElement.TAGNAME());
 	}
 
 	/**

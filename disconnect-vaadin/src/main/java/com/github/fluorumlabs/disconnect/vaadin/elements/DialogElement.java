@@ -63,11 +63,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "DialogElement",
+
 		module = "@vaadin/vaadin-dialog/vaadin-dialog.js"
 )
 public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyMixin {
-	String TAGNAME = "vaadin-dialog";
+	static String TAGNAME() {
+		return "vaadin-dialog";
+	}
 
 	/**
 	 * True if the overlay is currently displayed.

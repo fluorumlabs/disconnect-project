@@ -55,11 +55,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CustomFieldElement",
+
 		module = "@vaadin/vaadin-custom-field/vaadin-custom-field.js"
 )
 public interface CustomFieldElement extends HTMLElement, ElementMixin, ThemableMixin, CustomFieldMixin {
-	String TAGNAME = "vaadin-custom-field";
+	static String TAGNAME() {
+		return "vaadin-custom-field";
+	}
 
 	/**
 	 * String used for the label element.

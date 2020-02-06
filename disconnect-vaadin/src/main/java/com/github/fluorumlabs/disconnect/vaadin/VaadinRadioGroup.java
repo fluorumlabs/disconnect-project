@@ -54,7 +54,7 @@ public class VaadinRadioGroup extends AbstractComponent<RadioGroupElement>
 		implements HasThemableMixin<RadioGroupElement, VaadinRadioGroup>,
 		HasComponents<RadioGroupElement, VaadinRadioGroup, Component<?>> {
 	public VaadinRadioGroup() {
-		super(RadioGroupElement.TAGNAME);
+		super(RadioGroupElement.TAGNAME());
 	}
 
 	/**

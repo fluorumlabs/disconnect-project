@@ -17,11 +17,14 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "NumberFieldElement",
+
 		module = "@vaadin/vaadin-text-field/vaadin-number-field.js"
 )
 public interface NumberFieldElement extends TextFieldElement {
-	String TAGNAME = "vaadin-number-field";
+	static String TAGNAME() {
+		return "vaadin-number-field";
+	}
+
 	/**
 	 * Set to true to display value increase/decrease controls.
 	 */

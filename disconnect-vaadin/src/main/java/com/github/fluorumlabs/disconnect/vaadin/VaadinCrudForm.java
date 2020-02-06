@@ -22,7 +22,7 @@ public class VaadinCrudForm<ITEM extends Any> extends AbstractComponent<CrudForm
 		implements HasIncludedMixin<CrudFormElement<ITEM>, VaadinCrudForm<ITEM>>,
 		HasComponents<CrudFormElement<ITEM>, VaadinCrudForm<ITEM>, Component<?>> {
 	public VaadinCrudForm() {
-		super(CrudFormElement.TAGNAME);
+		super(CrudFormElement.TAGNAME());
 	}
 
 	/**

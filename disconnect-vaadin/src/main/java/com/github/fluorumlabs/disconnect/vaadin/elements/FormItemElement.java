@@ -111,9 +111,11 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "FormItemElement",
+
 		module = "@vaadin/vaadin-form-layout/vaadin-form-item.js"
 )
 public interface FormItemElement extends HTMLElement, ThemableMixin {
-	String TAGNAME = "vaadin-form-item";
+	static String TAGNAME() {
+		return "vaadin-form-item";
+	}
 }

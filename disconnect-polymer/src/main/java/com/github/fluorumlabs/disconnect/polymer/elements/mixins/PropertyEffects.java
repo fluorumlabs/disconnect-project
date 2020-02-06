@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.types.SpliceRecord;
 import js.lang.Any;
 import js.lang.Unknown;
@@ -45,14 +42,6 @@ import javax.annotation.Nullable;
  * whereas the default when using <code>PropertyAccessors</code> standalone is to be
  * async by default.
  */
-@NpmPackage(
-		name = "@polymer/polymer",
-		version = Polymer.VERSION
-)
-@Import(
-		symbols = "PropertyEffects",
-		module = "@polymer/polymer/lib/mixins/property-effects.js"
-)
 public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	/**
 	 *

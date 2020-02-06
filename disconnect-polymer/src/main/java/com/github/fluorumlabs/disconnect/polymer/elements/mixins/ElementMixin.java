@@ -108,7 +108,7 @@ public interface ElementMixin extends PropertyEffects, PropertiesMixin {
 	 * @param props Bag of custom property key/values to
 	 *              apply to the document.
 	 */
-	@JSBody(params = "props", script = "updateStyles(props)")
+	@JSBody(params = "props", script = "ElementMixin.updateStyles(props)")
 	static void updateStylesGlobally(StringRecord props) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}

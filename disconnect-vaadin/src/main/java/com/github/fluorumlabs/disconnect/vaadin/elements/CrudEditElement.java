@@ -18,9 +18,11 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CrudEditElement",
+
 		module = "@vaadin/vaadin-crud/vaadin-crud-edit-column.js"
 )
 public interface CrudEditElement extends HTMLElement {
-	String TAGNAME = "vaadin-crud-edit";
+	static String TAGNAME() {
+		return "vaadin-crud-edit";
+	}
 }

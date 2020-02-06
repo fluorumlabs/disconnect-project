@@ -84,7 +84,9 @@ import javax.annotation.Nullable;
 		module = "@polymer/iron-icon/iron-icon.js"
 )
 public interface IronIconElement extends HTMLElement {
-	String TAGNAME = "iron-icon";
+	static String TAGNAME() {
+		return "iron-icon";
+	}
 
 	/**
 	 * The name of the icon to use. The name should be of the form:

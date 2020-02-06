@@ -209,12 +209,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ContextMenuElement",
+
 		module = "@vaadin/vaadin-context-menu/vaadin-context-menu.js"
 )
 public interface ContextMenuElement
 		extends HTMLElement, ElementMixin, ThemePropertyMixin, ItemsMixin, GestureEventListeners {
-	String TAGNAME = "vaadin-context-menu";
+	static String TAGNAME() {
+		return "vaadin-context-menu";
+	}
 
 	/**
 	 * CSS selector that can be used to target any child element

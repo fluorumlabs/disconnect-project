@@ -53,11 +53,12 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "AccordionElement",
 		module = "@vaadin/vaadin-accordion/vaadin-accordion.js"
 )
 public interface AccordionElement extends HTMLElement, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-accordion";
+	static String TAGNAME() {
+		return "vaadin-accordion";
+	}
 
 	/**
 	 * The index of currently opened panel. First panel is opened by

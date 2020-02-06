@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 public class IronMediaQuery
 		extends AbstractComponent<IronMediaQueryElement> {
 	public IronMediaQuery() {
-		super(IronMediaQueryElement.TAGNAME);
+		super(IronMediaQueryElement.TAGNAME());
 	}
 
 	/**

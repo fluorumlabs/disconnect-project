@@ -87,11 +87,14 @@ import javax.annotation.Untainted;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "RichTextEditorElement",
+
 		module = "@vaadin/vaadin-rich-text-editor/vaadin-rich-text-editor.js"
 )
 public interface RichTextEditorElement extends HTMLElement, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-rich-text-editor";
+	static String TAGNAME() {
+		return "vaadin-rich-text-editor";
+	}
+
 	/**
 	 * Value is a list of the operations which describe change to the document.
 	 * Each of those operations describe the change at the current index.

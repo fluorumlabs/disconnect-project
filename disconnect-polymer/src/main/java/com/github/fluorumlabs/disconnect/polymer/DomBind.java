@@ -28,7 +28,7 @@ public class DomBind
 		HasGestureEventListeners<DomBindElement, DomBind>,
 		HasComponent<DomBindElement, DomBind, Template> {
 	public DomBind() {
-		super(DomBindElement.TAGNAME);
+		super(DomBindElement.TAGNAME());
 	}
 
 	public DomBind(Component<?>... components) {

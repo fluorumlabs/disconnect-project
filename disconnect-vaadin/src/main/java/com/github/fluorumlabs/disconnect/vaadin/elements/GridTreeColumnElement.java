@@ -25,11 +25,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridTreeColumnElement",
+
 		module = "@vaadin/vaadin-grid/vaadin-grid-tree-column.js"
 )
 public interface GridTreeColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
-	String TAGNAME = "vaadin-grid-tree-column";
+	static String TAGNAME() {
+		return "vaadin-grid-tree-column";
+	}
 
 	/**
 	 * JS Path of the property in the item that indicates whether the item has child items.

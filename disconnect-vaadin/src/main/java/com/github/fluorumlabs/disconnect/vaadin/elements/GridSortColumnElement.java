@@ -27,11 +27,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridSortColumnElement",
+
 		module = "@vaadin/vaadin-grid/vaadin-grid-sort-column.js"
 )
 public interface GridSortColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
-	String TAGNAME = "vaadin-grid-sort-column";
+	static String TAGNAME() {
+		return "vaadin-grid-sort-column";
+	}
 
 	/**
 	 * How to sort the data.

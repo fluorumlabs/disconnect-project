@@ -19,6 +19,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinSelectOverlay extends AbstractComponent<SelectOverlayElement>
 		implements HasComponents<SelectOverlayElement, VaadinSelectOverlay, Component<?>> {
 	public VaadinSelectOverlay() {
-		super(SelectOverlayElement.TAGNAME);
+		super(SelectOverlayElement.TAGNAME());
 	}
 }

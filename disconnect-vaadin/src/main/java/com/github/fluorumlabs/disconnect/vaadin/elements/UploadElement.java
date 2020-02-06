@@ -59,11 +59,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "UploadElement",
+
 		module = "@vaadin/vaadin-upload/vaadin-upload.js"
 )
 public interface UploadElement extends HTMLElement, ThemableMixin {
-	String TAGNAME = "vaadin-upload";
+	static String TAGNAME() {
+		return "vaadin-upload";
+	}
+
 	/**
 	 * Define whether the element supports dropping files on it for uploading.
 	 * By default it's enabled in desktop and disabled in touch devices

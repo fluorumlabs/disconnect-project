@@ -476,9 +476,12 @@ public class App {
                 .addModifiers(Modifier.PUBLIC);
 
         if (StringUtils.isNotBlank(tagName)) {
-            javaElement.addMethod(MethodSpec.constructorBuilder().addStatement("super($T.TAGNAME)", jsElementClass).addModifiers(Modifier.PUBLIC).build());
-            jsElement.addField(FieldSpec.builder(String.class, "TAGNAME", Modifier.PUBLIC, Modifier.FINAL,
-                    Modifier.STATIC).initializer("$S", tagName).build());
+            javaElement.addMethod(MethodSpec.constructorBuilder().addStatement("super($T.TAGNAME())", jsElementClass).addModifiers(Modifier.PUBLIC).build());
+            jsElement.addMethod(MethodSpec
+                    .methodBuilder("TAGNAME")
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .returns(String.class)
+                    .addStatement("return $S",tagName).build());
         } else {
             javaElement.addModifiers(Modifier.ABSTRACT);
             javaElement.addMethod(MethodSpec.constructorBuilder().addParameter(String.class, "tagName").addStatement(
@@ -503,13 +506,13 @@ public class App {
         }
 
         addNpmImport(commonPackageClassName, jsElement);
-        if (importPath != null) {
-            AnnotationSpec importAnnotation = AnnotationSpec.builder(Import.class)
-                    .addMember("symbols", "$S", shortElementName)
-                    .addMember("module", "$S", importRoot + "/" + importPath)
-                    .build();
-            jsElement.addAnnotation(importAnnotation);
+        AnnotationSpec.Builder importAnnotation = AnnotationSpec.builder(Import.class)
+                .addMember("module", "$S", importRoot + "/" + importPath);
+
+        if(element.has("staticMethods") && !element.getJSONArray("staticMethods").isEmpty()) {
+            importAnnotation.addMember("symbols", "$S", shortElementName);
         }
+        jsElement.addAnnotation(importAnnotation.build());
 
         if (element.has("staticMethods")) {
             processPolymerMethods(element.getJSONArray("staticMethods"), jsElementClass, jsElement, javaElement,
@@ -594,8 +597,9 @@ public class App {
             javaMixin.addJavadoc("$L", renderMarkdown(description));
         }
 
-        addNpmImport(commonPackageClassName, jsMixin);
-        if (importPath != null) {
+        if(mixin.has("staticMethods") && !mixin.getJSONArray("staticMethods").isEmpty()) {
+            addNpmImport(commonPackageClassName, jsMixin);
+
             AnnotationSpec importAnnotation = AnnotationSpec.builder(Import.class)
                     .addMember("symbols", "$S", shortMixinName)
                     .addMember("module", "$S", importRoot + "/" + importPath)
@@ -895,7 +899,7 @@ public class App {
                 jsBodyBuilder.append("return ");
                 javaBodyBuilder.append("return ");
             }
-            jsBodyBuilder.append(shortMixinName).append('.').append(originalMethodName).append("(");
+            jsBodyBuilder.append(isStatic?shortMixinName:"this").append('.').append(originalMethodName).append("(");
             if (isStatic) {
                 javaBodyBuilder.append("$T.").append(methodName).append("(");
             } else {

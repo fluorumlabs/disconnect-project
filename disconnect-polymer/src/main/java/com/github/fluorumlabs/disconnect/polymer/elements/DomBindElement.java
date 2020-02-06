@@ -27,7 +27,9 @@ import js.web.dom.HTMLElement;
 		module = "@polymer/polymer/lib/elements/dom-bind.js"
 )
 public interface DomBindElement extends HTMLElement, PropertyEffects, OptionalMutableData, GestureEventListeners {
-	String TAGNAME = "dom-bind";
+	static String TAGNAME() {
+		return "dom-bind";
+	}
 
 	/**
 	 * Forces the element to render its content. This is typically only

@@ -32,11 +32,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "LoginOverlayElement",
+
 		module = "@vaadin/vaadin-login/vaadin-login-overlay.js"
 )
 public interface LoginOverlayElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
-	String TAGNAME = "vaadin-login-overlay";
+	static String TAGNAME() {
+		return "vaadin-login-overlay";
+	}
 
 	/**
 	 * Defines the application description

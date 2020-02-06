@@ -9,9 +9,11 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "MenuBarButtonElement",
+
 		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar-button.js"
 )
 public interface MenuBarButtonElement extends ButtonElement {
-	String TAGNAME = "vaadin-menu-bar-button";
+	static String TAGNAME() {
+		return "vaadin-menu-bar-button";
+	}
 }

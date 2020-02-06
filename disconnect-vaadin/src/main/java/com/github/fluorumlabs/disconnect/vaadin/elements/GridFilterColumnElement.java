@@ -22,9 +22,11 @@ import js.lang.Any;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridFilterColumnElement",
+
 		module = "@vaadin/vaadin-grid/vaadin-grid-filter-column.js"
 )
 public interface GridFilterColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
-	String TAGNAME = "vaadin-grid-filter-column";
+	static String TAGNAME() {
+		return "vaadin-grid-filter-column";
+	}
 }

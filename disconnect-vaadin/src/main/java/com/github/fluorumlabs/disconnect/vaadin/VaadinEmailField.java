@@ -20,6 +20,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinEmailField extends AbstractComponent<EmailFieldElement>
 		implements HasComponents<EmailFieldElement, VaadinEmailField, Component<?>> {
 	public VaadinEmailField() {
-		super(EmailFieldElement.TAGNAME);
+		super(EmailFieldElement.TAGNAME());
 	}
 }

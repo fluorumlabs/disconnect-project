@@ -27,7 +27,7 @@ public class DomIf
 		extends AbstractComponent<DomIfElement>
 		implements HasComponent<DomIfElement, DomIf, Template> {
 	public DomIf() {
-		super(DomIfElement.TAGNAME);
+		super(DomIfElement.TAGNAME());
 	}
 
 	public DomIf(Component<?>... components) {

@@ -11,6 +11,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinContextMenuItem extends AbstractComponent<ContextMenuItemElement>
 		implements HasComponents<ContextMenuItemElement, VaadinContextMenuItem, Component<?>> {
 	public VaadinContextMenuItem() {
-		super(ContextMenuItemElement.TAGNAME);
+		super(ContextMenuItemElement.TAGNAME());
 	}
 }

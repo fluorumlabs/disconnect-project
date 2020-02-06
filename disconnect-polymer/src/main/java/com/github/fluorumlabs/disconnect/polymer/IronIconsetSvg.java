@@ -45,7 +45,7 @@ public class IronIconsetSvg
 		extends AbstractComponent<IronIconsetSvgElement>
 		implements HasComponent<IronIconsetSvgElement, IronIconsetSvg, Component<SVGSVGElement>> {
 	public IronIconsetSvg() {
-		super(IronIconsetSvgElement.TAGNAME);
+		super(IronIconsetSvgElement.TAGNAME());
 	}
 
 	/**

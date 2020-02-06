@@ -104,11 +104,13 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "FormLayoutElement",
+
 		module = "@vaadin/vaadin-form-layout/vaadin-form-layout.js"
 )
 public interface FormLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-form-layout";
+	static String TAGNAME() {
+		return "vaadin-form-layout";
+	}
 
 	/**
 	 * Allows specifying a responsive behavior with the number of columns

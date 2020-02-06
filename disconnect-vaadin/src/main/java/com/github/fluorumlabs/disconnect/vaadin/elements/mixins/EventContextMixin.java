@@ -1,21 +1,11 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.types.EventContextData;
 import js.lang.Any;
 import js.web.dom.Element;
 import js.web.dom.Event;
 
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "EventContextMixin",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-event-context-mixin.js"
-)
+
 public interface EventContextMixin<ITEM extends Any> extends Element {
 	/**
 	 * <p>

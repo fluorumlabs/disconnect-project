@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import js.lang.Any;
 import js.util.collections.Array;
 import js.web.dom.Element;
@@ -11,14 +8,7 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "SelectionMixin",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-selection-mixin.js"
-)
+
 public interface SelectionMixin<ITEM extends Any> extends Element {
 	/**
 	 * An array that contains the selected items.

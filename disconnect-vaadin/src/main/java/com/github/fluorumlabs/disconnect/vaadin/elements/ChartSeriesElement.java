@@ -56,11 +56,12 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ChartSeriesElement",
 		module = "@vaadin/vaadin-charts/vaadin-chart-series.js"
 )
 public interface ChartSeriesElement extends PolymerElement {
-	String TAGNAME = "vaadin-chart-series";
+	static String TAGNAME() {
+		return "vaadin-chart-series";
+	}
 
 	/**
 	 * FIXME type Object | null | undefined

@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.constants.DropMode;
 import com.github.fluorumlabs.disconnect.vaadin.types.DragAndDropRowData;
 import js.lang.Any;
@@ -12,14 +9,7 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "DragAndDropMixin",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-drag-and-drop-mixin.js"
-)
+
 public interface DragAndDropMixin<ITEM extends Any> extends Element {
 	/**
 	 * Defines the locations within the Grid row where an element can be dropped.

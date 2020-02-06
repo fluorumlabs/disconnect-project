@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
 public class VaadinChartSeries extends AbstractComponent<ChartSeriesElement>
 		implements HasComponents<ChartSeriesElement, VaadinChartSeries, Component<?>> {
 	public VaadinChartSeries() {
-		super(ChartSeriesElement.TAGNAME);
+		super(ChartSeriesElement.TAGNAME());
 	}
 
 	/**

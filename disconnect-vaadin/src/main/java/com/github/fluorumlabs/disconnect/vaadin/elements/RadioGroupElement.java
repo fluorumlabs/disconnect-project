@@ -53,11 +53,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "RadioGroupElement",
+
 		module = "@vaadin/vaadin-radio-button/vaadin-radio-group.js"
 )
 public interface RadioGroupElement extends HTMLElement, ThemableMixin {
-	String TAGNAME = "vaadin-radio-group";
+	static String TAGNAME() {
+		return "vaadin-radio-group";
+	}
+
 	/**
 	 * The current disabled state of the radio group. True if group and all internal radio buttons are disabled.
 	 */

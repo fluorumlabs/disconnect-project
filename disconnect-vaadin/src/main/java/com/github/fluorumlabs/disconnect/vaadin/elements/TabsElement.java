@@ -52,9 +52,11 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "TabsElement",
+
 		module = "@vaadin/vaadin-tabs/vaadin-tabs.js"
 )
 public interface TabsElement extends HTMLElement, ElementMixin, ListMixin, ThemableMixin {
-	String TAGNAME = "vaadin-tabs";
+	static String TAGNAME() {
+		return "vaadin-tabs";
+	}
 }

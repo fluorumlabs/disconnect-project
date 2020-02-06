@@ -30,11 +30,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridProEditColumnElement",
+
 		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-column.js"
 )
 public interface GridProEditColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
-	String TAGNAME = "vaadin-grid-pro-edit-column";
+	static String TAGNAME() {
+		return "vaadin-grid-pro-edit-column";
+	}
 
 	/**
 	 * Custom function for rendering the cell content in edit mode.

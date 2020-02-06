@@ -8,7 +8,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinMenuBarSubmenu extends AbstractComponent<MenuBarSubmenuElement>
 		implements HasComponents<MenuBarSubmenuElement, VaadinMenuBarSubmenu, Component<?>> {
 	public VaadinMenuBarSubmenu() {
-		super(MenuBarSubmenuElement.TAGNAME);
+		super(MenuBarSubmenuElement.TAGNAME());
 	}
 
 	/**

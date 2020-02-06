@@ -20,11 +20,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "DrawerToggleElement",
+
 		module = "@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js"
 )
 public interface DrawerToggleElement extends ButtonElement {
-	String TAGNAME = "vaadin-drawer-toggle";
+	static String TAGNAME() {
+		return "vaadin-drawer-toggle";
+	}
 
 	@Nullable
 	@JSProperty

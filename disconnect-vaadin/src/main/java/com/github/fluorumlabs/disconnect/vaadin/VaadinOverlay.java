@@ -124,7 +124,7 @@ public class VaadinOverlay extends AbstractComponent<OverlayElement>
 		implements HasThemableMixin<OverlayElement, VaadinOverlay>,
 		HasComponents<OverlayElement, VaadinOverlay, Component<?>> {
 	public VaadinOverlay() {
-		super(OverlayElement.TAGNAME);
+		super(OverlayElement.TAGNAME());
 	}
 
 	public boolean opened() {

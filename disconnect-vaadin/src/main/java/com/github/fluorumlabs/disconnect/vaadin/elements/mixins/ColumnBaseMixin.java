@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.GridHeaderFooterRenderer;
 import js.lang.Any;
 import js.web.dom.Element;
@@ -10,14 +7,6 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "ColumnBaseMixin",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-column.js"
-)
 public interface ColumnBaseMixin<ITEM extends Any> extends Element {
 	/**
 	 * When set to true, the column is user-resizable.

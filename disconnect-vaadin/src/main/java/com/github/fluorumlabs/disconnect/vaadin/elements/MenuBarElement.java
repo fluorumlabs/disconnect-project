@@ -49,11 +49,13 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "MenuBarElement",
+
 		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar.js"
 )
 public interface MenuBarElement extends HTMLElement, ButtonsMixin, InteractionsMixin, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-menu-bar";
+	static String TAGNAME() {
+		return "vaadin-menu-bar";
+	}
 
 	/**
 	 * Defines a hierarchical structure, where root level items represent menu bar buttons,

@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 public class VaadinGridTreeColumn<ITEM extends Any> extends AbstractComponent<GridTreeColumnElement<ITEM>>
 		implements HasComponents<GridTreeColumnElement<ITEM>, VaadinGridTreeColumn<ITEM>, Component<?>> {
 	public VaadinGridTreeColumn() {
-		super(GridTreeColumnElement.TAGNAME);
+		super(GridTreeColumnElement.TAGNAME());
 	}
 
 	/**

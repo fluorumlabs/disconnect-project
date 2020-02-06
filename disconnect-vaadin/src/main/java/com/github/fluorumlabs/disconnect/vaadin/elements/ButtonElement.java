@@ -53,10 +53,11 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ButtonElement",
 		module = "@vaadin/vaadin-button/vaadin-button.js"
 )
 public interface ButtonElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
-	String TAGNAME = "vaadin-button";
+	static String TAGNAME() {
+		return "vaadin-button";
+	}
 }

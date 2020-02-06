@@ -53,11 +53,13 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "DetailsElement",
+
 		module = "@vaadin/vaadin-details/vaadin-details.js"
 )
 public interface DetailsElement extends HTMLElement, ControlStateMixin, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-details";
+	static String TAGNAME() {
+		return "vaadin-details";
+	}
 
 	/**
 	 * If true, the details content is visible.

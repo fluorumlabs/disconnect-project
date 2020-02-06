@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import js.web.dom.Element;
 import org.teavm.jso.JSProperty;
 
@@ -12,14 +9,7 @@ import org.teavm.jso.JSProperty;
  *
  * <code>focused</code>, <code>active</code> and <code>focus-ring</code> are set as only as attributes.
  */
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "ItemMixin",
-		module = "@vaadin/vaadin-item/src/vaadin-item-mixin.js"
-)
+
 public interface ItemMixin extends Element {
 	/**
 	 *

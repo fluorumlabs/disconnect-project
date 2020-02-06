@@ -47,11 +47,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CookieConsentElement",
+
 		module = "@vaadin/vaadin-cookie-consent/vaadin-cookie-consent.js"
 )
 public interface CookieConsentElement extends HTMLElement, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-cookie-consent";
+	static String TAGNAME() {
+		return "vaadin-cookie-consent";
+	}
 
 	/**
 	 * The message to show in the popup.

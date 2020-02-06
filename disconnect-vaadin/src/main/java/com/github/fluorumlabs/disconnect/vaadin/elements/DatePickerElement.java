@@ -100,12 +100,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "DatePickerElement",
+
 		module = "@vaadin/vaadin-date-picker/vaadin-date-picker.js"
 )
 public interface DatePickerElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, DatePickerMixin, GestureEventListeners {
-	String TAGNAME = "vaadin-date-picker";
+	static String TAGNAME() {
+		return "vaadin-date-picker";
+	}
 
 	/**
 	 * Set to true to display the clear icon which clears the input.

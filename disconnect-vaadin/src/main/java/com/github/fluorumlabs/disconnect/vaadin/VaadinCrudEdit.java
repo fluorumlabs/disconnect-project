@@ -19,7 +19,7 @@ import js.lang.Any;
 public class VaadinCrudEdit<ITEM extends Any> extends AbstractComponent<CrudEditElement>
 		implements HasComponents<CrudEditElement, VaadinCrudEdit<ITEM>, Component<?>> {
 	public VaadinCrudEdit() {
-		super(CrudEditElement.TAGNAME);
+		super(CrudEditElement.TAGNAME());
 	}
 
 	/**

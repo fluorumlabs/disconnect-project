@@ -42,9 +42,10 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "AccordionPanelElement",
 		module = "@vaadin/vaadin-accordion/vaadin-accordion-panel.js"
 )
 public interface AccordionPanelElement extends DetailsElement {
-	String TAGNAME = "vaadin-accordion-panel";
+	static String TAGNAME() {
+		return "vaadin-accordion-panel";
+	}
 }

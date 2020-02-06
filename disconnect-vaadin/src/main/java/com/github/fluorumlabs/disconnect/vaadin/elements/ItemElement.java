@@ -52,9 +52,11 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ItemElement",
+
 		module = "@vaadin/vaadin-item/vaadin-item.js"
 )
 public interface ItemElement extends HTMLElement, ItemMixin, ThemableMixin {
-	String TAGNAME = "vaadin-item";
+	static String TAGNAME() {
+		return "vaadin-item";
+	}
 }

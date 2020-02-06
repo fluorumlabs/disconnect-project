@@ -128,11 +128,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CrudElement",
+
 		module = "@vaadin/vaadin-crud/vaadin-crud.js"
 )
 public interface CrudElement<ITEM extends Any> extends HTMLElement, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-crud";
+	static String TAGNAME() {
+		return "vaadin-crud";
+	}
 
 	/**
 	 * An array containing the items which will be stamped to the column template instances.

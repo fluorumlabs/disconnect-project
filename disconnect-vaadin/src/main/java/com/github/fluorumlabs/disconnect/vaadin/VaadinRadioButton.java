@@ -56,7 +56,7 @@ public class VaadinRadioButton extends AbstractComponent<RadioButtonElement>
 		HasGestureEventListeners<RadioButtonElement, VaadinRadioButton>,
 		HasComponents<RadioButtonElement, VaadinRadioButton, Component<?>> {
 	public VaadinRadioButton() {
-		super(RadioButtonElement.TAGNAME);
+		super(RadioButtonElement.TAGNAME());
 	}
 
 	/**

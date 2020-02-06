@@ -31,11 +31,13 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridSelectionColumnElement",
+
 		module = "@vaadin/vaadin-grid/vaadin-grid-selection-column.js"
 )
 public interface GridSelectionColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
-	String TAGNAME = "vaadin-grid-selection-column";
+	static String TAGNAME() {
+		return "vaadin-grid-selection-column";
+	}
 
 	/**
 	 * When true, all the items are selected.

@@ -55,6 +55,6 @@ public class VaadinProgressBar extends AbstractComponent<ProgressBarElement>
 		HasThemableMixin<ProgressBarElement, VaadinProgressBar>,
 		HasComponents<ProgressBarElement, VaadinProgressBar, Component<?>> {
 	public VaadinProgressBar() {
-		super(ProgressBarElement.TAGNAME);
+		super(ProgressBarElement.TAGNAME());
 	}
 }

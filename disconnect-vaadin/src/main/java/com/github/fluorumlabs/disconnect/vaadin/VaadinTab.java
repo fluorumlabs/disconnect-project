@@ -39,6 +39,6 @@ public class VaadinTab extends AbstractComponent<TabElement> implements HasEleme
 		HasItemMixin<TabElement, VaadinTab>,
 		HasComponents<TabElement, VaadinTab, Component<?>> {
 	public VaadinTab() {
-		super(TabElement.TAGNAME);
+		super(TabElement.TAGNAME());
 	}
 }

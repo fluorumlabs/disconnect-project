@@ -37,7 +37,7 @@ public class VaadinGridColumnGroup<ITEM extends Any> extends AbstractComponent<G
 		implements HasColumnBaseMixin<ITEM, GridColumnGroupElement<ITEM>, VaadinGridColumnGroup<ITEM>>,
 		HasComponents<GridColumnGroupElement<ITEM>, VaadinGridColumnGroup<ITEM>, Component<?>> {
 	public VaadinGridColumnGroup() {
-		super(GridColumnGroupElement.TAGNAME);
+		super(GridColumnGroupElement.TAGNAME());
 	}
 
 	/**

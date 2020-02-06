@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import com.github.fluorumlabs.disconnect.polymer.constants.PolymerType;
 import com.github.fluorumlabs.disconnect.polymer.constants.ScrollDirection;
 import com.github.fluorumlabs.disconnect.polymer.types.Debouncer;
@@ -25,14 +22,6 @@ import javax.annotation.Nullable;
  * found on the Polymer 1.x <code>Polymer.Base</code> prototype applied to all elements
  * defined using the <code>Polymer({...})</code> function.
  */
-@NpmPackage(
-		name = "@polymer/polymer",
-		version = Polymer.VERSION
-)
-@Import(
-		symbols = "LegacyElementMixin",
-		module = "@polymer/polymer/lib/legacy/legacy-element-mixin.js"
-)
 @Deprecated
 public interface LegacyElementMixin extends ElementMixin, GestureEventListeners {
 	@JSProperty

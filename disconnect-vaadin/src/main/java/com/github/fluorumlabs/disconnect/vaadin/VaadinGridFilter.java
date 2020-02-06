@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
 public class VaadinGridFilter extends AbstractComponent<GridFilterElement>
 		implements HasSlots<GridFilterElement>, HasComponents<GridFilterElement, VaadinGridFilter, Component<?>> {
 	public VaadinGridFilter() {
-		super(GridFilterElement.TAGNAME);
+		super(GridFilterElement.TAGNAME());
 	}
 
 	/**

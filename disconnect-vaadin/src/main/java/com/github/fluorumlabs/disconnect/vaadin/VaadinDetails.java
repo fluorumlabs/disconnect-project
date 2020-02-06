@@ -57,7 +57,7 @@ public class VaadinDetails extends AbstractComponent<DetailsElement>
 		HasSlots<DetailsElement>,
 		HasComponents<DetailsElement, VaadinDetails, Component<?>> {
 	public VaadinDetails() {
-		super(DetailsElement.TAGNAME);
+		super(DetailsElement.TAGNAME());
 	}
 
 	/**

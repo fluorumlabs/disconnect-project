@@ -64,11 +64,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "DatePickerLightElement",
+
 		module = "@vaadin/vaadin-date-picker/vaadin-date-picker-light.js"
 )
 public interface DatePickerLightElement extends HTMLElement, ThemableMixin, DatePickerMixin {
-	String TAGNAME = "vaadin-date-picker-light";
+	static String TAGNAME() {
+		return "vaadin-date-picker-light";
+	}
 
 	/**
 	 * Name of the two-way data-bindable property representing the

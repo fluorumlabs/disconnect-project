@@ -38,7 +38,9 @@ import org.teavm.jso.JSProperty;
 		module = "@polymer/iron-overlay-behavior/iron-overlay-backdrop.js"
 )
 public interface IronOverlayBackdropElement extends HTMLElement {
-	String TAGNAME = "iron-overlay-backdrop";
+	static String TAGNAME() {
+		return "iron-overlay-backdrop";
+	}
 
 	/**
 	 * Returns true if the backdrop is opened.

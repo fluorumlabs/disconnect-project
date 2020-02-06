@@ -51,7 +51,7 @@ public class VaadinItem extends AbstractComponent<ItemElement> implements HasIte
 		HasThemableMixin<ItemElement, VaadinItem>,
 		HasComponents<ItemElement, VaadinItem, Component<?>> {
 	public VaadinItem() {
-		super(ItemElement.TAGNAME);
+		super(ItemElement.TAGNAME());
 	}
 
 	/**

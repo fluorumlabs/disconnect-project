@@ -59,11 +59,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "UploadFileElement",
+
 		module = "@vaadin/vaadin-upload/vaadin-upload-file.js"
 )
 public interface UploadFileElement extends HTMLElement, ThemableMixin {
-	String TAGNAME = "vaadin-upload-file";
+	static String TAGNAME() {
+		return "vaadin-upload-file";
+	}
+
 	/**
 	 *
 	 */

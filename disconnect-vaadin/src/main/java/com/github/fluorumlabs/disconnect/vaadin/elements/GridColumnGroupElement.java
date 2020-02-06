@@ -39,11 +39,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridColumnGroupElement",
+
 		module = "@vaadin/vaadin-grid/vaadin-grid-column-group.js"
 )
 public interface GridColumnGroupElement<ITEM extends Any> extends HTMLElement, ColumnBaseMixin<ITEM> {
-	String TAGNAME = "vaadin-grid-column-group";
+	static String TAGNAME() {
+		return "vaadin-grid-column-group";
+	}
 
 	/**
 	 * Flex grow ratio for the column group as the sum of the ratios of its child columns.

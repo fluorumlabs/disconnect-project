@@ -8,6 +8,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinLumoStyles extends AbstractComponent<Lumo>
 		implements HasComponents<Lumo, VaadinLumoStyles, Component<?>> {
 	public VaadinLumoStyles() {
-		super(Lumo.TAGNAME);
+		super(Lumo.TAGNAME());
 	}
 }

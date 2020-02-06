@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.ComboBoxRenderer;
 import js.lang.Any;
 import js.util.collections.Array;
@@ -12,14 +9,7 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "ComboBoxMixin",
-		module = "@vaadin/vaadin-combo-box/src/vaadin-combo-box-mixin.js"
-)
+
 public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	/**
 	 * True if the dropdown is open, false otherwise.

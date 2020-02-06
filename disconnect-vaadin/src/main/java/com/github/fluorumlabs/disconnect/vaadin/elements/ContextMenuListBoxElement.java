@@ -12,9 +12,11 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ContextMenuListBoxElement",
+
 		module = "@vaadin/vaadin-context-menu/vaadin-contextmenu-items-mixin.js"
 )
 public interface ContextMenuListBoxElement extends ListBoxElement {
-	String TAGNAME = "vaadin-context-menu-list-box";
+	static String TAGNAME() {
+		return "vaadin-context-menu-list-box";
+	}
 }

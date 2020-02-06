@@ -48,11 +48,12 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "BoardRowElement",
 		module = "@vaadin/vaadin-board/vaadin-board-row.js"
 )
 public interface BoardRowElement extends HTMLElement, ElementMixin {
-	String TAGNAME = "vaadin-board-row";
+	static String TAGNAME() {
+		return "vaadin-board-row";
+	}
 
 	/**
 	 * Redraws the row, if necessary.

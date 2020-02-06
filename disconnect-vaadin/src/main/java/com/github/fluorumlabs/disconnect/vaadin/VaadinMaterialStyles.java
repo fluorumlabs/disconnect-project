@@ -8,6 +8,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinMaterialStyles extends AbstractComponent<Material>
 		implements HasComponents<Material, VaadinMaterialStyles, Component<?>> {
 	public VaadinMaterialStyles() {
-		super(Material.TAGNAME);
+		super(Material.TAGNAME());
 	}
 }

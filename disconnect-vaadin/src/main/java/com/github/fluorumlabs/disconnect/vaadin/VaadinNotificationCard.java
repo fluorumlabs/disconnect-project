@@ -30,7 +30,7 @@ public class VaadinNotificationCard extends AbstractComponent<NotificationCard>
 		HasSlots<NotificationCard>,
 		HasComponents<NotificationCard, VaadinNotificationCard, Component<?>> {
 	public VaadinNotificationCard() {
-		super(NotificationCard.TAGNAME);
+		super(NotificationCard.TAGNAME());
 	}
 
 	public HasSlots.Container topStretchSlot() {

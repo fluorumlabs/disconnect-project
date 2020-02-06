@@ -68,11 +68,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "TimePickerElement",
+
 		module = "@vaadin/vaadin-time-picker/vaadin-time-picker.js"
 )
 public interface TimePickerElement extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin {
-	String TAGNAME = "vaadin-time-picker";
+	static String TAGNAME() {
+		return "vaadin-time-picker";
+	}
+
 	/**
 	 * The name of this element.
 	 */

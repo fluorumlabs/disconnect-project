@@ -113,10 +113,15 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "AppLayoutElement",
+		module = "@vaadin/vaadin-app-layout/src/vaadin-app-layout.js"
+)
+@Import(
 		module = "@vaadin/vaadin-app-layout/vaadin-app-layout.js"
 )
 public interface AppLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-app-layout";
+	static String TAGNAME() {
+		return "vaadin-app-layout";
+	}
 
 	/**
 	 * Helper static method that dispatches a <code>close-overlay-drawer</code> event

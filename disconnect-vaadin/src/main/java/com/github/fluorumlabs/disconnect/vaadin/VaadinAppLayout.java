@@ -116,7 +116,7 @@ public class VaadinAppLayout extends AbstractComponent<AppLayoutElement>
 		HasSlots<AppLayoutElement>,
 		HasComponents<AppLayoutElement, VaadinAppLayout, Component<?>> {
 	public VaadinAppLayout() {
-		super(AppLayoutElement.TAGNAME);
+		super(AppLayoutElement.TAGNAME());
 	}
 
 	/**

@@ -215,7 +215,7 @@ public class VaadinContextMenu extends AbstractComponent<ContextMenuElement>
 		HasGestureEventListeners<ContextMenuElement, VaadinContextMenu>,
 		HasComponents<ContextMenuElement, VaadinContextMenu, Component<?>> {
 	public VaadinContextMenu() {
-		super(ContextMenuElement.TAGNAME);
+		super(ContextMenuElement.TAGNAME());
 	}
 
 	/**

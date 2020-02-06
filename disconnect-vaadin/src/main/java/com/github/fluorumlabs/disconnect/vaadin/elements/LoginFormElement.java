@@ -32,11 +32,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "LoginFormElement",
+
 		module = "@vaadin/vaadin-login/vaadin-login-form.js"
 )
 public interface LoginFormElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
-	String TAGNAME = "vaadin-login-form";
+	static String TAGNAME() {
+		return "vaadin-login-form";
+	}
 
 	/**
 	 * Defines the theme of the element.

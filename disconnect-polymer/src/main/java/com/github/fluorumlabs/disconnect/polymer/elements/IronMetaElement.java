@@ -53,7 +53,9 @@ import org.teavm.jso.JSProperty;
 		module = "@polymer/iron-meta/iron-meta.js"
 )
 public interface IronMetaElement<ITEM extends Any> extends HTMLElement {
-	String TAGNAME = "iron-meta";
+	static String TAGNAME() {
+		return "iron-meta";
+	}
 
 	/**
 	 * The type of meta-data.  All meta-data of the same type is stored

@@ -64,7 +64,7 @@ public class VaadinUpload extends AbstractComponent<UploadElement>
 		HasSlots<UploadElement>,
 		HasComponents<UploadElement, VaadinUpload, Component<?>> {
 	public VaadinUpload() {
-		super(UploadElement.TAGNAME);
+		super(UploadElement.TAGNAME());
 	}
 
 	/**

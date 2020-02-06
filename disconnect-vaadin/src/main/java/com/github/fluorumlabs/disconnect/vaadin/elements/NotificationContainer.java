@@ -18,7 +18,10 @@ import org.teavm.jso.JSProperty;
 		module = "@vaadin/vaadin-notification/vaadin-notification.js"
 )
 public interface NotificationContainer extends HTMLElement {
-	String TAGNAME = "vaadin-notification-container";
+	static String TAGNAME() {
+		return "vaadin-notification-container";
+	}
+
 	/**
 	 * True when the container is opened
 	 */

@@ -121,11 +121,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "OverlayElement",
+
 		module = "@vaadin/vaadin-overlay/vaadin-overlay.js"
 )
 public interface OverlayElement extends HTMLElement, ThemableMixin {
-	String TAGNAME = "vaadin-overlay";
+	static String TAGNAME() {
+		return "vaadin-overlay";
+	}
+
 	@JSProperty
 	boolean isOpened();
 

@@ -37,7 +37,9 @@ import org.teavm.jso.JSProperty;
 		module = "@polymer/polymer/lib/elements/dom-module.js"
 )
 public interface DomModuleElement extends HTMLElement {
-	String TAGNAME = "dom-module";
+	static String TAGNAME() {
+		return "dom-module";
+	}
 
 	/**
 	 * Retrieves the element specified by the css <code>selector</code> in the module

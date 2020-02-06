@@ -117,11 +117,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "SelectElement",
+
 		module = "@vaadin/vaadin-select/vaadin-select.js"
 )
 public interface SelectElement extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin {
-	String TAGNAME = "vaadin-select";
+	static String TAGNAME() {
+		return "vaadin-select";
+	}
+
 	/**
 	 * Set when the select is open
 	 */

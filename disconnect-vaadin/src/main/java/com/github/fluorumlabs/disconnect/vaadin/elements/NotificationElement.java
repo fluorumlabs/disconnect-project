@@ -62,11 +62,14 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "NotificationElement",
+
 		module = "@vaadin/vaadin-notification/vaadin-notification.js"
 )
 public interface NotificationElement extends HTMLElement, ThemePropertyMixin {
-	String TAGNAME = "vaadin-notification";
+	static String TAGNAME() {
+		return "vaadin-notification";
+	}
+
 	/**
 	 * The duration in milliseconds to show the notification.
 	 * Set to <code>0</code> or a negative number to disable the notification auto-closing.

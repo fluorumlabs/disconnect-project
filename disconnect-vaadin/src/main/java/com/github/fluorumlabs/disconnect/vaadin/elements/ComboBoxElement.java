@@ -179,7 +179,6 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ComboBoxElement",
 		module = "@vaadin/vaadin-combo-box/vaadin-combo-box.js"
 )
 public interface ComboBoxElement<ITEM extends Any> extends HTMLElement,
@@ -188,7 +187,9 @@ public interface ComboBoxElement<ITEM extends Any> extends HTMLElement,
 		ComboBoxDataProviderMixin<ITEM>,
 		ComboBoxMixin<ITEM>,
 		ThemableMixin {
-	String TAGNAME = "vaadin-combo-box";
+	static String TAGNAME() {
+		return "vaadin-combo-box";
+	}
 
 	/**
 	 * FIXME type ?

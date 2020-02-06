@@ -24,11 +24,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CrudFormElement",
+
 		module = "@vaadin/vaadin-crud/vaadin-crud-form.js"
 )
 public interface CrudFormElement<ITEM extends Any> extends HTMLElement, IncludedMixin {
-	String TAGNAME = "vaadin-crud-form";
+	static String TAGNAME() {
+		return "vaadin-crud-form";
+	}
 
 	/**
 	 * The item being edited.

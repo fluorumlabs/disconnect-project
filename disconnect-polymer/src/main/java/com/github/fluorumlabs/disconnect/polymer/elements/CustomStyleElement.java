@@ -59,7 +59,9 @@ import org.teavm.jso.JSMethod;
 		module = "@polymer/polymer/lib/elements/custom-style.js"
 )
 public interface CustomStyleElement extends HTMLElement {
-	String TAGNAME = "custom-style";
+	static String TAGNAME() {
+		return "custom-style";
+	}
 
 	/**
 	 * Returns the light-DOM <code>&lt;style&gt;</code> child this element wraps.  Upon first

@@ -146,7 +146,7 @@ public class VaadinSplitLayout extends AbstractComponent<SplitLayoutElement>
 		HasSlots<SplitLayoutElement>,
 		HasComponents<SplitLayoutElement, VaadinSplitLayout, Component<?>> {
 	public VaadinSplitLayout() {
-		super(SplitLayoutElement.TAGNAME);
+		super(SplitLayoutElement.TAGNAME());
 	}
 
 	/**

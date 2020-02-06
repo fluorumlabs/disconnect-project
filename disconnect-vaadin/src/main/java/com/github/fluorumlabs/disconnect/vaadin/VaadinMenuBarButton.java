@@ -8,6 +8,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinMenuBarButton extends AbstractComponent<MenuBarButtonElement>
 		implements HasComponents<MenuBarButtonElement, VaadinMenuBarButton, Component<?>> {
 	public VaadinMenuBarButton() {
-		super(MenuBarButtonElement.TAGNAME);
+		super(MenuBarButtonElement.TAGNAME());
 	}
 }

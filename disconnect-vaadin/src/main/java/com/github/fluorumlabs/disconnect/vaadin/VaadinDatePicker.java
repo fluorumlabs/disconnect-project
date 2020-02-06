@@ -107,7 +107,7 @@ public class VaadinDatePicker extends AbstractComponent<DatePickerElement>
 		HasSlots<DatePickerElement>,
 		HasComponents<DatePickerElement, VaadinDatePicker, Component<?>> {
 	public VaadinDatePicker() {
-		super(DatePickerElement.TAGNAME);
+		super(DatePickerElement.TAGNAME());
 	}
 
 	/**

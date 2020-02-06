@@ -65,7 +65,7 @@ public class VaadinGridTreeToggle extends AbstractComponent<GridTreeToggleElemen
 		implements HasThemableMixin<GridTreeToggleElement, VaadinGridTreeToggle>,
 		HasComponents<GridTreeToggleElement, VaadinGridTreeToggle, Component<?>> {
 	public VaadinGridTreeToggle() {
-		super(GridTreeToggleElement.TAGNAME);
+		super(GridTreeToggleElement.TAGNAME());
 	}
 
 	/**

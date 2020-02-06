@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
 public class VaadinGridSortColumn<ITEM extends Any> extends AbstractComponent<GridSortColumnElement<ITEM>>
 		implements HasComponents<GridSortColumnElement<ITEM>, VaadinGridSortColumn<ITEM>, Component<?>> {
 	public VaadinGridSortColumn() {
-		super(GridSortColumnElement.TAGNAME);
+		super(GridSortColumnElement.TAGNAME());
 	}
 
 	/**

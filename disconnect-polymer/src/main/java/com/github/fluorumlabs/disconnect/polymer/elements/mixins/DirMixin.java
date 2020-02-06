@@ -1,9 +1,5 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.polymer.Polymer;
-
 /**
  * Element class mixin that allows elements to use the <code>:dir</code> CSS Selector to
  * have text direction specific styling.
@@ -27,13 +23,5 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
  * <li>Opting out of the global direction styling is permanent</li>
  * </ul>
  */
-@NpmPackage(
-		name = "@polymer/polymer",
-		version = Polymer.VERSION
-)
-@Import(
-		symbols = "DirMixin",
-		module = "@polymer/polymer/lib/mixins/dir-mixin.js"
-)
 public interface DirMixin extends PropertyAccessors {
 }

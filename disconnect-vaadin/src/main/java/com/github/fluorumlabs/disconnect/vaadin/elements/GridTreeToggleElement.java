@@ -65,11 +65,13 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridTreeToggleElement",
+
 		module = "@vaadin/vaadin-grid/vaadin-grid-tree-toggle.js"
 )
 public interface GridTreeToggleElement extends HTMLElement, ThemableMixin {
-	String TAGNAME = "vaadin-grid-tree-toggle";
+	static String TAGNAME() {
+		return "vaadin-grid-tree-toggle";
+	}
 
 	/**
 	 * Current level of the tree represented with a horizontal offset

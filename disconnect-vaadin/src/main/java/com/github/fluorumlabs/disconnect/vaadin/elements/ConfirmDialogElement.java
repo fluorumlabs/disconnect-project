@@ -55,11 +55,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ConfirmDialogElement",
+
 		module = "@vaadin/vaadin-confirm-dialog/vaadin-confirm-dialog.js"
 )
 public interface ConfirmDialogElement extends HTMLElement, ElementMixin, ThemableMixin {
-	String TAGNAME = "vaadin-confirm-dialog";
+	static String TAGNAME() {
+		return "vaadin-confirm-dialog";
+	}
 
 	/**
 	 * True if the overlay is currently displayed.

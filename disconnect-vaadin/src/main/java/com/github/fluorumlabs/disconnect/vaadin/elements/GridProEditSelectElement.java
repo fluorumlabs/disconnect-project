@@ -24,11 +24,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridProEditSelectElement",
+
 		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-select.js"
 )
 public interface GridProEditSelectElement extends SelectElement {
-	String TAGNAME = "vaadin-grid-pro-edit-select";
+	static String TAGNAME() {
+		return "vaadin-grid-pro-edit-select";
+	}
 
 	@Nullable
 	@JSProperty

@@ -21,11 +21,13 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CrudGridElement",
+
 		module = "@vaadin/vaadin-crud/vaadin-crud-grid.js"
 )
 public interface CrudGridElement extends HTMLElement, IncludedMixin {
-	String TAGNAME = "vaadin-crud-grid";
+	static String TAGNAME() {
+		return "vaadin-crud-grid";
+	}
 
 	/**
 	 * Disable filtering in the generated columns.

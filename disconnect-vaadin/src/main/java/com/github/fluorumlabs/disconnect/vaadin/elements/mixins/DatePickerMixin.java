@@ -1,22 +1,12 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.DatePickerI18n;
 import js.web.dom.Element;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "DatePickerMixin",
-		module = "@vaadin/vaadin-date-picker/src/vaadin-date-picker-mixin.js"
-)
+
 public interface DatePickerMixin extends Element {
 	/**
 	 * The value for this element.

@@ -55,7 +55,7 @@ public class VaadinTabs extends AbstractComponent<TabsElement> implements HasEle
 		HasThemableMixin<TabsElement, VaadinTabs>,
 		HasComponents<TabsElement, VaadinTabs, Component<?>> {
 	public VaadinTabs() {
-		super(TabsElement.TAGNAME);
+		super(TabsElement.TAGNAME());
 	}
 
 	/**

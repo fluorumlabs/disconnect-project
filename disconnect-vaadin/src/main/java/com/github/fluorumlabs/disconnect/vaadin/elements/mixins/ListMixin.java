@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Orientation;
 import js.util.collections.Array;
 import js.web.dom.Element;
@@ -13,14 +10,7 @@ import javax.annotation.Nullable;
 /**
  * A mixin for <code>nav</code> elements, facilitating navigation and selection of childNodes.
  */
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "ListMixin",
-		module = "@vaadin/vaadin-list-mixin/vaadin-list-mixin.js"
-)
+
 public interface ListMixin extends Element {
 	/**
 	 *

@@ -19,6 +19,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinGridProEditTextField extends AbstractComponent<GridProEditTextFieldElement>
 		implements HasComponents<GridProEditTextFieldElement, VaadinGridProEditTextField, Component<?>> {
 	public VaadinGridProEditTextField() {
-		super(GridProEditTextFieldElement.TAGNAME);
+		super(GridProEditTextFieldElement.TAGNAME());
 	}
 }

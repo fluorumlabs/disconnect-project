@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 public class VaadinDrawerToggle extends AbstractComponent<DrawerToggleElement>
 		implements HasComponents<DrawerToggleElement, VaadinDrawerToggle, Component<?>> {
 	public VaadinDrawerToggle() {
-		super(DrawerToggleElement.TAGNAME);
+		super(DrawerToggleElement.TAGNAME());
 	}
 
 	@Nullable

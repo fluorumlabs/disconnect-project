@@ -22,11 +22,14 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "SelectTextFieldElement",
+
 		module = "@vaadin/vaadin-select/vaadin-select-text-field.js"
 )
 public interface SelectTextFieldElement extends TextFieldElement {
-	String TAGNAME = "vaadin-select-text-field";
+	static String TAGNAME() {
+		return "vaadin-select-text-field";
+	}
+
 	/**
 	 * FIXME type ?
 	 */

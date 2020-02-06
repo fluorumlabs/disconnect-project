@@ -25,11 +25,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridColumnElement",
+
 		module = "@vaadin/vaadin-grid/vaadin-grid-column.js"
 )
 public interface GridColumnElement<ITEM extends Any> extends HTMLElement, ColumnBaseMixin<ITEM> {
-	String TAGNAME = "vaadin-grid-column";
+	static String TAGNAME() {
+		return "vaadin-grid-column";
+	}
 
 	/**
 	 * Width of the cells for this column.

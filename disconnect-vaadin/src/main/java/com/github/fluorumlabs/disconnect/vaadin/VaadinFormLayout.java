@@ -102,7 +102,7 @@ public class VaadinFormLayout extends AbstractComponent<FormLayoutElement>
 		HasThemableMixin<FormLayoutElement, VaadinFormLayout>,
 		HasComponents<FormLayoutElement, VaadinFormLayout, Component<?>> {
 	public VaadinFormLayout() {
-		super(FormLayoutElement.TAGNAME);
+		super(FormLayoutElement.TAGNAME());
 	}
 
 	/**

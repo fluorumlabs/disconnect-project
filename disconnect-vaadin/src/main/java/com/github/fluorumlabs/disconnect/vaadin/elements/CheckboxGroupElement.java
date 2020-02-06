@@ -56,11 +56,12 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CheckboxGroupElement",
 		module = "@vaadin/vaadin-checkbox/vaadin-checkbox-group.js"
 )
 public interface CheckboxGroupElement extends HTMLElement, ThemableMixin {
-	String TAGNAME = "vaadin-checkbox-group";
+	static String TAGNAME() {
+		return "vaadin-checkbox-group";
+	}
 
 	/**
 	 * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.

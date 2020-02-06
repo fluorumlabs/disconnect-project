@@ -59,12 +59,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CheckboxElement",
 		module = "@vaadin/vaadin-checkbox/vaadin-checkbox.js"
 )
 public interface CheckboxElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
-	String TAGNAME = "vaadin-checkbox";
+	static String TAGNAME() {
+		return "vaadin-checkbox";
+	}
 
 	/**
 	 * Name of the element.

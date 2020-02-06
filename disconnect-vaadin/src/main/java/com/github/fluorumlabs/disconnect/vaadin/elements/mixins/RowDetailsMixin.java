@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.vaadin.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.RowDetailsRenderer;
 import js.lang.Any;
 import js.util.collections.Array;
@@ -12,14 +9,7 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-@NpmPackage(
-		name = "@vaadin/vaadin",
-		version = Vaadin.VERSION
-)
-@Import(
-		symbols = "RowDetailsMixin",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-row-details-mixin.js"
-)
+
 public interface RowDetailsMixin<ITEM extends Any> extends Element {
 	/**
 	 * An array containing references to items with open row details.

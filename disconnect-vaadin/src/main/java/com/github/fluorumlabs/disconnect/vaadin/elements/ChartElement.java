@@ -271,11 +271,12 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ChartElement",
 		module = "@vaadin/vaadin-charts/vaadin-chart.js"
 )
 public interface ChartElement extends HTMLElement {
-	String TAGNAME = "vaadin-chart";
+	static String TAGNAME() {
+		return "vaadin-chart";
+	}
 
 	/**
 	 * FIXME type ?

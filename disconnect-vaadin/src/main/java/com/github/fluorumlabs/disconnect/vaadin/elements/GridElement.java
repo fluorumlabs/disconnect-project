@@ -238,7 +238,7 @@ import org.teavm.jso.JSProperty;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "GridElement",
+
 		module = "@vaadin/vaadin-grid/vaadin-grid.js"
 )
 public interface GridElement<ITEM extends Any> extends HTMLElement,
@@ -259,7 +259,9 @@ public interface GridElement<ITEM extends Any> extends HTMLElement,
 		EventContextMixin<ITEM>,
 		StylingMixin<ITEM>,
 		DragAndDropMixin<ITEM> {
-	String TAGNAME = "vaadin-grid";
+	static String TAGNAME() {
+		return "vaadin-grid";
+	}
 
 	/**
 	 * If true, the grid's height is defined by the number of its rows.

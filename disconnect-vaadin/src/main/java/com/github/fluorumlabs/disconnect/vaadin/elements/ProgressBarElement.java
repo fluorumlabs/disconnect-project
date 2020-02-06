@@ -55,9 +55,11 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "ProgressBarElement",
+
 		module = "@vaadin/vaadin-progress-bar/vaadin-progress-bar.js"
 )
 public interface ProgressBarElement extends HTMLElement, ProgressMixin, ThemableMixin {
-	String TAGNAME = "vaadin-progress-bar";
+	static String TAGNAME() {
+		return "vaadin-progress-bar";
+	}
 }

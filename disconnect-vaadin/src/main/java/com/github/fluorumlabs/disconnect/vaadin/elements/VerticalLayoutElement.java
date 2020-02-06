@@ -36,9 +36,11 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "VerticalLayoutElement",
+
 		module = "@vaadin/vaadin-ordered-layout/vaadin-vertical-layout.js"
 )
 public interface VerticalLayoutElement extends HTMLElement, ThemableMixin {
-	String TAGNAME = "vaadin-vertical-layout";
+	static String TAGNAME() {
+		return "vaadin-vertical-layout";
+	}
 }

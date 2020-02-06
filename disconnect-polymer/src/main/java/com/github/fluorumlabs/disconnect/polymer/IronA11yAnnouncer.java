@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 public class IronA11yAnnouncer
 		extends AbstractComponent<IronA11yAnnouncerElement> {
 	public IronA11yAnnouncer() {
-		super(IronA11yAnnouncerElement.TAGNAME);
+		super(IronA11yAnnouncerElement.TAGNAME());
 	}
 
 	/**

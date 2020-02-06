@@ -58,7 +58,7 @@ public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 		HasCustomFieldMixin<CustomFieldElement, VaadinCustomField>,
 		HasComponents<CustomFieldElement, VaadinCustomField, Component<?>> {
 	public VaadinCustomField() {
-		super(CustomFieldElement.TAGNAME);
+		super(CustomFieldElement.TAGNAME());
 	}
 
 	/**

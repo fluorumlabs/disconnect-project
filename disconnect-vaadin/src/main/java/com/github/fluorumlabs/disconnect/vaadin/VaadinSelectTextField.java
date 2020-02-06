@@ -20,7 +20,7 @@ import js.web.dom.Element;
 public class VaadinSelectTextField extends AbstractComponent<SelectTextFieldElement>
 		implements HasComponents<SelectTextFieldElement, VaadinSelectTextField, Component<?>> {
 	public VaadinSelectTextField() {
-		super(SelectTextFieldElement.TAGNAME);
+		super(SelectTextFieldElement.TAGNAME());
 	}
 
 	/**

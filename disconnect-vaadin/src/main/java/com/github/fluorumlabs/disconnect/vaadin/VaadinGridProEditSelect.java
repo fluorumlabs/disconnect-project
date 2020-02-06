@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 public class VaadinGridProEditSelect extends AbstractComponent<GridProEditSelectElement>
 		implements HasComponents<GridProEditSelectElement, VaadinGridProEditSelect, Component<?>> {
 	public VaadinGridProEditSelect() {
-		super(GridProEditSelectElement.TAGNAME);
+		super(GridProEditSelectElement.TAGNAME());
 	}
 
 	@Nullable

@@ -27,11 +27,13 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "CrudEditColumnElement",
+
 		module = "@vaadin/vaadin-crud/vaadin-crud-edit-column.js"
 )
 public interface CrudEditColumnElement extends HTMLElement {
-	String TAGNAME = "vaadin-crud-edit-column";
+	static String TAGNAME() {
+		return "vaadin-crud-edit-column";
+	}
 
 	/**
 	 * The arial-label for the edit button

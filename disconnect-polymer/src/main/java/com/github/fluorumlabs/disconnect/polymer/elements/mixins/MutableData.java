@@ -1,8 +1,5 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.Element;
 
 /**
@@ -39,13 +36,5 @@ import js.web.dom.Element;
  * will be worse as opposed to using strict dirty checking with immutable
  * patterns or Polymer's path notification API.
  */
-@NpmPackage(
-		name = "@polymer/polymer",
-		version = Polymer.VERSION
-)
-@Import(
-		symbols = "MutableData",
-		module = "@polymer/polymer/lib/mixins/mutable-data.js"
-)
 public interface MutableData extends Element {
 }

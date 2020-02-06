@@ -89,7 +89,7 @@ public class VaadinRichTextEditor extends AbstractComponent<RichTextEditorElemen
 		HasThemableMixin<RichTextEditorElement, VaadinRichTextEditor>,
 		HasComponents<RichTextEditorElement, VaadinRichTextEditor, Component<?>> {
 	public VaadinRichTextEditor() {
-		super(RichTextEditorElement.TAGNAME);
+		super(RichTextEditorElement.TAGNAME());
 	}
 
 	/**

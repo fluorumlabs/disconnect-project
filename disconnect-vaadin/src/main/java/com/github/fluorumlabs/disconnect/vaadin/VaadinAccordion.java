@@ -56,7 +56,7 @@ public class VaadinAccordion extends AbstractComponent<AccordionElement> impleme
 		HasThemableMixin<AccordionElement, VaadinAccordion>,
 		HasComponents<AccordionElement, VaadinAccordion, Component<?>> {
 	public VaadinAccordion() {
-		super(AccordionElement.TAGNAME);
+		super(AccordionElement.TAGNAME());
 	}
 
 	/**
