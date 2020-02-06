@@ -97,8 +97,8 @@ import javax.annotation.Nullable;
  * <tr><td><code>opening</code></td><td>Applied just after the overlay is attached to the DOM. You can apply a CSS
  *
  * @keyframe animation for this state.</td><td><code>:host</code></td></tr>
- * 		<tr><td><code>closing</code></td><td>Applied just before the overlay is detached from the DOM. You can
- * 		apply a CSS
+ * 		<tr><td><code>closing</code></td><td>Applied just before the overlay is detached from the DOM. You can apply a
+ * 		CSS
  * @keyframe animation for this state.</td><td><code>:host</code></td></tr>
  * 		</tbody>
  * 		</table>

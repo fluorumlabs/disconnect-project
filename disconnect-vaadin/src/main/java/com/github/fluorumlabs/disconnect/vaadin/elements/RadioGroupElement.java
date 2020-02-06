@@ -145,8 +145,8 @@ public interface RadioGroupElement extends HTMLElement, ThemableMixin {
 	void setValue(String value);
 
 	/**
-	 * Returns true if `value` is valid.
-	 * `<iron-form>` uses this to check the validity or all its elements.
+	 * Returns true if <code>value</code> is valid.
+	 * <code>&lt;iron-form&gt;</code> uses this to check the validity or all its elements.
 	 *
 	 * @return True if the value is valid.
 	 */

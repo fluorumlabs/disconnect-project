@@ -166,8 +166,8 @@ public class VaadinRadioGroup extends AbstractComponent<RadioGroupElement>
 	}
 
 	/**
-	 * Returns true if `value` is valid.
-	 * `<iron-form>` uses this to check the validity or all its elements.
+	 * Returns true if <code>value</code> is valid.
+	 * <code>&lt;iron-form&gt;</code> uses this to check the validity or all its elements.
 	 *
 	 * @return True if the value is valid.
 	 */
@@ -183,14 +183,14 @@ public class VaadinRadioGroup extends AbstractComponent<RadioGroupElement>
 	}
 
 	/**
-	 * Fired when the `invalid` property changes.
+	 * Fired when the <code>invalid</code> property changes.
 	 */
 	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
 		return createEvent("invalid-changed");
 	}
 
 	/**
-	 * Fired when the `value` property changes.
+	 * Fired when the <code>value</code> property changes.
 	 */
 	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
 		return createEvent("value-changed");

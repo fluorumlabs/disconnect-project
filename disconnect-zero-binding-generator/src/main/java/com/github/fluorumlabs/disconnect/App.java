@@ -67,7 +67,7 @@ public class App {
     public static String importRoot = "@vaadin";
     //public static String importRoot = "@polymer";
 
-    public static String npmVersion = "15.0.0-alpha15";
+    public static String npmVersion = "15.0.0-beta1";
     //public static String npmVersion = "3.3.1";
 
     private static final MutableDataSet flexmarkOptions = new MutableDataSet();
