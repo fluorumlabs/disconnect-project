@@ -43,4 +43,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-tabs/vaadin-tab.js"
 )
 public interface TabElement extends HTMLElement, ElementMixin, ThemableMixin, ItemMixin {
+	String TAGNAME = "vaadin-tab";
 }

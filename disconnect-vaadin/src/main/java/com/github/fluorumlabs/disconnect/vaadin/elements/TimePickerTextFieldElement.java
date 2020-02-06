@@ -24,4 +24,5 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		module = "@vaadin/vaadin-time-picker/vaadin-time-picker-text-field.js"
 )
 public interface TimePickerTextFieldElement extends TextFieldElement {
+	String TAGNAME = "vaadin-time-picker-text-field";
 }

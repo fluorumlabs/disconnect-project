@@ -33,4 +33,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-notification/vaadin-notification.js"
 )
 public interface NotificationCard extends HTMLElement, ThemableMixin {
+	String TAGNAME = "vaadin-notification-card";
 }

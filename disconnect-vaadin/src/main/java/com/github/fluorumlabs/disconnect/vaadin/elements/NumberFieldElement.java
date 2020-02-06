@@ -21,6 +21,7 @@ import org.teavm.jso.JSProperty;
 		module = "@vaadin/vaadin-text-field/vaadin-number-field.js"
 )
 public interface NumberFieldElement extends TextFieldElement {
+	String TAGNAME = "vaadin-number-field";
 	/**
 	 * Set to true to display value increase/decrease controls.
 	 */

@@ -125,6 +125,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-overlay/vaadin-overlay.js"
 )
 public interface OverlayElement extends HTMLElement, ThemableMixin {
+	String TAGNAME = "vaadin-overlay";
 	@JSProperty
 	boolean isOpened();
 

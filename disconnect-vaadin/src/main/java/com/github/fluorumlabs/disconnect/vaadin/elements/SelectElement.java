@@ -121,6 +121,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-select/vaadin-select.js"
 )
 public interface SelectElement extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin {
+	String TAGNAME = "vaadin-select";
 	/**
 	 * Set when the select is open
 	 */

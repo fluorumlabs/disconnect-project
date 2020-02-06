@@ -46,6 +46,7 @@ import org.teavm.jso.JSProperty;
 		module = "@vaadin/vaadin-text-field/vaadin-password-field.js"
 )
 public interface PasswordFieldElement extends TextFieldElement {
+	String TAGNAME = "vaadin-password-field";
 	/**
 	 * Set to true to hide the eye icon which toggles the password visibility.
 	 */

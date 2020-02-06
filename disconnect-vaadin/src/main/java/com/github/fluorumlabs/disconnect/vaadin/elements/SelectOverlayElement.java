@@ -24,4 +24,5 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		module = "@vaadin/vaadin-select/vaadin-select-overlay.js"
 )
 public interface SelectOverlayElement extends OverlayElement {
+	String TAGNAME = "vaadin-select-overlay";
 }

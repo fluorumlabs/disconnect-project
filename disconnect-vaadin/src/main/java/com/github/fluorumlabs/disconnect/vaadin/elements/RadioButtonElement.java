@@ -57,6 +57,7 @@ import javax.annotation.Nullable;
 )
 public interface RadioButtonElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
+	String TAGNAME = "vaadin-radio-button";
 	/**
 	 * Name of the element.
 	 */

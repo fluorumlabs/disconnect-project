@@ -63,6 +63,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-upload/vaadin-upload-file.js"
 )
 public interface UploadFileElement extends HTMLElement, ThemableMixin {
+	String TAGNAME = "vaadin-upload-file";
 	/**
 	 *
 	 */

@@ -81,6 +81,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-text-field/vaadin-text-field.js"
 )
 public interface TextFieldElement extends HTMLElement, TextFieldMixin, ThemableMixin {
+	String TAGNAME = "vaadin-text-field";
 	/**
 	 * Identifies a list of pre-defined options to suggest to the user.
 	 * The value must be the id of a <datalist> element in the same document.

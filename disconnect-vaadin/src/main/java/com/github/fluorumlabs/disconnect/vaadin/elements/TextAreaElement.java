@@ -66,4 +66,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-text-field/vaadin-text-area.js"
 )
 public interface TextAreaElement extends HTMLElement, TextFieldMixin, ThemableMixin {
+	String TAGNAME = "vaadin-text-area";
 }

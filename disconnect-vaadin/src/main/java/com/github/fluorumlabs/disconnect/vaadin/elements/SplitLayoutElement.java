@@ -147,6 +147,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-split-layout/vaadin-split-layout.js"
 )
 public interface SplitLayoutElement extends HTMLElement, ThemableMixin, GestureEventListeners {
+	String TAGNAME = "vaadin-split-layout";
 	/**
 	 * The split layout's orientation. Possible values are: <code>horizontal|vertical</code>.
 	 */
