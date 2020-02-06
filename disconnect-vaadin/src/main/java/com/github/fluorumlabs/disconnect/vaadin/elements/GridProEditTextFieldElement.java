@@ -24,4 +24,5 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-text-field.js"
 )
 public interface GridProEditTextFieldElement extends TextFieldElement {
+	String TAGNAME = "vaadin-grid-pro-edit-text-field";
 }

@@ -24,6 +24,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js"
 )
 public interface DrawerToggleElement extends ButtonElement {
+	String TAGNAME = "vaadin-drawer-toggle";
 	@Nullable
 	@JSProperty
 	String getAriaLabel();

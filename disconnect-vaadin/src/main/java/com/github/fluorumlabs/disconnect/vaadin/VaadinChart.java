@@ -269,7 +269,7 @@ import javax.annotation.Nullable;
 public class VaadinChart extends AbstractComponent<ChartElement>
 		implements HasComponents<ChartElement, VaadinChart, Component<?>> {
 	public VaadinChart() {
-		super("vaadin-chart");
+		super(ChartElement.TAGNAME);
 	}
 
 	/**

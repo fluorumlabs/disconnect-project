@@ -46,4 +46,5 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		module = "@vaadin/vaadin-accordion/vaadin-accordion-panel.js"
 )
 public interface AccordionPanelElement extends DetailsElement {
+	String TAGNAME = "vaadin-accordion-panel";
 }

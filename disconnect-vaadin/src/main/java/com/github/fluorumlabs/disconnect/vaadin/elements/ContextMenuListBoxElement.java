@@ -16,4 +16,5 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		module = "@vaadin/vaadin-context-menu/vaadin-contextmenu-items-mixin.js"
 )
 public interface ContextMenuListBoxElement extends ListBoxElement {
+	String TAGNAME = "vaadin-context-menu-list-box";
 }

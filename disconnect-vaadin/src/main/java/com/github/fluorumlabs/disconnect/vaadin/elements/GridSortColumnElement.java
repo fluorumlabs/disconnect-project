@@ -31,6 +31,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-grid/vaadin-grid-sort-column.js"
 )
 public interface GridSortColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
+	String TAGNAME = "vaadin-grid-sort-column";
 	/**
 	 * How to sort the data.
 	 * Possible values are <code>asc</code> to use an ascending algorithm, <code>desc</code> to sort the data in

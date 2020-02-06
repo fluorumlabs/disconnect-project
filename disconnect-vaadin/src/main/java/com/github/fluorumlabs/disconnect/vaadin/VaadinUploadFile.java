@@ -59,7 +59,7 @@ public class VaadinUploadFile extends AbstractComponent<UploadFileElement>
 		implements HasThemableMixin<UploadFileElement, VaadinUploadFile>,
 		HasComponents<UploadFileElement, VaadinUploadFile, Component<?>> {
 	public VaadinUploadFile() {
-		super("vaadin-upload-file");
+		super(UploadFileElement.TAGNAME);
 	}
 
 	/**

@@ -64,6 +64,7 @@ import javax.annotation.Nullable;
 )
 public interface CheckboxElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
+	String TAGNAME = "vaadin-checkbox";
 	/**
 	 * Name of the element.
 	 */

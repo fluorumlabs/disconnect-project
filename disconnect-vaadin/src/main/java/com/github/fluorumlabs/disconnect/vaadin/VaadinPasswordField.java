@@ -40,7 +40,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinPasswordField extends AbstractComponent<PasswordFieldElement>
 		implements HasComponents<PasswordFieldElement, VaadinPasswordField, Component<?>> {
 	public VaadinPasswordField() {
-		super("vaadin-password-field");
+		super(PasswordFieldElement.TAGNAME);
 	}
 
 	/**

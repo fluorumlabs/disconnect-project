@@ -116,6 +116,8 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-app-layout/vaadin-app-layout.js"
 )
 public interface AppLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
+	String TAGNAME = "vaadin-app-layout";
+
 	/**
 	 * Helper static method that dispatches a <code>close-overlay-drawer</code> event
 	 */

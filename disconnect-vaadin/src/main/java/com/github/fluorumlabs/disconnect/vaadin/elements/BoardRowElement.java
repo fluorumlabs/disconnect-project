@@ -52,6 +52,7 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-board/vaadin-board-row.js"
 )
 public interface BoardRowElement extends HTMLElement, ElementMixin {
+	String TAGNAME = "vaadin-board-row";
 	/**
 	 * Redraws the row, if necessary.
 	 * <p>

@@ -31,6 +31,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-grid/vaadin-grid-filter.js"
 )
 public interface GridFilterElement extends HTMLElement {
+	String TAGNAME = "vaadin-grid-filter";
 	/**
 	 * JS Path of the property in the item used for filtering the data.
 	 */

@@ -123,7 +123,7 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 		HasSlots<SelectElement>,
 		HasComponents<SelectElement, VaadinSelect, Component<?>> {
 	public VaadinSelect() {
-		super("vaadin-select");
+		super(SelectElement.TAGNAME);
 	}
 
 	/**

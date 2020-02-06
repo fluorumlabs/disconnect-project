@@ -13,4 +13,5 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar-button.js"
 )
 public interface MenuBarButtonElement extends ButtonElement {
+	String TAGNAME = "vaadin-menu-bar-button";
 }

@@ -64,7 +64,7 @@ public class VaadinNotification extends AbstractComponent<NotificationElement>
 		HasSlots<NotificationElement>,
 		HasComponents<NotificationElement, VaadinNotification, Component<?>> {
 	public VaadinNotification() {
-		super("vaadin-notification");
+		super(NotificationElement.TAGNAME);
 	}
 
 	/**

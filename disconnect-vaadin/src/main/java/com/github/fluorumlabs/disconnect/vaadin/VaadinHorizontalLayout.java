@@ -35,6 +35,6 @@ public class VaadinHorizontalLayout extends AbstractComponent<HorizontalLayoutEl
 		implements HasThemableMixin<HorizontalLayoutElement, VaadinHorizontalLayout>,
 		HasComponents<HorizontalLayoutElement, VaadinHorizontalLayout, Component<?>> {
 	public VaadinHorizontalLayout() {
-		super("vaadin-horizontal-layout");
+		super(HorizontalLayoutElement.TAGNAME);
 	}
 }

@@ -22,4 +22,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-crud/vaadin-crud-edit-column.js"
 )
 public interface CrudEditElement extends HTMLElement {
+	String TAGNAME = "vaadin-crud-edit";
 }

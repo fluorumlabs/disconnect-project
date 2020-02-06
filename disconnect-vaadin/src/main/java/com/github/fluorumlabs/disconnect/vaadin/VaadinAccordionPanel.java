@@ -41,6 +41,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinAccordionPanel extends AbstractComponent<AccordionPanelElement>
 		implements HasComponents<AccordionPanelElement, VaadinAccordionPanel, Component<?>> {
 	public VaadinAccordionPanel() {
-		super("vaadin-accordion-panel");
+		super(AccordionPanelElement.TAGNAME);
 	}
 }

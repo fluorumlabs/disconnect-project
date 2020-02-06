@@ -34,7 +34,7 @@ public class VaadinLoginOverlay extends AbstractComponent<LoginOverlayElement>
 		HasLoginMixin<LoginOverlayElement, VaadinLoginOverlay>,
 		HasComponents<LoginOverlayElement, VaadinLoginOverlay, Component<?>> {
 	public VaadinLoginOverlay() {
-		super("vaadin-login-overlay");
+		super(LoginOverlayElement.TAGNAME);
 	}
 
 	/**

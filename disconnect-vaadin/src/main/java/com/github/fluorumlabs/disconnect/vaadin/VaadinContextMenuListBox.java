@@ -11,6 +11,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinContextMenuListBox extends AbstractComponent<ContextMenuListBoxElement>
 		implements HasComponents<ContextMenuListBoxElement, VaadinContextMenuListBox, Component<?>> {
 	public VaadinContextMenuListBox() {
-		super("vaadin-context-menu-list-box");
+		super(ContextMenuListBoxElement.TAGNAME);
 	}
 }

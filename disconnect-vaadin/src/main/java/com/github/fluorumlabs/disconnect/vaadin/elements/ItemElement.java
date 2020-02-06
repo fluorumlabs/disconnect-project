@@ -56,4 +56,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-item/vaadin-item.js"
 )
 public interface ItemElement extends HTMLElement, ItemMixin, ThemableMixin {
+	String TAGNAME = "vaadin-item";
 }

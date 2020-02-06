@@ -259,6 +259,7 @@ public interface GridElement<ITEM extends Any> extends HTMLElement,
 		EventContextMixin<ITEM>,
 		StylingMixin<ITEM>,
 		DragAndDropMixin<ITEM> {
+	String TAGNAME = "vaadin-grid";
 	/**
 	 * If true, the grid's height is defined by the number of its rows.
 	 */

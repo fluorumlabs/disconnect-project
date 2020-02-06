@@ -188,6 +188,7 @@ public interface ComboBoxElement<ITEM extends Any> extends HTMLElement,
 		ComboBoxDataProviderMixin<ITEM>,
 		ComboBoxMixin<ITEM>,
 		ThemableMixin {
+	String TAGNAME = "vaadin-combo-box";
 	/**
 	 * FIXME type ?
 	 */

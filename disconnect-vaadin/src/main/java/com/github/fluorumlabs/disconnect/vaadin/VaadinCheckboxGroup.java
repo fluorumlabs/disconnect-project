@@ -56,7 +56,7 @@ public class VaadinCheckboxGroup extends AbstractComponent<CheckboxGroupElement>
 		implements HasThemableMixin<CheckboxGroupElement, VaadinCheckboxGroup>,
 		HasComponents<CheckboxGroupElement, VaadinCheckboxGroup, Component<?>> {
 	public VaadinCheckboxGroup() {
-		super("vaadin-checkbox-group");
+		super(CheckboxGroupElement.TAGNAME);
 	}
 
 	/**

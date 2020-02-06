@@ -56,7 +56,7 @@ public class VaadinLoginFormWrapper extends AbstractComponent<LoginFormWrapperEl
 		HasSlots<LoginFormWrapperElement>,
 		HasComponents<LoginFormWrapperElement, VaadinLoginFormWrapper, Component<?>> {
 	public VaadinLoginFormWrapper() {
-		super("vaadin-login-form-wrapper");
+		super(LoginFormWrapperElement.TAGNAME);
 	}
 
 	public HasSlots.Container formSlot() {

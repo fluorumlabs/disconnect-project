@@ -66,7 +66,7 @@ public class VaadinTextArea extends AbstractComponent<TextAreaElement>
 		HasSlots<TextAreaElement>,
 		HasComponents<TextAreaElement, VaadinTextArea, Component<?>> {
 	public VaadinTextArea() {
-		super("vaadin-text-area");
+		super(TextAreaElement.TAGNAME);
 	}
 
 	/**

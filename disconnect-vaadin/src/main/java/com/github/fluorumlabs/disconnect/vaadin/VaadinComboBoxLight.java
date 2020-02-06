@@ -57,7 +57,7 @@ public class VaadinComboBoxLight<ITEM extends Any> extends AbstractComponent<Com
 		HasThemableMixin<ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
 		HasComponents<ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>, Component<?>> {
 	public VaadinComboBoxLight() {
-		super("vaadin-combo-box-light");
+		super(ComboBoxLightElement.TAGNAME);
 	}
 
 	/**

@@ -55,6 +55,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-grid/vaadin-grid-sorter.js"
 )
 public interface GridSorterElement extends HTMLElement {
+	String TAGNAME = "vaadin-grid-sorter";
 	/**
 	 * JS Path of the property in the item used for sorting the data.
 	 */

@@ -57,6 +57,8 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-accordion/vaadin-accordion.js"
 )
 public interface AccordionElement extends HTMLElement, ElementMixin, ThemableMixin {
+	String TAGNAME = "vaadin-accordion";
+
 	/**
 	 * The index of currently opened panel. First panel is opened by
 	 * default. Only one panel can be opened at the same time.

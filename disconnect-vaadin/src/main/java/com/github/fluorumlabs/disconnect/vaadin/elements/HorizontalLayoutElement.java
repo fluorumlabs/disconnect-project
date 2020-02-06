@@ -40,4 +40,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-ordered-layout/vaadin-horizontal-layout.js"
 )
 public interface HorizontalLayoutElement extends HTMLElement, ThemableMixin {
+	String TAGNAME = "vaadin-horizontal-layout";
 }

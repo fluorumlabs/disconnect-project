@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-custom-field/vaadin-custom-field.js"
 )
 public interface CustomFieldElement extends HTMLElement, ElementMixin, ThemableMixin, CustomFieldMixin {
+	String TAGNAME = "vaadin-custom-field";
 	/**
 	 * String used for the label element.
 	 */

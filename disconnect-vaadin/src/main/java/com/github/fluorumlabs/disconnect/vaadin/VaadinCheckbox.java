@@ -63,7 +63,7 @@ public class VaadinCheckbox extends AbstractComponent<CheckboxElement>
 		HasGestureEventListeners<CheckboxElement, VaadinCheckbox>,
 		HasComponents<CheckboxElement, VaadinCheckbox, Component<?>> {
 	public VaadinCheckbox() {
-		super("vaadin-checkbox");
+		super(CheckboxElement.TAGNAME);
 	}
 
 	/**

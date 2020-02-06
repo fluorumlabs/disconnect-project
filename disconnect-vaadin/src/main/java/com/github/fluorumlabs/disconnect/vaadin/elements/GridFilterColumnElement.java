@@ -26,4 +26,5 @@ import js.lang.Any;
 		module = "@vaadin/vaadin-grid/vaadin-grid-filter-column.js"
 )
 public interface GridFilterColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
+	String TAGNAME = "vaadin-grid-filter-column";
 }

@@ -58,4 +58,5 @@ import js.web.dom.HTMLElement;
 )
 public interface ButtonElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {
+	String TAGNAME = "vaadin-button";
 }

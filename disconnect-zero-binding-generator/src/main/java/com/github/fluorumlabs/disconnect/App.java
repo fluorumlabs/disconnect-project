@@ -476,7 +476,9 @@ public class App {
                 .addModifiers(Modifier.PUBLIC);
 
         if (StringUtils.isNotBlank(tagName)) {
-            javaElement.addMethod(MethodSpec.constructorBuilder().addStatement("super($S)", tagName).addModifiers(Modifier.PUBLIC).build());
+            javaElement.addMethod(MethodSpec.constructorBuilder().addStatement("super($T.TAGNAME)", jsElementClass).addModifiers(Modifier.PUBLIC).build());
+            jsElement.addField(FieldSpec.builder(String.class, "TAGNAME", Modifier.PUBLIC, Modifier.FINAL,
+                    Modifier.STATIC).initializer("$S", tagName).build());
         } else {
             javaElement.addModifiers(Modifier.ABSTRACT);
             javaElement.addMethod(MethodSpec.constructorBuilder().addParameter(String.class, "tagName").addStatement(

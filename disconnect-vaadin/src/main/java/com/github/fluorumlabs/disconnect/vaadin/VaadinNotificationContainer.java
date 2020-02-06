@@ -13,7 +13,7 @@ public class VaadinNotificationContainer extends AbstractComponent<NotificationC
 		implements HasSlots<NotificationContainer>,
 		HasComponents<NotificationContainer, VaadinNotificationContainer, Component<?>> {
 	public VaadinNotificationContainer() {
-		super("vaadin-notification-container");
+		super(NotificationContainer.TAGNAME);
 	}
 
 	/**

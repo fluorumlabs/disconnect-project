@@ -40,4 +40,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-list-box/vaadin-list-box.js"
 )
 public interface ListBoxElement extends HTMLElement, MultiSelectListMixin, ThemableMixin {
+	String TAGNAME = "vaadin-list-box";
 }

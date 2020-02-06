@@ -78,7 +78,7 @@ public class VaadinTextField extends AbstractComponent<TextFieldElement>
 		HasSlots<TextFieldElement>,
 		HasComponents<TextFieldElement, VaadinTextField, Component<?>> {
 	public VaadinTextField() {
-		super("vaadin-text-field");
+		super(TextFieldElement.TAGNAME);
 	}
 
 	/**

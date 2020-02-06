@@ -60,6 +60,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-charts/vaadin-chart-series.js"
 )
 public interface ChartSeriesElement extends PolymerElement {
+	String TAGNAME = "vaadin-chart-series";
 	/**
 	 * FIXME type Object | null | undefined
 	 * Object with the configured options defined and used to create a series.

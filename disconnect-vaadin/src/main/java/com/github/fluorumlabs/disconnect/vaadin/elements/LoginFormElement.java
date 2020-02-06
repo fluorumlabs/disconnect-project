@@ -36,6 +36,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-login/vaadin-login-form.js"
 )
 public interface LoginFormElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
+	String TAGNAME = "vaadin-login-form";
 	/**
 	 * Defines the theme of the element.
 	 * The value is propagated to vaadin-login-form-wrapper element.

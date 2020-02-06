@@ -34,6 +34,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-column.js"
 )
 public interface GridProEditColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
+	String TAGNAME = "vaadin-grid-pro-edit-column";
 	/**
 	 * Custom function for rendering the cell content in edit mode.
 	 * Receives three arguments:

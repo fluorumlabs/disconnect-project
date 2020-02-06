@@ -36,6 +36,6 @@ public class VaadinListBox extends AbstractComponent<ListBoxElement>
 		HasThemableMixin<ListBoxElement, VaadinListBox>,
 		HasComponents<ListBoxElement, VaadinListBox, Component<?>> {
 	public VaadinListBox() {
-		super("vaadin-list-box");
+		super(ListBoxElement.TAGNAME);
 	}
 }

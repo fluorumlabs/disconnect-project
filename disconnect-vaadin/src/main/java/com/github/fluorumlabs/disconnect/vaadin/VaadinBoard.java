@@ -27,7 +27,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinBoard extends AbstractComponent<BoardElement>
 		implements HasElementMixin<BoardElement, VaadinBoard>, HasComponents<BoardElement, VaadinBoard, Component<?>> {
 	public VaadinBoard() {
-		super("vaadin-board");
+		super(BoardElement.TAGNAME);
 	}
 
 	/**

@@ -14,4 +14,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-lumo-styles/version.js"
 )
 public interface Lumo extends HTMLElement {
+	String TAGNAME = "vaadin-lumo-styles";
 }

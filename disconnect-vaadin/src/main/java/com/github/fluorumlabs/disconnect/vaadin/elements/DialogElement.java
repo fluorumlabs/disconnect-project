@@ -67,6 +67,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-dialog/vaadin-dialog.js"
 )
 public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyMixin {
+	String TAGNAME = "vaadin-dialog";
 	/**
 	 * True if the overlay is currently displayed.
 	 */

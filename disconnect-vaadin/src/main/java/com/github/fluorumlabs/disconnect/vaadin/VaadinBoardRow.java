@@ -47,7 +47,7 @@ public class VaadinBoardRow extends AbstractComponent<BoardRowElement>
 		implements HasElementMixin<BoardRowElement, VaadinBoardRow>,
 		HasComponents<BoardRowElement, VaadinBoardRow, Component<?>> {
 	public VaadinBoardRow() {
-		super("vaadin-board-row");
+		super(BoardRowElement.TAGNAME);
 	}
 
 	/**

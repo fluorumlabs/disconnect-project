@@ -25,4 +25,5 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		module = "@vaadin/vaadin-text-field/vaadin-email-field.js"
 )
 public interface EmailFieldElement extends TextFieldElement {
+	String TAGNAME = "vaadin-email-field";
 }

@@ -51,7 +51,7 @@ public class VaadinMenuBar extends AbstractComponent<MenuBarElement>
 		HasThemableMixin<MenuBarElement, VaadinMenuBar>,
 		HasComponents<MenuBarElement, VaadinMenuBar, Component<?>> {
 	public VaadinMenuBar() {
-		super("vaadin-menu-bar");
+		super(MenuBarElement.TAGNAME);
 	}
 
 	/**

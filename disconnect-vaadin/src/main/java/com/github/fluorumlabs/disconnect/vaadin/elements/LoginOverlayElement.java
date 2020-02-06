@@ -36,6 +36,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-login/vaadin-login-overlay.js"
 )
 public interface LoginOverlayElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
+	String TAGNAME = "vaadin-login-overlay";
 	/**
 	 * Defines the application description
 	 */

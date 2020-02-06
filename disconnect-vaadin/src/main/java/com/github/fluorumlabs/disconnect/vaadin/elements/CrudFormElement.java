@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-crud/vaadin-crud-form.js"
 )
 public interface CrudFormElement<ITEM extends Any> extends HTMLElement, IncludedMixin {
+	String TAGNAME = "vaadin-crud-form";
 	/**
 	 * The item being edited.
 	 */

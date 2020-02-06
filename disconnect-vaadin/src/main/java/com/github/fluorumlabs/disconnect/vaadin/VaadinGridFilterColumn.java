@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 public class VaadinGridFilterColumn<ITEM extends Any> extends AbstractComponent<GridFilterColumnElement<ITEM>>
 		implements HasComponents<GridFilterColumnElement<ITEM>, VaadinGridFilterColumn<ITEM>, Component<?>> {
 	public VaadinGridFilterColumn() {
-		super("vaadin-grid-filter-column");
+		super(GridFilterColumnElement.TAGNAME);
 	}
 
 	/**

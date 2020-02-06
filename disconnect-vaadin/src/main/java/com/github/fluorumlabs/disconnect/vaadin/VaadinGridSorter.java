@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 public class VaadinGridSorter extends AbstractComponent<GridSorterElement>
 		implements HasComponents<GridSorterElement, VaadinGridSorter, Component<?>> {
 	public VaadinGridSorter() {
-		super("vaadin-grid-sorter");
+		super(GridSorterElement.TAGNAME);
 	}
 
 	/**

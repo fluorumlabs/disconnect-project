@@ -19,7 +19,7 @@ public class VaadinCrudGrid extends AbstractComponent<CrudGridElement>
 		implements HasIncludedMixin<CrudGridElement, VaadinCrudGrid>,
 		HasComponents<CrudGridElement, VaadinCrudGrid, Component<?>> {
 	public VaadinCrudGrid() {
-		super("vaadin-crud-grid");
+		super(CrudGridElement.TAGNAME);
 	}
 
 	/**

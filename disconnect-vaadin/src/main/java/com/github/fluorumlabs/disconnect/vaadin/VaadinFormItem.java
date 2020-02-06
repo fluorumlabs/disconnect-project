@@ -112,7 +112,7 @@ public class VaadinFormItem extends AbstractComponent<FormItemElement>
 		HasSlots<FormItemElement>,
 		HasComponents<FormItemElement, VaadinFormItem, Component<?>> {
 	public VaadinFormItem() {
-		super("vaadin-form-item");
+		super(FormItemElement.TAGNAME);
 	}
 
 	public HasSlots.Container labelSlot() {

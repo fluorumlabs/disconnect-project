@@ -19,6 +19,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class VaadinTimePickerTextField extends AbstractComponent<TimePickerTextFieldElement>
 		implements HasComponents<TimePickerTextFieldElement, VaadinTimePickerTextField, Component<?>> {
 	public VaadinTimePickerTextField() {
-		super("vaadin-time-picker-text-field");
+		super(TimePickerTextFieldElement.TAGNAME);
 	}
 }

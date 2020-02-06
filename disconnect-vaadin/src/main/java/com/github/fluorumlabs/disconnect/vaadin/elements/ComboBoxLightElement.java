@@ -62,6 +62,7 @@ import javax.annotation.Nullable;
 )
 public interface ComboBoxLightElement<ITEM extends Any>
 		extends HTMLElement, ComboBoxDataProviderMixin<ITEM>, ComboBoxMixin<ITEM>, ThemableMixin {
+	String TAGNAME = "vaadin-combo-box-light";
 	/**
 	 *
 	 */

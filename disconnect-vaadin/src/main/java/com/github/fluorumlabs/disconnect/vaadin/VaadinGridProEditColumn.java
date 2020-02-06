@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 public class VaadinGridProEditColumn<ITEM extends Any> extends AbstractComponent<GridProEditColumnElement<ITEM>>
 		implements HasComponents<GridProEditColumnElement<ITEM>, VaadinGridProEditColumn<ITEM>, Component<?>> {
 	public VaadinGridProEditColumn() {
-		super("vaadin-grid-pro-edit-column");
+		super(GridProEditColumnElement.TAGNAME);
 	}
 
 	/**

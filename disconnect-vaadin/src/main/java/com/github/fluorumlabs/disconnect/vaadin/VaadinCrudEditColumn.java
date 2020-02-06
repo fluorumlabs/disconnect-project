@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 public class VaadinCrudEditColumn extends AbstractComponent<CrudEditColumnElement>
 		implements HasComponents<CrudEditColumnElement, VaadinCrudEditColumn, Component<?>> {
 	public VaadinCrudEditColumn() {
-		super("vaadin-crud-edit-column");
+		super(CrudEditColumnElement.TAGNAME);
 	}
 
 	/**

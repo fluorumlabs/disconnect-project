@@ -59,7 +59,7 @@ public class VaadinConfirmDialog extends AbstractComponent<ConfirmDialogElement>
 		HasSlots<ConfirmDialogElement>,
 		HasComponents<ConfirmDialogElement, VaadinConfirmDialog, Component<?>> {
 	public VaadinConfirmDialog() {
-		super("vaadin-confirm-dialog");
+		super(ConfirmDialogElement.TAGNAME);
 	}
 
 	/**

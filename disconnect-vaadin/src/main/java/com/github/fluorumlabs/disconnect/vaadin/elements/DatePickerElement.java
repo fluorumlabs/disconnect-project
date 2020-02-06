@@ -105,6 +105,7 @@ import javax.annotation.Nullable;
 )
 public interface DatePickerElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, DatePickerMixin, GestureEventListeners {
+	String TAGNAME = "vaadin-date-picker";
 	/**
 	 * Set to true to display the clear icon which clears the input.
 	 */

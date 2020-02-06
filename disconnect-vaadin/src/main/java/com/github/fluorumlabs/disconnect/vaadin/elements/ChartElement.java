@@ -275,6 +275,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-charts/vaadin-chart.js"
 )
 public interface ChartElement extends HTMLElement {
+	String TAGNAME = "vaadin-chart";
 	/**
 	 * FIXME type ?
 	 */

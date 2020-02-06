@@ -64,7 +64,7 @@ public class VaadinDialog extends AbstractComponent<DialogElement>
 		HasThemePropertyMixin<DialogElement, VaadinDialog>,
 		HasComponents<DialogElement, VaadinDialog, Component<?>> {
 	public VaadinDialog() {
-		super("vaadin-dialog");
+		super(DialogElement.TAGNAME);
 	}
 
 	/**

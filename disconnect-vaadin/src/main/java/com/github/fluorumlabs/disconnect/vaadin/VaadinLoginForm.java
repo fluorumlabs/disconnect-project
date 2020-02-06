@@ -32,7 +32,7 @@ public class VaadinLoginForm extends AbstractComponent<LoginFormElement>
 		HasLoginMixin<LoginFormElement, VaadinLoginForm>,
 		HasComponents<LoginFormElement, VaadinLoginForm, Component<?>> {
 	public VaadinLoginForm() {
-		super("vaadin-login-form");
+		super(LoginFormElement.TAGNAME);
 	}
 
 	/**

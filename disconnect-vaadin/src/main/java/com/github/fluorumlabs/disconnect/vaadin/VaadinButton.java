@@ -57,7 +57,7 @@ public class VaadinButton extends AbstractComponent<ButtonElement>
 		HasSlots<ButtonElement>,
 		HasComponents<ButtonElement, VaadinButton, Component<?>> {
 	public VaadinButton() {
-		super("vaadin-button");
+		super(ButtonElement.TAGNAME);
 	}
 
 	public HasSlots.Container prefix() {

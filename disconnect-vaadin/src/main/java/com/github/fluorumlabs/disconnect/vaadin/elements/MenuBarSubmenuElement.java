@@ -13,4 +13,5 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar-submenu.js"
 )
 public interface MenuBarSubmenuElement extends ContextMenuElement {
+	String TAGNAME = "vaadin-menu-bar-submenu";
 }

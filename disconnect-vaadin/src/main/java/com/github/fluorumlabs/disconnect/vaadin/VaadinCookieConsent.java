@@ -46,7 +46,7 @@ public class VaadinCookieConsent extends AbstractComponent<CookieConsentElement>
 		HasThemableMixin<CookieConsentElement, VaadinCookieConsent>,
 		HasComponents<CookieConsentElement, VaadinCookieConsent, Component<?>> {
 	public VaadinCookieConsent() {
-		super("vaadin-cookie-consent");
+		super(CookieConsentElement.TAGNAME);
 	}
 
 	/**

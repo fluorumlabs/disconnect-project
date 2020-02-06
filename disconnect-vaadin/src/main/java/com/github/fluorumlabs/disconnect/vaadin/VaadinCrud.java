@@ -133,7 +133,7 @@ public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<
 		HasSlots<CrudElement<ITEM>>,
 		HasComponents<CrudElement<ITEM>, VaadinCrud<ITEM>, Component<?>> {
 	public VaadinCrud() {
-		super("vaadin-crud");
+		super(CrudElement.TAGNAME);
 	}
 
 	/**

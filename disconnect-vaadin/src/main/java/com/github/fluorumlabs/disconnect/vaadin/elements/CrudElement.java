@@ -132,6 +132,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-crud/vaadin-crud.js"
 )
 public interface CrudElement<ITEM extends Any> extends HTMLElement, ElementMixin, ThemableMixin {
+	String TAGNAME = "vaadin-crud";
 	/**
 	 * An array containing the items which will be stamped to the column template instances.
 	 */

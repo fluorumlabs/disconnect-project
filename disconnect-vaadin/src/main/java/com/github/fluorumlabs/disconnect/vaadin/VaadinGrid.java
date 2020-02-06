@@ -254,7 +254,7 @@ public class VaadinGrid<ITEM extends Any> extends AbstractComponent<GridElement<
 		HasSlots<GridElement<ITEM>>,
 		HasComponents<GridElement<ITEM>, VaadinGrid<ITEM>, Component<?>> {
 	public VaadinGrid() {
-		super("vaadin-grid");
+		super(GridElement.TAGNAME);
 	}
 
 	/**

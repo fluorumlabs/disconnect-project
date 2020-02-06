@@ -72,7 +72,7 @@ public class VaadinTimePicker extends AbstractComponent<TimePickerElement>
 		HasThemableMixin<TimePickerElement, VaadinTimePicker>,
 		HasComponents<TimePickerElement, VaadinTimePicker, Component<?>> {
 	public VaadinTimePicker() {
-		super("vaadin-time-picker");
+		super(TimePickerElement.TAGNAME);
 	}
 
 	/**

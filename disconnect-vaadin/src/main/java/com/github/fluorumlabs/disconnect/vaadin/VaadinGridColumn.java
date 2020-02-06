@@ -23,7 +23,7 @@ public class VaadinGridColumn<ITEM extends Any> extends AbstractComponent<GridCo
 		HasColumnBaseMixin<ITEM, GridColumnElement<ITEM>, VaadinGridColumn<ITEM>>,
 		HasComponents<GridColumnElement<ITEM>, VaadinGridColumn<ITEM>, Component<?>> {
 	public VaadinGridColumn() {
-		super("vaadin-grid-column");
+		super(GridColumnElement.TAGNAME);
 	}
 
 	/**

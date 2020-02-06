@@ -34,6 +34,7 @@ import js.web.dom.HTMLElement;
 )
 public interface BoardElement extends HTMLElement, ElementMixin {
 	String TAGNAME = "vaadin-board";
+
 	/**
 	 * Redraws the board and all rows inside it, if necessary.
 	 * <p>

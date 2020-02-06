@@ -115,4 +115,5 @@ import js.web.dom.HTMLElement;
 		module = "@vaadin/vaadin-form-layout/vaadin-form-item.js"
 )
 public interface FormItemElement extends HTMLElement, ThemableMixin {
+	String TAGNAME = "vaadin-form-item";
 }
