@@ -272,7 +272,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "ChartElement",
-		module = "@vaadin/vaadin-charts/src/vaadin-chart.js"
+		module = "@vaadin/vaadin-charts/vaadin-chart.js"
 )
 public interface ChartElement extends HTMLElement {
 	/**

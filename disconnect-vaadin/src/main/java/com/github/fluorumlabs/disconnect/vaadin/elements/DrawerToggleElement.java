@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "DrawerToggleElement",
-		module = "@vaadin/vaadin-app-layout/src/vaadin-drawer-toggle.js"
+		module = "@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js"
 )
 public interface DrawerToggleElement extends ButtonElement {
 	@Nullable

@@ -32,7 +32,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 		symbols = "GridSelectionColumnElement",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-selection-column.js"
+		module = "@vaadin/vaadin-grid/vaadin-grid-selection-column.js"
 )
 public interface GridSelectionColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
 	/**

@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "AccordionElement",
-		module = "@vaadin/vaadin-accordion/src/vaadin-accordion.js"
+		module = "@vaadin/vaadin-accordion/vaadin-accordion.js"
 )
 public interface AccordionElement extends HTMLElement, ElementMixin, ThemableMixin {
 	/**

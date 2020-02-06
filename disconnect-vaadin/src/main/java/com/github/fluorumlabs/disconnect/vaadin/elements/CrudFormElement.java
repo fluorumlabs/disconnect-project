@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "CrudFormElement",
-		module = "@vaadin/vaadin-crud/src/vaadin-crud-form.js"
+		module = "@vaadin/vaadin-crud/vaadin-crud-form.js"
 )
 public interface CrudFormElement<ITEM extends Any> extends HTMLElement, IncludedMixin {
 	/**

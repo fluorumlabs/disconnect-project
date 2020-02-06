@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "UploadFileElement",
-		module = "@vaadin/vaadin-upload/src/vaadin-upload-file.js"
+		module = "@vaadin/vaadin-upload/vaadin-upload-file.js"
 )
 public interface UploadFileElement extends HTMLElement, ThemableMixin {
 	/**

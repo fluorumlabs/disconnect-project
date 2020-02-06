@@ -88,7 +88,7 @@ import javax.annotation.Untainted;
 )
 @Import(
 		symbols = "RichTextEditorElement",
-		module = "@vaadin/vaadin-rich-text-editor/src/vaadin-rich-text-editor.js"
+		module = "@vaadin/vaadin-rich-text-editor/vaadin-rich-text-editor.js"
 )
 public interface RichTextEditorElement extends HTMLElement, ElementMixin, ThemableMixin {
 	/**

@@ -113,7 +113,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "AppLayoutElement",
-		module = "@vaadin/vaadin-app-layout/src/vaadin-app-layout.js"
+		module = "@vaadin/vaadin-app-layout/vaadin-app-layout.js"
 )
 public interface AppLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
 	/**

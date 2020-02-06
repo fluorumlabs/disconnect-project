@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "LoginOverlayElement",
-		module = "@vaadin/vaadin-login/src/vaadin-login-overlay.js"
+		module = "@vaadin/vaadin-login/vaadin-login-overlay.js"
 )
 public interface LoginOverlayElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
 	/**

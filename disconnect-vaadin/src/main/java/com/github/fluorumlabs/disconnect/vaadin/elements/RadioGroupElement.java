@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "RadioGroupElement",
-		module = "@vaadin/vaadin-radio-button/src/vaadin-radio-group.js"
+		module = "@vaadin/vaadin-radio-button/vaadin-radio-group.js"
 )
 public interface RadioGroupElement extends HTMLElement, ThemableMixin {
 	/**

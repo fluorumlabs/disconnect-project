@@ -60,6 +60,53 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
                     }
                 });
 
+        processNpmImports(cls, context);
+
+        if (cls.getInterfaces().contains(Serializable.class.getName()) && !cls.getName().startsWith("java")) {
+            cls.getAnnotations().add(new AnnotationHolder(JsonPersistable.class.getName()));
+
+            cls.getFields().stream()
+                    .filter(fieldHolder -> fieldHolder.getModifiers().contains(ElementModifier.TRANSIENT))
+                    .forEach(fieldHolder -> fieldHolder.getAnnotations().add(new AnnotationHolder("com.fasterxml.jackson.annotation.JsonIgnore")));
+        }
+
+        AnnotationHolder serviceAnnotation = cls.getAnnotations().get("org.springframework.stereotype.Service");
+        if (serviceAnnotation != null) {
+            String serviceName;
+            AnnotationValue value = serviceAnnotation.getValue("value");
+            if (value != null && !value.getString().isEmpty()) {
+                serviceName = value.getString();
+            } else {
+                serviceName = StringUtils.uncapitalize(cls.getName().replaceAll("[a-z0-9_]+\\.", ""));
+            }
+            // That's a service. Let's fuck things up!
+            // 1. Remove all fields (make it true stateless)
+            new ArrayList<>(cls.getFields()).forEach(cls::removeField);
+            // 2. Remove all non-public methods and constructors
+            new ArrayList<>(cls.getMethods()).stream()
+                    .filter(methodHolder -> (methodHolder.getLevel() != AccessLevel.PUBLIC)
+                            || methodHolder.getName().equals("<init>"))
+                    .forEach(cls::removeMethod);
+            // 3. Replace body of all remaining methods with call
+            // to RPC helper
+            cls.getMethods().stream().filter(methodHolder -> methodHolder.getAnnotations().get(AllowClientCalls.class.getName()) != null).forEach(methodHolder -> {
+                setupCaching(serviceName, methodHolder, context);
+                methodHolder.setProgram(createRPCDelegator(serviceName, methodHolder));
+            });
+
+            // 4. Create default constructor
+            cls.addMethod(createDefaultConstructor());
+        }
+
+        // Add initializers for @Resources
+        cls.getFields().forEach(fieldHolder -> {
+            if (fieldHolder.getAnnotations().get(Resource.class.getName()) != null) {
+                addInitializer(cls, fieldHolder);
+            }
+        });
+    }
+
+    private void processNpmImports(ClassHolder cls, ClassHolderTransformerContext context) {
         AnnotationContainer annotations = cls.getAnnotations();
 
         Optional<AnnotationHolder> webComponentAnnotation = Optional.ofNullable(annotations.get(WebComponent.class.getName()));
@@ -125,49 +172,6 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
                             rendererListener.addInjectedSymbol("\"" + symbol + "\": \"" + module + "\"");
                             rendererListener.addImportedSymbol(symbol);
                         });
-            }
-        });
-
-        if (cls.getInterfaces().contains(Serializable.class.getName()) && !cls.getName().startsWith("java")) {
-            cls.getAnnotations().add(new AnnotationHolder(JsonPersistable.class.getName()));
-
-            cls.getFields().stream()
-                    .filter(fieldHolder -> fieldHolder.getModifiers().contains(ElementModifier.TRANSIENT))
-                    .forEach(fieldHolder -> fieldHolder.getAnnotations().add(new AnnotationHolder("com.fasterxml.jackson.annotation.JsonIgnore")));
-        }
-
-        AnnotationHolder serviceAnnotation = cls.getAnnotations().get("org.springframework.stereotype.Service");
-        if (serviceAnnotation != null) {
-            String serviceName;
-            AnnotationValue value = serviceAnnotation.getValue("value");
-            if (value != null && !value.getString().isEmpty()) {
-                serviceName = value.getString();
-            } else {
-                serviceName = StringUtils.uncapitalize(cls.getName().replaceAll("[a-z0-9_]+\\.", ""));
-            }
-            // That's a service. Let's fuck things up!
-            // 1. Remove all fields (make it true stateless)
-            new ArrayList<>(cls.getFields()).forEach(cls::removeField);
-            // 2. Remove all non-public methods and constructors
-            new ArrayList<>(cls.getMethods()).stream()
-                    .filter(methodHolder -> (methodHolder.getLevel() != AccessLevel.PUBLIC)
-                            || methodHolder.getName().equals("<init>"))
-                    .forEach(cls::removeMethod);
-            // 3. Replace body of all remaining methods with call
-            // to RPC helper
-            cls.getMethods().stream().filter(methodHolder -> methodHolder.getAnnotations().get(AllowClientCalls.class.getName()) != null).forEach(methodHolder -> {
-                setupCaching(serviceName, methodHolder, context);
-                methodHolder.setProgram(createRPCDelegator(serviceName, methodHolder));
-            });
-
-            // 4. Create default constructor
-            cls.addMethod(createDefaultConstructor());
-        }
-
-        // Add initializers for @Resources
-        cls.getFields().forEach(fieldHolder -> {
-            if (fieldHolder.getAnnotations().get(Resource.class.getName()) != null) {
-                addInitializer(cls, fieldHolder);
             }
         });
     }

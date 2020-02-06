@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "GridProEditSelectElement",
-		module = "@vaadin/vaadin-grid-pro/src/vaadin-grid-pro-edit-select.js"
+		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-select.js"
 )
 public interface GridProEditSelectElement extends SelectElement {
 	@Nullable

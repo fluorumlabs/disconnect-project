@@ -122,7 +122,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "OverlayElement",
-		module = "@vaadin/vaadin-overlay/src/vaadin-overlay.js"
+		module = "@vaadin/vaadin-overlay/vaadin-overlay.js"
 )
 public interface OverlayElement extends HTMLElement, ThemableMixin {
 	@JSProperty

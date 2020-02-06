@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "GridSortColumnElement",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-sort-column.js"
+		module = "@vaadin/vaadin-grid/vaadin-grid-sort-column.js"
 )
 public interface GridSortColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
 	/**

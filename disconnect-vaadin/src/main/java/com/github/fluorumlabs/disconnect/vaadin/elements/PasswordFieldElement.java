@@ -43,7 +43,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 		symbols = "PasswordFieldElement",
-		module = "@vaadin/vaadin-text-field/src/vaadin-password-field.js"
+		module = "@vaadin/vaadin-text-field/vaadin-password-field.js"
 )
 public interface PasswordFieldElement extends TextFieldElement {
 	/**

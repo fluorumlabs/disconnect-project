@@ -18,7 +18,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 		symbols = "NumberFieldElement",
-		module = "@vaadin/vaadin-text-field/src/vaadin-number-field.js"
+		module = "@vaadin/vaadin-text-field/vaadin-number-field.js"
 )
 public interface NumberFieldElement extends TextFieldElement {
 	/**

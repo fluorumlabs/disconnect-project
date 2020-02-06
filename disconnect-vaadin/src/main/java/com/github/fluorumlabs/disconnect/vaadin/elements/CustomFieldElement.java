@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "CustomFieldElement",
-		module = "@vaadin/vaadin-custom-field/src/vaadin-custom-field.js"
+		module = "@vaadin/vaadin-custom-field/vaadin-custom-field.js"
 )
 public interface CustomFieldElement extends HTMLElement, ElementMixin, ThemableMixin, CustomFieldMixin {
 	/**

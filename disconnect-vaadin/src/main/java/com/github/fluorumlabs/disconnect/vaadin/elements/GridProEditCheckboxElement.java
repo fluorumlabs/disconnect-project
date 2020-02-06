@@ -21,7 +21,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 		symbols = "GridProEditCheckboxElement",
-		module = "@vaadin/vaadin-grid-pro/src/vaadin-grid-pro-edit-checkbox.js"
+		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-checkbox.js"
 )
 public interface GridProEditCheckboxElement extends CheckboxElement {
 }

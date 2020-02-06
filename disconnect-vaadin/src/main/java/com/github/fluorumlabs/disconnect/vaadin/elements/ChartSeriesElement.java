@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "ChartSeriesElement",
-		module = "@vaadin/vaadin-charts/src/vaadin-chart-series.js"
+		module = "@vaadin/vaadin-charts/vaadin-chart-series.js"
 )
 public interface ChartSeriesElement extends PolymerElement {
 	/**

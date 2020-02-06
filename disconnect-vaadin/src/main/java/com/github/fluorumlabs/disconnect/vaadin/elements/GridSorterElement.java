@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "GridSorterElement",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-sorter.js"
+		module = "@vaadin/vaadin-grid/vaadin-grid-sorter.js"
 )
 public interface GridSorterElement extends HTMLElement {
 	/**

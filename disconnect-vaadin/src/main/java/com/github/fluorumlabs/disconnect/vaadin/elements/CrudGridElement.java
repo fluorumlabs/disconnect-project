@@ -22,7 +22,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 		symbols = "CrudGridElement",
-		module = "@vaadin/vaadin-crud/src/vaadin-crud-grid.js"
+		module = "@vaadin/vaadin-crud/vaadin-crud-grid.js"
 )
 public interface CrudGridElement extends HTMLElement, IncludedMixin {
 	/**

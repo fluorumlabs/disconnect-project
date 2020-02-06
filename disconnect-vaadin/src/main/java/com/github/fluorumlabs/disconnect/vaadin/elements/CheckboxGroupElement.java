@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "CheckboxGroupElement",
-		module = "@vaadin/vaadin-checkbox/src/vaadin-checkbox-group.js"
+		module = "@vaadin/vaadin-checkbox/vaadin-checkbox-group.js"
 )
 public interface CheckboxGroupElement extends HTMLElement, ThemableMixin {
 	/**

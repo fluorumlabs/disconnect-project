@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "DialogElement",
-		module = "@vaadin/vaadin-dialog/src/vaadin-dialog.js"
+		module = "@vaadin/vaadin-dialog/vaadin-dialog.js"
 )
 public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyMixin {
 	/**

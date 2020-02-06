@@ -54,7 +54,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 		symbols = "ButtonElement",
-		module = "@vaadin/vaadin-button/src/vaadin-button.js"
+		module = "@vaadin/vaadin-button/vaadin-button.js"
 )
 public interface ButtonElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {

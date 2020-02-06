@@ -10,7 +10,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 		symbols = "MenuBarSubmenuElement",
-		module = "@vaadin/vaadin-menu-bar/src/vaadin-menu-bar-submenu.js"
+		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar-submenu.js"
 )
 public interface MenuBarSubmenuElement extends ContextMenuElement {
 }

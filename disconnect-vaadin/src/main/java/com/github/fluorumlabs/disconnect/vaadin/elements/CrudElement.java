@@ -129,7 +129,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "CrudElement",
-		module = "@vaadin/vaadin-crud/src/vaadin-crud.js"
+		module = "@vaadin/vaadin-crud/vaadin-crud.js"
 )
 public interface CrudElement<ITEM extends Any> extends HTMLElement, ElementMixin, ThemableMixin {
 	/**

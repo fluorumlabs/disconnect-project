@@ -53,7 +53,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 		symbols = "ItemElement",
-		module = "@vaadin/vaadin-item/src/vaadin-item.js"
+		module = "@vaadin/vaadin-item/vaadin-item.js"
 )
 public interface ItemElement extends HTMLElement, ItemMixin, ThemableMixin {
 }

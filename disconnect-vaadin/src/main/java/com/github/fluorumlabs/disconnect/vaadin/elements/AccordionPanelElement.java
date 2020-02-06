@@ -43,7 +43,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 		symbols = "AccordionPanelElement",
-		module = "@vaadin/vaadin-accordion/src/vaadin-accordion-panel.js"
+		module = "@vaadin/vaadin-accordion/vaadin-accordion-panel.js"
 )
 public interface AccordionPanelElement extends DetailsElement {
 }

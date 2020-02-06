@@ -23,7 +23,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 		symbols = "SelectTextFieldElement",
-		module = "@vaadin/vaadin-select/src/vaadin-select-text-field.js"
+		module = "@vaadin/vaadin-select/vaadin-select-text-field.js"
 )
 public interface SelectTextFieldElement extends TextFieldElement {
 	/**

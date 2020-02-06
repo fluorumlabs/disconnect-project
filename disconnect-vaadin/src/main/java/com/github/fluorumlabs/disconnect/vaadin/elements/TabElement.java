@@ -40,7 +40,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 		symbols = "TabElement",
-		module = "@vaadin/vaadin-tabs/src/vaadin-tab.js"
+		module = "@vaadin/vaadin-tabs/vaadin-tab.js"
 )
 public interface TabElement extends HTMLElement, ElementMixin, ThemableMixin, ItemMixin {
 }

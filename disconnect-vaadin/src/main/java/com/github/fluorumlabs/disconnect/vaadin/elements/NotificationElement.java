@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "NotificationElement",
-		module = "@vaadin/vaadin-notification/src/vaadin-notification.js"
+		module = "@vaadin/vaadin-notification/vaadin-notification.js"
 )
 public interface NotificationElement extends HTMLElement, ThemePropertyMixin {
 	/**

@@ -54,7 +54,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 		symbols = "DetailsElement",
-		module = "@vaadin/vaadin-details/src/vaadin-details.js"
+		module = "@vaadin/vaadin-details/vaadin-details.js"
 )
 public interface DetailsElement extends HTMLElement, ControlStateMixin, ElementMixin, ThemableMixin {
 	/**

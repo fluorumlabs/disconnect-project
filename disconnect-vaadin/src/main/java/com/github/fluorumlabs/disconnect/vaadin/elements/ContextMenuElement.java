@@ -210,7 +210,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "ContextMenuElement",
-		module = "@vaadin/vaadin-context-menu/src/vaadin-context-menu.js"
+		module = "@vaadin/vaadin-context-menu/vaadin-context-menu.js"
 )
 public interface ContextMenuElement
 		extends HTMLElement, ElementMixin, ThemePropertyMixin, ItemsMixin, GestureEventListeners {

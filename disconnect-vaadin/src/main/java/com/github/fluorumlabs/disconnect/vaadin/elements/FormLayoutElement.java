@@ -105,7 +105,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 		symbols = "FormLayoutElement",
-		module = "@vaadin/vaadin-form-layout/src/vaadin-form-layout.js"
+		module = "@vaadin/vaadin-form-layout/vaadin-form-layout.js"
 )
 public interface FormLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
 	/**

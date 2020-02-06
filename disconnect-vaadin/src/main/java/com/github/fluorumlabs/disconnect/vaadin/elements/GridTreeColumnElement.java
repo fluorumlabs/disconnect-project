@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "GridTreeColumnElement",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-tree-column.js"
+		module = "@vaadin/vaadin-grid/vaadin-grid-tree-column.js"
 )
 public interface GridTreeColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
 	/**

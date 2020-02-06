@@ -49,7 +49,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 		symbols = "BoardRowElement",
-		module = "@vaadin/vaadin-board/src/vaadin-board-row.js"
+		module = "@vaadin/vaadin-board/vaadin-board-row.js"
 )
 public interface BoardRowElement extends HTMLElement, ElementMixin {
 	/**

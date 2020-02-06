@@ -101,7 +101,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 		symbols = "DatePickerElement",
-		module = "@vaadin/vaadin-date-picker/src/vaadin-date-picker.js"
+		module = "@vaadin/vaadin-date-picker/vaadin-date-picker.js"
 )
 public interface DatePickerElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, DatePickerMixin, GestureEventListeners {

@@ -13,7 +13,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 		symbols = "ContextMenuListBoxElement",
-		module = "@vaadin/vaadin-context-menu/src/vaadin-contextmenu-items-mixin.js"
+		module = "@vaadin/vaadin-context-menu/vaadin-contextmenu-items-mixin.js"
 )
 public interface ContextMenuListBoxElement extends ListBoxElement {
 }

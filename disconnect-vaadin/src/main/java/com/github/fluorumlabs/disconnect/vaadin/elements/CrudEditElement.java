@@ -19,7 +19,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 		symbols = "CrudEditElement",
-		module = "@vaadin/vaadin-crud/src/vaadin-crud-edit-column.js"
+		module = "@vaadin/vaadin-crud/vaadin-crud-edit-column.js"
 )
 public interface CrudEditElement extends HTMLElement {
 }

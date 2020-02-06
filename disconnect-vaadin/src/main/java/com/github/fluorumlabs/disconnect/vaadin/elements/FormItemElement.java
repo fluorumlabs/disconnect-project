@@ -112,7 +112,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 		symbols = "FormItemElement",
-		module = "@vaadin/vaadin-form-layout/src/vaadin-form-item.js"
+		module = "@vaadin/vaadin-form-layout/vaadin-form-item.js"
 )
 public interface FormItemElement extends HTMLElement, ThemableMixin {
 }

@@ -37,7 +37,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 		symbols = "VerticalLayoutElement",
-		module = "@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js"
+		module = "@vaadin/vaadin-ordered-layout/vaadin-vertical-layout.js"
 )
 public interface VerticalLayoutElement extends HTMLElement, ThemableMixin {
 }

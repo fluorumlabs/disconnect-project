@@ -10,7 +10,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 		symbols = "MenuBarButtonElement",
-		module = "@vaadin/vaadin-menu-bar/src/vaadin-menu-bar-button.js"
+		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar-button.js"
 )
 public interface MenuBarButtonElement extends ButtonElement {
 }

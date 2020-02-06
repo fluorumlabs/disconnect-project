@@ -23,7 +23,7 @@ import js.lang.Any;
 )
 @Import(
 		symbols = "GridFilterColumnElement",
-		module = "@vaadin/vaadin-grid/src/vaadin-grid-filter-column.js"
+		module = "@vaadin/vaadin-grid/vaadin-grid-filter-column.js"
 )
 public interface GridFilterColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
 }
