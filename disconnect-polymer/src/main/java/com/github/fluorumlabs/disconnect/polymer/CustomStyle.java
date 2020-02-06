@@ -53,7 +53,7 @@ public class CustomStyle
 		extends AbstractComponent<CustomStyleElement>
 		implements HasComponent<CustomStyleElement, CustomStyle, Component<HTMLStyleElement>> {
 	public CustomStyle() {
-		super("custom-style");
+		super(CustomStyleElement.TAGNAME);
 	}
 
 	/**

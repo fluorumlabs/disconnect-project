@@ -29,6 +29,7 @@ import org.teavm.jso.JSProperty;
 		module = "@polymer/polymer/lib/elements/dom-if.js"
 )
 public interface DomIfElement extends PolymerElement {
+	String TAGNAME = "dom-if";
 	/**
 	 * A boolean indicating whether this template should stamp.
 	 */

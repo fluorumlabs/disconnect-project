@@ -112,6 +112,7 @@ import javax.annotation.Nullable;
 		module = "@polymer/polymer/lib/elements/dom-repeat.js"
 )
 public interface DomRepeatElement<ITEM extends Any> extends PolymerElement, OptionalMutableData {
+	String TAGNAME = "dom-repeat";
 	/**
 	 * An array containing items determining how many instances of the template
 	 * to stamp and that that each template instance should bind to.

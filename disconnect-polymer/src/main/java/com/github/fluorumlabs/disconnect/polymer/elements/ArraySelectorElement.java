@@ -81,4 +81,5 @@ import js.lang.Any;
 		module = "@polymer/polymer/lib/elements/array-selector.js"
 )
 public interface ArraySelectorElement<ITEM extends Any> extends PolymerElement, ArraySelectorMixin<ITEM> {
+	String TAGNAME = "array-selector";
 }

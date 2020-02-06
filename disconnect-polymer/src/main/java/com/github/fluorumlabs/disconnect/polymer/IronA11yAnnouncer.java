@@ -9,6 +9,7 @@ public class IronA11yAnnouncer
 		extends AbstractComponent<IronA11yAnnouncerElement> {
 	public IronA11yAnnouncer() {
 		super("iron-a11y-announcer");
+		super(IronA11yAnnouncerElement.TAGNAME);
 	}
 
 	/**

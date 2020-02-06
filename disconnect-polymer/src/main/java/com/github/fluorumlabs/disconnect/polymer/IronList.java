@@ -209,7 +209,7 @@ public class IronList<ITEM extends Any>
 		extends AbstractComponent<IronListElement<ITEM>>
 		implements HasComponent<IronListElement<ITEM>, IronList<ITEM>, Template> {
 	public IronList() {
-		super("iron-list");
+		super(IronListElement.TAGNAME);
 	}
 
 	/**

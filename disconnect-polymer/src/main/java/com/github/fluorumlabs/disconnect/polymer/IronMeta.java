@@ -46,7 +46,7 @@ import js.util.collections.Array;
 public class IronMeta<ITEM extends Any>
 		extends AbstractComponent<IronMetaElement<ITEM>> {
 	public IronMeta() {
-		super("iron-meta");
+		super(IronMetaElement.TAGNAME);
 	}
 
 	/**

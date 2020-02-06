@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
 public class IronIcon
 		extends AbstractComponent<IronIconElement> {
 	public IronIcon() {
-		super("iron-icon");
+		super(IronIconElement.TAGNAME);
 	}
 
 	/**

@@ -75,6 +75,6 @@ public class ArraySelector<ITEM extends Any>
 		extends AbstractComponent<ArraySelectorElement<ITEM>>
 		implements HasArraySelectorMixin<ITEM, ArraySelectorElement<ITEM>, ArraySelector<ITEM>> {
 	public ArraySelector() {
-		super("array-selector");
+		super(ArraySelectorElement.TAGNAME);
 	}
 }

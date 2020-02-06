@@ -214,6 +214,7 @@ import javax.annotation.Nullable;
 		module = "@polymer/iron-list/iron-list.js"
 )
 public interface IronListElement<ITEM extends Any> extends HTMLElement {
+	String TAGNAME = "iron-list";
 	/**
 	 * An array containing items determining how many instances of the template
 	 * to stamp and that that each template instance should bind to.

@@ -50,6 +50,7 @@ import javax.annotation.Nullable;
 		module = "@polymer/iron-iconset-svg/iron-iconset-svg.js"
 )
 public interface IronIconsetSvgElement extends HTMLElement {
+	String TAGNAME = "iron-iconset-svg";
 	/**
 	 * The name of the iconset.
 	 */

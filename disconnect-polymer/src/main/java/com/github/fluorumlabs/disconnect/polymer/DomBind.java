@@ -28,7 +28,6 @@ public class DomBind
 		HasGestureEventListeners<DomBindElement, DomBind>,
 		HasComponent<DomBindElement, DomBind, Template> {
 	public DomBind() {
-		super("dom-bind");
 	}
 
 	public DomBind(Component<?>... components) {
@@ -36,6 +35,7 @@ public class DomBind
 		Template template = new Template();
 		template.add(components);
 		setContent(template);
+		super(DomBindElement.TAGNAME);
 	}
 
 	/**
