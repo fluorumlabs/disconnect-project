@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 )
 public interface IronA11yAnnouncerElement extends HTMLElement {
 	String TAGNAME = "iron-a11y-announcer";
+
 	/**
 	 * The value of mode is used to set the <code>aria-live</code> attribute
 	 * for the element that will be announced. Valid values are: <code>off</code>,

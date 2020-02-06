@@ -32,6 +32,7 @@ import javax.annotation.Nullable;
 )
 public interface CrudEditColumnElement extends HTMLElement {
 	String TAGNAME = "vaadin-crud-edit-column";
+
 	/**
 	 * The arial-label for the edit button
 	 */

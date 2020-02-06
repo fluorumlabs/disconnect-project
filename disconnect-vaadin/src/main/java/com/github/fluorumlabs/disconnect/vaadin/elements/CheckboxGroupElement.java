@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
 )
 public interface CheckboxGroupElement extends HTMLElement, ThemableMixin {
 	String TAGNAME = "vaadin-checkbox-group";
+
 	/**
 	 * The current disabled state of the checkbox group. True if group and all internal checkboxes are disabled.
 	 */

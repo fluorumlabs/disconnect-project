@@ -29,6 +29,7 @@ import javax.annotation.Nullable;
 )
 public interface GridProEditSelectElement extends SelectElement {
 	String TAGNAME = "vaadin-grid-pro-edit-select";
+
 	@Nullable
 	@JSProperty
 	String[] getOptions();

@@ -85,6 +85,7 @@ import javax.annotation.Nullable;
 )
 public interface IronIconElement extends HTMLElement {
 	String TAGNAME = "iron-icon";
+
 	/**
 	 * The name of the icon to use. The name should be of the form:
 	 * <code>iconset_name:icon_name</code>.

@@ -26,6 +26,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface CrudGridElement extends HTMLElement, IncludedMixin {
 	String TAGNAME = "vaadin-crud-grid";
+
 	/**
 	 * Disable filtering in the generated columns.
 	 */

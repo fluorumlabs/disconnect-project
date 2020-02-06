@@ -112,6 +112,7 @@ public class DomRepeat<ITEM extends Any>
 		implements HasOptionalMutableData<DomRepeatElement<ITEM>, DomRepeat<ITEM>>,
 		HasComponent<DomRepeatElement<ITEM>, DomRepeat<ITEM>, Template> {
 	public DomRepeat() {
+		super(DomRepeatElement.TAGNAME);
 	}
 
 	public DomRepeat(Component<?>... components) {
@@ -119,7 +120,6 @@ public class DomRepeat<ITEM extends Any>
 		Template template = new Template();
 		template.add(components);
 		setContent(template);
-		super(DomRepeatElement.TAGNAME);
 	}
 
 	/**

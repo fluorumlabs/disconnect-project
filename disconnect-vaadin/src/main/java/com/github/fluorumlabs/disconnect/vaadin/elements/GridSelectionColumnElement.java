@@ -36,6 +36,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface GridSelectionColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
 	String TAGNAME = "vaadin-grid-selection-column";
+
 	/**
 	 * When true, all the items are selected.
 	 */

@@ -70,6 +70,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface GridTreeToggleElement extends HTMLElement, ThemableMixin {
 	String TAGNAME = "vaadin-grid-tree-toggle";
+
 	/**
 	 * Current level of the tree represented with a horizontal offset
 	 * of the toggle button.

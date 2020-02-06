@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
 )
 public interface CookieConsentElement extends HTMLElement, ElementMixin, ThemableMixin {
 	String TAGNAME = "vaadin-cookie-consent";
+
 	/**
 	 * The message to show in the popup.
 	 */

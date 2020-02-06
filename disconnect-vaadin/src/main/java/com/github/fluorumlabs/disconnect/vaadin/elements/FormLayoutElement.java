@@ -109,6 +109,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface FormLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
 	String TAGNAME = "vaadin-form-layout";
+
 	/**
 	 * Allows specifying a responsive behavior with the number of columns
 	 * and the label position depending on the layout width.

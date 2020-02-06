@@ -69,6 +69,7 @@ import javax.annotation.Nullable;
 )
 public interface DatePickerLightElement extends HTMLElement, ThemableMixin, DatePickerMixin {
 	String TAGNAME = "vaadin-date-picker-light";
+
 	/**
 	 * Name of the two-way data-bindable property representing the
 	 * value of the custom input field.

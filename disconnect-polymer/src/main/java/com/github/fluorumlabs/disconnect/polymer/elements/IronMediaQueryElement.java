@@ -32,6 +32,7 @@ import javax.annotation.Nullable;
 )
 public interface IronMediaQueryElement extends HTMLElement {
 	String TAGNAME = "iron-media-query";
+
 	/**
 	 * The Boolean return value of the media query.
 	 */

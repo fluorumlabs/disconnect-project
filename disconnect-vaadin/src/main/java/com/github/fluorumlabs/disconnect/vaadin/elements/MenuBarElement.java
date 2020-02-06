@@ -54,6 +54,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface MenuBarElement extends HTMLElement, ButtonsMixin, InteractionsMixin, ElementMixin, ThemableMixin {
 	String TAGNAME = "vaadin-menu-bar";
+
 	/**
 	 * Defines a hierarchical structure, where root level items represent menu bar buttons,
 	 * and <code>children</code> property configures a submenu with items to be opened below

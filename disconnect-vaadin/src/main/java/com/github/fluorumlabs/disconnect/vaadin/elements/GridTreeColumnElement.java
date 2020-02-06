@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
 )
 public interface GridTreeColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
 	String TAGNAME = "vaadin-grid-tree-column";
+
 	/**
 	 * JS Path of the property in the item that indicates whether the item has child items.
 	 */

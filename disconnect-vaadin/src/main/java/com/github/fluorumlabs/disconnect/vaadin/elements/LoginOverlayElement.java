@@ -37,6 +37,7 @@ import javax.annotation.Nullable;
 )
 public interface LoginOverlayElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
 	String TAGNAME = "vaadin-login-overlay";
+
 	/**
 	 * Defines the application description
 	 */

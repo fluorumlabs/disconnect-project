@@ -39,6 +39,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface IronOverlayBackdropElement extends HTMLElement {
 	String TAGNAME = "iron-overlay-backdrop";
+
 	/**
 	 * Returns true if the backdrop is opened.
 	 */

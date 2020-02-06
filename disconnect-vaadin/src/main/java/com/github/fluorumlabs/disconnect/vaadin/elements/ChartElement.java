@@ -276,6 +276,7 @@ import javax.annotation.Nullable;
 )
 public interface ChartElement extends HTMLElement {
 	String TAGNAME = "vaadin-chart";
+
 	/**
 	 * FIXME type ?
 	 */

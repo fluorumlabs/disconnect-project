@@ -51,6 +51,7 @@ import javax.annotation.Nullable;
 )
 public interface IronIconsetSvgElement extends HTMLElement {
 	String TAGNAME = "iron-iconset-svg";
+
 	/**
 	 * The name of the iconset.
 	 */

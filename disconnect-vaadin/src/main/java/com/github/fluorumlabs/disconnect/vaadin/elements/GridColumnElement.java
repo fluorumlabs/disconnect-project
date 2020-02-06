@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
 )
 public interface GridColumnElement<ITEM extends Any> extends HTMLElement, ColumnBaseMixin<ITEM> {
 	String TAGNAME = "vaadin-grid-column";
+
 	/**
 	 * Width of the cells for this column.
 	 */

@@ -60,6 +60,7 @@ import javax.annotation.Nullable;
 )
 public interface ConfirmDialogElement extends HTMLElement, ElementMixin, ThemableMixin {
 	String TAGNAME = "vaadin-confirm-dialog";
+
 	/**
 	 * True if the overlay is currently displayed.
 	 */

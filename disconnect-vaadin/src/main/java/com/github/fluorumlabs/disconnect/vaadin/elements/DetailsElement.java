@@ -58,6 +58,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface DetailsElement extends HTMLElement, ControlStateMixin, ElementMixin, ThemableMixin {
 	String TAGNAME = "vaadin-details";
+
 	/**
 	 * If true, the details content is visible.
 	 */

@@ -67,7 +67,6 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	void setMulti(boolean multi);
 
 	/**
-
 	 * When <code>multi</code> is true, this is an array that contains any selected.
 	 * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
 	 * if no item is selected.
@@ -81,7 +80,6 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	Array<T> getSelected();
 
 	/**
-
 	 * When <code>multi</code> is true, this is an array that contains any selected.
 	 * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
 	 * if no item is selected.
@@ -96,7 +94,6 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	void setSelected(Array<T> selected);
 
 	/**
-
 	 * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
 	 * if no item is selected.
 	 */

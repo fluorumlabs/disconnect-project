@@ -29,6 +29,7 @@ import javax.annotation.Nullable;
 )
 public interface CrudFormElement<ITEM extends Any> extends HTMLElement, IncludedMixin {
 	String TAGNAME = "vaadin-crud-form";
+
 	/**
 	 * The item being edited.
 	 */

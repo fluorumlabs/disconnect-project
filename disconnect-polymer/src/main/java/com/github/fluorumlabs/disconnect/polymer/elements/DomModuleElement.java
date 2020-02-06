@@ -38,6 +38,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface DomModuleElement extends HTMLElement {
 	String TAGNAME = "dom-module";
+
 	/**
 	 * Retrieves the element specified by the css <code>selector</code> in the module
 	 * registered by <code>id</code>. For example, this.import('foo', 'img');

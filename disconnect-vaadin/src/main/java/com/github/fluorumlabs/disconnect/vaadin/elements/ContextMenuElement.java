@@ -215,6 +215,7 @@ import javax.annotation.Nullable;
 public interface ContextMenuElement
 		extends HTMLElement, ElementMixin, ThemePropertyMixin, ItemsMixin, GestureEventListeners {
 	String TAGNAME = "vaadin-context-menu";
+
 	/**
 	 * CSS selector that can be used to target any child element
 	 * of the context menu to listen for `openOn` events.

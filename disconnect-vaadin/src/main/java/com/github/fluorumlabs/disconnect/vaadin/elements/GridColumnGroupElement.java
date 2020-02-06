@@ -44,6 +44,7 @@ import javax.annotation.Nullable;
 )
 public interface GridColumnGroupElement<ITEM extends Any> extends HTMLElement, ColumnBaseMixin<ITEM> {
 	String TAGNAME = "vaadin-grid-column-group";
+
 	/**
 	 * Flex grow ratio for the column group as the sum of the ratios of its child columns.
 	 */

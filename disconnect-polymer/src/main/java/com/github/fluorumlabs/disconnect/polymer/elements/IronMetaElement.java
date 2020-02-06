@@ -54,6 +54,7 @@ import org.teavm.jso.JSProperty;
 )
 public interface IronMetaElement<ITEM extends Any> extends HTMLElement {
 	String TAGNAME = "iron-meta";
+
 	/**
 	 * The type of meta-data.  All meta-data of the same type is stored
 	 * together.
