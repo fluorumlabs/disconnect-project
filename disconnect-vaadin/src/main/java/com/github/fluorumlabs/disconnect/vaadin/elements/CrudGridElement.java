@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.IncludedMixin;
-import js.web.dom.HTMLElement;
+import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -22,9 +22,9 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 
-		module = "@vaadin/vaadin-crud/vaadin-crud-grid.js"
+		module = "@vaadin/vaadin-crud/theme/lumo/vaadin-crud-grid.js"
 )
-public interface CrudGridElement extends HTMLElement, IncludedMixin {
+public interface CrudGridElement<ITEM extends Any> extends GridElement<ITEM>, IncludedMixin {
 	static String TAGNAME() {
 		return "vaadin-crud-grid";
 	}

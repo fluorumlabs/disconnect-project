@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-column.js"
+		module = "@vaadin/vaadin-grid-pro/theme/lumo/vaadin-grid-pro-edit-column.js"
 )
 public interface GridProEditColumnElement<ITEM extends Any> extends GridColumnElement<ITEM> {
 	static String TAGNAME() {

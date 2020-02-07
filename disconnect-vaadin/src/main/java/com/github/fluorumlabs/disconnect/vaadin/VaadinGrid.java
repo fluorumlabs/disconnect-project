@@ -2,10 +2,12 @@ package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.*;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
+import js.extras.JsEnum;
 import js.lang.Any;
 
 /**
@@ -234,7 +236,7 @@ import js.lang.Any;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinGrid<ITEM extends Any> extends AbstractComponent<GridElement<ITEM>>
-		implements HasThemableMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
+		implements HasThemableMixin<VaadinGrid.Variant, GridElement<ITEM>, VaadinGrid<ITEM>>,
 		HasA11yMixin<GridElement<ITEM>, VaadinGrid<ITEM>>,
 		HasActiveItemMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
 		HasArrayDataProviderMixin<ITEM, GridElement<ITEM>, VaadinGrid<ITEM>>,
@@ -300,4 +302,15 @@ public class VaadinGrid<ITEM extends Any> extends AbstractComponent<GridElement<
 	public HasSlots.Container nodistributeSlot() {
 		return slotted("nodistribute");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant NO_BORDER = JsEnum.of("no-border");
+		public static final Variant NO_ROW_BORDERS = JsEnum.of("no-row-borders");
+		public static final Variant COLUMN_BORDERS = JsEnum.of("column-borders");
+		public static final Variant ROW_STRIPES = JsEnum.of("row-stripes");
+		public static final Variant COMPACT = JsEnum.of("compact");
+		public static final Variant WRAP_CELL_CONTENT = JsEnum.of("wrap-cell-content");
+
+	}
+
 }

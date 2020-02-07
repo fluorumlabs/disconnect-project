@@ -3,9 +3,11 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.elements.ProgressBarElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasProgressMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import js.extras.JsEnum;
 
 /**
  * <code>&lt;vaadin-progress-bar&gt;</code> is a Web Component for progress bars.
@@ -52,9 +54,16 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  */
 public class VaadinProgressBar extends AbstractComponent<ProgressBarElement>
 		implements HasProgressMixin<ProgressBarElement, VaadinProgressBar>,
-		HasThemableMixin<ProgressBarElement, VaadinProgressBar>,
+		HasThemableMixin<VaadinProgressBar.Variant, ProgressBarElement, VaadinProgressBar>,
 		HasComponents<ProgressBarElement, VaadinProgressBar, Component<?>> {
 	public VaadinProgressBar() {
 		super(ProgressBarElement.TAGNAME());
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant CONTRAST = JsEnum.of("contrast");
+		public static final Variant ERROR = JsEnum.of("error");
+		public static final Variant SUCCESS = JsEnum.of("success");
+	}
+
 }

@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-accordion/vaadin-accordion.js"
+		module = "@vaadin/vaadin-accordion/theme/lumo/vaadin-accordion.js"
 )
 public interface AccordionElement extends HTMLElement, ElementMixin, ThemableMixin {
 	static String TAGNAME() {

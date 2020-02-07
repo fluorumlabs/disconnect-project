@@ -10,7 +10,6 @@ import js.lang.Any;
 import js.lang.JsString;
 import js.util.collections.Array;
 import js.web.dom.CustomEvent;
-import js.web.dom.Event;
 
 import javax.annotation.Nullable;
 
@@ -402,15 +401,6 @@ public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM
 	 */
 	default boolean checkValidity() {
 		return getNode().checkValidity();
-	}
-
-	/**
-	 * Fired when value changes.
-	 * To comply with
-	 * <a href="https://developer.mozilla.org/en-US/docs/Web/Events/change">https://developer.mozilla.org/en-US/docs/Web/Events/change</a>
-	 */
-	default ObservableEvent<Event> changeEvent() {
-		return createEvent("change");
 	}
 
 	/**

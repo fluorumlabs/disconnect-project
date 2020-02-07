@@ -5,7 +5,6 @@ import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.constants.PrimarySection;
 import com.github.fluorumlabs.disconnect.vaadin.elements.AppLayoutElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -112,7 +111,6 @@ import javax.annotation.Nullable;
  */
 public class VaadinAppLayout extends AbstractComponent<AppLayoutElement>
 		implements HasElementMixin<AppLayoutElement, VaadinAppLayout>,
-		HasThemableMixin<AppLayoutElement, VaadinAppLayout>,
 		HasSlots<AppLayoutElement>,
 		HasComponents<AppLayoutElement, VaadinAppLayout, Component<?>> {
 	public VaadinAppLayout() {

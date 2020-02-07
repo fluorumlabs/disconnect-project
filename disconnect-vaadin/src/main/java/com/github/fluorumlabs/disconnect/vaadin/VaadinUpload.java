@@ -5,7 +5,6 @@ import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.constants.UploadMethod;
 import com.github.fluorumlabs.disconnect.vaadin.elements.UploadElement;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.UploadI18n;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadRejectEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadRequestEvent;
@@ -60,8 +59,7 @@ import javax.annotation.Nullable;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinUpload extends AbstractComponent<UploadElement>
-		implements HasThemableMixin<UploadElement, VaadinUpload>,
-		HasSlots<UploadElement>,
+		implements HasSlots<UploadElement>,
 		HasComponents<UploadElement, VaadinUpload, Component<?>> {
 	public VaadinUpload() {
 		super(UploadElement.TAGNAME());

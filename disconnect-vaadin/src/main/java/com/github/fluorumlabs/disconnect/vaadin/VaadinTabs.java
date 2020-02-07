@@ -5,9 +5,11 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.TabsElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasListMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import js.extras.JsEnum;
 
 import javax.annotation.Nullable;
 
@@ -52,7 +54,7 @@ import javax.annotation.Nullable;
  */
 public class VaadinTabs extends AbstractComponent<TabsElement> implements HasElementMixin<TabsElement, VaadinTabs>,
 		HasListMixin<TabsElement, VaadinTabs>,
-		HasThemableMixin<TabsElement, VaadinTabs>,
+		HasThemableMixin<VaadinTabs.Variant, TabsElement, VaadinTabs>,
 		HasComponents<TabsElement, VaadinTabs, Component<?>> {
 	public VaadinTabs() {
 		super(TabsElement.TAGNAME());
@@ -88,4 +90,13 @@ public class VaadinTabs extends AbstractComponent<TabsElement> implements HasEle
 		getNode().setSelected(selected);
 		return this;
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant CENTERED = JsEnum.of("centered");
+		public static final Variant SMALL = JsEnum.of("small");
+		public static final Variant MINIMAL = JsEnum.of("minimal");
+		public static final Variant HIDE_SCROLL_BUTTONS = JsEnum.of("hide-scroll-buttons");
+		public static final Variant EQUAL_WIDTH_TABS = JsEnum.of("equal-width-tabs");
+	}
+
 }

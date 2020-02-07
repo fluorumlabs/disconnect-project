@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-select.js"
+		module = "@vaadin/vaadin-grid-pro/theme/lumo/vaadin-grid-pro-edit-select.js"
 )
 public interface GridProEditSelectElement extends SelectElement {
 	static String TAGNAME() {

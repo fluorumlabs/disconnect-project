@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-checkbox/vaadin-checkbox-group.js"
+		module = "@vaadin/vaadin-checkbox/theme/lumo/vaadin-checkbox-group.js"
 )
 public interface CheckboxGroupElement extends HTMLElement, ThemableMixin {
 	static String TAGNAME() {

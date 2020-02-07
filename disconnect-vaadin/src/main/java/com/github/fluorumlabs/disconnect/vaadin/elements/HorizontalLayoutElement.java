@@ -37,7 +37,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 
-		module = "@vaadin/vaadin-ordered-layout/vaadin-horizontal-layout.js"
+		module = "@vaadin/vaadin-ordered-layout/theme/lumo/vaadin-horizontal-layout.js"
 )
 public interface HorizontalLayoutElement extends HTMLElement, ThemableMixin {
 	static String TAGNAME() {

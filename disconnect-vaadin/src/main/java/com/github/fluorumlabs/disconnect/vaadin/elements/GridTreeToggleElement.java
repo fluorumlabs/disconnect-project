@@ -66,7 +66,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid/vaadin-grid-tree-toggle.js"
+		module = "@vaadin/vaadin-grid/theme/lumo/vaadin-grid-tree-toggle.js"
 )
 public interface GridTreeToggleElement extends HTMLElement, ThemableMixin {
 	static String TAGNAME() {

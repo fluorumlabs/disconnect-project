@@ -3,7 +3,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.ConfirmDialogElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -55,7 +54,6 @@ import javax.annotation.Nullable;
  */
 public class VaadinConfirmDialog extends AbstractComponent<ConfirmDialogElement>
 		implements HasElementMixin<ConfirmDialogElement, VaadinConfirmDialog>,
-		HasThemableMixin<ConfirmDialogElement, VaadinConfirmDialog>,
 		HasSlots<ConfirmDialogElement>,
 		HasComponents<ConfirmDialogElement, VaadinConfirmDialog, Component<?>> {
 	public VaadinConfirmDialog() {

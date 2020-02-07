@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 		symbols = "NotificationContainer",
-		module = "@vaadin/vaadin-notification/vaadin-notification.js"
+		module = "@vaadin/vaadin-notification/theme/lumo/vaadin-notification.js"
 )
 public interface NotificationContainer extends HTMLElement {
 	static String TAGNAME() {

@@ -21,7 +21,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-text-field.js"
+		module = "@vaadin/vaadin-grid-pro/theme/lumo/vaadin-grid-pro-edit-text-field.js"
 )
 public interface GridProEditTextFieldElement extends TextFieldElement {
 	static String TAGNAME() {

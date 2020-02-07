@@ -2,7 +2,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.ListBoxElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasMultiSelectListMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -33,7 +32,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  */
 public class VaadinListBox extends AbstractComponent<ListBoxElement>
 		implements HasMultiSelectListMixin<ListBoxElement, VaadinListBox>,
-		HasThemableMixin<ListBoxElement, VaadinListBox>,
 		HasComponents<ListBoxElement, VaadinListBox, Component<?>> {
 	public VaadinListBox() {
 		super(ListBoxElement.TAGNAME());

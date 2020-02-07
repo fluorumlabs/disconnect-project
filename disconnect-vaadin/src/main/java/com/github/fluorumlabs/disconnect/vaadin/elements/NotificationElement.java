@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-notification/vaadin-notification.js"
+		module = "@vaadin/vaadin-notification/theme/lumo/vaadin-notification.js"
 )
 public interface NotificationElement extends HTMLElement, ThemePropertyMixin {
 	static String TAGNAME() {

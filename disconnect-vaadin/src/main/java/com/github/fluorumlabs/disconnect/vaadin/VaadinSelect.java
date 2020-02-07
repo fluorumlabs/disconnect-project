@@ -12,7 +12,6 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Event;
 
 import javax.annotation.Nullable;
 
@@ -119,7 +118,7 @@ import javax.annotation.Nullable;
 public class VaadinSelect extends AbstractComponent<SelectElement>
 		implements HasElementMixin<SelectElement, VaadinSelect>,
 		HasControlStateMixin<SelectElement, VaadinSelect>,
-		HasThemableMixin<SelectElement, VaadinSelect>,
+		HasThemableMixin<VaadinTextField.Variant, SelectElement, VaadinSelect>,
 		HasSlots<SelectElement>,
 		HasComponents<SelectElement, VaadinSelect, Component<?>> {
 	public VaadinSelect() {
@@ -338,13 +337,6 @@ public class VaadinSelect extends AbstractComponent<SelectElement>
 	 */
 	public boolean validate() {
 		return getNode().validate();
-	}
-
-	/**
-	 * Fired when the user commits a value change.
-	 */
-	public ObservableEvent<Event> changeEvent() {
-		return createEvent("change");
 	}
 
 	/**

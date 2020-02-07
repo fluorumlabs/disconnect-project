@@ -78,7 +78,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-text-field/vaadin-text-field.js"
+		module = "@vaadin/vaadin-text-field/theme/lumo/vaadin-text-field.js"
 )
 public interface TextFieldElement extends HTMLElement, TextFieldMixin, ThemableMixin {
 	static String TAGNAME() {

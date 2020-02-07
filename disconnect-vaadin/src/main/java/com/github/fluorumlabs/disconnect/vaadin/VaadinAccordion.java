@@ -5,7 +5,6 @@ import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.AccordionElement;
 import com.github.fluorumlabs.disconnect.vaadin.elements.AccordionPanelElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -53,7 +52,6 @@ import javax.annotation.Nullable;
  */
 public class VaadinAccordion extends AbstractComponent<AccordionElement> implements
 		HasElementMixin<AccordionElement, VaadinAccordion>,
-		HasThemableMixin<AccordionElement, VaadinAccordion>,
 		HasComponents<AccordionElement, VaadinAccordion, Component<?>> {
 	public VaadinAccordion() {
 		super(AccordionElement.TAGNAME());

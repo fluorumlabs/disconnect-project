@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-upload/vaadin-upload-file.js"
+		module = "@vaadin/vaadin-upload/theme/lumo/vaadin-upload-file.js"
 )
 public interface UploadFileElement extends HTMLElement, ThemableMixin {
 	static String TAGNAME() {

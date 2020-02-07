@@ -3,7 +3,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.elements.LoginFormElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasLoginMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -28,7 +27,6 @@ import javax.annotation.Nullable;
  */
 public class VaadinLoginForm extends AbstractComponent<LoginFormElement>
 		implements HasElementMixin<LoginFormElement, VaadinLoginForm>,
-		HasThemableMixin<LoginFormElement, VaadinLoginForm>,
 		HasLoginMixin<LoginFormElement, VaadinLoginForm>,
 		HasComponents<LoginFormElement, VaadinLoginForm, Component<?>> {
 	public VaadinLoginForm() {

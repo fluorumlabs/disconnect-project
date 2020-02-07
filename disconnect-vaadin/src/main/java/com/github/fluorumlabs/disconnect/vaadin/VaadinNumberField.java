@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.NumberFieldElement;
+import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -13,7 +14,8 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * </code></pre>
  */
 public class VaadinNumberField extends AbstractComponent<NumberFieldElement>
-		implements HasComponents<NumberFieldElement, VaadinNumberField, Component<?>> {
+		implements HasThemableMixin<VaadinTextField.Variant, NumberFieldElement, VaadinNumberField>,
+		HasComponents<NumberFieldElement, VaadinNumberField, Component<?>> {
 	public VaadinNumberField() {
 		super(NumberFieldElement.TAGNAME());
 	}

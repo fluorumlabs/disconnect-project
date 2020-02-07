@@ -3,7 +3,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.constants.CookieConsentPosition;
 import com.github.fluorumlabs.disconnect.vaadin.elements.CookieConsentElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -43,7 +42,6 @@ import javax.annotation.Nullable;
  */
 public class VaadinCookieConsent extends AbstractComponent<CookieConsentElement>
 		implements HasElementMixin<CookieConsentElement, VaadinCookieConsent>,
-		HasThemableMixin<CookieConsentElement, VaadinCookieConsent>,
 		HasComponents<CookieConsentElement, VaadinCookieConsent, Component<?>> {
 	public VaadinCookieConsent() {
 		super(CookieConsentElement.TAGNAME());

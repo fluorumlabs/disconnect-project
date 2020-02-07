@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid/vaadin-grid-sorter.js"
+		module = "@vaadin/vaadin-grid/theme/lumo/vaadin-grid-sorter.js"
 )
 public interface GridSorterElement extends HTMLElement {
 	static String TAGNAME() {

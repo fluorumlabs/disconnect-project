@@ -5,7 +5,6 @@ import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEven
 import com.github.fluorumlabs.disconnect.vaadin.elements.RadioButtonElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -52,7 +51,6 @@ import javax.annotation.Nullable;
 public class VaadinRadioButton extends AbstractComponent<RadioButtonElement>
 		implements HasElementMixin<RadioButtonElement, VaadinRadioButton>,
 		HasControlStateMixin<RadioButtonElement, VaadinRadioButton>,
-		HasThemableMixin<RadioButtonElement, VaadinRadioButton>,
 		HasGestureEventListeners<RadioButtonElement, VaadinRadioButton>,
 		HasComponents<RadioButtonElement, VaadinRadioButton, Component<?>> {
 	public VaadinRadioButton() {

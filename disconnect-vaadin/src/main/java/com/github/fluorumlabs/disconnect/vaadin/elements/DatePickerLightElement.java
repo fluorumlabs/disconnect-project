@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-date-picker/vaadin-date-picker-light.js"
+		module = "@vaadin/vaadin-date-picker/theme/lumo/vaadin-date-picker-light.js"
 )
 public interface DatePickerLightElement extends HTMLElement, ThemableMixin, DatePickerMixin {
 	static String TAGNAME() {

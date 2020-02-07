@@ -3,7 +3,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.OverlayElement;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.OverlayRenderer;
 import com.github.fluorumlabs.disconnect.vaadin.types.WrappedSourceEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
@@ -121,8 +120,7 @@ import javax.annotation.Nullable;
  * 		<a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinOverlay extends AbstractComponent<OverlayElement>
-		implements HasThemableMixin<OverlayElement, VaadinOverlay>,
-		HasComponents<OverlayElement, VaadinOverlay, Component<?>> {
+		implements HasComponents<OverlayElement, VaadinOverlay, Component<?>> {
 	public VaadinOverlay() {
 		super(OverlayElement.TAGNAME());
 	}

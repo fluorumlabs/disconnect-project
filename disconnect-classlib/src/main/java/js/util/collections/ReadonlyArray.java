@@ -9,7 +9,6 @@ import js.util.iterable.IntIterableIterator;
 import js.util.iterable.IterableIterator;
 import js.util.iterable.JsIterable;
 import org.teavm.jso.JSBody;
-import org.teavm.jso.JSByRef;
 
 import java.util.RandomAccess;
 
@@ -31,7 +30,7 @@ public interface ReadonlyArray<T extends Any> extends ConcatArray<T>, RandomAcce
      * @param items Additional items to add to the end of array1.
      */
     @JSBody(params = "items", script = "return this.concat.apply(this, items)")
-    ReadonlyArray<T> concat(@JSByRef ConcatArray<T>... items);
+    Array<T> concat(ConcatArray<T>... items);
 
     /**
      * Combines two or more arrays.
@@ -39,7 +38,7 @@ public interface ReadonlyArray<T extends Any> extends ConcatArray<T>, RandomAcce
      * @param items Additional items to add to the end of array1.
      */
     @JSBody(params = "items", script = "return this.concat.apply(this, items)")
-    ReadonlyArray<T> concat(@JSByRef T... items);
+    Array<T> concat(T... items);
 
     /**
      * Returns the index of the first occurrence of a value in an array.

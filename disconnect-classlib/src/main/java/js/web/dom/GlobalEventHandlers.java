@@ -956,6 +956,26 @@ public interface GlobalEventHandlers extends EventTarget {
     @JSProperty
     void setOnerror(OnErrorEventHandler onerror);
 
+    default void addErrorEventListener(EventListener<ErrorEvent> listener, AddEventListenerOptions options) {
+        addEventListener("error", listener, options);
+    }
+    default void addErrorEventListener(EventListener<ErrorEvent> listener, boolean options) {
+        addEventListener("error", listener, options);
+    }
+    default void addErrorEventListener(EventListener<ErrorEvent> listener) {
+        addEventListener("error", listener);
+    }
+
+    default void removeErrorEventListener(EventListener<ErrorEvent> listener, EventListenerOptions options) {
+        removeEventListener("error", listener, options);
+    }
+    default void removeErrorEventListener(EventListener<ErrorEvent> listener, boolean options) {
+        removeEventListener("error", listener, options);
+    }
+    default void removeErrorEventListener(EventListener<ErrorEvent> listener) {
+        removeEventListener("error", listener);
+    }
+
     /**
      * Fires when the object receives focus.
      *

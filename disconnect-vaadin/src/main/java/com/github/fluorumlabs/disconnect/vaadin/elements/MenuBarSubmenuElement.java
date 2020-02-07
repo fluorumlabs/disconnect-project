@@ -10,7 +10,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 
-		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar-submenu.js"
+		module = "@vaadin/vaadin-menu-bar/theme/lumo/vaadin-menu-bar-submenu.js"
 )
 public interface MenuBarSubmenuElement extends ContextMenuElement {
 	static String TAGNAME() {

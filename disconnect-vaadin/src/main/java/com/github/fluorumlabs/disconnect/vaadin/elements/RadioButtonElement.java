@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-radio-button/vaadin-radio-button.js"
+		module = "@vaadin/vaadin-radio-button/theme/lumo/vaadin-radio-button.js"
 )
 public interface RadioButtonElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {

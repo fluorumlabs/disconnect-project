@@ -40,7 +40,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 
-		module = "@vaadin/vaadin-tabs/vaadin-tab.js"
+		module = "@vaadin/vaadin-tabs/theme/lumo/vaadin-tab.js"
 )
 public interface TabElement extends HTMLElement, ElementMixin, ThemableMixin, ItemMixin {
 	static String TAGNAME() {

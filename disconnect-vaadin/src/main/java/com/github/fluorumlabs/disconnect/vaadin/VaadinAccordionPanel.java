@@ -1,9 +1,12 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.AccordionPanelElement;
+import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import js.extras.JsEnum;
 
 /**
  * The accordion panel element.
@@ -39,8 +42,13 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinAccordionPanel extends AbstractComponent<AccordionPanelElement>
-		implements HasComponents<AccordionPanelElement, VaadinAccordionPanel, Component<?>> {
+		implements HasComponents<AccordionPanelElement, VaadinAccordionPanel, Component<?>>,
+		HasThemableMixin<VaadinAccordionPanel.Variant, AccordionPanelElement, VaadinAccordionPanel> {
 	public VaadinAccordionPanel() {
 		super(AccordionPanelElement.TAGNAME());
+	}
+	
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant FILLED = JsEnum.of("filled");
 	}
 }

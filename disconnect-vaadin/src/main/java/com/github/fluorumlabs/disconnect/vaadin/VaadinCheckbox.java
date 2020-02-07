@@ -5,12 +5,10 @@ import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEven
 import com.github.fluorumlabs.disconnect.vaadin.elements.CheckboxElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Event;
 
 import javax.annotation.Nullable;
 
@@ -59,7 +57,6 @@ import javax.annotation.Nullable;
 public class VaadinCheckbox extends AbstractComponent<CheckboxElement>
 		implements HasElementMixin<CheckboxElement, VaadinCheckbox>,
 		HasControlStateMixin<CheckboxElement, VaadinCheckbox>,
-		HasThemableMixin<CheckboxElement, VaadinCheckbox>,
 		HasGestureEventListeners<CheckboxElement, VaadinCheckbox>,
 		HasComponents<CheckboxElement, VaadinCheckbox, Component<?>> {
 	public VaadinCheckbox() {
@@ -127,13 +124,6 @@ public class VaadinCheckbox extends AbstractComponent<CheckboxElement>
 	public VaadinCheckbox value(String value) {
 		getNode().setValue(value);
 		return this;
-	}
-
-	/**
-	 * Fired when the user commits a value change.
-	 */
-	public ObservableEvent<Event> changeEvent() {
-		return createEvent("change");
 	}
 
 	/**

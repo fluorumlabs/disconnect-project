@@ -6,10 +6,12 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.CustomFieldElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasCustomFieldMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import js.extras.JsEnum;
 
 import javax.annotation.Nullable;
 
@@ -54,7 +56,7 @@ import javax.annotation.Nullable;
  */
 public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 		implements HasElementMixin<CustomFieldElement, VaadinCustomField>,
-		HasThemableMixin<CustomFieldElement, VaadinCustomField>,
+		HasThemableMixin<VaadinCustomField.Variant, CustomFieldElement, VaadinCustomField>,
 		HasCustomFieldMixin<CustomFieldElement, VaadinCustomField>,
 		HasComponents<CustomFieldElement, VaadinCustomField, Component<?>> {
 	public VaadinCustomField() {
@@ -193,4 +195,10 @@ public class VaadinCustomField extends AbstractComponent<CustomFieldElement>
 	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
 		return createEvent("invalid-changed");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant SMALL = JsEnum.of("small");
+
+	}
+
 }

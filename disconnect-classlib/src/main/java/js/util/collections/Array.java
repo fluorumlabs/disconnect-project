@@ -98,22 +98,6 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
     int push(@JSByRef T... items);
 
     /**
-     * Combines two or more arrays.
-     *
-     * @param items Additional items to add to the end of array1.
-     */
-    @JSBody(params = "items", script = "return this.concat.apply(this, items)")
-    Array<T> concat(@JSByRef ConcatArray<T>... items);
-
-    /**
-     * Combines two or more arrays.
-     *
-     * @param items Additional items to add to the end of array1.
-     */
-    @JSBody(params = "items", script = "return this.concat.apply(this, items)")
-    Array<T> concat(@JSByRef T... items);
-
-    /**
      * Reverses the elements in an Array.
      */
     Array<T> reverse();

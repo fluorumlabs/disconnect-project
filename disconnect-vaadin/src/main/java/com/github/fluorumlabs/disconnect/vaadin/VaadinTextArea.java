@@ -62,7 +62,7 @@ import js.web.dom.Event;
  */
 public class VaadinTextArea extends AbstractComponent<TextAreaElement>
 		implements HasTextFieldMixin<TextAreaElement, VaadinTextArea>,
-		HasThemableMixin<TextAreaElement, VaadinTextArea>,
+		HasThemableMixin<VaadinTextField.Variant, TextAreaElement, VaadinTextArea>,
 		HasSlots<TextAreaElement>,
 		HasComponents<TextAreaElement, VaadinTextArea, Component<?>> {
 	public VaadinTextArea() {

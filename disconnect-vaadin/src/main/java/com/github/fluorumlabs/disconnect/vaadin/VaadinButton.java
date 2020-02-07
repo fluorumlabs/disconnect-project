@@ -5,10 +5,12 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.ButtonElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
+import js.extras.JsEnum;
 
 /**
  * <code>&lt;vaadin-button&gt;</code> is a Web Component providing an accessible and customizable button.
@@ -52,7 +54,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 public class VaadinButton extends AbstractComponent<ButtonElement>
 		implements HasElementMixin<ButtonElement, VaadinButton>,
 		HasControlStateMixin<ButtonElement, VaadinButton>,
-		HasThemableMixin<ButtonElement, VaadinButton>,
+		HasThemableMixin<VaadinButton.Variant, ButtonElement, VaadinButton>,
 		HasGestureEventListeners<ButtonElement, VaadinButton>,
 		HasSlots<ButtonElement>,
 		HasComponents<ButtonElement, VaadinButton, Component<?>> {
@@ -67,4 +69,25 @@ public class VaadinButton extends AbstractComponent<ButtonElement>
 	public HasSlots.Container suffix() {
 		return slotted("suffix");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant SMALL = JsEnum.of("small");
+
+		public static final Variant LARGE = JsEnum.of("large");
+
+		public static final Variant TERTIARY = JsEnum.of("tertiary");
+
+		public static final Variant TERTIARY_INLINE = JsEnum.of("tertiary-inline");
+
+		public static final Variant PRIMARY = JsEnum.of("primary");
+
+		public static final Variant SUCCESS = JsEnum.of("success");
+
+		public static final Variant ERROR = JsEnum.of("error");
+
+		public static final Variant CONTRAST = JsEnum.of("contrast");
+
+		public static final Variant ICON = JsEnum.of("icon");
+	}
+
 }

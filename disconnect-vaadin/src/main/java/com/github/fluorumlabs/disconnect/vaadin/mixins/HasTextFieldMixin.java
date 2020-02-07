@@ -8,7 +8,6 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.dom.Autocapitalize;
 import js.web.dom.Autocomplete;
 import js.web.dom.Event;
-import js.web.dom.InputEvent;
 
 import javax.annotation.Nullable;
 
@@ -355,21 +354,6 @@ public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component
 
 	default void clear() {
 		getNode().clear();
-	}
-
-	/**
-	 * Fired when the user commits a value change.
-	 */
-	default ObservableEvent<Event> changeEvent() {
-		return createEvent("change");
-	}
-
-	/**
-	 * Fired when the value is changed by the user: on every typing keystroke,
-	 * and the value is cleared using the clear button.
-	 */
-	default ObservableEvent<InputEvent> inputEvent() {
-		return createEvent("input");
 	}
 
 	/**

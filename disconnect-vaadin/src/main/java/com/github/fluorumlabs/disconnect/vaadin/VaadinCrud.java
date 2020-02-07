@@ -10,11 +10,13 @@ import com.github.fluorumlabs.disconnect.vaadin.i18n.CrudI18n;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ItemEvent;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.util.collections.Array;
 
@@ -129,7 +131,7 @@ import javax.annotation.Nullable;
  */
 public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<ITEM>>
 		implements HasElementMixin<CrudElement<ITEM>, VaadinCrud<ITEM>>,
-		HasThemableMixin<CrudElement<ITEM>, VaadinCrud<ITEM>>,
+		HasThemableMixin<VaadinCrud.Variant, CrudElement<ITEM>, VaadinCrud<ITEM>>,
 		HasSlots<CrudElement<ITEM>>,
 		HasComponents<CrudElement<ITEM>, VaadinCrud<ITEM>, Component<?>> {
 	public VaadinCrud() {
@@ -469,7 +471,7 @@ public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<
 	 * no action is performed, user is responsible to close dialog and reset
 	 * item and grid.
 	 */
-	public ObservableEvent<ItemEvent<ITEM>> cancelEvent() {
+	public ObservableEvent<ItemEvent<ITEM>> crudCancelEvent() {
 		return createEvent("cancel");
 	}
 
@@ -477,7 +479,7 @@ public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<
 	 * Fired when user wants to delete item. If the default is prevented, then
 	 * no action is performed, items array is not modified nor dialog closed
 	 */
-	public ObservableEvent<ItemEvent<ITEM>> deleteEvent() {
+	public ObservableEvent<ItemEvent<ITEM>> crudDeleteEvent() {
 		return createEvent("delete");
 	}
 
@@ -486,14 +488,14 @@ public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<
 	 * a new item is not assigned to the form, giving that responsibility to the app, though
 	 * dialog is always opened.
 	 */
-	public ObservableEvent<ItemEvent<ITEM>> editEvent() {
+	public ObservableEvent<ItemEvent<ITEM>> crudEditEvent() {
 		return createEvent("edit");
 	}
 
 	/**
 	 * Fired when user wants to create a new item.
 	 */
-	public ObservableEvent<ItemEvent<ITEM>> newEvent() {
+	public ObservableEvent<ItemEvent<ITEM>> crudNewEvent() {
 		return createEvent("new");
 	}
 
@@ -501,7 +503,7 @@ public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<
 	 * Fired when user wants to save a new or an existing item. If the default is prevented, then
 	 * no action is performed, items array is not modified nor dialog closed
 	 */
-	public ObservableEvent<ItemEvent<ITEM>> saveEvent() {
+	public ObservableEvent<ItemEvent<ITEM>> crudSaveEvent() {
 		return createEvent("save");
 	}
 
@@ -537,4 +539,9 @@ public class VaadinCrud<ITEM extends Any> extends AbstractComponent<CrudElement<
 	public HasSlots.Container formSlot() {
 		return slotted("form");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant NO_BORDER = JsEnum.of("no-border");
+	}
+
 }

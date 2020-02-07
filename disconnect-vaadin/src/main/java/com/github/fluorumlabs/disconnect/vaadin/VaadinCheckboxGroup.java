@@ -4,10 +4,12 @@ import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEven
 import com.github.fluorumlabs.disconnect.polymer.types.StringArrayPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.CheckboxGroupElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import js.extras.JsEnum;
 
 import javax.annotation.Nullable;
 
@@ -53,7 +55,7 @@ import javax.annotation.Nullable;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinCheckboxGroup extends AbstractComponent<CheckboxGroupElement>
-		implements HasThemableMixin<CheckboxGroupElement, VaadinCheckboxGroup>,
+		implements HasThemableMixin<VaadinCheckboxGroup.Variant, CheckboxGroupElement, VaadinCheckboxGroup>,
 		HasComponents<CheckboxGroupElement, VaadinCheckboxGroup, Component<?>> {
 	public VaadinCheckboxGroup() {
 		super(CheckboxGroupElement.TAGNAME());
@@ -181,4 +183,9 @@ public class VaadinCheckboxGroup extends AbstractComponent<CheckboxGroupElement>
 	public ObservableEvent<BooleanPropertyChangeEvent> invalidChangedEvent() {
 		return createEvent("invalid-changed");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant VERTICAL = JsEnum.of("vertical");
+	}
+
 }

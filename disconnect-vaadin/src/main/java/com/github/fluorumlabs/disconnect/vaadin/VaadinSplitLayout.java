@@ -4,11 +4,13 @@ import com.github.fluorumlabs.disconnect.polymer.mixins.HasGestureEventListeners
 import com.github.fluorumlabs.disconnect.vaadin.constants.Orientation;
 import com.github.fluorumlabs.disconnect.vaadin.elements.SplitLayoutElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import js.extras.JsEnum;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
@@ -141,7 +143,7 @@ import javax.annotation.Nullable;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinSplitLayout extends AbstractComponent<SplitLayoutElement>
-		implements HasThemableMixin<SplitLayoutElement, VaadinSplitLayout>,
+		implements HasThemableMixin<VaadinSplitLayout.Variant, SplitLayoutElement, VaadinSplitLayout>,
 		HasGestureEventListeners<SplitLayoutElement, VaadinSplitLayout>,
 		HasSlots<SplitLayoutElement>,
 		HasComponents<SplitLayoutElement, VaadinSplitLayout, Component<?>> {
@@ -187,4 +189,11 @@ public class VaadinSplitLayout extends AbstractComponent<SplitLayoutElement>
 	public HasSlots.Container secondarySlot() {
 		return slotted("secondary");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant SMALL = JsEnum.of("small");
+		public static final Variant MINIMAL = JsEnum.of("minimal");
+
+	}
+
 }

@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js"
+		module = "@vaadin/vaadin-app-layout/theme/lumo/vaadin-drawer-toggle.js"
 )
 public interface DrawerToggleElement extends ButtonElement {
 	static String TAGNAME() {

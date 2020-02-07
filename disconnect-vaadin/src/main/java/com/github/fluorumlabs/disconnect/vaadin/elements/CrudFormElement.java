@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-crud/vaadin-crud-form.js"
+		module = "@vaadin/vaadin-crud/theme/lumo/vaadin-crud-form.js"
 )
 public interface CrudFormElement<ITEM extends Any> extends HTMLElement, IncludedMixin {
 	static String TAGNAME() {

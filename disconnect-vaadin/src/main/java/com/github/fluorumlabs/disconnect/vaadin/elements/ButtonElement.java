@@ -53,7 +53,7 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-button/vaadin-button.js"
+		module = "@vaadin/vaadin-button/theme/lumo/vaadin-button.js"
 )
 public interface ButtonElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {

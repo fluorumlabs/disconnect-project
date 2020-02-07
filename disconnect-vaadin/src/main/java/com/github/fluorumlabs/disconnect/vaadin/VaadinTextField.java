@@ -3,10 +3,12 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.elements.TextFieldElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasTextFieldMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
+import js.extras.JsEnum;
 
 import javax.annotation.Nullable;
 
@@ -74,7 +76,7 @@ import javax.annotation.Nullable;
  */
 public class VaadinTextField extends AbstractComponent<TextFieldElement>
 		implements HasTextFieldMixin<TextFieldElement, VaadinTextField>,
-		HasThemableMixin<TextFieldElement, VaadinTextField>,
+		HasThemableMixin<VaadinTextField.Variant, TextFieldElement, VaadinTextField>,
 		HasSlots<TextFieldElement>,
 		HasComponents<TextFieldElement, VaadinTextField, Component<?>> {
 	public VaadinTextField() {
@@ -144,4 +146,12 @@ public class VaadinTextField extends AbstractComponent<TextFieldElement>
 	public HasSlots.Container suffixSlot() {
 		return slotted("suffix");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant SMALL = JsEnum.of("small");
+		public static final Variant ALIGN_CENTER = JsEnum.of("align-center");
+		public static final Variant ALIGN_RIGHT = JsEnum.of("align-right");
+	}
+
 }
+

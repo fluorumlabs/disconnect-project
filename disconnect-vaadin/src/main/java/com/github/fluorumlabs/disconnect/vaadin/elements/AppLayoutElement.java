@@ -116,7 +116,7 @@ import javax.annotation.Nullable;
 		module = "@vaadin/vaadin-app-layout/src/vaadin-app-layout.js"
 )
 @Import(
-		module = "@vaadin/vaadin-app-layout/vaadin-app-layout.js"
+		module = "@vaadin/vaadin-app-layout/theme/lumo/vaadin-app-layout.js"
 )
 public interface AppLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
 	static String TAGNAME() {

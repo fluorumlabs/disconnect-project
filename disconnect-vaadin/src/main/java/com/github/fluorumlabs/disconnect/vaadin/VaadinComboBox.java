@@ -179,7 +179,7 @@ public class VaadinComboBox<ITEM extends Any> extends AbstractComponent<ComboBox
 		HasControlStateMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
 		HasComboBoxDataProviderMixin<ITEM, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
 		HasComboBoxMixin<ITEM, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
-		HasThemableMixin<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
+		HasThemableMixin<VaadinTextField.Variant, ComboBoxElement<ITEM>, VaadinComboBox<ITEM>>,
 		HasSlots<ComboBoxElement<ITEM>>,
 		HasComponents<ComboBoxElement<ITEM>, VaadinComboBox<ITEM>, Component<?>> {
 	public VaadinComboBox() {

@@ -1,7 +1,6 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.NotificationCard;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -26,7 +25,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinNotificationCard extends AbstractComponent<NotificationCard>
-		implements HasThemableMixin<NotificationCard, VaadinNotificationCard>,
+		implements
 		HasSlots<NotificationCard>,
 		HasComponents<NotificationCard, VaadinNotificationCard, Component<?>> {
 	public VaadinNotificationCard() {

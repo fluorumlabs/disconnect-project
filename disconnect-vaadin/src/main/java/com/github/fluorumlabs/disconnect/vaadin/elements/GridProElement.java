@@ -24,7 +24,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro.js"
+		module = "@vaadin/vaadin-grid-pro/theme/lumo/vaadin-grid-pro.js"
 )
 public interface GridProElement extends HTMLElement, InlineEditingMixin {
 	static String TAGNAME() {

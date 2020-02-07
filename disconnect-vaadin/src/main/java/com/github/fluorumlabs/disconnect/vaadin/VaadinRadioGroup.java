@@ -4,10 +4,12 @@ import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEven
 import com.github.fluorumlabs.disconnect.polymer.types.StringPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.RadioGroupElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import js.extras.JsEnum;
 
 import javax.annotation.Nullable;
 
@@ -51,7 +53,7 @@ import javax.annotation.Nullable;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinRadioGroup extends AbstractComponent<RadioGroupElement>
-		implements HasThemableMixin<RadioGroupElement, VaadinRadioGroup>,
+		implements HasThemableMixin<VaadinRadioGroup.Variant, RadioGroupElement, VaadinRadioGroup>,
 		HasComponents<RadioGroupElement, VaadinRadioGroup, Component<?>> {
 	public VaadinRadioGroup() {
 		super(RadioGroupElement.TAGNAME());
@@ -195,4 +197,10 @@ public class VaadinRadioGroup extends AbstractComponent<RadioGroupElement>
 	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
 		return createEvent("value-changed");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant VERTICAL = JsEnum.of("vertical");
+
+	}
+
 }

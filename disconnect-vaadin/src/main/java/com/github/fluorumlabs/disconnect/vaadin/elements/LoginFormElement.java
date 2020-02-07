@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-login/vaadin-login-form.js"
+		module = "@vaadin/vaadin-login/theme/lumo/vaadin-login-form.js"
 )
 public interface LoginFormElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
 	static String TAGNAME() {

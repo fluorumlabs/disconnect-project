@@ -118,7 +118,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-select/vaadin-select.js"
+		module = "@vaadin/vaadin-select/theme/lumo/vaadin-select.js"
 )
 public interface SelectElement extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin {
 	static String TAGNAME() {

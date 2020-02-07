@@ -179,7 +179,7 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-combo-box/vaadin-combo-box.js"
+		module = "@vaadin/vaadin-combo-box/theme/lumo/vaadin-combo-box.js"
 )
 public interface ComboBoxElement<ITEM extends Any> extends HTMLElement,
 		ElementMixin,

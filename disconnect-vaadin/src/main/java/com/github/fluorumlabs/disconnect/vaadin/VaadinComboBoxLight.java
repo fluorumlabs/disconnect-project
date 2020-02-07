@@ -3,7 +3,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.elements.ComboBoxLightElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasComboBoxDataProviderMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasComboBoxMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -54,7 +53,6 @@ import javax.annotation.Nullable;
 public class VaadinComboBoxLight<ITEM extends Any> extends AbstractComponent<ComboBoxLightElement<ITEM>>
 		implements HasComboBoxDataProviderMixin<ITEM, ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
 		HasComboBoxMixin<ITEM, ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
-		HasThemableMixin<ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>>,
 		HasComponents<ComboBoxLightElement<ITEM>, VaadinComboBoxLight<ITEM>, Component<?>> {
 	public VaadinComboBoxLight() {
 		super(ComboBoxLightElement.TAGNAME());

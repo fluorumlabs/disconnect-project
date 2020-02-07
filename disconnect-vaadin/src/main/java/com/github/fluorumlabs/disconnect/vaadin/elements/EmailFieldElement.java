@@ -22,7 +22,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 
-		module = "@vaadin/vaadin-text-field/vaadin-email-field.js"
+		module = "@vaadin/vaadin-text-field/theme/lumo/vaadin-email-field.js"
 )
 public interface EmailFieldElement extends TextFieldElement {
 	static String TAGNAME() {

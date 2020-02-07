@@ -5,11 +5,12 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.RichTextEditorElement;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.RichTextEditorI18n;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Event;
+import js.extras.JsEnum;
 
 import javax.annotation.Nullable;
 import javax.annotation.Untainted;
@@ -86,7 +87,7 @@ import javax.annotation.Untainted;
  */
 public class VaadinRichTextEditor extends AbstractComponent<RichTextEditorElement>
 		implements HasElementMixin<RichTextEditorElement, VaadinRichTextEditor>,
-		HasThemableMixin<RichTextEditorElement, VaadinRichTextEditor>,
+		HasThemableMixin<VaadinRichTextEditor.Variant, RichTextEditorElement, VaadinRichTextEditor>,
 		HasComponents<RichTextEditorElement, VaadinRichTextEditor, Component<?>> {
 	public VaadinRichTextEditor() {
 		super(RichTextEditorElement.TAGNAME());
@@ -199,13 +200,6 @@ public class VaadinRichTextEditor extends AbstractComponent<RichTextEditorElemen
 	}
 
 	/**
-	 * Fired when the user commits a value change.
-	 */
-	public ObservableEvent<Event> changeEvent() {
-		return createEvent("change");
-	}
-
-	/**
 	 * Fired when the <code>value</code> property changes.
 	 */
 	public ObservableEvent<StringPropertyChangeEvent> valueChangedEvent() {
@@ -218,4 +212,11 @@ public class VaadinRichTextEditor extends AbstractComponent<RichTextEditorElemen
 	public ObservableEvent<StringPropertyChangeEvent> htmlValueChangedEvent() {
 		return createEvent("html-value-changed");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant NO_BORDER = JsEnum.of("no-border");
+		public static final Variant COMPACT = JsEnum.of("compact");
+
+	}
+
 }

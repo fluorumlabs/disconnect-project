@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
 public class VaadinTimePicker extends AbstractComponent<TimePickerElement>
 		implements HasElementMixin<TimePickerElement, VaadinTimePicker>,
 		HasControlStateMixin<TimePickerElement, VaadinTimePicker>,
-		HasThemableMixin<TimePickerElement, VaadinTimePicker>,
+		HasThemableMixin<VaadinTextField.Variant, TimePickerElement, VaadinTimePicker>,
 		HasComponents<TimePickerElement, VaadinTimePicker, Component<?>> {
 	public VaadinTimePicker() {
 		super(TimePickerElement.TAGNAME());

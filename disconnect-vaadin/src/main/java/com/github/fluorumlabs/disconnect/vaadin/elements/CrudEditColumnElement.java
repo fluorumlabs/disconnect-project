@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-crud/vaadin-crud-edit-column.js"
+		module = "@vaadin/vaadin-crud/theme/lumo/vaadin-crud-edit-column.js"
 )
 public interface CrudEditColumnElement extends HTMLElement {
 	static String TAGNAME() {

@@ -30,7 +30,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 		symbols = "NotificationCard",
-		module = "@vaadin/vaadin-notification/vaadin-notification.js"
+		module = "@vaadin/vaadin-notification/theme/lumo/vaadin-notification.js"
 )
 public interface NotificationCard extends HTMLElement, ThemableMixin {
 	static String TAGNAME() {

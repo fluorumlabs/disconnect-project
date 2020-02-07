@@ -7,7 +7,6 @@ import js.util.iterable.IntIterableIterator;
 import js.util.iterable.IterableIterator;
 import js.util.iterable.StringIterableIterator;
 import org.teavm.jso.JSBody;
-import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
 
@@ -52,7 +51,7 @@ public interface DOMTokenList extends StringArrayLike {
      * Throws an "InvalidCharacterError" DOMException if one of the arguments contains any ASCII whitespace.
      */
     @JSBody(params = {"tokens"}, script = "this.add.apply(this, tokens);")
-    void add(@JSByRef String... tokens);
+    void add(String... tokens);
 
     /**
      * Returns true if token is present, and false otherwise.
@@ -73,7 +72,7 @@ public interface DOMTokenList extends StringArrayLike {
      * Throws an "InvalidCharacterError" DOMException if one of the arguments contains any ASCII whitespace.
      */
     @JSBody(params = {"tokens"}, script = "this.remove.apply(this, tokens);")
-    void remove(@JSByRef String... tokens);
+    void remove(String... tokens);
 
     /**
      * Replaces token with newToken.
@@ -84,7 +83,7 @@ public interface DOMTokenList extends StringArrayLike {
      * <p>
      * Throws an "InvalidCharacterError" DOMException if one of the arguments contains any ASCII whitespace.
      */
-    void replace(String oldToken, String newToken);
+    boolean replace(String oldToken, String newToken);
 
     /**
      * Returns true if token is in the associated attribute's supported tokens. Returns false otherwise.

@@ -19,7 +19,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 
-		module = "@vaadin/vaadin-crud/vaadin-crud-edit-column.js"
+		module = "@vaadin/vaadin-crud/theme/lumo/vaadin-crud-edit-column.js"
 )
 public interface CrudEditElement extends HTMLElement {
 	static String TAGNAME() {

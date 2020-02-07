@@ -2,7 +2,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.DatePickerLightElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasDatePickerMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -59,8 +58,7 @@ import javax.annotation.Nullable;
  * is propagated to the internal themable components listed above.
  */
 public class VaadinDatePickerLight extends AbstractComponent<DatePickerLightElement>
-		implements HasThemableMixin<DatePickerLightElement, VaadinDatePickerLight>,
-		HasDatePickerMixin<DatePickerLightElement, VaadinDatePickerLight>,
+		implements HasDatePickerMixin<DatePickerLightElement, VaadinDatePickerLight>,
 		HasComponents<DatePickerLightElement, VaadinDatePickerLight, Component<?>> {
 	public VaadinDatePickerLight() {
 		super(DatePickerLightElement.TAGNAME());

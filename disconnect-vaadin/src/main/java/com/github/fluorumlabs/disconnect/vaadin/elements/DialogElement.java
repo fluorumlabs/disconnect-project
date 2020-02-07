@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-dialog/vaadin-dialog.js"
+		module = "@vaadin/vaadin-dialog/theme/lumo/vaadin-dialog.js"
 )
 public interface DialogElement extends HTMLElement, ElementMixin, ThemePropertyMixin {
 	static String TAGNAME() {

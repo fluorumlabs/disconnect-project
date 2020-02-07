@@ -401,10 +401,4 @@ public interface HasDatePickerMixin<E extends DatePickerMixin, T extends Compone
 		return getNode().checkValidity(value);
 	}
 
-	/**
-	 * Fired when the user commits a value change.
-	 */
-	default ObservableEvent<Event> changeEvent() {
-		return createEvent("change");
-	}
 }

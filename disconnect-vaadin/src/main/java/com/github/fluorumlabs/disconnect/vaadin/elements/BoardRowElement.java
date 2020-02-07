@@ -48,7 +48,7 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-board/vaadin-board-row.js"
+		module = "@vaadin/vaadin-board/theme/lumo/vaadin-board-row.js"
 )
 public interface BoardRowElement extends HTMLElement, ElementMixin {
 	static String TAGNAME() {

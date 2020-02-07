@@ -129,7 +129,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-crud/vaadin-crud.js"
+		module = "@vaadin/vaadin-crud/theme/lumo/vaadin-crud.js"
 )
 public interface CrudElement<ITEM extends Any> extends HTMLElement, ElementMixin, ThemableMixin {
 	static String TAGNAME() {

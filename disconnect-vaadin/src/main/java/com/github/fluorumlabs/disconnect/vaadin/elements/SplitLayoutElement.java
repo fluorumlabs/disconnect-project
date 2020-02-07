@@ -144,7 +144,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-split-layout/vaadin-split-layout.js"
+		module = "@vaadin/vaadin-split-layout/theme/lumo/vaadin-split-layout.js"
 )
 public interface SplitLayoutElement extends HTMLElement, ThemableMixin, GestureEventListeners {
 	static String TAGNAME() {

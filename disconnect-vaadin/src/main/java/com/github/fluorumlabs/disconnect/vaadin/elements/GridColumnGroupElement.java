@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid/vaadin-grid-column-group.js"
+		module = "@vaadin/vaadin-grid/theme/lumo/vaadin-grid-column-group.js"
 )
 public interface GridColumnGroupElement<ITEM extends Any> extends HTMLElement, ColumnBaseMixin<ITEM> {
 	static String TAGNAME() {

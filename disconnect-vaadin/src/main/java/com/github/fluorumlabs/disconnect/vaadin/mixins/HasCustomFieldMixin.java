@@ -86,13 +86,6 @@ public interface HasCustomFieldMixin<E extends CustomFieldMixin, T extends Compo
 	}
 
 	/**
-	 * Fired when the user commits a value change for any of the internal inputs.
-	 */
-	default ObservableEvent<Event> changeEvent() {
-		return createEvent("change");
-	}
-
-	/**
 	 * Fired on Tab keydown triggered from the internal inputs,
 	 * meaning focus will not leave the inputs.
 	 */

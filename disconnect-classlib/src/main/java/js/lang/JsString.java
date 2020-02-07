@@ -4,6 +4,7 @@ import js.extras.JsEnum;
 import js.intl.CollatorOptions;
 import js.util.RegExp;
 import js.util.RegExpMatchArray;
+import js.util.collections.Array;
 import js.util.iterable.StringIterable;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSByRef;
@@ -25,7 +26,7 @@ public interface JsString extends StringIterable, Any {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params = "value", script = "return String()")
+    @JSBody(script = "return String()")
     static JsString create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
@@ -58,7 +59,7 @@ public interface JsString extends StringIterable, Any {
      * @param substitutions A set of substitution values.
      */
     @JSBody(params = {"template", "substitutions"}, script = "return String.raw.apply(String, [template].concat(substitutions))")
-    static String raw(TemplateStringsArray template, Any... substitutions) {
+    static JsString raw(TemplateStringsArray template, Any... substitutions) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -68,7 +69,7 @@ public interface JsString extends StringIterable, Any {
     String toString();
 
     @JSBody(params = "pos", script = "return this.charAt(pos)")
-    String charAt(int pos);
+    JsString charAt(int pos);
 
     /**
      * Returns the Unicode value of the character at the specified location.
@@ -83,7 +84,7 @@ public interface JsString extends StringIterable, Any {
      * @param strings The strings to append to the end of the string.
      */
     @JSBody(params = "strings", script = "return this.concat.apply(this, strings)")
-    String concat(@JSByRef String... strings);
+    JsString concat(@JSByRef String... strings);
 
     /**
      * Returns the position of the first occurrence of a substring.
@@ -144,9 +145,9 @@ public interface JsString extends StringIterable, Any {
      * @param searchValue  A string to search for.
      * @param replaceValue A string containing the text to replace for every successful match of searchValue in this string.
      */
-    String replace(String searchValue, String replaceValue);
+    JsString replace(String searchValue, String replaceValue);
 
-    String replace(RegExp searchValue, String replaceValue);
+    JsString replace(RegExp searchValue, String replaceValue);
 
     /**
      * Replaces text in a string, using a regular expression or search string.
@@ -154,9 +155,9 @@ public interface JsString extends StringIterable, Any {
      * @param searchValue A string to search for.
      * @param replacer    A function that returns the replacement text.
      */
-    String replace(String searchValue, Replacer replacer);
+    JsString replace(String searchValue, Replacer replacer);
 
-    String replace(RegExp searchValue, Replacer replacer);
+    JsString replace(RegExp searchValue, Replacer replacer);
 
     /**
      * Finds the first substring match in a regular expression search.
@@ -174,11 +175,11 @@ public interface JsString extends StringIterable, Any {
      * @param end   The index to the end of the specified portion of stringObj. The substring includes the characters up to, but not including, the character indicated by end.
      *              If this value is not specified, the substring continues to the end of stringObj.
      */
-    String slice(int start, int end);
+    JsString slice(int start, int end);
 
-    String slice(int start);
+    JsString slice(int start);
 
-    String slice();
+    JsString slice();
 
     /**
      * Split a string into substrings using the specified separator and return them as an array.
@@ -186,13 +187,13 @@ public interface JsString extends StringIterable, Any {
      * @param separator A string that identifies character or characters to use in separating the string. If omitted, a single-element array containing the entire string is returned.
      * @param limit     A value used to limit the number of elements returned in the array.
      */
-    String[] split(RegExp separator, int limit);
+    Array<JsString> split(RegExp separator, int limit);
 
-    String[] split(String separator, int limit);
+    Array<JsString> split(String separator, int limit);
 
-    String[] split(RegExp separator);
+    Array<JsString> split(RegExp separator);
 
-    String[] split(String separator);
+    Array<JsString> split(String separator);
 
     /**
      * Returns the substring at the specified location within a String object.
@@ -201,42 +202,42 @@ public interface JsString extends StringIterable, Any {
      * @param end   Zero-based index number indicating the end of the substring. The substring includes the characters up to, but not including, the character indicated by end.
      *              If end is omitted, the characters from start through the end of the original string are returned.
      */
-    String substring(int start, int end);
+    JsString substring(int start, int end);
 
-    String substring(int start);
+    JsString substring(int start);
 
     /**
      * Converts all the alphabetic characters in a string to lowercase.
      */
-    String toLowerCase();
+    JsString toLowerCase();
 
     /**
      * Converts all alphabetic characters to lowercase, taking into account the host environment's current locale.
      */
-    String toLocaleLowerCase(String locales);
+    JsString toLocaleLowerCase(String locales);
 
-    String toLocaleLowerCase(@JSByRef String[] locales);
+    JsString toLocaleLowerCase(@JSByRef String[] locales);
 
-    String toLocaleLowerCase();
+    JsString toLocaleLowerCase();
 
     /**
      * Converts all the alphabetic characters in a string to uppercase.
      */
-    String toUpperCase();
+    JsString toUpperCase();
 
     /**
      * Returns a string where all alphabetic characters have been converted to uppercase, taking into account the host environment's current locale.
      */
-    String toLocaleUpperCase(String locales);
+    JsString toLocaleUpperCase(String locales);
 
-    String toLocaleUpperCase(@JSByRef String[] locales);
+    JsString toLocaleUpperCase(@JSByRef String[] locales);
 
-    String toLocaleUpperCase();
+    JsString toLocaleUpperCase();
 
     /**
      * Removes the leading and trailing white space and line terminator characters from a string.
      */
-    String trim();
+    JsString trim();
 
     /**
      * Returns the length of a String object.
@@ -280,13 +281,13 @@ public interface JsString extends StringIterable, Any {
      * @param form Applicable values: "NFC", "NFD", "NFKC", or "NFKD", If not specified default
      *             is "NFC"
      */
-    String normalize(Form form);
+    JsString normalize(Form form);
 
     /**
      * Returns the String value result of normalizing the string into the normalization form
      * named by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.
      */
-    String normalize();
+    JsString normalize();
 
     /**
      * Returns a String value that is made from count copies appended together. If count is 0,
@@ -294,7 +295,7 @@ public interface JsString extends StringIterable, Any {
      *
      * @param count number of copies to append
      */
-    String repeat(int count);
+    JsString repeat(int count);
 
     /**
      * Returns true if the sequence of elements of searchString converted to a String is the
@@ -308,72 +309,72 @@ public interface JsString extends StringIterable, Any {
      *
      * @param name
      */
-    String anchor(String name);
+    JsString anchor(String name);
 
     /**
      * Returns a <big> HTML element
      */
-    String big();
+    JsString big();
 
     /**
      * Returns a <blink> HTML element
      */
-    String blink();
+    JsString blink();
 
     /**
      * Returns a <b> HTML element
      */
-    String bold();
+    JsString bold();
 
     /**
      * Returns a <tt> HTML element
      */
-    String fixed();
+    JsString fixed();
 
     /**
      * Returns a <font> HTML element and sets the color attribute value
      */
-    String fontcolor(String color);
+    JsString fontcolor(String color);
 
     /**
      * Returns a <font> HTML element and sets the size attribute value
      */
-    String fontsize(int size);
+    JsString fontsize(int size);
 
     /**
      * Returns a <font> HTML element and sets the size attribute value
      */
-    String fontsize(String size);
+    JsString fontsize(String size);
 
     /**
      * Returns an <i> HTML element
      */
-    String italics();
+    JsString italics();
 
     /**
      * Returns an <a> HTML element and sets the href attribute value
      */
-    String link(String url);
+    JsString link(String url);
 
     /**
      * Returns a <small> HTML element
      */
-    String small();
+    JsString small();
 
     /**
      * Returns a <strike> HTML element
      */
-    String strike();
+    JsString strike();
 
     /**
      * Returns a <sub> HTML element
      */
-    String sub();
+    JsString sub();
 
     /**
      * Returns a <sup> HTML element
      */
-    String sup();
+    JsString sup();
 
     @JSFunctor
     @FunctionalInterface

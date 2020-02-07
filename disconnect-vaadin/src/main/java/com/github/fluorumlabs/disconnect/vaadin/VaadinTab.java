@@ -4,9 +4,11 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.TabElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasItemMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
+import js.extras.JsEnum;
 
 /**
  * <code>&lt;vaadin-tab&gt;</code> is a Web Component providing an accessible and customizable tab.
@@ -35,10 +37,16 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinTab extends AbstractComponent<TabElement> implements HasElementMixin<TabElement, VaadinTab>,
-		HasThemableMixin<TabElement, VaadinTab>,
+		HasThemableMixin<VaadinTab.Variant, TabElement, VaadinTab>,
 		HasItemMixin<TabElement, VaadinTab>,
 		HasComponents<TabElement, VaadinTab, Component<?>> {
 	public VaadinTab() {
 		super(TabElement.TAGNAME());
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant ICON_ON_TOP = JsEnum.of("icon-on-top");
+
+	}
+
 }

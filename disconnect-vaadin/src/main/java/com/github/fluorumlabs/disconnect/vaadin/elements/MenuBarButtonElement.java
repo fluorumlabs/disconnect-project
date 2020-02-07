@@ -10,7 +10,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 
-		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar-button.js"
+		module = "@vaadin/vaadin-menu-bar/theme/lumo/vaadin-menu-bar-button.js"
 )
 public interface MenuBarButtonElement extends ButtonElement {
 	static String TAGNAME() {

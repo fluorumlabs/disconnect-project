@@ -5,11 +5,13 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.DetailsElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import js.extras.JsEnum;
 
 /**
  * <code>&lt;vaadin-details&gt;</code> is a Web Component which the creates an
@@ -53,7 +55,7 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 public class VaadinDetails extends AbstractComponent<DetailsElement>
 		implements HasControlStateMixin<DetailsElement, VaadinDetails>,
 		HasElementMixin<DetailsElement, VaadinDetails>,
-		HasThemableMixin<DetailsElement, VaadinDetails>,
+		HasThemableMixin<VaadinDetails.Variant, DetailsElement, VaadinDetails>,
 		HasSlots<DetailsElement>,
 		HasComponents<DetailsElement, VaadinDetails, Component<?>> {
 	public VaadinDetails() {
@@ -85,4 +87,13 @@ public class VaadinDetails extends AbstractComponent<DetailsElement>
 	public HasSlots.Container summarySlot() {
 		return slotted("summary");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant FILLED = JsEnum.of("filled");
+
+		public static final Variant SMALL = JsEnum.of("small");
+
+		public static final Variant REVERSE = JsEnum.of("reverse");
+	}
+
 }

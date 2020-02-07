@@ -13,7 +13,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 
-		module = "@vaadin/vaadin-context-menu/vaadin-contextmenu-items-mixin.js"
+		module = "@vaadin/vaadin-context-menu/theme/lumo/vaadin-contextmenu-items-mixin.js"
 )
 public interface ContextMenuListBoxElement extends ListBoxElement {
 	static String TAGNAME() {

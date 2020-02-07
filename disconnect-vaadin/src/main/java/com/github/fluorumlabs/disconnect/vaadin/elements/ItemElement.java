@@ -53,7 +53,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 
-		module = "@vaadin/vaadin-item/vaadin-item.js"
+		module = "@vaadin/vaadin-item/theme/lumo/vaadin-item.js"
 )
 public interface ItemElement extends HTMLElement, ItemMixin, ThemableMixin {
 	static String TAGNAME() {

@@ -29,7 +29,7 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-board/vaadin-board.js"
+		module = "@vaadin/vaadin-board/theme/lumo/vaadin-board.js"
 )
 public interface BoardElement extends HTMLElement, ElementMixin {
 	static String TAGNAME() {

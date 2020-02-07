@@ -3,10 +3,12 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridTreeToggleElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
+import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import js.extras.JsEnum;
 
 /**
  * <code>&lt;vaadin-grid-tree-toggle&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code>
@@ -62,7 +64,7 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
  * </table>
  */
 public class VaadinGridTreeToggle extends AbstractComponent<GridTreeToggleElement>
-		implements HasThemableMixin<GridTreeToggleElement, VaadinGridTreeToggle>,
+		implements HasThemableMixin<VaadinGridTreeToggle.Variant, GridTreeToggleElement, VaadinGridTreeToggle>,
 		HasComponents<GridTreeToggleElement, VaadinGridTreeToggle, Component<?>> {
 	public VaadinGridTreeToggle() {
 		super(GridTreeToggleElement.TAGNAME());
@@ -121,4 +123,10 @@ public class VaadinGridTreeToggle extends AbstractComponent<GridTreeToggleElemen
 	public ObservableEvent<BooleanPropertyChangeEvent> expandedChangedEvent() {
 		return createEvent("expanded-changed");
 	}
+
+	public abstract static class Variant extends ThemeVariant {
+		public static final Variant CONNECTORS = JsEnum.of("connectors");
+
+	}
+
 }

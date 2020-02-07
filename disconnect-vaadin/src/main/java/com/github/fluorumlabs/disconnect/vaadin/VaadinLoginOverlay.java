@@ -4,7 +4,6 @@ import com.github.fluorumlabs.disconnect.polymer.types.StringPropertyChangeEvent
 import com.github.fluorumlabs.disconnect.vaadin.elements.LoginOverlayElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasLoginMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -30,7 +29,6 @@ import javax.annotation.Nullable;
  */
 public class VaadinLoginOverlay extends AbstractComponent<LoginOverlayElement>
 		implements HasElementMixin<LoginOverlayElement, VaadinLoginOverlay>,
-		HasThemableMixin<LoginOverlayElement, VaadinLoginOverlay>,
 		HasLoginMixin<LoginOverlayElement, VaadinLoginOverlay>,
 		HasComponents<LoginOverlayElement, VaadinLoginOverlay, Component<?>> {
 	public VaadinLoginOverlay() {

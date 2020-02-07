@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid/vaadin-grid-filter.js"
+		module = "@vaadin/vaadin-grid/theme/lumo/vaadin-grid-filter.js"
 )
 public interface GridFilterElement extends HTMLElement {
 	static String TAGNAME() {

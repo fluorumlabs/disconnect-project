@@ -271,7 +271,7 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-charts/vaadin-chart.js"
+		module = "@vaadin/vaadin-charts/theme/lumo/vaadin-chart.js"
 )
 public interface ChartElement extends HTMLElement {
 	static String TAGNAME() {

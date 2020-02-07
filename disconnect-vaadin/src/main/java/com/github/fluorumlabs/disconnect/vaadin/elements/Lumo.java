@@ -10,8 +10,7 @@ import js.web.dom.HTMLElement;
 		version = Vaadin.VERSION
 )
 @Import(
-		symbols = "Lumo",
-		module = "@vaadin/vaadin-lumo-styles/version.js"
+		module = "@vaadin/vaadin-lumo-styles/all-imports.js"
 )
 public interface Lumo extends HTMLElement {
 	static String TAGNAME() {

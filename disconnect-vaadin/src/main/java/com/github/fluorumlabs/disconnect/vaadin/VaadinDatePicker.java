@@ -6,7 +6,6 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.DatePickerElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasDatePickerMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -101,7 +100,6 @@ import javax.annotation.Nullable;
 public class VaadinDatePicker extends AbstractComponent<DatePickerElement>
 		implements HasElementMixin<DatePickerElement, VaadinDatePicker>,
 		HasControlStateMixin<DatePickerElement, VaadinDatePicker>,
-		HasThemableMixin<DatePickerElement, VaadinDatePicker>,
 		HasDatePickerMixin<DatePickerElement, VaadinDatePicker>,
 		HasGestureEventListeners<DatePickerElement, VaadinDatePicker>,
 		HasSlots<DatePickerElement>,

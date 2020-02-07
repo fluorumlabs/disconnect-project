@@ -17,7 +17,7 @@ import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 )
 @Import(
 
-		module = "@vaadin/vaadin-text-field/vaadin-integer-field.js"
+		module = "@vaadin/vaadin-text-field/theme/lumo/vaadin-integer-field.js"
 )
 public interface IntegerFieldElement extends NumberFieldElement {
 	static String TAGNAME() {

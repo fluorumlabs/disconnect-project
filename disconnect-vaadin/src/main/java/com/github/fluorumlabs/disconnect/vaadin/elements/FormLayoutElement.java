@@ -105,7 +105,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 
-		module = "@vaadin/vaadin-form-layout/vaadin-form-layout.js"
+		module = "@vaadin/vaadin-form-layout/theme/lumo/vaadin-form-layout.js"
 )
 public interface FormLayoutElement extends HTMLElement, ElementMixin, ThemableMixin {
 	static String TAGNAME() {

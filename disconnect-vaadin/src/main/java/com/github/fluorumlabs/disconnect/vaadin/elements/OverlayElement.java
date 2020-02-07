@@ -122,7 +122,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-overlay/vaadin-overlay.js"
+		module = "@vaadin/vaadin-overlay/theme/lumo/vaadin-overlay.js"
 )
 public interface OverlayElement extends HTMLElement, ThemableMixin {
 	static String TAGNAME() {

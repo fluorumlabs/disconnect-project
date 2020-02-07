@@ -54,7 +54,7 @@ import js.web.dom.HTMLElement;
 )
 @Import(
 
-		module = "@vaadin/vaadin-login/vaadin-login-form-wrapper.js"
+		module = "@vaadin/vaadin-login/theme/lumo/vaadin-login-form-wrapper.js"
 )
 public interface LoginFormWrapperElement extends HTMLElement, ElementMixin, ThemableMixin, LoginMixin {
 	static String TAGNAME() {

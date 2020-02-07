@@ -18,7 +18,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 
-		module = "@vaadin/vaadin-text-field/vaadin-number-field.js"
+		module = "@vaadin/vaadin-text-field/theme/lumo/vaadin-number-field.js"
 )
 public interface NumberFieldElement extends TextFieldElement {
 	static String TAGNAME() {

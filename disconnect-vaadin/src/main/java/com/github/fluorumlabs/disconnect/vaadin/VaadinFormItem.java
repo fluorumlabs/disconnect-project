@@ -1,7 +1,6 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.FormItemElement;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -108,8 +107,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
  * <a href="https://github.com/vaadin/vaadin-themable-mixin/wiki">ThemableMixin – how to apply styles for shadow parts</a>
  */
 public class VaadinFormItem extends AbstractComponent<FormItemElement>
-		implements HasThemableMixin<FormItemElement, VaadinFormItem>,
-		HasSlots<FormItemElement>,
+		implements HasSlots<FormItemElement>,
 		HasComponents<FormItemElement, VaadinFormItem, Component<?>> {
 	public VaadinFormItem() {
 		super(FormItemElement.TAGNAME());

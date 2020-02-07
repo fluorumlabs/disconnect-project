@@ -239,7 +239,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 
-		module = "@vaadin/vaadin-grid/vaadin-grid.js"
+		module = "@vaadin/vaadin-grid/theme/lumo/vaadin-grid.js"
 )
 public interface GridElement<ITEM extends Any> extends HTMLElement,
 		ThemableMixin,

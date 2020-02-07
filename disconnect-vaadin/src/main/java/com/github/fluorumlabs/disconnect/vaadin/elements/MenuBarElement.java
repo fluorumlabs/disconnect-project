@@ -50,7 +50,7 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
 
-		module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar.js"
+		module = "@vaadin/vaadin-menu-bar/theme/lumo/vaadin-menu-bar.js"
 )
 public interface MenuBarElement extends HTMLElement, ButtonsMixin, InteractionsMixin, ElementMixin, ThemableMixin {
 	static String TAGNAME() {

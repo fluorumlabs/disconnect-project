@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-checkbox/vaadin-checkbox.js"
+		module = "@vaadin/vaadin-checkbox/theme/lumo/vaadin-checkbox.js"
 )
 public interface CheckboxElement
 		extends HTMLElement, ElementMixin, ControlStateMixin, ThemableMixin, GestureEventListeners {

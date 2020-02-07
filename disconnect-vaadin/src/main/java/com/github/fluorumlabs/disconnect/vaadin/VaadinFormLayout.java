@@ -2,7 +2,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.FormLayoutElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ResponsiveStep;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
@@ -99,7 +98,6 @@ import js.util.collections.Array;
  */
 public class VaadinFormLayout extends AbstractComponent<FormLayoutElement>
 		implements HasElementMixin<FormLayoutElement, VaadinFormLayout>,
-		HasThemableMixin<FormLayoutElement, VaadinFormLayout>,
 		HasComponents<FormLayoutElement, VaadinFormLayout, Component<?>> {
 	public VaadinFormLayout() {
 		super(FormLayoutElement.TAGNAME());

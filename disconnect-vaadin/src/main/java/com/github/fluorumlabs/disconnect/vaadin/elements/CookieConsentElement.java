@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 )
 @Import(
 
-		module = "@vaadin/vaadin-cookie-consent/vaadin-cookie-consent.js"
+		module = "@vaadin/vaadin-cookie-consent/theme/lumo/vaadin-cookie-consent.js"
 )
 public interface CookieConsentElement extends HTMLElement, ElementMixin, ThemableMixin {
 	static String TAGNAME() {

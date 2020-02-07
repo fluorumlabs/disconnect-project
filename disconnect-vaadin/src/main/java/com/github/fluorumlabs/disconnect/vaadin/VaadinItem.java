@@ -2,7 +2,6 @@ package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.ItemElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasItemMixin;
-import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
@@ -48,7 +47,6 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * </table>
  */
 public class VaadinItem extends AbstractComponent<ItemElement> implements HasItemMixin<ItemElement, VaadinItem>,
-		HasThemableMixin<ItemElement, VaadinItem>,
 		HasComponents<ItemElement, VaadinItem, Component<?>> {
 	public VaadinItem() {
 		super(ItemElement.TAGNAME());
