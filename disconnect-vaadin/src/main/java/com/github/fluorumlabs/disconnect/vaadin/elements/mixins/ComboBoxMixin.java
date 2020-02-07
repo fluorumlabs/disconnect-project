@@ -99,7 +99,7 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	@JSProperty
-	void setItems(@JSByRef ITEM... items);
+	void setItems(ITEM... items);
 
 	@JSProperty
 	void setItems(Array<ITEM> items);
@@ -137,7 +137,7 @@ public interface ComboBoxMixin<ITEM extends Any> extends Element {
 	 * The items can be of either <code>String</code> or <code>Object</code> type.
 	 */
 	@JSProperty
-	void setFilteredItems(@JSByRef ITEM... filteredItems);
+	void setFilteredItems(ITEM... filteredItems);
 
 	@JSProperty
 	void setFilteredItems(Array<ITEM> filteredItems);

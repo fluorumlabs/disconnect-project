@@ -22,7 +22,7 @@ public interface RTCRtpTransceiverInit extends Any {
     Array<RTCRtpEncodingParameters> getSendEncodings();
 
     @JSProperty
-    void setSendEncodings(@JSByRef RTCRtpEncodingParameters... sendEncodings);
+    void setSendEncodings(RTCRtpEncodingParameters... sendEncodings);
 
     @JSProperty
     void setSendEncodings(Array<RTCRtpEncodingParameters> sendEncodings);
@@ -32,7 +32,7 @@ public interface RTCRtpTransceiverInit extends Any {
     Array<MediaStream> getStreams();
 
     @JSProperty
-    void setStreams(@JSByRef MediaStream... streams);
+    void setStreams(MediaStream... streams);
 
     @JSProperty
     void setStreams(Array<MediaStream> streams);

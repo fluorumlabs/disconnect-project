@@ -14,7 +14,7 @@ public interface PaymentDetailsBase extends Any {
     Array<PaymentItem> getDisplayItems();
 
     @JSProperty
-    void setDisplayItems(@JSByRef PaymentItem... displayItems);
+    void setDisplayItems(PaymentItem... displayItems);
 
     @JSProperty
     void setDisplayItems(Array<PaymentItem> displayItems);
@@ -24,7 +24,7 @@ public interface PaymentDetailsBase extends Any {
     Array<PaymentDetailsModifier> getModifiers();
 
     @JSProperty
-    void setModifiers(@JSByRef PaymentDetailsModifier... modifiers);
+    void setModifiers(PaymentDetailsModifier... modifiers);
 
     @JSProperty
     void setModifiers(Array<PaymentDetailsModifier> modifiers);
@@ -34,7 +34,7 @@ public interface PaymentDetailsBase extends Any {
     Array<PaymentShippingOption> getShippingOptions();
 
     @JSProperty
-    void setShippingOptions(@JSByRef PaymentShippingOption... shippingOptions);
+    void setShippingOptions(PaymentShippingOption... shippingOptions);
 
     @JSProperty
     void setShippingOptions(Array<PaymentShippingOption> shippingOptions);

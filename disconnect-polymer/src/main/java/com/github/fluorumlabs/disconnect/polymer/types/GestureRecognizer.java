@@ -22,7 +22,7 @@ public interface GestureRecognizer extends Any {
 	String[] getDeps();
 
 	@JSProperty
-	void setDeps(@JSByRef String... deps);
+	void setDeps(String... deps);
 
 	@JSProperty
 	JsRunnable getReset();
@@ -82,5 +82,5 @@ public interface GestureRecognizer extends Any {
 	String[] getEmits();
 
 	@JSProperty
-	void setEmits(@JSByRef String... emits);
+	void setEmits(String... emits);
 }

@@ -36,7 +36,7 @@ public abstract class Promise<T extends Any> extends PromiseLike<T> {
      * @returns A new Promise.
      */
     @JSBody(params = "values", script = "return Promise.all(values)")
-    public static <T extends Any> Promise<Array<T>> all(@JSByRef PromiseLike<T>... values) {
+    public static <T extends Any> Promise<Array<T>> all(PromiseLike<T>... values) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

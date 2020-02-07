@@ -14,7 +14,7 @@ public interface RTCDtlsParameters extends Any {
     Array<RTCDtlsFingerprint> getFingerprints();
 
     @JSProperty
-    void setFingerprints(@JSByRef RTCDtlsFingerprint... fingerprints);
+    void setFingerprints(RTCDtlsFingerprint... fingerprints);
 
     @JSProperty
     void setFingerprints(Array<RTCDtlsFingerprint> fingerprints);

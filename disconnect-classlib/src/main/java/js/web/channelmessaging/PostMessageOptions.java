@@ -14,7 +14,7 @@ public interface PostMessageOptions extends Any {
     Array<Any> getTransfer();
 
     @JSProperty
-    void setTransfer(@JSByRef Any... transfer);
+    void setTransfer(Any... transfer);
 
     @JSProperty
     void setTransfer(Array<Any> transfer);

@@ -70,21 +70,21 @@ public interface BaseAudioContext extends EventTarget {
 
     GainNode createGain();
 
-    IIRFilterNode createIIRFilter(@JSByRef double[] feedforward, @JSByRef double[] feedback);
+    IIRFilterNode createIIRFilter(double[] feedforward, double[] feedback);
 
-    IIRFilterNode createIIRFilter(@JSByRef DoubleIterable feedforward, @JSByRef DoubleIterable feedback);
+    IIRFilterNode createIIRFilter(DoubleIterable feedforward, DoubleIterable feedback);
 
     OscillatorNode createOscillator();
 
     PannerNode createPanner();
 
-    PeriodicWave createPeriodicWave(@JSByRef double[] real, @JSByRef double[] imag, PeriodicWaveConstraints constraints);
+    PeriodicWave createPeriodicWave(double[] real, double[] imag, PeriodicWaveConstraints constraints);
 
     PeriodicWave createPeriodicWave(Float32Array real, Float32Array imag, PeriodicWaveConstraints constraints);
 
     PeriodicWave createPeriodicWave(DoubleIterable real, DoubleIterable imag, PeriodicWaveConstraints constraints);
 
-    PeriodicWave createPeriodicWave(@JSByRef double[] real, @JSByRef double[] imag);
+    PeriodicWave createPeriodicWave(double[] real, double[] imag);
 
     PeriodicWave createPeriodicWave(Float32Array real, Float32Array imag);
 

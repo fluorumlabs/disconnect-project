@@ -176,7 +176,7 @@ public interface UploadI18n extends Any {
 		String[] getSize();
 
 		@JSProperty
-		void setSize(@JSByRef String... size);
+		void setSize(String... size);
 	}
 
 	@JSFunctor

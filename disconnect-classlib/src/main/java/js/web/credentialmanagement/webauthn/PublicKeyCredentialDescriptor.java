@@ -21,7 +21,7 @@ public interface PublicKeyCredentialDescriptor extends Any {
     Array<AuthenticatorTransport> getTransports();
 
     @JSProperty
-    void setTransports(@JSByRef AuthenticatorTransport... transports);
+    void setTransports(AuthenticatorTransport... transports);
 
     @JSProperty
     void setTransports(Array<AuthenticatorTransport> transports);

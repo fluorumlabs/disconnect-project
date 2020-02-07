@@ -13,6 +13,6 @@ public interface StoreSiteSpecificExceptionsInformation extends StoreExceptionsI
     String[] getArrayOfDomainStrings();
 
     @JSProperty
-    void setArrayOfDomainStrings(@JSByRef String... arrayOfDomainStrings);
+    void setArrayOfDomainStrings(String... arrayOfDomainStrings);
 
 }

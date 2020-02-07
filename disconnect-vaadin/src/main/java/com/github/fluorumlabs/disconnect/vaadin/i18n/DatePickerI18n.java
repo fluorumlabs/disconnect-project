@@ -13,19 +13,19 @@ public interface DatePickerI18n extends Any {
 	String[] getMonthNames();
 
 	@JSProperty
-	void setMonthNames(@JSByRef String... monthNames);
+	void setMonthNames(String... monthNames);
 
 	@JSProperty
 	String[] getWeekdays();
 
 	@JSProperty
-	void setWeekdays(@JSByRef String... weekdays);
+	void setWeekdays(String... weekdays);
 
 	@JSProperty
 	String[] getWeekdaysShort();
 
 	@JSProperty
-	void setWeekdaysShort(@JSByRef String... weekdaysShort);
+	void setWeekdaysShort(String... weekdaysShort);
 
 	@JSProperty
 	int getFirstDayOfWeek();

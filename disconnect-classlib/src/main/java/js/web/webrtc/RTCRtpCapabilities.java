@@ -11,7 +11,7 @@ public interface RTCRtpCapabilities extends Any {
     Array<RTCRtpCodecCapability> getCodecs();
 
     @JSProperty
-    void setCodecs(@JSByRef RTCRtpCodecCapability... codecs);
+    void setCodecs(RTCRtpCodecCapability... codecs);
 
     @JSProperty
     void setCodecs(Array<RTCRtpCodecCapability> codecs);
@@ -20,7 +20,7 @@ public interface RTCRtpCapabilities extends Any {
     Array<RTCRtpHeaderExtensionCapability> getHeaderExtensions();
 
     @JSProperty
-    void setHeaderExtensions(@JSByRef RTCRtpHeaderExtensionCapability... headerExtensions);
+    void setHeaderExtensions(RTCRtpHeaderExtensionCapability... headerExtensions);
 
     @JSProperty
     void setHeaderExtensions(Array<RTCRtpHeaderExtensionCapability> headerExtensions);

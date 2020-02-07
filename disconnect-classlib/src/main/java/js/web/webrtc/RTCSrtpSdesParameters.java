@@ -21,7 +21,7 @@ public interface RTCSrtpSdesParameters extends Any {
     Array<RTCSrtpKeyParam> getKeyParams();
 
     @JSProperty
-    void setKeyParams(@JSByRef RTCSrtpKeyParam... keyParams);
+    void setKeyParams(RTCSrtpKeyParam... keyParams);
 
     @JSProperty
     void setKeyParams(Array<RTCSrtpKeyParam> keyParams);
@@ -31,7 +31,7 @@ public interface RTCSrtpSdesParameters extends Any {
     String[] getSessionParams();
 
     @JSProperty
-    void setSessionParams(@JSByRef String... sessionParams);
+    void setSessionParams(String... sessionParams);
 
     @JSProperty
     int getTag();

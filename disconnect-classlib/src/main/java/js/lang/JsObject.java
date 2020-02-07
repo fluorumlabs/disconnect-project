@@ -234,7 +234,7 @@ public interface JsObject extends Any {
      * @param sources One or more source objects from which to copy properties
      */
     @JSBody(params = {"target", "sources"}, script = "return Object.assign.apply(Object, [target].concat(sources))")
-    static <R extends Any> R assign(Any target, @JSByRef Any... sources) {
+    static <R extends Any> R assign(Any target, Any... sources) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

@@ -17,7 +17,7 @@ public interface StringArrayPropertyChangeEvent extends CustomEvent<StringArrayP
 		String[] getValue();
 
 		@JSProperty
-		void setValue(@JSByRef String... value);
+		void setValue(String... value);
 
 		@JSProperty
 		boolean getQueueProperty();

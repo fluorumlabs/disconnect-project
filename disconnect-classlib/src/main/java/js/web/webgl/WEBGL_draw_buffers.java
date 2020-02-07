@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 
 
 public interface WEBGL_draw_buffers extends Any {
-    void drawBuffersWEBGL(@JSByRef int... buffers);
+    void drawBuffersWEBGL(int... buffers);
 
     void drawBuffersWEBGL(IntIterable buffers);
 

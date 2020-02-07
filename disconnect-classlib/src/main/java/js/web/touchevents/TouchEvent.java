@@ -56,7 +56,7 @@ public interface TouchEvent extends UIEvent {
         Array<Touch> getChangedTouches();
 
         @JSProperty
-        void setChangedTouches(@JSByRef Touch... changedTouches);
+        void setChangedTouches(Touch... changedTouches);
 
         @JSProperty
         void setChangedTouches(Array<Touch> changedTouches);
@@ -66,7 +66,7 @@ public interface TouchEvent extends UIEvent {
         Array<Touch> getTargetTouches();
 
         @JSProperty
-        void setTargetTouches(@JSByRef Touch... targetTouches);
+        void setTargetTouches(Touch... targetTouches);
 
         @JSProperty
         void setTargetTouches(Array<Touch> targetTouches);
@@ -76,7 +76,7 @@ public interface TouchEvent extends UIEvent {
         Array<Touch> getTouches();
 
         @JSProperty
-        void setTouches(@JSByRef Touch... touches);
+        void setTouches(Touch... touches);
 
         @JSProperty
         void setTouches(Array<Touch> touches);

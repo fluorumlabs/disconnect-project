@@ -86,7 +86,7 @@ public interface RTCMediaStreamTrackStats extends RTCStats {
     String[] getSsrcIds();
 
     @JSProperty
-    void setSsrcIds(@JSByRef String... ssrcIds);
+    void setSsrcIds(String... ssrcIds);
 
     @JSProperty
     @Nullable

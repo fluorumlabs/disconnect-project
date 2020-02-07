@@ -64,7 +64,7 @@ public interface ItemsMixin extends Element {
 	 * </code></pre>
 	 */
 	@JSProperty
-	void setItems(@JSByRef MenuItem... items);
+	void setItems(MenuItem... items);
 
 	@JSProperty
 	void setItems(Array<MenuItem> items);

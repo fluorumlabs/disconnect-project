@@ -20,7 +20,7 @@ public interface MediaTrackCapabilities extends Any {
     boolean[] isAutoGainControl();
 
     @JSProperty
-    void setAutoGainControl(@JSByRef boolean... autoGainControl);
+    void setAutoGainControl(boolean... autoGainControl);
 
     @JSProperty
     @Nullable
@@ -41,14 +41,14 @@ public interface MediaTrackCapabilities extends Any {
     boolean[] isEchoCancellation();
 
     @JSProperty
-    void setEchoCancellation(@JSByRef boolean... echoCancellation);
+    void setEchoCancellation(boolean... echoCancellation);
 
     @JSProperty
     @Nullable
     String[] getFacingMode();
 
     @JSProperty
-    void setFacingMode(@JSByRef String... facingMode);
+    void setFacingMode(String... facingMode);
 
     @JSProperty
     @Nullable
@@ -83,14 +83,14 @@ public interface MediaTrackCapabilities extends Any {
     boolean[] isNoiseSuppression();
 
     @JSProperty
-    void setNoiseSuppression(@JSByRef boolean... noiseSuppression);
+    void setNoiseSuppression(boolean... noiseSuppression);
 
     @JSProperty
     @Nullable
     String[] getResizeMode();
 
     @JSProperty
-    void setResizeMode(@JSByRef String... resizeMode);
+    void setResizeMode(String... resizeMode);
 
     @JSProperty
     @Nullable

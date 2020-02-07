@@ -19,7 +19,7 @@ public interface AssertionOptions extends Any {
     void setAllowList(Array<ScopedCredentialDescriptor> allowList);
 
     @JSProperty
-    void setAllowList(@JSByRef ScopedCredentialDescriptor... allowList);
+    void setAllowList(ScopedCredentialDescriptor... allowList);
 
     @JSProperty
     @Nullable

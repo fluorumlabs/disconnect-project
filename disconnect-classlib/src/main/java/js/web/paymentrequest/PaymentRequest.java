@@ -26,7 +26,7 @@ public interface PaymentRequest extends EventTarget {
     }
 
     @JSBody(params = {"methodData", "details", "options"}, script = "return new PaymentRequest(methodData, details, options)")
-    static PaymentRequest create(@JSByRef PaymentMethodData[] methodData, PaymentDetailsInit details, PaymentOptions options) {
+    static PaymentRequest create(PaymentMethodData[] methodData, PaymentDetailsInit details, PaymentOptions options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -36,7 +36,7 @@ public interface PaymentRequest extends EventTarget {
     }
 
     @JSBody(params = {"methodData", "details"}, script = "return new PaymentRequest(methodData, details)")
-    static PaymentRequest create(@JSByRef PaymentMethodData[] methodData, PaymentDetailsInit details) {
+    static PaymentRequest create(PaymentMethodData[] methodData, PaymentDetailsInit details) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

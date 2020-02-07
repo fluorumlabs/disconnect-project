@@ -39,12 +39,12 @@ public interface ParentNode extends Node {
      * Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
      */
     @JSBody(params = "nodes", script = "this.append.apply(this, nodes)")
-    void append(@JSByRef Node... nodes);
+    void append(Node... nodes);
 
     void append(Array<Node> nodes);
 
     @JSBody(params = "nodes", script = "this.append.apply(this, nodes)")
-    void append(@JSByRef String... nodes);
+    void append(String... nodes);
 
     /**
      * Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -52,12 +52,12 @@ public interface ParentNode extends Node {
      * Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
      */
     @JSBody(params = "nodes", script = "this.prepend.apply(this, nodes)")
-    void prepend(@JSByRef Node... nodes);
+    void prepend(Node... nodes);
 
     void prepend(Array<Node> nodes);
 
     @JSBody(params = "nodes", script = "this.prepend.apply(this, nodes)")
-    void prepend(@JSByRef String... nodes);
+    void prepend(String... nodes);
 
     /**
      * Returns the first element that is a descendant of node that matches selectors.

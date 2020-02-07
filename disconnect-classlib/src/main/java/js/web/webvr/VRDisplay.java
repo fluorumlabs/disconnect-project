@@ -72,7 +72,7 @@ public interface VRDisplay extends EventTarget {
 
     AnimationFrameProvider.AnimationFrameHandle requestAnimationFrame(JsDoubleConsumer callback);
 
-    VoidPromise requestPresent(@JSByRef VRLayer... layers);
+    VoidPromise requestPresent(VRLayer... layers);
 
     VoidPromise requestPresent(Array<VRLayer> layers);
 

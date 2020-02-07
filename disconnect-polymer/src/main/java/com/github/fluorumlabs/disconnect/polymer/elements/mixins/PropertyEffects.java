@@ -73,9 +73,9 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 */
 	void linkPaths(String to, String from);
 
-	void linkPaths(@JSByRef String[] to, @JSByRef String[] from);
+	void linkPaths(String[] to, String[] from);
 
-	void linkPaths(@JSByRef Unknown[] to, @JSByRef Unknown[] from);
+	void linkPaths(Unknown[] to, Unknown[] from);
 
 	void linkPaths(Array<Unknown> to, Array<Unknown> from);
 
@@ -90,9 +90,9 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 */
 	void unlinkPaths(String path);
 
-	void unlinkPaths(@JSByRef String... path);
+	void unlinkPaths(String... path);
 
-	void unlinkPaths(@JSByRef Unknown... path);
+	void unlinkPaths(Unknown... path);
 
 	void unlinkPaths(Array<Unknown> path);
 
@@ -129,7 +129,7 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 *                reported in index order (raw results from <code>Object.observe</code> are not
 	 *                ordered and must be normalized/merged before notifying).
 	 */
-	<T extends Any> void notifySplices(String path, @JSByRef SpliceRecord<T>... splices);
+	<T extends Any> void notifySplices(String path, SpliceRecord<T>... splices);
 
 	<T extends Any> void notifySplices(String path, Array<SpliceRecord<T>> splices);
 
@@ -156,10 +156,10 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	<T extends Any> T get(String path, Any root);
 
 	@Nullable
-	<T extends Any> T get(@JSByRef String[] path, Any root);
+	<T extends Any> T get(String[] path, Any root);
 
 	@Nullable
-	<T extends Any> T get(@JSByRef Unknown[] path, Any root);
+	<T extends Any> T get(Unknown[] path, Any root);
 
 	@Nullable
 	<T extends Any> T get(Array<Unknown> path, Any root);
@@ -168,10 +168,10 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	<T extends Any> T get(String path);
 
 	@Nullable
-	<T extends Any> T get(@JSByRef String[] path);
+	<T extends Any> T get(String[] path);
 
 	@Nullable
-	<T extends Any> T get(@JSByRef Unknown[] path);
+	<T extends Any> T get(Unknown[] path);
 
 	@Nullable
 	<T extends Any> T get(Array<Unknown> path);
@@ -197,17 +197,17 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 */
 	void set(String path, Any value, Any root);
 
-	void set(@JSByRef String[] path, Any value, Any root);
+	void set(String[] path, Any value, Any root);
 
-	void set(@JSByRef Unknown[] path, Any value, Any root);
+	void set(Unknown[] path, Any value, Any root);
 
 	void set(Array<Unknown> path, Any value, Any root);
 
 	void set(String path, Any value);
 
-	void set(@JSByRef String[] path, Any value);
+	void set(String[] path, Any value);
 
-	void set(@JSByRef Unknown[] path, Any value);
+	void set(Unknown[] path, Any value);
 
 	void set(Array<Unknown> path, Any value);
 
@@ -226,16 +226,16 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 * @return New length of the array.
 	 */
 	@JSBody(params = {"path", "items"}, script = "return this.push.apply(this, [path].concat(items))")
-	<T extends Any> int push(String path, @JSByRef T... items);
+	<T extends Any> int push(String path, T... items);
 
 	@JSBody(params = {"path", "items"}, script = "return this.push.apply(this, [path].concat(items))")
-	<T extends Any> int push(@JSByRef String[] path, @JSByRef T... items);
+	<T extends Any> int push(String[] path, T... items);
 
 	@JSBody(params = {"path", "items"}, script = "return this.push.apply(this, [path].concat(items))")
-	<T extends Any> int push(@JSByRef Unknown[] path, @JSByRef T... items);
+	<T extends Any> int push(Unknown[] path, T... items);
 
 	@JSBody(params = {"path", "items"}, script = "return this.push.apply(this, [path].concat(items))")
-	<T extends Any> int push(Array<Unknown> path, @JSByRef T... items);
+	<T extends Any> int push(Array<Unknown> path, T... items);
 
 	/**
 	 * Removes an item from the end of array at the path specified.
@@ -252,9 +252,9 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 */
 	<T extends Any> T pop(String path);
 
-	<T extends Any> T pop(@JSByRef String... path);
+	<T extends Any> T pop(String... path);
 
-	<T extends Any> T pop(@JSByRef Unknown... path);
+	<T extends Any> T pop(Unknown... path);
 
 	<T extends Any> T pop(Array<Unknown> path);
 
@@ -279,19 +279,19 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 */
 	@JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, " +
 			"start, deleteCount].concat(items))")
-	<T extends Any> Array<T> splice(String path, int start, int deleteCount, @JSByRef T... items);
+	<T extends Any> Array<T> splice(String path, int start, int deleteCount, T... items);
 
 	@JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, " +
 			"start, deleteCount].concat(items))")
-	<T extends Any> Array<T> splice(@JSByRef String[] path, int start, int deleteCount, @JSByRef T... items);
+	<T extends Any> Array<T> splice(String[] path, int start, int deleteCount, T... items);
 
 	@JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, " +
 			"start, deleteCount].concat(items))")
-	<T extends Any> Array<T> splice(@JSByRef Unknown[] path, int start, int deleteCount, @JSByRef T... items);
+	<T extends Any> Array<T> splice(Unknown[] path, int start, int deleteCount, T... items);
 
 	@JSBody(params = {"path", "start", "deleteCount", "items"}, script = "return this.splice.apply(this, [path, " +
 			"start, deleteCount].concat(items))")
-	<T extends Any> Array<T> splice(Array<Unknown> path, int start, int deleteCount, @JSByRef T... items);
+	<T extends Any> Array<T> splice(Array<Unknown> path, int start, int deleteCount, T... items);
 
 	/**
 	 * Removes an item from the beginning of array at the path specified.
@@ -311,10 +311,10 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	<T extends Any> T shift(String path);
 
 	@Nullable
-	<T extends Any> T shift(@JSByRef String... path);
+	<T extends Any> T shift(String... path);
 
 	@Nullable
-	<T extends Any> T shift(@JSByRef Unknown... path);
+	<T extends Any> T shift(Unknown... path);
 
 	@Nullable
 	<T extends Any> T shift(Array<Unknown> path);
@@ -334,16 +334,16 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 * @return New length of the array.
 	 */
 	@JSBody(params = {"path", "items"}, script = "return this.unshift.apply(this, [path].concat(items))")
-	<T extends Any> int unshift(String path, @JSByRef T... items);
+	<T extends Any> int unshift(String path, T... items);
 
 	@JSBody(params = {"path", "items"}, script = "return this.unshift.apply(this, [path].concat(items))")
-	<T extends Any> int unshift(@JSByRef String[] path, @JSByRef T... items);
+	<T extends Any> int unshift(String[] path, T... items);
 
 	@JSBody(params = {"path", "items"}, script = "return this.unshift.apply(this, [path].concat(items))")
-	<T extends Any> int unshift(@JSByRef Unknown[] path, @JSByRef T... items);
+	<T extends Any> int unshift(Unknown[] path, T... items);
 
 	@JSBody(params = {"path", "items"}, script = "return this.unshift.apply(this, [path].concat(items))")
-	<T extends Any> int unshift(Array<Unknown> path, @JSByRef T... items);
+	<T extends Any> int unshift(Array<Unknown> path, T... items);
 
 	/**
 	 * Notify that a path has changed.
@@ -359,17 +359,17 @@ public interface PropertyEffects extends TemplateStamp, PropertyAccessors {
 	 */
 	void notifyPath(String path, Any value);
 
-	void notifyPath(@JSByRef String[] path, Any value);
+	void notifyPath(String[] path, Any value);
 
-	void notifyPath(@JSByRef Unknown[] path, Any value);
+	void notifyPath(Unknown[] path, Any value);
 
 	void notifyPath(Array<Unknown> path, Any value);
 
 	void notifyPath(String path);
 
-	void notifyPath(@JSByRef String... path);
+	void notifyPath(String... path);
 
-	void notifyPath(@JSByRef Unknown... path);
+	void notifyPath(Unknown... path);
 
 	void notifyPath(Array<Unknown> path);
 }

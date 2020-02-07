@@ -189,8 +189,8 @@ public interface IDBDatabase extends EventTarget {
      */
     IDBTransaction transaction(String storeNames, IDBTransactionMode mode);
 
-    IDBTransaction transaction(@JSByRef String[] storeNames, IDBTransactionMode mode);
+    IDBTransaction transaction(String[] storeNames, IDBTransactionMode mode);
 
-    IDBTransaction transaction(@JSByRef String... storeNames);
+    IDBTransaction transaction(String... storeNames);
 
 }

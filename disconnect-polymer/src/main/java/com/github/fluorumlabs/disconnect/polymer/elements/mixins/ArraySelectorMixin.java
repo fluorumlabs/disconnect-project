@@ -34,7 +34,7 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	 * An array containing items from which selection will be made.
 	 */
 	@JSProperty
-	void setItems(@JSByRef T... items);
+	void setItems(T... items);
 
 	@JSProperty
 	void setItems(Array<T> items);
@@ -77,7 +77,7 @@ public interface ArraySelectorMixin<T extends Any> extends ElementMixin {
 	void setSelected(T selected);
 
 	@JSProperty
-	void setSelected(@JSByRef T... selected);
+	void setSelected(T... selected);
 
 	@JSProperty
 	void setSelected(Array<T> selected);

@@ -11,10 +11,10 @@ public interface ChildNode extends Node {
      * Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
      */
     @JSBody(params = "nodes", script = "return this.after.apply(this, nodes)")
-    void after(@JSByRef String... nodes);
+    void after(String... nodes);
 
     @JSBody(params = "nodes", script = "return this.after.apply(this, nodes)")
-    void after(@JSByRef Node... nodes);
+    void after(Node... nodes);
 
     /**
      * Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -22,7 +22,7 @@ public interface ChildNode extends Node {
      * Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
      */
     @JSBody(params = "nodes", script = "return this.before.apply(this, nodes)")
-    void before(@JSByRef String... nodes);
+    void before(String... nodes);
 
     @JSBody(params = "nodes", script = "return this.before.apply(this, nodes)")
     void before(Node... nodes);
@@ -38,8 +38,8 @@ public interface ChildNode extends Node {
      * Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
      */
     @JSBody(params = "nodes", script = "return this.replaceWith().apply(this, nodes)")
-    void replaceWith(@JSByRef String... nodes);
+    void replaceWith(String... nodes);
 
     @JSBody(params = "nodes", script = "return this.replaceWith().apply(this, nodes)")
-    void replaceWith(@JSByRef Node... nodes);
+    void replaceWith(Node... nodes);
 }

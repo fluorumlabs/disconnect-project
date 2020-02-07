@@ -16,17 +16,17 @@ public interface File extends Blob {
     }
 
     @JSBody(params = {"fileBits", "fileName", "options"}, script = "return new File(fileBits, fileName, options)")
-    static File create(@JSByRef BufferSource[] fileBits, String fileName, FilePropertyBag options) {
+    static File create(BufferSource[] fileBits, String fileName, FilePropertyBag options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"fileBits", "fileName", "options"}, script = "return new File(fileBits, fileName, options)")
-    static File create(@JSByRef Blob[] fileBits, String fileName, FilePropertyBag options) {
+    static File create(Blob[] fileBits, String fileName, FilePropertyBag options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"fileBits", "fileName", "options"}, script = "return new File(fileBits, fileName, options)")
-    static File create(@JSByRef String[] fileBits, String fileName, FilePropertyBag options) {
+    static File create(String[] fileBits, String fileName, FilePropertyBag options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -36,12 +36,12 @@ public interface File extends Blob {
     }
 
     @JSBody(params = {"fileBits", "fileName"}, script = "return new File(fileBits, fileName)")
-    static File create(@JSByRef BufferSource[] fileBits, String fileName) {
+    static File create(BufferSource[] fileBits, String fileName) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"fileBits", "fileName"}, script = "return new File(fileBits, fileName)")
-    static File create(@JSByRef Blob[] fileBits, String fileName) {
+    static File create(Blob[] fileBits, String fileName) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

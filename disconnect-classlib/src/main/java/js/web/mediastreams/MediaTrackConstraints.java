@@ -13,7 +13,7 @@ public interface MediaTrackConstraints extends MediaTrackConstraintSet {
     Array<MediaTrackConstraintSet> getAdvanced();
 
     @JSProperty
-    void setAdvanced(@JSByRef MediaTrackConstraintSet... advanced);
+    void setAdvanced(MediaTrackConstraintSet... advanced);
 
     @JSProperty
     void setAdvanced(Array<MediaTrackConstraintSet> advanced);

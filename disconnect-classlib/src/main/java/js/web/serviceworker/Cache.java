@@ -31,10 +31,10 @@ public interface Cache extends Any {
     VoidPromise add(String request);
 
     @JSBody(params = "requests", script = "return this.addAll.apply(this, requests)")
-    VoidPromise addAll(@JSByRef Request... requests);
+    VoidPromise addAll(Request... requests);
 
     @JSBody(params = "requests", script = "return this.addAll.apply(this, requests)")
-    VoidPromise addAll(@JSByRef String... requests);
+    VoidPromise addAll(String... requests);
 
     VoidPromise addAll(Array<Request> requests);
 

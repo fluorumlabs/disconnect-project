@@ -33,7 +33,7 @@ public interface RTCIceServer extends Any {
     void setUrls(String urls);
 
     @JSProperty
-    void setUrls(@JSByRef String... urls);
+    void setUrls(String... urls);
 
     @JSProperty
     @Nullable

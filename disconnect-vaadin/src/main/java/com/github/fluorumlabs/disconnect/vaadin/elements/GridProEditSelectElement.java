@@ -37,5 +37,5 @@ public interface GridProEditSelectElement extends SelectElement {
 	String[] getOptions();
 
 	@JSProperty
-	void setOptions(@JSByRef String... options);
+	void setOptions(String... options);
 }

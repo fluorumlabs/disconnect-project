@@ -28,7 +28,7 @@ public abstract class WeakSet<T extends Any> implements Any {
     }
 
     @JSBody(params = "values", script = "return new WeakSet(values)")
-    static <T extends Any> WeakSet<T> create(@JSByRef T... values) {
+    static <T extends Any> WeakSet<T> create(T... values) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

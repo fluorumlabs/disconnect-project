@@ -52,5 +52,5 @@ public interface IncludedMixin extends Element {
 	void setInclude(String include);
 
 	@JSProperty
-	void setInclude(@JSByRef String... include);
+	void setInclude(String... include);
 }

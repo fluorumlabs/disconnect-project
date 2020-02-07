@@ -205,7 +205,7 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	 * </ul>
 	 */
 	@JSProperty
-	void setFiles(@JSByRef UploadingFile... files);
+	void setFiles(UploadingFile... files);
 
 	@JSProperty
 	void setFiles(Array<UploadingFile> files);
@@ -437,7 +437,7 @@ public interface UploadElement extends HTMLElement, ThemableMixin {
 	/**
 	 * Triggers the upload of any files that are not completed
 	 */
-	void uploadFiles(@JSByRef UploadingFile... files);
+	void uploadFiles(UploadingFile... files);
 
 	void uploadFiles(Array<UploadingFile> files);
 }

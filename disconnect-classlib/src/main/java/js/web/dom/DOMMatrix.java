@@ -19,7 +19,7 @@ public interface DOMMatrix extends DOMMatrixReadOnly {
     }
 
     @JSBody(params = "init", script = "return new DOMMatrix(init)")
-    static DOMMatrix create(@JSByRef double... init) {
+    static DOMMatrix create(double... init) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

@@ -129,10 +129,10 @@ public interface DomRepeatElement<ITEM extends Any> extends PolymerElement, Opti
 	 * to stamp and that that each template instance should bind to.
 	 */
 	@JSProperty
-	void setItems(@JSByRef ITEM... items);
+	void setItems(ITEM... items);
 
 	@JSProperty
-	void setItems(@JSByRef Array<ITEM> items);
+	void setItems(Array<ITEM> items);
 
 	/**
 	 * The name of the variable to add to the binding scope for the array

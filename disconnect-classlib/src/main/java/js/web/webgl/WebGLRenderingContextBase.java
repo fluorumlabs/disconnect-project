@@ -261,7 +261,7 @@ public interface WebGLRenderingContextBase extends Any {
 
     void vertexAttrib1fv(int index, FloatIterable values);
 
-    void vertexAttrib1fv(int index, @JSByRef double[] values);
+    void vertexAttrib1fv(int index, double[] values);
 
     void vertexAttrib2f(int index, double x, double y);
 
@@ -269,7 +269,7 @@ public interface WebGLRenderingContextBase extends Any {
 
     void vertexAttrib2fv(int index, FloatIterable values);
 
-    void vertexAttrib2fv(int index, @JSByRef double[] values);
+    void vertexAttrib2fv(int index, double[] values);
 
     void vertexAttrib3f(int index, double x, double y, double z);
 
@@ -277,7 +277,7 @@ public interface WebGLRenderingContextBase extends Any {
 
     void vertexAttrib3fv(int index, FloatIterable values);
 
-    void vertexAttrib3fv(int index, @JSByRef double[] values);
+    void vertexAttrib3fv(int index, double[] values);
 
     void vertexAttrib4f(int index, double x, double y, double z, double w);
 

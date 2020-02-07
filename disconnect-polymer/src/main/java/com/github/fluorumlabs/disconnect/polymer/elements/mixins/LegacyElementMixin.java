@@ -508,9 +508,9 @@ public interface LegacyElementMixin extends ElementMixin, GestureEventListeners 
 	 */
 	<T extends Any> Array<T> arrayDelete(String arrayOrPath, T item);
 
-	<T extends Any> Array<T> arrayDelete(@JSByRef String[] arrayOrPath, T item);
+	<T extends Any> Array<T> arrayDelete(String[] arrayOrPath, T item);
 
-	<T extends Any> Array<T> arrayDelete(@JSByRef Unknown[] arrayOrPath, T item);
+	<T extends Any> Array<T> arrayDelete(Unknown[] arrayOrPath, T item);
 
 	<T extends Any> Array<T> arrayDelete(Array<Unknown> arrayOrPath, T item);
 }

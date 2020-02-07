@@ -58,16 +58,16 @@ public interface WindowOrWorkerGlobalScope extends Any {
     void queueMicrotask(JsFunction callback);
 
     @JSBody(params = {"handler", "timeout", "arguments"}, script = "this.setInterval.apply(this, [handler, timeout].concat(arguments))")
-    IntervalHandle setInterval(String handler, double timeout, @JSByRef Any... arguments);
+    IntervalHandle setInterval(String handler, double timeout, Any... arguments);
 
     @JSBody(params = {"handler", "timeout", "arguments"}, script = "this.setTimeout.apply(this, [handler, timeout].concat(arguments))")
-    TimeoutHandle setTimeout(String handler, double timeout, @JSByRef Any... arguments);
+    TimeoutHandle setTimeout(String handler, double timeout, Any... arguments);
 
     @JSBody(params = {"handler", "timeout", "arguments"}, script = "this.setInterval.apply(this, [handler, timeout].concat(arguments))")
-    IntervalHandle setInterval(JsFunction handler, double timeout, @JSByRef Any... arguments);
+    IntervalHandle setInterval(JsFunction handler, double timeout, Any... arguments);
 
     @JSBody(params = {"handler", "timeout", "arguments"}, script = "this.setTimeout.apply(this, [handler, timeout].concat(arguments))")
-    TimeoutHandle setTimeout(JsFunction handler, double timeout, @JSByRef Any... arguments);
+    TimeoutHandle setTimeout(JsFunction handler, double timeout, Any... arguments);
 
     IntervalHandle setInterval(JsRunnable handler, double timeout);
 

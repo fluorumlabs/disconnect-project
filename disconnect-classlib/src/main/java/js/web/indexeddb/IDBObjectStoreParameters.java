@@ -23,6 +23,6 @@ public interface IDBObjectStoreParameters extends Any {
     void setKeyPath(String keyPath);
 
     @JSProperty
-    void setKeyPath(@JSByRef String... keyPath);
+    void setKeyPath(String... keyPath);
 
 }

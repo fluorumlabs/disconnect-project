@@ -112,7 +112,7 @@ public interface ChartSeriesElement extends PolymerElement {
 	 * change and be able to synchronize it.
 	 */
 	@JSProperty
-	void setValues(@JSByRef Unknown... values);
+	void setValues(Unknown... values);
 
 	/**
 	 * Value-axis minimum-value.

@@ -15,7 +15,7 @@ public interface PaymentDetailsModifier extends Any {
     Array<PaymentItem> getAdditionalDisplayItems();
 
     @JSProperty
-    void setAdditionalDisplayItems(@JSByRef PaymentItem... additionalDisplayItems);
+    void setAdditionalDisplayItems(PaymentItem... additionalDisplayItems);
 
     @JSProperty
     void setAdditionalDisplayItems(Array<PaymentItem> additionalDisplayItems);
@@ -34,7 +34,7 @@ public interface PaymentDetailsModifier extends Any {
     void setSupportedMethods(String supportedMethods);
 
     @JSProperty
-    void setSupportedMethods(@JSByRef String... supportedMethods);
+    void setSupportedMethods(String... supportedMethods);
 
     @JSProperty
     @Nullable

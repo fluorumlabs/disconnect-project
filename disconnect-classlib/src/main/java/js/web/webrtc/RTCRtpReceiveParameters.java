@@ -13,6 +13,6 @@ public interface RTCRtpReceiveParameters extends RTCRtpParameters {
     void setEncodings(Array<RTCRtpDecodingParameters> encodings);
 
     @JSProperty
-    void setEncodings(@JSByRef RTCRtpDecodingParameters... encodings);
+    void setEncodings(RTCRtpDecodingParameters... encodings);
 
 }

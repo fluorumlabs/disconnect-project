@@ -22,7 +22,7 @@ public interface RowDetailsMixin<ITEM extends Any> extends Element {
 	 * An array containing references to items with open row details.
 	 */
 	@JSProperty
-	void setDetailsOpenedItems(@JSByRef ITEM... detailsOpenedItems);
+	void setDetailsOpenedItems(ITEM... detailsOpenedItems);
 
 	@JSProperty
 	void setDetailsOpenedItems(Array<ITEM> detailsOpenedItems);

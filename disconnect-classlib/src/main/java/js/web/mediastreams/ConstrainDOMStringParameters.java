@@ -17,7 +17,7 @@ public interface ConstrainDOMStringParameters extends Any {
     void setExact(String exact);
 
     @JSProperty
-    void setExact(@JSByRef String... exact);
+    void setExact(String... exact);
 
     @JSProperty
     @Nullable
@@ -27,6 +27,6 @@ public interface ConstrainDOMStringParameters extends Any {
     void setIdeal(String ideal);
 
     @JSProperty
-    void setIdeal(@JSByRef String... ideal);
+    void setIdeal(String... ideal);
 
 }

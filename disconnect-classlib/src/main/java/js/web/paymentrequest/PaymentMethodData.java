@@ -23,6 +23,6 @@ public interface PaymentMethodData extends Any {
     void setSupportedMethods(String supportedMethods);
 
     @JSProperty
-    void setSupportedMethods(@JSByRef String... supportedMethods);
+    void setSupportedMethods(String... supportedMethods);
 
 }

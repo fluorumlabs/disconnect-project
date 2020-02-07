@@ -28,7 +28,7 @@ public class BasicZeroExampleView extends VaadinAppLayout {
 
 		VaadinButton button = new VaadinButton().text("Click me!").theme(VaadinButton.Variant.SUCCESS);
 		button.clickEvent().accept(evt -> {
-			Lumo.useLightTheme();
+			Lumo.useExtraSmallFontSize();
 			add(new Paragraph("Button was clicked on " + JsDate.create().toISOString()));
 		});
 
@@ -45,7 +45,7 @@ public class BasicZeroExampleView extends VaadinAppLayout {
 
 	private static VaadinTabs createMenuTabs() {
 		VaadinTabs tabs = new VaadinTabs();
-		tabs.orientation(Orientation.HORIZONTAL);
+		tabs.orientation(Orientation.HORIZONTAL).theme(VaadinTabs.Variant.CENTERED, VaadinTabs.Variant.EQUAL_WIDTH_TABS);
 		getAvailableTabs().forEach(tabs::add);
 		return tabs;
 	}

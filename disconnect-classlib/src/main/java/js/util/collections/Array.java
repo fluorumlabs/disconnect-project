@@ -20,7 +20,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
     }
 
     @JSBody(params = "arrayLength", script = "return Array.apply(null, items)")
-    static <T extends Any> Array<T> create(@JSByRef T... items) {
+    static <T extends Any> Array<T> create(T... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -79,7 +79,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      * @param items A set of elements to include in the new array object.
      */
     @JSBody(params = "items", script = "return Array.of.apply(Array, arrayLike)")
-    static <T extends Any> Array<T> of(@JSByRef T... items) {
+    static <T extends Any> Array<T> of(T... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -95,7 +95,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      * @param items New elements of the Array.
      */
     @JSBody(params = "items", script = "return this.push.apply(this, items)")
-    int push(@JSByRef T... items);
+    int push(T... items);
 
     /**
      * Reverses the elements in an Array.
@@ -140,7 +140,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      * @param items       Elements to insert into the array in place of the deleted elements.
      */
     @JSBody(params = {"start", "deleteCount", "items"}, script = "return this.splice.apply(this, [start, deleteCount].concat(items))")
-    Array<T> splice(int start, int deleteCount, @JSByRef T... items);
+    Array<T> splice(int start, int deleteCount, T... items);
 
     /**
      * Inserts new elements at the start of an array.
@@ -148,7 +148,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      * @param items Elements to insert at the start of the Array.
      */
     @JSBody(params = "items", script = "return this.unshift.apply(this, items)")
-    int unshift(@JSByRef T... items);
+    int unshift(T... items);
 
     @JSBody(script = "return this")
     T[] asArray();

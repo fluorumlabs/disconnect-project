@@ -231,7 +231,7 @@ public interface IronListElement<ITEM extends Any> extends HTMLElement {
 	 * to stamp and that that each template instance should bind to.
 	 */
 	@JSProperty
-	void setItems(@JSByRef ITEM... items);
+	void setItems(ITEM... items);
 
 	@JSProperty
 	void setItems(Array<ITEM> items);
@@ -357,10 +357,10 @@ public interface IronListElement<ITEM extends Any> extends HTMLElement {
 	 * selected items.
 	 */
 	@JSProperty
-	void setSelectedItems(@JSByRef ITEM... selectedItems);
+	void setSelectedItems(ITEM... selectedItems);
 
 	@JSProperty
-	void setSelectedItems(@JSByRef Array<ITEM> selectedItems);
+	void setSelectedItems(Array<ITEM> selectedItems);
 
 	/**
 	 * When <code>true</code>, multiple items may be selected at once (in this case,

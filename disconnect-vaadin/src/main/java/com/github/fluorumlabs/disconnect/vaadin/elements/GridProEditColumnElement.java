@@ -96,7 +96,7 @@ public interface GridProEditColumnElement<ITEM extends Any> extends GridColumnEl
 	 * Used with the <code>select</code> editor type, to provide a list of items.
 	 */
 	@JSProperty
-	void setEditorOptions(@JSByRef String... editorOptions);
+	void setEditorOptions(String... editorOptions);
 
 	/**
 	 * Type of the cell editor component to be rendered. Allowed values:

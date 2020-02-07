@@ -13,6 +13,13 @@ public interface HasThemableMixin<VARIANT extends ThemeVariant, E extends Themab
 		return theme(theme, true);
 	}
 
+	default T theme(VARIANT... themes) {
+		for (VARIANT theme : themes) {
+			theme(theme, true);
+		}
+		return (T)this;
+	}
+
 	default T theme(VARIANT theme, boolean enable) {
 		toggleTheme(getNode(), theme, enable);
 		return (T) this;

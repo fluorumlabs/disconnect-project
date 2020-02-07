@@ -1313,7 +1313,7 @@ public interface Window extends EventTarget, AnimationFrameProvider, GlobalEvent
 
     Window open();
 
-    void postMessage(Any message, String targetOrigin, @JSByRef Transferable... transfer);
+    void postMessage(Any message, String targetOrigin, Transferable... transfer);
 
     void postMessage(Any message, String targetOrigin, Array<Transferable> transfer);
 

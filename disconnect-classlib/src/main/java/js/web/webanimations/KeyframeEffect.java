@@ -65,6 +65,6 @@ public interface KeyframeEffect extends AnimationEffect {
 
     void setKeyframes(@Nullable Array<Keyframe> keyframes);
 
-    void setKeyframes(@Nullable @JSByRef Keyframe... keyframes);
+    void setKeyframes(@Nullable Keyframe... keyframes);
 
 }

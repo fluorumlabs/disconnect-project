@@ -27,7 +27,7 @@ public interface AuthenticationExtensionsClientOutputs extends Any {
     String[] getExts();
 
     @JSProperty
-    void setExts(@JSByRef String... exts);
+    void setExts(String... exts);
 
     @JSProperty
     @Nullable
@@ -62,6 +62,6 @@ public interface AuthenticationExtensionsClientOutputs extends Any {
     int[][] getUvm();
 
     @JSProperty
-    void setUvm(@JSByRef int[]... uvm);
+    void setUvm(int[]... uvm);
 
 }

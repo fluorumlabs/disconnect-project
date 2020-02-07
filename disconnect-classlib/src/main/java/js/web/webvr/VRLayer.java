@@ -16,7 +16,7 @@ public interface VRLayer extends Any {
     Unknown getLeftBounds();
 
     @JSProperty
-    void setLeftBounds(@JSByRef double... leftBounds);
+    void setLeftBounds(double... leftBounds);
 
     @JSProperty
     void setLeftBounds(Float32Array leftBounds);
@@ -26,7 +26,7 @@ public interface VRLayer extends Any {
     Unknown getRightBounds();
 
     @JSProperty
-    void setRightBounds(@JSByRef double... rightBounds);
+    void setRightBounds(double... rightBounds);
 
     @JSProperty
     void setRightBounds(Float32Array rightBounds);

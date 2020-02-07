@@ -14,7 +14,7 @@ public interface SpliceRecord<T extends Any> extends ReadonlySpliceRecord<T> {
 	void setIndex(int index);
 
 	@JSProperty
-	void setRemoved(@JSByRef T... removed);
+	void setRemoved(T... removed);
 
 	@JSProperty
 	void setRemoved(Array<T> removed);

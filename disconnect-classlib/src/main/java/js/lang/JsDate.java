@@ -152,11 +152,11 @@ public interface JsDate extends Any {
      */
     String toLocaleString(String locales, DateTimeFormatOptions options);
 
-    String toLocaleString(@JSByRef String[] locales, DateTimeFormatOptions options);
+    String toLocaleString(String[] locales, DateTimeFormatOptions options);
 
     String toLocaleString(String locales);
 
-    String toLocaleString(@JSByRef String[] locales);
+    String toLocaleString(String[] locales);
 
     /**
      * Returns a date as a string value appropriate to the host environment's current locale.
@@ -171,11 +171,11 @@ public interface JsDate extends Any {
      */
     String toLocaleDateString(String locales, DateTimeFormatOptions options);
 
-    String toLocaleDateString(@JSByRef String[] locales, DateTimeFormatOptions options);
+    String toLocaleDateString(String[] locales, DateTimeFormatOptions options);
 
     String toLocaleDateString(String locales);
 
-    String toLocaleDateString(@JSByRef String[] locales);
+    String toLocaleDateString(String[] locales);
 
     /**
      * Returns a time as a string value appropriate to the host environment's current locale.
@@ -190,11 +190,11 @@ public interface JsDate extends Any {
      */
     String toLocaleTimeString(String locales, DateTimeFormatOptions options);
 
-    String toLocaleTimeString(@JSByRef String[] locales, DateTimeFormatOptions options);
+    String toLocaleTimeString(String[] locales, DateTimeFormatOptions options);
 
     String toLocaleTimeString(String locales);
 
-    String toLocaleTimeString(@JSByRef String[] locales);
+    String toLocaleTimeString(String[] locales);
 
     /**
      * Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.

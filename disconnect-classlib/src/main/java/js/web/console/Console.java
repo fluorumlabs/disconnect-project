@@ -27,7 +27,7 @@ public interface Console extends Any {
     void setMemory(Unknown memory);
 
     @JSBody(params = {"condition", "message", "data"}, script = "this.assert.apply(this, [condition, message].concat(data));")
-    void doAssert(boolean condition, String message, @JSByRef Any... data);
+    void doAssert(boolean condition, String message, Any... data);
 
     @JSBody(params = {"condition", "message"}, script = "this.assert.apply(condition, message);")
     void doAssert(boolean condition, String message);
@@ -45,7 +45,7 @@ public interface Console extends Any {
     void count();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.debug.apply(this, [message].concat(optionalParams));")
-    void debug(String message, @JSByRef Any... optionalParams);
+    void debug(String message, Any... optionalParams);
 
     void debug(Any message);
 
@@ -60,7 +60,7 @@ public interface Console extends Any {
     void debug();
 
     @JSBody(params = {"value", "optionalParams"}, script = "this.dir.apply(this, [value].concat(optionalParams));")
-    void dir(Any value, @JSByRef Any... optionalParams);
+    void dir(Any value, Any... optionalParams);
 
     void dir(Any value);
 
@@ -69,7 +69,7 @@ public interface Console extends Any {
     void dirxml(Any value);
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.error.apply(this, [message].concat(optionalParams));")
-    void error(String message, @JSByRef Any... optionalParams);
+    void error(String message, Any... optionalParams);
 
     void error(Any message);
 
@@ -84,21 +84,21 @@ public interface Console extends Any {
     void error();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.exception.apply(this, [message].concat(optionalParams));")
-    void exception(String message, @JSByRef Any... optionalParams);
+    void exception(String message, Any... optionalParams);
 
     void exception(String message);
 
     void exception();
 
     @JSBody(params = {"groupTitle", "optionalParams"}, script = "this.group.apply(this, [groupTitle].concat(optionalParams));")
-    void group(String groupTitle, @JSByRef Any... optionalParams);
+    void group(String groupTitle, Any... optionalParams);
 
     void group(String groupTitle);
 
     void group();
 
     @JSBody(params = {"groupTitle", "optionalParams"}, script = "this.groupCollapsed.apply(this, [groupTitle].concat(optionalParams));")
-    void groupCollapsed(String groupTitle, @JSByRef Any... optionalParams);
+    void groupCollapsed(String groupTitle, Any... optionalParams);
 
     void groupCollapsed(String groupTitle);
 
@@ -107,7 +107,7 @@ public interface Console extends Any {
     void groupEnd();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.info.apply(this, [message].concat(optionalParams));")
-    void info(String message, @JSByRef Any... optionalParams);
+    void info(String message, Any... optionalParams);
 
     void info(Any message);
 
@@ -122,7 +122,7 @@ public interface Console extends Any {
     void info();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.log.apply(this, [message].concat(optionalParams));")
-    void log(String message, @JSByRef Any... optionalParams);
+    void log(String message, Any... optionalParams);
 
     void log(Any message);
 
@@ -149,7 +149,7 @@ public interface Console extends Any {
     void profileEnd();
 
     @JSBody(params = {"tabularData"}, script = "this.table.apply(this, tabularData);")
-    void table(@JSByRef Any... tabularData);
+    void table(Any... tabularData);
 
     void time(String label);
 
@@ -172,7 +172,7 @@ public interface Console extends Any {
     void timelineEnd();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.trace.apply(this, [message].concat(optionalParams));")
-    void trace(String message, @JSByRef Any... optionalParams);
+    void trace(String message, Any... optionalParams);
 
     void trace(Any message);
 
@@ -187,7 +187,7 @@ public interface Console extends Any {
     void trace();
 
     @JSBody(params = {"message", "optionalParams"}, script = "this.warn.apply(this, [message].concat(optionalParams));")
-    void warn(String message, @JSByRef Any... optionalParams);
+    void warn(String message, Any... optionalParams);
 
     void warn(Any message);
 

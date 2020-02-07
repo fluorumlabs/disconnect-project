@@ -17,7 +17,7 @@ public interface IntArrayPropertyChangeEvent extends CustomEvent<IntArrayPropert
 		int[] getValue();
 
 		@JSProperty
-		void setValue(@JSByRef int... value);
+		void setValue(int... value);
 
 		@JSProperty
 		boolean getQueueProperty();

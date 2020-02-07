@@ -34,12 +34,12 @@ public interface URLSearchParams extends IterableIterable<StringPair>, Any {
     }
 
     @JSBody(params = "init", script = "return new URLSearchParams(init)")
-    static URLSearchParams create(@JSByRef Array<JsString>... init) {
+    static URLSearchParams create(Array<JsString>... init) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = "init", script = "return new URLSearchParams(init)")
-    static URLSearchParams create(@JSByRef String[]... init) {
+    static URLSearchParams create(String[]... init) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

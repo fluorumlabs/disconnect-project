@@ -25,7 +25,7 @@ public interface AuthenticationExtensionsClientInputs extends Any {
     void setAuthnSel(Array<BufferSource> authnSel);
 
     @JSProperty
-    void setAuthnSel(@JSByRef BufferSource... authnSel);
+    void setAuthnSel(BufferSource... authnSel);
 
     @JSProperty
     boolean isExts();

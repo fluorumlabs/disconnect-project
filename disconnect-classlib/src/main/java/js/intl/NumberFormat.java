@@ -10,25 +10,25 @@ public abstract class NumberFormat implements Any {
     public static native NumberFormat create(String locales, NumberFormatOptions options);
 
     @JSBody(params = {"locales", "options"}, script = "return new Intl.NumberFormat(locales, options)")
-    public static native NumberFormat create(@JSByRef String[] locales, NumberFormatOptions options);
+    public static native NumberFormat create(String[] locales, NumberFormatOptions options);
 
     @JSBody(params = {"locales"}, script = "return new Intl.NumberFormat(locales)")
     public static native NumberFormat create(String locales);
 
     @JSBody(params = {"locales"}, script = "return new Intl.NumberFormat(locales)")
-    public static native NumberFormat create(@JSByRef String[] locales);
+    public static native NumberFormat create(String[] locales);
 
     @JSBody(params = {"locales", "options"}, script = "return Intl.NumberFormat.supportedLocalesOf(locales, options)")
     public static native String[] supportedLocalesOf(String locales, NumberFormatOptions options);
 
     @JSBody(params = {"locales", "options"}, script = "return Intl.NumberFormat.supportedLocalesOf(locales, options)")
-    public static native String[] supportedLocalesOf(@JSByRef String[] locales, NumberFormatOptions options);
+    public static native String[] supportedLocalesOf(String[] locales, NumberFormatOptions options);
 
     @JSBody(params = {"locales"}, script = "return Intl.NumberFormat.supportedLocalesOf(locales)")
     public static native String[] supportedLocalesOf(String locales);
 
     @JSBody(params = {"locales"}, script = "return Intl.NumberFormat.supportedLocalesOf(locales)")
-    public static native String[] supportedLocalesOf(@JSByRef String[] locales);
+    public static native String[] supportedLocalesOf(String[] locales);
 
     public native String format(byte value);
 

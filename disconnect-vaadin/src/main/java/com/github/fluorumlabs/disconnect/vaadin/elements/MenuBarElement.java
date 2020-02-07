@@ -113,7 +113,7 @@ public interface MenuBarElement extends HTMLElement, ButtonsMixin, InteractionsM
 	 * </code></pre>
 	 */
 	@JSProperty
-	void setItems(@JSByRef MenuItem... items);
+	void setItems(MenuItem... items);
 
 	@JSProperty
 	void setItems(Array<MenuItem> items);

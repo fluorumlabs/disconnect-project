@@ -9,12 +9,12 @@ public interface IIRFilterOptions extends AudioNodeOptions {
     double[] getFeedback();
 
     @JSProperty
-    void setFeedback(@JSByRef double[] feedback);
+    void setFeedback(double[] feedback);
 
     @JSProperty
     double[] getFeedforward();
 
     @JSProperty
-    void setFeedforward(@JSByRef double[] feedforward);
+    void setFeedforward(double[] feedforward);
 
 }

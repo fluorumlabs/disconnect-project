@@ -810,7 +810,7 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
      * @param content Specifies the text and HTML tags to write.
      */
     @JSBody(params = {"text"}, script = "this.write.apply(this, text);")
-    void write(@JSByRef String... text);
+    void write(String... text);
 
     /**
      * Writes one or more HTML expressions, followed by a carriage return, to a document in the specified window.
@@ -818,6 +818,6 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
      * @param content The text and HTML tags to write.
      */
     @JSBody(params = {"text"}, script = "this.writeln.apply(this, text);")
-    void writeln(@JSByRef String... text);
+    void writeln(String... text);
 
 }

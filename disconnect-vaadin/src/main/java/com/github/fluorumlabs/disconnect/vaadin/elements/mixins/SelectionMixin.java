@@ -21,7 +21,7 @@ public interface SelectionMixin<ITEM extends Any> extends Element {
 	 * An array that contains the selected items.
 	 */
 	@JSProperty
-	void setSelectedItems(@JSByRef ITEM... selectedItems);
+	void setSelectedItems(ITEM... selectedItems);
 
 	@JSProperty
 	void setSelectedItems(Array<ITEM> selectedItems);

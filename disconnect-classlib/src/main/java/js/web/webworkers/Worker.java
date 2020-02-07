@@ -72,7 +72,7 @@ public interface Worker extends EventTarget, AbstractWorker {
         removeEventListener("message", listener);
     }
 
-    void postMessage(Any message, @JSByRef Transferable... transfer);
+    void postMessage(Any message, Transferable... transfer);
 
     void postMessage(Any message, Array<Transferable> transfer);
 

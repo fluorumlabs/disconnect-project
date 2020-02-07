@@ -28,7 +28,7 @@ public interface JsSet<T extends Any> extends ReadonlySet<T> {
     }
 
     @JSBody(params = "values", script = "return new Set(values)")
-    static <T extends Any> JsSet<T> create(@JSByRef T... values) {
+    static <T extends Any> JsSet<T> create(T... values) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

@@ -44,7 +44,7 @@ public interface RTCRtpTransceiver extends Any {
     @JSProperty
     boolean isStopped();
 
-    void setCodecPreferences(@JSByRef RTCRtpCodecCapability... codecs);
+    void setCodecPreferences(RTCRtpCodecCapability... codecs);
 
     void setCodecPreferences(Array<RTCRtpCodecCapability> codecs);
 

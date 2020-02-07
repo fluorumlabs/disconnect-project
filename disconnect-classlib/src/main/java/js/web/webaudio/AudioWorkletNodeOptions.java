@@ -25,7 +25,7 @@ public interface AudioWorkletNodeOptions extends AudioNodeOptions {
     int[] getOutputChannelCount();
 
     @JSProperty
-    void setOutputChannelCount(@JSByRef int[] outputChannelCount);
+    void setOutputChannelCount(int[] outputChannelCount);
 
     //FIXME Record<string, number> parameterData?;
 

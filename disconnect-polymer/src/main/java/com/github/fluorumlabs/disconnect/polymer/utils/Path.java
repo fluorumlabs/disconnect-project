@@ -164,12 +164,12 @@ public interface Path extends Any {
 	}
 
 	@JSBody(params = "path", script = "return normalize(path)")
-	static String normalize(@JSByRef String... path) {
+	static String normalize(String... path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
 	@JSBody(params = "path", script = "return normalize(path)")
-	static String normalize(@JSByRef Unknown... path) {
+	static String normalize(Unknown... path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
@@ -198,12 +198,12 @@ public interface Path extends Any {
 	}
 
 	@JSBody(params = "path", script = "return split(path)")
-	static String[] split(@JSByRef String... path) {
+	static String[] split(String... path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
 	@JSBody(params = "path", script = "return split(path)")
-	static String[] split(@JSByRef Unknown... path) {
+	static String[] split(Unknown... path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
@@ -236,7 +236,7 @@ public interface Path extends Any {
 			params = {"root", "path", "info"},
 			script = "return get(root, path, info)"
 	)
-	static Unknown get(Any root, @JSByRef String[] path, Any info) {
+	static Unknown get(Any root, String[] path, Any info) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
@@ -244,7 +244,7 @@ public interface Path extends Any {
 			params = {"root", "path", "info"},
 			script = "return get(root, path, info)"
 	)
-	static Unknown get(Any root, @JSByRef Unknown[] path, Any info) {
+	static Unknown get(Any root, Unknown[] path, Any info) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
@@ -268,7 +268,7 @@ public interface Path extends Any {
 			params = {"root", "path"},
 			script = "return get(root, path)"
 	)
-	static Unknown get(Any root, @JSByRef String[] path) {
+	static Unknown get(Any root, String[] path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
@@ -276,7 +276,7 @@ public interface Path extends Any {
 			params = {"root", "path"},
 			script = "return get(root, path)"
 	)
-	static Unknown get(Any root, @JSByRef Unknown[] path) {
+	static Unknown get(Any root, Unknown[] path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
@@ -313,7 +313,7 @@ public interface Path extends Any {
 			params = {"root", "path", "value"},
 			script = "return set(root, path, value)"
 	)
-	static String set(Any root, @JSByRef String[] path, Any value) {
+	static String set(Any root, String[] path, Any value) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
@@ -322,7 +322,7 @@ public interface Path extends Any {
 			params = {"root", "path", "value"},
 			script = "return set(root, path, value)"
 	)
-	static String set(Any root, @JSByRef Unknown[] path, Any value) {
+	static String set(Any root, Unknown[] path, Any value) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 

@@ -50,31 +50,31 @@ public abstract class JSON implements Any {
      * @param space    Adds indentation, white space, and line break characters to the return-value JSON text to make it easier to read.
      */
     @JSBody(params = {"value", "replacer", "space"}, script = "return JSON.stringify(value, replacer, space)")
-    public static native String stringify(Any value, @JSByRef String[] replacer, String space);
+    public static native String stringify(Any value, String[] replacer, String space);
 
     @JSBody(params = {"value", "replacer", "space"}, script = "return JSON.stringify(value, replacer, space)")
-    public static native String stringify(Any value, @JSByRef String[] replacer, int space);
+    public static native String stringify(Any value, String[] replacer, int space);
 
     @JSBody(params = {"value", "replacer"}, script = "return JSON.stringify(value, replacer)")
-    public static native String stringify(Any value, @JSByRef String[] replacer);
+    public static native String stringify(Any value, String[] replacer);
 
     @JSBody(params = {"value", "replacer", "space"}, script = "return JSON.stringify(value, replacer, space)")
-    public static native String stringify(Any value, @JSByRef int[] replacer, String space);
+    public static native String stringify(Any value, int[] replacer, String space);
 
     @JSBody(params = {"value", "replacer", "space"}, script = "return JSON.stringify(value, replacer, space)")
-    public static native String stringify(Any value, @JSByRef int[] replacer, int space);
+    public static native String stringify(Any value, int[] replacer, int space);
 
     @JSBody(params = {"value", "replacer"}, script = "return JSON.stringify(value, replacer)")
-    public static native String stringify(Any value, @JSByRef int[] replacer);
+    public static native String stringify(Any value, int[] replacer);
 
     @JSBody(params = {"value", "replacer", "space"}, script = "return JSON.stringify(value, replacer, space)")
-    public static native String stringify(Any value, @JSByRef double[] replacer, String space);
+    public static native String stringify(Any value, double[] replacer, String space);
 
     @JSBody(params = {"value", "replacer", "space"}, script = "return JSON.stringify(value, replacer, space)")
-    public static native String stringify(Any value, @JSByRef double[] replacer, int space);
+    public static native String stringify(Any value, double[] replacer, int space);
 
     @JSBody(params = {"value", "replacer"}, script = "return JSON.stringify(value, replacer)")
-    public static native String stringify(Any value, @JSByRef double[] replacer);
+    public static native String stringify(Any value, double[] replacer);
 
     @JSFunctor
     @FunctionalInterface

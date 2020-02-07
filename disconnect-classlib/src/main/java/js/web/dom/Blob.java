@@ -22,17 +22,17 @@ public interface Blob extends Any, ImageBitmapSource {
     }
 
     @JSBody(params = {"blobParts", "options"}, script = "return new Blob(blobParts, options)")
-    static Blob create(@JSByRef BufferSource[] blobParts, BlobPropertyBag options) {
+    static Blob create(BufferSource[] blobParts, BlobPropertyBag options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"blobParts", "options"}, script = "return new Blob(blobParts, options)")
-    static Blob create(@JSByRef Blob[] blobParts, BlobPropertyBag options) {
+    static Blob create(Blob[] blobParts, BlobPropertyBag options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"blobParts", "options"}, script = "return new Blob(blobParts, options)")
-    static Blob create(@JSByRef String[] blobParts, BlobPropertyBag options) {
+    static Blob create(String[] blobParts, BlobPropertyBag options) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -42,17 +42,17 @@ public interface Blob extends Any, ImageBitmapSource {
     }
 
     @JSBody(params = "blobParts", script = "return new Blob(blobParts)")
-    static Blob create(@JSByRef BufferSource... blobParts) {
+    static Blob create(BufferSource... blobParts) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = "blobParts", script = "return new Blob(blobParts)")
-    static Blob create(@JSByRef Blob... blobParts) {
+    static Blob create(Blob... blobParts) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = "blobParts", script = "return new Blob(blobParts)")
-    static Blob create(@JSByRef String... blobParts) {
+    static Blob create(String... blobParts) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

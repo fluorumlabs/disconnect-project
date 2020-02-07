@@ -14,7 +14,7 @@ public interface PeriodicWaveOptions extends PeriodicWaveConstraints {
     Unknown getImag();
 
     @JSProperty
-    void setImag(@JSByRef double[] imag);
+    void setImag(double[] imag);
 
     @JSProperty
     void setImag(Float32Array imag);
@@ -24,7 +24,7 @@ public interface PeriodicWaveOptions extends PeriodicWaveConstraints {
     Unknown getReal();
 
     @JSProperty
-    void setReal(@JSByRef double[] real);
+    void setReal(double[] real);
 
     @JSProperty
     void setReal(Float32Array real);

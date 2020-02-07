@@ -37,37 +37,37 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void clearBufferfv(int buffer, int drawbuffer, DoubleIterable values, int srcOffset);
 
-    void clearBufferfv(int buffer, int drawbuffer, @JSByRef double[] values, int srcOffset);
+    void clearBufferfv(int buffer, int drawbuffer, double[] values, int srcOffset);
 
     void clearBufferfv(int buffer, int drawbuffer, Float32Array values);
 
     void clearBufferfv(int buffer, int drawbuffer, DoubleIterable values);
 
-    void clearBufferfv(int buffer, int drawbuffer, @JSByRef double[] values);
+    void clearBufferfv(int buffer, int drawbuffer, double[] values);
 
     void clearBufferiv(int buffer, int drawbuffer, Int32Array values, int srcOffset);
 
     void clearBufferiv(int buffer, int drawbuffer, IntIterable values, int srcOffset);
 
-    void clearBufferiv(int buffer, int drawbuffer, @JSByRef int[] values, int srcOffset);
+    void clearBufferiv(int buffer, int drawbuffer, int[] values, int srcOffset);
 
     void clearBufferiv(int buffer, int drawbuffer, Int32Array values);
 
     void clearBufferiv(int buffer, int drawbuffer, IntIterable values);
 
-    void clearBufferiv(int buffer, int drawbuffer, @JSByRef int[] values);
+    void clearBufferiv(int buffer, int drawbuffer, int[] values);
 
     void clearBufferuiv(int buffer, int drawbuffer, Uint32Array values, int srcOffset);
 
     void clearBufferuiv(int buffer, int drawbuffer, IntIterable values, int srcOffset);
 
-    void clearBufferuiv(int buffer, int drawbuffer, @JSByRef int[] values, int srcOffset);
+    void clearBufferuiv(int buffer, int drawbuffer, int[] values, int srcOffset);
 
     void clearBufferuiv(int buffer, int drawbuffer, Uint32Array values);
 
     void clearBufferuiv(int buffer, int drawbuffer, IntIterable values);
 
-    void clearBufferuiv(int buffer, int drawbuffer, @JSByRef int[] values);
+    void clearBufferuiv(int buffer, int drawbuffer, int[] values);
 
     int clientWaitSync(WebGLSync sync, int flags, int timeout);
 
@@ -115,7 +115,7 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void drawArraysInstanced(int mode, int first, int count, int instanceCount);
 
-    void drawBuffers(@JSByRef int... buffers);
+    void drawBuffers(int... buffers);
 
     void drawBuffers(IntIterable buffers);
 
@@ -137,7 +137,7 @@ public interface WebGL2RenderingContextBase extends Any {
 
     Unknown getActiveUniformBlockParameter(WebGLProgram program, int uniformBlockIndex, int pname);
 
-    Unknown getActiveUniforms(WebGLProgram program, @JSByRef int[] uniformIndices, int pname);
+    Unknown getActiveUniforms(WebGLProgram program, int[] uniformIndices, int pname);
 
     Unknown getActiveUniforms(WebGLProgram program, IntIterable uniformIndices, int pname);
 
@@ -168,13 +168,13 @@ public interface WebGL2RenderingContextBase extends Any {
     int getUniformBlockIndex(WebGLProgram program, String uniformBlockName);
 
     @Nullable
-    int[] getUniformIndices(WebGLProgram program, @JSByRef String... uniformNames);
+    int[] getUniformIndices(WebGLProgram program, String... uniformNames);
 
-    void invalidateFramebuffer(int target, @JSByRef int... attachments);
+    void invalidateFramebuffer(int target, int... attachments);
 
     void invalidateFramebuffer(int target, IntIterable attachments);
 
-    void invalidateSubFramebuffer(int target, @JSByRef int[] attachments, int x, int y, int width, int height);
+    void invalidateSubFramebuffer(int target, int[] attachments, int x, int y, int width, int height);
 
     void invalidateSubFramebuffer(int target, IntIterable attachments, int x, int y, int width, int height);
 
@@ -220,7 +220,7 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void texSubImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int format, int type, @Nullable ArrayBufferView srcData);
 
-    void transformFeedbackVaryings(WebGLProgram program, @JSByRef String[] varyings, int bufferMode);
+    void transformFeedbackVaryings(WebGLProgram program, String[] varyings, int bufferMode);
 
     void transformFeedbackVaryings(WebGLProgram program, StringIterable varyings, int bufferMode);
 
@@ -230,19 +230,19 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void uniform1uiv(@Nullable WebGLUniformLocation location, IntIterable data, int srcOffset, int srcLength);
 
-    void uniform1uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data, int srcOffset, int srcLength);
+    void uniform1uiv(@Nullable WebGLUniformLocation location, int[] data, int srcOffset, int srcLength);
 
     void uniform1uiv(@Nullable WebGLUniformLocation location, Uint32Array data, int srcOffset);
 
     void uniform1uiv(@Nullable WebGLUniformLocation location, IntIterable data, int srcOffset);
 
-    void uniform1uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data, int srcOffset);
+    void uniform1uiv(@Nullable WebGLUniformLocation location, int[] data, int srcOffset);
 
     void uniform1uiv(@Nullable WebGLUniformLocation location, Uint32Array data);
 
     void uniform1uiv(@Nullable WebGLUniformLocation location, IntIterable data);
 
-    void uniform1uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data);
+    void uniform1uiv(@Nullable WebGLUniformLocation location, int[] data);
 
     void uniform2ui(@Nullable WebGLUniformLocation location, int v0, int v1);
 
@@ -250,19 +250,19 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void uniform2uiv(@Nullable WebGLUniformLocation location, IntIterable data, int srcOffset, int srcLength);
 
-    void uniform2uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data, int srcOffset, int srcLength);
+    void uniform2uiv(@Nullable WebGLUniformLocation location, int[] data, int srcOffset, int srcLength);
 
     void uniform2uiv(@Nullable WebGLUniformLocation location, Uint32Array data, int srcOffset);
 
     void uniform2uiv(@Nullable WebGLUniformLocation location, IntIterable data, int srcOffset);
 
-    void uniform2uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data, int srcOffset);
+    void uniform2uiv(@Nullable WebGLUniformLocation location, int[] data, int srcOffset);
 
     void uniform2uiv(@Nullable WebGLUniformLocation location, Uint32Array data);
 
     void uniform2uiv(@Nullable WebGLUniformLocation location, IntIterable data);
 
-    void uniform2uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data);
+    void uniform2uiv(@Nullable WebGLUniformLocation location, int[] data);
 
     void uniform3ui(@Nullable WebGLUniformLocation location, int v0, int v1, int v2);
 
@@ -270,19 +270,19 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void uniform3uiv(@Nullable WebGLUniformLocation location, IntIterable data, int srcOffset, int srcLength);
 
-    void uniform3uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data, int srcOffset, int srcLength);
+    void uniform3uiv(@Nullable WebGLUniformLocation location, int[] data, int srcOffset, int srcLength);
 
     void uniform3uiv(@Nullable WebGLUniformLocation location, Uint32Array data, int srcOffset);
 
     void uniform3uiv(@Nullable WebGLUniformLocation location, IntIterable data, int srcOffset);
 
-    void uniform3uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data, int srcOffset);
+    void uniform3uiv(@Nullable WebGLUniformLocation location, int[] data, int srcOffset);
 
     void uniform3uiv(@Nullable WebGLUniformLocation location, Uint32Array data);
 
     void uniform3uiv(@Nullable WebGLUniformLocation location, IntIterable data);
 
-    void uniform3uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data);
+    void uniform3uiv(@Nullable WebGLUniformLocation location, int[] data);
 
     void uniform4ui(@Nullable WebGLUniformLocation location, int v0, int v1, int v2, int v3);
 
@@ -290,19 +290,19 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void uniform4uiv(@Nullable WebGLUniformLocation location, IntIterable data, int srcOffset, int srcLength);
 
-    void uniform4uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data, int srcOffset, int srcLength);
+    void uniform4uiv(@Nullable WebGLUniformLocation location, int[] data, int srcOffset, int srcLength);
 
     void uniform4uiv(@Nullable WebGLUniformLocation location, Uint32Array data, int srcOffset);
 
     void uniform4uiv(@Nullable WebGLUniformLocation location, IntIterable data, int srcOffset);
 
-    void uniform4uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data, int srcOffset);
+    void uniform4uiv(@Nullable WebGLUniformLocation location, int[] data, int srcOffset);
 
     void uniform4uiv(@Nullable WebGLUniformLocation location, Uint32Array data);
 
     void uniform4uiv(@Nullable WebGLUniformLocation location, IntIterable data);
 
-    void uniform4uiv(@Nullable WebGLUniformLocation location, @JSByRef int[] data);
+    void uniform4uiv(@Nullable WebGLUniformLocation location, int[] data);
 
     void uniformBlockBinding(WebGLProgram program, int uniformBlockIndex, int uniformBlockBinding);
 
@@ -310,109 +310,109 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset, int srcLength);
 
-    void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset, int srcLength);
+    void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset, int srcLength);
 
     void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset, int srcLength);
 
     void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset, int srcLength);
 
-    void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset, int srcLength);
+    void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset, int srcLength);
 
     void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset, int srcLength);
 
     void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset, int srcLength);
 
-    void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset, int srcLength);
+    void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset, int srcLength);
 
     void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset, int srcLength);
 
     void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset, int srcLength);
 
-    void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset, int srcLength);
+    void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset, int srcLength);
 
     void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset, int srcLength);
 
     void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset, int srcLength);
 
-    void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset, int srcLength);
+    void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset, int srcLength);
 
     void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset, int srcLength);
 
     void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset, int srcLength);
 
-    void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset, int srcLength);
+    void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset, int srcLength);
 
     void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset);
 
     void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset);
 
-    void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset);
+    void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset);
 
     void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset);
 
     void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset);
 
-    void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset);
+    void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset);
 
     void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset);
 
     void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset);
 
-    void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset);
+    void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset);
 
     void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset);
 
     void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset);
 
-    void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset);
+    void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset);
 
     void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset);
 
     void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset);
 
-    void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset);
+    void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset);
 
     void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data, int srcOffset);
 
     void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data, int srcOffset);
 
-    void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data, int srcOffset);
+    void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data, int srcOffset);
 
     void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data);
 
     void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data);
 
-    void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data);
+    void uniformMatrix2x3fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data);
 
     void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data);
 
     void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data);
 
-    void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data);
+    void uniformMatrix2x4fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data);
 
     void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data);
 
     void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data);
 
-    void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data);
+    void uniformMatrix3x2fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data);
 
     void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data);
 
     void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data);
 
-    void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data);
+    void uniformMatrix3x4fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data);
 
     void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data);
 
     void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data);
 
-    void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data);
+    void uniformMatrix4x2fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data);
 
     void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, Float32Array data);
 
     void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, IntIterable data);
 
-    void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, @JSByRef double[] data);
+    void uniformMatrix4x3fv(@Nullable WebGLUniformLocation location, boolean transpose, double[] data);
 
     void vertexAttribDivisor(int index, int divisor);
 
@@ -422,7 +422,7 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void vertexAttribI4iv(int index, IntIterable values);
 
-    void vertexAttribI4iv(int index, @JSByRef int[] values);
+    void vertexAttribI4iv(int index, int[] values);
 
     void vertexAttribI4ui(int index, int x, int y, int z, int w);
 
@@ -430,7 +430,7 @@ public interface WebGL2RenderingContextBase extends Any {
 
     void vertexAttribI4uiv(int index, IntIterable values);
 
-    void vertexAttribI4uiv(int index, @JSByRef int[] values);
+    void vertexAttribI4uiv(int index, int[] values);
 
     void vertexAttribIPointer(int index, int size, int type, int stride, int offset);
 

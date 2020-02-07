@@ -15,7 +15,7 @@ public interface PublicKeyCredentialRequestOptions extends Any {
     Array<PublicKeyCredentialDescriptor> getAllowCredentials();
 
     @JSProperty
-    void setAllowCredentials(@JSByRef PublicKeyCredentialDescriptor... allowCredentials);
+    void setAllowCredentials(PublicKeyCredentialDescriptor... allowCredentials);
 
     @JSProperty
     void setAllowCredentials(Array<PublicKeyCredentialDescriptor> allowCredentials);

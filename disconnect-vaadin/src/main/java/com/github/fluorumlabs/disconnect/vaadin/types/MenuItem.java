@@ -74,7 +74,7 @@ public interface MenuItem extends Any {
 	 * Array of child menu items
 	 */
 	@JSProperty
-	void setChildren(@JSByRef MenuItem... children);
+	void setChildren(MenuItem... children);
 
 	@JSProperty
 	void setChildren(Array<MenuItem> children);

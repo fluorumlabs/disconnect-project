@@ -22,7 +22,7 @@ public interface ArrayDataProviderMixin<ITEM extends Any> extends Element {
 	 * instances.
 	 */
 	@JSProperty
-	void setItems(@JSByRef ITEM... items);
+	void setItems(ITEM... items);
 
 	@JSProperty
 	void setItems(Array<ITEM> items);

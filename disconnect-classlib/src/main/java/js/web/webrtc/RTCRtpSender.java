@@ -55,7 +55,7 @@ public interface RTCRtpSender extends Any {
 
     VoidPromise setParameters(RTCRtpSendParameters parameters);
 
-    void setStreams(@JSByRef MediaStream... streams);
+    void setStreams(MediaStream... streams);
 
     void setStreams(Array<MediaStream> streams);
 

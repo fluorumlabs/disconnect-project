@@ -35,5 +35,5 @@ public interface MultiSelectListMixin extends ListMixin {
 	 * Note: Not updated when used in single selection mode.
 	 */
 	@JSProperty
-	void setSelectedValues(@JSByRef int... selectedValues);
+	void setSelectedValues(int... selectedValues);
 }

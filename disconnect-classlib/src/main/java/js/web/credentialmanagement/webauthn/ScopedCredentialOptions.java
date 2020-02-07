@@ -14,7 +14,7 @@ public interface ScopedCredentialOptions extends Any {
     Array<ScopedCredentialDescriptor> getExcludeList();
 
     @JSProperty
-    void setExcludeList(@JSByRef ScopedCredentialDescriptor... excludeList);
+    void setExcludeList(ScopedCredentialDescriptor... excludeList);
 
     @JSProperty
     void setExcludeList(Array<ScopedCredentialDescriptor> excludeList);

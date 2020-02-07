@@ -69,7 +69,7 @@ public interface JsonWebKey extends Any {
     String[] getKey_ops();
 
     @JSProperty
-    void setKey_ops(@JSByRef String... key_ops);
+    void setKey_ops(String... key_ops);
 
     @JSProperty
     @Nullable
@@ -90,7 +90,7 @@ public interface JsonWebKey extends Any {
     Array<RsaOtherPrimesInfo> getOth();
 
     @JSProperty
-    void setOth(@JSByRef RsaOtherPrimesInfo... oth);
+    void setOth(RsaOtherPrimesInfo... oth);
 
     @JSProperty
     void setOth(Array<RsaOtherPrimesInfo> oth);

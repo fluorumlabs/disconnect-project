@@ -32,6 +32,6 @@ public interface IntersectionObserverInit extends Any {
     void setThreshold(double threshold);
 
     @JSProperty
-    void setThreshold(@JSByRef double... threshold);
+    void setThreshold(double... threshold);
 
 }

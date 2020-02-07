@@ -19,7 +19,7 @@ public interface PropertyIndexedKeyframes extends Any {
     void setComposite(CompositeOperationOrAuto composite);
 
     @JSProperty
-    void setComposite(@JSByRef CompositeOperationOrAuto... composite);
+    void setComposite(CompositeOperationOrAuto... composite);
 
     @JSProperty
     void setComposite(Array<CompositeOperationOrAuto> composite);
@@ -32,7 +32,7 @@ public interface PropertyIndexedKeyframes extends Any {
     void setEasing(String easing);
 
     @JSProperty
-    void setEasing(@JSByRef String... easing);
+    void setEasing(String... easing);
 
     @JSProperty
     Unknown getOffset();
@@ -41,7 +41,7 @@ public interface PropertyIndexedKeyframes extends Any {
     void setOffset(double offset);
 
     @JSProperty
-    void setOffset(@JSByRef double... offset);
+    void setOffset(double... offset);
 
     @JSIndexer
     @Nullable
@@ -51,11 +51,11 @@ public interface PropertyIndexedKeyframes extends Any {
     void set(String property, String value);
 
     @JSIndexer
-    void set(String property, @JSByRef String... value);
+    void set(String property, String... value);
 
     @JSIndexer
     void set(String property, double value);
 
     @JSIndexer
-    void set(String property, @JSByRef double... value);
+    void set(String property, double... value);
 }

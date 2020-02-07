@@ -54,7 +54,7 @@ public interface MediaTrackConstraintSet extends Any {
     void setDeviceId(String deviceId);
 
     @JSProperty
-    void setDeviceId(@JSByRef String... deviceId);
+    void setDeviceId(String... deviceId);
 
     @JSProperty
     @Nullable
@@ -77,7 +77,7 @@ public interface MediaTrackConstraintSet extends Any {
     void setFacingMode(String facingMode);
 
     @JSProperty
-    void setFacingMode(@JSByRef String... facingMode);
+    void setFacingMode(String... facingMode);
 
     @JSProperty
     @Nullable
@@ -100,7 +100,7 @@ public interface MediaTrackConstraintSet extends Any {
     void setGroupId(String groupId);
 
     @JSProperty
-    void setGroupId(@JSByRef String... groupId);
+    void setGroupId(String... groupId);
 
     @JSProperty
     @Nullable
@@ -143,7 +143,7 @@ public interface MediaTrackConstraintSet extends Any {
     void setResizeMode(String resizeMode);
 
     @JSProperty
-    void setResizeMode(@JSByRef String... resizeMode);
+    void setResizeMode(String... resizeMode);
 
     @JSProperty
     @Nullable

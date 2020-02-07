@@ -54,7 +54,7 @@ public interface AudioParam extends Any {
 
     AudioParam setValueAtTime(double value, double startTime);
 
-    AudioParam setValueCurveAtTime(@JSByRef double[] values, double startTime, double duration);
+    AudioParam setValueCurveAtTime(double[] values, double startTime, double duration);
 
     AudioParam setValueCurveAtTime(Float32Array values, double startTime, double duration);
 

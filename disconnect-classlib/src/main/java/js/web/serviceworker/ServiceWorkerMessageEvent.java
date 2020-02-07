@@ -76,7 +76,7 @@ public interface ServiceWorkerMessageEvent extends Event {
         Array<MessagePort> getPorts();
 
         @JSProperty
-        void setPorts(@JSByRef MessagePort... ports);
+        void setPorts(MessagePort... ports);
 
         @JSProperty
         void setPorts(Array<MessagePort> ports);

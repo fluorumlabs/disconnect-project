@@ -37,7 +37,7 @@ public interface JsString extends StringIterable, Any {
     }
 
     @JSBody(params = "codes", script = "return String.fromCharCode.apply(String, codes)")
-    static JsString fromCharCode(@JSByRef int... codes) {
+    static JsString fromCharCode(int... codes) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -46,7 +46,7 @@ public interface JsString extends StringIterable, Any {
      * If length is 0, the empty string is returned.
      */
     @JSBody(params = "codes", script = "return String.fromCodePoint.apply(String, codes)")
-    static JsString fromCodePoint(@JSByRef int... codes) {
+    static JsString fromCodePoint(int... codes) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -84,7 +84,7 @@ public interface JsString extends StringIterable, Any {
      * @param strings The strings to append to the end of the string.
      */
     @JSBody(params = "strings", script = "return this.concat.apply(this, strings)")
-    JsString concat(@JSByRef String... strings);
+    JsString concat(String... strings);
 
     /**
      * Returns the position of the first occurrence of a substring.
@@ -122,11 +122,11 @@ public interface JsString extends StringIterable, Any {
      */
     int localeCompare(String that, String locales, CollatorOptions options);
 
-    int localeCompare(String that, @JSByRef String[] locales, CollatorOptions options);
+    int localeCompare(String that, String[] locales, CollatorOptions options);
 
     int localeCompare(String that, String locales);
 
-    int localeCompare(String that, @JSByRef String[] locales);
+    int localeCompare(String that, String[] locales);
 
     /**
      * Matches a string with a regular expression, and returns an array containing the results of that search.
@@ -216,7 +216,7 @@ public interface JsString extends StringIterable, Any {
      */
     JsString toLocaleLowerCase(String locales);
 
-    JsString toLocaleLowerCase(@JSByRef String[] locales);
+    JsString toLocaleLowerCase(String[] locales);
 
     JsString toLocaleLowerCase();
 
@@ -230,7 +230,7 @@ public interface JsString extends StringIterable, Any {
      */
     JsString toLocaleUpperCase(String locales);
 
-    JsString toLocaleUpperCase(@JSByRef String[] locales);
+    JsString toLocaleUpperCase(String[] locales);
 
     JsString toLocaleUpperCase();
 

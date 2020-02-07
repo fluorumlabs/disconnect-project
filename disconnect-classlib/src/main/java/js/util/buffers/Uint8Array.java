@@ -55,7 +55,7 @@ public interface Uint8Array extends ShortIterableIterable, ArrayBufferView, Any 
      * @param items A set of elements to include in the new array object.
      */
     @JSBody(params = "items", script = "return Uint8Array.of.apply(Uint8Array, items)")
-    static Uint8Array of(@JSByRef short... items) {
+    static Uint8Array of(short... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

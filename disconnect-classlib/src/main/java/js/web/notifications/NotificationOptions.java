@@ -15,7 +15,7 @@ public interface NotificationOptions extends Any {
     Array<NotificationAction> getActions();
 
     @JSProperty
-    void setActions(@JSByRef NotificationAction... actions);
+    void setActions(NotificationAction... actions);
 
     @JSProperty
     void setActions(Array<NotificationAction> actions);
@@ -109,6 +109,6 @@ public interface NotificationOptions extends Any {
     void setVibrate(double vibrate);
 
     @JSProperty
-    void setVibrate(@JSByRef double... vibrate);
+    void setVibrate(double... vibrate);
 
 }

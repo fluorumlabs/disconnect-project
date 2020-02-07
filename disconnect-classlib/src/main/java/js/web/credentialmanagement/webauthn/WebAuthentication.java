@@ -32,12 +32,12 @@ public interface WebAuthentication extends Any {
 
     Promise<ScopedCredentialInfo> makeCredential(Account accountInformation, JsIterable<ScopedCredentialParameters> cryptoParameters, @Nullable BufferSource attestationChallenge, ScopedCredentialOptions options);
 
-    Promise<ScopedCredentialInfo> makeCredential(Account accountInformation, @JSByRef ScopedCredentialParameters[] cryptoParameters, @Nullable BufferSource attestationChallenge, ScopedCredentialOptions options);
+    Promise<ScopedCredentialInfo> makeCredential(Account accountInformation, ScopedCredentialParameters[] cryptoParameters, @Nullable BufferSource attestationChallenge, ScopedCredentialOptions options);
 
     Promise<ScopedCredentialInfo> makeCredential(Account accountInformation, Array<ScopedCredentialParameters> cryptoParameters, @Nullable BufferSource attestationChallenge);
 
     Promise<ScopedCredentialInfo> makeCredential(Account accountInformation, JsIterable<ScopedCredentialParameters> cryptoParameters, @Nullable BufferSource attestationChallenge);
 
-    Promise<ScopedCredentialInfo> makeCredential(Account accountInformation, @JSByRef ScopedCredentialParameters[] cryptoParameters, @Nullable BufferSource attestationChallenge);
+    Promise<ScopedCredentialInfo> makeCredential(Account accountInformation, ScopedCredentialParameters[] cryptoParameters, @Nullable BufferSource attestationChallenge);
 
 }

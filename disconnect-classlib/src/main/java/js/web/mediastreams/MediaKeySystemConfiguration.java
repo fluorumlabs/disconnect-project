@@ -14,7 +14,7 @@ public interface MediaKeySystemConfiguration extends Any {
     Array<MediaKeySystemMediaCapability> getAudioCapabilities();
 
     @JSProperty
-    void setAudioCapabilities(@JSByRef MediaKeySystemMediaCapability... audioCapabilities);
+    void setAudioCapabilities(MediaKeySystemMediaCapability... audioCapabilities);
 
     @JSProperty
     void setAudioCapabilities(Array<MediaKeySystemMediaCapability> audioCapabilities);
@@ -31,7 +31,7 @@ public interface MediaKeySystemConfiguration extends Any {
     String[] getInitDataTypes();
 
     @JSProperty
-    void setInitDataTypes(@JSByRef String... initDataTypes);
+    void setInitDataTypes(String... initDataTypes);
 
     @JSProperty
     @Nullable
@@ -52,14 +52,14 @@ public interface MediaKeySystemConfiguration extends Any {
     String[] getSessionTypes();
 
     @JSProperty
-    void setSessionTypes(@JSByRef String... sessionTypes);
+    void setSessionTypes(String... sessionTypes);
 
     @JSProperty
     @Nullable
     Array<MediaKeySystemMediaCapability> getVideoCapabilities();
 
     @JSProperty
-    void setVideoCapabilities(@JSByRef MediaKeySystemMediaCapability... videoCapabilities);
+    void setVideoCapabilities(MediaKeySystemMediaCapability... videoCapabilities);
 
     @JSProperty
     void setVideoCapabilities(Array<MediaKeySystemMediaCapability> videoCapabilities);

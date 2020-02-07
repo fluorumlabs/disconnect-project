@@ -105,7 +105,7 @@ public interface CheckboxGroupElement extends HTMLElement, ThemableMixin {
 	 * You can still use Polymer array mutation methods to update the value.
 	 */
 	@JSProperty
-	void setValue(@JSByRef String... value);
+	void setValue(String... value);
 
 	/**
 	 * Error to show when the input value is invalid.

@@ -163,11 +163,11 @@ public abstract class JsNumber implements Any {
      */
     public native String toLocaleString(String locales, NumberFormatOptions options);
 
-    public native String toLocaleString(@JSByRef String[] locales, NumberFormatOptions options);
+    public native String toLocaleString(String[] locales, NumberFormatOptions options);
 
     public native String toLocaleString(String locales);
 
-    public native String toLocaleString(@JSByRef String[] locales);
+    public native String toLocaleString(String[] locales);
 
     public native String toLocaleString();
 

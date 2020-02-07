@@ -158,10 +158,10 @@ public abstract class JsMath implements Any {
      * @param values Numeric expressions to be evaluated.
      */
     @JSBody(params = "values", script = "return Math.max.apply(Math, values)")
-    public static native double max(@JSByRef double... values);
+    public static native double max(double... values);
 
     @JSBody(params = "values", script = "return Math.max.apply(Math, values)")
-    public static native int max(@JSByRef int... values);
+    public static native int max(int... values);
 
     /**
      * Returns the smaller of a set of supplied numeric expressions.
@@ -169,10 +169,10 @@ public abstract class JsMath implements Any {
      * @param values Numeric expressions to be evaluated.
      */
     @JSBody(params = "values", script = "return Math.min.apply(Math, values)")
-    public static native double min(@JSByRef double... values);
+    public static native double min(double... values);
 
     @JSBody(params = "values", script = "return Math.min.apply(Math, values)")
-    public static native int min(@JSByRef int... values);
+    public static native int min(int... values);
 
     /**
      * Returns the value of a base expression taken to a specified power.
@@ -339,7 +339,7 @@ public abstract class JsMath implements Any {
      *               If all arguments are either +0 or −0, the result is +0.
      */
     @JSBody(params = "values", script = "return Math.hypot.apply(Math, values)")
-    public static native double hypot(@JSByRef double... values);
+    public static native double hypot(double... values);
 
     /**
      * Returns the integral part of the a numeric expression, x, removing any fractional digits.

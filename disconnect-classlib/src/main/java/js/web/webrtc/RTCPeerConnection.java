@@ -416,7 +416,7 @@ public interface RTCPeerConnection extends EventTarget {
 
     VoidPromise addIceCandidate(RTCIceCandidate candidate);
 
-    RTCRtpSender addTrack(MediaStreamTrack track, @JSByRef MediaStream... streams);
+    RTCRtpSender addTrack(MediaStreamTrack track, MediaStream... streams);
 
     RTCRtpSender addTrack(MediaStreamTrack track, Array<MediaStream> streams);
 

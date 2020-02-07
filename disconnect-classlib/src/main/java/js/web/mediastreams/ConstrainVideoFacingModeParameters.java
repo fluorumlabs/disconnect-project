@@ -18,7 +18,7 @@ public interface ConstrainVideoFacingModeParameters extends Any {
     void setExact(VideoFacingModeEnum exact);
 
     @JSProperty
-    void setExact(@JSByRef VideoFacingModeEnum... exact);
+    void setExact(VideoFacingModeEnum... exact);
 
     @JSProperty
     void setExact(Array<VideoFacingModeEnum> exact);
@@ -31,7 +31,7 @@ public interface ConstrainVideoFacingModeParameters extends Any {
     void setIdeal(VideoFacingModeEnum ideal);
 
     @JSProperty
-    void setIdeal(@JSByRef VideoFacingModeEnum... ideal);
+    void setIdeal(VideoFacingModeEnum... ideal);
 
     @JSProperty
     void setIdeal(Array<VideoFacingModeEnum> ideal);

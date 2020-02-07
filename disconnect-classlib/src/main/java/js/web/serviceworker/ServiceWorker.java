@@ -66,7 +66,7 @@ public interface ServiceWorker extends EventTarget, AbstractWorker, MessageEvent
 
     void postMessage(Any message, Array<Transferable> transfer);
 
-    void postMessage(Any message, @JSByRef Transferable... transfer);
+    void postMessage(Any message, Transferable... transfer);
 
     void postMessage(Any message, PostMessageOptions options);
 

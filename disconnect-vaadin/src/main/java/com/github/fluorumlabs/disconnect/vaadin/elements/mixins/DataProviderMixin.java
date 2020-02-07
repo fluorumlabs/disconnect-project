@@ -108,7 +108,7 @@ public interface DataProviderMixin<ITEM extends Any> extends Element {
 	 * An array that contains the expanded items.
 	 */
 	@JSProperty
-	void setExpandedItems(@JSByRef ITEM... expandedItems);
+	void setExpandedItems(ITEM... expandedItems);
 
 	@JSProperty
 	void setExpandedItems(Array<ITEM> expandedItems);

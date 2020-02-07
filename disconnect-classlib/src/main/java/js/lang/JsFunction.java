@@ -14,7 +14,7 @@ public interface JsFunction extends Any {
      * @param args A list of arguments the function accepts.
      */
     @JSBody(params = "args", script = "return Function.apply(null, args)")
-    static JsFunction create(@JSByRef String... args) {
+    static JsFunction create(String... args) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -40,7 +40,7 @@ public interface JsFunction extends Any {
      * @param argArray A list of arguments to be passed to the method.
      */
     @JSBody(params = {"thisArg", "argArray"}, script = "return this.call.apply(this, [].concat([thisArg], argArray))")
-    Any call(Any thisArg, @JSByRef Any... argArray);
+    Any call(Any thisArg, Any... argArray);
 
     /**
      * For a given function, creates a bound function that has the same body as the original function.
@@ -50,7 +50,7 @@ public interface JsFunction extends Any {
      * @param argArray A list of arguments to be passed to the new function.
      */
     @JSBody(params = {"thisArg", "argArray"}, script = "return this.bind.apply(this, [].concat([thisArg], argArray))")
-    Any bind(Any thisArg, @JSByRef Any... argArray);
+    Any bind(Any thisArg, Any... argArray);
 
     /**
      * Returns a string representation of a function.

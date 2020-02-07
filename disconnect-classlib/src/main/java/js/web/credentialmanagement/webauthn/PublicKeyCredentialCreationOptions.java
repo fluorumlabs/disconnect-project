@@ -35,7 +35,7 @@ public interface PublicKeyCredentialCreationOptions extends Any {
     Array<PublicKeyCredentialDescriptor> getExcludeCredentials();
 
     @JSProperty
-    void setExcludeCredentials(@JSByRef PublicKeyCredentialDescriptor... excludeCredentials);
+    void setExcludeCredentials(PublicKeyCredentialDescriptor... excludeCredentials);
 
     @JSProperty
     void setExcludeCredentials(Array<PublicKeyCredentialDescriptor> excludeCredentials);
@@ -51,7 +51,7 @@ public interface PublicKeyCredentialCreationOptions extends Any {
     Array<PublicKeyCredentialParameters> getPubKeyCredParams();
 
     @JSProperty
-    void setPubKeyCredParams(@JSByRef PublicKeyCredentialParameters... pubKeyCredParams);
+    void setPubKeyCredParams(PublicKeyCredentialParameters... pubKeyCredParams);
 
     @JSProperty
     void setPubKeyCredParams(Array<PublicKeyCredentialParameters> pubKeyCredParams);

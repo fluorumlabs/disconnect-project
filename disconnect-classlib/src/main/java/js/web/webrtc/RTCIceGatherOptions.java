@@ -21,7 +21,7 @@ public interface RTCIceGatherOptions extends Any {
     Array<RTCIceServer> getIceservers();
 
     @JSProperty
-    void setIceservers(@JSByRef RTCIceServer... iceservers);
+    void setIceservers(RTCIceServer... iceservers);
 
     @JSProperty
     void setIceservers(Array<RTCIceServer> iceservers);

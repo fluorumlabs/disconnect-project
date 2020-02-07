@@ -39,7 +39,7 @@ public interface CanvasPathDrawingStyles extends Any {
 
     double[] getLineDash();
 
-    void setLineDash(@JSByRef double[] segments);
+    void setLineDash(double[] segments);
 
     void setLineDash(DoubleIterable segments);
 }

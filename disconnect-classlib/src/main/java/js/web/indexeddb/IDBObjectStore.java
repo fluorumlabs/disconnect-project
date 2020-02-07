@@ -99,9 +99,9 @@ public interface IDBObjectStore extends Any {
 
     IDBIndex createIndex(String name, StringIterable keyPath, IDBIndexParameters options);
 
-    IDBIndex createIndex(String name, @JSByRef String[] keyPath, IDBIndexParameters options);
+    IDBIndex createIndex(String name, String[] keyPath, IDBIndexParameters options);
 
-    IDBIndex createIndex(String name, @JSByRef String... keyPath);
+    IDBIndex createIndex(String name, String... keyPath);
 
     /**
      * Deletes records in store with the given key or in the given key range in query.

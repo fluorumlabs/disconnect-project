@@ -80,7 +80,7 @@ public interface Navigator extends NavigatorAutomationInformation, NavigatorBeac
 
     Promise<Array<VRDisplay>> getVRDisplays();
 
-    Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, @JSByRef MediaKeySystemConfiguration... supportedConfigurations);
+    Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, MediaKeySystemConfiguration... supportedConfigurations);
 
     Promise<MediaKeySystemAccess> requestMediaKeySystemAccess(String keySystem, Array<MediaKeySystemConfiguration> supportedConfigurations);
 
@@ -88,6 +88,6 @@ public interface Navigator extends NavigatorAutomationInformation, NavigatorBeac
 
     boolean vibrate(int pattern);
 
-    boolean vibrate(@JSByRef int... pattern);
+    boolean vibrate(int... pattern);
 
 }

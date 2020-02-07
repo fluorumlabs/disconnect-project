@@ -180,7 +180,7 @@ public interface FormLayoutElement extends HTMLElement, ElementMixin, ThemableMi
 	 * </code></pre>
 	 */
 	@JSProperty
-	void setResponsiveSteps(@JSByRef ResponsiveStep... responsiveSteps);
+	void setResponsiveSteps(ResponsiveStep... responsiveSteps);
 
 	@JSProperty
 	void setResponsiveSteps(Array<ResponsiveStep> responsiveSteps);

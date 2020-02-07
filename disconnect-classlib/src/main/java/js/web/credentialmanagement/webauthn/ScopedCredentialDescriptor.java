@@ -22,7 +22,7 @@ public interface ScopedCredentialDescriptor extends Any {
     Array<Transport> getTransports();
 
     @JSProperty
-    void setTransports(@JSByRef Transport... transports);
+    void setTransports(Transport... transports);
 
     @JSProperty
     void setTransports(Array<Transport> transports);

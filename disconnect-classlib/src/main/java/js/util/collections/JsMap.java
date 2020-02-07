@@ -23,7 +23,7 @@ public interface JsMap<K extends Any, V extends Any> extends ReadonlyMap<K, V> {
     }
 
     @JSBody(params = "entries", script = "return new Map(entries)")
-    static <K extends Any, V extends Any> JsMap<K, V> create(@JSByRef KeyValue<K, V> entries) {
+    static <K extends Any, V extends Any> JsMap<K, V> create(KeyValue<K, V> entries) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

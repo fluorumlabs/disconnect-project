@@ -147,7 +147,7 @@ public interface CrudElement<ITEM extends Any> extends HTMLElement, ElementMixin
 	 * An array containing the items which will be stamped to the column template instances.
 	 */
 	@JSProperty
-	void setItems(@JSByRef ITEM... items);
+	void setItems(ITEM... items);
 
 	@JSProperty
 	void setItems(Array<ITEM> items);

@@ -100,7 +100,7 @@ public interface MessagePort extends EventTarget, MessageEventSource, Transferab
      * <p>
      * Throws a "DataCloneError" DOMException if transfer contains duplicate objects or port, or if message could not be cloned.
      */
-    void postMessage(Any message, @JSByRef Transferable... transfer);
+    void postMessage(Any message, Transferable... transfer);
 
     void postMessage(Any message, Array<Transferable> transfer);
 

@@ -21,7 +21,7 @@ public interface RTCConfiguration extends Any {
     Array<RTCCertificate> getCertificates();
 
     @JSProperty
-    void setCertificates(@JSByRef RTCCertificate... certificates);
+    void setCertificates(RTCCertificate... certificates);
 
     @JSProperty
     void setCertificates(Array<RTCCertificate> certificates);
@@ -37,7 +37,7 @@ public interface RTCConfiguration extends Any {
     Array<RTCIceServer> getIceServers();
 
     @JSProperty
-    void setIceServers(@JSByRef RTCIceServer... iceServers);
+    void setIceServers(RTCIceServer... iceServers);
 
     @JSProperty
     void setIceServers(Array<RTCIceServer> iceServers);

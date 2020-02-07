@@ -29,7 +29,7 @@ public interface WebSocket extends EventTarget {
     }
 
     @JSBody(params = {"url", "protocols"}, script = "return new WebSocket(url, protocols)")
-    static WebSocket create(String url, @JSByRef String... protocols) {
+    static WebSocket create(String url, String... protocols) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

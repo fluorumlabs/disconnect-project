@@ -53,7 +53,7 @@ public interface RTCTrackEvent extends Event {
         Array<MediaStream> getStreams();
 
         @JSProperty
-        void setStreams(@JSByRef MediaStream... streams);
+        void setStreams(MediaStream... streams);
 
         @JSProperty
         void setStreams(Array<MediaStream> streams);

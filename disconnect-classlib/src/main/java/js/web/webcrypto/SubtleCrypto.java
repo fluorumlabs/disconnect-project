@@ -32,13 +32,13 @@ public interface SubtleCrypto extends Any {
 
     PromiseLike<ArrayBuffer> deriveBits(Algorithm algorithm, CryptoKey baseKey, int length);
 
-    PromiseLike<CryptoKey> deriveKey(String algorithm, CryptoKey baseKey, String derivedKeyType, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> deriveKey(String algorithm, CryptoKey baseKey, String derivedKeyType, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> deriveKey(Algorithm algorithm, CryptoKey baseKey, String derivedKeyType, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> deriveKey(Algorithm algorithm, CryptoKey baseKey, String derivedKeyType, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> deriveKey(String algorithm, CryptoKey baseKey, Algorithm derivedKeyType, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> deriveKey(String algorithm, CryptoKey baseKey, Algorithm derivedKeyType, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> deriveKey(Algorithm algorithm, CryptoKey baseKey, Algorithm derivedKeyType, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> deriveKey(Algorithm algorithm, CryptoKey baseKey, Algorithm derivedKeyType, boolean extractable, String... keyUsages);
 
     PromiseLike<ArrayBuffer> digest(String algorithm, BufferSource data);
 
@@ -54,37 +54,37 @@ public interface SubtleCrypto extends Any {
 
     PromiseLike<Unknown> exportKey(String format, CryptoKey key);
 
-    PromiseLike<Unknown> generateKey(String algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<Unknown> generateKey(String algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<Unknown> generateKey(Algorithm algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<Unknown> generateKey(Algorithm algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> importKey(FormatJwk format, JsonWebKey keyData, String algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> importKey(FormatJwk format, JsonWebKey keyData, String algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> importKey(FormatJwk format, JsonWebKey keyData, Algorithm algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> importKey(FormatJwk format, JsonWebKey keyData, Algorithm algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> importKey(Format format, BufferSource keyData, String algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> importKey(Format format, BufferSource keyData, String algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> importKey(Format format, BufferSource keyData, Algorithm algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> importKey(Format format, BufferSource keyData, Algorithm algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> importKey(String format, JsonWebKey keyData, String algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> importKey(String format, JsonWebKey keyData, String algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> importKey(String format, BufferSource keyData, String algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> importKey(String format, BufferSource keyData, String algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> importKey(String format, JsonWebKey keyData, Algorithm algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> importKey(String format, JsonWebKey keyData, Algorithm algorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> importKey(String format, BufferSource keyData, Algorithm algorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> importKey(String format, BufferSource keyData, Algorithm algorithm, boolean extractable, String... keyUsages);
 
     PromiseLike<ArrayBuffer> sign(String algorithm, CryptoKey key, BufferSource data);
 
     PromiseLike<ArrayBuffer> sign(Algorithm algorithm, CryptoKey key, BufferSource data);
 
-    PromiseLike<CryptoKey> unwrapKey(String format, BufferSource wrappedKey, CryptoKey unwrappingKey, String unwrapAlgorithm, String unwrappedKeyAlgorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> unwrapKey(String format, BufferSource wrappedKey, CryptoKey unwrappingKey, String unwrapAlgorithm, String unwrappedKeyAlgorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> unwrapKey(String format, BufferSource wrappedKey, CryptoKey unwrappingKey, Algorithm unwrapAlgorithm, String unwrappedKeyAlgorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> unwrapKey(String format, BufferSource wrappedKey, CryptoKey unwrappingKey, Algorithm unwrapAlgorithm, String unwrappedKeyAlgorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> unwrapKey(String format, BufferSource wrappedKey, CryptoKey unwrappingKey, String unwrapAlgorithm, Algorithm unwrappedKeyAlgorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> unwrapKey(String format, BufferSource wrappedKey, CryptoKey unwrappingKey, String unwrapAlgorithm, Algorithm unwrappedKeyAlgorithm, boolean extractable, String... keyUsages);
 
-    PromiseLike<CryptoKey> unwrapKey(String format, BufferSource wrappedKey, CryptoKey unwrappingKey, Algorithm unwrapAlgorithm, Algorithm unwrappedKeyAlgorithm, boolean extractable, @JSByRef String... keyUsages);
+    PromiseLike<CryptoKey> unwrapKey(String format, BufferSource wrappedKey, CryptoKey unwrappingKey, Algorithm unwrapAlgorithm, Algorithm unwrappedKeyAlgorithm, boolean extractable, String... keyUsages);
 
     BooleanPromiseLike verify(String algorithm, CryptoKey key, BufferSource signature, BufferSource data);
 

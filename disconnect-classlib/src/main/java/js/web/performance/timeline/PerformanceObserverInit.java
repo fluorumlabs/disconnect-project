@@ -19,7 +19,7 @@ public interface PerformanceObserverInit extends Any {
     String[] getEntryTypes();
 
     @JSProperty
-    void setEntryTypes(@JSByRef String[] entryTypes);
+    void setEntryTypes(String[] entryTypes);
 
     @JSProperty
     @Nullable

@@ -357,7 +357,7 @@ public interface ChartElement extends HTMLElement {
 	 * or a mapping <code>Object</code>, like <code>{0:'1',9:'Target (10)', 15: 'Max'}</code>.
 	 */
 	@JSProperty
-	void setCategories(@JSByRef String... categories);
+	void setCategories(String... categories);
 
 	/**
 	 * Category-axis maximum value. Defaults to <code>undefined</code>.

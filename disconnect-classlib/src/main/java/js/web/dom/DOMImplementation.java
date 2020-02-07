@@ -28,6 +28,6 @@ public interface DOMImplementation extends Any {
 
     @Deprecated
     @JSBody(params = {"args"}, script = "this.hasFeature.apply(this, args);")
-    boolean hasFeature(@JSByRef Any... args);
+    boolean hasFeature(Any... args);
 
 }

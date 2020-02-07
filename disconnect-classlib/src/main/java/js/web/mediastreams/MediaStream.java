@@ -31,7 +31,7 @@ public interface MediaStream extends EventTarget {
     }
 
     @JSBody(params = "tracks", script = "return new MediaStream(tracks)")
-    static MediaStream create(@JSByRef MediaStreamTrack... tracks) {
+    static MediaStream create(MediaStreamTrack... tracks) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 

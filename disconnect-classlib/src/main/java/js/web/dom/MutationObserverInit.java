@@ -16,7 +16,7 @@ public interface MutationObserverInit extends Any {
     String[] getAttributeFilter();
 
     @JSProperty
-    void setAttributeFilter(@JSByRef String... attributeFilter);
+    void setAttributeFilter(String... attributeFilter);
 
     /**
      * Set to true if attributes is true or omitted and target's attribute value before the mutation needs to be recorded.
