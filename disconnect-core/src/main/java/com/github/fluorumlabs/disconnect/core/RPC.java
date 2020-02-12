@@ -2,6 +2,7 @@ package com.github.fluorumlabs.disconnect.core;
 
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectConfig;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
+import js.lang.Any;
 import js.lang.JsObject;
 import js.lang.Unknown;
 import js.util.JSON;
@@ -37,22 +38,24 @@ public class RPC {
 		}
 	}
 
-	public static void callPost(String endpoint, Serializable arguments, RPCResult result) {
+	public static void callPost(String endpoint, Serializable arguments, Serializable result) {
 		String payload = JSON.stringify(convertToArray(ObjectMirror.from(arguments)));
 
 		try {
-			String response = callPostBackend(endpoint, payload);
-			JsObject.assign(ObjectMirror.from(result), JSON.parse(response));
-			if (result.exceptionClass != null) {
-				throw new ServerSideException(result.exceptionClass, result.exceptionMessage);
+			RPCExceptionResult exceptionResult = new RPCExceptionResult();
+			Any returnValue = JSON.parse(callPostBackend(endpoint, payload));
+			JsObject.assign(ObjectMirror.from(exceptionResult), returnValue);
+			if (exceptionResult.exceptionClass != null) {
+				throw new ServerSideException(exceptionResult.exceptionClass, exceptionResult.exceptionMessage);
 			}
+			JsObject.assign(ObjectMirror.from(result), returnValue);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	public static void callPost(String endpoint, Serializable arguments) {
-		RPCResult result = new RPCResult();
+		RPCExceptionResult result = new RPCExceptionResult();
 		callPost(endpoint, arguments, result);
 	}
 
@@ -79,22 +82,24 @@ public class RPC {
 	}
 
 	public static void callGet(String endpoint, Serializable arguments,
-							   RPCResult result) {
+							   Serializable result) {
 		String payload = DisconnectUtils.base64UrlEncode(JSON.stringify(convertToArray(ObjectMirror.from(arguments))));
 
 		try {
-			String response = callGetBackend(endpoint, payload);
-			JsObject.assign(ObjectMirror.from(result), JSON.parse(response));
-			if (result.exceptionClass != null) {
-				throw new ServerSideException(result.exceptionClass, result.exceptionMessage);
+			RPCExceptionResult exceptionResult = new RPCExceptionResult();
+			Any returnValue = JSON.parse(callGetBackend(endpoint, payload));
+			JsObject.assign(ObjectMirror.from(exceptionResult), returnValue);
+			if (exceptionResult.exceptionClass != null) {
+				throw new ServerSideException(exceptionResult.exceptionClass, exceptionResult.exceptionMessage);
 			}
+			JsObject.assign(ObjectMirror.from(result), returnValue);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	public static void callGet(String endpoint, Serializable arguments) {
-		RPCResult result = new RPCResult();
+		RPCExceptionResult result = new RPCExceptionResult();
 		callGet(endpoint, arguments, result);
 	}
 

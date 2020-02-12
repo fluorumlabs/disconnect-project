@@ -1,7 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.toolchain;
 
 import com.github.fluorumlabs.disconnect.core.RPC;
-import com.github.fluorumlabs.disconnect.core.RPCResult;
 import com.github.fluorumlabs.disconnect.core.annotations.*;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectSymbols;
 import js.lang.Unknown;
@@ -471,7 +470,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 			$.exit();
 		} else {
 			$.invoke(RPC.class.getName(), methodPrefix,
-					endPoint, arguments.cast(Serializable.class), result.cast(RPCResult.class));
+					endPoint, arguments.cast(Serializable.class), result.cast(Serializable.class));
 			result.getField("result", method.getResultType()).returnValue();
 		}
 

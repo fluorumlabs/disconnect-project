@@ -1,7 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.toolchain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.fluorumlabs.disconnect.core.RPCResult;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.*;
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +52,6 @@ public class DisconnectAllowClientCallsAnnotationProcessor extends AbstractProce
 
 					TypeSpec.Builder resultBuilder = TypeSpec.classBuilder(baseClassName + "Result")
 							.addModifiers(Modifier.PUBLIC)
-							.superclass(RPCResult.class)
 							.addSuperinterface(Serializable.class);
 
 					if (!annotatedElement.getReturnType().toString().equals("void")) {
