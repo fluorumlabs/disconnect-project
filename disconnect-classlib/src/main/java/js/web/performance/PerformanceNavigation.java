@@ -29,13 +29,13 @@ public interface PerformanceNavigation extends Any {
     Unknown toJSON();
 
     abstract class Type extends JsEnum {
-        public static final Type TYPE_BACK_FORWARD = JsEnum.from("return PerformanceNavigation.TYPE_BACK_FORWARD");
+        public static final Type TYPE_BACK_FORWARD = JsEnum.from("PerformanceNavigation.TYPE_BACK_FORWARD");
 
-        public static final Type TYPE_NAVIGATE = JsEnum.from("return PerformanceNavigation.TYPE_NAVIGATE");
+        public static final Type TYPE_NAVIGATE = JsEnum.from("PerformanceNavigation.TYPE_NAVIGATE");
 
-        public static final Type TYPE_RELOAD = JsEnum.from("return PerformanceNavigation.TYPE_RELOAD");
+        public static final Type TYPE_RELOAD = JsEnum.from("PerformanceNavigation.TYPE_RELOAD");
 
-        public static final Type TYPE_RESERVED = JsEnum.from("return PerformanceNavigation.TYPE_RESERVED");
+        public static final Type TYPE_RESERVED = JsEnum.from("PerformanceNavigation.TYPE_RESERVED");
     }
 
 }

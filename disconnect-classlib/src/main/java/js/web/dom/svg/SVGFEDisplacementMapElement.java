@@ -34,15 +34,15 @@ public interface SVGFEDisplacementMapElement extends SVGElement, SVGFilterPrimit
     SVGAnimatedEnumeration<Channel> getYChannelSelector();
 
     abstract class Channel extends JsEnum {
-        public static final Channel SVG_CHANNEL_A = JsEnum.from("return SVGFEDisplacementMapElement.SVG_CHANNEL_A");
+        public static final Channel SVG_CHANNEL_A = JsEnum.from("SVGFEDisplacementMapElement.SVG_CHANNEL_A");
 
-        public static final Channel SVG_CHANNEL_B = JsEnum.from("return SVGFEDisplacementMapElement.SVG_CHANNEL_B");
+        public static final Channel SVG_CHANNEL_B = JsEnum.from("SVGFEDisplacementMapElement.SVG_CHANNEL_B");
 
-        public static final Channel SVG_CHANNEL_G = JsEnum.from("return SVGFEDisplacementMapElement.SVG_CHANNEL_G");
+        public static final Channel SVG_CHANNEL_G = JsEnum.from("SVGFEDisplacementMapElement.SVG_CHANNEL_G");
 
-        public static final Channel SVG_CHANNEL_R = JsEnum.from("return SVGFEDisplacementMapElement.SVG_CHANNEL_R");
+        public static final Channel SVG_CHANNEL_R = JsEnum.from("SVGFEDisplacementMapElement.SVG_CHANNEL_R");
 
-        public static final Channel SVG_CHANNEL_UNKNOWN = JsEnum.from("return SVGFEDisplacementMapElement.SVG_CHANNEL_UNKNOWN");
+        public static final Channel SVG_CHANNEL_UNKNOWN = JsEnum.from("SVGFEDisplacementMapElement.SVG_CHANNEL_UNKNOWN");
     }
 
 }

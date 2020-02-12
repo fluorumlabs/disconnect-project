@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class RPCHandler {
         String serviceBean = toCamelCase(kebabService);
         String methodName = toCamelCase(kebabMethod);
         List<JsonNode> nodes = new ArrayList<>();
-        unparsedRequest.get("arguments").forEach(nodes::add);
+        unparsedRequest.forEach(nodes::add);
 
         Object instance = applicationContext.getBean(serviceBean);
 
@@ -81,10 +82,17 @@ public class RPCHandler {
             arguments.add(objectMapper.treeToValue(nodes.get(i), type));
         }
 
-        Object result = target.invoke(instance, arguments.toArray());
+        RPCResultHolder resultHolder = new RPCResultHolder();
+
+        try {
+            resultHolder.result = target.invoke(instance, arguments.toArray());
+        } catch (Exception e) {
+            resultHolder.exceptionClass = e.getClass().getName();
+            resultHolder.exceptionMessage = e.getMessage();
+        }
 
         try (PrintWriter printWriter = response.getWriter()) {
-            objectMapper.writeValue(printWriter, result);
+            objectMapper.writeValue(printWriter, resultHolder);
         }
     }
 
@@ -96,4 +104,9 @@ public class RPCHandler {
                 .collect(Collectors.joining()));
     }
 
+    public static class RPCResultHolder implements Serializable {
+        public String exceptionClass = null;
+        public String exceptionMessage = null;
+        public Object result = null;
+    }
 }

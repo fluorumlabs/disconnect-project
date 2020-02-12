@@ -191,13 +191,13 @@ public interface WebSocket extends EventTarget {
     void send(Blob data);
 
     abstract class ReadyState extends JsEnum {
-        public static final ReadyState CLOSED = JsEnum.from("return WebSocket.CLOSED");
+        public static final ReadyState CLOSED = JsEnum.from("WebSocket.CLOSED");
 
-        public static final ReadyState CLOSING = JsEnum.from("return WebSocket.CLOSING");
+        public static final ReadyState CLOSING = JsEnum.from("WebSocket.CLOSING");
 
-        public static final ReadyState CONNECTING = JsEnum.from("return WebSocket.CONNECTING");
+        public static final ReadyState CONNECTING = JsEnum.from("WebSocket.CONNECTING");
 
-        public static final ReadyState OPEN = JsEnum.from("return WebSocket.OPEN");
+        public static final ReadyState OPEN = JsEnum.from("WebSocket.OPEN");
     }
 
 }

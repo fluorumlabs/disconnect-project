@@ -41,25 +41,25 @@ public interface SVGTransform extends Any {
     void setTranslate(double tx, double ty);
 
     abstract class Type extends JsEnum {
-        public static final Type SVG_TRANSFORM_MATRIX = JsEnum.from("return SVGTransform.SVG_TRANSFORM_MATRIX");
+        public static final Type SVG_TRANSFORM_MATRIX = JsEnum.from("SVGTransform.SVG_TRANSFORM_MATRIX");
 
 
-        public static final Type SVG_TRANSFORM_ROTATE = JsEnum.from("return SVGTransform.SVG_TRANSFORM_ROTATE");
+        public static final Type SVG_TRANSFORM_ROTATE = JsEnum.from("SVGTransform.SVG_TRANSFORM_ROTATE");
 
 
-        public static final Type SVG_TRANSFORM_SCALE = JsEnum.from("return SVGTransform.SVG_TRANSFORM_SCALE");
+        public static final Type SVG_TRANSFORM_SCALE = JsEnum.from("SVGTransform.SVG_TRANSFORM_SCALE");
 
 
-        public static final Type SVG_TRANSFORM_SKEWX = JsEnum.from("return SVGTransform.SVG_TRANSFORM_SKEWX");
+        public static final Type SVG_TRANSFORM_SKEWX = JsEnum.from("SVGTransform.SVG_TRANSFORM_SKEWX");
 
 
-        public static final Type SVG_TRANSFORM_SKEWY = JsEnum.from("return SVGTransform.SVG_TRANSFORM_SKEWY");
+        public static final Type SVG_TRANSFORM_SKEWY = JsEnum.from("SVGTransform.SVG_TRANSFORM_SKEWY");
 
 
-        public static final Type SVG_TRANSFORM_TRANSLATE = JsEnum.from("return SVGTransform.SVG_TRANSFORM_TRANSLATE");
+        public static final Type SVG_TRANSFORM_TRANSLATE = JsEnum.from("SVGTransform.SVG_TRANSFORM_TRANSLATE");
 
 
-        public static final Type SVG_TRANSFORM_UNKNOWN = JsEnum.from("return SVGTransform.SVG_TRANSFORM_UNKNOWN");
+        public static final Type SVG_TRANSFORM_UNKNOWN = JsEnum.from("SVGTransform.SVG_TRANSFORM_UNKNOWN");
     }
 
 

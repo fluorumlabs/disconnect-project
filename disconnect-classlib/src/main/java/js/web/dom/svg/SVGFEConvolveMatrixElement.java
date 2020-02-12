@@ -55,16 +55,16 @@ public interface SVGFEConvolveMatrixElement extends SVGElement, SVGFilterPrimiti
     SVGAnimatedInteger getTargetY();
 
     abstract class EdgeMode extends JsEnum {
-        public static final EdgeMode SVG_EDGEMODE_DUPLICATE = JsEnum.from("return SVGFEConvolveMatrixElement.SVG_EDGEMODE_DUPLICATE");
+        public static final EdgeMode SVG_EDGEMODE_DUPLICATE = JsEnum.from("SVGFEConvolveMatrixElement.SVG_EDGEMODE_DUPLICATE");
 
 
-        public static final EdgeMode SVG_EDGEMODE_NONE = JsEnum.from("return SVGFEConvolveMatrixElement.SVG_EDGEMODE_NONE");
+        public static final EdgeMode SVG_EDGEMODE_NONE = JsEnum.from("SVGFEConvolveMatrixElement.SVG_EDGEMODE_NONE");
 
 
-        public static final EdgeMode SVG_EDGEMODE_UNKNOWN = JsEnum.from("return SVGFEConvolveMatrixElement.SVG_EDGEMODE_UNKNOWN");
+        public static final EdgeMode SVG_EDGEMODE_UNKNOWN = JsEnum.from("SVGFEConvolveMatrixElement.SVG_EDGEMODE_UNKNOWN");
 
 
-        public static final EdgeMode SVG_EDGEMODE_WRAP = JsEnum.from("return SVGFEConvolveMatrixElement.SVG_EDGEMODE_WRAP");
+        public static final EdgeMode SVG_EDGEMODE_WRAP = JsEnum.from("SVGFEConvolveMatrixElement.SVG_EDGEMODE_WRAP");
     }
 
 }

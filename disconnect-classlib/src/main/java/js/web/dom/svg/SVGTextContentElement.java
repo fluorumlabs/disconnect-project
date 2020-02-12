@@ -43,13 +43,13 @@ public interface SVGTextContentElement extends SVGGraphicsElement {
     void selectSubString(int charnum, int nchars);
 
     abstract class LengthAdjust extends JsEnum {
-        public static final LengthAdjust LENGTHADJUST_SPACING = JsEnum.from("return SVGTextContentElement.LENGTHADJUST_SPACING");
+        public static final LengthAdjust LENGTHADJUST_SPACING = JsEnum.from("SVGTextContentElement.LENGTHADJUST_SPACING");
 
 
-        public static final LengthAdjust LENGTHADJUST_SPACINGANDGLYPHS = JsEnum.from("return SVGTextContentElement.LENGTHADJUST_SPACINGANDGLYPHS");
+        public static final LengthAdjust LENGTHADJUST_SPACINGANDGLYPHS = JsEnum.from("SVGTextContentElement.LENGTHADJUST_SPACINGANDGLYPHS");
 
 
-        public static final LengthAdjust LENGTHADJUST_UNKNOWN = JsEnum.from("return SVGTextContentElement.LENGTHADJUST_UNKNOWN");
+        public static final LengthAdjust LENGTHADJUST_UNKNOWN = JsEnum.from("SVGTextContentElement.LENGTHADJUST_UNKNOWN");
     }
 
 }

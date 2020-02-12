@@ -1,36 +1,78 @@
 package com.github.fluorumlabs.disconnect.example.basic.client;
 
+import com.github.fluorumlabs.disconnect.core.ObjectMirror;
 import com.github.fluorumlabs.disconnect.core.annotations.EntryPoint;
-import js.lang.JsDate;
-import js.web.dom.Element;
-import js.web.dom.HTMLElement;
+import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
+import js.lang.Any;
+import js.util.JS;
+import js.util.JSON;
+import org.teavm.jso.JSBody;
 
-import static js.web.dom.Document.DOCUMENT;
-import static js.web.dom.Window.WINDOW;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static js.web.dom.Window.CONSOLE;
 
 
 @EntryPoint
 public class BasicExampleEntryPoint implements Runnable {
 
+    static class DummyBean implements Serializable {
+        public List<String> list;
+        public String value1;
+        public String value2;
+        public Boolean value3 = false;
+        public boolean value4 = true;
+        public int x = 5;
+        public Byte y = null;
+        public String s = null;
+        private DummyBean nested;
+
+        public DummyBean getNested() {
+            return nested;
+        }
+
+        public void setNested(DummyBean nested) {
+            this.nested = nested;
+        }
+    }
+
+
+    @JSBody(params = "x", script = "window.z = x")
+    public static native void setReference(Any x);
+
     @Override
     public void run() {
-        HTMLElement h1 = DOCUMENT.createElement("h1");
-        h1.setInnerText("Disconnect: Basic example");
-        DOCUMENT.getBody().appendChild(h1);
+        DummyBean dummyBean = new DummyBean();
+        dummyBean.value1 = "test";
 
-        HTMLElement button = DOCUMENT.createElement("button");
-        button.setInnerText("Click me");
-        DOCUMENT.getBody().appendChild(button);
+        CONSOLE.log(dummyBean.value1);
+        CONSOLE.log(DisconnectUtils.asJsObject(dummyBean));
 
-        button.addEventListener("click", evt -> {
-            HTMLElement p = DOCUMENT.createElement("p");
-            p.setInnerText("Button was clicked on "+ JsDate.create().toISOString());
-            DOCUMENT.getBody().appendChild(p);
+        ObjectMirror<DummyBean> mirror = ObjectMirror.from(dummyBean);
 
-            for (Element child : DOCUMENT.getBody().getChildren().iterable()) {
-                WINDOW.getConsole().debug(child);
-            }
-        });
+        setReference(mirror);
+        CONSOLE.log(mirror);
+        CONSOLE.log(dummyBean.value1);
+
+        JS.eval("z.value2 = 'zxxzx'");
+        CONSOLE.log(JSON.stringify(mirror));
+
+        dummyBean.list = new ArrayList<>(Arrays.asList("test","test2"));
+        CONSOLE.log(JSON.stringify(mirror));
+
+        DummyBean dummyBean2 = ObjectMirror.from(DummyBean.class, mirror);
+        CONSOLE.log(dummyBean.value2);
+
+        JS.eval("z.nested = {value1: 'new test string'}");
+        CONSOLE.log(JSON.stringify(mirror));
+        dummyBean.nested.value2="untest";
+        CONSOLE.log(JSON.stringify(mirror));
+
+        JS.eval("z.list.push('aaa')");
+        CONSOLE.log(JSON.stringify(mirror));
     }
 
 }

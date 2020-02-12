@@ -45,15 +45,15 @@ public interface SVGAngle extends Any {
     void newValueSpecifiedUnits(UnitType unitType, double valueInSpecifiedUnits);
 
     abstract class UnitType extends JsEnum {
-        public static final UnitType SVG_ANGLETYPE_DEG = JsEnum.from("return SVGAngle.SVG_ANGLETYPE_DEG");
+        public static final UnitType SVG_ANGLETYPE_DEG = JsEnum.from("SVGAngle.SVG_ANGLETYPE_DEG");
 
-        public static final UnitType SVG_ANGLETYPE_GRAD = JsEnum.from("return SVGAngle.SVG_ANGLETYPE_GRAD");
+        public static final UnitType SVG_ANGLETYPE_GRAD = JsEnum.from("SVGAngle.SVG_ANGLETYPE_GRAD");
 
-        public static final UnitType SVG_ANGLETYPE_RAD = JsEnum.from("return SVGAngle.SVG_ANGLETYPE_RAD");
+        public static final UnitType SVG_ANGLETYPE_RAD = JsEnum.from("SVGAngle.SVG_ANGLETYPE_RAD");
 
-        public static final UnitType SVG_ANGLETYPE_UNKNOWN = JsEnum.from("return SVGAngle.SVG_ANGLETYPE_UNKNOWN");
+        public static final UnitType SVG_ANGLETYPE_UNKNOWN = JsEnum.from("SVGAngle.SVG_ANGLETYPE_UNKNOWN");
 
-        public static final UnitType SVG_ANGLETYPE_UNSPECIFIED = JsEnum.from("return SVGAngle.SVG_ANGLETYPE_UNSPECIFIED");
+        public static final UnitType SVG_ANGLETYPE_UNSPECIFIED = JsEnum.from("SVGAngle.SVG_ANGLETYPE_UNSPECIFIED");
     }
 
 }

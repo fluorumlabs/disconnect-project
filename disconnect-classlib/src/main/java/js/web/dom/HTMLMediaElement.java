@@ -352,23 +352,23 @@ public interface HTMLMediaElement extends HTMLElement {
     VoidPromise setMediaKeys(@Nullable MediaKeys mediaKeys);
 
     abstract class ReadyState extends JsEnum {
-        public static final ReadyState HAVE_CURRENT_DATA = JsEnum.from("return HTMLMediaElement.HAVE_CURRENT_DATA");
+        public static final ReadyState HAVE_CURRENT_DATA = JsEnum.from("HTMLMediaElement.HAVE_CURRENT_DATA");
 
-        public static final ReadyState HAVE_ENOUGH_DATA = JsEnum.from("return HTMLMediaElement.HAVE_ENOUGH_DATA");
+        public static final ReadyState HAVE_ENOUGH_DATA = JsEnum.from("HTMLMediaElement.HAVE_ENOUGH_DATA");
 
-        public static final ReadyState HAVE_FUTURE_DATA = JsEnum.from("return HTMLMediaElement.HAVE_FUTURE_DATA");
+        public static final ReadyState HAVE_FUTURE_DATA = JsEnum.from("HTMLMediaElement.HAVE_FUTURE_DATA");
 
-        public static final ReadyState HAVE_METADATA = JsEnum.from("return HTMLMediaElement.HAVE_METADATA");
+        public static final ReadyState HAVE_METADATA = JsEnum.from("HTMLMediaElement.HAVE_METADATA");
 
-        public static final ReadyState HAVE_NOTHING = JsEnum.from("return HTMLMediaElement.HAVE_NOTHING");
+        public static final ReadyState HAVE_NOTHING = JsEnum.from("HTMLMediaElement.HAVE_NOTHING");
 
-        public static final ReadyState NETWORK_EMPTY = JsEnum.from("return HTMLMediaElement.NETWORK_EMPTY");
+        public static final ReadyState NETWORK_EMPTY = JsEnum.from("HTMLMediaElement.NETWORK_EMPTY");
 
-        public static final ReadyState NETWORK_IDLE = JsEnum.from("return HTMLMediaElement.NETWORK_IDLE");
+        public static final ReadyState NETWORK_IDLE = JsEnum.from("HTMLMediaElement.NETWORK_IDLE");
 
-        public static final ReadyState NETWORK_LOADING = JsEnum.from("return HTMLMediaElement.NETWORK_LOADING");
+        public static final ReadyState NETWORK_LOADING = JsEnum.from("HTMLMediaElement.NETWORK_LOADING");
 
-        public static final ReadyState NETWORK_NO_SOURCE = JsEnum.from("return HTMLMediaElement.NETWORK_NO_SOURCE");
+        public static final ReadyState NETWORK_NO_SOURCE = JsEnum.from("HTMLMediaElement.NETWORK_NO_SOURCE");
     }
 
 }

@@ -248,7 +248,7 @@ methodSignature
     ;
 
 typeAliasDeclaration
-    : 'type' Identifier typeParameters? '=' type_ SemiColon
+    : 'itemType' Identifier typeParameters? '=' type_ SemiColon
     ;
 
 constructorDeclaration

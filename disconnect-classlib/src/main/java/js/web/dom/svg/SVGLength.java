@@ -45,31 +45,31 @@ public interface SVGLength extends Any {
     void newValueSpecifiedUnits(UnitType unitType, double valueInSpecifiedUnits);
 
     abstract class UnitType extends JsEnum {
-        public static final UnitType SVG_LENGTHTYPE_CM = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_CM");
+        public static final UnitType SVG_LENGTHTYPE_CM = JsEnum.from("SVGLength.SVG_LENGTHTYPE_CM");
 
-        public static final UnitType SVG_LENGTHTYPE_EMS = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_EMS");
-
-
-        public static final UnitType SVG_LENGTHTYPE_EXS = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_EXS");
-
-        public static final UnitType SVG_LENGTHTYPE_IN = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_IN");
-
-        public static final UnitType SVG_LENGTHTYPE_MM = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_MM");
+        public static final UnitType SVG_LENGTHTYPE_EMS = JsEnum.from("SVGLength.SVG_LENGTHTYPE_EMS");
 
 
-        public static final UnitType SVG_LENGTHTYPE_NUMBER = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_NUMBER");
+        public static final UnitType SVG_LENGTHTYPE_EXS = JsEnum.from("SVGLength.SVG_LENGTHTYPE_EXS");
+
+        public static final UnitType SVG_LENGTHTYPE_IN = JsEnum.from("SVGLength.SVG_LENGTHTYPE_IN");
+
+        public static final UnitType SVG_LENGTHTYPE_MM = JsEnum.from("SVGLength.SVG_LENGTHTYPE_MM");
 
 
-        public static final UnitType SVG_LENGTHTYPE_PC = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_PC");
-
-        public static final UnitType SVG_LENGTHTYPE_PERCENTAGE = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_PERCENTAGE");
+        public static final UnitType SVG_LENGTHTYPE_NUMBER = JsEnum.from("SVGLength.SVG_LENGTHTYPE_NUMBER");
 
 
-        public static final UnitType SVG_LENGTHTYPE_PT = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_PT");
+        public static final UnitType SVG_LENGTHTYPE_PC = JsEnum.from("SVGLength.SVG_LENGTHTYPE_PC");
 
-        public static final UnitType SVG_LENGTHTYPE_PX = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_PX");
+        public static final UnitType SVG_LENGTHTYPE_PERCENTAGE = JsEnum.from("SVGLength.SVG_LENGTHTYPE_PERCENTAGE");
 
-        public static final UnitType SVG_LENGTHTYPE_UNKNOWN = JsEnum.from("return SVGLength.SVG_LENGTHTYPE_UNKNOWN");
+
+        public static final UnitType SVG_LENGTHTYPE_PT = JsEnum.from("SVGLength.SVG_LENGTHTYPE_PT");
+
+        public static final UnitType SVG_LENGTHTYPE_PX = JsEnum.from("SVGLength.SVG_LENGTHTYPE_PX");
+
+        public static final UnitType SVG_LENGTHTYPE_UNKNOWN = JsEnum.from("SVGLength.SVG_LENGTHTYPE_UNKNOWN");
     }
 
 }

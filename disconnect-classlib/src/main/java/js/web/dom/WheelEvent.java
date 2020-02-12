@@ -63,10 +63,10 @@ public interface WheelEvent extends MouseEvent {
     }
 
     abstract class DeltaMode extends JsEnum {
-        public static final DeltaMode DOM_DELTA_LINE = JsEnum.from("return WheelEvent.DOM_DELTA_LINE");
+        public static final DeltaMode DOM_DELTA_LINE = JsEnum.from("WheelEvent.DOM_DELTA_LINE");
 
-        public static final DeltaMode DOM_DELTA_PAGE = JsEnum.from("return WheelEvent.DOM_DELTA_PAGE");
+        public static final DeltaMode DOM_DELTA_PAGE = JsEnum.from("WheelEvent.DOM_DELTA_PAGE");
 
-        public static final DeltaMode DOM_DELTA_PIXEL = JsEnum.from("return WheelEvent.DOM_DELTA_PIXEL");
+        public static final DeltaMode DOM_DELTA_PIXEL = JsEnum.from("WheelEvent.DOM_DELTA_PIXEL");
     }
 }

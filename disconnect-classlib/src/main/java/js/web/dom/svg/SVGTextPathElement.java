@@ -28,24 +28,24 @@ public interface SVGTextPathElement extends SVGTextContentElement, SVGURIReferen
     SVGAnimatedLength getStartOffset();
 
     abstract class Method extends JsEnum {
-        public static final Method TEXTPATH_METHODTYPE_ALIGN = JsEnum.from("return SVGTextPathElement.TEXTPATH_METHODTYPE_ALIGN");
+        public static final Method TEXTPATH_METHODTYPE_ALIGN = JsEnum.from("SVGTextPathElement.TEXTPATH_METHODTYPE_ALIGN");
 
 
-        public static final Method TEXTPATH_METHODTYPE_STRETCH = JsEnum.from("return SVGTextPathElement.TEXTPATH_METHODTYPE_STRETCH");
+        public static final Method TEXTPATH_METHODTYPE_STRETCH = JsEnum.from("SVGTextPathElement.TEXTPATH_METHODTYPE_STRETCH");
 
 
-        public static final Method TEXTPATH_METHODTYPE_UNKNOWN = JsEnum.from("return SVGTextPathElement.TEXTPATH_METHODTYPE_UNKNOWN");
+        public static final Method TEXTPATH_METHODTYPE_UNKNOWN = JsEnum.from("SVGTextPathElement.TEXTPATH_METHODTYPE_UNKNOWN");
     }
 
     abstract class Spacing extends JsEnum {
 
-        public static final Spacing TEXTPATH_SPACINGTYPE_AUTO = JsEnum.from("return SVGTextPathElement.TEXTPATH_SPACINGTYPE_AUTO");
+        public static final Spacing TEXTPATH_SPACINGTYPE_AUTO = JsEnum.from("SVGTextPathElement.TEXTPATH_SPACINGTYPE_AUTO");
 
 
-        public static final Spacing TEXTPATH_SPACINGTYPE_EXACT = JsEnum.from("return SVGTextPathElement.TEXTPATH_SPACINGTYPE_EXACT");
+        public static final Spacing TEXTPATH_SPACINGTYPE_EXACT = JsEnum.from("SVGTextPathElement.TEXTPATH_SPACINGTYPE_EXACT");
 
 
-        public static final Spacing TEXTPATH_SPACINGTYPE_UNKNOWN = JsEnum.from("return SVGTextPathElement.TEXTPATH_SPACINGTYPE_UNKNOWN");
+        public static final Spacing TEXTPATH_SPACINGTYPE_UNKNOWN = JsEnum.from("SVGTextPathElement.TEXTPATH_SPACINGTYPE_UNKNOWN");
     }
 
 }

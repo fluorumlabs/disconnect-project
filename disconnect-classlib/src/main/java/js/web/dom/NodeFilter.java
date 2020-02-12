@@ -12,11 +12,11 @@ public interface NodeFilter extends Any {
 
     abstract class FilterResult extends JsEnum {
 
-        public static final FilterResult FILTER_ACCEPT = JsEnum.from("return NodeFilter.FILTER_ACCEPT");
+        public static final FilterResult FILTER_ACCEPT = JsEnum.from("NodeFilter.FILTER_ACCEPT");
 
-        public static final FilterResult FILTER_REJECT = JsEnum.from("return NodeFilter.FILTER_REJECT");
+        public static final FilterResult FILTER_REJECT = JsEnum.from("NodeFilter.FILTER_REJECT");
 
-        public static final FilterResult FILTER_SKIP = JsEnum.from("return NodeFilter.FILTER_SKIP");
+        public static final FilterResult FILTER_SKIP = JsEnum.from("NodeFilter.FILTER_SKIP");
     }
 
     abstract class FilterShow extends JsBit {

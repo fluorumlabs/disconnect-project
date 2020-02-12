@@ -202,15 +202,15 @@ public interface XMLHttpRequest extends XMLHttpRequestEventTarget {
     void setRequestHeader(String name, String value);
 
     abstract class ReadyState extends JsEnum {
-        public static final ReadyState DONE = JsEnum.from("return XMLHttpRequest.DONE");
+        public static final ReadyState DONE = JsEnum.from("XMLHttpRequest.DONE");
 
-        public static final ReadyState HEADERS_RECEIVED = JsEnum.from("return XMLHttpRequest.HEADERS_RECEIVED");
+        public static final ReadyState HEADERS_RECEIVED = JsEnum.from("XMLHttpRequest.HEADERS_RECEIVED");
 
-        public static final ReadyState LOADING = JsEnum.from("return XMLHttpRequest.LOADING");
+        public static final ReadyState LOADING = JsEnum.from("XMLHttpRequest.LOADING");
 
-        public static final ReadyState OPENED = JsEnum.from("return XMLHttpRequest.OPENED");
+        public static final ReadyState OPENED = JsEnum.from("XMLHttpRequest.OPENED");
 
-        public static final ReadyState UNSENT = JsEnum.from("return XMLHttpRequest.UNSENT");
+        public static final ReadyState UNSENT = JsEnum.from("XMLHttpRequest.UNSENT");
     }
 
 }

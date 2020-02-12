@@ -16,6 +16,13 @@ public final class JS {
     private JS() {
     }
 
+
+    @JSBody(params = "x", script = "return x === undefined")
+    public static native boolean isUndefined(Any x);
+
+    @JSBody(params = "x", script = "return x === undefined || x === null")
+    public static native boolean isUndefinedOrNull(Any x);
+
     /**
      * Evaluates JavaScript code and executes it.
      *
@@ -133,6 +140,6 @@ public final class JS {
     @JSBody(params = "string", script = "return unescape(string)")
     public static native String unescape(String string);
 
-    @JSBody(script = "return Reflect")
-    private static native Reflect getReflectInstance();
+    @JSBody(script = "return window.Reflect")
+    public static native Reflect getReflectInstance();
 }

@@ -15,13 +15,13 @@ public interface GeolocationPositionError extends Any {
     String getMessage();
 
     abstract class Code extends JsEnum {
-        public static final Code PERMISSION_DENIED = JsEnum.from("return GeolocationPositionError.PERMISSION_DENIED");
+        public static final Code PERMISSION_DENIED = JsEnum.from("GeolocationPositionError.PERMISSION_DENIED");
 
 
-        public static final Code POSITION_UNAVAILABLE = JsEnum.from("return GeolocationPositionError.POSITION_UNAVAILABLE");
+        public static final Code POSITION_UNAVAILABLE = JsEnum.from("GeolocationPositionError.POSITION_UNAVAILABLE");
 
 
-        public static final Code TIMEOUT = JsEnum.from("return GeolocationPositionError.TIMEOUT");
+        public static final Code TIMEOUT = JsEnum.from("GeolocationPositionError.TIMEOUT");
     }
 
 

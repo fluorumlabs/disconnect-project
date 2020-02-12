@@ -26,7 +26,7 @@ public interface PropertyDescriptor extends Any {
     boolean isWritable();
 
     @JSProperty
-    void setWritable();
+    void setWritable(boolean value);
 
     Any get();
 

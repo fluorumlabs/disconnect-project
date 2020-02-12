@@ -105,12 +105,12 @@ public interface KeyboardEvent extends UIEvent {
     }
 
     abstract class Location extends JsEnum {
-        public static final Location DOM_KEY_LOCATION_LEFT = JsEnum.from("return KeyboardEvent.DOM_KEY_LOCATION_LEFT");
+        public static final Location DOM_KEY_LOCATION_LEFT = JsEnum.from("KeyboardEvent.DOM_KEY_LOCATION_LEFT");
 
-        public static final Location DOM_KEY_LOCATION_NUMPAD = JsEnum.from("return KeyboardEvent.DOM_KEY_LOCATION_NUMPAD");
+        public static final Location DOM_KEY_LOCATION_NUMPAD = JsEnum.from("KeyboardEvent.DOM_KEY_LOCATION_NUMPAD");
 
-        public static final Location DOM_KEY_LOCATION_RIGHT = JsEnum.from("return KeyboardEvent.DOM_KEY_LOCATION_RIGHT");
+        public static final Location DOM_KEY_LOCATION_RIGHT = JsEnum.from("KeyboardEvent.DOM_KEY_LOCATION_RIGHT");
 
-        public static final Location DOM_KEY_LOCATION_STANDARD = JsEnum.from("return KeyboardEvent.DOM_KEY_LOCATION_STANDARD");
+        public static final Location DOM_KEY_LOCATION_STANDARD = JsEnum.from("KeyboardEvent.DOM_KEY_LOCATION_STANDARD");
     }
 }

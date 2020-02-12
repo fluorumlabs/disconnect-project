@@ -12,6 +12,7 @@ import org.takes.facets.fork.TkFork;
 import org.takes.http.FtBasic;
 import org.takes.rs.RsHtml;
 import org.takes.rs.RsWithBody;
+import org.takes.rs.RsWithHeader;
 import org.takes.tk.TkWithType;
 import org.teavm.tooling.util.FileSystemWatcher;
 
@@ -63,6 +64,9 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
                         compile();
                         printSeparator();
                         build(false);
+                        if (initialCompile) {
+                            unpackJarModules();
+                        }
 
                         boolean wasBuildConfigChanged = wasBuildConfigChanged();
                         boolean wasPackageJsonChanged = wasPackageJsonChanged();
@@ -112,15 +116,17 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
                 getLog().error("File system monitoring aborted", e);
             }
         }
-
-
     }
 
     private void runDevServer() {
         try {
             new FtBasic(new TkFork(
                     new FkRegex("/disconnect\\.reloader\\.marker",
-                            new TkWithType(req -> new RsWithBody(Long.toString(lastRebuildTimestamp)), "text/plain")),
+                            new TkWithType(req -> {
+                                return new RsWithHeader(
+                                        new RsWithBody(Long.toString(lastRebuildTimestamp)),
+                                        "Access-Control-Allow-Origin","*");
+                            }, "text/plain")),
                     new FkRegex("[^.]*", new RsHtml(FileUtils.readFileToString(new File(getOutputDirectory(), "classes/static/index.html"), StandardCharsets.UTF_8))),
                     new FkRegex(".*", new TkMimeAwareFiles(new File(getOutputDirectory(), "classes/static")))
             ),

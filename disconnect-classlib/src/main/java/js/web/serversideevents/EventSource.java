@@ -145,11 +145,11 @@ public interface EventSource extends EventTarget {
     abstract class ReadyState extends JsEnum {
 
 
-        public static final ReadyState CLOSED = JsEnum.from("return EventSource.CLOSED");
+        public static final ReadyState CLOSED = JsEnum.from("EventSource.CLOSED");
 
-        public static final ReadyState CONNECTING = JsEnum.from("return EventSource.CONNECTING");
+        public static final ReadyState CONNECTING = JsEnum.from("EventSource.CONNECTING");
 
-        public static final ReadyState OPEN = JsEnum.from("return EventSource.OPEN");
+        public static final ReadyState OPEN = JsEnum.from("EventSource.OPEN");
     }
 
 }

@@ -55,13 +55,13 @@ public interface HTMLTrackElement extends HTMLElement {
     TextTrack getTrack();
 
     abstract class ReadyState extends JsEnum {
-        public static final ReadyState ERROR = JsEnum.from("return HTMLTrackElement.ERROR");
+        public static final ReadyState ERROR = JsEnum.from("HTMLTrackElement.ERROR");
 
-        public static final ReadyState LOADED = JsEnum.from("return HTMLTrackElement.LOADED");
+        public static final ReadyState LOADED = JsEnum.from("HTMLTrackElement.LOADED");
 
-        public static final ReadyState LOADING = JsEnum.from("return HTMLTrackElement.LOADING");
+        public static final ReadyState LOADING = JsEnum.from("HTMLTrackElement.LOADING");
 
-        public static final ReadyState NONE = JsEnum.from("return HTMLTrackElement.NONE");
+        public static final ReadyState NONE = JsEnum.from("HTMLTrackElement.NONE");
     }
 
 }

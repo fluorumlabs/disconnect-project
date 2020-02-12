@@ -32,13 +32,13 @@ public interface SVGFEMorphologyElement extends SVGElement, SVGFilterPrimitiveSt
 
     abstract class Operator extends JsEnum {
 
-        public static final Operator SVG_MORPHOLOGY_OPERATOR_DILATE = JsEnum.from("return SVGFEMorphologyElement.SVG_MORPHOLOGY_OPERATOR_DILATE");
+        public static final Operator SVG_MORPHOLOGY_OPERATOR_DILATE = JsEnum.from("SVGFEMorphologyElement.SVG_MORPHOLOGY_OPERATOR_DILATE");
 
 
-        public static final Operator SVG_MORPHOLOGY_OPERATOR_ERODE = JsEnum.from("return SVGFEMorphologyElement.SVG_MORPHOLOGY_OPERATOR_ERODE");
+        public static final Operator SVG_MORPHOLOGY_OPERATOR_ERODE = JsEnum.from("SVGFEMorphologyElement.SVG_MORPHOLOGY_OPERATOR_ERODE");
 
 
-        public static final Operator SVG_MORPHOLOGY_OPERATOR_UNKNOWN = JsEnum.from("return SVGFEMorphologyElement.SVG_MORPHOLOGY_OPERATOR_UNKNOWN");
+        public static final Operator SVG_MORPHOLOGY_OPERATOR_UNKNOWN = JsEnum.from("SVGFEMorphologyElement.SVG_MORPHOLOGY_OPERATOR_UNKNOWN");
     }
 
 }

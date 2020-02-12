@@ -36,11 +36,11 @@ public interface MutationEvent extends Event {
     void initMutationEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg, Node relatedNodeArg, String prevValueArg, String newValueArg, String attrNameArg, int attrChangeArg);
 
     abstract class AttrChange extends JsEnum {
-        public static final AttrChange ADDITION = JsEnum.from("return MutationEvent.ADDITION");
+        public static final AttrChange ADDITION = JsEnum.from("MutationEvent.ADDITION");
 
-        public static final AttrChange MODIFICATION = JsEnum.from("return MutationEvent.MODIFICATION");
+        public static final AttrChange MODIFICATION = JsEnum.from("MutationEvent.MODIFICATION");
 
-        public static final AttrChange REMOVAL = JsEnum.from("return MutationEvent.REMOVAL");
+        public static final AttrChange REMOVAL = JsEnum.from("MutationEvent.REMOVAL");
     }
 
 }

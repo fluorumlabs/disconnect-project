@@ -19,13 +19,13 @@ public interface SVGUnitTypes extends Any {
     }
 
     abstract class Type extends JsEnum {
-        public static final Type SVG_UNIT_TYPE_OBJECTBOUNDINGBOX = JsEnum.from("return SVGUnitTypes.SVG_UNIT_TYPE_OBJECTBOUNDINGBOX");
+        public static final Type SVG_UNIT_TYPE_OBJECTBOUNDINGBOX = JsEnum.from("SVGUnitTypes.SVG_UNIT_TYPE_OBJECTBOUNDINGBOX");
 
 
-        public static final Type SVG_UNIT_TYPE_UNKNOWN = JsEnum.from("return SVGUnitTypes.SVG_UNIT_TYPE_UNKNOWN");
+        public static final Type SVG_UNIT_TYPE_UNKNOWN = JsEnum.from("SVGUnitTypes.SVG_UNIT_TYPE_UNKNOWN");
 
 
-        public static final Type SVG_UNIT_TYPE_USERSPACEONUSE = JsEnum.from("return SVGUnitTypes.SVG_UNIT_TYPE_USERSPACEONUSE");
+        public static final Type SVG_UNIT_TYPE_USERSPACEONUSE = JsEnum.from("SVGUnitTypes.SVG_UNIT_TYPE_USERSPACEONUSE");
     }
 
 

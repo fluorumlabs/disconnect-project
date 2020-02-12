@@ -28,16 +28,16 @@ public interface SVGGradientElement extends SVGElement, SVGURIReference {
     SVGAnimatedEnumeration<SpreadMethod> getSpreadMethod();
 
     abstract class SpreadMethod extends JsEnum {
-        public static final SpreadMethod SVG_SPREADMETHOD_PAD = JsEnum.from("return SVGGradientElement.SVG_SPREADMETHOD_PAD");
+        public static final SpreadMethod SVG_SPREADMETHOD_PAD = JsEnum.from("SVGGradientElement.SVG_SPREADMETHOD_PAD");
 
 
-        public static final SpreadMethod SVG_SPREADMETHOD_REFLECT = JsEnum.from("return SVGGradientElement.SVG_SPREADMETHOD_REFLECT");
+        public static final SpreadMethod SVG_SPREADMETHOD_REFLECT = JsEnum.from("SVGGradientElement.SVG_SPREADMETHOD_REFLECT");
 
 
-        public static final SpreadMethod SVG_SPREADMETHOD_REPEAT = JsEnum.from("return SVGGradientElement.SVG_SPREADMETHOD_REPEAT");
+        public static final SpreadMethod SVG_SPREADMETHOD_REPEAT = JsEnum.from("SVGGradientElement.SVG_SPREADMETHOD_REPEAT");
 
 
-        public static final SpreadMethod SVG_SPREADMETHOD_UNKNOWN = JsEnum.from("return SVGGradientElement.SVG_SPREADMETHOD_UNKNOWN");
+        public static final SpreadMethod SVG_SPREADMETHOD_UNKNOWN = JsEnum.from("SVGGradientElement.SVG_SPREADMETHOD_UNKNOWN");
     }
 
 }

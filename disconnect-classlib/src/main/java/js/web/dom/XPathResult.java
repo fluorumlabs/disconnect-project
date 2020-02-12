@@ -50,25 +50,25 @@ public interface XPathResult extends Any {
     Node snapshotItem(int index);
 
     abstract class ResultType extends JsEnum {
-        public static final ResultType ANY_TYPE = JsEnum.from("return XPathResult.ANY_TYPE");
+        public static final ResultType ANY_TYPE = JsEnum.from("XPathResult.ANY_TYPE");
 
-        public static final ResultType ANY_UNORDERED_NODE_TYPE = JsEnum.from("return XPathResult.ANY_UNORDERED_NODE_TYPE");
+        public static final ResultType ANY_UNORDERED_NODE_TYPE = JsEnum.from("XPathResult.ANY_UNORDERED_NODE_TYPE");
 
-        public static final ResultType BOOLEAN_TYPE = JsEnum.from("return XPathResult.BOOLEAN_TYPE");
+        public static final ResultType BOOLEAN_TYPE = JsEnum.from("XPathResult.BOOLEAN_TYPE");
 
-        public static final ResultType FIRST_ORDERED_NODE_TYPE = JsEnum.from("return XPathResult.FIRST_ORDERED_NODE_TYPE");
+        public static final ResultType FIRST_ORDERED_NODE_TYPE = JsEnum.from("XPathResult.FIRST_ORDERED_NODE_TYPE");
 
-        public static final ResultType NUMBER_TYPE = JsEnum.from("return XPathResult.NUMBER_TYPE");
+        public static final ResultType NUMBER_TYPE = JsEnum.from("XPathResult.NUMBER_TYPE");
 
-        public static final ResultType ORDERED_NODE_ITERATOR_TYPE = JsEnum.from("return XPathResult.ORDERED_NODE_ITERATOR_TYPE");
+        public static final ResultType ORDERED_NODE_ITERATOR_TYPE = JsEnum.from("XPathResult.ORDERED_NODE_ITERATOR_TYPE");
 
-        public static final ResultType ORDERED_NODE_SNAPSHOT_TYPE = JsEnum.from("return XPathResult.ORDERED_NODE_SNAPSHOT_TYPE");
+        public static final ResultType ORDERED_NODE_SNAPSHOT_TYPE = JsEnum.from("XPathResult.ORDERED_NODE_SNAPSHOT_TYPE");
 
-        public static final ResultType STRING_TYPE = JsEnum.from("return XPathResult.STRING_TYPE");
+        public static final ResultType STRING_TYPE = JsEnum.from("XPathResult.STRING_TYPE");
 
-        public static final ResultType UNORDERED_NODE_ITERATOR_TYPE = JsEnum.from("return XPathResult.UNORDERED_NODE_ITERATOR_TYPE");
+        public static final ResultType UNORDERED_NODE_ITERATOR_TYPE = JsEnum.from("XPathResult.UNORDERED_NODE_ITERATOR_TYPE");
 
-        public static final ResultType UNORDERED_NODE_SNAPSHOT_TYPE = JsEnum.from("return XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE");
+        public static final ResultType UNORDERED_NODE_SNAPSHOT_TYPE = JsEnum.from("XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE");
     }
 
 }

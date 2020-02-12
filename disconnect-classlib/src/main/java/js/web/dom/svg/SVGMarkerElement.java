@@ -42,19 +42,19 @@ public interface SVGMarkerElement extends SVGElement, SVGFitToViewBox {
     void setOrientToAuto();
 
     abstract class MarkerUnit extends JsEnum {
-        public static final MarkerUnit SVG_MARKERUNITS_STROKEWIDTH = JsEnum.from("return SVGMarkerElement.SVG_MARKERUNITS_STROKEWIDTH");
+        public static final MarkerUnit SVG_MARKERUNITS_STROKEWIDTH = JsEnum.from("SVGMarkerElement.SVG_MARKERUNITS_STROKEWIDTH");
 
-        public static final MarkerUnit SVG_MARKERUNITS_UNKNOWN = JsEnum.from("return SVGMarkerElement.SVG_MARKERUNITS_UNKNOWN");
+        public static final MarkerUnit SVG_MARKERUNITS_UNKNOWN = JsEnum.from("SVGMarkerElement.SVG_MARKERUNITS_UNKNOWN");
 
-        public static final MarkerUnit SVG_MARKERUNITS_USERSPACEONUSE = JsEnum.from("return SVGMarkerElement.SVG_MARKERUNITS_USERSPACEONUSE");
+        public static final MarkerUnit SVG_MARKERUNITS_USERSPACEONUSE = JsEnum.from("SVGMarkerElement.SVG_MARKERUNITS_USERSPACEONUSE");
     }
 
     abstract class OrientType extends JsEnum {
-        public static final OrientType SVG_MARKER_ORIENT_ANGLE = JsEnum.from("return SVGMarkerElement.SVG_MARKER_ORIENT_ANGLE");
+        public static final OrientType SVG_MARKER_ORIENT_ANGLE = JsEnum.from("SVGMarkerElement.SVG_MARKER_ORIENT_ANGLE");
 
-        public static final OrientType SVG_MARKER_ORIENT_AUTO = JsEnum.from("return SVGMarkerElement.SVG_MARKER_ORIENT_AUTO");
+        public static final OrientType SVG_MARKER_ORIENT_AUTO = JsEnum.from("SVGMarkerElement.SVG_MARKER_ORIENT_AUTO");
 
-        public static final OrientType SVG_MARKER_ORIENT_UNKNOWN = JsEnum.from("return SVGMarkerElement.SVG_MARKER_ORIENT_UNKNOWN");
+        public static final OrientType SVG_MARKER_ORIENT_UNKNOWN = JsEnum.from("SVGMarkerElement.SVG_MARKER_ORIENT_UNKNOWN");
     }
 
 }

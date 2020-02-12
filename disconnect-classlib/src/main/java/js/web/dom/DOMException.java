@@ -39,55 +39,55 @@ public interface DOMException extends Any {
     String getName();
 
     abstract class Code extends JsEnum {
-        public static final Code ABORT_ERR = JsEnum.from("return DOMException.ABORT_ERR");
+        public static final Code ABORT_ERR = JsEnum.from("DOMException.ABORT_ERR");
 
-        public static final Code DATA_CLONE_ERR = JsEnum.from("return DOMException.DATA_CLONE_ERR");
+        public static final Code DATA_CLONE_ERR = JsEnum.from("DOMException.DATA_CLONE_ERR");
 
-        public static final Code DOMSTRING_SIZE_ERR = JsEnum.from("return DOMException.DOMSTRING_SIZE_ERR");
+        public static final Code DOMSTRING_SIZE_ERR = JsEnum.from("DOMException.DOMSTRING_SIZE_ERR");
 
-        public static final Code HIERARCHY_REQUEST_ERR = JsEnum.from("return DOMException.HIERARCHY_REQUEST_ERR");
+        public static final Code HIERARCHY_REQUEST_ERR = JsEnum.from("DOMException.HIERARCHY_REQUEST_ERR");
 
-        public static final Code INDEX_SIZE_ERR = JsEnum.from("return DOMException.INDEX_SIZE_ERR");
+        public static final Code INDEX_SIZE_ERR = JsEnum.from("DOMException.INDEX_SIZE_ERR");
 
-        public static final Code INUSE_ATTRIBUTE_ERR = JsEnum.from("return DOMException.INUSE_ATTRIBUTE_ERR");
+        public static final Code INUSE_ATTRIBUTE_ERR = JsEnum.from("DOMException.INUSE_ATTRIBUTE_ERR");
 
-        public static final Code INVALID_ACCESS_ERR = JsEnum.from("return DOMException.INVALID_ACCESS_ERR");
+        public static final Code INVALID_ACCESS_ERR = JsEnum.from("DOMException.INVALID_ACCESS_ERR");
 
-        public static final Code INVALID_CHARACTER_ERR = JsEnum.from("return DOMException.INVALID_CHARACTER_ERR");
+        public static final Code INVALID_CHARACTER_ERR = JsEnum.from("DOMException.INVALID_CHARACTER_ERR");
 
-        public static final Code INVALID_MODIFICATION_ERR = JsEnum.from("return DOMException.INVALID_MODIFICATION_ERR");
+        public static final Code INVALID_MODIFICATION_ERR = JsEnum.from("DOMException.INVALID_MODIFICATION_ERR");
 
-        public static final Code INVALID_NODE_TYPE_ERR = JsEnum.from("return DOMException.INVALID_NODE_TYPE_ERR");
+        public static final Code INVALID_NODE_TYPE_ERR = JsEnum.from("DOMException.INVALID_NODE_TYPE_ERR");
 
-        public static final Code INVALID_STATE_ERR = JsEnum.from("return DOMException.INVALID_STATE_ERR");
+        public static final Code INVALID_STATE_ERR = JsEnum.from("DOMException.INVALID_STATE_ERR");
 
-        public static final Code NAMESPACE_ERR = JsEnum.from("return DOMException.NAMESPACE_ERR");
+        public static final Code NAMESPACE_ERR = JsEnum.from("DOMException.NAMESPACE_ERR");
 
-        public static final Code NETWORK_ERR = JsEnum.from("return DOMException.NETWORK_ERR");
+        public static final Code NETWORK_ERR = JsEnum.from("DOMException.NETWORK_ERR");
 
-        public static final Code NOT_FOUND_ERR = JsEnum.from("return DOMException.NOT_FOUND_ERR");
+        public static final Code NOT_FOUND_ERR = JsEnum.from("DOMException.NOT_FOUND_ERR");
 
-        public static final Code NOT_SUPPORTED_ERR = JsEnum.from("return DOMException.NOT_SUPPORTED_ERR");
+        public static final Code NOT_SUPPORTED_ERR = JsEnum.from("DOMException.NOT_SUPPORTED_ERR");
 
-        public static final Code NO_DATA_ALLOWED_ERR = JsEnum.from("return DOMException.NO_DATA_ALLOWED_ERR");
+        public static final Code NO_DATA_ALLOWED_ERR = JsEnum.from("DOMException.NO_DATA_ALLOWED_ERR");
 
-        public static final Code NO_MODIFICATION_ALLOWED_ERR = JsEnum.from("return DOMException.NO_MODIFICATION_ALLOWED_ERR");
+        public static final Code NO_MODIFICATION_ALLOWED_ERR = JsEnum.from("DOMException.NO_MODIFICATION_ALLOWED_ERR");
 
-        public static final Code QUOTA_EXCEEDED_ERR = JsEnum.from("return DOMException.QUOTA_EXCEEDED_ERR");
+        public static final Code QUOTA_EXCEEDED_ERR = JsEnum.from("DOMException.QUOTA_EXCEEDED_ERR");
 
-        public static final Code SECURITY_ERR = JsEnum.from("return DOMException.SECURITY_ERR");
+        public static final Code SECURITY_ERR = JsEnum.from("DOMException.SECURITY_ERR");
 
-        public static final Code SYNTAX_ERR = JsEnum.from("return DOMException.SYNTAX_ERR");
+        public static final Code SYNTAX_ERR = JsEnum.from("DOMException.SYNTAX_ERR");
 
-        public static final Code TIMEOUT_ERR = JsEnum.from("return DOMException.TIMEOUT_ERR");
+        public static final Code TIMEOUT_ERR = JsEnum.from("DOMException.TIMEOUT_ERR");
 
-        public static final Code TYPE_MISMATCH_ERR = JsEnum.from("return DOMException.TYPE_MISMATCH_ERR");
+        public static final Code TYPE_MISMATCH_ERR = JsEnum.from("DOMException.TYPE_MISMATCH_ERR");
 
-        public static final Code URL_MISMATCH_ERR = JsEnum.from("return DOMException.URL_MISMATCH_ERR");
+        public static final Code URL_MISMATCH_ERR = JsEnum.from("DOMException.URL_MISMATCH_ERR");
 
-        public static final Code VALIDATION_ERR = JsEnum.from("return DOMException.VALIDATION_ERR");
+        public static final Code VALIDATION_ERR = JsEnum.from("DOMException.VALIDATION_ERR");
 
-        public static final Code WRONG_DOCUMENT_ERR = JsEnum.from("return DOMException.WRONG_DOCUMENT_ERR");
+        public static final Code WRONG_DOCUMENT_ERR = JsEnum.from("DOMException.WRONG_DOCUMENT_ERR");
     }
 
 }

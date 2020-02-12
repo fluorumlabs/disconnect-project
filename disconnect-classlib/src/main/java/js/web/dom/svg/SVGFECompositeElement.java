@@ -41,24 +41,24 @@ public interface SVGFECompositeElement extends SVGElement, SVGFilterPrimitiveSta
 
     abstract class Operator extends JsEnum {
 
-        public static final Operator SVG_FECOMPOSITE_OPERATOR_ARITHMETIC = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_ARITHMETIC");
+        public static final Operator SVG_FECOMPOSITE_OPERATOR_ARITHMETIC = JsEnum.from("SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_ARITHMETIC");
 
 
-        public static final Operator SVG_FECOMPOSITE_OPERATOR_ATOP = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_ATOP");
+        public static final Operator SVG_FECOMPOSITE_OPERATOR_ATOP = JsEnum.from("SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_ATOP");
 
 
-        public static final Operator SVG_FECOMPOSITE_OPERATOR_IN = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_IN");
+        public static final Operator SVG_FECOMPOSITE_OPERATOR_IN = JsEnum.from("SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_IN");
 
 
-        public static final Operator SVG_FECOMPOSITE_OPERATOR_OUT = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_OUT");
+        public static final Operator SVG_FECOMPOSITE_OPERATOR_OUT = JsEnum.from("SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_OUT");
 
 
-        public static final Operator SVG_FECOMPOSITE_OPERATOR_OVER = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_OVER");
+        public static final Operator SVG_FECOMPOSITE_OPERATOR_OVER = JsEnum.from("SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_OVER");
 
-        public static final Operator SVG_FECOMPOSITE_OPERATOR_UNKNOWN = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_UNKNOWN");
+        public static final Operator SVG_FECOMPOSITE_OPERATOR_UNKNOWN = JsEnum.from("SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_UNKNOWN");
 
 
-        public static final Operator SVG_FECOMPOSITE_OPERATOR_XOR = JsEnum.from("return SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_XOR");
+        public static final Operator SVG_FECOMPOSITE_OPERATOR_XOR = JsEnum.from("SVGFECompositeElement.SVG_FECOMPOSITE_OPERATOR_XOR");
     }
 
 }

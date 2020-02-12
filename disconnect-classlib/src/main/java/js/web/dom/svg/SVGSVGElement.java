@@ -194,13 +194,13 @@ public interface SVGSVGElement extends SVGGraphicsElement, DocumentEvent, SVGFit
     void unsuspendRedrawAll();
 
     abstract class ZoomAndPan extends JsEnum {
-        public static final ZoomAndPan SVG_ZOOMANDPAN_DISABLE = JsEnum.from("return SVGSVGElement.SVG_ZOOMANDPAN_DISABLE");
+        public static final ZoomAndPan SVG_ZOOMANDPAN_DISABLE = JsEnum.from("SVGSVGElement.SVG_ZOOMANDPAN_DISABLE");
 
 
-        public static final ZoomAndPan SVG_ZOOMANDPAN_MAGNIFY = JsEnum.from("return SVGSVGElement.SVG_ZOOMANDPAN_MAGNIFY");
+        public static final ZoomAndPan SVG_ZOOMANDPAN_MAGNIFY = JsEnum.from("SVGSVGElement.SVG_ZOOMANDPAN_MAGNIFY");
 
 
-        public static final ZoomAndPan SVG_ZOOMANDPAN_UNKNOWN = JsEnum.from("return SVGSVGElement.SVG_ZOOMANDPAN_UNKNOWN");
+        public static final ZoomAndPan SVG_ZOOMANDPAN_UNKNOWN = JsEnum.from("SVGSVGElement.SVG_ZOOMANDPAN_UNKNOWN");
     }
 
 

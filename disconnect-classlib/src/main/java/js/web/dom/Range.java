@@ -79,13 +79,13 @@ public interface Range extends AbstractRange {
     void surroundContents(Node newParent);
 
     abstract class Mode extends JsEnum {
-        public static final Mode END_TO_END = JsEnum.from("return Range.END_TO_END");
+        public static final Mode END_TO_END = JsEnum.from("Range.END_TO_END");
 
-        public static final Mode END_TO_START = JsEnum.from("return Range.END_TO_START");
+        public static final Mode END_TO_START = JsEnum.from("Range.END_TO_START");
 
-        public static final Mode START_TO_END = JsEnum.from("return Range.START_TO_END");
+        public static final Mode START_TO_END = JsEnum.from("Range.START_TO_END");
 
-        public static final Mode START_TO_START = JsEnum.from("return Range.START_TO_START");
+        public static final Mode START_TO_START = JsEnum.from("Range.START_TO_START");
     }
 
 }

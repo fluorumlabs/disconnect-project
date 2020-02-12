@@ -41,9 +41,18 @@
             <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.fluorumlabs.disconnect</groupId>
             <artifactId>disconnect-classlib</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup</groupId>
+            <artifactId>javapoet</artifactId>
+            <version>1.11.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.auto.service</groupId>

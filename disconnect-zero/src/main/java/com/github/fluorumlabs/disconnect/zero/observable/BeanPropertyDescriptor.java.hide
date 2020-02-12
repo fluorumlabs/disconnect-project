@@ -13,13 +13,13 @@ import java.util.function.Function;
 
 
 class BeanPropertyDescriptor<BEAN, VALUE> {
-    Class<VALUE> type;
+    Class<VALUE> itemType;
     Function<BEAN, VALUE> getter;
     BiConsumer<BEAN, VALUE> setter;
 
 
-    BeanPropertyDescriptor(Class<VALUE> type, Function<BEAN, VALUE> getter, BiConsumer<BEAN, VALUE> setter) {
-        this.type = type;
+    BeanPropertyDescriptor(Class<VALUE> itemType, Function<BEAN, VALUE> getter, BiConsumer<BEAN, VALUE> setter) {
+        this.itemType = itemType;
         this.getter = getter;
         this.setter = setter;
     }

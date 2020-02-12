@@ -14,7 +14,8 @@
 	<modules>
 		<module>basic</module>
 		<module>basic-zero</module>
-	</modules>
+        <module>spring</module>
+    </modules>
 
 	<packaging>pom</packaging>
 

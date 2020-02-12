@@ -346,17 +346,17 @@ public interface ApplicationCache extends EventTarget {
     void update();
 
     abstract class Status extends JsEnum {
-        public static final Status CHECKING = JsEnum.from("return ApplicationCache.CHECKING");
+        public static final Status CHECKING = JsEnum.from("ApplicationCache.CHECKING");
 
-        public static final Status DOWNLOADING = JsEnum.from("return ApplicationCache.DOWNLOADING");
+        public static final Status DOWNLOADING = JsEnum.from("ApplicationCache.DOWNLOADING");
 
-        public static final Status IDLE = JsEnum.from("return ApplicationCache.IDLE");
+        public static final Status IDLE = JsEnum.from("ApplicationCache.IDLE");
 
-        public static final Status OBSOLETE = JsEnum.from("return ApplicationCache.OBSOLETE");
+        public static final Status OBSOLETE = JsEnum.from("ApplicationCache.OBSOLETE");
 
-        public static final Status UNCACHED = JsEnum.from("return ApplicationCache.UNCACHED");
+        public static final Status UNCACHED = JsEnum.from("ApplicationCache.UNCACHED");
 
-        public static final Status UPDATEREADY = JsEnum.from("return ApplicationCache.UPDATEREADY");
+        public static final Status UPDATEREADY = JsEnum.from("ApplicationCache.UPDATEREADY");
     }
 
 

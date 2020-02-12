@@ -138,7 +138,7 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
             // Add classes loader
             printWriter.println("const scriptElement = document.createElement('script');\n" +
                     "scriptElement.setAttribute('src', 'bin/classes.js');\n" +
-                    "document.body.appendChild(scriptElement);");
+                    "document.head.appendChild(scriptElement);");
             printWriter.println("var lastRebuildTimestamp = -1;\n" +
                     "\n" +
                     "function handleReloaderMarker() {\n" +
@@ -155,7 +155,7 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
                     "window.setInterval(() => {\n" +
                     "    var reloadNotification = new XMLHttpRequest();\n" +
                     "    reloadNotification.addEventListener(\"load\", handleReloaderMarker);\n" +
-                    "    reloadNotification.open(\"GET\", \"disconnect.reloader.marker\");\n" +
+                    "    reloadNotification.open(\"GET\", \"http://localhost:8000/disconnect.reloader.marker\");\n" +
                     "    reloadNotification.send();    \n" +
                     "}, 1000);\n");
         }

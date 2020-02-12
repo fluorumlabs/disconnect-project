@@ -37,23 +37,23 @@ public interface SVGFETurbulenceElement extends SVGElement, SVGFilterPrimitiveSt
     SVGAnimatedEnumeration<Type> getType();
 
     abstract class StitchType extends JsEnum {
-        public static final StitchType SVG_STITCHTYPE_NOSTITCH = JsEnum.from("return SVGFETurbulenceElement.SVG_STITCHTYPE_NOSTITCH");
+        public static final StitchType SVG_STITCHTYPE_NOSTITCH = JsEnum.from("SVGFETurbulenceElement.SVG_STITCHTYPE_NOSTITCH");
 
 
-        public static final StitchType SVG_STITCHTYPE_STITCH = JsEnum.from("return SVGFETurbulenceElement.SVG_STITCHTYPE_STITCH");
+        public static final StitchType SVG_STITCHTYPE_STITCH = JsEnum.from("SVGFETurbulenceElement.SVG_STITCHTYPE_STITCH");
 
 
-        public static final StitchType SVG_STITCHTYPE_UNKNOWN = JsEnum.from("return SVGFETurbulenceElement.SVG_STITCHTYPE_UNKNOWN");
+        public static final StitchType SVG_STITCHTYPE_UNKNOWN = JsEnum.from("SVGFETurbulenceElement.SVG_STITCHTYPE_UNKNOWN");
     }
 
     abstract class Type extends JsEnum {
-        public static final Type SVG_TURBULENCE_TYPE_FRACTALNOISE = JsEnum.from("return SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_FRACTALNOISE");
+        public static final Type SVG_TURBULENCE_TYPE_FRACTALNOISE = JsEnum.from("SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_FRACTALNOISE");
 
 
-        public static final Type SVG_TURBULENCE_TYPE_TURBULENCE = JsEnum.from("return SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_TURBULENCE");
+        public static final Type SVG_TURBULENCE_TYPE_TURBULENCE = JsEnum.from("SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_TURBULENCE");
 
 
-        public static final Type SVG_TURBULENCE_TYPE_UNKNOWN = JsEnum.from("return SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_UNKNOWN");
+        public static final Type SVG_TURBULENCE_TYPE_UNKNOWN = JsEnum.from("SVGFETurbulenceElement.SVG_TURBULENCE_TYPE_UNKNOWN");
     }
 
 }

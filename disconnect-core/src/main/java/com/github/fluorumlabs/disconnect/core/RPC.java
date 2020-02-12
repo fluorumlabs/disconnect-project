@@ -2,144 +2,125 @@ package com.github.fluorumlabs.disconnect.core;
 
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectConfig;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
+import js.lang.JsObject;
+import js.lang.Unknown;
+import js.util.JSON;
 import js.web.dom.XMLHttpRequest;
 import org.teavm.interop.Async;
 import org.teavm.interop.AsyncCallback;
+import org.teavm.jso.JSBody;
 
 import java.io.IOException;
 import java.io.Serializable;
 
 
 public class RPC {
-    public static final String ENDPOINT = "/rpc";
+	public static final String ENDPOINT = "/rpc";
 
-    public static class Request implements Serializable {
-        public Request(Object[] args) {
-            this.arguments = args;
-        }
+	public static void callPostIgnore(String endpoint, Serializable arguments) {
+		String payload = JSON.stringify(convertToArray(ObjectMirror.from(arguments)));
 
-        public Object[] arguments;
-    }
+		try {
+			callPostBackend(endpoint, payload);
+		} catch (IOException ignored) {
+			// ignore
+		}
+	}
 
-    public static void callPostIgnore(String endpoint, Object... arguments) {
-        RPC.Request request = new Request(arguments);
-        String payload = Convert.toString(request);
+	public static void callGetIgnore(String endpoint, Serializable arguments) {
+		String payload = JSON.stringify(convertToArray(ObjectMirror.from(arguments)));
 
-        try {
-            callPostBackend(endpoint, payload);
-        } catch (IOException ignored) {
-            // ignore
-        }
-    }
+		try {
+			callGetBackend(endpoint, payload);
+		} catch (IOException ignored) {
+			// ignore
+		}
+	}
 
-    public static void callGetIgnore(String endpoint, Object... arguments) {
-        RPC.Request request = new Request(arguments);
-        String payload = Convert.toString(request);
+	public static void callPost(String endpoint, Serializable arguments, RPCResult result) {
+		String payload = JSON.stringify(convertToArray(ObjectMirror.from(arguments)));
 
-        try {
-            callGetBackend(endpoint, payload);
-        } catch (IOException ignored) {
-            // ignore
-        }
-    }
+		try {
+			String response = callPostBackend(endpoint, payload);
+			JsObject.assign(ObjectMirror.from(result), JSON.parse(response));
+			if (result.exceptionClass != null) {
+				throw new ServerSideException(result.exceptionClass, result.exceptionMessage);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-    public static <T extends Serializable> T callPost(String endpoint, Class<T> result, Object... arguments) {
-        RPC.Request request = new Request(arguments);
-        String payload = Convert.toString(request);
-        String response = null;
+	public static void callPost(String endpoint, Serializable arguments) {
+		RPCResult result = new RPCResult();
+		callPost(endpoint, arguments, result);
+	}
 
-        try {
-            response = callPostBackend(endpoint, payload);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+	@Async
+	public static native String callPostBackend(String endpoint, String payload) throws IOException;
 
-        return Convert.toSerializable(response, result);
-    }
+	private static void callPostBackend(String endpoint, String payload, AsyncCallback<String> callback) {
+		XMLHttpRequest xhr = XMLHttpRequest.create();
+		xhr.open("post", DisconnectConfig.getRpcHost() + endpoint);
+		xhr.setOnreadystatechange((e) -> {
+			if (xhr.getReadyState() != XMLHttpRequest.ReadyState.DONE) {
+				return;
+			}
 
-    public static void callPost(String endpoint, Object... arguments) {
-        RPC.Request request = new Request(arguments);
-        String payload = Convert.toString(request);
+			int statusGroup = xhr.getStatus() / 100;
+			if (statusGroup != 2 && statusGroup != 3) {
+				callback.error(new IOException("HTTP status: " +
+						xhr.getStatus() + " " + xhr.getStatusText()));
+			} else {
+				callback.complete(xhr.getResponseText());
+			}
+		});
+		xhr.send(payload);
+	}
 
-        try {
-            callPostBackend(endpoint, payload);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+	public static void callGet(String endpoint, Serializable arguments,
+							   RPCResult result) {
+		String payload = DisconnectUtils.base64UrlEncode(JSON.stringify(convertToArray(ObjectMirror.from(arguments))));
 
-        return;
-    }
+		try {
+			String response = callGetBackend(endpoint, payload);
+			JsObject.assign(ObjectMirror.from(result), JSON.parse(response));
+			if (result.exceptionClass != null) {
+				throw new ServerSideException(result.exceptionClass, result.exceptionMessage);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-    @Async
-    public static native String callPostBackend(String endpoint, String payload) throws IOException;
+	public static void callGet(String endpoint, Serializable arguments) {
+		RPCResult result = new RPCResult();
+		callGet(endpoint, arguments, result);
+	}
 
-    private static void callPostBackend(String endpoint, String payload, AsyncCallback<String> callback) {
-        XMLHttpRequest xhr = XMLHttpRequest.create();
-        xhr.open("post", DisconnectConfig.getRpcHost() + endpoint);
-        xhr.setOnreadystatechange((e) -> {
-            if (xhr.getReadyState() != XMLHttpRequest.ReadyState.DONE) {
-                return;
-            }
+	@Async
+	public static native String callGetBackend(String endpoint, String payload) throws IOException;
 
-            int statusGroup = xhr.getStatus() / 100;
-            if (statusGroup != 2 && statusGroup != 3) {
-                callback.error(new IOException("HTTP status: " +
-                        xhr.getStatus() + " " + xhr.getStatusText()));
-            } else {
-                callback.complete(xhr.getResponseText());
-            }
-        });
-        xhr.send(payload);
-    }
+	private static void callGetBackend(String endpoint, String payload, AsyncCallback<String> callback) {
 
-    public static <T extends Serializable> T callGet(String endpoint, Class<T> result, Object... arguments) {
-        RPC.Request request = new Request(arguments);
-        String payload = DisconnectUtils.base64UrlEncode(Convert.toString(request));
-        String response = null;
+		XMLHttpRequest xhr = XMLHttpRequest.create();
+		xhr.open("get", DisconnectConfig.getRpcHost() + endpoint + "?payload=" + payload);
+		xhr.setOnreadystatechange((e) -> {
+			if (xhr.getReadyState() != XMLHttpRequest.ReadyState.DONE) {
+				return;
+			}
 
-        try {
-            response = callGetBackend(endpoint, payload);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+			int statusGroup = xhr.getStatus() / 100;
+			if (statusGroup != 2 && statusGroup != 3) {
+				callback.error(new IOException("HTTP status: " +
+						xhr.getStatus() + " " + xhr.getStatusText()));
+			} else {
+				callback.complete(xhr.getResponseText());
+			}
+		});
+		xhr.send();
+	}
 
-        return Convert.toSerializable(response, result);
-    }
-
-    public static void callGet(String endpoint, Object... arguments) {
-        RPC.Request request = new Request(arguments);
-        String payload = DisconnectUtils.base64UrlEncode(Convert.toString(request));
-
-        try {
-            callGetBackend(endpoint, payload);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return;
-    }
-
-    @Async
-    public static native String callGetBackend(String endpoint, String payload) throws IOException;
-
-    private static void callGetBackend(String endpoint, String payload, AsyncCallback<String> callback) {
-
-        XMLHttpRequest xhr = XMLHttpRequest.create();
-        xhr.open("get", DisconnectConfig.getRpcHost() + endpoint + "?payload=" + payload);
-        xhr.setOnreadystatechange((e) -> {
-            if (xhr.getReadyState() != XMLHttpRequest.ReadyState.DONE) {
-                return;
-            }
-
-            int statusGroup = xhr.getStatus() / 100;
-            if (statusGroup != 2 && statusGroup != 3) {
-                callback.error(new IOException("HTTP status: " +
-                        xhr.getStatus() + " " + xhr.getStatusText()));
-            } else {
-                callback.complete(xhr.getResponseText());
-            }
-        });
-        xhr.send();
-    }
-
+	@JSBody(params = "x", script = "return Object.entries(x).reduce(function(ini,[k,v]) { ini[k]=v; return ini },[])")
+	private static native Unknown convertToArray(ObjectMirror<?> x);
 }

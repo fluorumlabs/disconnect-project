@@ -29,15 +29,15 @@ public interface MediaError extends Any {
     int getMsExtendedCode();
 
     abstract class Code extends JsEnum {
-        public static final Code MEDIA_ERR_ABORTED = JsEnum.from("return MediaError.MEDIA_ERR_ABORTED");
+        public static final Code MEDIA_ERR_ABORTED = JsEnum.from("MediaError.MEDIA_ERR_ABORTED");
 
-        public static final Code MEDIA_ERR_DECODE = JsEnum.from("return MediaError.MEDIA_ERR_DECODE");
+        public static final Code MEDIA_ERR_DECODE = JsEnum.from("MediaError.MEDIA_ERR_DECODE");
 
-        public static final Code MEDIA_ERR_NETWORK = JsEnum.from("return MediaError.MEDIA_ERR_NETWORK");
+        public static final Code MEDIA_ERR_NETWORK = JsEnum.from("MediaError.MEDIA_ERR_NETWORK");
 
-        public static final Code MEDIA_ERR_SRC_NOT_SUPPORTED = JsEnum.from("return MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED");
+        public static final Code MEDIA_ERR_SRC_NOT_SUPPORTED = JsEnum.from("MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED");
 
-        public static final Code MS_MEDIA_ERR_ENCRYPTED = JsEnum.from("return MediaError.MS_MEDIA_ERR_ENCRYPTED");
+        public static final Code MS_MEDIA_ERR_ENCRYPTED = JsEnum.from("MediaError.MS_MEDIA_ERR_ENCRYPTED");
     }
 
 }

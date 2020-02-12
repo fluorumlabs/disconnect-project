@@ -150,7 +150,7 @@ String: 'string';
 Symbol: 'symbol';
 
 
-Type: 'type';
+Type: 'itemType';
 
 Get: 'get ';
 Set: 'set ';

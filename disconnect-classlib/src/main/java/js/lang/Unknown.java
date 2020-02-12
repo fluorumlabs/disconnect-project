@@ -24,6 +24,11 @@ public interface Unknown extends Any {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
+    @JSBody(script = "return undefined")
+    static Unknown undefined() {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
     @JSBody(script = "return this")
     double doubleValue();
 
@@ -47,6 +52,15 @@ public interface Unknown extends Any {
 
     @JSBody(script = "return this")
     String stringValue();
+
+    @JSBody(script = "return typeof this === 'string'")
+    boolean isString();
+
+    @JSBody(script = "return typeof this === 'number'")
+    boolean isNumber();
+
+    @JSBody(script = "return typeof this === 'boolean'")
+    boolean isBoolean();
 
     @JSBody(params = "other", script = "return this === other")
     boolean equals(Unknown other);

@@ -28,19 +28,19 @@ public interface SVGFEColorMatrixElement extends SVGElement, SVGFilterPrimitiveS
     SVGAnimatedNumberList getValues();
 
     abstract class Type extends JsEnum {
-        public static final Type SVG_FECOLORMATRIX_TYPE_HUEROTATE = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_HUEROTATE");
+        public static final Type SVG_FECOLORMATRIX_TYPE_HUEROTATE = JsEnum.from("SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_HUEROTATE");
 
 
-        public static final Type SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA");
+        public static final Type SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA = JsEnum.from("SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA");
 
 
-        public static final Type SVG_FECOLORMATRIX_TYPE_MATRIX = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_MATRIX");
+        public static final Type SVG_FECOLORMATRIX_TYPE_MATRIX = JsEnum.from("SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_MATRIX");
 
 
-        public static final Type SVG_FECOLORMATRIX_TYPE_SATURATE = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE");
+        public static final Type SVG_FECOLORMATRIX_TYPE_SATURATE = JsEnum.from("SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE");
 
 
-        public static final Type SVG_FECOLORMATRIX_TYPE_UNKNOWN = JsEnum.from("return SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_UNKNOWN");
+        public static final Type SVG_FECOLORMATRIX_TYPE_UNKNOWN = JsEnum.from("SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_UNKNOWN");
     }
 
 }

@@ -40,17 +40,17 @@ public interface SVGComponentTransferFunctionElement extends SVGElement {
     SVGAnimatedEnumeration<Type> getType();
 
     abstract class Type extends JsEnum {
-        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_DISCRETE = JsEnum.from("return SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_DISCRETE");
+        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_DISCRETE = JsEnum.from("SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_DISCRETE");
 
-        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_GAMMA = JsEnum.from("return SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_GAMMA");
+        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_GAMMA = JsEnum.from("SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_GAMMA");
 
-        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_IDENTITY = JsEnum.from("return SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_IDENTITY");
+        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_IDENTITY = JsEnum.from("SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_IDENTITY");
 
-        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_LINEAR = JsEnum.from("return SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_LINEAR");
+        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_LINEAR = JsEnum.from("SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_LINEAR");
 
-        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_TABLE = JsEnum.from("return SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_TABLE");
+        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_TABLE = JsEnum.from("SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_TABLE");
 
-        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_UNKNOWN = JsEnum.from("return SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_UNKNOWN");
+        public static final Type SVG_FECOMPONENTTRANSFER_TYPE_UNKNOWN = JsEnum.from("SVGComponentTransferFunctionElement.SVG_FECOMPONENTTRANSFER_TYPE_UNKNOWN");
     }
 
 }

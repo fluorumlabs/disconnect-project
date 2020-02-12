@@ -154,25 +154,25 @@ public interface TextTrack extends EventTarget {
     void removeCue(TextTrackCue cue);
 
     abstract class ReadyState extends JsEnum {
-        public static final ReadyState DISABLED = JsEnum.from("return TextTrack.DISABLED");
+        public static final ReadyState DISABLED = JsEnum.from("TextTrack.DISABLED");
 
 
-        public static final ReadyState ERROR = JsEnum.from("return TextTrack.ERROR");
+        public static final ReadyState ERROR = JsEnum.from("TextTrack.ERROR");
 
 
-        public static final ReadyState HIDDEN = JsEnum.from("return TextTrack.HIDDEN");
+        public static final ReadyState HIDDEN = JsEnum.from("TextTrack.HIDDEN");
 
 
-        public static final ReadyState LOADED = JsEnum.from("return TextTrack.LOADED");
+        public static final ReadyState LOADED = JsEnum.from("TextTrack.LOADED");
 
 
-        public static final ReadyState LOADING = JsEnum.from("return TextTrack.LOADING");
+        public static final ReadyState LOADING = JsEnum.from("TextTrack.LOADING");
 
 
-        public static final ReadyState NONE = JsEnum.from("return TextTrack.NONE");
+        public static final ReadyState NONE = JsEnum.from("TextTrack.NONE");
 
 
-        public static final ReadyState SHOWING = JsEnum.from("return TextTrack.SHOWING");
+        public static final ReadyState SHOWING = JsEnum.from("TextTrack.SHOWING");
     }
 
 

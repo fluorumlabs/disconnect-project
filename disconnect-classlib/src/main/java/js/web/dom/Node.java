@@ -178,82 +178,82 @@ public interface Node extends EventTarget {
     <T extends Node> T replaceChild(Node newChild, T oldChild);
 
     abstract class NodeType extends JsEnum {
-        public static final NodeType ATTRIBUTE_NODE = JsEnum.from("return Node.ATTRIBUTE_NODE");
+        public static final NodeType ATTRIBUTE_NODE = JsEnum.from("Node.ATTRIBUTE_NODE");
 
         /**
          * node is a CDATASection node.
          */
-        public static final NodeType CDATA_SECTION_NODE = JsEnum.from("return Node.CDATA_SECTION_NODE");
+        public static final NodeType CDATA_SECTION_NODE = JsEnum.from("Node.CDATA_SECTION_NODE");
 
         /**
          * node is a Comment node.
          */
-        public static final NodeType COMMENT_NODE = JsEnum.from("return Node.COMMENT_NODE");
+        public static final NodeType COMMENT_NODE = JsEnum.from("Node.COMMENT_NODE");
 
         /**
          * node is a DocumentFragment node.
          */
-        public static final NodeType DOCUMENT_FRAGMENT_NODE = JsEnum.from("return Node.DOCUMENT_FRAGMENT_NODE");
+        public static final NodeType DOCUMENT_FRAGMENT_NODE = JsEnum.from("Node.DOCUMENT_FRAGMENT_NODE");
 
         /**
          * node is a document.
          */
-        public static final NodeType DOCUMENT_NODE = JsEnum.from("return Node.DOCUMENT_NODE");
+        public static final NodeType DOCUMENT_NODE = JsEnum.from("Node.DOCUMENT_NODE");
 
         /**
          * node is a doctype.
          */
-        public static final NodeType DOCUMENT_TYPE_NODE = JsEnum.from("return Node.DOCUMENT_TYPE_NODE");
+        public static final NodeType DOCUMENT_TYPE_NODE = JsEnum.from("Node.DOCUMENT_TYPE_NODE");
 
         /**
          * node is an element.
          */
-        public static final NodeType ELEMENT_NODE = JsEnum.from("return Node.ELEMENT_NODE");
+        public static final NodeType ELEMENT_NODE = JsEnum.from("Node.ELEMENT_NODE");
 
-        public static final NodeType ENTITY_NODE = JsEnum.from("return Node.ENTITY_NODE");
+        public static final NodeType ENTITY_NODE = JsEnum.from("Node.ENTITY_NODE");
 
-        public static final NodeType ENTITY_REFERENCE_NODE = JsEnum.from("return Node.ENTITY_REFERENCE_NODE");
+        public static final NodeType ENTITY_REFERENCE_NODE = JsEnum.from("Node.ENTITY_REFERENCE_NODE");
 
-        public static final NodeType NOTATION_NODE = JsEnum.from("return Node.NOTATION_NODE");
+        public static final NodeType NOTATION_NODE = JsEnum.from("Node.NOTATION_NODE");
 
         /**
          * node is a ProcessingInstruction node.
          */
-        public static final NodeType PROCESSING_INSTRUCTION_NODE = JsEnum.from("return Node.PROCESSING_INSTRUCTION_NODE");
+        public static final NodeType PROCESSING_INSTRUCTION_NODE = JsEnum.from("Node.PROCESSING_INSTRUCTION_NODE");
 
         /**
          * node is a Text node.
          */
-        public static final NodeType TEXT_NODE = JsEnum.from("return Node.TEXT_NODE");
+        public static final NodeType TEXT_NODE = JsEnum.from("Node.TEXT_NODE");
     }
 
     abstract class DocumentPosition extends JsEnum {
         /**
          * Set when other is a descendant of node.
          */
-        public static final DocumentPosition DOCUMENT_POSITION_CONTAINED_BY = JsEnum.from("return Node.DOCUMENT_POSITION_CONTAINED_BY");
+        public static final DocumentPosition DOCUMENT_POSITION_CONTAINED_BY = JsEnum.from("Node.DOCUMENT_POSITION_CONTAINED_BY");
 
         /**
          * Set when other is an ancestor of node.
          */
-        public static final DocumentPosition DOCUMENT_POSITION_CONTAINS = JsEnum.from("return Node.DOCUMENT_POSITION_CONTAINS");
+        public static final DocumentPosition DOCUMENT_POSITION_CONTAINS = JsEnum.from("Node.DOCUMENT_POSITION_CONTAINS");
 
         /**
          * Set when node and other are not in the same tree.
          */
-        public static final DocumentPosition DOCUMENT_POSITION_DISCONNECTED = JsEnum.from("return Node.DOCUMENT_POSITION_DISCONNECTED");
+        public static final DocumentPosition DOCUMENT_POSITION_DISCONNECTED = JsEnum.from("Node.DOCUMENT_POSITION_DISCONNECTED");
 
         /**
          * Set when other is following node.
          */
-        public static final DocumentPosition DOCUMENT_POSITION_FOLLOWING = JsEnum.from("return Node.DOCUMENT_POSITION_FOLLOWING");
+        public static final DocumentPosition DOCUMENT_POSITION_FOLLOWING = JsEnum.from("Node.DOCUMENT_POSITION_FOLLOWING");
 
-        public static final DocumentPosition DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = JsEnum.from("return Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC");
+        public static final DocumentPosition DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = JsEnum.from("Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC");
 
         /**
          * Set when other is preceding node.
          */
-        public static final DocumentPosition DOCUMENT_POSITION_PRECEDING = JsEnum.from("return Node.DOCUMENT_POSITION_PRECEDING");
+        public static final DocumentPosition DOCUMENT_POSITION_PRECEDING = JsEnum.from("Node.DOCUMENT_POSITION_PRECEDING");
 
     }
 

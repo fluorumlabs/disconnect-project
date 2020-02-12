@@ -26,11 +26,11 @@ public interface OverflowEvent extends UIEvent {
     boolean isVerticalOverflow();
 
     abstract class Orient extends JsEnum {
-        public static final Orient BOTH = JsEnum.from("return OverflowEvent.BOTH");
+        public static final Orient BOTH = JsEnum.from("OverflowEvent.BOTH");
 
-        public static final Orient HORIZONTAL = JsEnum.from("return OverflowEvent.HORIZONTAL");
+        public static final Orient HORIZONTAL = JsEnum.from("OverflowEvent.HORIZONTAL");
 
-        public static final Orient VERTICAL = JsEnum.from("return OverflowEvent.VERTICAL");
+        public static final Orient VERTICAL = JsEnum.from("OverflowEvent.VERTICAL");
     }
 
 }

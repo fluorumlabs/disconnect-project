@@ -154,12 +154,12 @@ public interface Event extends Any {
     }
 
     abstract class EventPhase extends JsEnum {
-        public static final EventPhase AT_TARGET = JsEnum.from("return Event.AT_TARGET");
+        public static final EventPhase AT_TARGET = JsEnum.from("Event.AT_TARGET");
 
-        public static final EventPhase BUBBLING_PHASE = JsEnum.from("return Event.BUBBLING_PHASE");
+        public static final EventPhase BUBBLING_PHASE = JsEnum.from("Event.BUBBLING_PHASE");
 
-        public static final EventPhase CAPTURING_PHASE = JsEnum.from("return Event.CAPTURING_PHASE");
+        public static final EventPhase CAPTURING_PHASE = JsEnum.from("Event.CAPTURING_PHASE");
 
-        public static final EventPhase NONE = JsEnum.from("return Event.NONE");
+        public static final EventPhase NONE = JsEnum.from("Event.NONE");
     }
 }
