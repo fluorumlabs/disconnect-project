@@ -28,5 +28,4 @@ public abstract class DisconnectUtils implements Any {
     public static void ensure(Object x) {
         _ensure(Platform.getPlatformObject(x).cast());
     }
-
 }

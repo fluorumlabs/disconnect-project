@@ -111,7 +111,7 @@ public class ObjectAdapter implements Adapter {
 	}
 
 	@Meta
-	private static native <T> T readField(Class<?> clazz, Object instance, String fieldName);
+	public static native <T> T readField(Class<?> clazz, Object instance, String fieldName);
 
 	private static void readField(ReflectClass<?> clazz, Value<Object> instance, Value<String> fieldName) {
 		String className = clazz.getName();
@@ -153,7 +153,7 @@ public class ObjectAdapter implements Adapter {
 	}
 
 	@Meta
-	private static native void writeField(Class<?> clazz, Object instance, String fieldName, Object value);
+	public static native void writeField(Class<?> clazz, Object instance, String fieldName, Object value);
 
 	private static void writeField(ReflectClass<?> clazz, Value<Object> instance, Value<String> fieldName,
 								   Value<Object> value) {

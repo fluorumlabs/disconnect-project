@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -98,15 +97,10 @@ public class RPCHandler {
 
     private static final Pattern KEBAB_SPLIT = Pattern.compile("-");
 
-    private static String toCamelCase(String kebabCase) {
+    static String toCamelCase(String kebabCase) {
         return StringUtils.uncapitalize(Stream.of(KEBAB_SPLIT.split(kebabCase))
                 .map(StringUtils::capitalize)
                 .collect(Collectors.joining()));
     }
 
-    public static class RPCResultHolder implements Serializable {
-        public String exceptionClass = null;
-        public String exceptionMessage = null;
-        public Object result = null;
-    }
 }

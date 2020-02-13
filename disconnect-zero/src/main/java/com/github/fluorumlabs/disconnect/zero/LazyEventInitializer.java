@@ -1,9 +1,11 @@
 package com.github.fluorumlabs.disconnect.zero;
 
+import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.dom.Event;
 import js.web.dom.EventListener;
 import js.web.dom.EventTarget;
+import org.teavm.jso.JSBody;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +13,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 
+@Import(symbols = {"$rtd_wrapThread"}, module = "disconnect-core-jar/frontend/thread-wrapper.js")
 public abstract class LazyEventInitializer<X extends EventTarget> {
     private final Map<Object, ObservableEvent<?>> eventMap = new HashMap<>();
     private final static String[] NO_ALTERNATIVES = new String[0];
@@ -26,7 +29,7 @@ public abstract class LazyEventInitializer<X extends EventTarget> {
     protected  <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, String identifier, String... altIdentifiers) {
         return createEvent(identifier, () -> {
             ObservableEvent<T> event = new ObservableEvent<>();
-            EventListener<T> listener = event::trigger;
+            EventListener<T> listener = wrapEventListener(event::trigger);
 
             target.addEventListener(identifier, listener);
             for (String altIdentifier : altIdentifiers) {
@@ -39,7 +42,7 @@ public abstract class LazyEventInitializer<X extends EventTarget> {
     protected  <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, BiConsumer<X, EventListener<T>> addEventListener) {
         return createEvent(addEventListener, () -> {
             ObservableEvent<T> event = new ObservableEvent<>();
-            EventListener<T> listener = event::trigger;
+            EventListener<T> listener = wrapEventListener(event::trigger);
 
             addEventListener.accept(target, listener);
             return (E) event;
@@ -49,7 +52,7 @@ public abstract class LazyEventInitializer<X extends EventTarget> {
     protected  <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, BiConsumer<X, EventListener<T>> addEventListener, BiConsumer<X, EventListener<T>>... altAddEventListeners) {
         return createEvent(addEventListener, () -> {
             ObservableEvent<T> event = new ObservableEvent<>();
-            EventListener<T> listener = event::trigger;
+            EventListener<T> listener = wrapEventListener(event::trigger);
 
             addEventListener.accept(target, listener);
             for (BiConsumer<X, EventListener<T>> altAddEventListener : altAddEventListeners) {
@@ -58,4 +61,7 @@ public abstract class LazyEventInitializer<X extends EventTarget> {
             return (E) event;
         });
     }
+
+    @JSBody(params = "listener", script = "return $rtd_wrapThread.fn(listener)")
+    private static native <T extends Event> EventListener<T> wrapEventListener(EventListener<T> listener);
 }

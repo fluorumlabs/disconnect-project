@@ -9,7 +9,7 @@ import org.teavm.jso.JSBody;
 
 
 @NpmPackage(name = "fast-memoize", version = "latest")
-@Import(symbols = {"$rtd_wrapThread", "$rtd_setThreadStarter"}, module = "disconnect-core-jar/frontend/thread-wrapper.js")
+@Import(symbols = {"$rtd_setThreadStarter"}, module = "disconnect-core-jar/frontend/thread-wrapper.js")
 public abstract class DisconnectInitializer implements Any {
     @JSBody(script = "$rtd_setThreadStarter($rt_threadStarter)")
     private static native void initThreadStarter();

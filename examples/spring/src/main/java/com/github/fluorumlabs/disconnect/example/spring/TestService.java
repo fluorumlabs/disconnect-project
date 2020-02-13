@@ -1,50 +1,51 @@
 package com.github.fluorumlabs.disconnect.example.spring;
 
 import com.github.fluorumlabs.disconnect.core.annotations.AllowClientCalls;
-import com.github.fluorumlabs.disconnect.example.spring.client.BasicExampleEntryPoint;
+import com.github.fluorumlabs.disconnect.spring.server.DynamicStream;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Stream;
 
 /**
  * Created by Artem Godin on 2/11/2020.
  */
 @Service
 public class TestService {
+	private final CopyOnWriteArrayList<DynamicStream<Message>> messageStreams = new CopyOnWriteArrayList<>();
+
 	@AllowClientCalls
-	public String hello() {
-		return "Hello from server";
+	public void sendMessage(String message) {
+		int users = messageStreams.size();
+		String timeStampedMessage = message == null ? null : new Date() + ": " + message;
+		messageStreams.forEach(client -> client.push(new Message(timeStampedMessage, users)));
 	}
 
 	@AllowClientCalls
-	public int getNumber() {
-		return 5;
+	public Stream<Message> getMessageStream() {
+		DynamicStream<Message> dynamicStream = new DynamicStream<>();
+		dynamicStream.onClose(() -> {
+			messageStreams.remove(dynamicStream);
+			sendMessage(null); // Send empty message to notify of leaving user
+		});
+		messageStreams.add(dynamicStream);
+		sendMessage(null); // Send empty message to notify of new user
+		return dynamicStream;
 	}
 
-	@AllowClientCalls
-	public Double getDouble() {
-		return 142.857;
-	}
+	public static class Message implements Serializable {
+		public String message;
 
-	@AllowClientCalls
-	public int count(List<String> list) {
-		return list.size();
-	}
+		public int userCount;
 
-	@AllowClientCalls
-	public List<String> getStrings() {
-		return Arrays.asList("aaa", "bbb");
-	}
+		public Message() {
+		}
 
-	@AllowClientCalls
-	public String helloInt(int value1, int value2) {
-		return "Hello from Server, I got " + (value1 + value2);
+		public Message(String message, int userCount) {
+			this.message = message;
+			this.userCount = userCount;
+		}
 	}
-
-	@AllowClientCalls
-	public String helloBean(BasicExampleEntryPoint.DummyBean value) {
-		return "Hello from Server, I got " + value.value1;
-	}
-
 }

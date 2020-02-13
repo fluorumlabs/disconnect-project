@@ -413,34 +413,16 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 			arguments.setField("arg" + i, $.var(i+1, method.getParameterTypes()[i]));
 		}
 
-		ValueEmitter endPoint =
-				$.constant(RPC.ENDPOINT + "/" + toKebabCase(serviceName) + "/" + toKebabCase(method.getName()));
+		String endpoint;
+		boolean isSse = false;
+		if (method.getResultType().isObject(Stream.class)) {
+			endpoint = RPC.ENDPOINT + "/stream/" + toKebabCase(serviceName) + "/" + toKebabCase(method.getName());
+			isSse = true;
+		} else {
+			endpoint = RPC.ENDPOINT + "/" + toKebabCase(serviceName) + "/" + toKebabCase(method.getName());
+		}
 
-		/*
-		Variable endpointVar = program.createVariable();
-		Variable typeVar = program.createVariable();
-
-		BasicBlock block = program.createBasicBlock();
-		block.add(createStringConstantInstruction(endpointVar,
-                RPC.ENDPOINT + "/" + toKebabCase(serviceName) + "/" + toKebabCase(method.getName())));
-		block.add(createClassConstantInstruction(typeVar, method.getResultType()));
-
-		// Create argument array
-		Variable arrayLength = program.createVariable();
-		block.add(createIntegerConstantInstruction(arrayLength, method.parameterCount()));
-
-		Variable arguments = program.createVariable();
-		block.add(createConstructArrayInstruction(arguments, new ValueType.Object(Object.class.getName()),
-                arrayLength));
-		Variable argumentsUnwrapped = program.createVariable();
-		block.add(createUnwrapArrayInstruction(argumentsUnwrapped, arguments, ArrayElementType.OBJECT));
-
-		for (int i = 0; i < method.parameterCount(); i++) {
-			Variable index = program.createVariable();
-			block.add(createIntegerConstantInstruction(index, i));
-			block.add(createPutElementInstruction(argumentsUnwrapped, index, argumentList.get(i),
-                    ArrayElementType.OBJECT));
-		}*/
+		ValueEmitter endPoint =	$.constant(endpoint);
 
 		AnnotationValue methodValue = method.getAnnotations().get(AllowClientCalls.class.getName()).getValue("method");
 
@@ -460,18 +442,23 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 			methodPrefix = "callPost";
 		}
 
-		if (method.getAnnotations().get(EnableBackgroundSync.class.getName()) != null) {
-			$.invoke(RPC.class.getName(), methodPrefix + "Ignore",
-					endPoint, arguments.cast(Serializable.class));
-			$.exit();
-		} else if (method.getResultType() == ValueType.VOID) {
-			$.invoke(RPC.class.getName(), methodPrefix + "Ignore",
-					endPoint, arguments.cast(Serializable.class));
-			$.exit();
+		if (isSse) {
+			$.invoke(RPC.class, "callSse", Stream.class, endPoint, arguments.cast(Serializable.class),
+					result.cast(Serializable.class)).cast(method.getResultType()).returnValue();
 		} else {
-			$.invoke(RPC.class.getName(), methodPrefix,
-					endPoint, arguments.cast(Serializable.class), result.cast(Serializable.class));
-			result.getField("result", method.getResultType()).returnValue();
+			if (method.getAnnotations().get(EnableBackgroundSync.class.getName()) != null) {
+				$.invoke(RPC.class.getName(), methodPrefix + "Ignore",
+						endPoint, arguments.cast(Serializable.class));
+				$.exit();
+			} else if (method.getResultType() == ValueType.VOID) {
+				$.invoke(RPC.class.getName(), methodPrefix + "Ignore",
+						endPoint, arguments.cast(Serializable.class));
+				$.exit();
+			} else {
+				$.invoke(RPC.class.getName(), methodPrefix,
+						endPoint, arguments.cast(Serializable.class), result.cast(Serializable.class));
+				result.getField("result", method.getResultType()).returnValue();
+			}
 		}
 
 		return $.getProgram();

@@ -8,9 +8,13 @@ import org.apache.commons.lang3.StringUtils;
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 
 @SupportedAnnotationTypes(
@@ -54,9 +58,18 @@ public class DisconnectAllowClientCallsAnnotationProcessor extends AbstractProce
 							.addModifiers(Modifier.PUBLIC)
 							.addSuperinterface(Serializable.class);
 
-					if (!annotatedElement.getReturnType().toString().equals("void")) {
-						resultBuilder.addField(FieldSpec.builder(TypeName.get(annotatedElement.getReturnType()),
-								"result", Modifier.PUBLIC).build());
+					if (annotatedElement.getReturnType().toString().startsWith(Stream.class.getName())) {
+						DeclaredType returnType = (DeclaredType) annotatedElement.getReturnType();
+						List<? extends TypeMirror> typeArguments = returnType.getTypeArguments();
+						if (typeArguments.size() == 1) {
+							resultBuilder.addField(FieldSpec.builder(TypeName.get(typeArguments.get(0)), "result")
+									.addModifiers(Modifier.PUBLIC)
+									.build());
+						}
+					} else if (!annotatedElement.getReturnType().toString().equals("void")) {
+						resultBuilder.addField(FieldSpec.builder(TypeName.get(annotatedElement.getReturnType()), "result")
+								.addModifiers(Modifier.PUBLIC)
+								.build());
 					}
 
 					JavaFile argsJBuilder =

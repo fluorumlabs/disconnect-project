@@ -6,7 +6,7 @@ import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import js.extras.JsEnum;
 import js.web.dom.HTMLElement;
 
-import static js.web.dom.Document.DOCUMENT;
+import static js.web.dom.Window.DOCUMENT;
 
 /**
  * Created by Artem Godin on 2/7/2020.
@@ -60,9 +60,11 @@ public final class Lumo {
 
 	private abstract static class Theme extends ThemeVariant {
 		public static final Theme DARK = JsEnum.of("dark");
+
 		public static final Theme LIGHT = JsEnum.of("light");
 
 		public static final Theme FONT_SIZE_XS = JsEnum.of("font-size-xs");
+
 		public static final Theme FONT_SIZE_S = JsEnum.of("font-size-s");
 	}
 

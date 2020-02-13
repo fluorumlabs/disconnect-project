@@ -15,6 +15,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
+        <full-artifact-name>target/${project.artifactId}-${project.version}.jar</full-artifact-name>
         <java.version>1.8</java.version>
     </properties>
 
@@ -26,6 +27,16 @@
         <dependency>
             <groupId>com.github.fluorumlabs.disconnect</groupId>
             <artifactId>disconnect-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fluorumlabs.disconnect</groupId>
+            <artifactId>disconnect-zero</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fluorumlabs.disconnect</groupId>
+            <artifactId>disconnect-vaadin</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -84,7 +95,22 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>2.0.8</version>
+                <configuration>
+                    <appName>disconnect-demo</appName>
+                    <includeTarget>false</includeTarget>
+                    <includes>
+                        <include>${basedir}/${full-artifact-name}</include>
+                    </includes>
+                    <jdkVersion>1.8</jdkVersion>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -jar ${full-artifact-name}</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

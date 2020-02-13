@@ -8,7 +8,6 @@ import js.web.webanimations.Animation;
 import js.web.webanimations.DocumentTimeline;
 import js.web.webcomponents.DocumentOrShadowRoot;
 import org.teavm.jso.JSBody;
-import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
@@ -21,8 +20,6 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
 
     String NAMESPACE_SVG = "http://www.w3.org/2000/svg";
 
-    Document DOCUMENT = getDocumentInstance();
-
     @JSBody(script = "return Document.prototype")
     static Document prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -30,11 +27,6 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
 
     @JSBody(script = "return new Document()")
     static Document create() {
-        throw new UnsupportedOperationException("Available only in JavaScript");
-    }
-
-    @JSBody(script = "return window.document")
-    static Document getDocumentInstance() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
