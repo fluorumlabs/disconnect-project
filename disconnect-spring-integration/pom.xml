@@ -40,7 +40,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.fluorumlabs</groupId>
+            <groupId>com.github.fluorumlabs.disconnect</groupId>
             <artifactId>disconnect-core</artifactId>
             <version>${project.version}</version>
         </dependency>

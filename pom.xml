@@ -12,10 +12,9 @@
         <module>disconnect-classlib</module>
         <module>disconnect-maven-plugin</module>
         <module>disconnect-spring-integration</module>
-        <module>examples</module>
         <module>disconnect-zero</module>
         <module>disconnect-polymer</module>
-        <module>disconnect-vaadin-router</module>
+        <module>disconnect-vaadin</module>
         <module>disconnect-highcharts</module>
     </modules>
 
@@ -40,6 +39,10 @@
         <repository>
             <id>teavm-dev</id>
             <url>https://dl.bintray.com/konsoletyper/teavm</url>
+        </repository>
+        <repository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/groups/public</url>
         </repository>
     </repositories>
     <pluginRepositories>

@@ -16,7 +16,7 @@ public @interface NpmPackage {
     public @interface Container {
 
         /**
-         * Internally used to enable use of multiple {@link UrlParameterMapping}
+         * Internally used to enable use of multiple {@link NpmPackage}
          * annotations.
          *
          * @return an array of the UrlParameterMapping annotations
