@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Corresponds to the <use> element.
+ * Corresponds to the &lt;use&gt; element.
  */
 public interface SVGUseElement extends SVGGraphicsElement, SVGURIReference {
     @JSBody(script = "return SVGUseElement.prototype")

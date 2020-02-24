@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Used to represent a list of the video tracks contained within a <video> element, with each track represented by a separate VideoTrack object in the list.
+ * Used to represent a list of the video tracks contained within a &lt;video&gt; element, with each track represented by a separate VideoTrack object in the list.
  */
 public interface VideoTrackList extends ArrayLike<VideoTrack>, EventTarget {
 

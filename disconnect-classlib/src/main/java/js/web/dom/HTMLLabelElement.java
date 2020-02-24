@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Gives access to properties specific to <label> elements. It inherits methods and properties from the base HTMLElement interface.
+ * Gives access to properties specific to &lt;label&gt; elements. It inherits methods and properties from the base HTMLElement interface.
  */
 public interface HTMLLabelElement extends HTMLElement {
     @JSBody(script = "return HTMLLabelElement.prototype")

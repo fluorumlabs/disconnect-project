@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feTurbulence> element.
+ * Corresponds to the &lt;feTurbulence&gt; element.
  */
 public interface SVGFETurbulenceElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFETurbulenceElement.prototype")

@@ -6,7 +6,7 @@ import js.web.canvas.RenderingContext;
 import org.teavm.jso.JSBody;
 
 /**
- * Provides an interface to the OpenGL ES 2.0 graphics rendering context for the drawing surface of an HTML <canvas> element.
+ * Provides an interface to the OpenGL ES 2.0 graphics rendering context for the drawing surface of an HTML &lt;canvas&gt; element.
  */
 public interface WebGLRenderingContext extends WebGLRenderingContextBase, WebGLRenderingContextOverloads, RenderingContext, OffscreenRenderingContext {
     int ACTIVE_TEXTURE = JsEnum.from("WebGLRenderingContext.ACTIVE_TEXTURE").intValue();

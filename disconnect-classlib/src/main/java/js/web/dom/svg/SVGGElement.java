@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Corresponds to the <g> element.
+ * Corresponds to the &lt;g&gt; element.
  */
 public interface SVGGElement extends SVGGraphicsElement {
     @JSBody(script = "return SVGGElement.prototype")

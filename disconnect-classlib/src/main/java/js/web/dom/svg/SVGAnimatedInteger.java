@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Used for attributes of basic type <integer> which can be animated.
+ * Used for attributes of basic type &lt;integer&gt; which can be animated.
  */
 public interface SVGAnimatedInteger extends Any {
     @JSBody(script = "return SVGAnimatedInteger.prototype")

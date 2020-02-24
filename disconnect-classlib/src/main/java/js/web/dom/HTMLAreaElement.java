@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <area> elements.
+ * Provides special properties and methods (beyond those of the regular object HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of &lt;area&gt; elements.
  */
 public interface HTMLAreaElement extends HTMLElement, HTMLHyperlinkElementUtils {
     @JSBody(script = "return HTMLAreaElement.prototype")

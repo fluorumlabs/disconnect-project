@@ -611,7 +611,6 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
      * @param root                     The root element or node to start traversing on.
      * @param whatToShow               The type of nodes or elements to appear in the node list
      * @param filter                   A custom NodeFilter function to use. For more information, see filter. Use null for no filter.
-     * @param entityReferenceExpansion A flag that specifies whether entity reference nodes are expanded.
      */
     NodeIterator createNodeIterator(Node root, JsBitField<NodeFilter.FilterShow> whatToShow, NodeFilter filter);
 
@@ -620,7 +619,9 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
     NodeIterator createNodeIterator(Node root);
 
     /**
-     * Returns a ProcessingInstruction node whose target is target and data is data. If target does not match the Name production an "InvalidCharacterError" DOMException will be thrown. If data contains "?>" an "InvalidCharacterError" DOMException will be thrown.
+     * Returns a ProcessingInstruction node whose target is target and data is data. If target does not match the
+     * Name production an "InvalidCharacterError" DOMException will be thrown. If data contains "?&gt;" an
+     * "InvalidCharacterError" DOMException will be thrown.
      */
     ProcessingInstruction createProcessingInstruction(String target, String data);
 
@@ -642,7 +643,6 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
      * @param root                     The root element or node to start traversing on.
      * @param whatToShow               The type of nodes or elements to appear in the node list. For more information, see whatToShow.
      * @param filter                   A custom NodeFilter function to use.
-     * @param entityReferenceExpansion A flag that specifies whether entity reference nodes are expanded.
      */
     TreeWalker createTreeWalker(Node root, JsBitField<NodeFilter.FilterShow> whatToShow, NodeFilter filter);
 
@@ -707,7 +707,7 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
     /**
      * Retrieves a collection of objects based on the specified element name.
      *
-     * @param name Specifies the name of an element.
+     * @param qualifiedName Specifies the name of an element.
      */
     <E extends Element> HTMLCollectionOf<E> getElementsByTagName(String qualifiedName);
 
@@ -799,7 +799,7 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
     /**
      * Writes one or more HTML expressions to a document in the specified window.
      *
-     * @param content Specifies the text and HTML tags to write.
+     * @param text Specifies the text and HTML tags to write.
      */
     @JSBody(params = {"text"}, script = "this.write.apply(this, text);")
     void write(String... text);
@@ -807,7 +807,7 @@ public interface Document extends Node, DocumentAndElementEventHandlers, Documen
     /**
      * Writes one or more HTML expressions, followed by a carriage return, to a document in the specified window.
      *
-     * @param content The text and HTML tags to write.
+     * @param text The text and HTML tags to write.
      */
     @JSBody(params = {"text"}, script = "this.writeln.apply(this, text);")
     void writeln(String... text);

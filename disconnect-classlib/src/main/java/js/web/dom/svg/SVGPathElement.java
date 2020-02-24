@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <path> element.
+ * Corresponds to the &lt;path&gt; element.
  */
 public interface SVGPathElement extends SVGGraphicsElement {
     @JSBody(script = "return SVGPathElement.prototype")

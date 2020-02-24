@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Corresponds to the <feFlood> element.
+ * Corresponds to the &lt;feFlood&gt; element.
  */
 public interface SVGFEFloodElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEFloodElement.prototype")

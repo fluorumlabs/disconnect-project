@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feDisplacementMap> element.
+ * Corresponds to the &lt;feDisplacementMap&gt; element.
  */
 public interface SVGFEDisplacementMapElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEDisplacementMapElement.prototype")

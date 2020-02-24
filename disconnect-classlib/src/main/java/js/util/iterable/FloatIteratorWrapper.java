@@ -1,6 +1,7 @@
 package js.util.iterable;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class FloatIteratorWrapper implements Iterator<Float> {

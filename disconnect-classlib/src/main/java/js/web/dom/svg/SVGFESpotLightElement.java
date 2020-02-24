@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feSpotLight> element.
+ * Corresponds to the &lt;feSpotLight&gt; element.
  */
 public interface SVGFESpotLightElement extends SVGElement {
     @JSBody(script = "return SVGFESpotLightElement.prototype")

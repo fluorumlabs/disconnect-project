@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * A <tspan> element.
+ * A &lt;tspan&gt; element.
  */
 public interface SVGTSpanElement extends SVGTextPositioningElement {
     @JSBody(script = "return SVGTSpanElement.prototype")

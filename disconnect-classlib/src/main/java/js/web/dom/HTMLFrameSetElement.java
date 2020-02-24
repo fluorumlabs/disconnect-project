@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides special properties (beyond those of the regular HTMLElement interface they also inherit) for manipulating <frameset> elements.
+ * Provides special properties (beyond those of the regular HTMLElement interface they also inherit) for manipulating &lt;frameset&gt; elements.
  */
 public interface HTMLFrameSetElement extends HTMLElement, WindowEventHandlers {
     @JSBody(script = "return HTMLFrameSetElement.prototype")

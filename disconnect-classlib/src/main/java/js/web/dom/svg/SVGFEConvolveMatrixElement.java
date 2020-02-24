@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feConvolveMatrix> element.
+ * Corresponds to the &lt;feConvolveMatrix&gt; element.
  */
 public interface SVGFEConvolveMatrixElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEConvolveMatrixElement.prototype")

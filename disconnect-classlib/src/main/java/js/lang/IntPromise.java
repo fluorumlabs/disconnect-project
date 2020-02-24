@@ -12,7 +12,7 @@ public abstract class IntPromise extends IntPromiseLike {
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected  The callback to execute when the Promise is rejected.
      *
-     * @returns A Promise for the completion of which ever callback is executed.
+     * @return A Promise for the completion of which ever callback is executed.
      */
     public native <R extends Any> Promise<R> then(FullfilledValueCallback<R> onfulfilled, RejectedValueCallback<R> onrejected);
 
@@ -38,28 +38,64 @@ public abstract class IntPromise extends IntPromiseLike {
 
     public native DoublePromise then(FullfilledValueDoubleCallback onfulfilled);
 
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     *
-     * @param onrejected The callback to execute when the Promise is rejected.
-     *
-     * @returns A Promise for the completion of the callback.
-     */
-    @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
+	/**
+	 * Attaches a callback for only the rejection of the Promise.
+	 *
+	 * @param <R>        the type parameter
+	 * @param onrejected The callback to execute when the Promise is rejected.
+	 *
+	 * @return A Promise for the completion of the callback.
+	 */
+	@JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native <R extends Any> Promise<R> catchError(RejectedValueCallback<R> onrejected);
 
-    @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
+	/**
+	 * Catch error void promise.
+	 *
+	 * @param onrejected the onrejected
+	 *
+	 * @return the void promise
+	 */
+	@JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native VoidPromise catchError(RejectedValueVoidCallback onrejected);
 
-    @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
+	/**
+	 * Catch error boolean promise.
+	 *
+	 * @param onrejected the onrejected
+	 *
+	 * @return the boolean promise
+	 */
+	@JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native BooleanPromise catchError(RejectedValueBooleanCallback onrejected);
 
-    @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
+	/**
+	 * Catch error string promise.
+	 *
+	 * @param onrejected the onrejected
+	 *
+	 * @return the string promise
+	 */
+	@JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native StringPromise catchError(RejectedValueStringCallback onrejected);
 
-    @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
+	/**
+	 * Catch error int promise.
+	 *
+	 * @param onrejected the onrejected
+	 *
+	 * @return the int promise
+	 */
+	@JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native IntPromise catchError(RejectedValueIntCallback onrejected);
 
-    @JSBody(params = "onrejected", script = "return this.catch(onrejected)")
+	/**
+	 * Catch error double promise.
+	 *
+	 * @param onrejected the onrejected
+	 *
+	 * @return the double promise
+	 */
+	@JSBody(params = "onrejected", script = "return this.catch(onrejected)")
     public native DoublePromise catchError(RejectedValueDoubleCallback onrejected);
 }

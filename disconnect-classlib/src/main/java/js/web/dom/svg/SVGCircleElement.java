@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * An interface for the <circle> element. The circle element is defined by the cx and cy attributes that denote the coordinates of the centre of the circle.
+ * An interface for the &lt;circle&gt; element. The circle element is defined by the cx and cy attributes that denote the coordinates of the centre of the circle.
  */
 public interface SVGCircleElement extends SVGGeometryElement {
     @JSBody(script = "return SVGCircleElement.prototype")

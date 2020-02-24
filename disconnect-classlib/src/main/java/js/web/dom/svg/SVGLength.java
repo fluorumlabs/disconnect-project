@@ -6,7 +6,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Correspond to the <length> basic data type.
+ * Correspond to the &lt;length&gt; basic data type.
  */
 public interface SVGLength extends Any {
     @JSBody(script = "return SVGLength.prototype")

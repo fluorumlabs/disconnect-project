@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <time> elements.
+ * Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating &lt;time&gt; elements.
  */
 public interface HTMLTimeElement extends HTMLElement {
     @JSBody(script = "return HTMLTimeElement.prototype")

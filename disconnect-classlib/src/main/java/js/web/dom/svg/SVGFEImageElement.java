@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feImage> element.
+ * Corresponds to the &lt;feImage&gt; element.
  */
 public interface SVGFEImageElement extends SVGElement, SVGFilterPrimitiveStandardAttributes, SVGURIReference {
     @JSBody(script = "return SVGFEImageElement.prototype")

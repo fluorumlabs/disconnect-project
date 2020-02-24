@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Provides special properties and methods for manipulating the options, layout, and presentation of <input> elements.
+ * Provides special properties and methods for manipulating the options, layout, and presentation of &lt;input&gt; elements.
  */
 public interface HTMLInputElement extends HTMLElement {
     @JSBody(script = "return HTMLInputElement.prototype")

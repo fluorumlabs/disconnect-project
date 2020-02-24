@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feComponentTransfer> element.
+ * Corresponds to the &lt;feComponentTransfer&gt; element.
  */
 public interface SVGFEComponentTransferElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEComponentTransferElement.prototype")

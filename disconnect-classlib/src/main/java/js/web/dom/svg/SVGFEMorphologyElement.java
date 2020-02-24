@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feMorphology> element.
+ * Corresponds to the &lt;feMorphology&gt; element.
  */
 public interface SVGFEMorphologyElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEMorphologyElement.prototype")

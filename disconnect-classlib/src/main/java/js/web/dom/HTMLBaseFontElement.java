@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <basefont> elements.
+ * Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating &lt;basefont&gt; elements.
  */
 public interface HTMLBaseFontElement extends HTMLElement, DOML2DeprecatedColorProperty {
     @JSBody(script = "return HTMLBaseFontElement.prototype")

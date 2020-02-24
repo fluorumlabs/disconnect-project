@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feComposite> element.
+ * Corresponds to the &lt;feComposite&gt; element.
  */
 public interface SVGFECompositeElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFECompositeElement.prototype")

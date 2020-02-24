@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides access to the properties of <ellipse> elements.
+ * Provides access to the properties of &lt;ellipse&gt; elements.
  */
 public interface SVGEllipseElement extends SVGGeometryElement {
     @JSBody(script = "return SVGEllipseElement.prototype")

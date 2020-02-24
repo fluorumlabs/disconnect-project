@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feBlend> element.
+ * Corresponds to the &lt;feBlend&gt; element.
  */
 public interface SVGFEBlendElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEBlendElement.prototype")

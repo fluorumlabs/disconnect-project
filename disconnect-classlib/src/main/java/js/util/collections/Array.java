@@ -54,7 +54,6 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      *
      * @param arrayLike An array-like object to convert to an array.
      * @param mapfn     A mapping function to call on every element of the array.
-     * @param thisArg   Value of 'this' used to invoke the mapfn.
      */
     @JSBody(params = {"arrayLike", "mapfn"}, script = "return Array.from(arrayLike, mapfn)")
     static <T extends Any, U extends Any> Array<U> from(ArrayLike<T> arrayLike, MapFunction<T, U> mapfn) {
@@ -66,7 +65,6 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      *
      * @param iterable An iterable object to convert to an array.
      * @param mapfn    A mapping function to call on every element of the array.
-     * @param thisArg  Value of 'this' used to invoke the mapfn.
      */
     @JSBody(params = {"iterable", "mapfn"}, script = "return Array.from(iterable, mapfn)")
     static <T extends Any, U extends Any> Array<U> from(JsIterable<T> iterable, MapFunction<T, U> mapfn) {
@@ -115,7 +113,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      *                  a negative value if first argument is less than second argument, zero if they're equal and a positive
      *                  value otherwise. If omitted, the elements are sorted in ascending, ASCII character order.
      *                  ```ts
-     *                  [11,2,22,1].sort((a, b) => a - b)
+     *                   b)
      *                  ```
      */
     Array<T> sort(JsComparator<T> compareFn);

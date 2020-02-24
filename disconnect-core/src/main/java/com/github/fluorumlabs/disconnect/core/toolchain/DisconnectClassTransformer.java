@@ -6,7 +6,6 @@ import com.github.fluorumlabs.disconnect.core.internals.DisconnectSymbols;
 import js.lang.Unknown;
 import org.apache.commons.lang3.StringUtils;
 import org.teavm.backend.javascript.TeaVMJavaScriptHost;
-import org.teavm.flavour.json.JsonPersistable;
 import org.teavm.model.*;
 import org.teavm.model.emit.ProgramEmitter;
 import org.teavm.model.emit.ValueEmitter;
@@ -65,15 +64,6 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 				});
 
 		processNpmImports(cls, context);
-
-		if (cls.getInterfaces().contains(Serializable.class.getName()) && !cls.getName().startsWith("java")) {
-			cls.getAnnotations().add(new AnnotationHolder(JsonPersistable.class.getName()));
-
-			cls.getFields().stream()
-					.filter(fieldHolder -> fieldHolder.getModifiers().contains(ElementModifier.TRANSIENT))
-					.forEach(fieldHolder -> fieldHolder.getAnnotations().add(new AnnotationHolder("com.fasterxml" +
-							".jackson.annotation.JsonIgnore")));
-		}
 
 		AnnotationHolder serviceAnnotation = cls.getAnnotations().get("org.springframework.stereotype.Service");
 		if (serviceAnnotation != null) {

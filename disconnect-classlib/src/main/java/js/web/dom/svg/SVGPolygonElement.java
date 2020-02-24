@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Provides access to the properties of <polygon> elements, as well as methods to manipulate them.
+ * Provides access to the properties of &lt;polygon&gt; elements, as well as methods to manipulate them.
  */
 public interface SVGPolygonElement extends SVGGeometryElement, SVGAnimatedPoints {
     @JSBody(script = "return SVGPolygonElement.prototype")

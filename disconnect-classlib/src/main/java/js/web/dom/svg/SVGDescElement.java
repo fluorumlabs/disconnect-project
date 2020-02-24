@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Corresponds to the <desc> element.
+ * Corresponds to the &lt;desc&gt; element.
  */
 public interface SVGDescElement extends SVGElement {
     @JSBody(script = "return SVGDescElement.prototype")

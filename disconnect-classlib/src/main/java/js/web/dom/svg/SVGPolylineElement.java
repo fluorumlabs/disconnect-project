@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Provides access to the properties of <polyline> elements, as well as methods to manipulate them.
+ * Provides access to the properties of &lt;polyline&gt; elements, as well as methods to manipulate them.
  */
 public interface SVGPolylineElement extends SVGGeometryElement, SVGAnimatedPoints {
     @JSBody(script = "return SVGPolylineElement.prototype")

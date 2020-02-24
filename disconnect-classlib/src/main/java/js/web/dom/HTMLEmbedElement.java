@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating <embed> elements.
+ * Provides special properties (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating &lt;embed&gt; elements.
  */
 public interface HTMLEmbedElement extends HTMLElement {
     @JSBody(script = "return HTMLEmbedElement.prototype")

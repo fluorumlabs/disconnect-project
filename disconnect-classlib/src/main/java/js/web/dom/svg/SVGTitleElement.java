@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Corresponds to the <title> element.
+ * Corresponds to the &lt;title&gt; element.
  */
 public interface SVGTitleElement extends SVGElement {
     @JSBody(script = "return SVGTitleElement.prototype")

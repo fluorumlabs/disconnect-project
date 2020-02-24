@@ -7,7 +7,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * The underlying pixel data of an area of a <canvas> element. It is created using the ImageData() constructor or creator methods on the CanvasRenderingContext2D object associated with a createImageData canvas() and getImageData(). It can also be used to set a part of the canvas by using putImageData().
+ * The underlying pixel data of an area of a &lt;canvas&gt; element. It is created using the ImageData() constructor or creator methods on the CanvasRenderingContext2D object associated with a createImageData canvas() and getImageData(). It can also be used to set a part of the canvas by using putImageData().
  */
 public interface ImageData extends Any, ImageBitmapSource, TexImageSource {
     @JSBody(script = "return ImageData.prototype")

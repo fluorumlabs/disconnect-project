@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Corresponds to the <feFuncA> element.
+ * Corresponds to the &lt;feFuncA&gt; element.
  */
 public interface SVGFEFuncAElement extends SVGComponentTransferFunctionElement {
     @JSBody(script = "return SVGFEFuncAElement.prototype")

@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * A <style> element. It inherits properties and methods from its parent, HTMLElement, and from LinkStyle.
+ * A &lt;style&gt; element. It inherits properties and methods from its parent, HTMLElement, and from LinkStyle.
  */
 public interface HTMLStyleElement extends HTMLElement, LinkStyle {
     @JSBody(script = "return HTMLStyleElement.prototype")

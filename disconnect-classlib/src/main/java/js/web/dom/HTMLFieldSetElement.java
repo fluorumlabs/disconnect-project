@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <fieldset> elements.
+ * Provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of &lt;fieldset&gt; elements.
  */
 public interface HTMLFieldSetElement extends HTMLElement {
     @JSBody(script = "return HTMLFieldSetElement.prototype")

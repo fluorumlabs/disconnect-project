@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * A HTML line break element (<br>). It inherits from HTMLElement.
+ * A HTML line break element (&lt;br&gt;). It inherits from HTMLElement.
  */
 public interface HTMLBRElement extends HTMLElement {
     @JSBody(script = "return HTMLBRElement.prototype")

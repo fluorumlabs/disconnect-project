@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the SVG <script> element.
+ * Corresponds to the SVG &lt;script&gt; element.
  */
 public interface SVGScriptElement extends SVGElement, SVGURIReference, HTMLOrSVGScriptElement {
     @JSBody(script = "return SVGScriptElement.prototype")

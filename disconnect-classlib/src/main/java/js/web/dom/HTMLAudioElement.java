@@ -3,7 +3,7 @@ package js.web.dom;
 import org.teavm.jso.JSBody;
 
 /**
- * Provides access to the properties of <audio> elements, as well as methods to manipulate them. It derives from the HTMLMediaElement interface.
+ * Provides access to the properties of &lt;audio&gt; elements, as well as methods to manipulate them. It derives from the HTMLMediaElement interface.
  */
 public interface HTMLAudioElement extends HTMLMediaElement {
     @JSBody(script = "return HTMLAudioElement.prototype")

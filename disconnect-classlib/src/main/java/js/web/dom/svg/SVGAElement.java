@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides access to the properties of <a> element, as well as methods to manipulate them.
+ * Provides access to the properties of &lt;a&gt; element, as well as methods to manipulate them.
  */
 public interface SVGAElement extends SVGGraphicsElement, SVGURIReference {
     @JSBody(script = "return SVGAElement.prototype")

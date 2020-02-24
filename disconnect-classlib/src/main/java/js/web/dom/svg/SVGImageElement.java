@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <image> element.
+ * Corresponds to the &lt;image&gt; element.
  */
 public interface SVGImageElement extends SVGGraphicsElement, SVGURIReference, CanvasImageSource {
     @JSBody(script = "return SVGImageElement.prototype")

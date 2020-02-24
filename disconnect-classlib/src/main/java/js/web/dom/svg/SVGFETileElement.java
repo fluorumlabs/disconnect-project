@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feTile> element.
+ * Corresponds to the &lt;feTile&gt; element.
  */
 public interface SVGFETileElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFETileElement.prototype")

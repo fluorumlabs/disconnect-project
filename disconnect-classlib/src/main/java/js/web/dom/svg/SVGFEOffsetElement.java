@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feOffset> element.
+ * Corresponds to the &lt;feOffset&gt; element.
  */
 public interface SVGFEOffsetElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEOffsetElement.prototype")

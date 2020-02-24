@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides access to the properties of <line> elements, as well as methods to manipulate them.
+ * Provides access to the properties of &lt;line&gt; elements, as well as methods to manipulate them.
  */
 public interface SVGLineElement extends SVGGeometryElement {
     @JSBody(script = "return SVGLineElement.prototype")

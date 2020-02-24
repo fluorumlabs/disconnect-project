@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Corresponds to the <switch> element.
+ * Corresponds to the &lt;switch&gt; element.
  */
 public interface SVGSwitchElement extends SVGGraphicsElement {
     @JSBody(script = "return SVGSwitchElement.prototype")

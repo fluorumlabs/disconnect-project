@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <number> basic data type.
+ * Corresponds to the &lt;number&gt; basic data type.
  */
 public interface SVGNumber extends Any {
     @JSBody(script = "return SVGNumber.prototype")

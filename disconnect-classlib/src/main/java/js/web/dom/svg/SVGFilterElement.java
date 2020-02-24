@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides access to the properties of <filter> elements, as well as methods to manipulate them.
+ * Provides access to the properties of &lt;filter&gt; elements, as well as methods to manipulate them.
  */
 public interface SVGFilterElement extends SVGElement, SVGURIReference {
     @JSBody(script = "return SVGFilterElement.prototype")

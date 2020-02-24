@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Provides special properties and methods for manipulating the layout and presentation of <textarea> elements.
+ * Provides special properties and methods for manipulating the layout and presentation of &lt;textarea&gt; elements.
  */
 public interface HTMLTextAreaElement extends HTMLElement {
     @JSBody(script = "return HTMLTextAreaElement.prototype")

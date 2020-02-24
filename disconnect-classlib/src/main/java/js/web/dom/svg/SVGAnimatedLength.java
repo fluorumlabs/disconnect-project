@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Used for attributes of basic type <length> which can be animated.
+ * Used for attributes of basic type &lt;length&gt; which can be animated.
  */
 public interface SVGAnimatedLength extends Any {
     @JSBody(script = "return SVGAnimatedLength.prototype")

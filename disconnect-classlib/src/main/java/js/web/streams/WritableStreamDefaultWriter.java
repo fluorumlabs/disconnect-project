@@ -5,7 +5,8 @@ import js.lang.VoidPromise;
 import org.teavm.jso.JSProperty;
 
 /**
- * This Streams API interface is the object returned by WritableStream.getWriter() and once created locks the < writer to the WritableStream ensuring that no other streams can write to the underlying sink.
+ * This Streams API interface is the object returned by WritableStream.getWriter() and once created locks the &lt;
+ * writer to the WritableStream ensuring that no other streams can write to the underlying sink.
  */
 public interface WritableStreamDefaultWriter<W extends Any> {
     @JSProperty

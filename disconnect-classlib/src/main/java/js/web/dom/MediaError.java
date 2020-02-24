@@ -6,7 +6,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as <audio> or <video>.
+ * An error which occurred while handling media in an HTML media element based on HTMLMediaElement, such as &lt;audio&gt; or &lt;video&gt;.
  */
 public interface MediaError extends Any {
     @JSBody(script = "return MediaError.prototype")

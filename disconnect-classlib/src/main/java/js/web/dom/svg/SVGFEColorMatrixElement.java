@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feColorMatrix> element.
+ * Corresponds to the &lt;feColorMatrix&gt; element.
  */
 public interface SVGFEColorMatrixElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEColorMatrixElement.prototype")

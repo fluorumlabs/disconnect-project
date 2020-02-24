@@ -3,6 +3,7 @@ package js.util.iterable;
 import js.lang.Any;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class IteratorWrapper<T extends Any> implements Iterator<T> {

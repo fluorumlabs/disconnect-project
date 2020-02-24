@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides access to the properties of <clipPath> elements, as well as methods to manipulate them.
+ * Provides access to the properties of &lt;clipPath&gt; elements, as well as methods to manipulate them.
  */
 public interface SVGClipPathElement extends SVGElement {
     @JSBody(script = "return SVGClipPathElement.prototype")

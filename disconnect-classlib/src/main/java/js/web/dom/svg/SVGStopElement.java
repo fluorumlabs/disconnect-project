@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <stop> element.
+ * Corresponds to the &lt;stop&gt; element.
  */
 public interface SVGStopElement extends SVGElement {
     @JSBody(script = "return SVGStopElement.prototype")

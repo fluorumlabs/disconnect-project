@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Used for attributes of basic type <angle> which can be animated.
+ * Used for attributes of basic type &lt;angle&gt; which can be animated.
  */
 public interface SVGAnimatedAngle extends Any {
     @JSBody(script = "return SVGAnimatedAngle.prototype")

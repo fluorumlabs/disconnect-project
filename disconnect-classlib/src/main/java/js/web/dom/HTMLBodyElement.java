@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Provides special properties (beyond those inherited from the regular HTMLElement interface) for manipulating <body> elements.
+ * Provides special properties (beyond those inherited from the regular HTMLElement interface) for manipulating &lt;body&gt; elements.
  */
 public interface HTMLBodyElement extends HTMLElement, WindowEventHandlers {
     @JSBody(script = "return HTMLBodyElement.prototype")

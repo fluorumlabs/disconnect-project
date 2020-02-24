@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feGaussianBlur> element.
+ * Corresponds to the &lt;feGaussianBlur&gt; element.
  */
 public interface SVGFEGaussianBlurElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEGaussianBlurElement.prototype")

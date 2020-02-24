@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Provides methods to manipulate <marquee> elements.
+ * Provides methods to manipulate &lt;marquee&gt; elements.
  */
 public interface HTMLMarqueeElement extends HTMLElement {
     @JSBody(script = "return HTMLMarqueeElement.prototype")

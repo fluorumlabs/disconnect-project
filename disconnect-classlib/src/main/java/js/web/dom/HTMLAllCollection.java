@@ -8,12 +8,25 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 
+/**
+ * The interface Html all collection.
+ */
 public interface HTMLAllCollection extends ArrayLike<Element> {
+    /**
+     * Prototype html all collection.
+     *
+     * @return the html all collection
+     */
     @JSBody(script = "return HTMLAllCollection.prototype")
     static HTMLAllCollection prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
+    /**
+     * Create html all collection.
+     *
+     * @return the html all collection
+     */
     @JSBody(script = "return new HTMLAllCollection()")
     static HTMLAllCollection create() {
         throw new UnsupportedOperationException("Available only in JavaScript");
@@ -27,10 +40,19 @@ public interface HTMLAllCollection extends ArrayLike<Element> {
 
     /**
      * Returns the item with index index from the collection (determined by tree order).
+     *
+     * @param nameOrIndex the name or index
+     *
+     * @return the unknown
      */
     @Nullable
     Unknown item(String nameOrIndex);
 
+    /**
+     * Item unknown.
+     *
+     * @return the unknown
+     */
     @Nullable
     Unknown item();
 
@@ -39,9 +61,9 @@ public interface HTMLAllCollection extends ArrayLike<Element> {
      * <p>
      * If there are multiple matching items, then an HTMLCollection object containing all those elements is returned.
      *
-     * @JSProperty Only button, form, iframe, input, map, meta, object, select, and textarea elements can have a name for the purpose of this getMethod();
-     * @JSProperty void setMethod(* Only button, form, iframe, input, map, meta, object, select, and textarea elements can have a name for the purpose of this method);
-     *         their name is given by the value of their name attribute.
+     * @param name the name
+     *
+     * @return the unknown
      */
     @Nullable
     Unknown namedItem(String name);

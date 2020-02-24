@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feDistantLight> element.
+ * Corresponds to the &lt;feDistantLight&gt; element.
  */
 public interface SVGFEDistantLightElement extends SVGElement {
     @JSBody(script = "return SVGFEDistantLightElement.prototype")

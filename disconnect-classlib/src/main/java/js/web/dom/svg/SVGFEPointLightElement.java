@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <fePointLight> element.
+ * Corresponds to the &lt;fePointLight&gt; element.
  */
 public interface SVGFEPointLightElement extends SVGElement {
     @JSBody(script = "return SVGFEPointLightElement.prototype")

@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feDiffuseLighting> element.
+ * Corresponds to the &lt;feDiffuseLighting&gt; element.
  */
 public interface SVGFEDiffuseLightingElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFEDiffuseLightingElement.prototype")

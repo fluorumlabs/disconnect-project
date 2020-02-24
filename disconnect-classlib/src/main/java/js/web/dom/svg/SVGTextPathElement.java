@@ -5,7 +5,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <textPath> element.
+ * Corresponds to the &lt;textPath&gt; element.
  */
 public interface SVGTextPathElement extends SVGTextContentElement, SVGURIReference {
     @JSBody(script = "return SVGTextPathElement.prototype")

@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * A single video track from a <video> element.
+ * A single video track from a &lt;video&gt; element.
  */
 public interface VideoTrack extends Any {
     @JSBody(script = "return VideoTrack.prototype")

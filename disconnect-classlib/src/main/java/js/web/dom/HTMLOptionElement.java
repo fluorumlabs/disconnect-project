@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * <option> elements and inherits all classes and methods of the HTMLElement interface.
+ * &lt;option&gt; elements and inherits all classes and methods of the HTMLElement interface.
  */
 public interface HTMLOptionElement extends HTMLElement {
     @JSBody(script = "return HTMLOptionElement.prototype")

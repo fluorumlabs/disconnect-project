@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the SVG <style> element.
+ * Corresponds to the SVG &lt;style&gt; element.
  */
 public interface SVGStyleElement extends SVGElement {
     @JSBody(script = "return SVGStyleElement.prototype")

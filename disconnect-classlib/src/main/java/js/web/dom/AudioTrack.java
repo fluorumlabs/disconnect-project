@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * A single audio track from one of the HTML media elements, <audio> or <video>.
+ * A single audio track from one of the HTML media elements, &lt;audio&gt; or &lt;video&gt;.
  */
 public interface AudioTrack extends Any {
     @JSBody(script = "return AudioTrack.prototype")

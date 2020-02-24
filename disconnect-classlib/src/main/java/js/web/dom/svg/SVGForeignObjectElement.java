@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides access to the properties of <foreignObject> elements, as well as methods to manipulate them.
+ * Provides access to the properties of &lt;foreignObject&gt; elements, as well as methods to manipulate them.
  */
 public interface SVGForeignObjectElement extends SVGGraphicsElement {
     @JSBody(script = "return SVGForeignObjectElement.prototype")

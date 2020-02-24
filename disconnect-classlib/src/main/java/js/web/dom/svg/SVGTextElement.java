@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Corresponds to the <text> elements.
+ * Corresponds to the &lt;text&gt; elements.
  */
 public interface SVGTextElement extends SVGTextPositioningElement {
     @JSBody(script = "return SVGTextElement.prototype")

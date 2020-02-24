@@ -3,32 +3,85 @@ package js.lang;
 import org.teavm.jso.JSProperty;
 
 
+/**
+ * The interface Property descriptor.
+ */
 public interface PropertyDescriptor extends Any {
-    @JSProperty
+	/**
+	 * Is configurable boolean.
+	 *
+	 * @return the boolean
+	 */
+	@JSProperty
     boolean isConfigurable();
 
-    @JSProperty
+	/**
+	 * Sets configurable.
+	 *
+	 * @param value the value
+	 */
+	@JSProperty
     void setConfigurable(boolean value);
 
-    @JSProperty
+	/**
+	 * Is enumerable boolean.
+	 *
+	 * @return the boolean
+	 */
+	@JSProperty
     boolean isEnumerable();
 
-    @JSProperty
+	/**
+	 * Sets enumerable.
+	 *
+	 * @param value the value
+	 */
+	@JSProperty
     void setEnumerable(boolean value);
 
-    @JSProperty
+	/**
+	 * Gets value.
+	 *
+	 * @return the value
+	 */
+	@JSProperty
     Any getValue();
 
-    @JSProperty
+	/**
+	 * Sets value.
+	 *
+	 * @param value the value
+	 */
+	@JSProperty
     void setValue(Any value);
 
-    @JSProperty
+	/**
+	 * Is writable boolean.
+	 *
+	 * @return the boolean
+	 */
+	@JSProperty
     boolean isWritable();
 
-    @JSProperty
+	/**
+	 * Sets writable.
+	 *
+	 * @param value the value
+	 */
+	@JSProperty
     void setWritable(boolean value);
 
-    Any get();
+	/**
+	 * Get any.
+	 *
+	 * @return the any
+	 */
+	Any get();
 
-    void set(Any v);
+	/**
+	 * Set.
+	 *
+	 * @param v the v
+	 */
+	void set(Any v);
 }

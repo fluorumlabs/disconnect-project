@@ -3,7 +3,7 @@ package js.web.dom.svg;
 import org.teavm.jso.JSBody;
 
 /**
- * Corresponds to the <metadata> element.
+ * Corresponds to the &lt;metadata&gt; element.
  */
 public interface SVGMetadataElement extends SVGElement {
     @JSBody(script = "return SVGMetadataElement.prototype")

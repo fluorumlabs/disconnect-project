@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <linearGradient> element.
+ * Corresponds to the &lt;linearGradient&gt; element.
  */
 public interface SVGLinearGradientElement extends SVGGradientElement {
     @JSBody(script = "return SVGLinearGradientElement.prototype")

@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Provides access to the properties of <rect> elements, as well as methods to manipulate them.
+ * Provides access to the properties of &lt;rect&gt; elements, as well as methods to manipulate them.
  */
 public interface SVGRectElement extends SVGGeometryElement {
     @JSBody(script = "return SVGRectElement.prototype")

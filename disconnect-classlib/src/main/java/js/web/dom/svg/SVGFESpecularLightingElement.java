@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feSpecularLighting> element.
+ * Corresponds to the &lt;feSpecularLighting&gt; element.
  */
 public interface SVGFESpecularLightingElement extends SVGElement, SVGFilterPrimitiveStandardAttributes {
     @JSBody(script = "return SVGFESpecularLightingElement.prototype")

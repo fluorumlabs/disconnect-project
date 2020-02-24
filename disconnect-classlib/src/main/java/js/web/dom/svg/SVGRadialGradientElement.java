@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <RadialGradient> element.
+ * Corresponds to the &lt;RadialGradient&gt; element.
  */
 public interface SVGRadialGradientElement extends SVGGradientElement {
     @JSBody(script = "return SVGRadialGradientElement.prototype")

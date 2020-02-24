@@ -10,7 +10,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * Provides special properties and methods for manipulating <img> elements.
+ * Provides special properties and methods for manipulating &lt;img&gt; elements.
  */
 public interface HTMLImageElement extends HTMLElement, CanvasImageSource, TexImageSource {
     @JSBody(script = "return HTMLImageElement.prototype")

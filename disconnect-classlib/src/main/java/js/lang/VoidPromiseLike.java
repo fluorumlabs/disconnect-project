@@ -9,6 +9,9 @@ import org.teavm.jso.JSObject;
 import javax.annotation.Nullable;
 
 
+/**
+ * The type Void promise like.
+ */
 public abstract class VoidPromiseLike implements Any {
     @Async
     private static native void await(VoidPromiseLike promise) throws PromiseRejectionException;
@@ -21,114 +24,311 @@ public abstract class VoidPromiseLike implements Any {
         });
     }
 
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     *
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected  The callback to execute when the Promise is rejected.
-     *
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    public native <R extends Any> PromiseLike<R> then(FullfilledValueCallback<R> onfulfilled, RejectedValueCallback<R> onrejected);
+	/**
+	 * Attaches callbacks for the resolution and/or rejection of the Promise.
+	 *
+	 * @param <R>         the type parameter
+	 * @param onfulfilled The callback to execute when the Promise is resolved.
+	 * @param onrejected  The callback to execute when the Promise is rejected.
+	 *
+	 * @return A Promise for the completion of which ever callback is executed.
+	 */
+	public native <R extends Any> PromiseLike<R> then(FullfilledValueCallback<R> onfulfilled, RejectedValueCallback<R> onrejected);
 
-    public native <R extends Any> PromiseLike<R> then(FullfilledValueCallback<R> onfulfilled);
+	/**
+	 * Then promise like.
+	 *
+	 * @param <R>         the type parameter
+	 * @param onfulfilled the onfulfilled
+	 *
+	 * @return the promise like
+	 */
+	public native <R extends Any> PromiseLike<R> then(FullfilledValueCallback<R> onfulfilled);
 
-    public native VoidPromiseLike then(FullfilledValueVoidCallback onfulfilled, RejectedValueVoidCallback onrejected);
+	/**
+	 * Then void promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 * @param onrejected  the onrejected
+	 *
+	 * @return the void promise like
+	 */
+	public native VoidPromiseLike then(FullfilledValueVoidCallback onfulfilled, RejectedValueVoidCallback onrejected);
 
-    public native VoidPromiseLike then(FullfilledValueVoidCallback onfulfilled);
+	/**
+	 * Then void promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 *
+	 * @return the void promise like
+	 */
+	public native VoidPromiseLike then(FullfilledValueVoidCallback onfulfilled);
 
-    public native BooleanPromiseLike then(FullfilledValueBooleanCallback onfulfilled, RejectedValueBooleanCallback onrejected);
+	/**
+	 * Then boolean promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 * @param onrejected  the onrejected
+	 *
+	 * @return the boolean promise like
+	 */
+	public native BooleanPromiseLike then(FullfilledValueBooleanCallback onfulfilled, RejectedValueBooleanCallback onrejected);
 
-    public native BooleanPromiseLike then(FullfilledValueBooleanCallback onfulfilled);
+	/**
+	 * Then boolean promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 *
+	 * @return the boolean promise like
+	 */
+	public native BooleanPromiseLike then(FullfilledValueBooleanCallback onfulfilled);
 
-    public native StringPromiseLike then(FullfilledValueStringCallback onfulfilled, RejectedValueStringCallback onrejected);
+	/**
+	 * Then string promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 * @param onrejected  the onrejected
+	 *
+	 * @return the string promise like
+	 */
+	public native StringPromiseLike then(FullfilledValueStringCallback onfulfilled, RejectedValueStringCallback onrejected);
 
-    public native StringPromiseLike then(FullfilledValueStringCallback onfulfilled);
+	/**
+	 * Then string promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 *
+	 * @return the string promise like
+	 */
+	public native StringPromiseLike then(FullfilledValueStringCallback onfulfilled);
 
-    public native IntPromiseLike then(FullfilledValueIntCallback onfulfilled, RejectedValueIntCallback onrejected);
+	/**
+	 * Then int promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 * @param onrejected  the onrejected
+	 *
+	 * @return the int promise like
+	 */
+	public native IntPromiseLike then(FullfilledValueIntCallback onfulfilled, RejectedValueIntCallback onrejected);
 
-    public native IntPromiseLike then(FullfilledValueIntCallback onfulfilled);
+	/**
+	 * Then int promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 *
+	 * @return the int promise like
+	 */
+	public native IntPromiseLike then(FullfilledValueIntCallback onfulfilled);
 
-    public native DoublePromiseLike then(FullfilledValueDoubleCallback onfulfilled, RejectedValueDoubleCallback onrejected);
+	/**
+	 * Then double promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 * @param onrejected  the onrejected
+	 *
+	 * @return the double promise like
+	 */
+	public native DoublePromiseLike then(FullfilledValueDoubleCallback onfulfilled, RejectedValueDoubleCallback onrejected);
 
-    public native DoublePromiseLike then(FullfilledValueDoubleCallback onfulfilled);
+	/**
+	 * Then double promise like.
+	 *
+	 * @param onfulfilled the onfulfilled
+	 *
+	 * @return the double promise like
+	 */
+	public native DoublePromiseLike then(FullfilledValueDoubleCallback onfulfilled);
 
-    public void await() throws PromiseRejectionException {
+	/**
+	 * Await.
+	 *
+	 * @throws PromiseRejectionException the promise rejection exception
+	 */
+	public void await() throws PromiseRejectionException {
         VoidPromiseLike.await(this);
     }
 
-    @JSFunctor
+	/**
+	 * The interface Fullfilled value callback.
+	 *
+	 * @param <R> the type parameter
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface FullfilledValueCallback<R extends Any> extends JSObject {
-        @Nullable
+		/**
+		 * Fullfilled r.
+		 *
+		 * @return the r
+		 */
+		@Nullable
         R fullfilled();
     }
 
-    @JSFunctor
+	/**
+	 * The interface Rejected value callback.
+	 *
+	 * @param <R> the type parameter
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface RejectedValueCallback<R extends Any> extends JSObject {
-        @Nullable
+		/**
+		 * Rejected r.
+		 *
+		 * @param reason the reason
+		 *
+		 * @return the r
+		 */
+		@Nullable
         R rejected(Unknown reason);
     }
 
-    @JSFunctor
+	/**
+	 * The interface Fullfilled value void callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface FullfilledValueVoidCallback extends JSObject {
-        void fullfilled();
+		/**
+		 * Fullfilled.
+		 */
+		void fullfilled();
     }
 
-    @JSFunctor
+	/**
+	 * The interface Rejected value void callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface RejectedValueVoidCallback extends JSObject {
-        void rejected(Unknown reason);
+		/**
+		 * Rejected.
+		 *
+		 * @param reason the reason
+		 */
+		void rejected(Unknown reason);
     }
 
-    @JSFunctor
+	/**
+	 * The interface Fullfilled value boolean callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface FullfilledValueBooleanCallback extends JSObject {
-        boolean fullfilled();
+		/**
+		 * Fullfilled boolean.
+		 *
+		 * @return the boolean
+		 */
+		boolean fullfilled();
     }
 
-    @JSFunctor
+	/**
+	 * The interface Rejected value boolean callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface RejectedValueBooleanCallback extends JSObject {
-        boolean rejected(Unknown reason);
+		/**
+		 * Rejected boolean.
+		 *
+		 * @param reason the reason
+		 *
+		 * @return the boolean
+		 */
+		boolean rejected(Unknown reason);
     }
 
-    @JSFunctor
+	/**
+	 * The interface Fullfilled value string callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface FullfilledValueStringCallback extends JSObject {
-        String fullfilled();
+		/**
+		 * Fullfilled string.
+		 *
+		 * @return the string
+		 */
+		String fullfilled();
     }
 
-    @JSFunctor
+	/**
+	 * The interface Rejected value string callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface RejectedValueStringCallback extends JSObject {
-        String rejected(Unknown reason);
+		/**
+		 * Rejected string.
+		 *
+		 * @param reason the reason
+		 *
+		 * @return the string
+		 */
+		String rejected(Unknown reason);
     }
 
-    @JSFunctor
+	/**
+	 * The interface Fullfilled value int callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface FullfilledValueIntCallback extends JSObject {
-        int fullfilled();
+		/**
+		 * Fullfilled int.
+		 *
+		 * @return the int
+		 */
+		int fullfilled();
     }
 
-    @JSFunctor
+	/**
+	 * The interface Rejected value int callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface RejectedValueIntCallback extends JSObject {
-        int rejected(Unknown reason);
+		/**
+		 * Rejected int.
+		 *
+		 * @param reason the reason
+		 *
+		 * @return the int
+		 */
+		int rejected(Unknown reason);
     }
 
-    @JSFunctor
+	/**
+	 * The interface Fullfilled value double callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface FullfilledValueDoubleCallback extends JSObject {
-        double fullfilled();
+		/**
+		 * Fullfilled double.
+		 *
+		 * @return the double
+		 */
+		double fullfilled();
     }
 
-    @JSFunctor
+	/**
+	 * The interface Rejected value double callback.
+	 */
+	@JSFunctor
     @FunctionalInterface
     public interface RejectedValueDoubleCallback extends JSObject {
-        double rejected(Unknown reason);
+		/**
+		 * Rejected double.
+		 *
+		 * @param reason the reason
+		 *
+		 * @return the double
+		 */
+		double rejected(Unknown reason);
     }
 
 }

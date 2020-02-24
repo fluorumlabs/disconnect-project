@@ -6,7 +6,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Enables access to the contents of an HTML <template> element.
+ * Enables access to the contents of an HTML &lt;template&gt; element.
  */
 public interface HTMLTemplateElement extends HTMLElement {
     @JSBody(script = "return HTMLTemplateElement.prototype")

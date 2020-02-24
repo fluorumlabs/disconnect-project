@@ -7,7 +7,7 @@ import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
 
 /**
- * A <form> element in the DOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
+ * A &lt;form&gt; element in the DOM; it allows access to and in some cases modification of aspects of the form, as well as access to its component elements.
  */
 public interface HTMLFormElement extends ArrayLike<Element>, HTMLElement {
     @JSBody(script = "return HTMLFormElement.prototype")

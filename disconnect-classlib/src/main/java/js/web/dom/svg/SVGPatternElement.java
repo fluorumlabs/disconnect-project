@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <pattern> element.
+ * Corresponds to the &lt;pattern&gt; element.
  */
 public interface SVGPatternElement extends SVGElement, SVGFitToViewBox, SVGTests, SVGURIReference {
     @JSBody(script = "return SVGPatternElement.prototype")

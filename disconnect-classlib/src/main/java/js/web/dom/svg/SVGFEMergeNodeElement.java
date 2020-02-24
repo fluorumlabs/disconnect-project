@@ -4,7 +4,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * Corresponds to the <feMergeNode> element.
+ * Corresponds to the &lt;feMergeNode&gt; element.
  */
 public interface SVGFEMergeNodeElement extends SVGElement {
     @JSBody(script = "return SVGFEMergeNodeElement.prototype")
