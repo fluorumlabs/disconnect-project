@@ -1,9 +1,7 @@
 package com.github.fluorumlabs.disconnect.core;
 
+import com.github.fluorumlabs.disconnect.core.adapters.*;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
-import com.github.fluorumlabs.disconnect.core.adapters.Adapter;
-import com.github.fluorumlabs.disconnect.core.adapters.ListAdapter;
-import com.github.fluorumlabs.disconnect.core.adapters.ObjectAdapter;
 import js.lang.Any;
 import js.lang.JsObject;
 import js.lang.PropertyDescriptor;
@@ -16,10 +14,7 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Artem Godin on 2/7/2020.
@@ -132,6 +127,55 @@ public abstract class ObjectMirror<T extends Serializable> implements Any {
 		List<T> newInstance = new ArrayList<>();
 		ObjectMirror<L> newMirror = fromList(clazz, newInstance);
 		mirror.<Array<Any>>cast().forEach((v, k, p) -> newMirror.<Array<Any>>cast().push(v));
+		return newInstance;
+	}
+
+	public static <T extends Serializable, L extends Serializable & Set<T>> ObjectMirror<L> fromSet(Class<T> clazz,
+																									Set<T> target) {
+		ObjectMirror<L> objectMirror =
+				DisconnectUtils.asJsObject(target).<TargetMirrorReference<L>>cast().getObjectMirror();
+
+		if (JS.isUndefinedOrNull(objectMirror)) {
+			Adapter adapter = new SetAdapter(clazz);
+			ObjectMirror<L> mirrorTemplate = createFakeArray().cast();
+			mirrorTemplate.setTarget((L)target);
+			mirrorTemplate.setAdapter(adapter);
+			objectMirror = Proxy.create(mirrorTemplate, (ProxyHandler<ObjectMirror<L>>) PROXY_HANDLER);
+			DisconnectUtils.asJsObject(target).<TargetMirrorReference<L>>cast().setObjectMirror(objectMirror);
+		}
+		return objectMirror;
+	}
+
+	public static <T extends Serializable, L extends Serializable & Set<T>> Set<T> fromSet(Class<T> clazz,
+																							Any mirror) {
+		Set<T> newInstance = new LinkedHashSet<>();
+		ObjectMirror<L> newMirror = fromSet(clazz, newInstance);
+		mirror.<Array<Any>>cast().forEach((v, k, p) -> newMirror.<Array<Any>>cast().push(v));
+		return newInstance;
+	}
+
+	public static <T extends Serializable, L extends Serializable & Map<String, T>> ObjectMirror<L> fromStringMap(Class<T> clazz,
+																						Map<String, T> target) {
+		ObjectMirror<L> objectMirror =
+				DisconnectUtils.asJsObject(target).<TargetMirrorReference<L>>cast().getObjectMirror();
+
+		if (JS.isUndefinedOrNull(objectMirror)) {
+			Adapter adapter = new StringMapAdapter(clazz);
+			ObjectMirror<L> mirrorTemplate = createFakeArray().cast();
+			mirrorTemplate.setTarget((L)target);
+			mirrorTemplate.setAdapter(adapter);
+			objectMirror = Proxy.create(mirrorTemplate, (ProxyHandler<ObjectMirror<L>>) PROXY_HANDLER);
+			DisconnectUtils.asJsObject(target).<TargetMirrorReference<L>>cast().setObjectMirror(objectMirror);
+		}
+		return objectMirror;
+	}
+
+	public static <T extends Serializable, L extends Serializable & Map<String, T>> Map<String, T> fromStringMap(Class<T> clazz,
+																							Any mirror) {
+		Map<String, T> newInstance = new HashMap<>();
+		ObjectMirror<L> newMirror = fromStringMap(clazz, newInstance);
+
+		JsObject.assign(newMirror, mirror);
 		return newInstance;
 	}
 

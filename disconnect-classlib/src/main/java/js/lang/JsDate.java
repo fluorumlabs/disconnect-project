@@ -2,7 +2,6 @@ package js.lang;
 
 import js.intl.DateTimeFormatOptions;
 import org.teavm.jso.JSBody;
-import org.teavm.jso.JSByRef;
 
 /**
  * Enables basic storage and retrieval of dates and times.
@@ -74,7 +73,7 @@ public interface JsDate extends Any {
      * @param s A date string
      */
     @JSBody(params = "s", script = "return Date.parse(s)")
-    static int parse(String s) {
+    static double parse(String s) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -90,37 +89,37 @@ public interface JsDate extends Any {
      * @param ms      A number from 0 to 999 that specifies the milliseconds.
      */
     @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds", "ms"}, script = "return Date.UTC(year,month,date,hours,minutes,seconds,ms)")
-    static int UTC(int year, int month, int date, int hours, int minutes, int seconds, int ms) {
+    static double UTC(int year, int month, int date, int hours, int minutes, int seconds, int ms) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"year", "month", "date", "hours", "minutes", "seconds"}, script = "return Date.UTC(year,month,date,hours,minutes,seconds)")
-    static int UTC(int year, int month, int date, int hours, int minutes, int seconds) {
+    static double UTC(int year, int month, int date, int hours, int minutes, int seconds) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"year", "month", "date", "hours", "minutes"}, script = "return Date.UTC(year,month,date,hours,minutes)")
-    static int UTC(int year, int month, int date, int hours, int minutes) {
+    static double UTC(int year, int month, int date, int hours, int minutes) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"year", "month", "date", "hours"}, script = "return Date.UTC(year,month,date,hours)")
-    static int UTC(int year, int month, int date, int hours) {
+    static double UTC(int year, int month, int date, int hours) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"year", "month", "date"}, script = "return Date.UTC(year,month,date)")
-    static int UTC(int year, int month, int date) {
+    static double UTC(int year, int month, int date) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(params = {"year", "month"}, script = "return Date.UTC(year,month)")
-    static int UTC(int year, int month) {
+    static double UTC(int year, int month) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
     @JSBody(script = "return Date.now()")
-    static int now() {
+    static double now() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -199,12 +198,12 @@ public interface JsDate extends Any {
     /**
      * Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.
      */
-    int valueOf();
+    double valueOf();
 
     /**
      * Gets the time value in milliseconds.
      */
-    int getTime();
+    double getTime();
 
     /**
      * Gets the year, using local time.
@@ -296,21 +295,21 @@ public interface JsDate extends Any {
      *
      * @param time A numeric value representing the number of elapsed milliseconds since midnight, January 1, 1970 GMT.
      */
-    int setTime(int time);
+    int setTime(double time);
 
     /**
      * Sets the milliseconds value in the Date object using local time.
      *
      * @param ms A numeric value equal to the millisecond value.
      */
-    int setMilliseconds(int ms);
+    int setMilliseconds(double ms);
 
     /**
      * Sets the milliseconds value in the Date object using Universal Coordinated Time (UTC).
      *
      * @param ms A numeric value equal to the millisecond value.
      */
-    int setUTCMilliseconds(int ms);
+    int setUTCMilliseconds(double ms);
 
     /**
      * Sets the seconds value in the Date object using local time.

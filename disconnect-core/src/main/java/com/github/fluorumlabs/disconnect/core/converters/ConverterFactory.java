@@ -41,6 +41,9 @@ public class ConverterFactory {
 			case "java.lang.String":
 				exit(() -> StringConverter.INSTANCE);
 				return;
+			case "java.util.Date":
+				exit(() -> DateConverter.INSTANCE);
+				return;
 			case "~Z":
 			case "java.lang.Boolean":
 				exit(() -> BooleanConverter.INSTANCE);

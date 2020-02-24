@@ -70,6 +70,7 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
 
                         boolean wasBuildConfigChanged = wasBuildConfigChanged();
                         boolean wasPackageJsonChanged = wasPackageJsonChanged();
+                        boolean wasAppBootstrapChanged = wasAppBootstrapChanged();
 
                         copyResources(new File(getProjectDirectory(), "src/main/resources/frontend"), new File(getOutputDirectory(), "frontend"));
 
@@ -84,7 +85,7 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
                             runNpm("install --no-audit");
                         }
 
-                        if (wasPackageJsonChanged || wasBuildConfigChanged) {
+                        if (wasPackageJsonChanged || wasBuildConfigChanged || wasAppBootstrapChanged) {
                             printSeparator();
                             runNpm("run rollup");
                             copyResources(new File(getOutputDirectory(), "frontend/static"), new File(getOutputDirectory(), "classes/static"));

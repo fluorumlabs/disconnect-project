@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronMetaElement;
 import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
@@ -43,6 +44,7 @@ import js.util.collections.Array;
  * this.$.meta.byKey('info');
  * </code></pre>
  */
+@WebComponent
 public class IronMeta<ITEM extends Any>
 		extends AbstractComponent<IronMetaElement<ITEM>> {
 	public IronMeta() {

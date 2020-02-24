@@ -51,13 +51,15 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 					AnnotationHolder annotationHolder = fh.getAnnotations().get(ImportObject.class.getName());
 					String module = annotationHolder.getValue("module").getString();
 					String symbol = annotationHolder.getValue("symbol") != null ?
-                            annotationHolder.getValue("symbol").getString() : "";
+							annotationHolder.getValue("symbol").getString() : "";
 
 					if (symbol.isEmpty()) {
-						rendererListener.addInjectedSymbol("\"" + symbolName + "\": \"" + module + "\"");
+						rendererListener.addInjectedSymbol("\"" + symbolName + "\": \"" + relativeImport(module) +
+								"\"");
 						rendererListener.addImportedSymbol(symbolName);
 					} else {
-						rendererListener.addInjectedSymbol("\"" + symbolName + "\": [\"" + module + "\", \"" + symbol + "\"]");
+						rendererListener.addInjectedSymbol("\"" + symbolName + "\": [\"" + relativeImport(module) +
+								"\", \"" + symbol + "\"]");
 						rendererListener.addImportedSymbol(symbolName);
 					}
 				});
@@ -70,7 +72,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 			cls.getFields().stream()
 					.filter(fieldHolder -> fieldHolder.getModifiers().contains(ElementModifier.TRANSIENT))
 					.forEach(fieldHolder -> fieldHolder.getAnnotations().add(new AnnotationHolder("com.fasterxml" +
-                            ".jackson.annotation.JsonIgnore")));
+							".jackson.annotation.JsonIgnore")));
 		}
 
 		AnnotationHolder serviceAnnotation = cls.getAnnotations().get("org.springframework.stereotype.Service");
@@ -113,9 +115,15 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		AnnotationContainer annotations = cls.getAnnotations();
 
 		Optional<AnnotationHolder> webComponentAnnotation =
-                Optional.ofNullable(annotations.get(WebComponent.class.getName()));
+				Optional.ofNullable(annotations.get(WebComponent.class.getName()));
 		webComponentAnnotation.ifPresent(annotationHolder -> {
 			rendererListener.setEnableWebComponents(true);
+		});
+
+		Optional<AnnotationHolder> pwaAnnotation =
+				Optional.ofNullable(annotations.get(PWA.class.getName()));
+		pwaAnnotation.ifPresent(annotationHolder -> {
+			rendererListener.setEnablePWA(true);
 		});
 
 		Stream.concat(
@@ -129,7 +137,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 				.forEach(annotationReader -> {
 					String npmPackage = annotationReader.getValue("name").getString();
 					String version = annotationReader.getValue("version") != null ? annotationReader.getValue("version"
-                    ).getString() : "latest";
+					).getString() : "latest";
 					rendererListener.addPackage("    \"" + npmPackage + "\": \"" + version + "\"");
 				});
 
@@ -151,12 +159,14 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 						String symbolName = symbol.getString();
 						importedSymbols.putIfAbsent(symbolName, module);
 						if (!module.equals(importedSymbols.get(symbolName))) {
-							context.getDiagnostics().error(null, "Class {{c0}} imports JS symbol '" + symbolName + "' " +
-                                    "from module '" + module + "', which was already imported previously from '" + importedSymbols.get(symbolName) + "'", cls.getName());
+							context.getDiagnostics().error(null, "Class {{c0}} imports JS symbol '" + symbolName + "'" +
+									" " +
+									"from module '" + module + "', which was already imported previously from '" + importedSymbols.get(symbolName) + "'", cls.getName());
 						}
 					}
 
-					boolean object = !symbols.isEmpty() && (annotationReader.getValue("defaultExport") == null || !annotationReader.getValue("defaultExport").getBoolean());
+					boolean object =
+							!symbols.isEmpty() && (annotationReader.getValue("defaultExport") == null || !annotationReader.getValue("defaultExport").getBoolean());
 
 					String symbolsJoined = symbols.stream()
 							.map(AnnotationValue::getString)
@@ -168,14 +178,14 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 						symbols.stream()
 								.map(AnnotationValue::getString)
 								.forEach(symbol -> {
-									rendererListener.addInjectedSymbol("\"" + symbol + "\": [\"" + module + "\", \"" + symbol + "\"]");
+									rendererListener.addInjectedSymbol("\"" + symbol + "\": [\"" + relativeImport(module) + "\", \"" + symbol + "\"]");
 									rendererListener.addImportedSymbol(symbol);
 								});
 					} else {
 						symbols.stream()
 								.map(AnnotationValue::getString)
 								.forEach(symbol -> {
-									rendererListener.addInjectedSymbol("\"" + symbol + "\": \"" + module + "\"");
+									rendererListener.addInjectedSymbol("\"" + symbol + "\": \"" + relativeImport(module) + "\"");
 									rendererListener.addImportedSymbol(symbol);
 								});
 					}
@@ -183,7 +193,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 	}
 
 	private void addClinitInitializer(ClassHolder cls, FieldHolder fh, ClassHolderTransformerContext context,
-                                      String symbolName) {
+									  String symbolName) {
 		MethodHolder clinit = cls.getMethod(new MethodDescriptor("<clinit>", ValueType.VOID));
 		if (clinit == null) {
 			clinit = new MethodHolder("<clinit>", ValueType.VOID);
@@ -244,7 +254,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		if (allowClientCalls != null) {
 			if (allowClientCalls.getValue("method") != null) {
 				AllowClientCalls.Method value =
-                        AllowClientCalls.Method.valueOf(allowClientCalls.getValue("method").getEnumValue().getFieldName());
+						AllowClientCalls.Method.valueOf(allowClientCalls.getValue("method").getEnumValue().getFieldName());
 				switch (value) {
 					case GET:
 						method = "GET";
@@ -280,10 +290,10 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 
 			if (enableCache.getValue("strategy") != null) {
 				EnableCache.CachingStrategy strategy = EnableCache.CachingStrategy.valueOf(enableCache.getValue(
-				        "strategy").getEnumValue().getFieldName());
+						"strategy").getEnumValue().getFieldName());
 				switch (strategy) {
 					case STALE_WHILE_REVALIDATE:
-						cachingStrategy = "workbox.strategies.CacheWhileRevalidate";
+						cachingStrategy = "workbox.strategies.StaleWhileRevalidate";
 						break;
 					case CACHE_ONLY:
 						cachingStrategy = "workbox.strategies.CacheOnly";
@@ -319,11 +329,13 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 
 		if (enableBgSync != null && enableCache == null) {
 			context.getDiagnostics().warning(null, "Missing @EnableCache annotation for {{c0}}." + methodName + "; " +
-                    "will use @EnableCache(strategy = EnableCache.Strategy.NETWORK_ONLY)", methodHolder.getOwnerName());
+					"will use @EnableCache(strategy = EnableCache.Strategy.NETWORK_ONLY)",
+					methodHolder.getOwnerName());
 		}
 		if (enableBgSync != null && methodHolder.getResultType() != ValueType.VOID) {
-			context.getDiagnostics().error(null, "{{c0}}." + methodName + " is annotated with @EnableBackgroundSync, " +
-                    "but has non-void return type", methodHolder.getOwnerName());
+			context.getDiagnostics().error(null, "{{c0}}." + methodName + " is annotated with @EnableBackgroundSync," +
+					" " +
+					"but has non-void return type", methodHolder.getOwnerName());
 		}
 
 		if (cachingStrategy == null) {
@@ -370,7 +382,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 				.filter(methodHolder -> methodHolder.getName().equals("<init>"))
 				.forEach(methodHolder -> {
 					Program program = methodHolder.getProgram();
-					BasicBlock block = program.basicBlockAt(program.basicBlockCount() - 1);
+					BasicBlock block = program.basicBlockAt(0);
 
 					String type = ((ValueType.Object) fieldHolder.getType()).getClassName();
 
@@ -391,14 +403,15 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 					putFieldInstruction.setField(fieldHolder.getReference());
 					putFieldInstruction.setFieldType(fieldHolder.getType());
 
-					block.getLastInstruction().insertPrevious(constructInstruction);
-					block.getLastInstruction().insertPrevious(invokeInstruction);
-					block.getLastInstruction().insertPrevious(putFieldInstruction);
+					Instruction firstInstruction = block.getFirstInstruction();
+					firstInstruction.insertPrevious(constructInstruction);
+					firstInstruction.insertPrevious(invokeInstruction);
+					firstInstruction.insertPrevious(putFieldInstruction);
 				});
 	}
 
 	private Program createRPCDelegator(String serviceName, MethodHolder method,
-                                       ClassHolderTransformerContext context) {
+									   ClassHolderTransformerContext context) {
 		ProgramEmitter $ = ProgramEmitter.create(method, context.getHierarchy());
 
 		String argumentClass = method.getOwnerName() + StringUtils.capitalize(method.getName()) +
@@ -410,7 +423,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		ValueEmitter result = $.construct(resultClass);
 
 		for (int i = 0; i < method.parameterCount(); i++) {
-			arguments.setField("arg" + i, $.var(i+1, method.getParameterTypes()[i]));
+			arguments.setField("arg" + i, $.var(i + 1, method.getParameterTypes()[i]));
 		}
 
 		String endpoint;
@@ -422,7 +435,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 			endpoint = RPC.ENDPOINT + "/" + toKebabCase(serviceName) + "/" + toKebabCase(method.getName());
 		}
 
-		ValueEmitter endPoint =	$.constant(endpoint);
+		ValueEmitter endPoint = $.constant(endpoint);
 
 		AnnotationValue methodValue = method.getAnnotations().get(AllowClientCalls.class.getName()).getValue("method");
 
@@ -465,7 +478,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 	}
 
 	private Instruction createPutElementInstruction(Variable argumentsUnwrapped, Variable index, Variable variable,
-                                                    ArrayElementType type) {
+													ArrayElementType type) {
 		PutElementInstruction instruction = new PutElementInstruction(type);
 		instruction.setArray(argumentsUnwrapped);
 		instruction.setIndex(index);
@@ -474,7 +487,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 	}
 
 	private Instruction createUnwrapArrayInstruction(Variable argumentsUnwrapped, Variable arguments,
-                                                     ArrayElementType type) {
+													 ArrayElementType type) {
 		UnwrapArrayInstruction instruction = new UnwrapArrayInstruction(type);
 		instruction.setArray(arguments);
 		instruction.setReceiver(argumentsUnwrapped);
@@ -527,6 +540,14 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 
 		ctor.setProgram(program);
 		return ctor;
+	}
+
+	private static String relativeImport(String module) {
+		if (module.startsWith("./")) {
+			return "." + module;
+		} else {
+			return module;
+		}
 	}
 
 	private static final Pattern CAMELCASE_CONVERT_STAGE1 = Pattern.compile("([a-z0-9])([A-Z])");

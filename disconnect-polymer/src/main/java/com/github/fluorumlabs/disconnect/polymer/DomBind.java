@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.DomBindElement;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasGestureEventListeners;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasOptionalMutableData;
@@ -21,6 +22,7 @@ import js.web.dom.Event;
  * document and bind elements to the <code>dom-bind</code> element itself as the
  * binding scope.
  */
+@WebComponent
 public class DomBind
 		extends AbstractComponent<DomBindElement>
 		implements HasPropertyEffects<DomBindElement, DomBind>,

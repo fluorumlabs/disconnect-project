@@ -1,10 +1,12 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronA11yAnnouncerElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 
 import javax.annotation.Nullable;
 
+@WebComponent
 public class IronA11yAnnouncer
 		extends AbstractComponent<IronA11yAnnouncerElement> {
 	public IronA11yAnnouncer() {

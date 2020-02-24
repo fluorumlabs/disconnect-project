@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronListElement;
 import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
@@ -205,6 +206,7 @@ import javax.annotation.Nullable;
  * into pages so you can bring in a page at the time. The page could contain 500
  * items, and iron-list will only render 20.
  */
+@WebComponent
 public class IronList<ITEM extends Any>
 		extends AbstractComponent<IronListElement<ITEM>>
 		implements HasComponent<IronListElement<ITEM>, IronList<ITEM>, Template> {

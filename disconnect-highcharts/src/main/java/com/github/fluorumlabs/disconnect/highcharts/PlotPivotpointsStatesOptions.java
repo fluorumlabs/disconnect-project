@@ -1,0 +1,86 @@
+package com.github.fluorumlabs.disconnect.highcharts;
+
+import javax.annotation.Nullable;
+import js.lang.Any;
+import org.teavm.jso.JSProperty;
+
+/**
+ * (Highstock) A wrapper object for all the series options in specific states.
+ *
+ * @see <a href="https://api.highcharts.com/highstock/plotOptions.pivotpoints.states">https://api.highcharts.com/highstock/plotOptions.pivotpoints.states</a>
+ *
+ */
+public interface PlotPivotpointsStatesOptions extends Any {
+  /**
+   * (Highstock) Options for the hovered series. These settings override the
+   * normal state options when a series is moused over or touched.
+   *
+   * @see <a href="https://api.highcharts.com/highstock/plotOptions.pivotpoints.states.hover">https://api.highcharts.com/highstock/plotOptions.pivotpoints.states.hover</a>
+   *
+   * @implspec hover?: PlotPivotpointsStatesHoverOptions;
+   *
+   */
+  @JSProperty("hover")
+  @Nullable
+  PlotPivotpointsStatesHoverOptions getHover();
+
+  /**
+   * (Highstock) Options for the hovered series. These settings override the
+   * normal state options when a series is moused over or touched.
+   *
+   * @see <a href="https://api.highcharts.com/highstock/plotOptions.pivotpoints.states.hover">https://api.highcharts.com/highstock/plotOptions.pivotpoints.states.hover</a>
+   *
+   * @implspec hover?: PlotPivotpointsStatesHoverOptions;
+   *
+   */
+  @JSProperty("hover")
+  void setHover(PlotPivotpointsStatesHoverOptions value);
+
+  /**
+   * (Highmaps) Overrides for the normal state.
+   *
+   * @see <a href="https://api.highcharts.com/highmaps/plotOptions.pivotpoints.states.normal">https://api.highcharts.com/highmaps/plotOptions.pivotpoints.states.normal</a>
+   *
+   * @implspec normal?: PlotPivotpointsStatesNormalOptions;
+   *
+   */
+  @JSProperty("normal")
+  @Nullable
+  PlotPivotpointsStatesNormalOptions getNormal();
+
+  /**
+   * (Highmaps) Overrides for the normal state.
+   *
+   * @see <a href="https://api.highcharts.com/highmaps/plotOptions.pivotpoints.states.normal">https://api.highcharts.com/highmaps/plotOptions.pivotpoints.states.normal</a>
+   *
+   * @implspec normal?: PlotPivotpointsStatesNormalOptions;
+   *
+   */
+  @JSProperty("normal")
+  void setNormal(PlotPivotpointsStatesNormalOptions value);
+
+  /**
+   * (Highmaps) Specific options for point in selected states, after being
+   * selected by allowPointSelect or programmatically.
+   *
+   * @see <a href="https://api.highcharts.com/highmaps/plotOptions.pivotpoints.states.select">https://api.highcharts.com/highmaps/plotOptions.pivotpoints.states.select</a>
+   *
+   * @implspec select?: PlotPivotpointsStatesSelectOptions;
+   *
+   */
+  @JSProperty("select")
+  @Nullable
+  PlotPivotpointsStatesSelectOptions getSelect();
+
+  /**
+   * (Highmaps) Specific options for point in selected states, after being
+   * selected by allowPointSelect or programmatically.
+   *
+   * @see <a href="https://api.highcharts.com/highmaps/plotOptions.pivotpoints.states.select">https://api.highcharts.com/highmaps/plotOptions.pivotpoints.states.select</a>
+   *
+   * @implspec select?: PlotPivotpointsStatesSelectOptions;
+   *
+   */
+  @JSProperty("select")
+  void setSelect(PlotPivotpointsStatesSelectOptions value);
+}

@@ -65,4 +65,6 @@ public interface Unknown extends Any {
     @JSBody(params = "other", script = "return this === other")
     boolean equals(Unknown other);
 
+    @JSBody(script = "return ''+this")
+    String toString();
 }

@@ -3,10 +3,11 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.DatePickerMixin;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.DatePickerI18n;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import js.web.dom.Event;
+import com.github.fluorumlabs.disconnect.zero.observable.ObservableValue;
+import js.lang.JsDate;
 
 import javax.annotation.Nullable;
+import java.util.Date;
 
 public interface HasDatePickerMixin<E extends DatePickerMixin, T extends Component<E>> extends Component<E> {
 	/**
@@ -20,24 +21,17 @@ public interface HasDatePickerMixin<E extends DatePickerMixin, T extends Compone
 	 * </code></li>
 	 * </ul>
 	 */
-	default String value() {
-		return getNode().getValue();
-	}
-
-	/**
-	 * The value for this element.
-	 * <p>
-	 * Supported date formats:
-	 *
-	 * <ul>
-	 * <li>ISO 8601 <code>&quot;YYYY-MM-DD&quot;</code> (default)</li>
-	 * <li>6-digit extended ISO 8601 <code>&quot;+YYYYYY-MM-DD&quot;</code>, <code>&quot;-YYYYYY-MM-DD&quot;
-	 * </code></li>
-	 * </ul>
-	 */
-	default T value(String value) {
-		getNode().setValue(value);
-		return (T) this;
+	default ObservableValue<Date> value() {
+		return createObservableValue(
+				() -> {
+					return new Date(Math.round(JsDate.parse(getNode().getValue())));
+				},
+				date -> {
+					JsDate jsDate = JsDate.create(date.getTime());
+					getNode().setValue(jsDate.toISOString().substring(0, 10));
+				},
+				"value-changed"
+		);
 	}
 
 	/**

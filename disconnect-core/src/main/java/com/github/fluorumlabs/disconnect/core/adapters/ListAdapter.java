@@ -77,7 +77,7 @@ public class ListAdapter implements Adapter {
 			"const uint = p >>> 0;\n" +
 			"const s = uint + \"\";\n" +
 			"return p === s && uint !== 0xffffffff;")
-	private static native boolean isArrayIndex(String p);
+	public static native boolean isArrayIndex(String p);
 
 	private static void ensureSize(List<?> list, int index, boolean shrink) {
 		if (index > list.size()) {

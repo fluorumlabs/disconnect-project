@@ -2,15 +2,16 @@ package com.github.fluorumlabs.disconnect.zero.component;
 
 import com.github.fluorumlabs.disconnect.zero.LazyEventInitializer;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.zero.observable.ObservableValue;
 import js.web.dom.*;
 import js.web.webcomponents.HTMLTemplateElement;
 
 import javax.annotation.Nullable;
-
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static js.web.dom.Document.DOCUMENT;
+import static js.web.dom.Window.DOCUMENT;
 
 
 public class Template extends LazyEventInitializer<DocumentFragment> implements Component<DocumentFragment>,
@@ -56,6 +57,17 @@ HasComponents<DocumentFragment, Template, Component<?>> {
     @Override
     public final <T extends Event, E extends ObservableEvent<T>> E createEvent(BiConsumer<DocumentFragment, EventListener<T>> addEventListener, BiConsumer<DocumentFragment, EventListener<T>>... addEventListeners) {
         return createEvent(node, addEventListener, addEventListeners);
+    }
+
+    @Override
+    public <T, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter, Consumer<T> setter,
+                                                                     ObservableEvent<?> event) {
+        return createObservableValue(event, () -> {
+            ObservableValue<T> observableValue = ObservableValue.of(getter.get());
+            observableValue.accept(setter);
+            event.accept(evt -> observableValue.set(getter.get()));
+            return (E) observableValue;
+        });
     }
 
     @Nullable

@@ -1,11 +1,10 @@
 package com.github.fluorumlabs.disconnect.zero;
 
-import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.zero.observable.ObservableValue;
 import js.web.dom.Event;
 import js.web.dom.EventListener;
 import js.web.dom.EventTarget;
-import org.teavm.jso.JSBody;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,55 +12,61 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 
-@Import(symbols = {"$rtd_wrapThread"}, module = "disconnect-core-jar/frontend/thread-wrapper.js")
 public abstract class LazyEventInitializer<X extends EventTarget> {
-    private final Map<Object, ObservableEvent<?>> eventMap = new HashMap<>();
-    private final static String[] NO_ALTERNATIVES = new String[0];
+	private final Map<Object, ObservableEvent<?>> eventMap = new HashMap<>();
 
-    protected  <T, E extends ObservableEvent<T>> E createEvent(Object identifier, Supplier<E> initializer) {
-        return (E) eventMap.computeIfAbsent(identifier, __ -> initializer.get());
-    }
+	private final Map<Object, ObservableValue<?>> valueMap = new HashMap<>();
 
-    protected  <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, String identifier) {
-        return createEvent(target, identifier, NO_ALTERNATIVES);
-    }
+	private final static String[] NO_ALTERNATIVES = new String[0];
 
-    protected  <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, String identifier, String... altIdentifiers) {
-        return createEvent(identifier, () -> {
-            ObservableEvent<T> event = new ObservableEvent<>();
-            EventListener<T> listener = wrapEventListener(event::trigger);
+	protected <T, E extends ObservableEvent<T>> E createEvent(Object identifier, Supplier<E> initializer) {
+		return (E) eventMap.computeIfAbsent(identifier, __ -> initializer.get());
+	}
 
-            target.addEventListener(identifier, listener);
-            for (String altIdentifier : altIdentifiers) {
-                target.addEventListener(altIdentifier, listener);
-            }
-            return (E) event;
-        });
-    }
+	protected <T, E extends ObservableValue<T>> E createObservableValue(Object identifier, Supplier<E> initializer) {
+		return (E) valueMap.computeIfAbsent(identifier, __ -> initializer.get());
+	}
 
-    protected  <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, BiConsumer<X, EventListener<T>> addEventListener) {
-        return createEvent(addEventListener, () -> {
-            ObservableEvent<T> event = new ObservableEvent<>();
-            EventListener<T> listener = wrapEventListener(event::trigger);
+	protected <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, String identifier) {
+		return createEvent(target, identifier, NO_ALTERNATIVES);
+	}
 
-            addEventListener.accept(target, listener);
-            return (E) event;
-        });
-    }
+	protected <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, String identifier,
+																			String... altIdentifiers) {
+		return createEvent(identifier, () -> {
+			ObservableEvent<T> event = new ObservableEvent<>();
+			EventListener<T> listener = event::trigger;
 
-    protected  <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, BiConsumer<X, EventListener<T>> addEventListener, BiConsumer<X, EventListener<T>>... altAddEventListeners) {
-        return createEvent(addEventListener, () -> {
-            ObservableEvent<T> event = new ObservableEvent<>();
-            EventListener<T> listener = wrapEventListener(event::trigger);
+			target.addEventListener(identifier, listener);
+			for (String altIdentifier : altIdentifiers) {
+				target.addEventListener(altIdentifier, listener);
+			}
+			return (E) event;
+		});
+	}
 
-            addEventListener.accept(target, listener);
-            for (BiConsumer<X, EventListener<T>> altAddEventListener : altAddEventListeners) {
-                altAddEventListener.accept(target, listener);
-            }
-            return (E) event;
-        });
-    }
+	protected <T extends Event, E extends ObservableEvent<T>> E createEvent(X target,
+																			BiConsumer<X, EventListener<T>> addEventListener) {
+		return createEvent(addEventListener, () -> {
+			ObservableEvent<T> event = new ObservableEvent<>();
+			EventListener<T> listener = event::trigger;
 
-    @JSBody(params = "listener", script = "return $rtd_wrapThread.fn(listener)")
-    private static native <T extends Event> EventListener<T> wrapEventListener(EventListener<T> listener);
+			addEventListener.accept(target, listener);
+			return (E) event;
+		});
+	}
+
+	protected <T extends Event, E extends ObservableEvent<T>> E createEvent(X target,
+																			BiConsumer<X, EventListener<T>> addEventListener, BiConsumer<X, EventListener<T>>... altAddEventListeners) {
+		return createEvent(addEventListener, () -> {
+			ObservableEvent<T> event = new ObservableEvent<>();
+			EventListener<T> listener = event::trigger;
+
+			addEventListener.accept(target, listener);
+			for (BiConsumer<X, EventListener<T>> altAddEventListener : altAddEventListeners) {
+				altAddEventListener.accept(target, listener);
+			}
+			return (E) event;
+		});
+	}
 }

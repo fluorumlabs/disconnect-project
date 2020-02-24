@@ -19,6 +19,10 @@ public class Triplet<A,B,C> extends Pair<A, B> {
         return valueC;
     }
 
+    <D> Quad<A, B, C, D> toQuad(D d) {
+        return new Quad<>(getValueA(), getValueB(), getValueC(), d);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -3,6 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin.theme;
 import com.github.fluorumlabs.disconnect.polymer.elements.CustomStyleElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
+import com.github.fluorumlabs.disconnect.zero.component.Component;
 import js.extras.JsEnum;
 import js.web.dom.HTMLElement;
 
@@ -26,6 +27,18 @@ public final class Lumo {
 		HTMLElement customStyle = DOCUMENT.createElement(CustomStyleElement.TAGNAME());
 		customStyle.setInnerHTML("<style include=\"lumo-color lumo-typography\"></style>");
 		DOCUMENT.getHead().appendChild(customStyle);
+	}
+
+	public static void useLightTheme(Component<? extends HTMLElement> component) {
+		init();
+		HasThemableMixin.toggleTheme(component.getNode(), Theme.DARK, false);
+		HasThemableMixin.toggleTheme(component.getNode(), Theme.LIGHT, true);
+	}
+
+	public static void useDarkTheme(Component<? extends HTMLElement> component) {
+		init();
+		HasThemableMixin.toggleTheme(component.getNode(), Theme.DARK, true);
+		HasThemableMixin.toggleTheme(component.getNode(), Theme.LIGHT, false);
 	}
 
 	public static void useLightTheme() {

@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronOverlayBackdropElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
@@ -28,6 +29,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * </tbody>
  * </table>
  */
+@WebComponent
 public class IronOverlayBackdrop
 		extends AbstractComponent<IronOverlayBackdropElement>
 		implements HasComponents<IronOverlayBackdropElement, IronOverlayBackdrop, Component<?>> {

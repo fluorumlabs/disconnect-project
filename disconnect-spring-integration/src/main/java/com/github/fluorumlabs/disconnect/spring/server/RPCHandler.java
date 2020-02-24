@@ -5,8 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fluorumlabs.disconnect.core.RPC;
 import com.github.fluorumlabs.disconnect.core.annotations.AllowClientCalls;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +33,7 @@ import java.util.stream.Stream;
 @Controller
 public class RPCHandler {
     private final ApplicationContext applicationContext;
+    private final Logger logger = LoggerFactory.getLogger(RPCHandler.class);
 
     public RPCHandler(@Qualifier("applicationContext") ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -66,12 +70,13 @@ public class RPCHandler {
         Object instance = applicationContext.getBean(serviceBean);
 
         Class<?> service = instance.getClass();
+
         Method target = Stream.of(service.getMethods())
                 .filter(method -> method.getName().equals(methodName))
                 .findFirst()
                 .orElseThrow(NoSuchMethodException::new);
 
-        if (target.getAnnotation(AllowClientCalls.class)==null) {
+        if (AnnotationUtils.findAnnotation(target, AllowClientCalls.class)==null) {
             throw new IllegalAccessException();
         }
 
@@ -86,6 +91,7 @@ public class RPCHandler {
         try {
             resultHolder.result = target.invoke(instance, arguments.toArray());
         } catch (Exception e) {
+            logger.error("Exception during RPC", e);
             resultHolder.exceptionClass = e.getClass().getName();
             resultHolder.exceptionMessage = e.getMessage();
         }

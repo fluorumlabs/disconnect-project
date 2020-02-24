@@ -50,6 +50,7 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
     static boolean initialCompile = true;
 
     private static int packageJsonHash = -1;
+    private static int appBootstrapLiveHash = -1;
     private static int buildConfigHash = -1;
 
     /**
@@ -186,6 +187,17 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
         int newHash = getFileHash(file);
         if (newHash != packageJsonHash || newHash == -1) {
             packageJsonHash = newHash;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    boolean wasAppBootstrapChanged() {
+        File file = new File(outputDirectory, "frontend/src/app.bootstrap.live.js");
+        int newHash = getFileHash(file);
+        if (newHash != appBootstrapLiveHash || newHash == -1) {
+            appBootstrapLiveHash = newHash;
             return true;
         } else {
             return false;

@@ -5,9 +5,9 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.polymer.elements.PolymerElement;
 import com.github.fluorumlabs.disconnect.vaadin.Vaadin;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Markers;
+import js.lang.Any;
 import js.lang.Unknown;
 import js.util.collections.Array;
-import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-charts/theme/lumo/vaadin-chart-series.js"
+		module = "@vaadin/vaadin-charts/src/vaadin-chart-series.js"
 )
 public interface ChartSeriesElement extends PolymerElement {
 	static String TAGNAME() {
@@ -112,7 +112,28 @@ public interface ChartSeriesElement extends PolymerElement {
 	 * change and be able to synchronize it.
 	 */
 	@JSProperty
-	void setValues(Unknown... values);
+	void setValues(double... values);
+
+	/**
+	 * An array of data used by the series.
+	 * Format depends on the chart type and can be:
+	 *
+	 * <ul>
+	 * <li>An array of numerical values <code>[y0, y1, y2, y3,...]</code></li>
+	 * <li>An array of arrays with 2 values (<code>x</code>, <code>y</code>) <code>[ [x0, y0], [x1, y1], [x2, y2], ..
+	 * . ]</code></li>
+	 * <li>An array of objects, each one describing one point <code>[ {x: x0, y: y0, name: 'Point0', color: '#FF0000'
+	 * }, {...}, ...]</code></li>
+	 * </ul>
+	 * See more in <a href="https://api.highcharts.com/highcharts/series">API Site</a>
+	 * <p>
+	 * Note that you should always use
+	 * <a href="https://www.polymer-project.org/2.0/docs/devguide/model-data#array-mutation">Polymer API</a>
+	 * to mutate the values array in order to make the component aware of the
+	 * change and be able to synchronize it.
+	 */
+	@JSProperty
+	void setValues(Any... values);
 
 	/**
 	 * Value-axis minimum-value.

@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.CustomStyleElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
@@ -49,6 +50,7 @@ import js.web.dom.HTMLStyleElement;
  * &lt;/custom-style&gt;
  * </code></pre>
  */
+@WebComponent
 public class CustomStyle
 		extends AbstractComponent<CustomStyleElement>
 		implements HasComponent<CustomStyleElement, CustomStyle, Component<HTMLStyleElement>> {

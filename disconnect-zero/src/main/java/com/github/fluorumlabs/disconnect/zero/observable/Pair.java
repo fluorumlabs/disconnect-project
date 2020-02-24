@@ -16,7 +16,7 @@ public class Pair<A,B> {
         return new Pair<>(a,b);
     }
 
-    <C> Triplet<A, B, C> extend(C c) {
+    <C> Triplet<A, B, C> toTriplet(C c) {
         return new Triplet<>(valueA, valueB, c);
     }
 

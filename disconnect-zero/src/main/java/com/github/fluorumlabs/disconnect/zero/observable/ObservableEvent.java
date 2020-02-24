@@ -18,6 +18,12 @@ public class ObservableEvent<VALUE> extends SimpleObservableEvent {
         return newSignal;
     }
 
+    public <NEW_VALUE> ObservableEvent<NEW_VALUE> mapAsync(Function<VALUE, NEW_VALUE> mapper) {
+        ObservableEvent<NEW_VALUE> newSignal = new ObservableEvent<>();
+        acceptImpl(value -> new Thread(() -> newSignal.trigger(mapper.apply((VALUE) value))).start());
+        return newSignal;
+    }
+
     public ObservableEvent<VALUE> filter(Predicate<VALUE> predicate) {
         ObservableEvent<VALUE> newSignal = new ObservableEvent<>();
         acceptImpl(value -> {
@@ -28,8 +34,22 @@ public class ObservableEvent<VALUE> extends SimpleObservableEvent {
         return newSignal;
     }
 
+    public ObservableEvent<VALUE> filterAsync(Predicate<VALUE> predicate) {
+        ObservableEvent<VALUE> newSignal = new ObservableEvent<>();
+        acceptImpl(value -> new Thread(() ->{
+            if (predicate.test((VALUE)value)) {
+                newSignal.trigger((VALUE)value);
+            }
+        }).start());
+        return newSignal;
+    }
+
     public void accept(Consumer<VALUE> handler) {
         acceptImpl(handler);
+    }
+
+    public void acceptAsync(Consumer<VALUE> handler) {
+        acceptImpl(value -> new Thread(() -> handler.accept((VALUE)value)).start());
     }
 
     public void trigger(VALUE value) {

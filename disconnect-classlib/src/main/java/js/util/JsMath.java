@@ -2,7 +2,6 @@ package js.util;
 
 import js.lang.Any;
 import org.teavm.jso.JSBody;
-import org.teavm.jso.JSByRef;
 
 
 public abstract class JsMath implements Any {
@@ -235,7 +234,7 @@ public abstract class JsMath implements Any {
      * @param x First number
      * @param y Second number
      */
-    @JSBody(params = "x", script = "return Math.imul(x)")
+    @JSBody(params = {"x","y"}, script = "return Math.imul(x, y)")
     public static native int imul(int x, int y);
 
     /**

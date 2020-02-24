@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.ArraySelectorElement;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasArraySelectorMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
@@ -71,6 +72,7 @@ import js.lang.Any;
  * }
  * </code></pre>
  */
+@WebComponent
 public class ArraySelector<ITEM extends Any>
 		extends AbstractComponent<ArraySelectorElement<ITEM>>
 		implements HasArraySelectorMixin<ITEM, ArraySelectorElement<ITEM>, ArraySelector<ITEM>> {

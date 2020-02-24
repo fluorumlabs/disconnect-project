@@ -1,5 +1,4 @@
 import {terser} from 'rollup-plugin-terser';
-import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 import postcsscopy from 'postcss-copy';
@@ -39,6 +38,7 @@ function replaceSettings(mode) {
 
 function postCss() {
     return postcss({
+        modules: true,
         use: [
             ['sass', {
                 includePaths: [path.resolve('node_modules')]
@@ -60,8 +60,8 @@ function postCss() {
 const defaultPlugins = [
     jarModulesResolver,
     replace(replaceSettings(process.env.NODE_ENV)),
-    postCss(),
     inject(buildConfig.injectedSymbols || {}),
+    postCss(),
     commonjs(commonJsOptions),
     sourcemaps(),
 ];
@@ -85,36 +85,6 @@ const config = [
         ]
     }
 ];
-
-if (!isLiveBuild) {
-    config.push({
-        context: 'window',
-        input: isLiveBuild?'src/app.bootstrap.live.js':'src/app.bootstrap.js',
-        output: {
-            file: 'static/bin/app.nomodule.js',
-            format: 'iife',
-            sourcemap: true
-        },
-        plugins: [
-            ...defaultPlugins,
-            babel({
-                exclude: ['node_modules/@babel/**', 'node_modules/core-js/**'],
-                extensions: ['.js', '.mjs', '.html'],
-                presets: [
-                    [
-                        '@babel/preset-env',
-                        {
-                            useBuiltIns: 'usage',
-                            corejs: 3,
-                            targets: 'ie 11'
-                        }
-                    ]
-                ],
-            }),
-            isProductionBuild && terser()
-        ]
-    });
-}
 
 if (buildConfig.enableWorkbox && !isLiveBuild) {
     config.push({

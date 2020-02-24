@@ -2,7 +2,7 @@ package com.github.fluorumlabs.disconnect.example.spring.client;
 
 import com.github.fluorumlabs.disconnect.core.annotations.EntryPoint;
 import com.github.fluorumlabs.disconnect.example.spring.TestService;
-import com.github.fluorumlabs.disconnect.vaadin.VaadinTextField;
+import com.github.fluorumlabs.disconnect.vaadin.TextField;
 import com.github.fluorumlabs.disconnect.vaadin.theme.Lumo;
 import com.github.fluorumlabs.disconnect.zero.component.html.Div;
 import com.github.fluorumlabs.disconnect.zero.component.html.H1;
@@ -22,7 +22,7 @@ public class BasicExampleEntryPoint implements Runnable {
 		Lumo.useDarkTheme();
 		H1 userCount = new H1("Trivial chat: No users yet");
 		Div chat = new Div();
-		VaadinTextField input = new VaadinTextField();
+		TextField input = new TextField();
 		input.label("Type your message and hit Enter :-P");
 		input.getNode().getStyle().setWidth("100%"); // API not done yet
 

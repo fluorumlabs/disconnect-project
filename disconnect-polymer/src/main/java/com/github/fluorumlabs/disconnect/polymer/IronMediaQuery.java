@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronMediaQueryElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -21,6 +22,7 @@ import javax.annotation.Nullable;
  * &lt;/iron-media-query&gt;
  * </code></pre>
  */
+@WebComponent
 public class IronMediaQuery
 		extends AbstractComponent<IronMediaQueryElement> {
 	public IronMediaQuery() {

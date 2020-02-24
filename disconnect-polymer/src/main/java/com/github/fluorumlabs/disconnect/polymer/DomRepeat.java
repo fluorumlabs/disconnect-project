@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.DomRepeatElement;
 import com.github.fluorumlabs.disconnect.polymer.elements.TemplateInstanceBase;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasOptionalMutableData;
@@ -107,6 +108,7 @@ import javax.annotation.Nullable;
  * observe=&quot;type manager.type&quot;&gt;
  * </code></pre>
  */
+@WebComponent
 public class DomRepeat<ITEM extends Any>
 		extends AbstractComponent<DomRepeatElement<ITEM>>
 		implements HasOptionalMutableData<DomRepeatElement<ITEM>, DomRepeat<ITEM>>,

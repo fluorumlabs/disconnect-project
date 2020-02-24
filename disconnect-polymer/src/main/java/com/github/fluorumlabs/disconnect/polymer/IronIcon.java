@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronIconElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 
@@ -74,6 +75,7 @@ import javax.annotation.Nullable;
  * </tbody>
  * </table>
  */
+@WebComponent
 public class IronIcon
 		extends AbstractComponent<IronIconElement> {
 	public IronIcon() {

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.fluorumlabs.disconnect.core.converters.Converter;
 import com.github.fluorumlabs.disconnect.core.converters.ConverterFactory;
 import com.github.fluorumlabs.disconnect.core.converters.ListConverter;
+import com.github.fluorumlabs.disconnect.core.converters.SetConverter;
 import js.lang.Unknown;
 import js.util.JS;
 import js.util.collections.Array;
@@ -15,9 +16,7 @@ import org.teavm.metaprogramming.reflect.ReflectMethod;
 
 import java.io.Serializable;
 import java.lang.reflect.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.teavm.metaprogramming.Metaprogramming.*;
 
@@ -27,7 +26,9 @@ import static org.teavm.metaprogramming.Metaprogramming.*;
 @CompileTime
 public class ObjectAdapter implements Adapter {
 	private final Class<?> beanClass;
+
 	private final Map<String, Converter> converters = new HashMap<>();
+
 	private final Array<Unknown> keys = Array.create();
 
 	private static final Map<String, Map<String, PropertyDefinition>> CLASS_PROPERTIES = new HashMap<>();
@@ -89,15 +90,41 @@ public class ObjectAdapter implements Adapter {
 		for (Map.Entry<String, PropertyDefinition> entry : propertyDefinitions.entrySet()) {
 			ReflectClass<?> type = entry.getValue().type;
 			String fieldName = entry.getKey();
-			if (findClass(List.class).isAssignableFrom(type)) {
-				// Hack to get the generic type argument
+			if (findClass(Set.class).isAssignableFrom(type)) {
 				Type[] actualTypeArguments = entry.getValue().actualTypeArguments;
 				if (actualTypeArguments.length < 1) {
 					throw new IllegalArgumentException("Missing generic type argument for " + clazz.getName() + "." + fieldName);
 				}
 
 				emit((Action) () -> {
-					adapter.get().converters.put(fieldName, new ListConverter((Class<Serializable>) actualTypeArguments[0]));
+					adapter.get().converters.put(fieldName,
+							new SetConverter((Class<Serializable>) actualTypeArguments[0]));
+					adapter.get().keys.push(Unknown.of(fieldName));
+				});
+			} else if (findClass(List.class).isAssignableFrom(type)) {
+				Type[] actualTypeArguments = entry.getValue().actualTypeArguments;
+				if (actualTypeArguments.length < 1) {
+					throw new IllegalArgumentException("Missing generic type argument for " + clazz.getName() + "." + fieldName);
+				}
+
+				emit((Action) () -> {
+					adapter.get().converters.put(fieldName,
+							new ListConverter((Class<Serializable>) actualTypeArguments[0]));
+					adapter.get().keys.push(Unknown.of(fieldName));
+				});
+			} else if (findClass(Map.class).isAssignableFrom(type)) {
+				Type[] actualTypeArguments = entry.getValue().actualTypeArguments;
+				if (actualTypeArguments.length < 2) {
+					throw new IllegalArgumentException("Missing generic type argument for " + clazz.getName() + "." + fieldName);
+				}
+				if (!actualTypeArguments[0].equals(String.class)) {
+					throw new IllegalArgumentException("Unsupported key type for the map " + clazz.getName() +
+							"." + fieldName);
+				}
+
+				emit((Action) () -> {
+					adapter.get().converters.put(fieldName,
+							new ListConverter((Class<Serializable>) actualTypeArguments[1]));
 					adapter.get().keys.push(Unknown.of(fieldName));
 				});
 			} else {
@@ -118,7 +145,7 @@ public class ObjectAdapter implements Adapter {
 
 		if (!findClass(Serializable.class).isAssignableFrom(clazz)) {
 			emit(() -> {
-				throw new IllegalStateException("Non serializable class "+className);
+				throw new IllegalStateException("Non serializable class " + className);
 			});
 		}
 
@@ -160,7 +187,7 @@ public class ObjectAdapter implements Adapter {
 		String className = clazz.getName();
 		if (!findClass(Serializable.class).isAssignableFrom(clazz)) {
 			emit(() -> {
-				throw new IllegalStateException("Non serializable class "+className);
+				throw new IllegalStateException("Non serializable class " + className);
 			});
 		}
 
@@ -206,7 +233,7 @@ public class ObjectAdapter implements Adapter {
 
 	private static void populateClassFields(ReflectClass<?> clazz) {
 		String className = clazz.getName();
-		if ( CLASS_PROPERTIES.containsKey(className)) {
+		if (CLASS_PROPERTIES.containsKey(className)) {
 			return;
 		}
 		Map<String, PropertyDefinition> properties = new HashMap<>();
@@ -230,7 +257,9 @@ public class ObjectAdapter implements Adapter {
 			} catch (ClassNotFoundException | NoSuchFieldException ignore) {
 				// ignore
 			}
-			if (realField != null && findClass(List.class).isAssignableFrom(definition.type)) {
+			if (realField != null && (findClass(List.class).isAssignableFrom(definition.type)
+					|| findClass(Set.class).isAssignableFrom(definition.type)
+					|| findClass(Map.class).isAssignableFrom(definition.type))) {
 				definition.actualTypeArguments =
 						((ParameterizedType) (realField.getGenericType())).getActualTypeArguments();
 			}
@@ -240,10 +269,10 @@ public class ObjectAdapter implements Adapter {
 				if (!annotation.value().isEmpty()) {
 					fieldName = annotation.value();
 				}
-				if (annotation.access()== JsonProperty.Access.READ_ONLY || annotation.access()== JsonProperty.Access.READ_WRITE || annotation.access()== JsonProperty.Access.AUTO) {
+				if (annotation.access() == JsonProperty.Access.READ_ONLY || annotation.access() == JsonProperty.Access.READ_WRITE || annotation.access() == JsonProperty.Access.AUTO) {
 					definition.readable = true;
 				}
-				if (annotation.access()== JsonProperty.Access.WRITE_ONLY || annotation.access()== JsonProperty.Access.READ_WRITE || annotation.access()== JsonProperty.Access.AUTO) {
+				if (annotation.access() == JsonProperty.Access.WRITE_ONLY || annotation.access() == JsonProperty.Access.READ_WRITE || annotation.access() == JsonProperty.Access.AUTO) {
 					definition.writeable = true;
 				}
 			} else {
@@ -259,16 +288,16 @@ public class ObjectAdapter implements Adapter {
 			if (Modifier.isStatic(method.getModifiers()) || !Modifier.isPublic(method.getModifiers())) {
 				continue;
 			}
-			if (!StringUtils.startsWithAny(method.getName(),"set","get","is")) {
+			if (!StringUtils.startsWithAny(method.getName(), "set", "get", "is")) {
 				continue;
 			}
 			String fieldName = method.getName();
-			if ( fieldName.startsWith("set") || fieldName.startsWith("get")) {
+			if (fieldName.startsWith("set") || fieldName.startsWith("get")) {
 				fieldName = fieldName.substring(3);
-			} else if (fieldName.startsWith("is") ) {
+			} else if (fieldName.startsWith("is")) {
 				fieldName = fieldName.substring(2);
 			}
-			if (fieldName.isEmpty() || fieldName.charAt(0)<'A' || fieldName.charAt(0)>'Z') {
+			if (fieldName.isEmpty() || fieldName.charAt(0) < 'A' || fieldName.charAt(0) > 'Z') {
 				continue;
 			}
 			if (method.getAnnotation(JsonIgnore.class) != null) {
@@ -291,10 +320,10 @@ public class ObjectAdapter implements Adapter {
 				}
 			}
 
-			if (method.getParameterCount() == 0 && StringUtils.startsWithAny(method.getName(), "is","get")) {
+			if (method.getParameterCount() == 0 && StringUtils.startsWithAny(method.getName(), "is", "get")) {
 				// getter
 				ReflectClass<?> returnType = method.getReturnType();
-				if ( (!returnType.getName().equals("boolean") && !returnType.getName().equals("java.lang.Boolean")) && method.getName().startsWith("is")) {
+				if ((!returnType.getName().equals("boolean") && !returnType.getName().equals("java.lang.Boolean")) && method.getName().startsWith("is")) {
 					continue;
 				}
 				updateType(clazz, fieldName, definition, returnType);
@@ -307,7 +336,9 @@ public class ObjectAdapter implements Adapter {
 				} catch (ClassNotFoundException | NoSuchMethodException ignore) {
 					// ignore
 				}
-				if (realMethod != null && findClass(List.class).isAssignableFrom(definition.type)) {
+				if (realMethod != null && (findClass(List.class).isAssignableFrom(definition.type)
+						|| findClass(Set.class).isAssignableFrom(definition.type)
+						|| findClass(Map.class).isAssignableFrom(definition.type))) {
 					definition.actualTypeArguments =
 							((ParameterizedType) (realMethod.getGenericReturnType())).getActualTypeArguments();
 				}
@@ -333,9 +364,11 @@ public class ObjectAdapter implements Adapter {
 				} catch (ClassNotFoundException | NoSuchMethodException ignore) {
 					// ignore
 				}
-				if (realMethod != null && findClass(List.class).isAssignableFrom(definition.type)) {
+				if (realMethod != null && (findClass(List.class).isAssignableFrom(definition.type)
+						|| findClass(Set.class).isAssignableFrom(definition.type)
+						|| findClass(Map.class).isAssignableFrom(definition.type))) {
 					definition.actualTypeArguments =
-							((ParameterizedType) (realMethod.getGenericExceptionTypes()[0])).getActualTypeArguments();
+							((ParameterizedType) (realMethod.getGenericParameterTypes()[0])).getActualTypeArguments();
 				}
 				if (annotation != null) {
 					if (annotation.access() == JsonProperty.Access.WRITE_ONLY || annotation.access() == JsonProperty.Access.READ_WRITE || annotation.access() == JsonProperty.Access.AUTO) {
@@ -348,17 +381,20 @@ public class ObjectAdapter implements Adapter {
 			}
 		}
 		Map<String, PropertyDefinition> filteredProperties = new HashMap<>();
-		properties.forEach((s,v) -> {
+		properties.forEach((s, v) -> {
 			if (v.type == null || v.type.isArray()) {
 				return;
 			}
 			if (!v.type.isPrimitive() && !findClass(Serializable.class).isAssignableFrom(v.type)
-					&& !findClass(List.class).isAssignableFrom(v.type)) {
+					&& !findClass(Date.class).isAssignableFrom(v.type)
+					&& !findClass(List.class).isAssignableFrom(v.type)
+					&& !findClass(Set.class).isAssignableFrom(v.type)
+					&& !findClass(Map.class).isAssignableFrom(v.type)) {
 				return;
 			}
 
 			if (v.readable || v.writeable) {
-				filteredProperties.put(s,v);
+				filteredProperties.put(s, v);
 			}
 		});
 		CLASS_PROPERTIES.put(className, filteredProperties);
@@ -377,7 +413,8 @@ public class ObjectAdapter implements Adapter {
 			definition.type = type;
 			return;
 		}
-		throw new IllegalStateException("Property "+property+" of "+clazz.getName()+" has incompatible types across " +
-				"field/getter/setter: "+definition.type.getName()+" vs "+type.getName());
+		throw new IllegalStateException("Property " + property + " of " + clazz.getName() + " has incompatible types " +
+				"across " +
+				"field/getter/setter: " + definition.type.getName() + " vs " + type.getName());
 	}
 }

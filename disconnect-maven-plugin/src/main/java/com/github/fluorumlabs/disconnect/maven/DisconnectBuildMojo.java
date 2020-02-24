@@ -56,6 +56,7 @@ public class DisconnectBuildMojo extends AbstractDisconnectMojo {
         copyResources(new File(getOutputDirectory(), "frontend/static"), new File(getOutputDirectory(),"classes/static"));
 
         // Compute hashes
+        wasAppBootstrapChanged();
         wasPackageJsonChanged();
         wasBuildConfigChanged();
 

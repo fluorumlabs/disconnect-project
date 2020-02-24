@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.DomModuleElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
@@ -26,6 +27,7 @@ import js.web.dom.Element;
  * <pre><code>let img = customElements.get('dom-module').import('foo', 'img');
  * </code></pre>
  */
+@WebComponent
 public class DomModule
 		extends AbstractComponent<DomModuleElement>
 		implements HasComponents<DomModuleElement, DomModule, Component<?>> {

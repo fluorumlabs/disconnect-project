@@ -4,8 +4,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fluorumlabs.disconnect.core.RPC;
 import com.github.fluorumlabs.disconnect.core.annotations.AllowClientCalls;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +33,7 @@ public class SSEHandler {
     private final ApplicationContext applicationContext;
     private final CopyOnWriteArrayList<SseEmitter> emitters = new CopyOnWriteArrayList<>();
     private final ScheduledExecutorService keepAliveExecutor = Executors.newScheduledThreadPool(1);
+    private final Logger logger = LoggerFactory.getLogger(SSEHandler.class);
 
     public SSEHandler(@Qualifier("applicationContext") ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -61,7 +65,7 @@ public class SSEHandler {
                 .findFirst()
                 .orElseThrow(NoSuchMethodException::new);
 
-        if (target.getAnnotation(AllowClientCalls.class)==null) {
+        if (AnnotationUtils.findAnnotation(target, AllowClientCalls.class)==null) {
             throw new IllegalAccessException();
         }
 
@@ -92,6 +96,7 @@ public class SSEHandler {
             } catch (EmitterException ignore) {
                 // already handled
             } catch (Exception e) {
+                logger.error("Exception during SSE", e);
                 errorHolder.exceptionClass = e.getClass().getName();
                 errorHolder.exceptionMessage = e.getMessage();
                 try {

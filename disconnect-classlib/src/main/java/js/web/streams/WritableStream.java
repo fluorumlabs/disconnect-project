@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 /**
  * This Streams API interface provides a standard abstraction for writing streaming data to a destination, known as a sink. This object comes with built-in backpressure and queuing.
  */
-public interface WritableStream<W extends Any> {
+public interface WritableStream<W extends Any> extends Any {
     @JSBody(script = "return WritableStream.prototype")
     static WritableStream prototype() {
         throw new UnsupportedOperationException("Available only in JavaScript");

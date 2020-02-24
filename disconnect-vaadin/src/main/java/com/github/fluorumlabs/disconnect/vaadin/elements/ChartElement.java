@@ -7,7 +7,6 @@ import com.github.fluorumlabs.disconnect.vaadin.constants.AxisPosition;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Stacking;
 import js.lang.Unknown;
 import js.web.dom.HTMLElement;
-import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
@@ -271,7 +270,7 @@ import javax.annotation.Nullable;
 		version = Vaadin.VERSION
 )
 @Import(
-		module = "@vaadin/vaadin-charts/theme/lumo/vaadin-chart.js"
+		module = "@vaadin/vaadin-charts/vaadin-chart.js"
 )
 public interface ChartElement extends HTMLElement {
 	static String TAGNAME() {

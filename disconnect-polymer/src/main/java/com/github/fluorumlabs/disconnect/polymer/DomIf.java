@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.DomIfElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
@@ -23,6 +24,7 @@ import js.web.dom.Event;
  * Set the <code>restamp</code> property to true to force the stamped content to be
  * created / destroyed when the <code>if</code> condition changes.
  */
+@WebComponent
 public class DomIf
 		extends AbstractComponent<DomIfElement>
 		implements HasComponent<DomIfElement, DomIf, Template> {

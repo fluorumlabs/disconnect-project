@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.polymer;
 
+import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronIconsetSvgElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
@@ -41,6 +42,7 @@ import javax.annotation.Nullable;
  * <pre><code>iconset.applyIcon(iconNode, 'car');
  * </code></pre>
  */
+@WebComponent
 public class IronIconsetSvg
 		extends AbstractComponent<IronIconsetSvgElement>
 		implements HasComponent<IronIconsetSvgElement, IronIconsetSvg, Component<SVGSVGElement>> {

@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 
 public interface ReadableObservable<VALUE> {
-    void accept(Consumer<VALUE> consumer);
+    Observable<VALUE> accept(Consumer<VALUE> consumer);
 
     VALUE get();
 }
