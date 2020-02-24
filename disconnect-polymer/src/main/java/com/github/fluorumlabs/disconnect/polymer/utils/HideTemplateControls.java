@@ -6,6 +6,9 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Hide template controls.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -13,6 +16,8 @@ import org.teavm.jso.JSBody;
 @Import(symbols = "hideElementsGlobally", module = "@polymer/polymer/lib/utils/hide-template-controls.js")
 public interface HideTemplateControls extends Any {
 	/**
+	 * Hide elements globally boolean.
+	 *
 	 * @return True if elements will be hidden globally
 	 */
 	@JSBody(

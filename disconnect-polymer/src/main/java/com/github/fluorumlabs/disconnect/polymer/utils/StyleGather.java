@@ -9,6 +9,9 @@ import js.web.dom.HTMLStyleElement;
 import js.web.webcomponents.HTMLTemplateElement;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Style gather.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -20,12 +23,11 @@ import org.teavm.jso.JSBody;
 )
 public interface StyleGather extends Any {
 	/**
-	 * Returns a list of <style> elements in a space-separated list of <code>dom-module</code>s.
+	 * Returns a list of &lt;style&gt; elements in a space-separated list of {@code dom-module}s.
 	 *
-	 * @param moduleIds List of dom-module id's within which to
-	 *                  search for css.
+	 * @param moduleIds List of dom-module id's within which to search for css.
 	 *
-	 * @return Array of contained <style> elements
+	 * @return Array of contained &lt;style&gt; elements
 	 */
 	@JSBody(params = "moduleIds", script = "return stylesFromModules(moduleIds)")
 	static Array<HTMLStyleElement> stylesFromModules(String moduleIds) {
@@ -33,10 +35,9 @@ public interface StyleGather extends Any {
 	}
 
 	/**
-	 * Returns a list of <style> elements in a given <code>dom-module</code>.
-	 * Styles in a <code>dom-module</code> can come either from <code>&lt;style&gt;</code>s within the
-	 * first <code>&lt;template&gt;</code>, or else from one or more
-	 * <code>&lt;link rel=&quot;import&quot; type=&quot;css&quot;&gt;</code> links outside the template.
+	 * Returns a list of &lt;style&gt; elements in a given {@code dom-module}. Styles in a {@code dom-module} can come
+	 * either from {@code <style>}s within the first {@code <template>}, or else from one or more {@code <link
+	 * rel="import" type="css">}* links outside the template.
 	 *
 	 * @param moduleId dom-module id to gather styles from
 	 *
@@ -64,10 +65,10 @@ public interface StyleGather extends Any {
 	}
 
 	/**
-	 * Returns a list of <style> elements  from stylesheets loaded via <code>&lt;link rel=&quot;import&quot;
-	 * type=&quot;css&quot;&gt;</code> links within the specified <code>dom-module</code>.
+	 * Returns a list of &lt;style&gt; elements  from stylesheets loaded via {@code <link rel="import" type="css">}
+	 * links within the specified {@code dom-module}.
 	 *
-	 * @param moduleId Id of <code>dom-module</code> to gather CSS from
+	 * @param moduleId Id of {@code dom-module} to gather CSS from
 	 *
 	 * @return Array of contained styles.
 	 */
@@ -77,11 +78,10 @@ public interface StyleGather extends Any {
 	}
 
 	/**
-	 * Returns CSS text of styles in a space-separated list of <code>dom-module</code>s.
-	 * Note: This method is deprecated, use <code>stylesFromModules</code> instead.
+	 * Returns CSS text of styles in a space-separated list of <code>dom-module</code>s. Note: This method is
+	 * deprecated, use <code>stylesFromModules</code> instead.
 	 *
-	 * @param moduleIds List of dom-module id's within which to
-	 *                  search for css.
+	 * @param moduleIds List of dom-module id's within which to search for css.
 	 *
 	 * @return Concatenated CSS content from specified <code>dom-module</code>s
 	 */
@@ -91,13 +91,12 @@ public interface StyleGather extends Any {
 	}
 
 	/**
-	 * Returns CSS text of styles in a given <code>dom-module</code>.  CSS in a <code>dom-module</code>
-	 * can come either from <code>&lt;style&gt;</code>s within the first <code>&lt;template&gt;</code>, or else
-	 * from one or more <code>&lt;link rel=&quot;import&quot; type=&quot;css&quot;&gt;</code> links outside the
-	 * template.
+	 * Returns CSS text of styles in a given <code>dom-module</code>.  CSS in a <code>dom-module</code> can come either
+	 * from <code>&lt;style&gt;</code>s within the first <code>&lt;template&gt;</code>, or else from one or more
+	 * <code>&lt;link rel=&quot;import&quot; type=&quot;css&quot;&gt;</code> links outside the template.
 	 * <p>
-	 * Any <code>&lt;styles&gt;</code> processed are removed from their original location.
-	 * Note: This method is deprecated, use <code>styleFromModule</code> instead.
+	 * Any <code>&lt;styles&gt;</code> processed are removed from their original location. Note: This method is
+	 * deprecated, use <code>styleFromModule</code> instead.
 	 *
 	 * @param moduleId dom-module id to gather styles from
 	 *
@@ -111,8 +110,8 @@ public interface StyleGather extends Any {
 	/**
 	 * Returns CSS text of <code>&lt;styles&gt;</code> within a given template.
 	 * <p>
-	 * Any <code>&lt;styles&gt;</code> processed are removed from their original location.
-	 * Note: This method is deprecated, use <code>styleFromTemplate</code> instead.
+	 * Any <code>&lt;styles&gt;</code> processed are removed from their original location. Note: This method is
+	 * deprecated, use <code>styleFromTemplate</code> instead.
 	 *
 	 * @param template Template to gather styles from
 	 * @param baseURI  Base URI to resolve the URL against

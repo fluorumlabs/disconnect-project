@@ -7,10 +7,12 @@ import js.lang.Any;
 import js.lang.Unknown;
 import js.util.collections.Array;
 import org.teavm.jso.JSBody;
-import org.teavm.jso.JSByRef;
 
 import javax.annotation.Nullable;
 
+/**
+ * The interface Path.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -105,8 +107,7 @@ public interface Path extends Any {
 	}
 
 	/**
-	 * Replaces a previous base path with a new base path, preserving the
-	 * remainder of the path.
+	 * Replaces a previous base path with a new base path, preserving the remainder of the path.
 	 * <p>
 	 * User must ensure <code>path</code> has a prefix of <code>base</code>.
 	 * <p>
@@ -130,6 +131,8 @@ public interface Path extends Any {
 	}
 
 	/**
+	 * Matches boolean.
+	 *
 	 * @param base Path string to test against
 	 * @param path Path string to test
 	 *
@@ -144,9 +147,7 @@ public interface Path extends Any {
 	}
 
 	/**
-	 * Converts array-based paths to flattened path.
-	 * String-based paths
-	 * are returned as-is.
+	 * Converts array-based paths to flattened path. String-based paths are returned as-is.
 	 * <p>
 	 * Example:
 	 *
@@ -163,24 +164,44 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Normalize string.
+	 *
+	 * @param path the path
+	 *
+	 * @return the string
+	 */
 	@JSBody(params = "path", script = "return normalize(path)")
 	static String normalize(String... path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Normalize string.
+	 *
+	 * @param path the path
+	 *
+	 * @return the string
+	 */
 	@JSBody(params = "path", script = "return normalize(path)")
 	static String normalize(Unknown... path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Normalize string.
+	 *
+	 * @param path the path
+	 *
+	 * @return the string
+	 */
 	@JSBody(params = "path", script = "return normalize(path)")
 	static String normalize(Array<Unknown> path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
 	/**
-	 * Splits a path into an array of property names. Accepts either arrays
-	 * of path parts or strings.
+	 * Splits a path into an array of property names. Accepts either arrays of path parts or strings.
 	 * <p>
 	 * Example:
 	 *
@@ -197,32 +218,52 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Split string [ ].
+	 *
+	 * @param path the path
+	 *
+	 * @return the string [ ]
+	 */
 	@JSBody(params = "path", script = "return split(path)")
 	static String[] split(String... path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Split string [ ].
+	 *
+	 * @param path the path
+	 *
+	 * @return the string [ ]
+	 */
 	@JSBody(params = "path", script = "return split(path)")
 	static String[] split(Unknown... path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Split string [ ].
+	 *
+	 * @param path the path
+	 *
+	 * @return the string [ ]
+	 */
 	@JSBody(params = "path", script = "return split(path)")
 	static String[] split(Array<Unknown> path) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
 	/**
-	 * Reads a value from a path.  If any sub-property in the path is <code>undefined</code>,
-	 * this method returns `undefined` (will never throw.
+	 * Reads a value from a path.  If any sub-property in the path is <code>undefined</code>, this method returns
+	 * `undefined` (will never throw.
 	 *
 	 * @param root Object from which to dereference path from
 	 * @param path Path to read
-	 * @param info If an object is provided to <code>info</code>, the normalized
-	 *             (flattened) path will be set to <code>info.path</code>.
+	 * @param info If an object is provided to <code>info</code>, the normalized (flattened) path will be set to
+	 *             <code>info.path</code>.
 	 *
-	 * @return Value at path, or <code>undefined</code> if the path could not be
-	 * 		fully dereferenced.
+	 * @return Value at path, or <code>undefined</code> if the path could not be fully dereferenced.
 	 */
 	@JSBody(
 			params = {"root", "path", "info"},
@@ -232,6 +273,15 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Get unknown.
+	 *
+	 * @param root the root
+	 * @param path the path
+	 * @param info the info
+	 *
+	 * @return the unknown
+	 */
 	@JSBody(
 			params = {"root", "path", "info"},
 			script = "return get(root, path, info)"
@@ -240,6 +290,15 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Get unknown.
+	 *
+	 * @param root the root
+	 * @param path the path
+	 * @param info the info
+	 *
+	 * @return the unknown
+	 */
 	@JSBody(
 			params = {"root", "path", "info"},
 			script = "return get(root, path, info)"
@@ -248,6 +307,15 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Get unknown.
+	 *
+	 * @param root the root
+	 * @param path the path
+	 * @param info the info
+	 *
+	 * @return the unknown
+	 */
 	@JSBody(
 			params = {"root", "path", "info"},
 			script = "return get(root, path, info)"
@@ -256,6 +324,14 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Get unknown.
+	 *
+	 * @param root the root
+	 * @param path the path
+	 *
+	 * @return the unknown
+	 */
 	@JSBody(
 			params = {"root", "path"},
 			script = "return get(root, path)"
@@ -264,6 +340,14 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Get unknown.
+	 *
+	 * @param root the root
+	 * @param path the path
+	 *
+	 * @return the unknown
+	 */
 	@JSBody(
 			params = {"root", "path"},
 			script = "return get(root, path)"
@@ -272,6 +356,14 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Get unknown.
+	 *
+	 * @param root the root
+	 * @param path the path
+	 *
+	 * @return the unknown
+	 */
 	@JSBody(
 			params = {"root", "path"},
 			script = "return get(root, path)"
@@ -280,6 +372,14 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Get unknown.
+	 *
+	 * @param root the root
+	 * @param path the path
+	 *
+	 * @return the unknown
+	 */
 	@JSBody(
 			params = {"root", "path"},
 			script = "return get(root, path)"
@@ -289,8 +389,7 @@ public interface Path extends Any {
 	}
 
 	/**
-	 * Sets a value to a path.  If any sub-property in the path is <code>undefined</code>,
-	 * this method will no-op.
+	 * Sets a value to a path.  If any sub-property in the path is <code>undefined</code>, this method will no-op.
 	 * <p>
 	 *
 	 * @param root  Object from which to dereference path from
@@ -308,6 +407,15 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Set string.
+	 *
+	 * @param root  the root
+	 * @param path  the path
+	 * @param value the value
+	 *
+	 * @return the string
+	 */
 	@Nullable
 	@JSBody(
 			params = {"root", "path", "value"},
@@ -317,6 +425,15 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Set string.
+	 *
+	 * @param root  the root
+	 * @param path  the path
+	 * @param value the value
+	 *
+	 * @return the string
+	 */
 	@Nullable
 	@JSBody(
 			params = {"root", "path", "value"},
@@ -326,6 +443,15 @@ public interface Path extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * Set string.
+	 *
+	 * @param root  the root
+	 * @param path  the path
+	 * @param value the value
+	 *
+	 * @return the string
+	 */
 	@Nullable
 	@JSBody(
 			params = {"root", "path", "value"},

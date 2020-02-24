@@ -7,9 +7,20 @@ import js.lang.Any;
  */
 @Deprecated
 public interface Debouncer extends Any {
+	/**
+	 * Is active boolean.
+	 *
+	 * @return the boolean
+	 */
 	boolean isActive();
 
+	/**
+	 * Cancel.
+	 */
 	void cancel();
 
+	/**
+	 * Flush.
+	 */
 	void flush();
 }

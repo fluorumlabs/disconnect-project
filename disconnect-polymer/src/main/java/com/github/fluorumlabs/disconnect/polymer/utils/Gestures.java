@@ -11,6 +11,9 @@ import js.web.dom.EventListener;
 import js.web.dom.EventTarget;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Gestures.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -24,14 +27,12 @@ public interface Gestures extends Any {
 	/**
 	 * Finds the element rendered on the screen at the provided coordinates.
 	 * <p>
-	 * Similar to <code>document.elementFromPoint</code>, but pierces through
-	 * shadow roots.
+	 * Similar to <code>document.elementFromPoint</code>, but pierces through shadow roots.
 	 *
 	 * @param x Horizontal pixel coordinate
 	 * @param y Vertical pixel coordinate
 	 *
-	 * @return Returns the deepest shadowRoot inclusive element
-	 * 		found at the screen position given.
+	 * @return Returns the deepest shadowRoot inclusive element found at the screen position given.
 	 */
 	@JSBody(
 			params = {"x", "y"},
@@ -44,6 +45,7 @@ public interface Gestures extends Any {
 	/**
 	 * Adds an event listener to a node for the given gesture type.
 	 *
+	 * @param <E>     the type parameter
 	 * @param node    Node to add listener on
 	 * @param evType  Gesture type: <code>down</code>, <code>up</code>, <code>track</code>, or <code>tap</code>
 	 * @param handler Event listener function to call
@@ -63,8 +65,7 @@ public interface Gestures extends Any {
 	 *
 	 * @param node    Node to remove listener from
 	 * @param evType  Gesture type: <code>down</code>, <code>up</code>, <code>track</code>, or <code>tap</code>
-	 * @param handler Event listener function previously passed to
-	 *                <code>addListener</code>.
+	 * @param handler Event listener function previously passed to                <code>addListener</code>.
 	 *
 	 * @return Returns true if a gesture event listener was removed.
 	 */
@@ -77,8 +78,7 @@ public interface Gestures extends Any {
 	}
 
 	/**
-	 * Registers a new gesture event recognizer for adding new custom
-	 * gesture event types.
+	 * Registers a new gesture event recognizer for adding new custom gesture event types.
 	 *
 	 * @param recog Gesture recognizer descriptor
 	 */
@@ -90,8 +90,7 @@ public interface Gestures extends Any {
 	/**
 	 * Sets scrolling direction on node.
 	 * <p>
-	 * This value is checked on first move, thus it should be called prior to
-	 * adding event listeners.
+	 * This value is checked on first move, thus it should be called prior to adding event listeners.
 	 *
 	 * @param node  Node to set touch action setting on
 	 * @param value Touch action value
@@ -117,9 +116,9 @@ public interface Gestures extends Any {
 	/**
 	 * Reset the 2500ms timeout on processing mouse input after detecting touch input.
 	 * <p>
-	 * Touch inputs create synthesized mouse inputs anywhere from 0 to 2000ms after the touch.
-	 * This method should only be called during testing with simulated touch inputs.
-	 * Calling this method in production may cause duplicate taps or other Gestures.
+	 * Touch inputs create synthesized mouse inputs anywhere from 0 to 2000ms after the touch. This method should only
+	 * be called during testing with simulated touch inputs. Calling this method in production may cause duplicate taps
+	 * or other Gestures.
 	 */
 	@JSBody(
 			script = "resetMouseCanceller()"

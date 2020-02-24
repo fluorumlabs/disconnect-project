@@ -6,6 +6,9 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.web.dom.Node;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Polymer dom.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION

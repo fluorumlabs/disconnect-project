@@ -31,11 +31,9 @@ import java.util.function.Predicate;
  * Represents a predicate (boolean-valued function) of two arguments.  This is
  * the two-arity specialization of {@link Predicate}.
  *
- * <p>This is a <a href="package-summary.html">functional interface</a>
- * whose functional method is {@link #test(Object, Object)}.
- *
  * @param <T> the type of the first argument to the predicate
  * @param <U> the type of the second argument the predicate
+ * @param <V> the type parameter
  *
  * @see Predicate
  * @since 1.8
@@ -48,8 +46,9 @@ public interface TriPredicate<T, U, V> {
      *
      * @param t the first input argument
      * @param u the second input argument
-     * @return {@code true} if the input arguments match the predicate,
-     * otherwise {@code false}
+     * @param v the v
+     *
+     * @return {@code true} if the input arguments match the predicate, otherwise {@code false}
      */
     boolean test(T t, U u, V v);
 
@@ -63,10 +62,11 @@ public interface TriPredicate<T, U, V> {
      * to the caller; if evaluation of this predicate throws an exception, the
      * {@code other} predicate will not be evaluated.
      *
-     * @param other a predicate that will be logically-ANDed with this
-     *              predicate
-     * @return a composed predicate that represents the short-circuiting logical
-     * AND of this predicate and the {@code other} predicate
+     * @param other a predicate that will be logically-ANDed with this              predicate
+     *
+     * @return a composed predicate that represents the short-circuiting logical AND of this predicate and the {@code
+     * 		other} predicate
+     *
      * @throws NullPointerException if other is null
      */
     default TriPredicate<T, U, V> and(TriPredicate<? super T, ? super U, ? super V> other) {
@@ -78,8 +78,7 @@ public interface TriPredicate<T, U, V> {
      * Returns a predicate that represents the logical negation of this
      * predicate.
      *
-     * @return a predicate that represents the logical negation of this
-     * predicate
+     * @return a predicate that represents the logical negation of this predicate
      */
     default TriPredicate<T, U, V> negate() {
         return (T t, U u, V v) -> !test(t, u, v);
@@ -95,10 +94,11 @@ public interface TriPredicate<T, U, V> {
      * to the caller; if evaluation of this predicate throws an exception, the
      * {@code other} predicate will not be evaluated.
      *
-     * @param other a predicate that will be logically-ORed with this
-     *              predicate
-     * @return a composed predicate that represents the short-circuiting logical
-     * OR of this predicate and the {@code other} predicate
+     * @param other a predicate that will be logically-ORed with this              predicate
+     *
+     * @return a composed predicate that represents the short-circuiting logical OR of this predicate and the {@code
+     * 		other} predicate
+     *
      * @throws NullPointerException if other is null
      */
     default TriPredicate<T, U, V> or(TriPredicate<? super T, ? super U, ? super V> other) {

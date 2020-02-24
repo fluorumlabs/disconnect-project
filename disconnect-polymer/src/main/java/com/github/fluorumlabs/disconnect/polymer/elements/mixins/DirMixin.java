@@ -1,15 +1,15 @@
 package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 
 /**
- * Element class mixin that allows elements to use the <code>:dir</code> CSS Selector to
- * have text direction specific styling.
+ * Element class mixin that allows elements to use the <code>:dir</code> CSS Selector to have text direction specific
+ * styling.
  * <p>
  * With this mixin, any stylesheet provided in the template will transform
  * <code>:dir</code> into <code>:host([dir])</code> and sync direction with the page via the
  * element's <code>dir</code> attribute.
  * <p>
- * Elements can opt out of the global page text direction by setting the <code>dir</code>
- * attribute directly in <code>ready()</code> or in HTML.
+ * Elements can opt out of the global page text direction by setting the <code>dir</code> attribute directly in
+ * <code>ready()</code> or in HTML.
  * <p>
  * Caveats:
  *

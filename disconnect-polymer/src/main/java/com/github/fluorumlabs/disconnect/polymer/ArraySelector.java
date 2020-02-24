@@ -7,19 +7,18 @@ import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import js.lang.Any;
 
 /**
- * Element implementing the <code>ArraySelector</code> mixin, which records
- * dynamic associations between item paths in a master <code>items</code> array and a
+ * Element implementing the <code>ArraySelector</code> mixin, which records dynamic associations between item paths in a
+ * master <code>items</code> array and a
  * <code>selected</code> array such that path changes to the master array (at the host)
- * element or elsewhere via data-binding) are correctly propagated to items
- * in the selected array and vice-versa.
+ * element or elsewhere via data-binding) are correctly propagated to items in the selected array and vice-versa.
  * <p>
  * The <code>items</code> property accepts an array of user data, and via the
  * <code>select(item)</code> and <code>deselect(item)</code> API, updates the <code>selected</code> property
- * which may be bound to other parts of the application, and any changes to
- * sub-fields of <code>selected</code> item(s) will be kept in sync with items in the
+ * which may be bound to other parts of the application, and any changes to sub-fields of <code>selected</code> item(s)
+ * will be kept in sync with items in the
  * <code>items</code> array.  When <code>multi</code> is false, <code>selected</code> is a property
- * representing the last selected item.  When <code>multi</code> is true, <code>selected</code>
- * is an array of multiply selected items.
+ * representing the last selected item.  When <code>multi</code> is true, <code>selected</code> is an array of multiply
+ * selected items.
  * <p>
  * Example:
  *
@@ -71,11 +70,16 @@ import js.lang.Any;
  *   }
  * }
  * </code></pre>
+ *
+ * @param <ITEM> the type parameter
  */
 @WebComponent
 public class ArraySelector<ITEM extends Any>
 		extends AbstractComponent<ArraySelectorElement<ITEM>>
 		implements HasArraySelectorMixin<ITEM, ArraySelectorElement<ITEM>, ArraySelector<ITEM>> {
+	/**
+	 * Instantiates a new Array selector.
+	 */
 	public ArraySelector() {
 		super(ArraySelectorElement.TAGNAME());
 	}

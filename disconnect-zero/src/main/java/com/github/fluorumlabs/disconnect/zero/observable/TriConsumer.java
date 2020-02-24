@@ -33,11 +33,9 @@ import java.util.function.Consumer;
  * Unlike most other functional interfaces, {@code BiConsumer} is expected
  * to operate via side-effects.
  *
- * <p>This is a <a href="package-summary.html">functional interface</a>
- * whose functional method is {@link #accept(Object, Object)}.
- *
  * @param <T> the type of the first argument to the operation
  * @param <U> the type of the second argument to the operation
+ * @param <V> the type parameter
  *
  * @see Consumer
  * @since 1.8
@@ -50,6 +48,7 @@ public interface TriConsumer<T, U, V> {
      *
      * @param t the first input argument
      * @param u the second input argument
+     * @param v the v
      */
     void accept(T t, U u, V v);
 
@@ -61,8 +60,10 @@ public interface TriConsumer<T, U, V> {
      * the {@code after} operation will not be performed.
      *
      * @param after the operation to perform after this operation
-     * @return a composed {@code BiConsumer} that performs in sequence this
-     * operation followed by the {@code after} operation
+     *
+     * @return a composed {@code BiConsumer} that performs in sequence this operation followed by the {@code after}
+     * 		operation
+     *
      * @throws NullPointerException if {@code after} is null
      */
     default TriConsumer<T, U, V> andThen(TriConsumer<? super T, ? super U, ? super V> after) {

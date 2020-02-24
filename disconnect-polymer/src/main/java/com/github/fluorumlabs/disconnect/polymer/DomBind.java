@@ -13,14 +13,12 @@ import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.dom.Event;
 
 /**
- * Custom element to allow using Polymer's template features (data binding,
- * declarative event listeners, etc.) in the main document without defining
- * a new custom element.
+ * Custom element to allow using Polymer's template features (data binding, declarative event listeners, etc.) in the
+ * main document without defining a new custom element.
  *
  * <code>&lt;template&gt;</code> tags utilizing bindings may be wrapped with the <code>&lt;dom-bind&gt;</code>
- * element, which will immediately stamp the wrapped template into the main
- * document and bind elements to the <code>dom-bind</code> element itself as the
- * binding scope.
+ * element, which will immediately stamp the wrapped template into the main document and bind elements to the
+ * <code>dom-bind</code> element itself as the binding scope.
  */
 @WebComponent
 public class DomBind
@@ -29,10 +27,18 @@ public class DomBind
 		HasOptionalMutableData<DomBindElement, DomBind>,
 		HasGestureEventListeners<DomBindElement, DomBind>,
 		HasComponent<DomBindElement, DomBind, Template> {
+	/**
+	 * Instantiates a new Dom bind.
+	 */
 	public DomBind() {
 		super(DomBindElement.TAGNAME());
 	}
 
+	/**
+	 * Instantiates a new Dom bind.
+	 *
+	 * @param components the components
+	 */
 	public DomBind(Component<?>... components) {
 		this();
 		Template template = new Template();
@@ -41,17 +47,18 @@ public class DomBind
 	}
 
 	/**
-	 * Forces the element to render its content. This is typically only
-	 * necessary to call if HTMLImports with the async attribute are used.
+	 * Forces the element to render its content. This is typically only necessary to call if HTMLImports with the async
+	 * attribute are used.
 	 */
 	public void render() {
 		getNode().render();
 	}
 
 	/**
-	 * Fired whenever DOM is added or removed/hidden by this template (by
-	 * default, rendering occurs lazily).  To force immediate rendering, call
-	 * `render`.
+	 * Fired whenever DOM is added or removed/hidden by this template (by default, rendering occurs lazily).  To force
+	 * immediate rendering, call `render`.
+	 *
+	 * @return the observable event
 	 */
 	public ObservableEvent<Event> domChangeEvent() {
 		return createEvent("dom-change");

@@ -14,22 +14,20 @@ import javax.annotation.Nullable;
 
 /**
  * <code>iron-list</code> displays a virtual, 'infinite' list. The template inside
- * the iron-list element represents the DOM to create for each list item.
- * The <code>items</code> property specifies an array of list item data.
+ * the iron-list element represents the DOM to create for each list item. The <code>items</code> property specifies an
+ * array of list item data.
  * <p>
- * For performance reasons, not every item in the list is rendered at once;
- * instead a small subset of actual template elements <em>(enough to fill the
- * viewport)</em> are rendered and reused as the user scrolls. As such, it is important
- * that all state of the list template is bound to the model driving it, since the
- * view may be reused with a new model at any time. Particularly, any state that
- * may change as the result of a user interaction with the list item must be bound
- * to the model to avoid view state inconsistency.
+ * For performance reasons, not every item in the list is rendered at once; instead a small subset of actual template
+ * elements <em>(enough to fill the viewport)</em> are rendered and reused as the user scrolls. As such, it is important
+ * that all state of the list template is bound to the model driving it, since the view may be reused with a new model
+ * at any time. Particularly, any state that may change as the result of a user interaction with the list item must be
+ * bound to the model to avoid view state inconsistency.
  *
  * <h3>Sizing iron-list</h3>
  * <code>iron-list</code> must either be explicitly sized, or delegate scrolling to an
- * explicitly sized parent. By &quot;explicitly sized&quot;, we mean it either has an
- * explicit CSS <code>height</code> property set via a class or inline style, or else is sized
- * by other layout means (e.g. the <code>flex</code> or <code>fit</code> classes).
+ * explicitly sized parent. By &quot;explicitly sized&quot;, we mean it either has an explicit CSS <code>height</code>
+ * property set via a class or inline style, or else is sized by other layout means (e.g. the <code>flex</code> or
+ * <code>fit</code> classes).
  *
  * <h4>Flexbox - <a href="https://jsbin.com/vejoni/edit?html,output">jsbin</a></h4>
  * <pre><code class="language-html">&lt;template is=&quot;x-list&quot;&gt;
@@ -113,8 +111,7 @@ import javax.annotation.Nullable;
  * &lt;/body&gt;
  * </code></pre>
  * <code>iron-list</code> must be given a <code>&lt;template&gt;</code> which contains exactly one element. In
- * the examples above we used a <code>&lt;div&gt;</code>, but you can provide any element (including
- * custom elements).
+ * the examples above we used a <code>&lt;div&gt;</code>, but you can provide any element (including custom elements).
  *
  * <h3>Template model</h3>
  * List item templates should bind to template models of the following structure:
@@ -126,21 +123,20 @@ import javax.annotation.Nullable;
  *   item: {}         // user data corresponding to items[index]
  * }
  * </code></pre>
- * Alternatively, you can change the property name used as data index by changing
- * the <code>indexAs</code> property. The <code>as</code> property defines the name of the variable to
- * add to the binding scope for the array.
+ * Alternatively, you can change the property name used as data index by changing the <code>indexAs</code> property. The
+ * <code>as</code> property defines the name of the variable to add to the binding scope for the array.
  * <p>
  * For example, given the following <code>data</code> array:
  *
- * <h5>data.json</h5>
+ * <h4>data.json</h4>
  * <pre><code class="language-js">[
  *   {&quot;name&quot;: &quot;Bob&quot;},
  *   {&quot;name&quot;: &quot;Tim&quot;},
  *   {&quot;name&quot;: &quot;Mike&quot;}
  * ]
  * </code></pre>
- * The following code would render the list (note the name property is bound from
- * the model object provided to the template scope):
+ * The following code would render the list (note the name property is bound from the model object provided to the
+ * template scope):
  *
  * <pre><code class="language-html">&lt;iron-ajax url=&quot;data.json&quot; last-response=&quot;{{data}}&quot;
  * auto&gt;&lt;/iron-ajax&gt;
@@ -154,15 +150,14 @@ import javax.annotation.Nullable;
  * </code></pre>
  * <h3>Grid layout</h3>
  * <code>iron-list</code> supports a grid layout in addition to linear layout by setting
- * the <code>grid</code> attribute.  In this case, the list template item must have both fixed
- * width and height (e.g. via CSS). Based on this, the number of items
- * per row are determined automatically based on the size of the list viewport.
+ * the <code>grid</code> attribute.  In this case, the list template item must have both fixed width and height (e.g.
+ * via CSS). Based on this, the number of items per row are determined automatically based on the size of the list
+ * viewport.
  *
  * <h3>Accessibility</h3>
  * <code>iron-list</code> automatically manages the focus state for the items. It also
- * provides a <code>tabIndex</code> property within the template scope that can be used for
- * keyboard navigation. For example, users can press the up and down keys to move
- * to previous and next items in the list:
+ * provides a <code>tabIndex</code> property within the template scope that can be used for keyboard navigation. For
+ * example, users can press the up and down keys to move to previous and next items in the list:
  *
  * <pre><code class="language-html">&lt;iron-list items=&quot;[[data]]&quot; as=&quot;item&quot;&gt;
  *   &lt;template&gt;
@@ -173,8 +168,7 @@ import javax.annotation.Nullable;
  * &lt;/iron-list&gt;
  * </code></pre>
  * <h3>Styling</h3>
- * You can use the <code>--iron-list-items-container</code> mixin to style the container of
- * items:
+ * You can use the <code>--iron-list-items-container</code> mixin to style the container of items:
  *
  * <pre><code class="language-css">iron-list {
  *  --iron-list-items-container: {
@@ -196,27 +190,33 @@ import javax.annotation.Nullable;
  * </code></pre>
  * <h3>When should <code>&lt;iron-list&gt;</code> be used?</h3>
  * <code>iron-list</code> should be used when a page has significantly more DOM nodes than the
- * ones visible on the screen. e.g. the page has 500 nodes, but only 20 are visible
- * at a time. This is why we refer to it as a <code>virtual</code> list. In this case, a
+ * ones visible on the screen. e.g. the page has 500 nodes, but only 20 are visible at a time. This is why we refer to
+ * it as a <code>virtual</code> list. In this case, a
  * <code>dom-repeat</code> will still create 500 nodes which could slow down the web app, but
  * <code>iron-list</code> will only create 20.
  * <p>
- * However, having an <code>iron-list</code> does not mean that you can load all the data at
- * once. Say you have a million records in the database, you want to split the data
- * into pages so you can bring in a page at the time. The page could contain 500
- * items, and iron-list will only render 20.
+ * However, having an <code>iron-list</code> does not mean that you can load all the data at once. Say you have a
+ * million records in the database, you want to split the data into pages so you can bring in a page at the time. The
+ * page could contain 500 items, and iron-list will only render 20.
+ *
+ * @param <ITEM> the type parameter
  */
 @WebComponent
 public class IronList<ITEM extends Any>
 		extends AbstractComponent<IronListElement<ITEM>>
 		implements HasComponent<IronListElement<ITEM>, IronList<ITEM>, Template> {
+	/**
+	 * Instantiates a new Iron list.
+	 */
 	public IronList() {
 		super(IronListElement.TAGNAME());
 	}
 
 	/**
-	 * An array containing items determining how many instances of the template
-	 * to stamp and that that each template instance should bind to.
+	 * An array containing items determining how many instances of the template to stamp and that that each template
+	 * instance should bind to.
+	 *
+	 * @return the array
 	 */
 	@Nullable
 	public Array<ITEM> items() {
@@ -224,22 +224,35 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * An array containing items determining how many instances of the template
-	 * to stamp and that that each template instance should bind to.
+	 * An array containing items determining how many instances of the template to stamp and that that each template
+	 * instance should bind to.
+	 *
+	 * @param items the items
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> items(ITEM... items) {
 		getNode().setItems(items);
 		return this;
 	}
 
+	/**
+	 * Items iron list.
+	 *
+	 * @param items the items
+	 *
+	 * @return the iron list
+	 */
 	public IronList<ITEM> items(Array<ITEM> items) {
 		getNode().setItems(items);
 		return this;
 	}
 
 	/**
-	 * The name of the variable to add to the binding scope for the array
-	 * element associated with a given template instance.
+	 * The name of the variable to add to the binding scope for the array element associated with a given template
+	 * instance.
+	 *
+	 * @return the string
 	 */
 	@Nullable
 	public String as() {
@@ -247,8 +260,12 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * The name of the variable to add to the binding scope for the array
-	 * element associated with a given template instance.
+	 * The name of the variable to add to the binding scope for the array element associated with a given template
+	 * instance.
+	 *
+	 * @param as the as
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> as(String as) {
 		getNode().setAs(as);
@@ -256,8 +273,9 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * The name of the variable to add to the binding scope with the index
-	 * for the row.
+	 * The name of the variable to add to the binding scope with the index for the row.
+	 *
+	 * @return the string
 	 */
 	@Nullable
 	public String indexAs() {
@@ -265,8 +283,11 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * The name of the variable to add to the binding scope with the index
-	 * for the row.
+	 * The name of the variable to add to the binding scope with the index for the row.
+	 *
+	 * @param indexAs the index as
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> indexAs(String indexAs) {
 		getNode().setIndexAs(indexAs);
@@ -274,8 +295,9 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * The name of the variable to add to the binding scope to indicate
-	 * if the row is selected.
+	 * The name of the variable to add to the binding scope to indicate if the row is selected.
+	 *
+	 * @return the string
 	 */
 	@Nullable
 	public String selectedAs() {
@@ -283,8 +305,11 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * The name of the variable to add to the binding scope to indicate
-	 * if the row is selected.
+	 * The name of the variable to add to the binding scope to indicate if the row is selected.
+	 *
+	 * @param selectedAs the selected as
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> selectedAs(String selectedAs) {
 		getNode().setSelectedAs(selectedAs);
@@ -292,8 +317,7 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * When true, the list is rendered as a grid. Grid items must have
-	 * fixed width and height set via CSS. e.g.
+	 * When true, the list is rendered as a grid. Grid items must have fixed width and height set via CSS. e.g.
 	 *
 	 * <pre><code class="language-html">&lt;iron-list grid&gt;
 	 *   &lt;template&gt;
@@ -301,14 +325,15 @@ public class IronList<ITEM extends Any>
 	 *   &lt;/template&gt;
 	 * &lt;/iron-list&gt;
 	 * </code></pre>
+	 *
+	 * @return the boolean
 	 */
 	public boolean grid() {
 		return getNode().isGrid();
 	}
 
 	/**
-	 * When true, the list is rendered as a grid. Grid items must have
-	 * fixed width and height set via CSS. e.g.
+	 * When true, the list is rendered as a grid. Grid items must have fixed width and height set via CSS. e.g.
 	 *
 	 * <pre><code class="language-html">&lt;iron-list grid&gt;
 	 *   &lt;template&gt;
@@ -316,6 +341,10 @@ public class IronList<ITEM extends Any>
 	 *   &lt;/template&gt;
 	 * &lt;/iron-list&gt;
 	 * </code></pre>
+	 *
+	 * @param grid the grid
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> grid(boolean grid) {
 		getNode().setGrid(grid);
@@ -323,22 +352,28 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * When true, tapping a row will select the item, placing its data model
-	 * in the set of selected items retrievable via the selection property.
+	 * When true, tapping a row will select the item, placing its data model in the set of selected items retrievable
+	 * via the selection property.
 	 * <p>
-	 * Note that tapping focusable elements within the list item will not
-	 * result in selection, since they are presumed to have their * own action.
+	 * Note that tapping focusable elements within the list item will not result in selection, since they are presumed
+	 * to have their * own action.
+	 *
+	 * @return the boolean
 	 */
 	public boolean selectionEnabled() {
 		return getNode().isSelectionEnabled();
 	}
 
 	/**
-	 * When true, tapping a row will select the item, placing its data model
-	 * in the set of selected items retrievable via the selection property.
+	 * When true, tapping a row will select the item, placing its data model in the set of selected items retrievable
+	 * via the selection property.
 	 * <p>
-	 * Note that tapping focusable elements within the list item will not
-	 * result in selection, since they are presumed to have their * own action.
+	 * Note that tapping focusable elements within the list item will not result in selection, since they are presumed
+	 * to have their * own action.
+	 *
+	 * @param selectionEnabled the selection enabled
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> selectionEnabled(boolean selectionEnabled) {
 		getNode().setSelectionEnabled(selectionEnabled);
@@ -348,6 +383,8 @@ public class IronList<ITEM extends Any>
 	/**
 	 * When <code>multiSelection</code> is false, this is the currently selected item, or
 	 * <code>null</code> if no item is selected.
+	 *
+	 * @return the item
 	 */
 	@Nullable
 	public ITEM selectedItem() {
@@ -357,6 +394,10 @@ public class IronList<ITEM extends Any>
 	/**
 	 * When <code>multiSelection</code> is false, this is the currently selected item, or
 	 * <code>null</code> if no item is selected.
+	 *
+	 * @param selectedItem the selected item
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> selectedItem(ITEM selectedItem) {
 		getNode().setSelectedItem(selectedItem);
@@ -364,8 +405,9 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * When <code>multiSelection</code> is true, this is an array that contains the
-	 * selected items.
+	 * When <code>multiSelection</code> is true, this is an array that contains the selected items.
+	 *
+	 * @return the array
 	 */
 	@Nullable
 	public Array<ITEM> selectedItems() {
@@ -373,14 +415,24 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * When <code>multiSelection</code> is true, this is an array that contains the
-	 * selected items.
+	 * When <code>multiSelection</code> is true, this is an array that contains the selected items.
+	 *
+	 * @param selectedItems the selected items
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> selectedItems(ITEM... selectedItems) {
 		getNode().setSelectedItems(selectedItems);
 		return this;
 	}
 
+	/**
+	 * Selected items iron list.
+	 *
+	 * @param selectedItems the selected items
+	 *
+	 * @return the iron list
+	 */
 	public IronList<ITEM> selectedItems(Array<ITEM> selectedItems) {
 		getNode().setSelectedItems(selectedItems);
 		return this;
@@ -390,6 +442,8 @@ public class IronList<ITEM extends Any>
 	 * When <code>true</code>, multiple items may be selected at once (in this case,
 	 * <code>selected</code> is an array of currently selected items).  When <code>false</code>,
 	 * only one item may be selected at a time.
+	 *
+	 * @return the boolean
 	 */
 	public boolean multiSelection() {
 		return getNode().isMultiSelection();
@@ -399,6 +453,10 @@ public class IronList<ITEM extends Any>
 	 * When <code>true</code>, multiple items may be selected at once (in this case,
 	 * <code>selected</code> is an array of currently selected items).  When <code>false</code>,
 	 * only one item may be selected at a time.
+	 *
+	 * @param multiSelection the multi selection
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> multiSelection(boolean multiSelection) {
 		getNode().setMultiSelection(multiSelection);
@@ -406,28 +464,34 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * The offset top from the scrolling element to the iron-list element.
-	 * This value can be computed using the position returned by
+	 * The offset top from the scrolling element to the iron-list element. This value can be computed using the
+	 * position
+	 * returned by
 	 * <code>getBoundingClientRect()</code> although it's preferred to use a constant value
 	 * when possible.
 	 * <p>
-	 * This property is useful when an external scrolling element is used and
-	 * there's some offset between the scrolling element and the list. For
-	 * example: a header is placed above the list.
+	 * This property is useful when an external scrolling element is used and there's some offset between the scrolling
+	 * element and the list. For example: a header is placed above the list.
+	 *
+	 * @return the double
 	 */
 	public double scrollOffset() {
 		return getNode().getScrollOffset();
 	}
 
 	/**
-	 * The offset top from the scrolling element to the iron-list element.
-	 * This value can be computed using the position returned by
+	 * The offset top from the scrolling element to the iron-list element. This value can be computed using the
+	 * position
+	 * returned by
 	 * <code>getBoundingClientRect()</code> although it's preferred to use a constant value
 	 * when possible.
 	 * <p>
-	 * This property is useful when an external scrolling element is used and
-	 * there's some offset between the scrolling element and the list. For
-	 * example: a header is placed above the list.
+	 * This property is useful when an external scrolling element is used and there's some offset between the scrolling
+	 * element and the list. For example: a header is placed above the list.
+	 *
+	 * @param scrollOffset the scroll offset
+	 *
+	 * @return the iron list
 	 */
 	public IronList<ITEM> scrollOffset(double scrollOffset) {
 		getNode().setScrollOffset(scrollOffset);
@@ -436,30 +500,31 @@ public class IronList<ITEM extends Any>
 
 	/**
 	 * Gets the index of the first visible item in the viewport.
+	 *
+	 * @return the int
 	 */
 	public int firstVisibleIndex() {
 		return getNode().getFirstVisibleIndex();
 	}
 
 	/**
-	 * FIXME type ?
-	 * Gets the index of the last visible item in the viewport.
+	 * FIXME type ? Gets the index of the last visible item in the viewport.
+	 *
+	 * @return the int
 	 */
 	public int lastVisibleIndex() {
 		return getNode().getLastVisibleIndex();
 	}
 
 	/**
-	 * Invoke this method if you dynamically update the viewport's
-	 * size or CSS padding.
+	 * Invoke this method if you dynamically update the viewport's size or CSS padding.
 	 */
 	public void updateViewportBoundaries() {
 		getNode().updateViewportBoundaries();
 	}
 
 	/**
-	 * Scroll to a specific item in the virtual list regardless
-	 * of the physical items in the DOM tree.
+	 * Scroll to a specific item in the virtual list regardless of the physical items in the DOM tree.
 	 *
 	 * @param item The item to be scrolled to
 	 */
@@ -468,8 +533,7 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * Scroll to a specific index in the virtual list regardless
-	 * of the physical items in the DOM tree.
+	 * Scroll to a specific index in the virtual list regardless of the physical items in the DOM tree.
 	 *
 	 * @param idx The index of the item
 	 */
@@ -514,8 +578,7 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * Selects or deselects a given item depending on whether the item
-	 * has already been selected.
+	 * Selects or deselects a given item depending on whether the item has already been selected.
 	 *
 	 * @param item The item object.
 	 */
@@ -524,8 +587,8 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
-	 * Selects or deselects the item at the given index in the items array
-	 * depending on whether the item has already been selected.
+	 * Selects or deselects the item at the given index in the items array depending on whether the item has already
+	 * been selected.
 	 *
 	 * @param index The index of the item in the items array.
 	 */
@@ -559,7 +622,9 @@ public class IronList<ITEM extends Any>
 	}
 
 	/**
+	 * Focus item.
 	 *
+	 * @param idx the idx
 	 */
 	public void focusItem(int idx) {
 		getNode().focusItem(idx);
@@ -567,6 +632,8 @@ public class IronList<ITEM extends Any>
 
 	/**
 	 * Fired when the <code>selectedItem</code> property changes.
+	 *
+	 * @return the observable event
 	 */
 	public ObservableEvent<PropertyChangeEvent<ITEM>> selectedItemChangedEvent() {
 		return createEvent("selected-item-changed");
@@ -574,6 +641,8 @@ public class IronList<ITEM extends Any>
 
 	/**
 	 * Fired when the <code>selectedItems</code> property changes.
+	 *
+	 * @return the observable event
 	 */
 	public ObservableEvent<PropertyChangeEvent<ITEM>> selectedItemsChangedEvent() {
 		return createEvent("selected-items-changed");

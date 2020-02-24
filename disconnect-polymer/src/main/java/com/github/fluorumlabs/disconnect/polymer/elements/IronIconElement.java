@@ -9,8 +9,7 @@ import org.teavm.jso.JSProperty;
 import javax.annotation.Nullable;
 
 /**
- * The <code>iron-icon</code> element displays an icon. By default an icon renders as a 24px
- * square.
+ * The <code>iron-icon</code> element displays an icon. By default an icon renders as a 24px square.
  * <p>
  * Example using src:
  *
@@ -27,8 +26,8 @@ import javax.annotation.Nullable;
  *   }
  * &lt;/style&gt;
  * </code></pre>
- * The iron elements include several sets of icons. To use the default set of
- * icons, import <code>iron-icons.js</code> and use the <code>icon</code> attribute to specify an icon:
+ * The iron elements include several sets of icons. To use the default set of icons, import <code>iron-icons.js</code>
+ * and use the <code>icon</code> attribute to specify an icon:
  *
  * <pre><code>&lt;script type=&quot;module&quot;&gt;
  *   import &quot;@polymer/iron-icons/iron-icons.js&quot;;
@@ -58,10 +57,11 @@ import javax.annotation.Nullable;
  * <p>
  * See the <code>iron-icons</code> demo to see the icons available in the various iconsets.
  *
- * <h3>Styling</h3>
+ * <h1>Styling</h1>
  * The following custom properties are available for styling:
  *
  * <table>
+ *     <caption>custom properties are available for styling</caption>
  * <thead>
  * <tr><th>Custom property</th><th>Description</th><th>Default</th></tr>
  * </thead>
@@ -84,6 +84,11 @@ import javax.annotation.Nullable;
 		module = "@polymer/iron-icon/iron-icon.js"
 )
 public interface IronIconElement extends HTMLElement {
+	/**
+	 * Tagname string.
+	 *
+	 * @return the string
+	 */
 	static String TAGNAME() {
 		return "iron-icon";
 	}
@@ -91,6 +96,8 @@ public interface IronIconElement extends HTMLElement {
 	/**
 	 * The name of the icon to use. The name should be of the form:
 	 * <code>iconset_name:icon_name</code>.
+	 *
+	 * @return the icon
 	 */
 	@Nullable
 	@JSProperty
@@ -99,38 +106,44 @@ public interface IronIconElement extends HTMLElement {
 	/**
 	 * The name of the icon to use. The name should be of the form:
 	 * <code>iconset_name:icon_name</code>.
+	 *
+	 * @param icon the icon
 	 */
 	@JSProperty
 	void setIcon(String icon);
 
 	/**
-	 * The name of the theme to used, if one is specified by the
-	 * iconset.
+	 * The name of the theme to used, if one is specified by the iconset.
+	 *
+	 * @return the theme
 	 */
 	@Nullable
 	@JSProperty
 	String getTheme();
 
 	/**
-	 * The name of the theme to used, if one is specified by the
-	 * iconset.
+	 * The name of the theme to used, if one is specified by the iconset.
+	 *
+	 * @param theme the theme
 	 */
 	@JSProperty
 	void setTheme(String theme);
 
 	/**
-	 * If using iron-icon without an iconset, you can set the src to be
-	 * the URL of an individual icon image file. Note that this will take
-	 * precedence over a given icon attribute.
+	 * If using iron-icon without an iconset, you can set the src to be the URL of an individual icon image file. Note
+	 * that this will take precedence over a given icon attribute.
+	 *
+	 * @return the src
 	 */
 	@Nullable
 	@JSProperty
 	String getSrc();
 
 	/**
-	 * If using iron-icon without an iconset, you can set the src to be
-	 * the URL of an individual icon image file. Note that this will take
-	 * precedence over a given icon attribute.
+	 * If using iron-icon without an iconset, you can set the src to be the URL of an individual icon image file. Note
+	 * that this will take precedence over a given icon attribute.
+	 *
+	 * @param src the src
 	 */
 	@JSProperty
 	void setSrc(String src);

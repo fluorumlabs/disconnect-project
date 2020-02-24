@@ -7,6 +7,9 @@ import js.lang.Any;
 import js.util.function.JsRunnable;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Micro task.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -35,6 +38,9 @@ public interface MicroTask extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * The type Handle.
+	 */
 	abstract class Handle extends js.extras.Handle {
 	}
 }

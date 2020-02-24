@@ -10,10 +10,11 @@ import org.teavm.jso.JSProperty;
  * <code>iron-overlay-backdrop</code> is a backdrop used by <code>Polymer.IronOverlayBehavior</code>. It
  * should be a singleton.
  *
- * <h3>Styling</h3>
+ * <h1>Styling</h1>
  * The following custom properties and mixins are available for styling.
  *
  * <table>
+ *     <caption>The following custom properties and mixins are available for styling.</caption>
  * <thead>
  * <tr><th>Custom property</th><th>Description</th><th>Default</th></tr>
  * </thead>
@@ -38,18 +39,27 @@ import org.teavm.jso.JSProperty;
 		module = "@polymer/iron-overlay-behavior/iron-overlay-backdrop.js"
 )
 public interface IronOverlayBackdropElement extends HTMLElement {
+	/**
+	 * Tagname string.
+	 *
+	 * @return the string
+	 */
 	static String TAGNAME() {
 		return "iron-overlay-backdrop";
 	}
 
 	/**
 	 * Returns true if the backdrop is opened.
+	 *
+	 * @return the boolean
 	 */
 	@JSProperty
 	boolean isOpened();
 
 	/**
 	 * Returns true if the backdrop is opened.
+	 *
+	 * @param opened the opened
 	 */
 	@JSProperty
 	void setOpened(boolean opened);

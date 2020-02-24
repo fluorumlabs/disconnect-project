@@ -7,6 +7,9 @@ import js.lang.Any;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Iron scroll manager.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -17,11 +20,13 @@ import org.teavm.jso.JSBody;
 )
 public interface IronScrollManager extends Any {
 	/**
-	 * Returns true if the provided element is &quot;scroll locked&quot;, which is to
-	 * say that it cannot be scrolled via pointer or keyboard interactions.
+	 * Returns true if the provided element is &quot;scroll locked&quot;, which is to say that it cannot be scrolled
+	 * via
+	 * pointer or keyboard interactions.
 	 *
-	 * @param element An HTML element instance which may or may
-	 *                not be scroll locked.
+	 * @param element An HTML element instance which may or may not be scroll locked.
+	 *
+	 * @return the boolean
 	 */
 	@JSBody(params = "element", script = "return elementIsScrollLocked(element)")
 	static boolean elementIsScrollLocked(HTMLElement element) {
@@ -29,12 +34,10 @@ public interface IronScrollManager extends Any {
 	}
 
 	/**
-	 * Push an element onto the current scroll lock stack. The most recently
-	 * pushed element and its children will be considered scrollable. All
-	 * other elements will not be scrollable.
+	 * Push an element onto the current scroll lock stack. The most recently pushed element and its children will be
+	 * considered scrollable. All other elements will not be scrollable.
 	 * <p>
-	 * Scroll locking is implemented as a stack so that cases such as
-	 * dropdowns within dropdowns are handled well.
+	 * Scroll locking is implemented as a stack so that cases such as dropdowns within dropdowns are handled well.
 	 *
 	 * @param element The element that should lock scroll.
 	 */
@@ -44,13 +47,11 @@ public interface IronScrollManager extends Any {
 	}
 
 	/**
-	 * Remove an element from the scroll lock stack. The element being
-	 * removed does not need to be the most recently pushed element. However,
-	 * the scroll lock constraints only change when the most recently pushed
-	 * element is removed.
+	 * Remove an element from the scroll lock stack. The element being removed does not need to be the most recently
+	 * pushed element. However, the scroll lock constraints only change when the most recently pushed element is
+	 * removed.
 	 *
-	 * @param element The element to remove from the scroll
-	 *                lock stack.
+	 * @param element The element to remove from the scroll lock stack.
 	 */
 	@JSBody(params = "element", script = "removeScrollLock(element)")
 	static void removeScrollLock(HTMLElement element) {

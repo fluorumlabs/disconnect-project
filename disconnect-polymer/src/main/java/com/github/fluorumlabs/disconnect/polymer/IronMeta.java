@@ -10,14 +10,12 @@ import js.util.collections.Array;
 
 /**
  * <code>iron-meta</code> is a generic element you can use for sharing information across the
- * DOM tree. It uses <a href="http://c2.com/cgi/wiki?MonostatePattern">monostate pattern</a>
- * such that any instance of iron-meta has access to the shared information. You
- * can use <code>iron-meta</code> to share whatever you want (or create an extension [like
- * x-meta] for enhancements).
+ * DOM tree. It uses <a href="http://c2.com/cgi/wiki?MonostatePattern">monostate pattern</a> such that any instance of
+ * iron-meta has access to the shared information. You can use <code>iron-meta</code> to share whatever you want (or
+ * create an extension [like x-meta] for enhancements).
  * <p>
- * The <code>iron-meta</code> instances containing your actual data can be loaded in an
- * import, or constructed in any way you see fit. The only requirement is that you
- * create them before you try to access them.
+ * The <code>iron-meta</code> instances containing your actual data can be loaded in an import, or constructed in any
+ * way you see fit. The only requirement is that you create them before you try to access them.
  * <p>
  * Examples:
  * <p>
@@ -25,11 +23,10 @@ import js.util.collections.Array;
  *
  * <pre><code>&lt;iron-meta key=&quot;info&quot; value=&quot;foo/bar&quot;&gt;&lt;/iron-meta&gt;
  * </code></pre>
- * Note that value=&quot;foo/bar&quot; is the metadata I've defined. I could define more
- * attributes or use child nodes to define additional metadata.
+ * Note that value=&quot;foo/bar&quot; is the metadata I've defined. I could define more attributes or use child nodes
+ * to define additional metadata.
  * <p>
- * Now I can access that element (and it's metadata) from any iron-meta instance
- * via the byKey method, e.g.
+ * Now I can access that element (and it's metadata) from any iron-meta instance via the byKey method, e.g.
  *
  * <pre><code>meta.byKey('info');
  * </code></pre>
@@ -43,25 +40,34 @@ import js.util.collections.Array;
  * ...
  * this.$.meta.byKey('info');
  * </code></pre>
+ *
+ * @param <ITEM> the type parameter
  */
 @WebComponent
 public class IronMeta<ITEM extends Any>
 		extends AbstractComponent<IronMetaElement<ITEM>> {
+	/**
+	 * Instantiates a new Iron meta.
+	 */
 	public IronMeta() {
 		super(IronMetaElement.TAGNAME());
 	}
 
 	/**
-	 * The type of meta-data.  All meta-data of the same type is stored
-	 * together.
+	 * The type of meta-data.  All meta-data of the same type is stored together.
+	 *
+	 * @return the string
 	 */
 	public String type() {
 		return getNode().getType();
 	}
 
 	/**
-	 * The type of meta-data.  All meta-data of the same type is stored
-	 * together.
+	 * The type of meta-data.  All meta-data of the same type is stored together.
+	 *
+	 * @param type the type
+	 *
+	 * @return the iron meta
 	 */
 	public IronMeta<ITEM> type(String type) {
 		getNode().setType(type);
@@ -70,6 +76,8 @@ public class IronMeta<ITEM extends Any>
 
 	/**
 	 * The key used to store <code>value</code> under the <code>type</code> namespace.
+	 *
+	 * @return the string
 	 */
 	public String key() {
 		return getNode().getKey();
@@ -77,6 +85,10 @@ public class IronMeta<ITEM extends Any>
 
 	/**
 	 * The key used to store <code>value</code> under the <code>type</code> namespace.
+	 *
+	 * @param key the key
+	 *
+	 * @return the iron meta
 	 */
 	public IronMeta<ITEM> key(String key) {
 		getNode().setKey(key);
@@ -85,6 +97,8 @@ public class IronMeta<ITEM extends Any>
 
 	/**
 	 * The meta-data to store or retrieve.
+	 *
+	 * @return the item
 	 */
 	public ITEM value() {
 		return getNode().getValue();
@@ -92,6 +106,10 @@ public class IronMeta<ITEM extends Any>
 
 	/**
 	 * The meta-data to store or retrieve.
+	 *
+	 * @param value the value
+	 *
+	 * @return the iron meta
 	 */
 	public IronMeta<ITEM> value(ITEM value) {
 		getNode().setValue(value);
@@ -100,6 +118,8 @@ public class IronMeta<ITEM extends Any>
 
 	/**
 	 * If true, <code>value</code> is set to the iron-meta instance itself.
+	 *
+	 * @return the boolean
 	 */
 	public boolean self() {
 		return getNode().isSelf();
@@ -107,6 +127,10 @@ public class IronMeta<ITEM extends Any>
 
 	/**
 	 * If true, <code>value</code> is set to the iron-meta instance itself.
+	 *
+	 * @param self the self
+	 *
+	 * @return the iron meta
 	 */
 	public IronMeta<ITEM> self(boolean self) {
 		getNode().setSelf(self);
@@ -114,7 +138,9 @@ public class IronMeta<ITEM extends Any>
 	}
 
 	/**
+	 * List array.
 	 *
+	 * @return the array
 	 */
 	public Array<ITEM> list() {
 		return getNode().getList();
@@ -124,6 +150,8 @@ public class IronMeta<ITEM extends Any>
 	 * Retrieves meta data value by key.
 	 *
 	 * @param key The key of the meta-data to be returned.
+	 *
+	 * @return the item
 	 */
 	public ITEM byKey(String key) {
 		return getNode().byKey(key);
@@ -131,6 +159,8 @@ public class IronMeta<ITEM extends Any>
 
 	/**
 	 * Fired when the <code>value</code> property changes.
+	 *
+	 * @return the observable event
 	 */
 	public ObservableEvent<PropertyChangeEvent<ITEM>> valueChangedEvent() {
 		return createEvent("value-changed");

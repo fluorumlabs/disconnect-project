@@ -4,15 +4,15 @@ import com.github.fluorumlabs.disconnect.polymer.elements.mixins.DirMixin;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 
 /**
- * Element class mixin that allows elements to use the <code>:dir</code> CSS Selector to
- * have text direction specific styling.
+ * Element class mixin that allows elements to use the <code>:dir</code> CSS Selector to have text direction specific
+ * styling.
  * <p>
  * With this mixin, any stylesheet provided in the template will transform
  * <code>:dir</code> into <code>:host([dir])</code> and sync direction with the page via the
  * element's <code>dir</code> attribute.
  * <p>
- * Elements can opt out of the global page text direction by setting the <code>dir</code>
- * attribute directly in <code>ready()</code> or in HTML.
+ * Elements can opt out of the global page text direction by setting the <code>dir</code> attribute directly in
+ * <code>ready()</code> or in HTML.
  * <p>
  * Caveats:
  *
@@ -25,6 +25,9 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * <li>Changing <code>dir</code> at runtime is supported.</li>
  * <li>Opting out of the global direction styling is permanent</li>
  * </ul>
+ *
+ * @param <E> the type parameter
+ * @param <T> the type parameter
  */
 public interface HasDirMixin<E extends DirMixin, T extends Component<E>> extends HasPropertyAccessors<E, T> {
 }

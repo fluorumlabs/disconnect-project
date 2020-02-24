@@ -10,10 +10,11 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
  * <code>iron-overlay-backdrop</code> is a backdrop used by <code>Polymer.IronOverlayBehavior</code>. It
  * should be a singleton.
  *
- * <h3>Styling</h3>
+ * <h1>Styling</h1>
  * The following custom properties and mixins are available for styling.
  *
  * <table>
+ *     <caption>custom properties and mixins are available for styling</caption>
  * <thead>
  * <tr><th>Custom property</th><th>Description</th><th>Default</th></tr>
  * </thead>
@@ -33,12 +34,17 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 public class IronOverlayBackdrop
 		extends AbstractComponent<IronOverlayBackdropElement>
 		implements HasComponents<IronOverlayBackdropElement, IronOverlayBackdrop, Component<?>> {
+	/**
+	 * Instantiates a new Iron overlay backdrop.
+	 */
 	public IronOverlayBackdrop() {
 		super(IronOverlayBackdropElement.TAGNAME());
 	}
 
 	/**
 	 * Returns true if the backdrop is opened.
+	 *
+	 * @return the boolean
 	 */
 	public boolean opened() {
 		return getNode().isOpened();
@@ -46,6 +52,10 @@ public class IronOverlayBackdrop
 
 	/**
 	 * Returns true if the backdrop is opened.
+	 *
+	 * @param opened the opened
+	 *
+	 * @return the iron overlay backdrop
 	 */
 	public IronOverlayBackdrop opened(boolean opened) {
 		getNode().setOpened(opened);

@@ -3,8 +3,8 @@ package com.github.fluorumlabs.disconnect.polymer.elements.mixins;
 import js.web.dom.Element;
 
 /**
- * Element mixin that provides basic template parsing and stamping, including
- * the following template-related features for stamped templates:
+ * Element mixin that provides basic template parsing and stamping, including the following template-related features
+ * for stamped templates:
  *
  * <ul>
  * <li>Declarative event listeners (<code>on-eventname=&quot;listener&quot;</code>)</li>

@@ -8,6 +8,9 @@ import js.lang.Any;
 import js.util.function.JsRunnable;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Time out.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -15,8 +18,7 @@ import org.teavm.jso.JSBody;
 @Import(symbols = "timeOut", module = "@polymer/polymer/lib/utils/async.js")
 public interface TimeOut extends Any {
 	/**
-	 * Returns a sub-module with the async interface providing the provided
-	 * delay.
+	 * Returns a sub-module with the async interface providing the provided delay.
 	 *
 	 * @param delay Time to wait before calling callbacks in ms
 	 *
@@ -44,15 +46,18 @@ public interface TimeOut extends Any {
 	}
 
 	/**
-	 * Cancels a previously enqueued <code>timeOut</code> callback.
+	 * Cancels a previously enqueued {@code timeOut} callback.
 	 *
-	 * @param handle Handle returned from <code>run</code> of callback to cancel
+	 * @param handle Handle returned from {@code run} of callback to cancel
 	 */
 	@JSBody(params = "handle", script = "timeOut.cancel(handle)")
 	static void cancel(Handle handle) {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * The type Handle.
+	 */
 	abstract class Handle extends js.extras.Handle {
 	}
 }

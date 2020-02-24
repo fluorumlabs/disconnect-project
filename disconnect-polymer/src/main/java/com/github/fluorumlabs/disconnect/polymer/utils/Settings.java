@@ -7,6 +7,9 @@ import com.github.fluorumlabs.disconnect.polymer.types.DOMSanitizer;
 import js.lang.Any;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Settings.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -19,8 +22,7 @@ import org.teavm.jso.JSBody;
 )
 public interface Settings extends Any {
 	/**
-	 * Sets the global rootPath property used by <code>ElementMixin</code> and
-	 * available via <code>rootPath</code>.
+	 * Sets the global rootPath property used by <code>ElementMixin</code> and available via <code>rootPath</code>.
 	 *
 	 * @param path The new root path
 	 */
@@ -30,8 +32,7 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets the global
-	 * sanitizeDOMValue available via this module's exported
+	 * Sets the global sanitizeDOMValue available via this module's exported
 	 * <code>sanitizeDOMValue</code> variable.
 	 *
 	 * @param newSanitizeDOMValue the global sanitizeDOMValue callback
@@ -54,8 +55,7 @@ public interface Settings extends Any {
 	/**
 	 * Sets <code>strictTemplatePolicy</code> globally for all elements
 	 *
-	 * @param useStrictPolicy enable or disable strict template policy
-	 *                        globally
+	 * @param useStrictPolicy enable or disable strict template policy globally
 	 */
 	@JSBody(params = "useStrictPolicy", script = "setStrictTemplatePolicy(useStrictPolicy)")
 	static void setStrictTemplatePolicy(boolean useStrictPolicy) {
@@ -65,8 +65,7 @@ public interface Settings extends Any {
 	/**
 	 * Sets <code>lookupTemplateFromDomModule</code> globally for all elements
 	 *
-	 * @param allowDomModule enable or disable template lookup
-	 *                       globally
+	 * @param allowDomModule enable or disable template lookup globally
 	 */
 	@JSBody(params = "allowDomModule", script = "setAllowTemplateFromDomModule(allowDomModule)")
 	static void setAllowTemplateFromDomModule(boolean allowDomModule) {
@@ -74,11 +73,10 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets <code>legacyOptimizations</code> globally for all elements to enable optimizations
-	 * when only legacy based elements are used.
+	 * Sets <code>legacyOptimizations</code> globally for all elements to enable optimizations when only legacy based
+	 * elements are used.
 	 *
-	 * @param useLegacyOptimizations enable or disable legacy optimizations
-	 *                               includes and url rewriting
+	 * @param useLegacyOptimizations enable or disable legacy optimizations includes and url rewriting
 	 */
 	@JSBody(params = "useLegacyOptimizations", script = "setLegacyOptimizations(useLegacyOptimizations)")
 	static void setLegacyOptimizations(boolean useLegacyOptimizations) {
@@ -86,11 +84,9 @@ public interface Settings extends Any {
 	}
 
 	/**
-	 * Sets <code>syncInitialRender</code> globally for all elements to enable synchronous
-	 * initial rendering.
+	 * Sets <code>syncInitialRender</code> globally for all elements to enable synchronous initial rendering.
 	 *
-	 * @param useSyncInitialRender enable or disable synchronous initial
-	 *                             rendering globally.
+	 * @param useSyncInitialRender enable or disable synchronous initial rendering globally.
 	 */
 	@JSBody(params = "useSyncInitialRender", script = "setSyncInitialRender(useSyncInitialRender)")
 	static void setSyncInitialRender(boolean useSyncInitialRender) {
@@ -100,8 +96,7 @@ public interface Settings extends Any {
 	/**
 	 * Sets <code>setCancelSyntheticEvents</code> globally for all elements to cancel synthetic click events.
 	 *
-	 * @param useCancelSyntheticClickEvents enable or disable cancelling synthetic
-	 *                                      events
+	 * @param useCancelSyntheticClickEvents enable or disable cancelling synthetic events
 	 */
 	@JSBody(params = "useCancelSyntheticClickEvents", script = "setCancelSyntheticClickEvents" +
 			"(useCancelSyntheticClickEvents)")

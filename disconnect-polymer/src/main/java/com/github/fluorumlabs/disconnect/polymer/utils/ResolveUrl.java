@@ -6,6 +6,9 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Resolve url.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -18,9 +21,8 @@ public interface ResolveUrl extends Any {
 	/**
 	 * Resolves the given URL against the provided `baseUri'.
 	 * <p>
-	 * Note that this function performs no resolution for URLs that start
-	 * with <code>/</code> (absolute URLs) or <code>#</code> (hash identifiers).  For general purpose
-	 * URL resolution, use <code>window.URL</code>.
+	 * Note that this function performs no resolution for URLs that start with <code>/</code> (absolute URLs) or
+	 * <code>#</code> (hash identifiers).  For general purpose URL resolution, use <code>window.URL</code>.
 	 *
 	 * @param url     Input URL to resolve
 	 * @param baseURI Base URI to resolve the URL against

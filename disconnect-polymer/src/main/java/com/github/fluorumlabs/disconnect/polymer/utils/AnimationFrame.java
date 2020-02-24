@@ -7,6 +7,9 @@ import js.lang.Any;
 import js.util.function.JsDoubleConsumer;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Animation frame.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -15,7 +18,6 @@ import org.teavm.jso.JSBody;
 public interface AnimationFrame extends Any {
 	/**
 	 * Enqueues a function called at `requestAnimationFrame` timing.
-	 * FIXME param fn: function (number): void
 	 *
 	 * @param fn Callback to run
 	 *
@@ -36,6 +38,9 @@ public interface AnimationFrame extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * The type Handle.
+	 */
 	abstract class Handle extends js.extras.Handle {
 	}
 }

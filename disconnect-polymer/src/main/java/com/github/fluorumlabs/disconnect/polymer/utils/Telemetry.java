@@ -6,6 +6,9 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Telemetry.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -15,6 +18,9 @@ import org.teavm.jso.JSBody;
 		module = "@polymer/polymer/lib/utils/telemetry.js"
 )
 public interface Telemetry extends Any {
+	/**
+	 * Increment instance count.
+	 */
 	@JSBody(
 			script = "incrementInstanceCount()"
 	)

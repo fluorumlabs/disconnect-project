@@ -6,6 +6,9 @@ import com.github.fluorumlabs.disconnect.polymer.Polymer;
 import js.lang.Any;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Case map.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -16,12 +19,12 @@ import org.teavm.jso.JSBody;
 )
 public interface CaseMap extends Any {
 	/**
-	 * Converts &quot;dash-case&quot; identifier (e.g. <code>foo-bar-baz</code>) to &quot;camelCase&quot;
-	 * (e.g. <code>fooBarBaz</code>).
+	 * Converts &quot;dash-case&quot; identifier (e.g. <code>foo-bar-baz</code>) to &quot;camelCase&quot; (e.g.
+	 * <code>fooBarBaz</code>).
 	 *
 	 * @param dash Dash-case identifier
 	 *
-	 * @return Camel-case representation of the identifier
+	 * @return Camel -case representation of the identifier
 	 */
 	@JSBody(params = "dash", script = "return dashToCamelCase(dash)")
 	static String dashToCamelCase(String dash) {
@@ -29,12 +32,12 @@ public interface CaseMap extends Any {
 	}
 
 	/**
-	 * Converts &quot;camelCase&quot; identifier (e.g. <code>fooBarBaz</code>) to &quot;dash-case&quot;
-	 * (e.g. <code>foo-bar-baz</code>).
+	 * Converts &quot;camelCase&quot; identifier (e.g. <code>fooBarBaz</code>) to &quot;dash-case&quot; (e.g.
+	 * <code>foo-bar-baz</code>).
 	 *
 	 * @param camel Camel-case identifier
 	 *
-	 * @return Dash-case representation of the identifier
+	 * @return Dash -case representation of the identifier
 	 */
 	@JSBody(params = "camel", script = "return camelToDashCase(camel)")
 	static String camelToDashCase(String camel) {

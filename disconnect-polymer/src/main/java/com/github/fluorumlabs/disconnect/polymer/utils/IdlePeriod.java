@@ -7,6 +7,9 @@ import js.lang.Any;
 import js.util.function.JsRunnable;
 import org.teavm.jso.JSBody;
 
+/**
+ * The interface Idle period.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -14,8 +17,7 @@ import org.teavm.jso.JSBody;
 @Import(symbols = "idlePeriod", module = "@polymer/polymer/lib/utils/async.js")
 public interface IdlePeriod extends Any {
 	/**
-	 * Enqueues a function called at <code>requestIdleCallback</code>
-	 * timing.
+	 * Enqueues a function called at <code>requestIdleCallback</code> timing.
 	 *
 	 * @param fn Callback to run
 	 *
@@ -36,6 +38,9 @@ public interface IdlePeriod extends Any {
 		throw new UnsupportedOperationException("Available only in JavaScript");
 	}
 
+	/**
+	 * The type Handle.
+	 */
 	abstract class Handle extends js.extras.Handle {
 	}
 }

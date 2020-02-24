@@ -4,8 +4,8 @@ import com.github.fluorumlabs.disconnect.polymer.elements.mixins.TemplateStamp;
 import com.github.fluorumlabs.disconnect.zero.component.Component;
 
 /**
- * Element mixin that provides basic template parsing and stamping, including
- * the following template-related features for stamped templates:
+ * Element mixin that provides basic template parsing and stamping, including the following template-related features
+ * for stamped templates:
  *
  * <ul>
  * <li>Declarative event listeners (<code>on-eventname=&quot;listener&quot;</code>)</li>
@@ -13,6 +13,9 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * <li>Nested template content caching/removal and re-installation (performance
  * optimization)</li>
  * </ul>
+ *
+ * @param <E> the type parameter
+ * @param <T> the type parameter
  */
 public interface HasTemplateStamp<E extends TemplateStamp, T extends Component<E>> extends Component<E> {
 }

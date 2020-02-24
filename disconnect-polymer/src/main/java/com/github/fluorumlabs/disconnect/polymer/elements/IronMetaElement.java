@@ -10,14 +10,12 @@ import org.teavm.jso.JSProperty;
 
 /**
  * <code>iron-meta</code> is a generic element you can use for sharing information across the
- * DOM tree. It uses <a href="http://c2.com/cgi/wiki?MonostatePattern">monostate pattern</a>
- * such that any instance of iron-meta has access to the shared information. You
- * can use <code>iron-meta</code> to share whatever you want (or create an extension [like
- * x-meta] for enhancements).
+ * DOM tree. It uses <a href="http://c2.com/cgi/wiki?MonostatePattern">monostate pattern</a> such that any instance of
+ * iron-meta has access to the shared information. You can use <code>iron-meta</code> to share whatever you want (or
+ * create an extension [like x-meta] for enhancements).
  * <p>
- * The <code>iron-meta</code> instances containing your actual data can be loaded in an
- * import, or constructed in any way you see fit. The only requirement is that you
- * create them before you try to access them.
+ * The <code>iron-meta</code> instances containing your actual data can be loaded in an import, or constructed in any
+ * way you see fit. The only requirement is that you create them before you try to access them.
  * <p>
  * Examples:
  * <p>
@@ -25,11 +23,10 @@ import org.teavm.jso.JSProperty;
  *
  * <pre><code>&lt;iron-meta key=&quot;info&quot; value=&quot;foo/bar&quot;&gt;&lt;/iron-meta&gt;
  * </code></pre>
- * Note that value=&quot;foo/bar&quot; is the metadata I've defined. I could define more
- * attributes or use child nodes to define additional metadata.
+ * Note that value=&quot;foo/bar&quot; is the metadata I've defined. I could define more attributes or use child nodes
+ * to define additional metadata.
  * <p>
- * Now I can access that element (and it's metadata) from any iron-meta instance
- * via the byKey method, e.g.
+ * Now I can access that element (and it's metadata) from any iron-meta instance via the byKey method, e.g.
  *
  * <pre><code>meta.byKey('info');
  * </code></pre>
@@ -43,6 +40,8 @@ import org.teavm.jso.JSProperty;
  * ...
  * this.$.meta.byKey('info');
  * </code></pre>
+ *
+ * @param <ITEM> the type parameter
  */
 @NpmPackage(
 		name = "@polymer/polymer",
@@ -53,62 +52,83 @@ import org.teavm.jso.JSProperty;
 		module = "@polymer/iron-meta/iron-meta.js"
 )
 public interface IronMetaElement<ITEM extends Any> extends HTMLElement {
+	/**
+	 * Tagname string.
+	 *
+	 * @return the string
+	 */
 	static String TAGNAME() {
 		return "iron-meta";
 	}
 
 	/**
-	 * The type of meta-data.  All meta-data of the same type is stored
-	 * together.
+	 * The type of meta-data.  All meta-data of the same type is stored together.
+	 *
+	 * @return the type
 	 */
 	@JSProperty
 	String getType();
 
 	/**
-	 * The type of meta-data.  All meta-data of the same type is stored
-	 * together.
+	 * The type of meta-data.  All meta-data of the same type is stored together.
+	 *
+	 * @param type the type
 	 */
 	@JSProperty
 	void setType(String type);
 
 	/**
 	 * The key used to store <code>value</code> under the <code>type</code> namespace.
+	 *
+	 * @return the key
 	 */
 	@JSProperty
 	String getKey();
 
 	/**
 	 * The key used to store <code>value</code> under the <code>type</code> namespace.
+	 *
+	 * @param key the key
 	 */
 	@JSProperty
 	void setKey(String key);
 
 	/**
 	 * The meta-data to store or retrieve.
+	 *
+	 * @return the value
 	 */
 	@JSProperty
 	ITEM getValue();
 
 	/**
 	 * The meta-data to store or retrieve.
+	 *
+	 * @param value the value
 	 */
 	@JSProperty
 	void setValue(ITEM value);
 
 	/**
 	 * If true, <code>value</code> is set to the iron-meta instance itself.
+	 *
+	 * @return the boolean
 	 */
 	@JSProperty
 	boolean isSelf();
 
 	/**
 	 * If true, <code>value</code> is set to the iron-meta instance itself.
+	 *
+	 * @param self the self
 	 */
 	@JSProperty
 	void setSelf(boolean self);
 
 	/**
+	 * Gets list.
 	 *
+	 * @return the list
 	 */
 	@JSProperty
 	Array<ITEM> getList();
@@ -117,6 +137,8 @@ public interface IronMetaElement<ITEM extends Any> extends HTMLElement {
 	 * Retrieves meta data value by key.
 	 *
 	 * @param key The key of the meta-data to be returned.
+	 *
+	 * @return the item
 	 */
 	ITEM byKey(String key);
 }

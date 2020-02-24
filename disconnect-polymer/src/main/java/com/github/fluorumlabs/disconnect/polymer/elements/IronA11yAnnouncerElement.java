@@ -8,6 +8,9 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
+/**
+ * The interface Iron a 11 y announcer element.
+ */
 @NpmPackage(
 		name = "@polymer/polymer",
 		version = Polymer.VERSION
@@ -17,23 +20,32 @@ import javax.annotation.Nullable;
 		module = "@polymer/iron-a11y-announcer/iron-a11y-announcer.js"
 )
 public interface IronA11yAnnouncerElement extends HTMLElement {
+	/**
+	 * Tagname string.
+	 *
+	 * @return the string
+	 */
 	static String TAGNAME() {
 		return "iron-a11y-announcer";
 	}
 
 	/**
-	 * The value of mode is used to set the <code>aria-live</code> attribute
-	 * for the element that will be announced. Valid values are: <code>off</code>,
+	 * The value of mode is used to set the <code>aria-live</code> attribute for the element that will be announced.
+	 * Valid values are: <code>off</code>,
 	 * <code>polite</code> and <code>assertive</code>.
+	 *
+	 * @return the mode
 	 */
 	@Nullable
 	@JSProperty
 	String getMode();
 
 	/**
-	 * The value of mode is used to set the <code>aria-live</code> attribute
-	 * for the element that will be announced. Valid values are: <code>off</code>,
+	 * The value of mode is used to set the <code>aria-live</code> attribute for the element that will be announced.
+	 * Valid values are: <code>off</code>,
 	 * <code>polite</code> and <code>assertive</code>.
+	 *
+	 * @param mode the mode
 	 */
 	@JSProperty
 	void setMode(String mode);

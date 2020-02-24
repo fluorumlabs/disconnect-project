@@ -139,7 +139,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 *
 	 * @return the new stream
 	 *
-	 * @apiNote The {@code flatMap()} operation has the effect of applying a one-to-many
+	 *  The {@code flatMap()} operation has the effect of applying a one-to-many
 	 * 		transformation to the elements of the stream, and then flattening the
 	 * 		resulting elements into a new stream.
 	 *
@@ -256,7 +256,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 *
 	 * @return the new stream
 	 *
-	 * @apiNote Preserving stability for {@code distinct()} in parallel pipelines is
+	 *  Preserving stability for {@code distinct()} in parallel pipelines is
 	 * 		relatively expensive (requires that the operation act as a full barrier,
 	 * 		with substantial buffering overhead), and stability is often not needed.
 	 * 		Using an unordered stream source (such as {@link #generate(Supplier)})
@@ -332,7 +332,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 *
 	 * @return the new stream
 	 *
-	 * @apiNote This method exists mainly to support debugging, where you want
+	 *  This method exists mainly to support debugging, where you want
 	 * 		to see the elements as they flow past a certain point in a pipeline:
 	 * 		<pre>{@code
 	 * 		    Stream.of("one", "two", "three", "four")
@@ -360,7 +360,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 * @return the new stream
 	 *
 	 * @throws IllegalArgumentException if {@code maxSize} is negative
-	 * @apiNote While {@code limit()} is generally a cheap operation on sequential
+	 *  While {@code limit()} is generally a cheap operation on sequential
 	 * 		stream pipelines, it can be quite expensive on ordered parallel pipelines,
 	 * 		especially for large values of {@code maxSize}, since {@code limit(n)}
 	 * 		is constrained to return not just any <em>n</em> elements, but the
@@ -392,7 +392,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 * @return the new stream
 	 *
 	 * @throws IllegalArgumentException if {@code n} is negative
-	 * @apiNote While {@code skip()} is generally a cheap operation on sequential
+	 *  While {@code skip()} is generally a cheap operation on sequential
 	 * 		stream pipelines, it can be quite expensive on ordered parallel pipelines,
 	 * 		especially for large values of {@code n}, since {@code skip(n)}
 	 * 		is constrained to skip not just any <em>n</em> elements, but the
@@ -485,7 +485,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 * @throws ArrayStoreException if the runtime type of the array returned
 	 *                             from the array generator is not a supertype of the runtime type of every
 	 *                             element in this stream
-	 * @apiNote The generator function takes an integer, which is the size of the
+	 *  The generator function takes an integer, which is the size of the
 	 * 		desired array, and produces an array of the desired size.  This can be
 	 * 		concisely expressed with an array constructor reference:
 	 * 		<pre>{@code
@@ -531,7 +531,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 *
 	 * @return the result of the reduction
 	 *
-	 * @apiNote Sum, min, max, average, and string concatenation are all special
+	 *  Sum, min, max, average, and string concatenation are all special
 	 * 		cases of reduction. Summing a stream of numbers can be expressed as:
 	 *
 	 * 		<pre>{@code
@@ -637,7 +637,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 *
 	 * @return the result of the reduction
 	 *
-	 * @apiNote Many reductions using this form can be represented more simply
+	 *  Many reductions using this form can be represented more simply
 	 * 		by an explicit combination of {@code map} and {@code reduce} operations.
 	 * 		The {@code accumulator} function acts as a fused mapper and accumulator,
 	 * 		which can sometimes be more efficient than separate mapping and reduction,
@@ -686,7 +686,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 *
 	 * @return the result of the reduction
 	 *
-	 * @apiNote There are many existing classes in the JDK whose signatures are
+	 *  There are many existing classes in the JDK whose signatures are
 	 * 		well-suited for use with method references as arguments to {@code collect()}.
 	 * 		For example, the following will accumulate strings into an {@code ArrayList}:
 	 * 		<pre>{@code
@@ -736,7 +736,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 *
 	 * @return the result of the reduction
 	 *
-	 * @apiNote The following will accumulate strings into an ArrayList:
+	 *  The following will accumulate strings into an ArrayList:
 	 * 		<pre>{@code
 	 * 		    List<String> asList = stringStream.collect(Collectors.toList());
 	 *                }</pre>
@@ -838,7 +838,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 * @return {@code true} if any elements of the stream match the provided
 	 * 		predicate, otherwise {@code false}
 	 *
-	 * @apiNote This method evaluates the <em>existential quantification</em> of the
+	 *  This method evaluates the <em>existential quantification</em> of the
 	 * 		predicate over the elements of the stream (for some x P(x)).
 	 */
 	@Override
@@ -862,7 +862,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 * @return {@code true} if either all elements of the stream match the
 	 * 		provided predicate or the stream is empty, otherwise {@code false}
 	 *
-	 * @apiNote This method evaluates the <em>universal quantification</em> of the
+	 *  This method evaluates the <em>universal quantification</em> of the
 	 * 		predicate over the elements of the stream (for all x P(x)).  If the
 	 * 		stream is empty, the quantification is said to be <em>vacuously
 	 * 		satisfied</em> and is always {@code true} (regardless of P(x)).
@@ -888,7 +888,7 @@ public class DynamicStream<T> implements Stream<T> {
 	 * @return {@code true} if either no elements of the stream match the
 	 * 		provided predicate or the stream is empty, otherwise {@code false}
 	 *
-	 * @apiNote This method evaluates the <em>universal quantification</em> of the
+	 *  This method evaluates the <em>universal quantification</em> of the
 	 * 		negated predicate over the elements of the stream (for all x ~P(x)).  If
 	 * 		the stream is empty, the quantification is said to be vacuously satisfied
 	 * 		and is always {@code true}, regardless of P(x).

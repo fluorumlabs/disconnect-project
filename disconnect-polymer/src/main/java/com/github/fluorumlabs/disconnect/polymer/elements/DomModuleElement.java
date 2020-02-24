@@ -9,13 +9,12 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
- * The <code>dom-module</code> element registers the dom it contains to the name given
- * by the module's id attribute. It provides a unified database of dom
- * accessible via its static <code>import</code> API.
+ * The <code>dom-module</code> element registers the dom it contains to the name given by the module's id attribute. It
+ * provides a unified database of dom accessible via its static <code>import</code> API.
  * <p>
- * A key use case of <code>dom-module</code> is for providing custom element <code>&lt;template&gt;</code>s
- * via HTML imports that are parsed by the native HTML parser, that can be
- * relocated during a bundling pass and still looked up by <code>id</code>.
+ * A key use case of <code>dom-module</code> is for providing custom element <code>&lt;template&gt;</code>s via HTML
+ * imports that are parsed by the native HTML parser, that can be relocated during a bundling pass and still looked up
+ * by <code>id</code>.
  * <p>
  * Example:
  *
@@ -37,19 +36,25 @@ import org.teavm.jso.JSProperty;
 		module = "@polymer/polymer/lib/elements/dom-module.js"
 )
 public interface DomModuleElement extends HTMLElement {
+	/**
+	 * Tagname string.
+	 *
+	 * @return the string
+	 */
 	static String TAGNAME() {
 		return "dom-module";
 	}
 
 	/**
-	 * Retrieves the element specified by the css <code>selector</code> in the module
-	 * registered by <code>id</code>. For example, this.import('foo', 'img');
+	 * Retrieves the element specified by the css <code>selector</code> in the module registered by <code>id</code>.
+	 * For
+	 * example, this.import('foo', 'img');
 	 *
 	 * @param id       The id of the dom-module in which to search.
 	 * @param selector The css selector by which to find the element.
 	 *
-	 * @return Returns the element which matches <code>selector</code> in the
-	 * 		module registered at the specified <code>id</code>.
+	 * @return Returns the element which matches <code>selector</code> in the 		module registered at the specified
+	 * 		<code>id</code>.
 	 */
 	@JSBody(
 			params = {"id", "selector"},
@@ -62,8 +67,7 @@ public interface DomModuleElement extends HTMLElement {
 	/**
 	 * The absolute URL of the original location of this <code>dom-module</code>.
 	 * <p>
-	 * This value will differ from this element's <code>ownerDocument</code> in the
-	 * following ways:
+	 * This value will differ from this element's <code>ownerDocument</code> in the following ways:
 	 *
 	 * <ul>
 	 * <li>Takes into account any <code>assetpath</code> attribute added during bundling
@@ -72,14 +76,15 @@ public interface DomModuleElement extends HTMLElement {
 	 * the path is relative to the import document's location since
 	 * <code>ownerDocument</code> is not currently polyfilled</li>
 	 * </ul>
+	 *
+	 * @return the assetpath
 	 */
 	@JSProperty
 	String getAssetpath();
 
 	/**
-	 * Registers the dom-module at a given id. This method should only be called
-	 * when a dom-module is imperatively created. For
-	 * example, <code>document.createElement('dom-module').register('foo')</code>.
+	 * Registers the dom-module at a given id. This method should only be called when a dom-module is imperatively
+	 * created. For example, <code>document.createElement('dom-module').register('foo')</code>.
 	 *
 	 * @param id The id at which to register the dom-module.
 	 */
