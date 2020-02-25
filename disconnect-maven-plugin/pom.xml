@@ -6,7 +6,7 @@
     <parent>
         <artifactId>disconnect</artifactId>
         <groupId>com.github.fluorumlabs.disconnect</groupId>
-        <version>0.1.0-alpha1</version>
+        <version>0.1.0-alpha2</version>
     </parent>
     <artifactId>disconnect-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
