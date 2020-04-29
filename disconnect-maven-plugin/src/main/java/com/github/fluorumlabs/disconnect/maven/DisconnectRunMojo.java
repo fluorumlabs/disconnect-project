@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.maven;
 
+import com.github.fluorumlabs.disconnect.maven.internals.Globals;
 import com.github.fluorumlabs.disconnect.maven.internals.TkMimeAwareFiles;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.Maven;
@@ -39,7 +40,9 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
     private boolean shutdownServer = false;
 
     public void execute() throws MojoExecutionException {
-        liveMode = true;
+        Globals.setLiveMode(true);
+        Globals.setTestMode(false);
+
         getLog().info("");
 
         try {
@@ -72,7 +75,8 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
                         boolean wasPackageJsonChanged = wasPackageJsonChanged();
                         boolean wasAppBootstrapChanged = wasAppBootstrapChanged();
 
-                        copyResources(new File(getProjectDirectory(), "src/main/resources/frontend"), new File(getOutputDirectory(), "frontend"));
+                        copyResources(new File(getProjectDirectory(), "src/main/resources/frontend"), new File(getOutputDirectory(), Globals.getFrontendBase()));
+                        injectBuildTimestamp(new File(getOutputDirectory(), Globals.getFrontendBase()));
 
                         // 5. Install Node & NPM
                         if (initialCompile) {
@@ -88,10 +92,11 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
                         if (wasPackageJsonChanged || wasBuildConfigChanged || wasAppBootstrapChanged) {
                             printSeparator();
                             runNpm("run rollup");
-                            copyResources(new File(getOutputDirectory(), "frontend/static"), new File(getOutputDirectory(), "classes/static"));
+                            copyResources(new File(getOutputDirectory(), Globals.getFrontendBase()+ "/static"), new File(getOutputDirectory(), "classes/static"));
                         }
 
-                        copyFile(new File(getOutputDirectory(), "frontend/src/classes.js"), new File(getOutputDirectory(), "classes/static/bin"));
+                        copyFile(new File(getOutputDirectory(), Globals.getFrontendBase()+ "/app/classes.js"),
+                                new File(getOutputDirectory(), Globals.getClassesBase()+"/static/bin"));
                     } catch (MojoExecutionException e) {
                         getLog().error("There were compilation errors", e);
                     }
@@ -128,8 +133,8 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
                                         new RsWithBody(Long.toString(lastRebuildTimestamp)),
                                         "Access-Control-Allow-Origin","*");
                             }, "text/plain")),
-                    new FkRegex("[^.]*", new RsHtml(FileUtils.readFileToString(new File(getOutputDirectory(), "classes/static/index.html"), StandardCharsets.UTF_8))),
-                    new FkRegex(".*", new TkMimeAwareFiles(new File(getOutputDirectory(), "classes/static")))
+                    new FkRegex("[^.]*", new RsHtml(FileUtils.readFileToString(new File(getOutputDirectory(), Globals.getClassesBase()+"/static/index.html"), StandardCharsets.UTF_8))),
+                    new FkRegex(".*", new TkMimeAwareFiles(new File(getOutputDirectory(), Globals.getClassesBase()+"/static")))
             ),
                     8000
             ).start(() -> shutdownServer);

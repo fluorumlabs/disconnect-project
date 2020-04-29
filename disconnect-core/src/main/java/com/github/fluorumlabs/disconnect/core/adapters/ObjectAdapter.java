@@ -2,12 +2,9 @@ package com.github.fluorumlabs.disconnect.core.adapters;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.fluorumlabs.disconnect.core.converters.Converter;
-import com.github.fluorumlabs.disconnect.core.converters.ConverterFactory;
-import com.github.fluorumlabs.disconnect.core.converters.ListConverter;
-import com.github.fluorumlabs.disconnect.core.converters.SetConverter;
+import com.github.fluorumlabs.disconnect.core.converters.*;
+import js.lang.Any;
 import js.lang.Unknown;
-import js.util.JS;
 import js.util.collections.Array;
 import org.apache.commons.lang3.StringUtils;
 import org.teavm.metaprogramming.*;
@@ -18,6 +15,7 @@ import java.io.Serializable;
 import java.lang.reflect.*;
 import java.util.*;
 
+import static com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils.optional;
 import static org.teavm.metaprogramming.Metaprogramming.*;
 
 /**
@@ -43,7 +41,7 @@ public class ObjectAdapter implements Adapter {
 		if (converters.containsKey(key)) {
 			Object o = readField(beanClass, instance, key);
 			Converter converter = converters.get(key);
-			return o == null ? null : converter.toJS(o);
+			return optional(o).map(converter::toJS).orElse(null);
 		} else {
 			return Unknown.undefined();
 		}
@@ -52,11 +50,8 @@ public class ObjectAdapter implements Adapter {
 	@Override
 	public boolean set(Object instance, String key, Unknown value) {
 		if (converters.containsKey(key)) {
-			if (JS.isUndefinedOrNull(value)) {
-				writeField(beanClass, instance, key, null);
-			} else {
-				writeField(beanClass, instance, key, converters.get(key).fromJS(value));
-			}
+			writeField(beanClass, instance, key, optional(value)
+					.map(v -> converters.get(key).fromJS(v)).orElse(null));
 			return true;
 		}
 		return false;
@@ -124,7 +119,7 @@ public class ObjectAdapter implements Adapter {
 
 				emit((Action) () -> {
 					adapter.get().converters.put(fieldName,
-							new ListConverter((Class<Serializable>) actualTypeArguments[1]));
+							new StringMapConverter((Class<Serializable>) actualTypeArguments[1]));
 					adapter.get().keys.push(Unknown.of(fieldName));
 				});
 			} else {
@@ -176,7 +171,7 @@ public class ObjectAdapter implements Adapter {
 		}
 
 		Value<Object> finalResult = result;
-		exit(() -> finalResult.get());
+		exit(() -> optional(finalResult.get()).orElse(null));
 	}
 
 	@Meta
@@ -386,6 +381,7 @@ public class ObjectAdapter implements Adapter {
 				return;
 			}
 			if (!v.type.isPrimitive() && !findClass(Serializable.class).isAssignableFrom(v.type)
+					&& !findClass(Any.class).isAssignableFrom(v.type)
 					&& !findClass(Date.class).isAssignableFrom(v.type)
 					&& !findClass(List.class).isAssignableFrom(v.type)
 					&& !findClass(Set.class).isAssignableFrom(v.type)

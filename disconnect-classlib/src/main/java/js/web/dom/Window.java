@@ -24,7 +24,6 @@ import js.web.webspeech.SpeechSynthesis;
 import js.web.webstorage.WindowLocalStorage;
 import js.web.webstorage.WindowSessionStorage;
 import org.teavm.jso.JSBody;
-import org.teavm.jso.JSByRef;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
 
@@ -56,32 +55,32 @@ public interface Window extends EventTarget, AnimationFrameProvider, GlobalEvent
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(script = "return window")
+    @JSBody(script = "return self")
     static Window getWindowInstance() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(script = "return window.console")
+    @JSBody(script = "return self.console")
     static Console getConsoleInstance() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(script = "return window.document")
+    @JSBody(script = "return self.document")
     static Document getDocumentInstance() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(script = "return window.location")
+    @JSBody(script = "return self.location")
     static Location getLocationInstance() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(script = "return window.navigator")
+    @JSBody(script = "return self.navigator")
     static Navigator getNavigatorInstance() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(script = "return window.history")
+    @JSBody(script = "return self.history")
     static History getHistoryInstance() {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

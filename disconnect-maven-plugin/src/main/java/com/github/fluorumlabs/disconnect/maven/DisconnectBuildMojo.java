@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.maven;
 
+import com.github.fluorumlabs.disconnect.maven.internals.Globals;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -17,9 +18,10 @@ import java.io.File;
         requiresDependencyCollection = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class DisconnectBuildMojo extends AbstractDisconnectMojo {
     public void execute() throws MojoExecutionException {
-        if (getMavenSession().getGoals().contains("test") && !liveMode) {
-            liveMode = true;
+        if (getMavenSession().getGoals().contains("test") && !Globals.isLiveMode()) {
+            Globals.setLiveMode(true);
         }
+        Globals.setTestMode(false);
 
         // 1. Build classes.js
         build(isProduction());
@@ -34,7 +36,8 @@ public class DisconnectBuildMojo extends AbstractDisconnectMojo {
         }
 
         // 4. Copy local frontend resources
-        copyResources(new File(getProjectDirectory(), "src/main/resources/frontend"), new File(getOutputDirectory(), "frontend"));
+        copyResources(new File(getProjectDirectory(), "src/main/resources/frontend"), new File(getOutputDirectory(), Globals.getFrontendBase()));
+        injectBuildTimestamp(new File(getOutputDirectory(), Globals.getFrontendBase()));
 
         // 5. Install Node & NPM
         if (initialCompile) {
@@ -48,12 +51,12 @@ public class DisconnectBuildMojo extends AbstractDisconnectMojo {
 
         // 6. rollup
         runNpm("run rollup");
-        if (liveMode) {
-            copyFile(new File(getOutputDirectory(), "frontend/src/classes.js"), new File(getOutputDirectory(), "frontend/static/bin"));
+        if (Globals.isLiveMode()) {
+            copyFile(new File(getOutputDirectory(), Globals.getFrontendBase()+ "/src/classes.js"), new File(getOutputDirectory(), Globals.getFrontendBase()+ "/static/bin"));
         }
 
         // 7. Copy generated frontend
-        copyResources(new File(getOutputDirectory(), "frontend/static"), new File(getOutputDirectory(),"classes/static"));
+        copyResources(new File(getOutputDirectory(), Globals.getFrontendBase()+ "/static"), new File(getOutputDirectory(),Globals.getClassesBase()+"/static"));
 
         // Compute hashes
         wasAppBootstrapChanged();

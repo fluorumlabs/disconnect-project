@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fluorumlabs.disconnect.core.RPC;
 import com.github.fluorumlabs.disconnect.core.annotations.AllowClientCalls;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,9 +24,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static com.github.fluorumlabs.disconnect.core.internals.CamelCaseUtils.toCamelCase;
 
 
 @Controller
@@ -99,14 +98,6 @@ public class RPCHandler {
         try (PrintWriter printWriter = response.getWriter()) {
             objectMapper.writeValue(printWriter, resultHolder);
         }
-    }
-
-    private static final Pattern KEBAB_SPLIT = Pattern.compile("-");
-
-    static String toCamelCase(String kebabCase) {
-        return StringUtils.uncapitalize(Stream.of(KEBAB_SPLIT.split(kebabCase))
-                .map(StringUtils::capitalize)
-                .collect(Collectors.joining()));
     }
 
 }

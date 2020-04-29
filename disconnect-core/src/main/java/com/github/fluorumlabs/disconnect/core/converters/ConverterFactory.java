@@ -1,11 +1,14 @@
 package com.github.fluorumlabs.disconnect.core.converters;
 
+import js.lang.Any;
 import org.teavm.metaprogramming.CompileTime;
 import org.teavm.metaprogramming.Meta;
+import org.teavm.metaprogramming.Metaprogramming;
 import org.teavm.metaprogramming.ReflectClass;
 
 import java.io.Serializable;
 
+import static com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils.optional;
 import static org.teavm.metaprogramming.Metaprogramming.exit;
 
 /**
@@ -14,7 +17,9 @@ import static org.teavm.metaprogramming.Metaprogramming.exit;
 @CompileTime
 public class ConverterFactory {
 	public static Converter converterFor(Class<?> clazz) {
-		if ( clazz == boolean.class ) {
+		if (!optional(clazz).isPresent()) {
+			return converterFor_(Any.class);
+		} else if ( clazz == boolean.class ) {
 			return converterFor_(Boolean.class);
 		} else if (clazz == byte.class) {
 			return converterFor_(Byte.class);
@@ -37,6 +42,10 @@ public class ConverterFactory {
 	private static native Converter converterFor_(Class<?> clazz);
 
 	private static void converterFor_(ReflectClass<?> clazz) {
+		if (Metaprogramming.findClass(Any.class).isAssignableFrom(clazz)) {
+			exit(() -> AnyConverter.INSTANCE);
+			return;
+		}
 		switch (clazz.getName()) {
 			case "java.lang.String":
 				exit(() -> StringConverter.INSTANCE);

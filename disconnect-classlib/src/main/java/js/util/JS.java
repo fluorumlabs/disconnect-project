@@ -140,6 +140,6 @@ public final class JS {
     @JSBody(params = "string", script = "return unescape(string)")
     public static native String unescape(String string);
 
-    @JSBody(script = "return window.Reflect")
+    @JSBody(script = "return self.Reflect")
     public static native Reflect getReflectInstance();
 }

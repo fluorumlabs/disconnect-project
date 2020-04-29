@@ -1,20 +1,15 @@
 import {terser} from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
+import copy from 'rollup-plugin-copy'
 import postcss from 'rollup-plugin-postcss';
 import postcsscopy from 'postcss-copy';
 import postcssimport from 'postcss-import';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import workbox from 'rollup-plugin-workbox-build';
 import inject from '@rollup/plugin-inject';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 import {readFileSync} from 'fs';
 import path from 'path';
-import workboxConfig from './workbox.config.js';
-
-// Read build config
-const buildConfigContent = readFileSync('./build.config.js', {encoding: 'utf8'});
-const buildConfig = JSON.parse(buildConfigContent);
 
 const jarModulesResolver = resolve({
     customResolveOptions: {
@@ -36,7 +31,7 @@ function replaceSettings(mode) {
     }
 };
 
-function postCss() {
+function postCss(compilationUnit) {
     return postcss({
         modules: true,
         use: [
@@ -45,7 +40,7 @@ function postCss() {
             }]
         ],
         minimize: isProductionBuild,
-        extract: 'static/bin/app.css',
+        extract: `static/bin/${compilationUnit}.css`,
         plugins: [
             postcssimport(),
             postcsscopy({
@@ -57,53 +52,43 @@ function postCss() {
     })
 }
 
-const defaultPlugins = [
-    jarModulesResolver,
-    replace(replaceSettings(process.env.NODE_ENV)),
-    inject(buildConfig.injectedSymbols || {}),
-    postCss(),
-    commonjs(commonJsOptions),
-    sourcemaps(),
-];
+function defaultPlugins(compilationUnit, injectedSymbols) {
+    return [
+        jarModulesResolver,
+        replace(replaceSettings(process.env.NODE_ENV)),
+        inject(injectedSymbols || {}),
+        postCss(compilationUnit),
+        commonjs(commonJsOptions),
+        sourcemaps(),
+    ];
+}
 
-const config = [
-    {
+const compilationUnitConfigContent = readFileSync('./build.config.js', {encoding: 'utf8'});
+const compilationUnitConfig = JSON.parse(compilationUnitConfigContent);
+
+const config = [];
+
+compilationUnitConfig.forEach(compilationUnit => {
+// Read build config
+    const buildConfigContent = readFileSync(`./${compilationUnit}/build.config.js`, {encoding: 'utf8'});
+    const buildConfig = JSON.parse(buildConfigContent);
+
+    config.push({
         context: 'window',
-        input: isLiveBuild?'src/app.bootstrap.live.js':'src/app.bootstrap.js',
+        input: (isLiveBuild && compilationUnit === 'app') ? `${compilationUnit}/bootstrap.live.js` : `${compilationUnit}/bootstrap.js`,
         output: {
-            file: 'static/bin/app.js',
+            file: `static/bin/${compilationUnit}.js`,
             format: 'esm',
             sourcemap: true
         },
         plugins: [
-            ...defaultPlugins,
+            ...defaultPlugins(compilationUnit, buildConfig.injectedSymbols),
             isProductionBuild && terser(),
-            buildConfig.enableWorkbox && !isLiveBuild && workbox({
-                mode: 'injectManifest',
-                options: workboxConfig
+            copy({
+                targets: [{ src: `${compilationUnit}/classes.js.teavmdbg`, dest: 'static/bin', rename: `${compilationUnit}.js.teavmdbg` }]
             }),
         ]
-    }
-];
-
-if (buildConfig.enableWorkbox && !isLiveBuild) {
-    config.push({
-        input: 'src/sw.js',
-        output: {
-            file: 'static/sw.js',
-            format: 'esm',
-            sourcemap: true,
-            plugins: [
-                isProductionBuild && terser()
-            ]
-        },
-        plugins: [
-            replace(replaceSettings("development")),
-            jarModulesResolver,
-            commonjs(commonJsOptions),
-        ]
-    });
-
-}
+    })
+});
 
 export default config;

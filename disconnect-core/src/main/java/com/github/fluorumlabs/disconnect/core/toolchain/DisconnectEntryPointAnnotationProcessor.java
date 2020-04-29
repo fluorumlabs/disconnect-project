@@ -1,17 +1,18 @@
 package com.github.fluorumlabs.disconnect.core.toolchain;
 
+import com.github.fluorumlabs.disconnect.core.internals.DisconnectInitializer;
 import com.google.auto.service.AutoService;
-import org.apache.commons.lang3.StringUtils;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeSpec;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic;
-import javax.tools.JavaFileObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Set;
 
 
@@ -37,12 +38,22 @@ public class DisconnectEntryPointAnnotationProcessor extends AbstractProcessor {
                     TypeElement entryPoint = (TypeElement) annotatedElements.toArray()[0];
 
                     if (entryPoint.getInterfaces().stream()
-                            .noneMatch(iface -> Runnable.class.getName().equals(((TypeMirror) iface).toString())
+                            .noneMatch(iface -> Runnable.class.getName().equals(iface.toString())
                             )) {
                         processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Application entry point does not implement Runnable");
                     } else {
-                        String className = entryPoint.getQualifiedName().toString();
-                        writeMain(className);
+                        TypeSpec generatedEntryPoint = TypeSpec.classBuilder("GeneratedEntryPoint")
+                                .addModifiers(Modifier.PUBLIC)
+                                .addMethod(MethodSpec.methodBuilder("main")
+                                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                                        .addParameter(String[].class, "args")
+                                        .addStatement("$T.init()", DisconnectInitializer.class)
+                                        .addStatement("$T entryPoint = new $T()", entryPoint, entryPoint)
+                                        .addStatement("entryPoint.run()")
+                                        .build()).build();
+
+                        JavaFile javaFile = JavaFile.builder("com.github.fluorumlabs.disconnect.client", generatedEntryPoint).build();
+                        javaFile.writeTo(processingEnv.getFiler());
                     }
                 }
             }
@@ -52,27 +63,4 @@ public class DisconnectEntryPointAnnotationProcessor extends AbstractProcessor {
         return true;
     }
 
-    private void writeMain(
-            String className)
-            throws IOException {
-
-        String packageName = "com.github.fluorumlabs.disconnect.client";
-
-        String simpleClassName = "GeneratedEntryPoint";
-
-        JavaFileObject builderFile = processingEnv.getFiler()
-                .createSourceFile(packageName + "." + simpleClassName);
-
-        try (PrintWriter out = new PrintWriter(builderFile.openWriter())) {
-            out.println(StringUtils.replace("package com.github.fluorumlabs.disconnect.client;\n" +
-                    "\n" +
-                    "class GeneratedEntryPoint {\n" +
-                    "    public static void main(String[] args) {\n" +
-                    "        com.github.fluorumlabs.disconnect.core.internals.DisconnectInitializer.init();\n" +
-                    "        CLASS entryPoint = new CLASS();\n" +
-                    "        entryPoint.run();\n" +
-                    "    }\n" +
-                    "}", "CLASS", className));
-        }
-    }
 }

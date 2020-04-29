@@ -9,9 +9,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AllowClientCalls {
-    Method method() default Method.POST;
+    Method method() default Method.DEFAULT;
 
     enum Method {
-        GET, POST
+        GET, POST, DEFAULT /* POST */
     }
 }

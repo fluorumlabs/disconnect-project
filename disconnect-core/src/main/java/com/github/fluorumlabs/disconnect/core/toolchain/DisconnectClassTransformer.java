@@ -1,24 +1,30 @@
 package com.github.fluorumlabs.disconnect.core.toolchain;
 
+import com.github.fluorumlabs.disconnect.core.IPC;
 import com.github.fluorumlabs.disconnect.core.RPC;
 import com.github.fluorumlabs.disconnect.core.annotations.*;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectSymbols;
+import com.github.fluorumlabs.disconnect.core.logging.DisconnectLoggerFactorySubstitution;
+import com.github.fluorumlabs.disconnect.core.logging.DisconnectProductionLoggerFactorySubstitution;
 import js.lang.Unknown;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.LoggerFactory;
 import org.teavm.backend.javascript.TeaVMJavaScriptHost;
 import org.teavm.model.*;
 import org.teavm.model.emit.ProgramEmitter;
 import org.teavm.model.emit.ValueEmitter;
 import org.teavm.model.instructions.*;
+import org.teavm.model.util.ModelUtils;
 import org.teavm.vm.spi.TeaVMHost;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static com.github.fluorumlabs.disconnect.core.internals.CamelCaseUtils.toKebabCase;
 
 
 public class DisconnectClassTransformer implements ClassHolderTransformer {
@@ -38,6 +44,14 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 			rendererListener = new DisconnectTeaVMRendererListener();
 			TeaVMJavaScriptHost extension = host.getExtension(TeaVMJavaScriptHost.class);
 			extension.add(rendererListener);
+		}
+
+		if (cls.getName().equals(LoggerFactory.class.getName())) {
+			if ("production".equals(host.getProperties().getProperty("frontend.build"))) {
+				substitute(cls, DisconnectProductionLoggerFactorySubstitution.class, context.getHierarchy());
+			} else {
+				substitute(cls, DisconnectLoggerFactorySubstitution.class, context.getHierarchy());
+			}
 		}
 
 		cls.getFields().stream()
@@ -66,6 +80,13 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		processNpmImports(cls, context);
 
 		AnnotationHolder serviceAnnotation = cls.getAnnotations().get("org.springframework.stereotype.Service");
+		boolean isIpc = false;
+		if (serviceAnnotation == null && rendererListener.isApplication()) {
+			serviceAnnotation = cls.getAnnotations().get(CompilationUnit.class.getName());
+			if (serviceAnnotation != null) {
+				isIpc = true;
+			}
+		}
 		if (serviceAnnotation != null) {
 			String serviceName;
 			AnnotationValue value = serviceAnnotation.getValue("value");
@@ -84,10 +105,17 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 					.forEach(cls::removeMethod);
 			// 3. Replace body of all remaining methods with call
 			// to RPC helper
-			cls.getMethods().stream().filter(methodHolder -> methodHolder.getAnnotations().get(AllowClientCalls.class.getName()) != null).forEach(methodHolder -> {
-				setupCaching(serviceName, methodHolder, context);
-				methodHolder.setProgram(createRPCDelegator(serviceName, methodHolder, context));
-			});
+			if (isIpc) {
+				cls.getMethods().stream().filter(methodHolder -> methodHolder.getAnnotations().get(AllowClientCalls.class.getName()) != null).forEach(methodHolder -> {
+					//setupCaching(serviceName, methodHolder, context);
+					methodHolder.setProgram(createIPCDelegator(serviceName, methodHolder, context));
+				});
+			} else {
+				cls.getMethods().stream().filter(methodHolder -> methodHolder.getAnnotations().get(AllowClientCalls.class.getName()) != null).forEach(methodHolder -> {
+					//setupCaching(serviceName, methodHolder, context);
+					methodHolder.setProgram(createRPCDelegator(serviceName, methodHolder, context));
+				});
+			}
 
 			// 4. Create default constructor
 			cls.addMethod(createDefaultConstructor());
@@ -101,6 +129,22 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		});
 	}
 
+	private void substitute(ClassHolder cls, Class<?> target, ClassHierarchy hierarchy) {
+		ClassReader subst = hierarchy.getClassSource().get(target.getName());
+		for (FieldHolder field : cls.getFields().toArray(new FieldHolder[0])) {
+			cls.removeField(field);
+		}
+		for (MethodHolder method : cls.getMethods().toArray(new MethodHolder[0])) {
+			cls.removeMethod(method);
+		}
+		for (FieldReader field : subst.getFields()) {
+			cls.addField(ModelUtils.copyField(field));
+		}
+		for (MethodReader method : subst.getMethods()) {
+			cls.addMethod(ModelUtils.copyMethod(method));
+		}
+	}
+
 	private void processNpmImports(ClassHolder cls, ClassHolderTransformerContext context) {
 		AnnotationContainer annotations = cls.getAnnotations();
 
@@ -108,12 +152,6 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 				Optional.ofNullable(annotations.get(WebComponent.class.getName()));
 		webComponentAnnotation.ifPresent(annotationHolder -> {
 			rendererListener.setEnableWebComponents(true);
-		});
-
-		Optional<AnnotationHolder> pwaAnnotation =
-				Optional.ofNullable(annotations.get(PWA.class.getName()));
-		pwaAnnotation.ifPresent(annotationHolder -> {
-			rendererListener.setEnablePWA(true);
 		});
 
 		Stream.concat(
@@ -467,6 +505,41 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		return $.getProgram();
 	}
 
+	private Program createIPCDelegator(String serviceName, MethodHolder method,
+									   ClassHolderTransformerContext context) {
+		ProgramEmitter $ = ProgramEmitter.create(method, context.getHierarchy());
+
+		String argumentClass = method.getOwnerName() + StringUtils.capitalize(method.getName()) +
+				"Arguments";
+		String resultClass = method.getOwnerName() + StringUtils.capitalize(method.getName()) +
+				"Result";
+
+		ValueEmitter arguments = $.construct(argumentClass);
+		ValueEmitter result = $.construct(resultClass);
+
+		for (int i = 0; i < method.parameterCount(); i++) {
+			arguments.setField("arg" + i, $.var(i + 1, method.getParameterTypes()[i]));
+		}
+
+		String endPointName = toKebabCase(serviceName) + ".js?t=" + DisconnectTeaVMRendererListener.BUILD_TIMESTAMP;
+		String methodName = toKebabCase(method.getName());
+
+		ValueEmitter endPointValue = $.constant(endPointName);
+		ValueEmitter methodNameValue = $.constant(methodName);
+
+		if (method.getResultType() == ValueType.VOID) {
+			$.invoke(IPC.class.getName(), "callIgnore",
+					endPointValue, methodNameValue, arguments.cast(Serializable.class));
+			$.exit();
+		} else {
+			$.invoke(IPC.class.getName(), "call",
+					endPointValue, methodNameValue, arguments.cast(Serializable.class), result.cast(Serializable.class));
+			result.getField("result", method.getResultType()).returnValue();
+		}
+
+		return $.getProgram();
+	}
+
 	private Instruction createPutElementInstruction(Variable argumentsUnwrapped, Variable index, Variable variable,
 													ArrayElementType type) {
 		PutElementInstruction instruction = new PutElementInstruction(type);
@@ -538,16 +611,6 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		} else {
 			return module;
 		}
-	}
-
-	private static final Pattern CAMELCASE_CONVERT_STAGE1 = Pattern.compile("([a-z0-9])([A-Z])");
-
-	private static final Pattern CAMELCASE_CONVERT_STAGE2 = Pattern.compile("([A-Z])([A-Z])(?=[a-z])");
-
-	private static String toKebabCase(String camelCase) {
-		String stage1 = CAMELCASE_CONVERT_STAGE1.matcher(camelCase).replaceAll("$1-$2");
-		String stage2 = CAMELCASE_CONVERT_STAGE2.matcher(stage1).replaceAll("$1-$2");
-		return stage2.toLowerCase();
 	}
 
 }

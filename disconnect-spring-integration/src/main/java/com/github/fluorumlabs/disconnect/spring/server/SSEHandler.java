@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Stream;
 
-import static com.github.fluorumlabs.disconnect.spring.server.RPCHandler.toCamelCase;
+import static com.github.fluorumlabs.disconnect.core.internals.CamelCaseUtils.toCamelCase;
 
 
 @Controller

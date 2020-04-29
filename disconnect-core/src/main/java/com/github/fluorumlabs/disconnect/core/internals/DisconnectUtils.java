@@ -4,8 +4,12 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
 import js.lang.Unknown;
+import js.util.JS;
 import org.teavm.jso.JSBody;
 import org.teavm.platform.Platform;
+
+import javax.annotation.Nullable;
+import java.util.Optional;
 
 
 @NpmPackage(name = "compact-base64", version = "latest")
@@ -27,5 +31,21 @@ public abstract class DisconnectUtils implements Any {
 
     public static void ensure(Object x) {
         _ensure(Platform.getPlatformObject(x).cast());
+    }
+
+    public static <T extends Any> Optional<T> optional(@Nullable T x) {
+        if (JS.isUndefinedOrNull(x)) {
+            return Optional.empty();
+        } else {
+            return Optional.of(x);
+        }
+    }
+
+    public static <T> Optional<T> optional(@Nullable T x) {
+        if (x == null || JS.isUndefinedOrNull(Platform.getPlatformObject(x).cast()) ) {
+            return Optional.empty();
+        } else {
+            return Optional.of(x);
+        }
     }
 }

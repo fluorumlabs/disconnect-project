@@ -78,6 +78,10 @@ public abstract class ObjectMirror<T extends Serializable> implements Any {
 	}
 
 	public static <T extends Serializable> ObjectMirror<T> from(T target) {
+		if (!DisconnectUtils.optional(target).isPresent()) {
+			return null;
+		}
+
 		ObjectMirror<T> objectMirror =
 				DisconnectUtils.asJsObject(target).<TargetMirrorReference<T>>cast().getObjectMirror();
 
@@ -108,6 +112,10 @@ public abstract class ObjectMirror<T extends Serializable> implements Any {
 
 	public static <T extends Serializable, L extends Serializable & List<T>> ObjectMirror<L> fromList(Class<T> clazz,
 																						List<T> target) {
+		if (!DisconnectUtils.optional(target).isPresent()) {
+			return null;
+		}
+
 		ObjectMirror<L> objectMirror =
 				DisconnectUtils.asJsObject(target).<TargetMirrorReference<L>>cast().getObjectMirror();
 
@@ -132,6 +140,10 @@ public abstract class ObjectMirror<T extends Serializable> implements Any {
 
 	public static <T extends Serializable, L extends Serializable & Set<T>> ObjectMirror<L> fromSet(Class<T> clazz,
 																									Set<T> target) {
+		if (!DisconnectUtils.optional(target).isPresent()) {
+			return null;
+		}
+
 		ObjectMirror<L> objectMirror =
 				DisconnectUtils.asJsObject(target).<TargetMirrorReference<L>>cast().getObjectMirror();
 
@@ -156,6 +168,10 @@ public abstract class ObjectMirror<T extends Serializable> implements Any {
 
 	public static <T extends Serializable, L extends Serializable & Map<String, T>> ObjectMirror<L> fromStringMap(Class<T> clazz,
 																						Map<String, T> target) {
+		if (!DisconnectUtils.optional(target).isPresent()) {
+			return null;
+		}
+
 		ObjectMirror<L> objectMirror =
 				DisconnectUtils.asJsObject(target).<TargetMirrorReference<L>>cast().getObjectMirror();
 
