@@ -2,8 +2,8 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.CustomFieldMixin;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.CustomFieldI18n;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.util.collections.Array;
 import js.web.dom.Element;
 import js.web.dom.Event;

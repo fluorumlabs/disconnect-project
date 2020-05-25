@@ -5,10 +5,10 @@ import com.github.fluorumlabs.disconnect.vaadin.constants.AxisPosition;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Stacking;
 import com.github.fluorumlabs.disconnect.vaadin.elements.ChartElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.lang.Unknown;
 import js.web.dom.CustomEvent;
 

@@ -6,7 +6,7 @@ import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.lang.Any;
 import js.util.collections.Array;
 

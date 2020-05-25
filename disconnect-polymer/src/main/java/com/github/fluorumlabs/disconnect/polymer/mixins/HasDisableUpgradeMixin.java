@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.DisableUpgradeMixin;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 
 /**
  * Element class mixin that allows the element to boot up in a non-enabled state when the <code>disable-upgrade</code>

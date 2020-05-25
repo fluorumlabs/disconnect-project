@@ -2,7 +2,7 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.RowDetailsMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.RowDetailsRenderer;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import js.lang.Any;
 import js.util.collections.Array;
 

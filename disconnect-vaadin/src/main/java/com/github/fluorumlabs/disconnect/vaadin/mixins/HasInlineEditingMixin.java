@@ -2,8 +2,8 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.InlineEditingMixin;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.lang.Any;
 
 public interface HasInlineEditingMixin<ITEM extends Any, E extends InlineEditingMixin, T extends HasElement<E>>

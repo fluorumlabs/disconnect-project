@@ -8,10 +8,10 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasInteractionsMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ItemSelectedEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.MenuItem;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.util.collections.Array;
 
 /**

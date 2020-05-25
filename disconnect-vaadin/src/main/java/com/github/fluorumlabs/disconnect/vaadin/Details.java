@@ -1,14 +1,14 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.DetailsElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
-import com.github.fluorumlabs.disconnect.zero.component.*;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.extras.JsEnum;
 
 /**

@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.GridColumnElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasColumnBaseMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.CellRenderer;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.lang.Any;

@@ -1,8 +1,8 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.vaadin.elements.FormItemElement;
-import com.github.fluorumlabs.disconnect.zero.component.*;
 
 /**
  * <code>&lt;vaadin-form-item&gt;</code> is a Web Component providing labelled form item wrapper

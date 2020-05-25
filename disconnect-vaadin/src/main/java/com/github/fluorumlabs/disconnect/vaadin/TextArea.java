@@ -1,11 +1,11 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.vaadin.elements.TextAreaElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasTextFieldMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
-import com.github.fluorumlabs.disconnect.zero.component.*;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.web.dom.Event;
 
 /**

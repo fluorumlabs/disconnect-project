@@ -13,6 +13,7 @@ public class DisconnectTeaVMPlugin implements TeaVMPlugin {
     @Override
     public void install(TeaVMHost host) {
         host.add(new DisconnectClassTransformer(host));
+        host.add(new DisconnectZeroClassTransformer(host));
         host.add(new DisconnectJavaObjectExporterDependency());
     }
 }

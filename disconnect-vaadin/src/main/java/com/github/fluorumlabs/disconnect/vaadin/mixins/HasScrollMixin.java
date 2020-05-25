@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ScrollMixin;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 
 public interface HasScrollMixin<E extends ScrollMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**

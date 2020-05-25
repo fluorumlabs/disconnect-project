@@ -2,7 +2,7 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.dataproviders.GridDataProvider;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.DataProviderMixin;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.collections.Array;

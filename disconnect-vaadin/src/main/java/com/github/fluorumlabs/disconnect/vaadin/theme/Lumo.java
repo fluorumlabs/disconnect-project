@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin.theme;
 import com.github.fluorumlabs.disconnect.polymer.elements.CustomStyleElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import js.extras.JsEnum;
 import js.web.dom.HTMLElement;
 

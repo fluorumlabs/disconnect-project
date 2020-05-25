@@ -4,8 +4,8 @@ import com.github.fluorumlabs.disconnect.polymer.types.IntPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Orientation;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ItemMixin;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ListMixin;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.util.collections.Array;
 import js.web.dom.Element;
 

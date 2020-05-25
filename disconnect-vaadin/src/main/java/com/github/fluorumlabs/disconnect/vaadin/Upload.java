@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.constants.UploadMethod;
@@ -10,8 +11,7 @@ import com.github.fluorumlabs.disconnect.vaadin.types.UploadEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadRejectEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadRequestEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadingFile;
-import com.github.fluorumlabs.disconnect.zero.component.*;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.util.StringRecord;
 import js.util.collections.Array;
 

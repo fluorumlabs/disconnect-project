@@ -1,10 +1,10 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.polymer.types.StringPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridFilterElement;
-import com.github.fluorumlabs.disconnect.zero.component.*;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 
 import javax.annotation.Nullable;
 

@@ -1,13 +1,13 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.constants.NotificationPosition;
 import com.github.fluorumlabs.disconnect.vaadin.elements.NotificationElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemePropertyMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.NotificationRenderer;
-import com.github.fluorumlabs.disconnect.zero.component.*;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 
 import javax.annotation.Nullable;
 

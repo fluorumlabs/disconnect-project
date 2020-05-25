@@ -2,7 +2,7 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ItemsMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.MenuItem;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import js.util.collections.Array;
 
 public interface HasItemsMixin<E extends ItemsMixin, T extends HasElement<E>> extends HasElement<E> {

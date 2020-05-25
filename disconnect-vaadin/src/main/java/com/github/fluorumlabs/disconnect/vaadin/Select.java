@@ -8,10 +8,10 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.SelectRenderer;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
-import com.github.fluorumlabs.disconnect.zero.component.html.webcomponent.Template;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableValue;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.html.webcomponent.Template;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
 import js.web.dom.ParentNode;
 
 import javax.annotation.Nullable;

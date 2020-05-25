@@ -182,6 +182,8 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 								"/package.fragment"), "UTF-8"));
 			}
 
+			String corePath = "disconnect-core".equals(artifactId)?"./":"./jar_modules/disconnect-core-jar/frontend/";
+
 			try (PrintWriter printWriter =
 						 new PrintWriter(new FileWriter(new File(outputDirectory, Globals.getFrontendBase() +
 								 "/package.json")))) {
@@ -194,7 +196,7 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 						dependencies.stream().sorted().collect(Collectors.joining(",\n")) + "\n" +
 						"},\n" +
 						"\"scripts\": {\n" +
-						"    \"rollup\": \"rollup -c ./jar_modules/disconnect-core-jar/frontend/template/rollup" +
+						"    \"rollup\": \"rollup -c "+corePath+"template/rollup" +
 						".config.js\"\n" +
 						"}\n" +
 						"}\n");

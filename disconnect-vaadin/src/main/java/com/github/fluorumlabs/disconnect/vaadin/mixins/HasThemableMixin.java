@@ -2,7 +2,7 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import js.lang.JsString;
 import js.util.collections.Array;
 import js.web.dom.Element;

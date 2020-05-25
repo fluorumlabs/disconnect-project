@@ -1,10 +1,10 @@
 package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.*;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
-import com.github.fluorumlabs.disconnect.zero.component.*;
 import js.extras.JsEnum;
 import js.lang.Any;
 

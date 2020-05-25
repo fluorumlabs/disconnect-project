@@ -6,10 +6,10 @@ import com.github.fluorumlabs.disconnect.polymer.mixins.HasGestureEventListeners
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasOptionalMutableData;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasPropertyEffects;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
-import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import js.web.dom.Event;
 
 /**

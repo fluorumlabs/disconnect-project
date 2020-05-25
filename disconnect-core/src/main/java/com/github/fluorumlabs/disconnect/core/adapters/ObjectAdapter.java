@@ -247,7 +247,7 @@ public class ObjectAdapter implements Adapter {
 			Class<?> realClass = null;
 			Field realField = null;
 			try {
-				realClass = Class.forName(clazz.getName());
+				realClass = Class.forName(clazz.getName(), false, getClassLoader());
 				realField = realClass.getField(field.getName());
 			} catch (ClassNotFoundException | NoSuchFieldException ignore) {
 				// ignore
@@ -326,7 +326,7 @@ public class ObjectAdapter implements Adapter {
 				Class<?> realClass = null;
 				Method realMethod = null;
 				try {
-					realClass = Class.forName(clazz.getName());
+					realClass = Class.forName(clazz.getName(), false, getClassLoader());
 					realMethod = realClass.getMethod(method.getName());
 				} catch (ClassNotFoundException | NoSuchMethodException ignore) {
 					// ignore
@@ -354,8 +354,8 @@ public class ObjectAdapter implements Adapter {
 				Class<?> realClass = null;
 				Method realMethod = null;
 				try {
-					realClass = Class.forName(clazz.getName());
-					realMethod = realClass.getMethod(method.getName(), Class.forName(argumentType.getName()));
+					realClass = Class.forName(clazz.getName(), false, getClassLoader());
+					realMethod = realClass.getMethod(method.getName(), Class.forName(argumentType.getName(), false, getClassLoader()));
 				} catch (ClassNotFoundException | NoSuchMethodException ignore) {
 					// ignore
 				}

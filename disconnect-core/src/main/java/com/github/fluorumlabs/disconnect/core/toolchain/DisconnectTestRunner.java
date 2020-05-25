@@ -31,6 +31,7 @@ import org.teavm.debugging.information.DebugInformation;
 import org.teavm.debugging.information.SourceLocation;
 import org.teavm.model.MethodReference;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -52,10 +53,23 @@ import java.util.function.Consumer;
  */
 public class DisconnectTestRunner extends Runner implements Filterable {
 	static {
+		System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
 		WebDriverManager.firefoxdriver().setup();
+
+		if (System.getProperty("keepBrowser")==null) {
+			WebDriver localDriver = new FirefoxDriver();
+			Runtime.getRuntime().addShutdownHook(new Thread(localDriver::quit));
+			staticDriver = localDriver;
+		} else {
+			staticDriver = null;
+		}
+
 	}
 
 	private final Class<?> testClass;
+
+	@Nullable
+	private static final WebDriver staticDriver;
 
 	private final WebDriver driver;
 
@@ -86,8 +100,11 @@ public class DisconnectTestRunner extends Runner implements Filterable {
 		this.testClass = testClass;
 		this.testFileName = StringUtils.replaceChars(testClass.getName(), '.', '_');
 
-		driver = new FirefoxDriver();
-		driver.close();
+		if (staticDriver != null) {
+			driver = staticDriver;
+		} else {
+			driver = new FirefoxDriver();
+		}
 
 		try (InputStream debugInformationSource = getClass().getResourceAsStream("/static/bin/" + testFileName + ".js" +
 				".teavmdbg")) {
@@ -139,10 +156,6 @@ public class DisconnectTestRunner extends Runner implements Filterable {
 				shutdownServer = true;
 
 				throw new TimeoutException("Test execution timed out");
-			}
-
-			if (System.getProperty("keepBrowser")==null) {
-				driver.close();
 			}
 		} catch (Exception e) {
 			notifier.fireTestFailure(new Failure(description, e));

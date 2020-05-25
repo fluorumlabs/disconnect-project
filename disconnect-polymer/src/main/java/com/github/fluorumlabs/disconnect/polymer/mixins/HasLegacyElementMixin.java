@@ -6,7 +6,7 @@ import com.github.fluorumlabs.disconnect.polymer.elements.mixins.LegacyElementMi
 import com.github.fluorumlabs.disconnect.polymer.types.Debouncer;
 import com.github.fluorumlabs.disconnect.polymer.types.LegacyEventInit;
 import com.github.fluorumlabs.disconnect.polymer.utils.TimeOut;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.collections.Array;

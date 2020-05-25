@@ -2,7 +2,7 @@ package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.PropertyEffects;
 import com.github.fluorumlabs.disconnect.polymer.types.SpliceRecord;
-import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.core.components.HasElement;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.Record;
