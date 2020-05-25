@@ -11,11 +11,11 @@
         <module>disconnect-core</module>
         <module>disconnect-classlib</module>
         <module>disconnect-maven-plugin</module>
-        <module>disconnect-spring-integration</module>
+        <!--module>disconnect-spring-integration</module-->
         <module>disconnect-zero</module>
-        <module>disconnect-polymer</module>
+        <!--module>disconnect-polymer</module>
         <module>disconnect-vaadin</module>
-        <module>disconnect-highcharts</module>
+        <module>disconnect-highcharts</module-->
     </modules>
 
     <packaging>pom</packaging>
@@ -55,7 +55,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-        <teavm.version>0.6.1</teavm.version>
+        <teavm.version>0.7.0-dev-1105</teavm.version>
         <auto-service.version>1.0-rc6</auto-service.version>
         <commons-lang3.version>3.8.1</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>

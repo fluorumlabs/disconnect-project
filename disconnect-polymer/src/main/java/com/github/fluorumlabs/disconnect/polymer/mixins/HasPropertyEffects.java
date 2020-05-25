@@ -2,7 +2,7 @@ package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.PropertyEffects;
 import com.github.fluorumlabs.disconnect.polymer.types.SpliceRecord;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.Record;
@@ -38,7 +38,7 @@ import js.util.collections.Array;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasPropertyEffects<E extends PropertyEffects, T extends Component<E>>
+public interface HasPropertyEffects<E extends PropertyEffects, T extends HasElement<E>>
 		extends HasTemplateStamp<E, T>, HasPropertyAccessors<E, T> {
 	/**
 	 * Property effect types string record.

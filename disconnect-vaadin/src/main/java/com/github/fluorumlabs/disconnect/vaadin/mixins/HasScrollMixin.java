@@ -1,9 +1,9 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ScrollMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
-public interface HasScrollMixin<E extends ScrollMixin, T extends Component<E>> extends Component<E> {
+public interface HasScrollMixin<E extends ScrollMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * Scroll to a specific row index in the virtual list. Note that the row index is
 	 * not always the same for any particular item. For example, sorting/filtering/expanding

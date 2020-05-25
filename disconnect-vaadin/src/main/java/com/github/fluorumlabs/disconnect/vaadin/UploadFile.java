@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.UploadFileElement;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadFileEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.UploadingFile;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class UploadFile extends AbstractComponent<UploadFileElement>
-		implements HasStyle<UploadFileElement, UploadFile>, HasComponents<UploadFileElement, UploadFile, Component<?>> {
+		implements HasStyle<UploadFileElement, UploadFile>, HasComponents<UploadFileElement, UploadFile, HasElement<?>> {
 	public UploadFile() {
 		super(UploadFileElement.TAGNAME());
 	}

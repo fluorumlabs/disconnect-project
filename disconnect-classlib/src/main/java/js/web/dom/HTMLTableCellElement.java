@@ -57,7 +57,7 @@ public interface HTMLTableCellElement extends HTMLElement {
      * Retrieves the position of the object in the cells collection of a row.
      */
     @JSProperty
-    double getCellIndex();
+    int getCellIndex();
 
     @Deprecated
     @JSProperty
@@ -77,10 +77,10 @@ public interface HTMLTableCellElement extends HTMLElement {
      * Sets or retrieves the number columns in the table that the object should span.
      */
     @JSProperty
-    double getColSpan();
+    int getColSpan();
 
     @JSProperty
-    void setColSpan(double colSpan);
+    void setColSpan(int colSpan);
 
     /**
      * Sets or retrieves a list of header cells that provide information for the object.
@@ -115,10 +115,10 @@ public interface HTMLTableCellElement extends HTMLElement {
      * Sets or retrieves how many rows in a table the cell should span.
      */
     @JSProperty
-    double getRowSpan();
+    int getRowSpan();
 
     @JSProperty
-    void setRowSpan(double rowSpan);
+    void setRowSpan(int rowSpan);
 
     /**
      * Sets or retrieves the group of cells in a table to which the object's information applies.

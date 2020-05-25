@@ -6,7 +6,7 @@ import com.github.fluorumlabs.disconnect.polymer.elements.TemplateInstanceBase;
 import com.github.fluorumlabs.disconnect.polymer.mixins.HasOptionalMutableData;
 import com.github.fluorumlabs.disconnect.polymer.types.IntPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -125,7 +125,7 @@ public class DomRepeat<ITEM extends Any>
 	 *
 	 * @param components the components
 	 */
-	public DomRepeat(Component<?>... components) {
+	public DomRepeat(HasElement<?>... components) {
 		this();
 		Template template = new Template();
 		template.add(components);

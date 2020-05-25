@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ItemMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * A mixin providing <code>focused</code>, <code>focus-ring</code>, <code>active</code>, <code>disabled</code> and
@@ -9,7 +9,7 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  *
  * <code>focused</code>, <code>active</code> and <code>focus-ring</code> are set as only as attributes.
  */
-public interface HasItemMixin<E extends ItemMixin, T extends Component<E>> extends Component<E> {
+public interface HasItemMixin<E extends ItemMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 *
 	 */

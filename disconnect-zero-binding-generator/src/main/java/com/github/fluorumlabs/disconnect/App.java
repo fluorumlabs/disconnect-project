@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasSlots;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -1551,9 +1551,9 @@ public class App {
 
 		TypeSpec.Builder javaMixin = TypeSpec.interfaceBuilder(shortJavaMixinName)
 				.addTypeVariable(TypeVariableName.get("E", jsMixinClass))
-				.addTypeVariable(TypeVariableName.get("T", ParameterizedTypeName.get(ClassName.get(Component.class),
+				.addTypeVariable(TypeVariableName.get("T", ParameterizedTypeName.get(ClassName.get(HasElement.class),
 						TypeVariableName.get("E"))))
-				.addSuperinterface(ParameterizedTypeName.get(ClassName.get(Component.class), TypeVariableName.get("E"
+				.addSuperinterface(ParameterizedTypeName.get(ClassName.get(HasElement.class), TypeVariableName.get("E"
 				)))
 				.addModifiers(Modifier.PUBLIC);
 
@@ -1625,7 +1625,7 @@ public class App {
 			javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(HasSlots.class), jsMixinClass));
 		} else if (!(javaReturnType instanceof TypeVariableName)) {
 			javaMixin.addSuperinterface(ParameterizedTypeName.get(ClassName.get(HasComponents.class),
-					jsMixinClass, javaReturnType, ParameterizedTypeName.get(ClassName.get(Component.class),
+					jsMixinClass, javaReturnType, ParameterizedTypeName.get(ClassName.get(HasElement.class),
 							WildcardTypeName.subtypeOf(Object.class))
 			));
 		}

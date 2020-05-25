@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridFilterColumnElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.lang.Any;
@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class GridFilterColumn<ITEM extends Any> extends AbstractComponent<GridFilterColumnElement<ITEM>>
-		implements HasStyle<GridFilterColumnElement<ITEM>, GridFilterColumn<ITEM>>, HasComponents<GridFilterColumnElement<ITEM>, GridFilterColumn<ITEM>, Component<?>> {
+		implements HasStyle<GridFilterColumnElement<ITEM>, GridFilterColumn<ITEM>>, HasComponents<GridFilterColumnElement<ITEM>, GridFilterColumn<ITEM>, HasElement<?>> {
 	public GridFilterColumn() {
 		super(GridFilterColumnElement.TAGNAME());
 	}

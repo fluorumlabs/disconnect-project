@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.constants.SortDirection;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridSortColumnElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class GridSortColumn<ITEM extends Any> extends AbstractComponent<GridSortColumnElement<ITEM>>
-		implements HasStyle<GridSortColumnElement<ITEM>, GridSortColumn<ITEM>>, HasComponents<GridSortColumnElement<ITEM>, GridSortColumn<ITEM>, Component<?>> {
+		implements HasStyle<GridSortColumnElement<ITEM>, GridSortColumn<ITEM>>, HasComponents<GridSortColumnElement<ITEM>, GridSortColumn<ITEM>, HasElement<?>> {
 	public GridSortColumn() {
 		super(GridSortColumnElement.TAGNAME());
 	}

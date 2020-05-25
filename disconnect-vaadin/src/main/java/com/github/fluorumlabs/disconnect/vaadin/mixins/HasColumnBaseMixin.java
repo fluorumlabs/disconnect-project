@@ -2,13 +2,13 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ColumnBaseMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.GridHeaderFooterRenderer;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 
 import javax.annotation.Nullable;
 
-public interface HasColumnBaseMixin<ITEM extends Any, E extends ColumnBaseMixin<ITEM>, T extends Component<E>>
-		extends Component<E> {
+public interface HasColumnBaseMixin<ITEM extends Any, E extends ColumnBaseMixin<ITEM>, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * When set to true, the column is user-resizable.
 	 */

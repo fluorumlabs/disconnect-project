@@ -8,7 +8,7 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -91,7 +91,7 @@ import javax.annotation.Untainted;
 public class RichTextEditor extends AbstractComponent<RichTextEditorElement>
 		implements HasElementMixin<RichTextEditorElement, RichTextEditor>,
 		HasThemableMixin<RichTextEditor.Variant, RichTextEditorElement, RichTextEditor>,
-		HasStyle<RichTextEditorElement, RichTextEditor>, HasComponents<RichTextEditorElement, RichTextEditor, Component<?>> {
+		HasStyle<RichTextEditorElement, RichTextEditor>, HasComponents<RichTextEditorElement, RichTextEditor, HasElement<?>> {
 	public RichTextEditor() {
 		super(RichTextEditorElement.TAGNAME());
 	}

@@ -2,12 +2,12 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.JsString;
 import js.util.collections.Array;
 import js.web.dom.Element;
 
-public interface HasThemableMixin<VARIANT extends ThemeVariant, E extends ThemableMixin, T extends Component<E>>
+public interface HasThemableMixin<VARIANT extends ThemeVariant, E extends ThemableMixin, T extends HasElement<E>>
 		extends HasThemePropertyMixin<E, T> {
 	default T theme(VARIANT theme) {
 		return theme(theme, true);

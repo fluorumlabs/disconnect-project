@@ -63,7 +63,7 @@ public class TextArea extends AbstractComponent<TextAreaElement>
 		implements HasTextFieldMixin<TextAreaElement, TextArea>,
 		HasThemableMixin<TextField.Variant, TextAreaElement, TextArea>,
 		HasSlots<TextAreaElement>,
-		HasStyle<TextAreaElement, TextArea>, HasComponents<TextAreaElement, TextArea, Component<?>> {
+		HasStyle<TextAreaElement, TextArea>, HasComponents<TextAreaElement, TextArea, HasElement<?>> {
 	public TextArea() {
 		super(TextAreaElement.TAGNAME());
 	}

@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
 public class ConfirmDialog extends AbstractComponent<ConfirmDialogElement>
 		implements HasElementMixin<ConfirmDialogElement, ConfirmDialog>,
 		HasSlots<ConfirmDialogElement>,
-		HasStyle<ConfirmDialogElement, ConfirmDialog>, HasComponents<ConfirmDialogElement, ConfirmDialog, Component<?>> {
+		HasStyle<ConfirmDialogElement, ConfirmDialog>, HasComponents<ConfirmDialogElement, ConfirmDialog, HasElement<?>> {
 	public ConfirmDialog() {
 		super(ConfirmDialogElement.TAGNAME());
 	}

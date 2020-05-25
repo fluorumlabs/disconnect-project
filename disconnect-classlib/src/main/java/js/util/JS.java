@@ -1,7 +1,9 @@
 package js.util;
 
 import js.lang.Any;
+import js.lang.Unknown;
 import org.teavm.jso.JSBody;
+import org.teavm.jso.JSObject;
 
 public final class JS {
     public static final Reflect Reflect = getReflectInstance();
@@ -16,6 +18,11 @@ public final class JS {
     private JS() {
     }
 
+
+    public static final JSObject undefined = undefined();
+
+    @JSBody(params = "x", script = "return x || null")
+    public static native <T extends Any> T nullify(T x);
 
     @JSBody(params = "x", script = "return x === undefined")
     public static native boolean isUndefined(Any x);
@@ -142,4 +149,7 @@ public final class JS {
 
     @JSBody(script = "return self.Reflect")
     public static native Reflect getReflectInstance();
+
+    @JSBody(script = "return undefined")
+    private static native Unknown undefined();
 }

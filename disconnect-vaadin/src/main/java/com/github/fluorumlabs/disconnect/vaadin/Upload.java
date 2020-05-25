@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 @WebComponent
 public class Upload extends AbstractComponent<UploadElement>
 		implements HasSlots<UploadElement>,
-		HasStyle<UploadElement, Upload>, HasComponents<UploadElement, Upload, Component<?>> {
+		HasStyle<UploadElement, Upload>, HasComponents<UploadElement, Upload, HasElement<?>> {
 	public Upload() {
 		super(UploadElement.TAGNAME());
 	}

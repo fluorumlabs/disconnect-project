@@ -56,7 +56,7 @@ public class Button extends AbstractComponent<ButtonElement>
 		HasThemableMixin<Button.Variant, ButtonElement, Button>,
 		HasGestureEventListeners<ButtonElement, Button>,
 		HasSlots<ButtonElement>,
-		HasStyle<ButtonElement, Button>, HasComponents<ButtonElement, Button, Component<?>> {
+		HasStyle<ButtonElement, Button>, HasComponents<ButtonElement, Button, HasElement<?>> {
 	public Button() {
 		super(ButtonElement.TAGNAME());
 	}

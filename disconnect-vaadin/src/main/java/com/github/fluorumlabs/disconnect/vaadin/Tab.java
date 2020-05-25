@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasItemMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.extras.JsEnum;
@@ -42,7 +42,7 @@ import js.extras.JsEnum;
 public class Tab extends AbstractComponent<TabElement> implements HasElementMixin<TabElement, Tab>,
 		HasThemableMixin<Tab.Variant, TabElement, Tab>,
 		HasItemMixin<TabElement, Tab>,
-		HasStyle<TabElement, Tab>, HasComponents<TabElement, Tab, Component<?>> {
+		HasStyle<TabElement, Tab>, HasComponents<TabElement, Tab, HasElement<?>> {
 	public Tab() {
 		super(TabElement.TAGNAME());
 	}

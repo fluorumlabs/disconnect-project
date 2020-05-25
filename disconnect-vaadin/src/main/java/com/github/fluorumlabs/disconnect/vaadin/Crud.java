@@ -132,7 +132,7 @@ public class Crud<ITEM extends Any> extends AbstractComponent<CrudElement<ITEM>>
 		implements HasElementMixin<CrudElement<ITEM>, Crud<ITEM>>,
 		HasThemableMixin<Crud.Variant, CrudElement<ITEM>, Crud<ITEM>>,
 		HasSlots<CrudElement<ITEM>>,
-		HasStyle<CrudElement<ITEM>, Crud<ITEM>>, HasComponents<CrudElement<ITEM>, Crud<ITEM>, Component<?>> {
+		HasStyle<CrudElement<ITEM>, Crud<ITEM>>, HasComponents<CrudElement<ITEM>, Crud<ITEM>, HasElement<?>> {
 	public Crud() {
 		super(CrudElement.TAGNAME());
 	}

@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.ElementMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.util.Record;
 import js.util.StringRecord;
 import js.web.dom.Element;
@@ -78,7 +78,7 @@ import js.web.webcomponents.ShadowRoot;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasElementMixin<E extends ElementMixin, T extends Component<E>>
+public interface HasElementMixin<E extends ElementMixin, T extends HasElement<E>>
 		extends HasPropertyEffects<E, T>, HasPropertiesMixin<E, T> {
 	/**
 	 * Root path string.

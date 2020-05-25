@@ -8,7 +8,8 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.SelectRenderer;
-import com.github.fluorumlabs.disconnect.zero.component.*;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
+import com.github.fluorumlabs.disconnect.zero.component.html.webcomponent.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableValue;
 import js.web.dom.ParentNode;
@@ -126,7 +127,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 		HasControlStateMixin<SelectElement, Select<T>>,
 		HasThemableMixin<TextField.Variant, SelectElement, Select<T>>,
 		HasSlots<SelectElement>,
-		HasStyle<SelectElement, Select<T>>, HasComponents<SelectElement, Select<T>, Component<?>> {
+		HasStyle<SelectElement, Select<T>>, HasComponents<SelectElement, Select<T>, HasElement<?>> {
 	/**
 	 * Backing ListBox
 	 */
@@ -134,11 +135,11 @@ public class Select<T> extends AbstractComponent<SelectElement>
 
 	private Map<String, T> idToValues = new HashMap<>();
 
-	private Map<T, Component<?>> itemToComponents = new HashMap<>();
+	private Map<T, HasElement<?>> itemToComponents = new HashMap<>();
 
 	private Function<T, String> idExtractor = Object::toString;
 
-	private Function<T, Component<?>> itemRenderer =
+	private Function<T, HasElement<?>> itemRenderer =
 			item -> {
 				String id = idExtractor.apply(item);
 				return new Item().value(id).text(id);
@@ -180,10 +181,10 @@ public class Select<T> extends AbstractComponent<SelectElement>
 		return this;
 	}
 
-	public Select<T> setItemRenderer(Function<T, Component<?>> itemRenderer) {
+	public Select<T> setItemRenderer(Function<T, HasElement<?>> itemRenderer) {
 		this.itemRenderer = itemRenderer;
-		for (Map.Entry<T, Component<?>> renderedItem : itemToComponents.entrySet()) {
-			Component<?> newItem = this.itemRenderer.apply(renderedItem.getKey());
+		for (Map.Entry<T, HasElement<?>> renderedItem : itemToComponents.entrySet()) {
+			HasElement<?> newItem = this.itemRenderer.apply(renderedItem.getKey());
 			ParentNode parentNode = renderedItem.getValue().getRenderedNode().getParentNode();
 			if (parentNode != null) {
 				parentNode.replaceChild(newItem.getRenderedNode(), renderedItem.getValue().getRenderedNode());
@@ -251,7 +252,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 	 * <li><code>select</code> The reference to the <code>&lt;vaadin-select&gt;</code> element.</li>
 	 * </ul>
 	 */
-	public Select<T> renderer(Supplier<Component<?>> renderer) {
+	public Select<T> renderer(Supplier<HasElement<?>> renderer) {
 		getNode().setRenderer(((root, select) -> root.appendChild(renderer.get().getRenderedNode())));
 		return this;
 	}
@@ -400,7 +401,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 	}
 
 	@Override
-	public Select<T> add(Component<?> component) {
+	public Select<T> add(HasElement<?> component) {
 		backingListBox.add(component);
 		return this;
 	}
@@ -411,7 +412,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 	}
 
 	@Override
-	public Select<T> add(Component<?>... components) {
+	public Select<T> add(HasElement<?>... components) {
 		backingListBox.add(components);
 		return this;
 	}
@@ -424,7 +425,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 	}
 
 	@Override
-	public Select<T> insert(Component<?>... components) {
+	public Select<T> insert(HasElement<?>... components) {
 		backingListBox.insert(components);
 		return this;
 	}
@@ -438,7 +439,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 	}
 
 	@Override
-	public Select<T> insert(Component<?> component) {
+	public Select<T> insert(HasElement<?> component) {
 		backingListBox.insert(component);
 		return this;
 	}
@@ -450,7 +451,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 	}
 
 	@Override
-	public Select<T> replaceContent(Component<?> component) {
+	public Select<T> replaceContent(HasElement<?> component) {
 		backingListBox.replaceContent(component);
 		return this;
 	}
@@ -460,7 +461,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 	}
 
 	@Override
-	public Select<T> replaceContent(Component<?>... components) {
+	public Select<T> replaceContent(HasElement<?>... components) {
 		backingListBox.replaceContent(components);
 		return this;
 	}
@@ -471,14 +472,14 @@ public class Select<T> extends AbstractComponent<SelectElement>
 
 
 	@Override
-	public Select<T> remove(Component<?> component) {
+	public Select<T> remove(HasElement<?> component) {
 		backingListBox.remove(component);
 		return this;
 	}
 
 	public Select<T> remove(T item) {
 		idToValues.remove(idExtractor.apply(item));
-		Component<?> component = itemToComponents.get(item);
+		HasElement<?> component = itemToComponents.get(item);
 		if (component != null) {
 			itemToComponents.remove(item);
 			remove(component);
@@ -487,7 +488,7 @@ public class Select<T> extends AbstractComponent<SelectElement>
 	}
 
 	@Override
-	public Select<T> remove(Component<?>... components) {
+	public Select<T> remove(HasElement<?>... components) {
 		backingListBox.remove(components);
 		return this;
 	}

@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.polymer.types.StringPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ComboBoxMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.ComboBoxRenderer;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
 import js.lang.JsString;
@@ -13,8 +13,8 @@ import js.web.dom.CustomEvent;
 
 import javax.annotation.Nullable;
 
-public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM>, T extends Component<E>>
-		extends Component<E> {
+public interface HasComboBoxMixin<ITEM extends Any, E extends ComboBoxMixin<ITEM>, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * True if the dropdown is open, false otherwise.
 	 */

@@ -10,7 +10,7 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemePropertyMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.ContextMenuRenderer;
 import com.github.fluorumlabs.disconnect.vaadin.types.MenuItem;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -216,7 +216,7 @@ public class ContextMenu extends AbstractComponent<ContextMenuElement>
 		HasThemePropertyMixin<ContextMenuElement, ContextMenu>,
 		HasItemsMixin<ContextMenuElement, ContextMenu>,
 		HasGestureEventListeners<ContextMenuElement, ContextMenu>,
-		HasStyle<ContextMenuElement, ContextMenu>, HasComponents<ContextMenuElement, ContextMenu, Component<?>> {
+		HasStyle<ContextMenuElement, ContextMenu>, HasComponents<ContextMenuElement, ContextMenu, HasElement<?>> {
 	public ContextMenu() {
 		super(ContextMenuElement.TAGNAME());
 	}

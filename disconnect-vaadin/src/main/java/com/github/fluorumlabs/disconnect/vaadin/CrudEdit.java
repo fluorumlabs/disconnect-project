@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.CrudEditElement;
 import com.github.fluorumlabs.disconnect.vaadin.types.ItemIndexEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -20,8 +20,8 @@ import js.lang.Any;
  */
 @WebComponent
 public class CrudEdit<ITEM extends Any> extends AbstractComponent<CrudEditElement>
-		implements HasStyle<CrudEditElement, CrudEdit<ITEM>>, HasComponents<CrudEditElement, CrudEdit<ITEM>, Component<
-		?>> {
+		implements HasStyle<CrudEditElement, CrudEdit<ITEM>>, HasComponents<CrudEditElement, CrudEdit<ITEM>, HasElement<
+                ?>> {
 	public CrudEdit() {
 		super(CrudEditElement.TAGNAME());
 	}

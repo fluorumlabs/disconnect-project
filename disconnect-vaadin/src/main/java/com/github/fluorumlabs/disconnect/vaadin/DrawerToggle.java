@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.DrawerToggleElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class DrawerToggle extends AbstractComponent<DrawerToggleElement>
-		implements HasStyle<DrawerToggleElement, DrawerToggle>, HasComponents<DrawerToggleElement, DrawerToggle, Component<?>> {
+		implements HasStyle<DrawerToggleElement, DrawerToggle>, HasComponents<DrawerToggleElement, DrawerToggle, HasElement<?>> {
 	public DrawerToggle() {
 		super(DrawerToggleElement.TAGNAME());
 	}

@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemePropertyMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.DialogRenderer;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
 public class Dialog extends AbstractComponent<DialogElement>
 		implements HasElementMixin<DialogElement, Dialog>,
 		HasThemePropertyMixin<DialogElement, Dialog>,
-		HasStyle<DialogElement, Dialog>, HasComponents<DialogElement, Dialog, Component<?>> {
+		HasStyle<DialogElement, Dialog>, HasComponents<DialogElement, Dialog, HasElement<?>> {
 	public Dialog() {
 		super(DialogElement.TAGNAME());
 	}

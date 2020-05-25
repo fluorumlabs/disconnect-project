@@ -51,6 +51,10 @@ import java.util.function.Consumer;
  * Created by Artem Godin on 4/21/2020.
  */
 public class DisconnectTestRunner extends Runner implements Filterable {
+	static {
+		WebDriverManager.firefoxdriver().setup();
+	}
+
 	private final Class<?> testClass;
 
 	private final WebDriver driver;
@@ -82,8 +86,8 @@ public class DisconnectTestRunner extends Runner implements Filterable {
 		this.testClass = testClass;
 		this.testFileName = StringUtils.replaceChars(testClass.getName(), '.', '_');
 
-		WebDriverManager.firefoxdriver().setup();
 		driver = new FirefoxDriver();
+		driver.close();
 
 		try (InputStream debugInformationSource = getClass().getResourceAsStream("/static/bin/" + testFileName + ".js" +
 				".teavmdbg")) {
@@ -137,7 +141,9 @@ public class DisconnectTestRunner extends Runner implements Filterable {
 				throw new TimeoutException("Test execution timed out");
 			}
 
-			driver.close();
+			if (System.getProperty("keepBrowser")==null) {
+				driver.close();
+			}
 		} catch (Exception e) {
 			notifier.fireTestFailure(new Failure(description, e));
 		}

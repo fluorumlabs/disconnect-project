@@ -37,10 +37,10 @@ public interface HTMLElement extends Element, DocumentAndElementEventHandlers, E
     void setAutocapitalize(Autocapitalize autocapitalize);
 
     @JSProperty
-    String getDir();
+    Dir getDir();
 
     @JSProperty
-    void setDir(String dir);
+    void setDir(Dir dir);
 
     @JSProperty
     boolean isDraggable();

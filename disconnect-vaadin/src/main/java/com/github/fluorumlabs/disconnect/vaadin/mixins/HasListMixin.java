@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.polymer.types.IntPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Orientation;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ItemMixin;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ListMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.util.collections.Array;
 import js.web.dom.Element;
@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 /**
  * A mixin for <code>nav</code> elements, facilitating navigation and selection of childNodes.
  */
-public interface HasListMixin<E extends ListMixin, T extends Component<E>> extends Component<E> {
+public interface HasListMixin<E extends ListMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 *
 	 */

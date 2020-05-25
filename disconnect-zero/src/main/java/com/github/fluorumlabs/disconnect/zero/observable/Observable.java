@@ -72,49 +72,49 @@ public class Observable<VALUE> extends ObservableBase<VALUE> implements Readable
 		return observable;
 	}
 
-	public <NEW_VALUE> Observable<NEW_VALUE> apply(Function<VALUE, NEW_VALUE> mapper) {
+	public <NEW_VALUE> Observable<NEW_VALUE> map(Function<VALUE, NEW_VALUE> mapper) {
 		Observable<NEW_VALUE> observable = new Observable<>();
 		acceptImpl(value -> observable.pushNewValue(mapper.apply(value)));
 		return observable;
 	}
 
-	public <NEW_VALUE> Observable<NEW_VALUE> applyAsync(Function<VALUE, NEW_VALUE> mapper) {
+	public <NEW_VALUE> Observable<NEW_VALUE> mapAsync(Function<VALUE, NEW_VALUE> mapper) {
 		Observable<NEW_VALUE> observable = new Observable<>();
 		acceptImpl(value -> new Thread(() -> observable.pushNewValue(mapper.apply(value))).start());
 		return observable;
 	}
 
-	public <NEW_VALUE, VALUE_B> Observable<NEW_VALUE> apply(BiFunction<VALUE, VALUE_B, NEW_VALUE> mapper,
-															Observable<VALUE_B> valueB) {
+	public <NEW_VALUE, VALUE_B> Observable<NEW_VALUE> map(BiFunction<VALUE, VALUE_B, NEW_VALUE> mapper,
+														  Observable<VALUE_B> valueB) {
 		return join(this, valueB).apply(mapper);
 	}
 
-	public <NEW_VALUE, VALUE_B> Observable<NEW_VALUE> applyAsync(BiFunction<VALUE, VALUE_B, NEW_VALUE> mapper,
-																 Observable<VALUE_B> valueB) {
+	public <NEW_VALUE, VALUE_B> Observable<NEW_VALUE> mapAsync(BiFunction<VALUE, VALUE_B, NEW_VALUE> mapper,
+															   Observable<VALUE_B> valueB) {
 		return join(this, valueB).applyAsync(mapper);
 	}
 
-	public <NEW_VALUE, VALUE_B, VALUE_C> Observable<NEW_VALUE> apply(TriFunction<VALUE, VALUE_B, VALUE_C, NEW_VALUE> mapper,
-																	 Observable<VALUE_B> valueB,
-																	 Observable<VALUE_C> valueC) {
+	public <NEW_VALUE, VALUE_B, VALUE_C> Observable<NEW_VALUE> map(TriFunction<VALUE, VALUE_B, VALUE_C, NEW_VALUE> mapper,
+																   Observable<VALUE_B> valueB,
+																   Observable<VALUE_C> valueC) {
 		return join(this, valueB, valueC).apply(mapper);
 	}
 
-	public <NEW_VALUE, VALUE_B, VALUE_C> Observable<NEW_VALUE> applyAsync(TriFunction<VALUE, VALUE_B, VALUE_C,
+	public <NEW_VALUE, VALUE_B, VALUE_C> Observable<NEW_VALUE> mapAsync(TriFunction<VALUE, VALUE_B, VALUE_C,
 			NEW_VALUE> mapper,
-																		  Observable<VALUE_B> valueB,
-																		  Observable<VALUE_C> valueC) {
+																		Observable<VALUE_B> valueB,
+																		Observable<VALUE_C> valueC) {
 		return join(this, valueB, valueC).applyAsync(mapper);
 	}
 
-	public <NEW_VALUE, VALUE_B, VALUE_C> Observable<NEW_VALUE> apply(TriFunction<VALUE, VALUE_B, VALUE_C, NEW_VALUE> mapper,
-																	 BiObservable<VALUE_B, VALUE_C> valueBC) {
+	public <NEW_VALUE, VALUE_B, VALUE_C> Observable<NEW_VALUE> map(TriFunction<VALUE, VALUE_B, VALUE_C, NEW_VALUE> mapper,
+																   BiObservable<VALUE_B, VALUE_C> valueBC) {
 		return join(this, valueBC).apply(mapper);
 	}
 
-	public <NEW_VALUE, VALUE_B, VALUE_C> Observable<NEW_VALUE> applyAsync(TriFunction<VALUE, VALUE_B, VALUE_C,
+	public <NEW_VALUE, VALUE_B, VALUE_C> Observable<NEW_VALUE> mapAsync(TriFunction<VALUE, VALUE_B, VALUE_C,
 			NEW_VALUE> mapper,
-																		  BiObservable<VALUE_B, VALUE_C> valueBC) {
+																		BiObservable<VALUE_B, VALUE_C> valueBC) {
 		return join(this, valueBC).applyAsync(mapper);
 	}
 

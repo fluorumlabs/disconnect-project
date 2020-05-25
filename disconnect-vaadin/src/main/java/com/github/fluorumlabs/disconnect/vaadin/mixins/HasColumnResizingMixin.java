@@ -2,14 +2,14 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridColumnElement;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ColumnResizingMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
 import js.web.dom.CustomEvent;
 import org.teavm.jso.JSProperty;
 
-public interface HasColumnResizingMixin<ITEM extends Any, E extends ColumnResizingMixin, T extends Component<E>>
-		extends Component<E> {
+public interface HasColumnResizingMixin<ITEM extends Any, E extends ColumnResizingMixin, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * Fired when a column in the grid is resized by the user.
 	 */

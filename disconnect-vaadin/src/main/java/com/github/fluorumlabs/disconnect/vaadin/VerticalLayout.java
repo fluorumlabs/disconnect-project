@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.VerticalLayoutElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.extras.JsEnum;
@@ -38,12 +38,12 @@ import js.extras.JsEnum;
 @WebComponent
 public class VerticalLayout extends AbstractComponent<VerticalLayoutElement>
 		implements HasThemableMixin<VerticalLayout.Variant, VerticalLayoutElement, VerticalLayout>,
-		HasStyle<VerticalLayoutElement, VerticalLayout>, HasComponents<VerticalLayoutElement, VerticalLayout, Component<?>> {
+		HasStyle<VerticalLayoutElement, VerticalLayout>, HasComponents<VerticalLayoutElement, VerticalLayout, HasElement<?>> {
 	public VerticalLayout() {
 		super(VerticalLayoutElement.TAGNAME());
 	}
 
-	public VerticalLayout(Component<?>... components) {
+	public VerticalLayout(HasElement<?>... components) {
 		this();
 		add(components);
 	}

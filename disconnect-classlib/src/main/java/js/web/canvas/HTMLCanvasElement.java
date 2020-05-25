@@ -1,7 +1,6 @@
 package js.web.canvas;
 
 import js.lang.Any;
-import js.lang.Unknown;
 import js.util.function.JsConsumer;
 import js.web.dom.Blob;
 import js.web.dom.HTMLElement;
@@ -191,7 +190,7 @@ public interface HTMLCanvasElement extends HTMLElement, TexImageSource {
      * @param type     the type
      * @param quality  the quality
      */
-    void toBlob(JsConsumer<Blob> callback, String type, Unknown quality);
+    void toBlob(JsConsumer<Blob> callback, String type, double quality);
 
     /**
      * To blob.
@@ -218,7 +217,7 @@ public interface HTMLCanvasElement extends HTMLElement, TexImageSource {
      *
      * @return the string
      */
-    String toDataURL(String type, Unknown quality);
+    String toDataURL(String type, double quality);
 
     /**
      * To data url string.

@@ -7,6 +7,7 @@ import com.github.fluorumlabs.disconnect.core.internals.DisconnectSymbols;
 import com.github.fluorumlabs.disconnect.core.logging.DisconnectLoggerFactorySubstitution;
 import com.github.fluorumlabs.disconnect.core.logging.DisconnectProductionLoggerFactorySubstitution;
 import js.lang.Unknown;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
 import org.teavm.backend.javascript.TeaVMJavaScriptHost;
@@ -28,6 +29,10 @@ import static com.github.fluorumlabs.disconnect.core.internals.CamelCaseUtils.to
 
 
 public class DisconnectClassTransformer implements ClassHolderTransformer {
+	public DisconnectTeaVMRendererListener getRendererListener() {
+		return rendererListener;
+	}
+
 	private DisconnectTeaVMRendererListener rendererListener;
 
 	private final TeaVMHost host;
@@ -53,6 +58,33 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 				substitute(cls, DisconnectLoggerFactorySubstitution.class, context.getHierarchy());
 			}
 		}
+
+		AnnotationContainer annotations = cls.getAnnotations();
+
+		Stream.concat(
+				Optional.ofNullable(annotations.get(ImportStyle.class.getName()))
+						.map(Stream::of)
+						.orElse(Stream.empty()),
+				Optional.ofNullable(annotations.get(ImportStyle.Container.class.getName()))
+						.map(Stream::of)
+						.orElse(Stream.empty())
+						.flatMap(ah -> ah.getValue("value").getList().stream().map(AnnotationValue::getAnnotation)))
+				.forEach(annotationReader -> {
+					String module = annotationReader.getValue("value").getString();
+					String symbol = "css"+DigestUtils.md5Hex(module);
+
+					rendererListener.addInjectedSymbol("\"" + symbol + "\": \"" + relativeImport(module) + "\"");
+					rendererListener.addImportedSymbol(symbol);
+				});
+
+		Optional.ofNullable(annotations.get(ImportTemplate.class.getName()))
+				.ifPresent(annotationReader -> {
+					String module = annotationReader.getValue("value").getString();
+					String symbol = "tpl"+DigestUtils.md5Hex(module);
+
+					rendererListener.addInjectedSymbol("\"" + symbol + "\": \"" + relativeImport(module) + "\"");
+					rendererListener.addImportedSymbol(symbol);
+				});
 
 		cls.getFields().stream()
 				.filter(fh -> fh.getModifiers().contains(ElementModifier.STATIC) && fh.getAnnotations().get(ImportObject.class.getName()) != null)
@@ -605,7 +637,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		return ctor;
 	}
 
-	private static String relativeImport(String module) {
+	public static String relativeImport(String module) {
 		if (module.startsWith("./")) {
 			return "." + module;
 		} else {

@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.DatePickerLightElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasDatePickerMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
 @WebComponent
 public class DatePickerLight extends AbstractComponent<DatePickerLightElement>
 		implements HasDatePickerMixin<DatePickerLightElement, DatePickerLight>,
-		HasStyle<DatePickerLightElement, DatePickerLight>, HasComponents<DatePickerLightElement, DatePickerLight, Component<?>> {
+		HasStyle<DatePickerLightElement, DatePickerLight>, HasComponents<DatePickerLightElement, DatePickerLight, HasElement<?>> {
 	public DatePickerLight() {
 		super(DatePickerLightElement.TAGNAME());
 	}

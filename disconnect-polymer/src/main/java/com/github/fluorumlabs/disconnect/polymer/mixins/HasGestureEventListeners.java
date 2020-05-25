@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.GestureEventListeners;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * Element class mixin that provides API for adding Polymer's cross-platform gesture events to nodes.
@@ -13,6 +13,6 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasGestureEventListeners<E extends GestureEventListeners, T extends Component<E>>
-		extends Component<E> {
+public interface HasGestureEventListeners<E extends GestureEventListeners, T extends HasElement<E>>
+		extends HasElement<E> {
 }

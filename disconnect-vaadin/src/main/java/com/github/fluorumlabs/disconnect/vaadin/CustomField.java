@@ -9,7 +9,7 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -61,7 +61,7 @@ public class CustomField extends AbstractComponent<CustomFieldElement>
 		implements HasElementMixin<CustomFieldElement, CustomField>,
 		HasThemableMixin<CustomField.Variant, CustomFieldElement, CustomField>,
 		HasCustomFieldMixin<CustomFieldElement, CustomField>,
-		HasStyle<CustomFieldElement, CustomField>, HasComponents<CustomFieldElement, CustomField, Component<?>> {
+		HasStyle<CustomFieldElement, CustomField>, HasComponents<CustomFieldElement, CustomField, HasElement<?>> {
 	public CustomField() {
 		super(CustomFieldElement.TAGNAME());
 	}

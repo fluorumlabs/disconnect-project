@@ -2,14 +2,14 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.RowDetailsMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.RowDetailsRenderer;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 import js.util.collections.Array;
 
 import javax.annotation.Nullable;
 
-public interface HasRowDetailsMixin<ITEM extends Any, E extends RowDetailsMixin<ITEM>, T extends Component<E>>
-		extends Component<E> {
+public interface HasRowDetailsMixin<ITEM extends Any, E extends RowDetailsMixin<ITEM>, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * An array containing references to items with open row details.
 	 */

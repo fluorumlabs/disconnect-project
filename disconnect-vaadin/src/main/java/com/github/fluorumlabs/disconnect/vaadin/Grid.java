@@ -253,7 +253,7 @@ public class Grid<ITEM extends Any> extends AbstractComponent<GridElement<ITEM>>
 		HasStylingMixin<ITEM, GridElement<ITEM>, Grid<ITEM>>,
 		HasDragAndDropMixin<ITEM, GridElement<ITEM>, Grid<ITEM>>,
 		HasSlots<GridElement<ITEM>>,
-		HasStyle<GridElement<ITEM>, Grid<ITEM>>, HasComponents<GridElement<ITEM>, Grid<ITEM>, Component<?>> {
+		HasStyle<GridElement<ITEM>, Grid<ITEM>>, HasComponents<GridElement<ITEM>, Grid<ITEM>, HasElement<?>> {
 	public Grid() {
 		super(GridElement.TAGNAME());
 	}

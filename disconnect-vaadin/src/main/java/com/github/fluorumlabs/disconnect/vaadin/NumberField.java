@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.NumberFieldElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -18,7 +18,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 @WebComponent
 public class NumberField extends AbstractComponent<NumberFieldElement>
 		implements HasThemableMixin<TextField.Variant, NumberFieldElement, NumberField>,
-		HasStyle<NumberFieldElement, NumberField>, HasComponents<NumberFieldElement, NumberField, Component<?>> {
+		HasStyle<NumberFieldElement, NumberField>, HasComponents<NumberFieldElement, NumberField, HasElement<?>> {
 	public NumberField() {
 		super(NumberFieldElement.TAGNAME());
 	}

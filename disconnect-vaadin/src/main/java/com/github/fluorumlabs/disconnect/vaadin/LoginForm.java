@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.LoginFormElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasLoginMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 public class LoginForm extends AbstractComponent<LoginFormElement>
 		implements HasElementMixin<LoginFormElement, LoginForm>,
 		HasLoginMixin<LoginFormElement, LoginForm>,
-		HasStyle<LoginFormElement, LoginForm>, HasComponents<LoginFormElement, LoginForm, Component<?>> {
+		HasStyle<LoginFormElement, LoginForm>, HasComponents<LoginFormElement, LoginForm, HasElement<?>> {
 	public LoginForm() {
 		super(LoginFormElement.TAGNAME());
 	}

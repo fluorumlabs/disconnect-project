@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.vaadin.constants.DropLocation;
 import com.github.fluorumlabs.disconnect.vaadin.constants.DropMode;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.DragAndDropMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.DragAndDropRowData;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
 import js.util.collections.Array;
@@ -15,8 +15,8 @@ import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
 
-public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixin<ITEM>, T extends Component<E>>
-		extends Component<E> {
+public interface HasDragAndDropMixin<ITEM extends Any, E extends DragAndDropMixin<ITEM>, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * Defines the locations within the Grid row where an element can be dropped.
 	 * <p>

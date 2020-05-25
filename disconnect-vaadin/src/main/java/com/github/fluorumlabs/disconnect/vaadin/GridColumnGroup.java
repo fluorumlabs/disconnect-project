@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridColumnGroupElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasColumnBaseMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.lang.Any;
@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 @WebComponent
 public class GridColumnGroup<ITEM extends Any> extends AbstractComponent<GridColumnGroupElement<ITEM>>
 		implements HasColumnBaseMixin<ITEM, GridColumnGroupElement<ITEM>, GridColumnGroup<ITEM>>,
-		HasStyle<GridColumnGroupElement<ITEM>, GridColumnGroup<ITEM>>, HasComponents<GridColumnGroupElement<ITEM>, GridColumnGroup<ITEM>, Component<?>> {
+		HasStyle<GridColumnGroupElement<ITEM>, GridColumnGroup<ITEM>>, HasComponents<GridColumnGroupElement<ITEM>, GridColumnGroup<ITEM>, HasElement<?>> {
 	public GridColumnGroup() {
 		super(GridColumnGroupElement.TAGNAME());
 	}

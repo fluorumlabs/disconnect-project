@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.FormLayoutElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ResponsiveStep;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.util.StringRecord;
@@ -101,7 +101,7 @@ import js.util.collections.Array;
 @WebComponent
 public class FormLayout extends AbstractComponent<FormLayoutElement>
 		implements HasElementMixin<FormLayoutElement, FormLayout>,
-		HasStyle<FormLayoutElement, FormLayout>, HasComponents<FormLayoutElement, FormLayout, Component<?>> {
+		HasStyle<FormLayoutElement, FormLayout>, HasComponents<FormLayoutElement, FormLayout, HasElement<?>> {
 	public FormLayout() {
 		super(FormLayoutElement.TAGNAME());
 	}

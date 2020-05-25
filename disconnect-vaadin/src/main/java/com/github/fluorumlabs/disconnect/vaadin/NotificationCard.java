@@ -27,7 +27,7 @@ public class NotificationCard
 		implements
 		HasSlots<com.github.fluorumlabs.disconnect.vaadin.elements.NotificationCard>,
 		HasStyle<com.github.fluorumlabs.disconnect.vaadin.elements.NotificationCard, NotificationCard>,
-		HasComponents<com.github.fluorumlabs.disconnect.vaadin.elements.NotificationCard, NotificationCard, Component<?>> {
+		HasComponents<com.github.fluorumlabs.disconnect.vaadin.elements.NotificationCard, NotificationCard, HasElement<?>> {
 	public NotificationCard() {
 		super(com.github.fluorumlabs.disconnect.vaadin.elements.NotificationCard.TAGNAME());
 	}

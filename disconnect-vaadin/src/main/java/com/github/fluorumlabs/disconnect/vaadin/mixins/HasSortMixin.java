@@ -1,9 +1,9 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.SortMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
-public interface HasSortMixin<E extends SortMixin, T extends Component<E>> extends Component<E> {
+public interface HasSortMixin<E extends SortMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * When <code>true</code>, all <code>&lt;vaadin-grid-sorter&gt;</code> are applied for sorting.
 	 */

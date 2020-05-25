@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.types.BooleanPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridSelectionColumnElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class GridSelectionColumn<ITEM extends Any> extends AbstractComponent<GridSelectionColumnElement<ITEM>>
-		implements HasStyle<GridSelectionColumnElement<ITEM>, GridSelectionColumn<ITEM>>, HasComponents<GridSelectionColumnElement<ITEM>, GridSelectionColumn<ITEM>, Component<?>> {
+		implements HasStyle<GridSelectionColumnElement<ITEM>, GridSelectionColumn<ITEM>>, HasComponents<GridSelectionColumnElement<ITEM>, GridSelectionColumn<ITEM>, HasElement<?>> {
 	public GridSelectionColumn() {
 		super(GridSelectionColumnElement.TAGNAME());
 	}

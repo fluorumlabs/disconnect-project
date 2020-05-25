@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.BoardElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -28,7 +28,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
  */
 @WebComponent
 public class Board extends AbstractComponent<BoardElement>
-		implements HasElementMixin<BoardElement, Board>, HasStyle<BoardElement, Board>, HasComponents<BoardElement, Board, Component<?>> {
+		implements HasElementMixin<BoardElement, Board>, HasStyle<BoardElement, Board>, HasComponents<BoardElement, Board, HasElement<?>> {
 	public Board() {
 		super(BoardElement.TAGNAME());
 	}

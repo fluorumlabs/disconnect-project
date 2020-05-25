@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.OverlayElement;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.OverlayRenderer;
 import com.github.fluorumlabs.disconnect.vaadin.types.WrappedSourceEvent;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -123,7 +123,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class Overlay extends AbstractComponent<OverlayElement>
-		implements HasStyle<OverlayElement, Overlay>, HasComponents<OverlayElement, Overlay, Component<?>> {
+		implements HasStyle<OverlayElement, Overlay>, HasComponents<OverlayElement, Overlay, HasElement<?>> {
 	public Overlay() {
 		super(OverlayElement.TAGNAME());
 	}

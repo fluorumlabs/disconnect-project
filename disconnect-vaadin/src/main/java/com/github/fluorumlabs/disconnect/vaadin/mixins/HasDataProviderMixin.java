@@ -2,15 +2,15 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.dataproviders.GridDataProvider;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.DataProviderMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.collections.Array;
 
 import javax.annotation.Nullable;
 
-public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMixin<ITEM>, T extends Component<E>>
-		extends Component<E> {
+public interface HasDataProviderMixin<ITEM extends Any, E extends DataProviderMixin<ITEM>, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * Number of items fetched at a time from the dataprovider.
 	 */

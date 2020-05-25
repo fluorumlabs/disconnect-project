@@ -2,13 +2,13 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.StylingMixin;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.CellClassNameGenerator;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 
 import javax.annotation.Nullable;
 
-public interface HasStylingMixin<ITEM extends Any, E extends StylingMixin<ITEM>, T extends Component<E>>
-		extends Component<E> {
+public interface HasStylingMixin<ITEM extends Any, E extends StylingMixin<ITEM>, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * A function that allows generating CSS class names for grid cells
 	 * based on their row and column. The return value should be the generated

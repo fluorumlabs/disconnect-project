@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.zero.component;
 
+import com.github.fluorumlabs.disconnect.zero.EventInitializer;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.channelmessaging.MessageEvent;
 import js.web.dom.*;
@@ -7,7 +8,7 @@ import js.web.history.PopStateEvent;
 import js.web.webstorage.StorageEvent;
 
 
-public interface WindowEvents<T extends Window> extends GlobalEvents<T> {
+public interface WindowEvents<T extends WindowEventHandlers> extends EventInitializer<T> {
     default ObservableEvent<Event> afterPrintEvent() { return createEvent(WindowEventHandlers::addAfterPrintEventListener); }
     default ObservableEvent<Event> beforePrintEvent() { return createEvent(WindowEventHandlers::addBeforePrintEventListener); }
     default ObservableEvent<BeforeUnloadEvent> beforeUnloadEvent() { return createEvent(WindowEventHandlers::addBeforeUnloadEventListener); }

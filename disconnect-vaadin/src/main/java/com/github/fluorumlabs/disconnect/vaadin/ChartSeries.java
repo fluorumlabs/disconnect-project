@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Markers;
 import com.github.fluorumlabs.disconnect.vaadin.elements.ChartSeriesElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.lang.Any;
@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class ChartSeries extends AbstractComponent<ChartSeriesElement>
-		implements HasStyle<ChartSeriesElement, ChartSeries>, HasComponents<ChartSeriesElement, ChartSeries, Component<?>> {
+		implements HasStyle<ChartSeriesElement, ChartSeries>, HasComponents<ChartSeriesElement, ChartSeries, HasElement<?>> {
 	public ChartSeries() {
 		super(ChartSeriesElement.TAGNAME());
 	}

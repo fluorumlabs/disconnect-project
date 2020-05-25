@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.vaadin.constants.CookieConsentPosition;
 import com.github.fluorumlabs.disconnect.vaadin.elements.CookieConsentElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 @WebComponent
 public class CookieConsent extends AbstractComponent<CookieConsentElement>
 		implements HasElementMixin<CookieConsentElement, CookieConsent>,
-		HasStyle<CookieConsentElement, CookieConsent>, HasComponents<CookieConsentElement, CookieConsent, Component<?>> {
+		HasStyle<CookieConsentElement, CookieConsent>, HasComponents<CookieConsentElement, CookieConsent, HasElement<?>> {
 	public CookieConsent() {
 		super(CookieConsentElement.TAGNAME());
 	}

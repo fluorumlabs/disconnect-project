@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.TemplateStamp;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * Element mixin that provides basic template parsing and stamping, including the following template-related features
@@ -17,5 +17,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasTemplateStamp<E extends TemplateStamp, T extends Component<E>> extends Component<E> {
+public interface HasTemplateStamp<E extends TemplateStamp, T extends HasElement<E>> extends HasElement<E> {
 }

@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridProEditTextFieldElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -20,7 +20,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
  */
 @WebComponent
 public class GridProEditTextField extends AbstractComponent<GridProEditTextFieldElement>
-		implements HasStyle<GridProEditTextFieldElement, GridProEditTextField>, HasComponents<GridProEditTextFieldElement, GridProEditTextField, Component<?>> {
+		implements HasStyle<GridProEditTextFieldElement, GridProEditTextField>, HasComponents<GridProEditTextFieldElement, GridProEditTextField, HasElement<?>> {
 	public GridProEditTextField() {
 		super(GridProEditTextFieldElement.TAGNAME());
 	}

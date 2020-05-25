@@ -180,7 +180,7 @@ public class ComboBox<ITEM extends Any> extends AbstractComponent<ComboBoxElemen
 		HasComboBoxMixin<ITEM, ComboBoxElement<ITEM>, ComboBox<ITEM>>,
 		HasThemableMixin<TextField.Variant, ComboBoxElement<ITEM>, ComboBox<ITEM>>,
 		HasSlots<ComboBoxElement<ITEM>>,
-		HasStyle<ComboBoxElement<ITEM>, ComboBox<ITEM>>, HasComponents<ComboBoxElement<ITEM>, ComboBox<ITEM>, Component<?>> {
+		HasStyle<ComboBoxElement<ITEM>, ComboBox<ITEM>>, HasComponents<ComboBoxElement<ITEM>, ComboBox<ITEM>, HasElement<?>> {
 	public ComboBox() {
 		super(ComboBoxElement.TAGNAME());
 	}

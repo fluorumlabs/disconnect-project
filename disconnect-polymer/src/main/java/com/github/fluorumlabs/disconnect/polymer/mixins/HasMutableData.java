@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.MutableData;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * Element class mixin to skip strict dirty-checking for objects and arrays (always consider them to be
@@ -34,5 +34,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasMutableData<E extends MutableData, T extends Component<E>> extends Component<E> {
+public interface HasMutableData<E extends MutableData, T extends HasElement<E>> extends HasElement<E> {
 }

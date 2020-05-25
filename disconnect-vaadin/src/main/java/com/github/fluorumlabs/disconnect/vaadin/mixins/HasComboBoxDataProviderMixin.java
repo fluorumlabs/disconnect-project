@@ -2,14 +2,14 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.dataproviders.ComboBoxDataProvider;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ComboBoxDataProviderMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 
 import javax.annotation.Nullable;
 
 public interface HasComboBoxDataProviderMixin<ITEM extends Any, E extends ComboBoxDataProviderMixin<ITEM>,
-		T extends Component<E>>
-		extends Component<E> {
+		T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * Number of items fetched at a time from the dataprovider.
 	 */

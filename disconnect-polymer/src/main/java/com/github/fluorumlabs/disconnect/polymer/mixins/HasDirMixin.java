@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.DirMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * Element class mixin that allows elements to use the <code>:dir</code> CSS Selector to have text direction specific
@@ -29,5 +29,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasDirMixin<E extends DirMixin, T extends Component<E>> extends HasPropertyAccessors<E, T> {
+public interface HasDirMixin<E extends DirMixin, T extends HasElement<E>> extends HasPropertyAccessors<E, T> {
 }

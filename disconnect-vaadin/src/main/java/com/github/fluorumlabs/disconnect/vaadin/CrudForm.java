@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.CrudFormElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasIncludedMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.lang.Any;
@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 @WebComponent
 public class CrudForm<ITEM extends Any> extends AbstractComponent<CrudFormElement<ITEM>>
 		implements HasIncludedMixin<CrudFormElement<ITEM>, CrudForm<ITEM>>,
-		HasStyle<CrudFormElement<ITEM>, CrudForm<ITEM>>, HasComponents<CrudFormElement<ITEM>, CrudForm<ITEM>, Component<?>> {
+		HasStyle<CrudFormElement<ITEM>, CrudForm<ITEM>>, HasComponents<CrudFormElement<ITEM>, CrudForm<ITEM>, HasElement<?>> {
 	public CrudForm() {
 		super(CrudFormElement.TAGNAME());
 	}

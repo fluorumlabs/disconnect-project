@@ -1,15 +1,15 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ArrayDataProviderMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 import js.util.collections.Array;
 
 import javax.annotation.Nullable;
 
 public interface HasArrayDataProviderMixin<ITEM extends Any, E extends ArrayDataProviderMixin<ITEM>,
-		T extends Component<E>>
-		extends Component<E> {
+		T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * An array containing the items which will be stamped to the column template
 	 * instances.

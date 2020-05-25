@@ -6,7 +6,7 @@ import com.github.fluorumlabs.disconnect.vaadin.constants.EditorType;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridProEditColumnElement;
 import com.github.fluorumlabs.disconnect.vaadin.renderers.EditModeRenderer;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class GridProEditColumn<ITEM extends Any> extends AbstractComponent<GridProEditColumnElement<ITEM>>
-		implements HasStyle<GridProEditColumnElement<ITEM>, GridProEditColumn<ITEM>>, HasComponents<GridProEditColumnElement<ITEM>, GridProEditColumn<ITEM>, Component<?>> {
+		implements HasStyle<GridProEditColumnElement<ITEM>, GridProEditColumn<ITEM>>, HasComponents<GridProEditColumnElement<ITEM>, GridProEditColumn<ITEM>, HasElement<?>> {
 	public GridProEditColumn() {
 		super(GridProEditColumnElement.TAGNAME());
 	}

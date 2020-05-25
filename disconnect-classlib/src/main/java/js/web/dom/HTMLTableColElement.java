@@ -45,10 +45,10 @@ public interface HTMLTableColElement extends HTMLElement {
      * Sets or retrieves the number of columns in the group.
      */
     @JSProperty
-    double getSpan();
+    int getSpan();
 
     @JSProperty
-    void setSpan(double span);
+    void setSpan(int span);
 
     @Deprecated
     @JSProperty

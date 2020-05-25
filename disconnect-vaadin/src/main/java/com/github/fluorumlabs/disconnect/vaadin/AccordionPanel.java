@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.AccordionPanelElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.extras.JsEnum;
@@ -45,7 +45,7 @@ import js.extras.JsEnum;
  */
 @WebComponent
 public class AccordionPanel extends AbstractComponent<AccordionPanelElement>
-		implements HasStyle<AccordionPanelElement, AccordionPanel>, HasComponents<AccordionPanelElement, AccordionPanel, Component<?>>,
+		implements HasStyle<AccordionPanelElement, AccordionPanel>, HasComponents<AccordionPanelElement, AccordionPanel, HasElement<?>>,
 		HasThemableMixin<AccordionPanel.Variant, AccordionPanelElement, AccordionPanel> {
 	public AccordionPanel() {
 		super(AccordionPanelElement.TAGNAME());

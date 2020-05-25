@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridProEditSelectElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class GridProEditSelect extends AbstractComponent<GridProEditSelectElement>
-		implements HasStyle<GridProEditSelectElement, GridProEditSelect>, HasComponents<GridProEditSelectElement, GridProEditSelect, Component<?>> {
+		implements HasStyle<GridProEditSelectElement, GridProEditSelect>, HasComponents<GridProEditSelectElement, GridProEditSelect, HasElement<?>> {
 	public GridProEditSelect() {
 		super(GridProEditSelectElement.TAGNAME());
 	}

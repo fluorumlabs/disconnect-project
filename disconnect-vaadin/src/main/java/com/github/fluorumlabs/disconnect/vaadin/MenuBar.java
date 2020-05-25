@@ -8,7 +8,7 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasInteractionsMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ItemSelectedEvent;
 import com.github.fluorumlabs.disconnect.vaadin.types.MenuItem;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -50,7 +50,7 @@ public class MenuBar extends AbstractComponent<MenuBarElement>
 		implements HasButtonsMixin<MenuBarElement, MenuBar>,
 		HasInteractionsMixin<MenuBarElement, MenuBar>,
 		HasElementMixin<MenuBarElement, MenuBar>,
-		HasStyle<MenuBarElement, MenuBar>, HasComponents<MenuBarElement, MenuBar, Component<?>> {
+		HasStyle<MenuBarElement, MenuBar>, HasComponents<MenuBarElement, MenuBar, HasElement<?>> {
 	public MenuBar() {
 		super(MenuBarElement.TAGNAME());
 	}

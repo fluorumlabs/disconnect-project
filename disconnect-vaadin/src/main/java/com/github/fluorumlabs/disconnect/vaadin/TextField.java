@@ -77,7 +77,7 @@ public class TextField extends AbstractComponent<TextFieldElement>
 		implements HasTextFieldMixin<TextFieldElement, TextField>,
 		HasThemableMixin<TextField.Variant, TextFieldElement, TextField>,
 		HasSlots<TextFieldElement>,
-		HasStyle<TextFieldElement, TextField>, HasComponents<TextFieldElement, TextField, Component<?>> {
+		HasStyle<TextFieldElement, TextField>, HasComponents<TextFieldElement, TextField, HasElement<?>> {
 	public TextField() {
 		super(TextFieldElement.TAGNAME());
 	}

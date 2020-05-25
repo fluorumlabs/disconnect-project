@@ -1,9 +1,9 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ProgressMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
-public interface HasProgressMixin<E extends ProgressMixin, T extends Component<E>> extends Component<E> {
+public interface HasProgressMixin<E extends ProgressMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * Current progress value.
 	 */

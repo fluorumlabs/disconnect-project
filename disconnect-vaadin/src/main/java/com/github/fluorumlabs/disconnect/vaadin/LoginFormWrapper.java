@@ -51,7 +51,7 @@ public class LoginFormWrapper extends AbstractComponent<LoginFormWrapperElement>
 		implements HasElementMixin<LoginFormWrapperElement, LoginFormWrapper>,
 		HasLoginMixin<LoginFormWrapperElement, LoginFormWrapper>,
 		HasSlots<LoginFormWrapperElement>,
-		HasStyle<LoginFormWrapperElement, LoginFormWrapper>, HasComponents<LoginFormWrapperElement, LoginFormWrapper, Component<?>> {
+		HasStyle<LoginFormWrapperElement, LoginFormWrapper>, HasComponents<LoginFormWrapperElement, LoginFormWrapper, HasElement<?>> {
 	public LoginFormWrapper() {
 		super(LoginFormWrapperElement.TAGNAME());
 	}

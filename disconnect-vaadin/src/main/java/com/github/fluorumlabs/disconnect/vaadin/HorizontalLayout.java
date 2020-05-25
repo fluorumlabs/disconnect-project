@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.HorizontalLayoutElement
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.extras.JsEnum;
@@ -38,12 +38,12 @@ import js.extras.JsEnum;
 @WebComponent
 public class HorizontalLayout extends AbstractComponent<HorizontalLayoutElement>
 		implements HasThemableMixin<HorizontalLayout.Variant, HorizontalLayoutElement, HorizontalLayout>,
-		HasStyle<HorizontalLayoutElement, HorizontalLayout>, HasComponents<HorizontalLayoutElement, HorizontalLayout, Component<?>> {
+		HasStyle<HorizontalLayoutElement, HorizontalLayout>, HasComponents<HorizontalLayoutElement, HorizontalLayout, HasElement<?>> {
 	public HorizontalLayout() {
 		super(HorizontalLayoutElement.TAGNAME());
 	}
 
-	public HorizontalLayout(Component<?>... components) {
+	public HorizontalLayout(HasElement<?>... components) {
 		this();
 		add(components);
 	}

@@ -8,25 +8,25 @@ import java.util.function.Predicate;
 public class ObservableEvent<VALUE> extends SimpleObservableEvent {
     public Observable<VALUE> asObservable() {
         Observable<VALUE> observable = new Observable<>();
-        acceptImpl(value -> observable.pushNewValue((VALUE)value, true));
+        acceptImplQuiet(value -> observable.pushNewValue((VALUE)value, true));
         return observable;
     }
 
     public <NEW_VALUE> ObservableEvent<NEW_VALUE> map(Function<VALUE, NEW_VALUE> mapper) {
         ObservableEvent<NEW_VALUE> newSignal = new ObservableEvent<>();
-        acceptImpl(value -> newSignal.trigger(mapper.apply((VALUE) value)));
+        acceptImplQuiet(value -> newSignal.trigger(mapper.apply((VALUE) value)));
         return newSignal;
     }
 
     public <NEW_VALUE> ObservableEvent<NEW_VALUE> mapAsync(Function<VALUE, NEW_VALUE> mapper) {
         ObservableEvent<NEW_VALUE> newSignal = new ObservableEvent<>();
-        acceptImpl(value -> new Thread(() -> newSignal.trigger(mapper.apply((VALUE) value))).start());
+        acceptImplQuiet(value -> new Thread(() -> newSignal.trigger(mapper.apply((VALUE) value))).start());
         return newSignal;
     }
 
     public ObservableEvent<VALUE> filter(Predicate<VALUE> predicate) {
         ObservableEvent<VALUE> newSignal = new ObservableEvent<>();
-        acceptImpl(value -> {
+        acceptImplQuiet(value -> {
             if (predicate.test((VALUE)value)) {
                 newSignal.trigger((VALUE)value);
             }
@@ -36,7 +36,7 @@ public class ObservableEvent<VALUE> extends SimpleObservableEvent {
 
     public ObservableEvent<VALUE> filterAsync(Predicate<VALUE> predicate) {
         ObservableEvent<VALUE> newSignal = new ObservableEvent<>();
-        acceptImpl(value -> new Thread(() ->{
+        acceptImplQuiet(value -> new Thread(() ->{
             if (predicate.test((VALUE)value)) {
                 newSignal.trigger((VALUE)value);
             }
@@ -45,11 +45,11 @@ public class ObservableEvent<VALUE> extends SimpleObservableEvent {
     }
 
     public void accept(Consumer<VALUE> handler) {
-        acceptImpl(handler);
+        acceptImplQuiet(handler);
     }
 
     public void acceptAsync(Consumer<VALUE> handler) {
-        acceptImpl(value -> new Thread(() -> handler.accept((VALUE)value)).start());
+        acceptImplQuiet(value -> new Thread(() -> handler.accept((VALUE)value)).start());
     }
 
     public void trigger(VALUE value) {

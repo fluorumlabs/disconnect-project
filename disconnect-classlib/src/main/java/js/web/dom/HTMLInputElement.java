@@ -2,6 +2,7 @@ package js.web.dom;
 
 import js.extras.JsEnum;
 import js.lang.JsDate;
+import js.lang.Unknown;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
@@ -291,26 +292,26 @@ public interface HTMLInputElement extends HTMLElement {
      */
     @JSProperty
     @Nullable
-    double getSelectionEnd();
+    Unknown getSelectionEnd();
 
     @JSProperty
-    void setSelectionEnd(double selectionEnd);
+    void setSelectionEnd(Unknown selectionEnd);
 
     /**
      * Gets or sets the starting position or offset of a text selection.
      */
     @JSProperty
     @Nullable
-    double getSelectionStart();
+    Unknown getSelectionStart();
 
     @JSProperty
-    void setSelectionStart(double selectionStart);
+    void setSelectionStart(Unknown selectionStart);
 
     @JSProperty
-    double getSize();
+    int getSize();
 
     @JSProperty
-    void setSize(double size);
+    void setSize(int size);
 
     /**
      * The address or URL of the a media resource that is to be considered.

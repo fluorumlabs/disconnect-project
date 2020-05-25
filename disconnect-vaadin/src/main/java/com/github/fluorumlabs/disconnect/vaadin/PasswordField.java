@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.PasswordFieldElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -43,7 +43,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 @WebComponent
 public class PasswordField extends AbstractComponent<PasswordFieldElement>
 		implements HasThemableMixin<TextField.Variant, PasswordFieldElement, PasswordField>,
-		HasStyle<PasswordFieldElement, PasswordField>, HasComponents<PasswordFieldElement, PasswordField, Component<?>> {
+		HasStyle<PasswordFieldElement, PasswordField>, HasComponents<PasswordFieldElement, PasswordField, HasElement<?>> {
 	public PasswordField() {
 		super(PasswordFieldElement.TAGNAME());
 	}

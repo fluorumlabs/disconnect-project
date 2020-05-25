@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.BoardRowElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -48,7 +48,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 @WebComponent
 public class BoardRow extends AbstractComponent<BoardRowElement>
 		implements HasElementMixin<BoardRowElement, BoardRow>,
-		HasStyle<BoardRowElement, BoardRow>, HasComponents<BoardRowElement, BoardRow, Component<?>> {
+		HasStyle<BoardRowElement, BoardRow>, HasComponents<BoardRowElement, BoardRow, HasElement<?>> {
 	public BoardRow() {
 		super(BoardRowElement.TAGNAME());
 	}

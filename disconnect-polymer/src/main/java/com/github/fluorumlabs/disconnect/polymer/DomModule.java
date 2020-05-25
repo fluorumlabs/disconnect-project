@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.polymer;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.DomModuleElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import js.web.dom.Element;
 
@@ -29,7 +29,7 @@ import js.web.dom.Element;
 @WebComponent
 public class DomModule
 		extends AbstractComponent<DomModuleElement>
-		implements HasComponents<DomModuleElement, DomModule, Component<?>> {
+		implements HasComponents<DomModuleElement, DomModule, HasElement<?>> {
 	/**
 	 * Instantiates a new Dom module.
 	 */

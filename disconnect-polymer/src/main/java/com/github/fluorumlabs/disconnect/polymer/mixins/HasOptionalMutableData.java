@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.OptionalMutableData;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * Element class mixin to add the optional ability to skip strict dirty-checking for objects and arrays (always consider
@@ -34,7 +34,7 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasOptionalMutableData<E extends OptionalMutableData, T extends Component<E>> extends Component<E> {
+public interface HasOptionalMutableData<E extends OptionalMutableData, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * Instance-level flag for configuring the dirty-checking strategy for this element.  When true, Objects and Arrays
 	 * will skip dirty checking, otherwise strict equality checking will be used.

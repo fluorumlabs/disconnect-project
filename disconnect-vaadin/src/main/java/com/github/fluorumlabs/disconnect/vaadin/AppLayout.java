@@ -111,7 +111,7 @@ import javax.annotation.Nullable;
 public class AppLayout extends AbstractComponent<AppLayoutElement>
 		implements HasElementMixin<AppLayoutElement, AppLayout>,
 		HasSlots<AppLayoutElement>,
-		HasStyle<AppLayoutElement, AppLayout>, HasComponents<AppLayoutElement, AppLayout, Component<?>> {
+		HasStyle<AppLayoutElement, AppLayout>, HasComponents<AppLayoutElement, AppLayout, HasElement<?>> {
 	public AppLayout() {
 		super(AppLayoutElement.TAGNAME());
 	}

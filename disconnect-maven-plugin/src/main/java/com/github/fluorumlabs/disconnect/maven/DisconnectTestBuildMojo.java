@@ -36,6 +36,7 @@ public class DisconnectTestBuildMojo extends AbstractDisconnectMojo {
 
         // 4. Copy local frontend resources
         copyResources(new File(getProjectDirectory(), "src/main/resources/frontend"), new File(getOutputDirectory(), Globals.getFrontendBase()));
+        copyResources(new File(getProjectDirectory(), "src/test/resources/frontend"), new File(getOutputDirectory(), Globals.getFrontendBase()));
         injectBuildTimestamp(new File(getOutputDirectory(), Globals.getFrontendBase()));
 
         // 5. Install Node & NPM

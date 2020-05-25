@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class GridFilter extends AbstractComponent<GridFilterElement>
-		implements HasSlots<GridFilterElement>, HasStyle<GridFilterElement, GridFilter>, HasComponents<GridFilterElement, GridFilter, Component<?>> {
+		implements HasSlots<GridFilterElement>, HasStyle<GridFilterElement, GridFilter>, HasComponents<GridFilterElement, GridFilter, HasElement<?>> {
 	public GridFilter() {
 		super(GridFilterElement.TAGNAME());
 	}

@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.RadioGroupElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 @WebComponent
 public class RadioGroup extends AbstractComponent<RadioGroupElement>
 		implements HasThemableMixin<RadioGroup.Variant, RadioGroupElement, RadioGroup>,
-		HasStyle<RadioGroupElement, RadioGroup>, HasComponents<RadioGroupElement, RadioGroup, Component<?>> {
+		HasStyle<RadioGroupElement, RadioGroup>, HasComponents<RadioGroupElement, RadioGroup, HasElement<?>> {
 	public RadioGroup() {
 		super(RadioGroupElement.TAGNAME());
 	}

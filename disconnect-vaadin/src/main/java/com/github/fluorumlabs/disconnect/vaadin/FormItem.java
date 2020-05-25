@@ -107,7 +107,7 @@ import com.github.fluorumlabs.disconnect.zero.component.*;
 @WebComponent
 public class FormItem extends AbstractComponent<FormItemElement>
 		implements HasSlots<FormItemElement>,
-		HasStyle<FormItemElement, FormItem>, HasComponents<FormItemElement, FormItem, Component<?>> {
+		HasStyle<FormItemElement, FormItem>, HasComponents<FormItemElement, FormItem, HasElement<?>> {
 	public FormItem() {
 		super(FormItemElement.TAGNAME());
 	}

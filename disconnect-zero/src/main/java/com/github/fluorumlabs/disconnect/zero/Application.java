@@ -2,11 +2,11 @@ package com.github.fluorumlabs.disconnect.zero;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
-import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
+import com.github.fluorumlabs.disconnect.zero.component.Component;
 import js.lang.Unknown;
 import js.util.collections.WeakMap;
 import js.util.function.JsRunnable;
-import js.web.dom.Node;
+import js.web.dom.Element;
 import js.web.dom.WindowOrWorkerGlobalScope;
 import org.teavm.jso.JSBody;
 
@@ -16,18 +16,18 @@ import static js.web.dom.Window.WINDOW;
 
 @Import(symbols = {"$rtd_wrapThread"}, module = "disconnect-core-jar/frontend/thread-wrapper.js")
 public final class Application {
-    private static final Window window = new Window();
+    private static final ApplicationWindow APPLICATION_WINDOW = new ApplicationWindow();
     private static final WeakMap<Unknown, WindowOrWorkerGlobalScope.TimeoutHandle> asyncQueue = WeakMap.create();
 
     private Application() {
     }
 
-    public static Window window() {
-        return window;
+    public static ApplicationWindow window() {
+        return APPLICATION_WINDOW;
     }
 
-    public static void render(AbstractComponent<? extends Node> component) {
-        DOCUMENT.getBody().appendChild(component.getRenderedNode());
+    public static void render(Component<? extends Element> component) {
+        DOCUMENT.getBody().appendChild(component.getElement());
     }
 
     public static void async(Runnable action) {

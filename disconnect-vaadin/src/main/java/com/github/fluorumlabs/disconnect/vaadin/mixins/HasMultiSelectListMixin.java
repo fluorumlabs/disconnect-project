@@ -2,7 +2,7 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.types.IntArrayPropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.MultiSelectListMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 
 import javax.annotation.Nullable;
@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 /**
  * A mixin for <code>nav</code> elements, facilitating multiple selection of childNodes.
  */
-public interface HasMultiSelectListMixin<E extends MultiSelectListMixin, T extends Component<E>>
+public interface HasMultiSelectListMixin<E extends MultiSelectListMixin, T extends HasElement<E>>
 		extends HasListMixin<E, T> {
 	/**
 	 * Specifies that multiple options can be selected at once.

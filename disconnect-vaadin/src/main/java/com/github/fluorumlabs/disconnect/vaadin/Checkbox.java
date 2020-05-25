@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.CheckboxElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -62,7 +62,7 @@ public class Checkbox extends AbstractComponent<CheckboxElement>
 		implements HasElementMixin<CheckboxElement, Checkbox>,
 		HasControlStateMixin<CheckboxElement, Checkbox>,
 		HasGestureEventListeners<CheckboxElement, Checkbox>,
-		HasStyle<CheckboxElement, Checkbox>, HasComponents<CheckboxElement, Checkbox, Component<?>> {
+		HasStyle<CheckboxElement, Checkbox>, HasComponents<CheckboxElement, Checkbox, HasElement<?>> {
 	public Checkbox() {
 		super(CheckboxElement.TAGNAME());
 	}
@@ -72,7 +72,7 @@ public class Checkbox extends AbstractComponent<CheckboxElement>
 		value(value).text(value);
 	}
 
-	public Checkbox(String value, Component<?>... components) {
+	public Checkbox(String value, HasElement<?>... components) {
 		this();
 		value(value).add(components);
 	}

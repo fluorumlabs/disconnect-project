@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.polymer;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.DomIfElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponent;
 import com.github.fluorumlabs.disconnect.zero.component.Template;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -37,7 +37,7 @@ public class DomIf
 	 *
 	 * @param components the components
 	 */
-	public DomIf(Component<?>... components) {
+	public DomIf(HasElement<?>... components) {
 		this();
 		Template template = new Template();
 		template.add(components);

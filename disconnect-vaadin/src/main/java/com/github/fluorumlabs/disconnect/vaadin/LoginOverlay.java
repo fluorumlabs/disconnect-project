@@ -6,7 +6,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.LoginOverlayElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasLoginMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 public class LoginOverlay extends AbstractComponent<LoginOverlayElement>
 		implements HasElementMixin<LoginOverlayElement, LoginOverlay>,
 		HasLoginMixin<LoginOverlayElement, LoginOverlay>,
-		HasStyle<LoginOverlayElement, LoginOverlay>, HasComponents<LoginOverlayElement, LoginOverlay, Component<?>> {
+		HasStyle<LoginOverlayElement, LoginOverlay>, HasComponents<LoginOverlayElement, LoginOverlay, HasElement<?>> {
 	public LoginOverlay() {
 		super(LoginOverlayElement.TAGNAME());
 	}

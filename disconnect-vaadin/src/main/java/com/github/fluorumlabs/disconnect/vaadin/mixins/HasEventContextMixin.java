@@ -2,12 +2,12 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.EventContextMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.EventContextData;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 import js.web.dom.Event;
 
-public interface HasEventContextMixin<ITEM extends Any, E extends EventContextMixin<ITEM>, T extends Component<E>>
-		extends Component<E> {
+public interface HasEventContextMixin<ITEM extends Any, E extends EventContextMixin<ITEM>, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * Returns an object with context information about the event target:
 	 *

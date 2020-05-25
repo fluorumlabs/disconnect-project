@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.CheckboxGroupElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.ThemeVariant;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -64,7 +64,7 @@ import java.util.Set;
 public class CheckboxGroup extends AbstractComponent<CheckboxGroupElement>
 		implements HasThemableMixin<CheckboxGroup.Variant, CheckboxGroupElement, CheckboxGroup>,
 		HasStyle<CheckboxGroupElement, CheckboxGroup>,
-		HasComponents<CheckboxGroupElement, CheckboxGroup, Component<?>> {
+		HasComponents<CheckboxGroupElement, CheckboxGroup, HasElement<?>> {
 	public CheckboxGroup() {
 		super(CheckboxGroupElement.TAGNAME());
 	}

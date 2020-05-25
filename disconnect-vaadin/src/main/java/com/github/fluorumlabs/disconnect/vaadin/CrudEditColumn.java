@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.CrudEditColumnElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class CrudEditColumn extends AbstractComponent<CrudEditColumnElement>
-		implements HasStyle<CrudEditColumnElement, CrudEditColumn>, HasComponents<CrudEditColumnElement, CrudEditColumn, Component<?>> {
+		implements HasStyle<CrudEditColumnElement, CrudEditColumn>, HasComponents<CrudEditColumnElement, CrudEditColumn, HasElement<?>> {
 	public CrudEditColumn() {
 		super(CrudEditColumnElement.TAGNAME());
 	}

@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridProElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasInlineEditingMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.lang.Any;
@@ -25,7 +25,7 @@ import js.lang.Any;
 public class GridPro<ITEM extends Any> extends AbstractComponent<GridProElement>
 		implements HasInlineEditingMixin<ITEM, GridProElement, GridPro<ITEM>>,
 		HasStyle<GridProElement, GridPro<ITEM>>,
-		HasComponents<GridProElement, GridPro<ITEM>, Component<?>> {
+		HasComponents<GridProElement, GridPro<ITEM>, HasElement<?>> {
 	public GridPro() {
 		super(GridProElement.TAGNAME());
 	}

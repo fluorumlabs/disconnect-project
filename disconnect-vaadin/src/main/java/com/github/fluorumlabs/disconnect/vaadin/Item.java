@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.ItemElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasItemMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -50,7 +50,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
  */
 @WebComponent
 public class Item extends AbstractComponent<ItemElement> implements HasItemMixin<ItemElement, Item>,
-		HasStyle<ItemElement, Item>, HasComponents<ItemElement, Item, Component<?>> {
+		HasStyle<ItemElement, Item>, HasComponents<ItemElement, Item, HasElement<?>> {
 	public Item() {
 		super(ItemElement.TAGNAME());
 	}

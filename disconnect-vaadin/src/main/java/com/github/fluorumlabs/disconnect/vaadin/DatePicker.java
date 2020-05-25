@@ -102,7 +102,7 @@ public class DatePicker extends AbstractComponent<DatePickerElement>
 		HasDatePickerMixin<DatePickerElement, DatePicker>,
 		HasGestureEventListeners<DatePickerElement, DatePicker>,
 		HasSlots<DatePickerElement>,
-		HasStyle<DatePickerElement, DatePicker>, HasComponents<DatePickerElement, DatePicker, Component<?>> {
+		HasStyle<DatePickerElement, DatePicker>, HasComponents<DatePickerElement, DatePicker, HasElement<?>> {
 	public DatePicker() {
 		super(DatePickerElement.TAGNAME());
 	}

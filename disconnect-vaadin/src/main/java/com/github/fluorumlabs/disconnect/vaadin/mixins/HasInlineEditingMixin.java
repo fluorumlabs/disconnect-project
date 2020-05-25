@@ -2,12 +2,12 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.types.PropertyChangeEvent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.InlineEditingMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.lang.Any;
 
-public interface HasInlineEditingMixin<ITEM extends Any, E extends InlineEditingMixin, T extends Component<E>>
-		extends Component<E> {
+public interface HasInlineEditingMixin<ITEM extends Any, E extends InlineEditingMixin, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * When true, pressing Enter while in cell edit mode
 	 * will move focus to the editable cell in the next row

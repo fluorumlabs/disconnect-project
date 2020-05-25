@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.ListBoxElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasMultiSelectListMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -35,7 +35,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 @WebComponent
 public class ListBox extends AbstractComponent<ListBoxElement>
 		implements HasMultiSelectListMixin<ListBoxElement, ListBox>,
-		HasStyle<ListBoxElement, ListBox>, HasComponents<ListBoxElement, ListBox, Component<?>> {
+		HasStyle<ListBoxElement, ListBox>, HasComponents<ListBoxElement, ListBox, HasElement<?>> {
 	public ListBox() {
 		super(ListBoxElement.TAGNAME());
 	}

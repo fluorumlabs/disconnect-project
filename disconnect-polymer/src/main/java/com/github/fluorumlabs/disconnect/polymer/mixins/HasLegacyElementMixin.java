@@ -6,7 +6,7 @@ import com.github.fluorumlabs.disconnect.polymer.elements.mixins.LegacyElementMi
 import com.github.fluorumlabs.disconnect.polymer.types.Debouncer;
 import com.github.fluorumlabs.disconnect.polymer.types.LegacyEventInit;
 import com.github.fluorumlabs.disconnect.polymer.utils.TimeOut;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.collections.Array;
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
  * @param <T> the type parameter
  */
 @Deprecated
-public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends Component<E>>
+public interface HasLegacyElementMixin<E extends LegacyElementMixin, T extends HasElement<E>>
 		extends HasElementMixin<E, T>, HasGestureEventListeners<E, T> {
 	/**
 	 * Is attached boolean.

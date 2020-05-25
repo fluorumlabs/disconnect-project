@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.PropertiesMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * Mixin that provides a minimal starting point to using the PropertiesChanged mixin by providing a mechanism to declare
@@ -15,6 +15,6 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasPropertiesMixin<E extends PropertiesMixin, T extends Component<E>>
+public interface HasPropertiesMixin<E extends PropertiesMixin, T extends HasElement<E>>
 		extends HasPropertiesChanged<E, T> {
 }

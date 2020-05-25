@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 public class Notification extends AbstractComponent<NotificationElement>
 		implements HasThemePropertyMixin<NotificationElement, Notification>,
 		HasSlots<NotificationElement>,
-		HasStyle<NotificationElement, Notification>, HasComponents<NotificationElement, Notification, Component<?>> {
+		HasStyle<NotificationElement, Notification>, HasComponents<NotificationElement, Notification, HasElement<?>> {
 	public Notification() {
 		super(NotificationElement.TAGNAME());
 	}

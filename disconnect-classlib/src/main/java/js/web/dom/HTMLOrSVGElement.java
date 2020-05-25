@@ -18,10 +18,10 @@ public interface HTMLOrSVGElement extends Any {
     void setNonce(String nonce);
 
     @JSProperty
-    double getTabIndex();
+    int getTabIndex();
 
     @JSProperty
-    void setTabIndex(double tabIndex);
+    void setTabIndex(int tabIndex);
 
     void blur();
 

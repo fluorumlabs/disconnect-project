@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.AccordionElement;
 import com.github.fluorumlabs.disconnect.vaadin.elements.AccordionPanelElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 public class Accordion extends AbstractComponent<AccordionElement> implements
 		HasElementMixin<AccordionElement, Accordion>,
 		HasStyle<AccordionElement, Accordion>,
-		HasComponents<AccordionElement, Accordion, Component<?>> {
+		HasComponents<AccordionElement, Accordion, HasElement<?>> {
 	public Accordion() {
 		super(AccordionElement.TAGNAME());
 	}

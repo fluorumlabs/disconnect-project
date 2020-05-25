@@ -56,7 +56,7 @@ public class Details extends AbstractComponent<DetailsElement>
 		HasElementMixin<DetailsElement, Details>,
 		HasThemableMixin<Details.Variant, DetailsElement, Details>,
 		HasSlots<DetailsElement>,
-		HasStyle<DetailsElement, Details>, HasComponents<DetailsElement, Details, Component<?>> {
+		HasStyle<DetailsElement, Details>, HasComponents<DetailsElement, Details, HasElement<?>> {
 	public Details() {
 		super(DetailsElement.TAGNAME());
 	}

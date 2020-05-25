@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.zero.component;
 
+import com.github.fluorumlabs.disconnect.zero.EventInitializer;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.cssom.AnimationEvent;
 import js.web.cssom.TransitionEvent;

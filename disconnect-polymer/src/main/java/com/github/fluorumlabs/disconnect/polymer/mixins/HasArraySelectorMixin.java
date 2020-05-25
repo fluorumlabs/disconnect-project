@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.ArraySelectorMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 import js.util.collections.Array;
 
@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  * @param <E>    the type parameter
  * @param <T>    the type parameter
  */
-public interface HasArraySelectorMixin<ITEM extends Any, E extends ArraySelectorMixin<ITEM>, T extends Component<E>>
+public interface HasArraySelectorMixin<ITEM extends Any, E extends ArraySelectorMixin<ITEM>, T extends HasElement<E>>
 		extends HasElementMixin<E, T> {
 	/**
 	 * An array containing items from which selection will be made.

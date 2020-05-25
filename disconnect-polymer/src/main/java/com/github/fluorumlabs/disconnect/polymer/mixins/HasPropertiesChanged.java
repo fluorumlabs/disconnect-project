@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.PropertiesChanged;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * Element class mixin that provides basic meta-programming for creating one or more property accessors (getter/setter
@@ -17,5 +17,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * @param <E> the type parameter
  * @param <T> the type parameter
  */
-public interface HasPropertiesChanged<E extends PropertiesChanged, T extends Component<E>> extends Component<E> {
+public interface HasPropertiesChanged<E extends PropertiesChanged, T extends HasElement<E>> extends HasElement<E> {
 }

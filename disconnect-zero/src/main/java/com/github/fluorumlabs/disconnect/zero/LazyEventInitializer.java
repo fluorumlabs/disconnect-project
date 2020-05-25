@@ -12,12 +12,12 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 
-public abstract class LazyEventInitializer<X extends EventTarget> {
+public abstract class LazyEventInitializer<X extends EventTarget> implements EventInitializer<X> {
 	private final Map<Object, ObservableEvent<?>> eventMap = new HashMap<>();
 
 	private final Map<Object, ObservableValue<?>> valueMap = new HashMap<>();
 
-	private final static String[] NO_ALTERNATIVES = new String[0];
+	private static final String[] NO_ALTERNATIVES = new String[0];
 
 	protected <T, E extends ObservableEvent<T>> E createEvent(Object identifier, Supplier<E> initializer) {
 		return (E) eventMap.computeIfAbsent(identifier, __ -> initializer.get());
@@ -32,7 +32,7 @@ public abstract class LazyEventInitializer<X extends EventTarget> {
 	}
 
 	protected <T extends Event, E extends ObservableEvent<T>> E createEvent(X target, String identifier,
-																			String... altIdentifiers) {
+															String... altIdentifiers) {
 		return createEvent(identifier, () -> {
 			ObservableEvent<T> event = new ObservableEvent<>();
 			EventListener<T> listener = event::trigger;
@@ -46,7 +46,7 @@ public abstract class LazyEventInitializer<X extends EventTarget> {
 	}
 
 	protected <T extends Event, E extends ObservableEvent<T>> E createEvent(X target,
-																			BiConsumer<X, EventListener<T>> addEventListener) {
+															BiConsumer<X, EventListener<T>> addEventListener) {
 		return createEvent(addEventListener, () -> {
 			ObservableEvent<T> event = new ObservableEvent<>();
 			EventListener<T> listener = event::trigger;
@@ -57,7 +57,7 @@ public abstract class LazyEventInitializer<X extends EventTarget> {
 	}
 
 	protected <T extends Event, E extends ObservableEvent<T>> E createEvent(X target,
-																			BiConsumer<X, EventListener<T>> addEventListener, BiConsumer<X, EventListener<T>>... altAddEventListeners) {
+															BiConsumer<X, EventListener<T>> addEventListener, BiConsumer<X, EventListener<T>>... altAddEventListeners) {
 		return createEvent(addEventListener, () -> {
 			ObservableEvent<T> event = new ObservableEvent<>();
 			EventListener<T> listener = event::trigger;

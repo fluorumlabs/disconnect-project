@@ -2,14 +2,14 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.DatePickerMixin;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.DatePickerI18n;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableValue;
 import js.lang.JsDate;
 
 import javax.annotation.Nullable;
 import java.util.Date;
 
-public interface HasDatePickerMixin<E extends DatePickerMixin, T extends Component<E>> extends Component<E> {
+public interface HasDatePickerMixin<E extends DatePickerMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * The value for this element.
 	 * <p>

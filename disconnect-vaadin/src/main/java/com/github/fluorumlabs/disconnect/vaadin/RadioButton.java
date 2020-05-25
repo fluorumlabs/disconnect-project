@@ -7,7 +7,7 @@ import com.github.fluorumlabs.disconnect.vaadin.elements.RadioButtonElement;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -55,7 +55,7 @@ public class RadioButton extends AbstractComponent<RadioButtonElement>
 		implements HasElementMixin<RadioButtonElement, RadioButton>,
 		HasControlStateMixin<RadioButtonElement, RadioButton>,
 		HasGestureEventListeners<RadioButtonElement, RadioButton>,
-		HasStyle<RadioButtonElement, RadioButton>, HasComponents<RadioButtonElement, RadioButton, Component<?>> {
+		HasStyle<RadioButtonElement, RadioButton>, HasComponents<RadioButtonElement, RadioButton, HasElement<?>> {
 	public RadioButton() {
 		super(RadioButtonElement.TAGNAME());
 	}

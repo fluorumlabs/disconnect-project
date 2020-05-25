@@ -5,7 +5,6 @@ import com.github.fluorumlabs.disconnect.example.spring.TestService;
 import com.github.fluorumlabs.disconnect.vaadin.TextField;
 import com.github.fluorumlabs.disconnect.vaadin.theme.Lumo;
 import com.github.fluorumlabs.disconnect.zero.component.html.Div;
-import com.github.fluorumlabs.disconnect.zero.component.html.H1;
 
 import javax.annotation.Resource;
 

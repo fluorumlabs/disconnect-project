@@ -240,7 +240,7 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 		tool.setOptimizationLevel((Globals.isLiveMode() || Globals.isTestMode()) ? TeaVMOptimizationLevel.SIMPLE :
 				productionBuild ?
 				TeaVMOptimizationLevel.FULL : TeaVMOptimizationLevel.ADVANCED);
-		tool.setFastDependencyAnalysis(Globals.isTestMode() || Globals.isLiveMode());
+		tool.setFastDependencyAnalysis(false);
 
 		tool.setIncremental(Globals.isLiveMode());
 		tool.setCacheRoot(inMemoryFileSystem.getPath(compilationUnit));
@@ -253,7 +253,7 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 				new File(outputDirectory, Globals.getFrontendBase()).getAbsolutePath());
 		tool.getProperties().setProperty("frontend.build", Globals.isLiveMode() ? "live" :
 				(isProduction() || !Globals.isTestMode()) ? "production" :
-				"development");
+						"development");
 		tool.getProperties().setProperty("frontend.artifactId", artifactId);
 		tool.getProperties().setProperty("frontend.version", version);
 		tool.getProperties().setProperty("frontend.compilationUnit", compilationUnit);
@@ -402,6 +402,7 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 						element(name("workingDirectory"), "${project.build.directory}/" + Globals.getFrontendBase()),
 						element(name("environmentVariables"),
 								element(name("NODE_TLS_REJECT_UNAUTHORIZED"), "0"),
+								element(name("NODE_CURRENT_ARTIFACT"), artifactId),
 								element(name("NODE_ENV"), Globals.isLiveMode() ? "live" : isProduction() ?
 										"production" :
 										"development")

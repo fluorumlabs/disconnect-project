@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 import com.github.fluorumlabs.disconnect.vaadin.constants.Autocorrect;
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.TextFieldMixin;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.TextFieldI18n;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.dom.Autocapitalize;
 import js.web.dom.Autocomplete;
@@ -11,7 +11,7 @@ import js.web.dom.Event;
 
 import javax.annotation.Nullable;
 
-public interface HasTextFieldMixin<E extends TextFieldMixin, T extends Component<E>>
+public interface HasTextFieldMixin<E extends TextFieldMixin, T extends HasElement<E>>
 		extends HasControlStateMixin<E, T> {
 
 	/**

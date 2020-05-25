@@ -9,7 +9,7 @@ import com.github.fluorumlabs.disconnect.vaadin.mixins.HasControlStateMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasElementMixin;
 import com.github.fluorumlabs.disconnect.vaadin.mixins.HasThemableMixin;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
@@ -73,7 +73,7 @@ public class TimePicker extends AbstractComponent<TimePickerElement>
 		implements HasElementMixin<TimePickerElement, TimePicker>,
 		HasControlStateMixin<TimePickerElement, TimePicker>,
 		HasThemableMixin<TextField.Variant, TimePickerElement, TimePicker>,
-		HasStyle<TimePickerElement, TimePicker>, HasComponents<TimePickerElement, TimePicker, Component<?>> {
+		HasStyle<TimePickerElement, TimePicker>, HasComponents<TimePickerElement, TimePicker, HasElement<?>> {
 	public TimePicker() {
 		super(TimePickerElement.TAGNAME());
 	}

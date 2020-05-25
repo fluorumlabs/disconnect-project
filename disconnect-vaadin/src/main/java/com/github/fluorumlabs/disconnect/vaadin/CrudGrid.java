@@ -36,7 +36,7 @@ public class CrudGrid<ITEM extends Any> extends AbstractComponent<CrudGridElemen
 		HasStylingMixin<ITEM, CrudGridElement<ITEM>, CrudGrid<ITEM>>,
 		HasDragAndDropMixin<ITEM, CrudGridElement<ITEM>, CrudGrid<ITEM>>,
 		HasSlots<CrudGridElement<ITEM>>,
-		HasStyle<CrudGridElement<ITEM>, CrudGrid<ITEM>>, HasComponents<CrudGridElement<ITEM>, CrudGrid<ITEM>, Component<?>> {
+		HasStyle<CrudGridElement<ITEM>, CrudGrid<ITEM>>, HasComponents<CrudGridElement<ITEM>, CrudGrid<ITEM>, HasElement<?>> {
 	public CrudGrid() {
 		super(CrudGridElement.TAGNAME());
 	}

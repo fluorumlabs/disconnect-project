@@ -1,14 +1,14 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.SelectionMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.lang.Any;
 import js.util.collections.Array;
 
 import javax.annotation.Nullable;
 
-public interface HasSelectionMixin<ITEM extends Any, E extends SelectionMixin<ITEM>, T extends Component<E>>
-		extends Component<E> {
+public interface HasSelectionMixin<ITEM extends Any, E extends SelectionMixin<ITEM>, T extends HasElement<E>>
+		extends HasElement<E> {
 	/**
 	 * An array that contains the selected items.
 	 */

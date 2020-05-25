@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.polymer.mixins;
 
 import com.github.fluorumlabs.disconnect.polymer.elements.mixins.LegacyDataMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 
 /**
  * Mixin to selectively add back Polymer 1.x's <code>undefined</code> rules governing when observers &amp; computing
@@ -18,5 +18,5 @@ import com.github.fluorumlabs.disconnect.zero.component.Component;
  * @param <T> the type parameter
  */
 @Deprecated
-public interface HasLegacyDataMixin<E extends LegacyDataMixin, T extends Component<E>> extends Component<E> {
+public interface HasLegacyDataMixin<E extends LegacyDataMixin, T extends HasElement<E>> extends HasElement<E> {
 }

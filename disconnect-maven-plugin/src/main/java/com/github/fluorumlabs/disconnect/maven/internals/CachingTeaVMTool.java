@@ -291,7 +291,7 @@ public class CachingTeaVMTool {
 
     private TeaVMTarget prepareJavaScriptTarget() {
         javaScriptTarget = new JavaScriptTarget();
-        javaScriptTarget.setMinifying(minifying);
+        javaScriptTarget.setObfuscated(minifying);
         javaScriptTarget.setTopLevelNameLimit(maxTopLevelNames);
 
         debugEmitter = debugInformationGenerated || sourceMapsFileGenerated

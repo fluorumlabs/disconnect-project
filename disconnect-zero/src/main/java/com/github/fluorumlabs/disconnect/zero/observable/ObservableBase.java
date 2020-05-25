@@ -13,6 +13,11 @@ abstract class ObservableBase<VALUE> {
     private final ReferenceQueue<Consumer<VALUE>> queue = new ReferenceQueue<>();
 
     void acceptImpl(Consumer<VALUE> consumer) {
+        acceptImplQuiet(consumer);
+        consumer.accept(currentValue);
+    }
+
+    void acceptImplQuiet(Consumer<VALUE> consumer) {
         synchronized (consumers) {
             consumers.add(new WeakReference<>(consumer, queue));
         }
@@ -25,10 +30,10 @@ abstract class ObservableBase<VALUE> {
                 consumers.removeElement(x);
             }
         }
-        VALUE value = getCurrentValue();
+        VALUE value = currentValue;
         synchronized (consumers) {
-            consumers.forEach(consumerWeakReference -> {
-                Consumer<VALUE> consumer = consumerWeakReference.get();
+            consumers.forEach(weakReference -> {
+                Consumer<VALUE> consumer = weakReference.get();
                 if (consumer != null) {
                     consumer.accept(value);
                 }
@@ -49,7 +54,7 @@ abstract class ObservableBase<VALUE> {
     }
 
     void pushNewValue(VALUE value, boolean forcePropagation) {
-        if (forcePropagation || !equalFunction(this.currentValue, value)) {
+        if (forcePropagation || !equalFunction(currentValue, value)) {
             this.currentValue = value;
             markAsDirty();
         }

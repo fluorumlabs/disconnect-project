@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.SelectTextFieldElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.web.dom.Element;
@@ -21,7 +21,7 @@ import js.web.dom.Element;
  */
 @WebComponent
 public class SelectTextField extends AbstractComponent<SelectTextFieldElement>
-		implements HasStyle<SelectTextFieldElement, SelectTextField>, HasComponents<SelectTextFieldElement, SelectTextField, Component<?>> {
+		implements HasStyle<SelectTextFieldElement, SelectTextField>, HasComponents<SelectTextFieldElement, SelectTextField, HasElement<?>> {
 	public SelectTextField() {
 		super(SelectTextFieldElement.TAGNAME());
 	}

@@ -3,6 +3,7 @@ package js.util.collections;
 import js.lang.Any;
 import js.util.iterable.IterableIterable;
 import org.teavm.jso.JSIndexer;
+import org.teavm.jso.JSProperty;
 
 
 /**
@@ -16,6 +17,7 @@ public interface ArrayLike<T extends Any> extends IterableIterable<T>, Any {
      *
      * @return the length
      */
+    @JSProperty
     int getLength();
 
     /**

@@ -2,10 +2,10 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ItemsMixin;
 import com.github.fluorumlabs.disconnect.vaadin.types.MenuItem;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.util.collections.Array;
 
-public interface HasItemsMixin<E extends ItemsMixin, T extends Component<E>> extends Component<E> {
+public interface HasItemsMixin<E extends ItemsMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * Defines a (hierarchical) menu structure for the component.
 	 * If a menu item has a non-empty <code>children</code> set, a sub-menu with the child items is opened

@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.polymer;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.polymer.elements.IronOverlayBackdropElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 
 /**
@@ -33,7 +33,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 @WebComponent
 public class IronOverlayBackdrop
 		extends AbstractComponent<IronOverlayBackdropElement>
-		implements HasComponents<IronOverlayBackdropElement, IronOverlayBackdrop, Component<?>> {
+		implements HasComponents<IronOverlayBackdropElement, IronOverlayBackdrop, HasElement<?>> {
 	/**
 	 * Instantiates a new Iron overlay backdrop.
 	 */

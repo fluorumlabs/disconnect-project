@@ -2,13 +2,13 @@ package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.LoginMixin;
 import com.github.fluorumlabs.disconnect.vaadin.i18n.LoginI18n;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.observable.ObservableEvent;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
 
-public interface HasLoginMixin<E extends LoginMixin, T extends Component<E>> extends Component<E> {
+public interface HasLoginMixin<E extends LoginMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * If set, a synchronous POST call will be fired to the path defined.
 	 * The <code>login</code> event is also dispatched, so <code>event.preventDefault()</code> can be called to

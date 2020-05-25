@@ -70,7 +70,7 @@ public interface Unknown extends Any {
 	 *
 	 * @return the double
 	 */
-	@JSBody(script = "return this")
+	@JSBody(script = "return +this")
     double doubleValue();
 
 	/**
@@ -78,7 +78,7 @@ public interface Unknown extends Any {
 	 *
 	 * @return the int
 	 */
-	@JSBody(script = "return this")
+	@JSBody(script = "return +this")
     int intValue();
 
 	/**
@@ -86,7 +86,7 @@ public interface Unknown extends Any {
 	 *
 	 * @return the byte
 	 */
-	@JSBody(script = "return this")
+	@JSBody(script = "return +this")
     byte byteValue();
 
 	/**
@@ -94,7 +94,7 @@ public interface Unknown extends Any {
 	 *
 	 * @return the char
 	 */
-	@JSBody(script = "return this")
+	@JSBody(script = "return +this")
     char charValue();
 
 	/**
@@ -102,7 +102,7 @@ public interface Unknown extends Any {
 	 *
 	 * @return the short
 	 */
-	@JSBody(script = "return this")
+	@JSBody(script = "return +this")
     short shortValue();
 
 	/**
@@ -110,7 +110,7 @@ public interface Unknown extends Any {
 	 *
 	 * @return the float
 	 */
-	@JSBody(script = "return this")
+	@JSBody(script = "return +this")
     float floatValue();
 
 	/**
@@ -118,7 +118,7 @@ public interface Unknown extends Any {
 	 *
 	 * @return the boolean
 	 */
-	@JSBody(script = "return this")
+	@JSBody(script = "return !!this")
     boolean booleanValue();
 
 	/**
@@ -126,7 +126,7 @@ public interface Unknown extends Any {
 	 *
 	 * @return the string
 	 */
-	@JSBody(script = "return this")
+	@JSBody(script = "return ''+this")
     String stringValue();
 
 	/**

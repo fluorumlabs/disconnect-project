@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.SelectOverlayElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 
@@ -20,7 +20,7 @@ import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
  */
 @WebComponent
 public class SelectOverlay extends AbstractComponent<SelectOverlayElement>
-		implements HasStyle<SelectOverlayElement, SelectOverlay>, HasComponents<SelectOverlayElement, SelectOverlay, Component<?>> {
+		implements HasStyle<SelectOverlayElement, SelectOverlay>, HasComponents<SelectOverlayElement, SelectOverlay, HasElement<?>> {
 	public SelectOverlay() {
 		super(SelectOverlayElement.TAGNAME());
 	}

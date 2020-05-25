@@ -12,7 +12,7 @@ public class NotificationContainer
 		implements HasSlots<com.github.fluorumlabs.disconnect.vaadin.elements.NotificationContainer>,
 		HasStyle<com.github.fluorumlabs.disconnect.vaadin.elements.NotificationContainer, NotificationContainer>,
 		HasComponents<com.github.fluorumlabs.disconnect.vaadin.elements.NotificationContainer, NotificationContainer,
-				Component<?>> {
+                HasElement<?>> {
 	public NotificationContainer() {
 		super(com.github.fluorumlabs.disconnect.vaadin.elements.NotificationContainer.TAGNAME());
 	}

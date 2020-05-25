@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.vaadin;
 import com.github.fluorumlabs.disconnect.core.annotations.WebComponent;
 import com.github.fluorumlabs.disconnect.vaadin.elements.GridTreeColumnElement;
 import com.github.fluorumlabs.disconnect.zero.component.AbstractComponent;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import com.github.fluorumlabs.disconnect.zero.component.HasComponents;
 import com.github.fluorumlabs.disconnect.zero.component.HasStyle;
 import js.lang.Any;
@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  */
 @WebComponent
 public class GridTreeColumn<ITEM extends Any> extends AbstractComponent<GridTreeColumnElement<ITEM>>
-		implements HasStyle<GridTreeColumnElement<ITEM>, GridTreeColumn<ITEM>>, HasComponents<GridTreeColumnElement<ITEM>, GridTreeColumn<ITEM>, Component<?>> {
+		implements HasStyle<GridTreeColumnElement<ITEM>, GridTreeColumn<ITEM>>, HasComponents<GridTreeColumnElement<ITEM>, GridTreeColumn<ITEM>, HasElement<?>> {
 	public GridTreeColumn() {
 		super(GridTreeColumnElement.TAGNAME());
 	}

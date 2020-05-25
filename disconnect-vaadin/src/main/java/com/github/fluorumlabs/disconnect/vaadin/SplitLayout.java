@@ -145,7 +145,7 @@ public class SplitLayout extends AbstractComponent<SplitLayoutElement>
 		implements HasThemableMixin<SplitLayout.Variant, SplitLayoutElement, SplitLayout>,
 		HasGestureEventListeners<SplitLayoutElement, SplitLayout>,
 		HasSlots<SplitLayoutElement>,
-		HasStyle<SplitLayoutElement, SplitLayout>, HasComponents<SplitLayoutElement, SplitLayout, Component<?>> {
+		HasStyle<SplitLayoutElement, SplitLayout>, HasComponents<SplitLayoutElement, SplitLayout, HasElement<?>> {
 	public SplitLayout() {
 		super(SplitLayoutElement.TAGNAME());
 	}

@@ -1,14 +1,14 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.ControlStateMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.web.dom.Element;
 
 /**
  * Polymer.IronControlState is not a proper 2.0 class, also, its tabindex
  * implementation fails in the shadow dom, so we have this for vaadin elements.
  */
-public interface HasControlStateMixin<E extends ControlStateMixin, T extends Component<E>> extends Component<E> {
+public interface HasControlStateMixin<E extends ControlStateMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * FIXME type ?
 	 * Any element extending this mixin is required to implement this getter.

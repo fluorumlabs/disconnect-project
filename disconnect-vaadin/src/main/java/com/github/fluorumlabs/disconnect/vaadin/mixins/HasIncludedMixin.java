@@ -1,10 +1,10 @@
 package com.github.fluorumlabs.disconnect.vaadin.mixins;
 
 import com.github.fluorumlabs.disconnect.vaadin.elements.mixins.IncludedMixin;
-import com.github.fluorumlabs.disconnect.zero.component.Component;
+import com.github.fluorumlabs.disconnect.zero.component.HasElement;
 import js.util.RegExp;
 
-public interface HasIncludedMixin<E extends IncludedMixin, T extends Component<E>> extends Component<E> {
+public interface HasIncludedMixin<E extends IncludedMixin, T extends HasElement<E>> extends HasElement<E> {
 	/**
 	 * A list of item fields that should not be mapped to form fields.
 	 * <p>
