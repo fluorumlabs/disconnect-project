@@ -117,8 +117,16 @@ public class ComponentData {
             AnnotationReader customElementReader = annotations.get(CustomElement.class.getName());
             if (customElementReader != null) {
                 String tagName = getCustomElementTagName(classHolder, customElementReader);
-                List<String> attributes = getAllAttributeNames(classHolder, classSource);
-                add(customElement(classHolder.getName(), tagName, attributes, classLoader));
+                if (customElementReader.getValue("external") != null && customElementReader.getValue("external").getBoolean()) {
+                    if (hay.getName().equals(classHolder.getName())) {
+                        add(immediate(classHolder.getName(), tagName, classLoader));
+                    } else {
+                        add(inherited(classHolder.getName(), tagName, classLoader));
+                    }
+                } else {
+                    List<String> attributes = getAllAttributeNames(classHolder, classSource);
+                    add(customElement(classHolder.getName(), tagName, attributes, classLoader));
+                }
             }
             //...
             hay = classSource.get(hay.getParent());

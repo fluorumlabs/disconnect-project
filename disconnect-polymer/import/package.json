@@ -1,0 +1,19 @@
+{
+    "license": "UNLICENSED",
+    "private": "true",
+    "dependencies": {
+        "@polymer/iron-a11y-announcer": "latest",
+        "@polymer/iron-a11y-keys-behavior": "latest",
+        "@polymer/iron-fit-behavior": "latest",
+        "@polymer/iron-flex-layout": "latest",
+        "@polymer/iron-icon": "latest",
+        "@polymer/iron-iconset-svg": "latest",
+        "@polymer/iron-list": "latest",
+        "@polymer/iron-media-query": "latest",
+        "@polymer/iron-meta": "latest",
+        "@polymer/iron-overlay-behavior": "latest",
+        "@polymer/iron-resizable-behavior": "latest",
+        "@polymer/iron-scroll-target-behavior": "latest",
+        "@polymer/polymer": "latest"
+    }
+}

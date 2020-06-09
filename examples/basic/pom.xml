@@ -9,7 +9,7 @@
     <version>0.1.0-alpha1</version>
 
     <properties>
-        <disconnect.version>0.1.0-alpha2</disconnect.version>
+        <disconnect.version>0.1.0-alpha3</disconnect.version>
         <teavm.version>0.6.1</teavm.version>
     </properties>
 

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>disconnect</artifactId>
         <groupId>com.github.fluorumlabs.disconnect</groupId>
-        <version>0.1.0-alpha2</version>
+        <version>0.1.0-alpha3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>com.github.fluorumlabs.disconnect</groupId>
-            <artifactId>disconnect-zero</artifactId>
+            <artifactId>disconnect-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -54,6 +54,20 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>

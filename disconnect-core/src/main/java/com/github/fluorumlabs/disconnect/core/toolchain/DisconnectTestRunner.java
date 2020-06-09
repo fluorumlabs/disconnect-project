@@ -81,15 +81,15 @@ public class DisconnectTestRunner extends Runner implements Filterable {
 
 	private Description suiteDescription;
 
-	private String testFileName;
+	private final String testFileName;
 
-	private DebugInformation debugInformation;
+	private final DebugInformation debugInformation;
 
 	private List<Method> filteredChildren;
 
-	private Map<Method, Description> descriptions = new ConcurrentHashMap<>();
+	private final Map<Method, Description> descriptions = new ConcurrentHashMap<>();
 
-	private Map<String, Consumer<TestResult>> testCallbacks = new ConcurrentHashMap<>();
+	private final Map<String, Consumer<TestResult>> testCallbacks = new ConcurrentHashMap<>();
 
 	/**
 	 * Instantiates a new Disconnect test runner.
@@ -154,6 +154,9 @@ public class DisconnectTestRunner extends Runner implements Filterable {
 			if (!semaphore.tryAcquire(15, TimeUnit.MINUTES)) {
 				// Tests timed out
 				shutdownServer = true;
+				if (staticDriver == null) {
+					driver.quit();
+				}
 
 				throw new TimeoutException("Test execution timed out");
 			}

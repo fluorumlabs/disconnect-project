@@ -16,7 +16,7 @@ public abstract class StringPromiseLike implements Any {
     @Async
     private static native String await(StringPromiseLike promise) throws PromiseRejectionException;
 
-    private static void await(BooleanPromiseLike promise, AsyncCallback<Boolean> callback) {
+    private static void await(StringPromiseLike promise, AsyncCallback<Boolean> callback) {
         promise.then(callback::complete, reason -> {
             callback.error(new PromiseRejectionException(reason.<JsObject>cast().toString()));
         });

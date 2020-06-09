@@ -1,7 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.toolchain;
 
 import com.github.fluorumlabs.disconnect.core.annotations.CustomElement;
-import com.github.fluorumlabs.disconnect.core.components.CustomElementComponent;
 import com.github.fluorumlabs.disconnect.core.internals.CustomElementRegistration;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.*;
@@ -75,7 +74,7 @@ public class DisconnectCustomElementAnnotationProcessor extends AbstractProcesso
 						MethodSpec getComponentClassMethod = MethodSpec.methodBuilder("getComponentClass")
 								.addModifiers(Modifier.PUBLIC)
 								.returns(ParameterizedTypeName.get(ClassName.get(Class.class),
-										WildcardTypeName.subtypeOf(CustomElementComponent.class)))
+										WildcardTypeName.subtypeOf(Object.class)))
 								.addStatement("return $T.class", customElement)
 								.build();
 

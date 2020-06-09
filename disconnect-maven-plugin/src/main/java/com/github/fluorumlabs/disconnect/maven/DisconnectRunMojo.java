@@ -61,22 +61,28 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
                             .anyMatch(f -> !f.isDirectory() && !f.getName().endsWith("___"));
                 }
 
+                // 2. Unpack dependencies to jar_modules
+                unpackJarModules();
+
+                // 3. Clean frontend/static
+                if (initialCompile) {
+                    cleanFrontendStatic();
+                }
+
                 if (initialCompile || hasProperChanges) {
                     try {
                         printSeparator();
                         compile();
                         printSeparator();
+
+                        copyResources(new File(getProjectDirectory(), "src/main/resources/frontend"), new File(getOutputDirectory(), Globals.getFrontendBase()));
+                        injectBuildTimestamp(new File(getOutputDirectory(), Globals.getFrontendBase()));
+
                         build(false);
-                        if (initialCompile) {
-                            unpackJarModules();
-                        }
 
                         boolean wasBuildConfigChanged = wasBuildConfigChanged();
                         boolean wasPackageJsonChanged = wasPackageJsonChanged();
                         boolean wasAppBootstrapChanged = wasAppBootstrapChanged();
-
-                        copyResources(new File(getProjectDirectory(), "src/main/resources/frontend"), new File(getOutputDirectory(), Globals.getFrontendBase()));
-                        injectBuildTimestamp(new File(getOutputDirectory(), Globals.getFrontendBase()));
 
                         // 5. Install Node & NPM
                         if (initialCompile) {
@@ -86,7 +92,7 @@ public class DisconnectRunMojo extends AbstractDisconnectMojo {
 
                         if (wasPackageJsonChanged) {
                             printSeparator();
-                            runNpm("install --no-audit");
+                            runNpm("install --no-progress -s");
                         }
 
                         if (wasPackageJsonChanged || wasBuildConfigChanged || wasAppBootstrapChanged) {

@@ -13,7 +13,7 @@
 
     <groupId>org.vaadin.disconnect</groupId>
     <artifactId>disconnect-spring-boot-parent</artifactId>
-    <version>0.1.0-alpha2</version>
+    <version>0.1.0-alpha3</version>
     <modules>
         <module>test-application</module>
     </modules>
@@ -28,7 +28,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-        <disconnect.version>0.1.0-alpha2</disconnect.version>
+        <disconnect.version>0.1.0-alpha3</disconnect.version>
 
         <teavm.version>0.6.1</teavm.version>
         <flavour.version>0.2.0-dev-70</flavour.version>

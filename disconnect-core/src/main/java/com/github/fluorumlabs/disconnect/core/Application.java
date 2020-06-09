@@ -1,13 +1,15 @@
 package com.github.fluorumlabs.disconnect.core;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
-import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
 import com.github.fluorumlabs.disconnect.core.components.Component;
+import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
 import js.lang.Unknown;
 import js.util.collections.WeakMap;
 import js.util.function.JsRunnable;
 import js.web.dom.Element;
 import js.web.dom.WindowOrWorkerGlobalScope;
+import org.teavm.interop.Async;
+import org.teavm.interop.AsyncCallback;
 import org.teavm.jso.JSBody;
 
 import static js.web.dom.Window.DOCUMENT;
@@ -60,4 +62,17 @@ public final class Application {
     @JSBody(params = "runnable", script = "return $rtd_wrapThread.fn(runnable)")
     private static native JsRunnable wrapRunnable(JsRunnable runnable);
 
+    @Async
+    public static native void wait(int milliseconds);
+
+    private static void wait(int milliseconds, AsyncCallback<Integer> callback) {
+        WINDOW.setTimeout(() -> callback.complete(0), milliseconds);
+    }
+
+    @Async
+    public static native void waitNextFrame();
+
+    private static void waitNextFrame(AsyncCallback<Integer> callback) {
+        WINDOW.requestAnimationFrame((x) -> callback.complete(0));
+    }
 }

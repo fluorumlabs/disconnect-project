@@ -20,6 +20,8 @@ import org.teavm.vm.spi.TeaVMHost;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -109,6 +111,23 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 					}
 				});
 
+
+		try {
+			Class<?> aClass = Class.forName(cls.getName(), false, host.getClassLoader());
+			Type genericSuperclass = aClass.getGenericSuperclass();
+			if (genericSuperclass instanceof ParameterizedType) {
+				ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+				for (Type actualTypeArgument : parameterizedType.getActualTypeArguments()) {
+					if (actualTypeArgument instanceof Class<?>) {
+						ClassReader referencedClass = context.getHierarchy().getClassSource().get(((Class<?>) actualTypeArgument).getName());
+						processNpmImports(referencedClass, context);
+					}
+				}
+			}
+		} catch (ClassNotFoundException ignore) {
+			// ignore
+		}
+
 		processNpmImports(cls, context);
 
 		AnnotationHolder serviceAnnotation = cls.getAnnotations().get("org.springframework.stereotype.Service");
@@ -177,10 +196,10 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 		}
 	}
 
-	private void processNpmImports(ClassHolder cls, ClassHolderTransformerContext context) {
-		AnnotationContainer annotations = cls.getAnnotations();
+	private void processNpmImports(ClassReader cls, ClassHolderTransformerContext context) {
+		AnnotationContainerReader annotations = cls.getAnnotations();
 
-		Optional<AnnotationHolder> webComponentAnnotation =
+		Optional<AnnotationReader> webComponentAnnotation =
 				Optional.ofNullable(annotations.get(WebComponent.class.getName()));
 		webComponentAnnotation.ifPresent(annotationHolder -> {
 			rendererListener.setEnableWebComponents(true);
@@ -238,8 +257,9 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 						symbols.stream()
 								.map(AnnotationValue::getString)
 								.forEach(symbol -> {
-									rendererListener.addInjectedSymbol("\"" + symbol + "\": [\"" + relativeImport(module) + "\", \"" + symbol + "\"]");
-									rendererListener.addImportedSymbol(symbol);
+									String[] strings = StringUtils.splitByWholeSeparator(symbol, " as ");
+									rendererListener.addInjectedSymbol("\"" + strings[strings.length-1] + "\": [\"" + relativeImport(module) + "\", \"" + strings[0] + "\"]");
+									rendererListener.addImportedSymbol(strings[strings.length-1]);
 								});
 					} else {
 						symbols.stream()

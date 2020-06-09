@@ -22,10 +22,6 @@ public class DisconnectTestBuildMojo extends AbstractDisconnectMojo {
         Globals.setLiveMode(false);
         Globals.setTestMode(true);
 
-        // 1. Build classes.js
-        Map<String, String> compilationUnits = build(isProduction());
-        printSeparator();
-
         // 2. Unpack dependencies to jar_modules
         unpackJarModules();
 
@@ -39,6 +35,10 @@ public class DisconnectTestBuildMojo extends AbstractDisconnectMojo {
         copyResources(new File(getProjectDirectory(), "src/test/resources/frontend"), new File(getOutputDirectory(), Globals.getFrontendBase()));
         injectBuildTimestamp(new File(getOutputDirectory(), Globals.getFrontendBase()));
 
+        // 1. Build classes.js
+        Map<String, String> compilationUnits = build(isProduction());
+        printSeparator();
+
         // 5. Install Node & NPM
         if (initialCompile) {
             installNpm();
@@ -46,7 +46,7 @@ public class DisconnectTestBuildMojo extends AbstractDisconnectMojo {
         }
 
         // 6. npm install
-        runNpm("install --no-audit");
+        runNpm("install --no-progress -s");
         printSeparator();
 
         // 6. rollup

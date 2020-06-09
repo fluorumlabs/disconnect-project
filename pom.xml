@@ -6,13 +6,13 @@
 
     <groupId>com.github.fluorumlabs.disconnect</groupId>
     <artifactId>disconnect</artifactId>
-    <version>0.1.0-alpha2</version>
+    <version>0.1.0-alpha3</version>
     <modules>
         <module>disconnect-core</module>
         <module>disconnect-classlib</module>
         <module>disconnect-maven-plugin</module>
         <!--module>disconnect-spring-integration</module-->
-        <module>disconnect-zero</module>
+        <!--module>disconnect-zero</module-->
         <!--module>disconnect-polymer</module>
         <module>disconnect-vaadin</module>
         <module>disconnect-highcharts</module-->
