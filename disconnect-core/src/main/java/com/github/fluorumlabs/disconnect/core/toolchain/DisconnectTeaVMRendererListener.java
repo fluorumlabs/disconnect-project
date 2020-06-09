@@ -27,6 +27,7 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
 	private final List<String> rpcRouteConfigs = new ArrayList<>();
 
 	public static String COMPILATION_UNIT;
+	public static String BUILD_TIMESTAMP;
 
 	private File root;
 
@@ -35,8 +36,6 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
 	private SourceWriter sourceWriter;
 
 	private boolean isLiveBuild = false;
-
-	public static long BUILD_TIMESTAMP = System.currentTimeMillis();
 
 	public boolean isApplication() {
 		return "app".equals(COMPILATION_UNIT);

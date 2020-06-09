@@ -1,6 +1,5 @@
 package com.github.fluorumlabs.disconnect.maven;
 
-import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTeaVMRendererListener;
 import com.github.fluorumlabs.disconnect.maven.internals.CachingTeaVMTool;
 import com.github.fluorumlabs.disconnect.maven.internals.Globals;
 import com.github.fluorumlabs.disconnect.maven.internals.MavenTeaVMToolLog;
@@ -31,6 +30,7 @@ import org.teavm.tooling.sources.JarSourceFileProvider;
 import org.teavm.tooling.sources.SourceFileProvider;
 import org.teavm.vm.TeaVMOptimizationLevel;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -110,6 +110,9 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 	@Parameter(defaultValue = "${project.version}")
 	private String version;
 
+	@Nullable
+	private String buildTimestamp;
+
 	private MavenProject getMavenProject() {
 		return mavenProject;
 	}
@@ -138,7 +141,20 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 		return projectDirectory;
 	}
 
+	String getBuildTimestamp() {
+		if (buildTimestamp == null) {
+			buildTimestamp = Long.toHexString(System.currentTimeMillis());
+		}
+		return buildTimestamp;
+	}
+
+	void resetBuildTimestamp() {
+		buildTimestamp = null;
+	}
+
 	Map<String, String> build(boolean productionBuild) throws MojoExecutionException {
+		resetBuildTimestamp();
+
 		Map<String, String> compilationUnits = new LinkedHashMap<>();
 
 		if (!Globals.isTestMode()) {
@@ -230,8 +246,6 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 		CachingTeaVMTool tool = new CachingTeaVMTool();
 		MavenTeaVMToolLog mavenTeaVMToolLog = new MavenTeaVMToolLog(getLog());
 
-		DisconnectTeaVMRendererListener.COMPILATION_UNIT = compilationUnit;
-
 		//?? tool.setProgressListener(progressListener);
 		tool.setLog(mavenTeaVMToolLog);
 		tool.setTargetType(TeaVMTargetType.JAVASCRIPT);
@@ -251,6 +265,8 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 
 		tool.setMinifying(productionBuild && !Globals.isTestMode());
 
+		tool.getProperties().setProperty("disconnect.compilation.unit", compilationUnit);
+		tool.getProperties().setProperty("disconnect.build.timestamp", getBuildTimestamp());
 		tool.getProperties().setProperty("frontend.directory",
 				new File(outputDirectory, Globals.getFrontendBase()).getAbsolutePath());
 		tool.getProperties().setProperty("frontend.build", Globals.isLiveMode() ? "live" :
@@ -474,8 +490,7 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 		try {
 			for (File file : FileUtils.listFiles(destination, new String[]{"html", "json"}, true)) {
 				String content = FileUtils.readFileToString(file, "UTF-8");
-				String replacedContent = StringUtils.replace(content, "${BUILD_TIMESTAMP}",
-						Long.toString(DisconnectTeaVMRendererListener.BUILD_TIMESTAMP));
+				String replacedContent = StringUtils.replace(content, "${BUILD_TIMESTAMP}", getBuildTimestamp());
 				FileUtils.writeStringToFile(file, replacedContent, "UTF-8");
 			}
 		} catch (IOException e) {

@@ -22,6 +22,11 @@ public class DisconnectTestBuildMojo extends AbstractDisconnectMojo {
         Globals.setLiveMode(false);
         Globals.setTestMode(true);
 
+        File classesRoot = new File(getOutputDirectory(), Globals.getClassesBase());
+        if (System.getProperty("skipTests") != null || !classesRoot.exists() || !classesRoot.isDirectory()) {
+            return;
+        }
+
         // 2. Unpack dependencies to jar_modules
         unpackJarModules();
 
@@ -55,7 +60,7 @@ public class DisconnectTestBuildMojo extends AbstractDisconnectMojo {
         // 7. Copy generated frontend
         copyResources(new File(getOutputDirectory(), Globals.getFrontendBase()+ "/static"), new File(getOutputDirectory(),Globals.getClassesBase()+"/static"));
 
-        initialCompile = false;
+        initialCompile = true;
     }
 
 }
