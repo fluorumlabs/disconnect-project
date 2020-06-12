@@ -2,11 +2,9 @@ package com.github.fluorumlabs.disconnect.polymer;
 
 import com.github.fluorumlabs.disconnect.core.Application;
 import com.github.fluorumlabs.disconnect.core.components.html.webcomponent.Template;
-import com.github.fluorumlabs.disconnect.core.internals.TagRegistryManager;
 import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import js.web.dom.Window;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -18,11 +16,6 @@ import static org.hamcrest.core.IsNot.not;
  */
 @RunWith(DisconnectTestRunner.class)
 public class DomIfTest {
-    @BeforeClass
-    public void init() {
-        TagRegistryManager.registerTags();
-    }
-
     @Test
     public void testDomIf() {
         DomIf domIf = new DomIf();

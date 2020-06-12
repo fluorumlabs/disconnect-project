@@ -13,6 +13,7 @@ import js.web.dom.Event;
 import js.web.dom.EventListener;
 import js.web.dom.Window;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.Stream;
@@ -36,7 +37,7 @@ public class Component<X extends Element> extends LazyEventInitializer<X> implem
         if (elementReference != null) {
             this.element = elementReference;
         } else {
-            this.element = Window.DOCUMENT.createElement(TagRegistry.getTagName(getClass()));
+            this.element = Window.DOCUMENT.createElement(TagRegistry.getTagName((Class<? extends Component<?>>) getClass()));
         }
         ComponentReferenceHolder.resetPendingComponentReference();
 
@@ -879,8 +880,8 @@ public class Component<X extends Element> extends LazyEventInitializer<X> implem
     }
 
     @Override
-    public <T, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter, Consumer<T> setter,
-                                                                     ObservableEvent<?> event) {
+    public <T extends Serializable, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter, Consumer<T> setter,
+                                                                                          ObservableEvent<?> event) {
         return createObservableValue(event, () -> {
             ObservableValue<T> observableValue = ObservableValue.of(getter.get());
             observableValue.accept(setter);

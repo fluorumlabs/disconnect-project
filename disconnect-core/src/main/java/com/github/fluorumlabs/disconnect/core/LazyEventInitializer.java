@@ -6,6 +6,7 @@ import js.web.dom.Event;
 import js.web.dom.EventListener;
 import js.web.dom.EventTarget;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -23,7 +24,7 @@ public abstract class LazyEventInitializer<X extends EventTarget> implements Eve
 		return (E) eventMap.computeIfAbsent(identifier, __ -> initializer.get());
 	}
 
-	protected <T, E extends ObservableValue<T>> E createObservableValue(Object identifier, Supplier<E> initializer) {
+	protected <T extends Serializable, E extends ObservableValue<T>> E createObservableValue(Object identifier, Supplier<E> initializer) {
 		return (E) valueMap.computeIfAbsent(identifier, __ -> initializer.get());
 	}
 

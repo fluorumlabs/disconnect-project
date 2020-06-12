@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.core.observables;
 import java.util.Objects;
 
 
-public class Quad<A,B,C,D> extends Triplet<A, B, C> {
+public class Quad<A ,B ,C ,D > extends Triplet<A, B, C> {
     private final D valueD;
 
     protected Quad(A valueA, B valueB, C valueC, D valueD) {
@@ -11,7 +11,7 @@ public class Quad<A,B,C,D> extends Triplet<A, B, C> {
         this.valueD = valueD;
     }
 
-    public static <A,B,C,D> Quad<A,B,C,D> of(A a, B b, C c, D d) {
+    public static <A ,B ,C ,D > Quad<A,B,C,D> of(A a, B b, C c, D d) {
         return new Quad<>(a,b,c,d);
     }
 
@@ -31,5 +31,10 @@ public class Quad<A,B,C,D> extends Triplet<A, B, C> {
     @Override
     public int hashCode() {
         return Objects.hash(getValueA(), getValueB(), getValueC(), valueD);
+    }
+
+    @Override
+    public boolean hasValue() {
+        return super.hasValue() && valueD != null;
     }
 }

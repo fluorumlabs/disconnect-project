@@ -1,15 +1,13 @@
 package com.github.fluorumlabs.disconnect.core.components;
 
-import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import com.github.fluorumlabs.disconnect.core.components.html.text.block.Div;
 import com.github.fluorumlabs.disconnect.core.internals.TagRegistry;
-import com.github.fluorumlabs.disconnect.core.internals.TagRegistryManager;
+import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import js.lang.JsObject;
 import js.web.dom.HTMLDivElement;
 import js.web.dom.HTMLElement;
 import js.web.dom.Window;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,11 +19,6 @@ import static org.hamcrest.core.Is.is;
  */
 @RunWith(DisconnectTestRunner.class)
 public class ComponentTest {
-
-	@BeforeClass
-	public void init() {
-		TagRegistryManager.registerTags();
-	}
 
 	@Test
 	public void testCreateComponent() {

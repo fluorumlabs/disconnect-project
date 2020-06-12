@@ -3,19 +3,22 @@ package com.github.fluorumlabs.disconnect.core.observables;
 
 import com.github.fluorumlabs.disconnect.core.Application;
 
-public class TriObservable<VALUE_A, VALUE_B, VALUE_C> extends ObservableBase<Triplet<VALUE_A, VALUE_B, VALUE_C>> {
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+public class TriObservable<VALUE_A , VALUE_B , VALUE_C > extends ObservableBase<Triplet<VALUE_A, VALUE_B, VALUE_C>> {
 	TriObservable() {
 		setCurrentValue(Triplet.of(null, null, null));
 	}
 
-	public <NEW_VALUE> Observable<NEW_VALUE> apply(TriFunction<VALUE_A, VALUE_B, VALUE_C, NEW_VALUE> mapper) {
+	public <NEW_VALUE > Observable<NEW_VALUE> apply(TriFunction<VALUE_A, VALUE_B, VALUE_C, NEW_VALUE> mapper) {
 		Observable<NEW_VALUE> observable = new Observable<>();
 		acceptImpl(value -> observable.pushNewValue(mapper.apply(value.getValueA(), value.getValueB(),
 				value.getValueC())));
 		return observable;
 	}
 
-	public <NEW_VALUE> Observable<NEW_VALUE> applyAsync(TriFunction<VALUE_A, VALUE_B, VALUE_C, NEW_VALUE> mapper) {
+	public <NEW_VALUE > Observable<NEW_VALUE> applyAsync(TriFunction<VALUE_A, VALUE_B, VALUE_C, NEW_VALUE> mapper) {
 		Observable<NEW_VALUE> observable = new Observable<>();
 		acceptImpl(value -> new Thread(() -> observable.pushNewValue(mapper.apply(value.getValueA(),
 				value.getValueB(), value.getValueC()))).start());
@@ -100,19 +103,22 @@ public class TriObservable<VALUE_A, VALUE_B, VALUE_C> extends ObservableBase<Tri
 		return this;
 	}
 
+	@Nullable
 	public VALUE_A getA() {
-		return getCurrentValue().getValueA();
+		return getCurrentValue() != null ? getCurrentValue().getValueA() : null;
 	}
 
+	@Nullable
 	public VALUE_B getB() {
-		return getCurrentValue().getValueB();
+		return getCurrentValue() != null ? getCurrentValue().getValueB() : null;
 	}
 
+	@Nullable
 	public VALUE_C getC() {
-		return getCurrentValue().getValueC();
+		return getCurrentValue() != null ? getCurrentValue().getValueC() : null;
 	}
 
-	public static class Delayed<VALUE_A, VALUE_B, VALUE_C> extends TriObservable<VALUE_A, VALUE_B, VALUE_C> {
+	public static class Delayed<VALUE_A , VALUE_B , VALUE_C > extends TriObservable<VALUE_A, VALUE_B, VALUE_C> {
 		private Triplet<VALUE_A, VALUE_B, VALUE_C> pendingValue;
 
 		private boolean hasPendingValue = false;
@@ -126,55 +132,12 @@ public class TriObservable<VALUE_A, VALUE_B, VALUE_C> extends ObservableBase<Tri
 			if (hasPendingValue) {
 				hasPendingValue = false;
 				pushNewValue(pendingValue, true);
-				setCurrentValue(null);
+				clearValue();
 			}
 		}
 	}
 
-	public static class Guarded<VALUE_A, VALUE_B, VALUE_C> extends TriObservable<VALUE_A, VALUE_B, VALUE_C> {
-		private Triplet<VALUE_A, VALUE_B, VALUE_C> pendingValue = Triplet.of(null, null, null);
-		private boolean hasA = false;
-		private boolean hasB = false;
-		private boolean hasC = false;
-
-		void pushValueA(VALUE_A value) {
-			if (hasA && hasB && hasC) {
-				pushNewValue(Triplet.of(value, getB(), getC()));
-			} else {
-				pendingValue = Triplet.of(value, pendingValue.getValueB(), pendingValue.getValueC());
-				hasA = true;
-				if (hasB && hasC) {
-					pushNewValue(pendingValue);
-				}
-			}
-		}
-
-		void pushValueB(VALUE_B value) {
-			if (hasA && hasB && hasC) {
-				pushNewValue(Triplet.of(getA(), value, getC()));
-			} else {
-				pendingValue = Triplet.of(pendingValue.getValueA(), value, pendingValue.getValueC());
-				hasB = true;
-				if (hasA && hasC) {
-					pushNewValue(pendingValue);
-				}
-			}
-		}
-
-		void pushValueC(VALUE_C value) {
-			if (hasA && hasB && hasC) {
-				pushNewValue(Triplet.of(getA(), getB(), value));
-			} else {
-				pendingValue = Triplet.of(pendingValue.getValueA(), pendingValue.getValueB(), value);
-				hasC = true;
-				if (hasA && hasB) {
-					pushNewValue(pendingValue);
-				}
-			}
-		}
-	}
-
-	public static class Forked<VALUE_A, VALUE_B, VALUE_C>
+	public static class Forked<VALUE_A , VALUE_B , VALUE_C >
 			extends ObservableBase<Quad<VALUE_A, VALUE_B, VALUE_C, Boolean>> {
 		Forked() {
 			setCurrentValue(Quad.of(null, null, null, false));
@@ -273,9 +236,8 @@ public class TriObservable<VALUE_A, VALUE_B, VALUE_C> extends ObservableBase<Tri
 		}
 
 		@Override
-		boolean equalFunction(Quad<VALUE_A, VALUE_B, VALUE_C, Boolean> a,
-                              Quad<VALUE_A, VALUE_B, VALUE_C, Boolean> b) {
-			return false;
+		void pushNewValue(@Nonnull Quad<VALUE_A, VALUE_B, VALUE_C, Boolean> value) {
+			pushNewValue(value, true);
 		}
 	}
 }

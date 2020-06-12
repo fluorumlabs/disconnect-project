@@ -19,6 +19,16 @@ public interface Unknown extends Any {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(double[] value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(float[] value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
 	/**
 	 * Of unknown.
 	 *
@@ -28,6 +38,26 @@ public interface Unknown extends Any {
 	 */
 	@JSBody(params = "value", script = "return value")
     static Unknown of(int value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(int[] value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(short[] value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(byte[] value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(char[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -43,6 +73,11 @@ public interface Unknown extends Any {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(String[] value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
 	/**
 	 * Of unknown.
 	 *
@@ -52,6 +87,11 @@ public interface Unknown extends Any {
 	 */
 	@JSBody(params = "value", script = "return value")
     static Unknown of(boolean value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(boolean[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -128,6 +168,30 @@ public interface Unknown extends Any {
 	 */
 	@JSBody(script = "return ''+this")
     String stringValue();
+
+	@JSBody(script = "return this")
+    String[] stringArrayValue();
+
+	@JSBody(script = "return this")
+    boolean[] booleanArrayValue();
+
+	@JSBody(script = "return this")
+    byte[] byteArrayValue();
+
+	@JSBody(script = "return this")
+    char[] charArrayValue();
+
+	@JSBody(script = "return this")
+    float[] floatArrayValue();
+
+	@JSBody(script = "return this")
+    double[] doubleArrayValue();
+
+	@JSBody(script = "return this")
+    short[] shortArrayValue();
+
+	@JSBody(script = "return this")
+    int[] intArrayValue();
 
 	/**
 	 * Is string boolean.

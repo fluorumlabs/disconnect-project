@@ -12,10 +12,12 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 
-@NpmPackage(name = "compact-base64", version = "latest")
-@Import(symbols = "Base64", module = "compact-base64/browser.js", defaultExport = true)
+@NpmPackage(name = "compact-base64", version = "^2.1.2")
+@Import(symbols = "DisconnectUtils_Base64", module = "compact-base64/browser.js", defaultExport = true)
+@Import(symbols = "deepCopy as DisconnectUtils_deepCopy", module = "disconnect-core-jar/frontend/deep-utils.js")
+@Import(symbols = "deepEquals as DisconnectUtils_deepEquals", module = "disconnect-core-jar/frontend/deep-utils.js")
 public abstract class DisconnectUtils implements Any {
-    @JSBody(params = "value", script = "return Base64.encodeUrl(value)")
+    @JSBody(params = "value", script = "return DisconnectUtils_Base64.encodeUrl(value)")
     public static native String base64UrlEncode(String value);
 
     public static Unknown asJsObject(Object that) {
@@ -48,4 +50,10 @@ public abstract class DisconnectUtils implements Any {
             return Optional.of(x);
         }
     }
+
+    @JSBody(params = "value", script = "return DisconnectUtils_deepCopy(value)")
+    public static native  <T extends Any> T deepCopy(T value);
+
+    @JSBody(params = {"value1","value2"}, script = "return DisconnectUtils_deepEquals(value1, value2)")
+    public static native  <T extends Any> boolean deepEquals(T value1, T value2);
 }

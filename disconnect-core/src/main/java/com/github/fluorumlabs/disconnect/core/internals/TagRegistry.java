@@ -5,6 +5,7 @@ import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import js.web.dom.Element;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSObject;
+import org.teavm.metaprogramming.CompileTime;
 import org.teavm.platform.Platform;
 
 import javax.annotation.Nullable;
@@ -14,6 +15,7 @@ import java.util.Map;
 /**
  * Created by Artem Godin on 5/13/2020.
  */
+@CompileTime
 public final class TagRegistry {
     private static final Map<String, Class<?>> TAG_TO_CLASS = new HashMap<>();
 
@@ -76,7 +78,7 @@ public final class TagRegistry {
         }
     }
 
-    public static String getTagName(Class<?> clazz) {
+    public static String getTagName(Class<? extends Component<?>> clazz) {
         return getTagName(Platform.getPlatformObject(clazz));
     }
 

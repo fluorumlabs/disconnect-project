@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.core.observables;
 import java.util.Objects;
 
 
-public class Triplet<A,B,C> extends Pair<A, B> {
+public class Triplet<A ,B ,C > extends Pair<A, B> {
     private final C valueC;
 
     protected Triplet(A valueA, B valueB, C valueC) {
@@ -11,7 +11,7 @@ public class Triplet<A,B,C> extends Pair<A, B> {
         this.valueC = valueC;
     }
 
-    public static <A,B,C> Triplet<A,B,C> of(A a, B b, C c) {
+    public static <A ,B ,C > Triplet<A,B,C> of(A a, B b, C c) {
         return new Triplet<>(a,b,c);
     }
 
@@ -19,7 +19,7 @@ public class Triplet<A,B,C> extends Pair<A, B> {
         return valueC;
     }
 
-    <D> Quad<A, B, C, D> toQuad(D d) {
+    <D > Quad<A, B, C, D> toQuad(D d) {
         return new Quad<>(getValueA(), getValueB(), getValueC(), d);
     }
 
@@ -35,5 +35,10 @@ public class Triplet<A,B,C> extends Pair<A, B> {
     @Override
     public int hashCode() {
         return Objects.hash(getValueA(), getValueB(), valueC);
+    }
+
+    @Override
+    public boolean hasValue() {
+        return super.hasValue() && valueC != null;
     }
 }

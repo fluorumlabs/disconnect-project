@@ -1,15 +1,13 @@
 package com.github.fluorumlabs.disconnect.core.components;
 
-import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import com.github.fluorumlabs.disconnect.core.Application;
-import com.github.fluorumlabs.disconnect.core.internals.TagRegistryManager;
+import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import js.util.JS;
 import js.web.dom.HTMLElement;
 import js.web.dom.Window;
 import js.web.webcomponents.ShadowRoot;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,11 +19,6 @@ import static org.hamcrest.core.Is.is;
  */
 @RunWith(DisconnectTestRunner.class)
 public class CustomElementCreationTest {
-
-	@BeforeClass
-	public void init() {
-		TagRegistryManager.registerTags();
-	}
 
 	@Test
 	public void testJavaSideComponentCreation() {

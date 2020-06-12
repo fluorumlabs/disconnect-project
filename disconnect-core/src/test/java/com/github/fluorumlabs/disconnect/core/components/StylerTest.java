@@ -1,14 +1,12 @@
 package com.github.fluorumlabs.disconnect.core.components;
 
-import com.github.fluorumlabs.disconnect.core.annotations.ImportStyle;
-import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import com.github.fluorumlabs.disconnect.core.Application;
+import com.github.fluorumlabs.disconnect.core.annotations.ImportStyle;
 import com.github.fluorumlabs.disconnect.core.components.html.text.block.Div;
-import com.github.fluorumlabs.disconnect.core.internals.TagRegistryManager;
+import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import js.web.cssom.CSSStyleDeclaration;
 import js.web.dom.Window;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,12 +19,6 @@ import static org.hamcrest.core.Is.is;
 @ImportStyle("disconnect-core-jar/frontend/document-style.scss")
 @ImportStyle(value = "disconnect-core-jar/frontend/global-style.scss", scope = ImportStyle.Scope.GLOBAL)
 public class StylerTest {
-
-	@BeforeClass
-	public void init() {
-		TagRegistryManager.registerTags();
-	}
-
 	@Test
 	public void testNoStyleBleed() {
 		Div test = new Div();

@@ -1,12 +1,10 @@
 package com.github.fluorumlabs.disconnect.core.components;
 
-import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import com.github.fluorumlabs.disconnect.core.Application;
 import com.github.fluorumlabs.disconnect.core.components.html.text.block.Div;
-import com.github.fluorumlabs.disconnect.core.internals.TagRegistryManager;
+import com.github.fluorumlabs.disconnect.core.toolchain.DisconnectTestRunner;
 import js.web.dom.Element;
 import js.web.webcomponents.ShadowRoot;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,11 +19,6 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(DisconnectTestRunner.class)
 public class TemplatedCustomElementTest {
-
-	@BeforeClass
-	public void init() {
-		TagRegistryManager.registerTags();
-	}
 
 	@Test
 	public void testQuery() {

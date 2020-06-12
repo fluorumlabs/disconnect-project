@@ -1,14 +1,15 @@
 package com.github.fluorumlabs.disconnect.core.observables;
 
+import java.io.Serializable;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 
 public class ObservableEvent<VALUE> extends SimpleObservableEvent {
-    public Observable<VALUE> asObservable() {
-        Observable<VALUE> observable = new Observable<>();
-        acceptImplQuiet(value -> observable.pushNewValue((VALUE)value, true));
+    public <NEW_VALUE extends Serializable> Observable<NEW_VALUE> asObservable(Function<VALUE, NEW_VALUE> mapper) {
+        Observable<NEW_VALUE> observable = new Observable<>();
+        acceptImplQuiet(value -> observable.pushNewValue(mapper.apply((VALUE)value), true));
         return observable;
     }
 

@@ -43,8 +43,51 @@
         <url>http://github.com/fluorumlabs/disconnect-project/tree/master</url>
     </scm>
 
+    <repositories>
+        <!-- Main Maven repository -->
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>teavm-dev</id>
+            <url>https://dl.bintray.com/konsoletyper/teavm</url>
+        </repository>
+        <repository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <!-- Main Maven repository -->
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>teavm-dev</id>
+            <url>https://dl.bintray.com/konsoletyper/teavm</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.github.fluorumlabs.disconnect</groupId>
+                <artifactId>disconnect-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+            </dependency>
             <dependency>
                 <groupId>com.github.fluorumlabs.disconnect</groupId>
                 <artifactId>disconnect-classlib</artifactId>

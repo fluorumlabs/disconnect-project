@@ -1,9 +1,10 @@
 package com.github.fluorumlabs.disconnect.core.observables;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 
-public class Pair<A,B> {
+public class Pair<A ,B > implements Serializable {
     private final A valueA;
     private final B valueB;
 
@@ -12,11 +13,11 @@ public class Pair<A,B> {
         this.valueB = valueB;
     }
 
-    public static <A,B> Pair<A,B> of(A a, B b) {
+    public static <A ,B > Pair<A,B> of(A a, B b) {
         return new Pair<>(a,b);
     }
 
-    <C> Triplet<A, B, C> toTriplet(C c) {
+    <C > Triplet<A, B, C> toTriplet(C c) {
         return new Triplet<>(valueA, valueB, c);
     }
 
@@ -40,5 +41,9 @@ public class Pair<A,B> {
     @Override
     public int hashCode() {
         return Objects.hash(valueA, valueB);
+    }
+
+    public boolean hasValue() {
+        return valueA != null && valueB != null;
     }
 }

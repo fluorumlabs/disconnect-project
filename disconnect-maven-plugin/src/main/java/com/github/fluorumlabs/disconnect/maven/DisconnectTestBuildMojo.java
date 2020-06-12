@@ -23,7 +23,7 @@ public class DisconnectTestBuildMojo extends AbstractDisconnectMojo {
         Globals.setTestMode(true);
 
         File classesRoot = new File(getOutputDirectory(), Globals.getClassesBase());
-        if (System.getProperty("skipTests") != null || !classesRoot.exists() || !classesRoot.isDirectory()) {
+        if (!classesRoot.exists() || !classesRoot.isDirectory()) {
             return;
         }
 

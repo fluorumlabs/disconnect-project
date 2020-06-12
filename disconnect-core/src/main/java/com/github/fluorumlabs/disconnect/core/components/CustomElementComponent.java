@@ -17,7 +17,6 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.JSFunctor;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,12 +40,12 @@ public class CustomElementComponent extends Component<HTMLElement> {
         constructor();
     }
 
-    public static <T extends CustomElementComponent> void register(String tagName, List<String> attributes,
+    public static <T extends CustomElementComponent> void register(String tagName, String[] attributes,
                                                                    Class<?> componentClass) {
         register(tagName, ref -> constructor(ref, (Class<T>)componentClass),
                 CustomElementComponent::connectedCallback, CustomElementComponent::disconnectedCallback,
                 CustomElementComponent::adoptedCallback, CustomElementComponent::attributeChangedCallback,
-                (String[])attributes.toArray());
+                attributes);
     }
 
     @JSBody(params = {"tagName", "constructorFn", "connectedFn", "disconnectedFn", "adoptedFn", "attributeChangedFn",

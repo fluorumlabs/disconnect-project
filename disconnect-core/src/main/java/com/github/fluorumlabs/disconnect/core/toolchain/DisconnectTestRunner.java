@@ -3,7 +3,6 @@ package com.github.fluorumlabs.disconnect.core.toolchain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import junit.framework.TestCase;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -288,12 +287,8 @@ public class DisconnectTestRunner extends Runner implements Filterable {
 	}
 
 	private boolean isTestMethod(Method method) {
-		if (TestCase.class.isAssignableFrom(method.getDeclaringClass())) {
-			return method.getName().startsWith("test") && method.getName().length() > 4
-					&& Character.isUpperCase(method.getName().charAt(4));
-		} else {
-			return method.isAnnotationPresent(Test.class);
-		}
+		return method.getName().startsWith("test") && method.getName().length() > 4
+				&& Character.isUpperCase(method.getName().charAt(4)) || method.isAnnotationPresent(Test.class);
 	}
 
 	private Description describeChild(Method child) {
@@ -302,7 +297,7 @@ public class DisconnectTestRunner extends Runner implements Filterable {
 	}
 
 	private String getTestHtml() {
-		return "<html><head></head><body><script src=\"/static/bin/" + testFileName + ".js" +
+		return "<html><head><title>"+testClass.getName()+"</title></head><body><script src=\"/static/bin/" + testFileName + ".js" +
 				"\"" +
 				" itemType=\"module\"></script></body></html>";
 	}
