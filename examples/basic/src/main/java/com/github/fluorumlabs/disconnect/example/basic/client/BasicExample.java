@@ -8,7 +8,7 @@ import com.github.fluorumlabs.disconnect.core.components.html.text.block.Div;
 import org.apache.commons.lang3.StringUtils;
 
 @EntryPoint
-public class BasicExampleEntryPoint implements Runnable {
+public class BasicExample implements Runnable {
 
     public void run() {
         TextInput textInput = new TextInput();
