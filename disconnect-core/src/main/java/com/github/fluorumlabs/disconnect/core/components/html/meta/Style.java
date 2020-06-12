@@ -9,6 +9,14 @@ import java.util.Optional;
 
 @Tag("style")
 public class Style extends HtmlComponent<HTMLStyleElement> {
+    public Style() {
+        super();
+    }
+
+    public Style(String textContent) {
+        super(textContent);
+    }
+
     /**
      * Sets or retrieves the media type.
      */

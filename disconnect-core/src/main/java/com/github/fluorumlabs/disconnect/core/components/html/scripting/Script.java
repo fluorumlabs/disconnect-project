@@ -10,6 +10,14 @@ import java.util.Optional;
 
 @Tag("script")
 public class Script extends HtmlComponent<HTMLScriptElement> {
+    public Script() {
+        super();
+    }
+
+    public Script(String textContent) {
+        super(textContent);
+    }
+
     public boolean isAsync() {
         return getElement().isAsync();
     }

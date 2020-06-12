@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.components.html.form;
 
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
 import js.lang.JsDate;
 import js.web.dom.Autocomplete;
@@ -11,6 +12,10 @@ import java.util.Optional;
  */
 public class AbstractDateInput extends Input {
     protected AbstractDateInput(){
+    }
+
+    protected AbstractDateInput(Component<?>... components) {
+        super(components);
     }
 
     public ObservableValue<String> value() {

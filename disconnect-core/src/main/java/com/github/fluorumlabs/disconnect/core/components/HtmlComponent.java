@@ -14,6 +14,16 @@ public class HtmlComponent<X extends HTMLElement> extends Component<X> implement
     protected HtmlComponent() {
     }
 
+    protected HtmlComponent(String textContent) {
+        this();
+        setTextContent(textContent);
+    }
+
+    protected HtmlComponent(Component<?>... components) {
+        this();
+        add(components);
+    }
+
     public int getTabIndex() {
         return getElement().getTabIndex();
     }

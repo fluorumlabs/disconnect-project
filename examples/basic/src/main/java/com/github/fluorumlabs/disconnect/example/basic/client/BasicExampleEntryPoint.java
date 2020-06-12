@@ -5,6 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.EntryPoint;
 import com.github.fluorumlabs.disconnect.core.components.html.form.Button;
 import com.github.fluorumlabs.disconnect.core.components.html.form.TextInput;
 import com.github.fluorumlabs.disconnect.core.components.html.text.block.Div;
+import org.apache.commons.lang3.StringUtils;
 
 @EntryPoint
 public class BasicExampleEntryPoint implements Runnable {
@@ -15,16 +16,14 @@ public class BasicExampleEntryPoint implements Runnable {
         TextInput textInput = new TextInput();
         textInput.setPlaceholder("Your name");
 
-        Button button = new Button();
-        button.add("Click me!");
+        Button button = new Button("Click me!");
 
         container.add(textInput, button);
 
-        textInput.value().on(button.clickEvent()).accept(text -> {
-            Div greeting = new Div();
-            greeting.setTextContent("Hi, " + text + "!");
-            container.add(greeting);
-        });
+        textInput.value()
+                .on(button.clickEvent())
+                .when(StringUtils::isNotEmpty)
+                .then(text -> container.add(new Div("Hi, " + text + "!")));
 
         Application.render(container);
     }

@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.core.components.html.form;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Tag;
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.containers.ArrayLikeBackedComponentList;
 import com.github.fluorumlabs.disconnect.core.containers.ComponentList;
@@ -12,6 +13,18 @@ import java.util.Optional;
 
 @Tag("button")
 public class Button extends HtmlComponent<HTMLButtonElement> {
+    public Button() {
+        super();
+    }
+
+    public Button(String textContent) {
+        super(textContent);
+    }
+
+    public Button(Component<?>... components) {
+        super(components);
+    }
+
     /**
      * Provides a way to direct a user to a specific field when a document loads. This can provide both direction and convenience for a user, reducing the need to click or tab to a field when a page opens. This attribute is true when present on an element, and false when missing.
      */

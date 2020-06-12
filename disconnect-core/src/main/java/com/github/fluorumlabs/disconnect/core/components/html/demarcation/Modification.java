@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.components.html.demarcation;
 
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import js.web.dom.HTMLModElement;
 
@@ -7,6 +8,14 @@ import js.web.dom.HTMLModElement;
  * Created by Artem Godin on 5/14/2020.
  */
 public class Modification extends HtmlComponent<HTMLModElement> {
+    protected Modification(String textContent) {
+        super(textContent);
+    }
+
+    protected Modification(Component<?>... components) {
+        super(components);
+    }
+
     protected Modification() {}
 
     /**

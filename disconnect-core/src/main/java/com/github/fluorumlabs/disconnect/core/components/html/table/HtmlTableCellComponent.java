@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.components.html.table;
 
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import js.web.dom.HTMLTableCellElement;
 
@@ -7,6 +8,14 @@ import js.web.dom.HTMLTableCellElement;
  * Created by Artem Godin on 5/14/2020.
  */
 public class HtmlTableCellComponent<X extends HTMLTableCellElement> extends HtmlComponent<X> {
+    protected HtmlTableCellComponent(String textContent) {
+        super(textContent);
+    }
+
+    protected HtmlTableCellComponent(Component<?>... components) {
+        super(components);
+    }
+
     protected HtmlTableCellComponent(){}
 
     /**

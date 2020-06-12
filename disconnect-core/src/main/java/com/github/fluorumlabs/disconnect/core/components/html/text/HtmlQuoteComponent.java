@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.components.html.text;
 
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import js.web.dom.HTMLQuoteElement;
 import org.teavm.jso.JSProperty;
@@ -9,6 +10,14 @@ import org.teavm.jso.JSProperty;
  */
 public class HtmlQuoteComponent extends HtmlComponent<HTMLQuoteElement> {
     protected HtmlQuoteComponent() {}
+
+    protected HtmlQuoteComponent(String textContent) {
+        super(textContent);
+    }
+
+    protected HtmlQuoteComponent(Component<?>... components) {
+        super(components);
+    }
 
     /**
      * Sets or retrieves reference information about the object.

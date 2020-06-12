@@ -11,6 +11,18 @@ import js.web.webcomponents.HTMLSlotElement;
 
 @Tag("slot")
 public class Slot extends HtmlComponent<HTMLSlotElement> {
+    public Slot() {
+        super();
+    }
+
+    public Slot(String textContent) {
+        super(textContent);
+    }
+
+    public Slot(Component<?>... components) {
+        super(components);
+    }
+
     public String getName() {
         return getElement().getName();
     }

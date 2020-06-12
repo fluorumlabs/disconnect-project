@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.components.html.form;
 
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
 import js.web.dom.Autocomplete;
 import js.web.dom.HTMLInputElement;
@@ -14,6 +15,10 @@ import java.util.Optional;
 public class AbstractTextInput extends Input{
     protected AbstractTextInput() {
 
+    }
+
+    protected AbstractTextInput(Component<?>... components) {
+        super(components);
     }
 
     public ObservableValue<String> value() {

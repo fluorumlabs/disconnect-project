@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.core.components.html.table;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Tag;
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.containers.ArrayLikeBackedComponentList;
 import com.github.fluorumlabs.disconnect.core.containers.ComponentList;
@@ -13,6 +14,14 @@ import java.util.Optional;
 
 @Tag("table")
 public class Table extends HtmlComponent<HTMLTableElement> {
+    public Table() {
+        super();
+    }
+
+    public Table(Component<?>... components) {
+        super(components);
+    }
+
     /**
      * Retrieves the caption object of a table.
      */
@@ -145,27 +154,78 @@ public class Table extends HtmlComponent<HTMLTableElement> {
 
     @Tag("caption")
     public static class Caption extends HtmlComponent<HTMLTableCaptionElement> {
+        public Caption() {
+            super();
+        }
+
+        public Caption(String textContent) {
+            super(textContent);
+        }
+
+        public Caption(Component<?>... components) {
+            super(components);
+        }
     }
 
     @Tag("colgroup")
     public static class ColumnGroup extends HtmlTableColComponent {
+        public ColumnGroup(Component<?>... components) {
+            super(components);
+        }
+
+        public ColumnGroup() {
+            super();
+        }
+
         @Tag("col")
         public static class Column extends HtmlTableColComponent {
+            public Column(Component<?>... components) {
+                super(components);
+            }
+
+            public Column(String textContent) {
+                super(textContent);
+            }
+
+            public Column() {
+                super();
+            }
         }
 
     }
 
     @Tag("thead")
     public static class Header extends HtmlTableSectionComponent {
+        public Header() {
+            super();
+        }
+
+        public Header(Component<?>... components) {
+            super(components);
+        }
     }
 
     @Tag("tbody")
     public static class Body extends HtmlTableSectionComponent {
 
+        public Body() {
+            super();
+        }
+
+        public Body(Component<?>... components) {
+            super(components);
+        }
     }
 
     @Tag("tfoot")
     public static class Footer extends HtmlTableSectionComponent {
+        public Footer() {
+            super();
+        }
+
+        public Footer(Component<?>... components) {
+            super(components);
+        }
     }
 
 

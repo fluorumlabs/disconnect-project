@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.core.components.html.form;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Tag;
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.containers.ArrayLikeBackedComponentList;
 import com.github.fluorumlabs.disconnect.core.containers.ComponentList;
@@ -17,6 +18,10 @@ import java.util.stream.StreamSupport;
 @Tag("input")
 public class Input extends HtmlComponent<HTMLInputElement> {
     protected Input() {}
+
+    protected Input(Component<?>... components) {
+        super(components);
+    }
 
     /**
      * Sets or retrieves a comma-separated list of content types.

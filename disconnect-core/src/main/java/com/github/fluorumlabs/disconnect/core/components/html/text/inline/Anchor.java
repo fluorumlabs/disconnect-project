@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.core.components.html.text.inline;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Tag;
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import js.web.dom.DOMTokenList;
 import js.web.dom.HTMLAnchorElement;
@@ -11,6 +12,18 @@ import js.web.dom.HTMLHyperlinkElementUtils;
  */
 @Tag("a")
 public class Anchor extends HtmlComponent<HTMLAnchorElement> {
+    public Anchor() {
+        super();
+    }
+
+    public Anchor(String textContent) {
+        super(textContent);
+    }
+
+    public Anchor(Component<?>... components) {
+        super(components);
+    }
+
     public HTMLHyperlinkElementUtils getHyperlink() {
         return getElement().cast();
     }

@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.components.html.table;
 
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.containers.ArrayLikeBackedComponentList;
 import com.github.fluorumlabs.disconnect.core.containers.ComponentList;
@@ -10,6 +11,14 @@ import js.web.dom.HTMLTableSectionElement;
  * Created by Artem Godin on 5/14/2020.
  */
 public class HtmlTableSectionComponent extends HtmlComponent<HTMLTableSectionElement> {
+    protected HtmlTableSectionComponent() {
+        super();
+    }
+
+    protected HtmlTableSectionComponent(Component<?>... components) {
+        super(components);
+    }
+
     /**
      * Sets or retrieves the number of horizontal rows contained in the object.
      */

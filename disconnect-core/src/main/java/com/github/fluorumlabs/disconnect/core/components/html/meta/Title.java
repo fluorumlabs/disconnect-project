@@ -7,6 +7,14 @@ import js.web.dom.*;
 
 @Tag("title")
 public class Title extends HtmlComponent<HTMLTitleElement> {
+    public Title() {
+        super();
+    }
+
+    public Title(String textContent) {
+        super(textContent);
+    }
+
     /**
      * Retrieves or sets the text of the object as a string.
      */

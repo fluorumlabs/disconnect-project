@@ -1,6 +1,7 @@
 package com.github.fluorumlabs.disconnect.core.components.html.table;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Tag;
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.containers.ArrayLikeBackedComponentList;
 import com.github.fluorumlabs.disconnect.core.containers.ComponentList;
@@ -13,6 +14,14 @@ import js.web.dom.HTMLTableRowElement;
 
 @Tag("tr")
 public class Row extends HtmlComponent<HTMLTableRowElement> {
+    public Row() {
+        super();
+    }
+
+    public Row(Component<?>... components) {
+        super(components);
+    }
+
     /**
      * Retrieves a collection of all cells in the table row.
      */
@@ -58,10 +67,33 @@ public class Row extends HtmlComponent<HTMLTableRowElement> {
 
     @Tag("td")
     public static class DataCell extends HtmlTableCellComponent<HTMLTableDataCellElement> {
+        public DataCell(String textContent) {
+            super(textContent);
+        }
+
+        public DataCell(Component<?>... components) {
+            super(components);
+        }
+
+        public DataCell() {
+            super();
+        }
     }
 
     @Tag("th")
     public static class HeaderCell extends HtmlTableCellComponent<HTMLTableHeaderCellElement> {
+        public HeaderCell(String textContent) {
+            super(textContent);
+        }
+
+        public HeaderCell(Component<?>... components) {
+            super(components);
+        }
+
+        public HeaderCell() {
+            super();
+        }
+
         public String getScope() {
             return getElement().getScope();
         }

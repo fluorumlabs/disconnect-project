@@ -1,12 +1,21 @@
 package com.github.fluorumlabs.disconnect.core.components.html.text.block;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Tag;
+import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import js.web.dom.HTMLOListElement;
 import org.teavm.jso.JSProperty;
 
 @Tag("ol")
 public class OrderedList extends HtmlComponent<HTMLOListElement> {
+    public OrderedList() {
+        super();
+    }
+
+    public OrderedList(Component<?>... components) {
+        super(components);
+    }
+
     @JSProperty
     public boolean isReversed() {
         return getElement().isReversed();
