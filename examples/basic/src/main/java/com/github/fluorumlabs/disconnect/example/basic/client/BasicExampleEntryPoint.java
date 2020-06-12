@@ -11,21 +11,21 @@ import org.apache.commons.lang3.StringUtils;
 public class BasicExampleEntryPoint implements Runnable {
 
     public void run() {
-        Div container = new Div();
-
         TextInput textInput = new TextInput();
         textInput.setPlaceholder("Your name");
 
         Button button = new Button("Click me!");
+        Button resetButton = new Button("Reset");
 
-        container.add(textInput, button);
+        Div container = new Div(textInput, button, resetButton);
 
         textInput.value()
                 .on(button.clickEvent())
                 .when(StringUtils::isNotEmpty)
                 .then(text -> container.add(new Div("Hi, " + text + "!")));
 
+        resetButton.clickEvent().accept(() -> textInput.value().set(""));
+
         Application.render(container);
     }
-
 }
