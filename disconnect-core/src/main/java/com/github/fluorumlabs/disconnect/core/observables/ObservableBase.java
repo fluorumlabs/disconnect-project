@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.core.observables;
 
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
-import com.github.fluorumlabs.disconnect.core.utils.Serializer;
+import com.github.fluorumlabs.disconnect.core.utils.SerDes;
 import js.lang.Any;
 
 import javax.annotation.Nonnull;
@@ -68,7 +68,7 @@ abstract class ObservableBase<VALUE> {
     }
 
     void pushNewValue(@Nonnull VALUE value, boolean forcePropagation) {
-        Any serialized = Serializer.serialize(value);
+        Any serialized = SerDes.serialize(value);
         if (forcePropagation) {
             setCurrentValue(value, serialized);
             markAsDirty();
@@ -84,7 +84,7 @@ abstract class ObservableBase<VALUE> {
     }
 
     void setCurrentValue(@Nonnull VALUE value) {
-        setCurrentValue(value, Serializer.serialize(value));
+        setCurrentValue(value, SerDes.serialize(value));
     }
 
     boolean hasValue() {

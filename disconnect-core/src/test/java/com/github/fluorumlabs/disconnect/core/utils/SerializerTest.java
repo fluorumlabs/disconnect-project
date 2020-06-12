@@ -135,7 +135,7 @@ public class SerializerTest {
 
     private static <T> void verify(Pair<T>... cases) {
         for (Pair<T> value : cases) {
-            Any result = Serializer.serialize(value.getKey());
+            Any result = SerDes.serialize(value.getKey());
             Assert.assertThat("Value `"+ value.getKey() + "` is not serialized properly", JSON.stringify(result), is(value.getValue()));
         }
     }

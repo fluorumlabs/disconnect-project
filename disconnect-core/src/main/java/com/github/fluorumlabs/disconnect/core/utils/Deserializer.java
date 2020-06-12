@@ -27,21 +27,11 @@ import static org.teavm.metaprogramming.Metaprogramming.*;
  */
 @SuppressWarnings({"ReturnOfNull", "unchecked"})
 @CompileTime
-public final class Deserializer {
+final class Deserializer {
     private Deserializer() {}
 
-    public static <T> T deserialize(Any object, Class<T> clazz) {
-        if (object == null) {
-            return null;
-        } else if (Serializable.class.isAssignableFrom(clazz)) {
-            return (T) deserialize((Class<? extends Serializable>) clazz, object);
-        } else {
-            throw new IllegalArgumentException("Only Serializable objects can be deserialized");
-        }
-    }
-
     @Meta
-    private static native Serializable deserialize(Class<? extends Serializable> clazz, Any object);
+    static native Serializable deserialize(Class<? extends Serializable> clazz, Any object);
 
     private static void deserialize(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeValue(clazz, value)
@@ -49,72 +39,32 @@ public final class Deserializer {
         exit(() -> result.get());
     }
 
-    public static <T> List<T> deserializeList(Any object, Class<T> clazz) {
-        if (object == null) {
-            return null;
-        } else if (Serializable.class.isAssignableFrom(clazz)) {
-            return (List<T>) deserializeList((Class<? extends Serializable>) clazz, object);
-        } else {
-            throw new IllegalArgumentException("Only lists of Serializable objects can be deserialized");
-        }
-    }
-
     @Meta
-    private static native List<Serializable> deserializeList(Class<? extends Serializable> clazz, Any object);
+    static native List<Serializable> deserializeList(Class<? extends Serializable> clazz, Any object);
 
     private static void deserializeList(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeList(value, clazz);
         exit(() -> result.get());
     }
 
-    public static <T extends Enum<T>> EnumSet<T> deserializeEnumSet(Any object, Class<T> clazz) {
-        if (object == null) {
-            return null;
-        } else if (Serializable.class.isAssignableFrom(clazz)) {
-            return (EnumSet<T>) deserializeEnumSet(clazz, object);
-        } else {
-            throw new IllegalArgumentException("Only sets of Serializable objects can be deserialized");
-        }
-    }
-
     @Meta
-    private static native EnumSet<?> deserializeEnumSet(Class<? extends Enum<?>> clazz, Any object);
+    static native EnumSet<?> deserializeEnumSet(Class<? extends Enum<?>> clazz, Any object);
 
     private static void deserializeEnumSet(ReflectClass<? extends Enum<?>> clazz, Value<Any> value) {
         Value<Object> result = deserializeEnumSet(value, clazz);
         exit(() -> result.get());
     }
 
-    public static <T> Set<T> deserializeSet(Any object, Class<T> clazz) {
-        if (object == null) {
-            return null;
-        } else if (Serializable.class.isAssignableFrom(clazz)) {
-            return (Set<T>) deserializeSet((Class<? extends Serializable>) clazz, object);
-        } else {
-            throw new IllegalArgumentException("Only sets of Serializable objects can be deserialized");
-        }
-    }
-
     @Meta
-    private static native Set<Serializable> deserializeSet(Class<? extends Serializable> clazz, Any object);
+    static native Set<Serializable> deserializeSet(Class<? extends Serializable> clazz, Any object);
 
     private static void deserializeSet(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeSet(value, clazz);
         exit(() -> result.get());
     }
 
-    public static <T> Map<String, T> deserializeMap(Any object, Class<T> clazz) {
-        if (object == null) {
-            return null;
-        } else if (Serializable.class.isAssignableFrom(clazz)) {
-            return (Map<String, T>) deserializeMap((Class<? extends Serializable>) clazz, object);
-        } else {
-            throw new IllegalArgumentException("Only maps of Serializable objects can be deserialized");
-        }
-    }
-
     @Meta
-    private static native Map<String, Serializable> deserializeMap(Class<? extends Serializable> clazz, Any object);
+    static native Map<String, Serializable> deserializeMap(Class<? extends Serializable> clazz, Any object);
 
     private static void deserializeMap(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeMap(value, clazz);
@@ -394,7 +344,7 @@ public final class Deserializer {
             for (int i = 0; i < array.getLength(); i++) {
                 Any serialized = array.get(i);
                 if (serialized != null) {
-                    result.add(deserialize(serialized, typeParameter.asJavaClass()));
+                    result.add(SerDes.deserialize(serialized, typeParameter.asJavaClass()));
                 } else {
                     result.add(null);
                 }
@@ -416,7 +366,7 @@ public final class Deserializer {
             for (String key : JsObject.keys(record)) {
                 Any serialized = record.get(key);
                 if (serialized != null) {
-                    result.put(key, deserialize(serialized, typeParameter.asJavaClass()));
+                    result.put(key, SerDes.deserialize(serialized, typeParameter.asJavaClass()));
                 } else {
                     result.put(key, null);
                 }
@@ -438,7 +388,7 @@ public final class Deserializer {
             for (int i = 0; i < array.getLength(); i++) {
                 Any serialized = array.get(i);
                 if (serialized != null) {
-                    result.add(deserialize(serialized, typeParameter.asJavaClass()));
+                    result.add(SerDes.deserialize(serialized, typeParameter.asJavaClass()));
                 } else {
                     result.add(null);
                 }

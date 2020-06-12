@@ -2,10 +2,8 @@ package com.github.fluorumlabs.disconnect.core.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
 import js.lang.Any;
 import js.lang.Unknown;
-import js.util.JS;
 import js.util.Record;
 import js.util.collections.Array;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +13,6 @@ import org.teavm.metaprogramming.ReflectClass;
 import org.teavm.metaprogramming.Value;
 import org.teavm.metaprogramming.reflect.ReflectField;
 import org.teavm.metaprogramming.reflect.ReflectMethod;
-import org.teavm.platform.Platform;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Modifier;
@@ -28,23 +25,11 @@ import static org.teavm.metaprogramming.Metaprogramming.*;
  */
 @SuppressWarnings({"ReturnOfNull", "unchecked"})
 @CompileTime
-public final class Serializer {
+final class Serializer {
     private Serializer() {}
 
-    public static Any serialize(Object object) {
-        if (object == null) {
-            return null;
-        }
-        Class<?> clazz = object.getClass();
-        if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
-            return DisconnectUtils.deepCopy((Any)object);
-        } else {
-            return serialize(clazz, object);
-        }
-    }
-
     @Meta
-    private static native Any serialize(Class<?> clazz, Object object);
+    static native Any serialize(Class<?> clazz, Object object);
 
     private static void serialize(ReflectClass<?> clazz, Value<Object> value) {
         Value<Any> result = serializeValue(clazz, value)
@@ -95,7 +80,7 @@ public final class Serializer {
             case "java.util.Date":
                 return Optional.of(emit(() -> value.get() == null ? null : Unknown.of(((Date)(value.get())).getTime())));
             case "java.util.Optional":
-                return Optional.of(emit(() -> value.get() == null ? null : ((Optional<Object>)value.get()).map(Serializer::serialize).orElse(null)));
+                return Optional.of(emit(() -> value.get() == null ? null : ((Optional<Object>)value.get()).map(SerDes::serialize).orElse(null)));
             case "~Z":
             case "boolean":
             case "java.lang.Boolean":
@@ -285,7 +270,7 @@ public final class Serializer {
 
             Record<Any> result = Any.empty();
             for (Map.Entry<String, Object> entry : ((Map<String,Object>)value.get()).entrySet()) {
-                result.set(entry.getKey(), entry.getValue() == null ? null : serialize(entry.getValue()));
+                result.set(entry.getKey(), entry.getValue() == null ? null : SerDes.serialize(entry.getValue()));
             }
             return result;
         });
