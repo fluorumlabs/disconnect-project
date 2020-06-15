@@ -120,6 +120,20 @@ public class DisconnectZeroClassTransformer implements ClassHolderTransformer {
         Set<String> dependents = collectTemplates(cls, javaClass, classSource, $);
         registerComponent(cls, javaClass, classSource, $);
 
+        AnnotationContainer annotations = cls.getAnnotations();
+
+        Stream.concat(
+                Optional.ofNullable(annotations.get(Uses.class.getName()))
+                        .map(Stream::of)
+                        .orElse(Stream.empty()),
+                Optional.ofNullable(annotations.get(Uses.Container.class.getName()))
+                        .map(Stream::of)
+                        .orElse(Stream.empty())
+                        .flatMap(ah -> ah.getValue("value").getList().stream().map(AnnotationValue::getAnnotation)))
+                .forEach(annotationReader -> {
+                    dependents.add(annotationReader.getValue("value").getString().toLowerCase());
+                });
+
         for (String dependent : dependents) {
             Class<?> aClass = CUSTOM_ELEMENTS.get(dependent);
             if (aClass != null) {
