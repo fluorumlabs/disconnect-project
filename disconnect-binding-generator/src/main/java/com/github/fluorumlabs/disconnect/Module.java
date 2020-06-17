@@ -2,10 +2,7 @@ package com.github.fluorumlabs.disconnect;
 
 import com.squareup.javapoet.*;
 import js.extras.JsEnum;
-import js.lang.Any;
-import js.lang.JsFunction;
-import js.lang.Symbol;
-import js.lang.Unknown;
+import js.lang.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -57,14 +54,14 @@ public class Module {
         npmImport = StringUtils.replaceChars(StringUtils.removeStart(npmImportAsString, rootAsString), "/\\", "//");
 
         String npmParent = StringUtils.replaceChars(StringUtils.removeStart(npmParentAsString, rootAsString), "/\\", "//");
-        String[] split = StringUtils.split(npmPackage + npmParent, "@-/_");
+        String[] split = StringUtils.split(npmPackage + npmParent, "@/");
         for (int i = 0; i < split.length; i++) {
-            split[i] = split[i].toLowerCase();
+            split[i] = StringUtils.replaceChars(split[i].toLowerCase(), "-", "_");
         }
 
         List<String> packageParts = new ArrayList<>(Arrays.asList(StringUtils.split(context.getGlobalPackage(), ".")));
         for (String s : split) {
-            if (!packageParts.contains(s)) {
+            if (!packageParts.contains(s) && !"src".equals(s) && !"dist".equals(s) && !"lib".equals(s)) {
                 packageParts.add(s);
             }
         }
@@ -83,7 +80,7 @@ public class Module {
         while (itr.hasNext()) {
             if (is(itr, "declare", "module", GlobalContext.STRING_TOKEN, null, FIGURE_TOKEN, null)) {
                 // We're at string constant
-                String moduleName = context.resolve(itr.next());
+                String moduleName = context.resolve(itr.next()) + ".js";
                 itr.next(); // skip {
                 String content = context.resolve(itr.next());
 
@@ -103,6 +100,18 @@ public class Module {
                 for (String value : StringUtils.split(context.resolve(itr.next()), ",")) {
                     context.getExports().put(value.trim(), this);
                 }
+            } if (is(itr, "export", "default")) {
+                String symbol = itr.next();
+                context.getExports().put("?" + symbol, this);
+            } else if (is(itr, "export", "declare", "function", null)
+            || is(itr, "export", "declare", "class", null)
+            || is(itr, "export", "declare", "interface", null)
+            || is(itr, "export", "declare", "const", null)
+            || is(itr, "export", "function", null)
+            || is(itr, "export", "class", null)
+            || is(itr, "export", "interface", null)
+            || is(itr,"export","const",null)) {
+                context.getExports().put(itr.next(), this);
             } else {
                 itr.next();
             }
@@ -273,6 +282,7 @@ public class Module {
         while (itr.hasNext()) {
             if (skipToken(itr, ";")
                     || skipToken(itr, "declare", "global", FIGURE_TOKEN, null)
+                    || skipToken(itr, "declare", "module", STRING_TOKEN, null, FIGURE_TOKEN, null)
                     || skipToken(itr, "export", FIGURE_TOKEN, null, "from", STRING_TOKEN, null)
                     || skipToken(itr, "export", FIGURE_TOKEN, null)
                     || skipToken(itr, "import", FIGURE_TOKEN, null, "from", STRING_TOKEN, null)
@@ -281,14 +291,19 @@ public class Module {
             } else if (is(itr, JSDOC_TOKEN, null)) {
                 javaDoc = renderMarkdown(context.resolveJsdoc(itr.next()));
             } else if (is(itr, "declare", "class")
+                    || is(itr, "export", "declare", "class")
                     || is(itr, "export", "class")
                     || is(itr, "class")
+                    || is(itr, "export", "declare", "interface")
                     || is(itr, "declare", "interface")
                     || is(itr, "export", "interface")
                     || is(itr, "interface")) {
                 processClass(itr);
             } else if (is(itr, "declare", "type")
                     || is(itr, "export", "type")
+                    || is(itr, "export", "declare", "type")
+                    || is(itr, "export", "default")
+                    || is(itr, "import")
                     || is(itr, "type")) {
                 upto(itr, ";");
             } else if (is(itr, "declare", "namespace")
@@ -316,7 +331,10 @@ public class Module {
                 iface.setRequiresConstructor(false);
 
                 processNamespace(itr, iface);
-            } else if (is(itr, "declare", "function") || is(itr, "function")) {
+            } else if (is(itr, "declare", "function")
+                    || is(itr, "export", "declare", "function")
+                    || is(itr, "export", "function")
+                    || is(itr, "function")) {
                 processStaticFunction(itr, false, null);
             } else if (is(itr, "declare", "const")) {
                 processStaticConst(itr, false, null);
@@ -371,6 +389,26 @@ public class Module {
         if (context.getExports().containsKey(propertyName)) {
             // Ok to import
             iface.getSymbols().add(propertyName);
+
+            String jsMethodName = iface.getClassName().simpleName() + "_" + propertyName;
+
+            MethodSpec.Builder getter = MethodSpec.methodBuilder(StringUtils.replaceChars(propertyName, "-\"'", "_"))
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .addAnnotation(AnnotationSpec.builder(JSBody.class).addMember("script", "$S", "return " + jsMethodName).build())
+                    .addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only" +
+                            " " +
+                            "in " +
+                            "JavaScript")
+                    .returns(getterType);
+
+            if (!savedJavaDoc.isEmpty()) {
+                getter.addJavadoc("$L", savedJavaDoc);
+            }
+
+            iface.getBuilder().addMethod(getter.build());
+        } else if (context.getExports().containsKey("?"+propertyName)) {
+            // Ok to import
+            iface.getSymbols().add("?"+propertyName);
 
             String jsMethodName = iface.getClassName().simpleName() + "_" + propertyName;
 
@@ -525,7 +563,7 @@ public class Module {
     private void processNamespace(ListIterator<String> itr, Interface parent) {
         String namespaceName = itr.next();
 
-        Interface anInterface = context.getInterfaces().get(namespaceName);
+/*        Interface anInterface = context.getInterfaces().get(namespaceName);
         anInterface.setClassName(parent.getClassName().nestedClass(StringUtils.capitalize(namespaceName)));
         parent.getInnerInterfaces().add(anInterface);
 
@@ -566,17 +604,16 @@ public class Module {
                         .returns(anInterface.getClassName());
                 parent.getBuilder().addMethod(getter.build());
             }
-        }
+        }*/
         upto(itr, FIGURE_TOKEN);
         if (is(itr, FIGURE_TOKEN)) {
-            processNamespaceBody(anInterface, context.resolve(itr.next()));
+            processNamespaceBody(parent, context.resolve(itr.next()));
         }
     }
 
     private void processClassGenericSignature(TypeSpec.Builder builder, String genericSignature) {
         for (String arg : StringUtils.split(genericSignature, ",")) {
-            String[] split = StringUtils.split(arg.trim(), "extends", 2);
-
+            String[] split = StringUtils.splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
             if (split.length > 1) {
                 List<String> strings = expandTypes(split[1].trim());
                 if (strings.size() > 1) {
@@ -598,7 +635,7 @@ public class Module {
         List<TypeName> typeParameters = new ArrayList<>();
 
         for (String arg : StringUtils.split(genericSignature, ",")) {
-            String[] split = StringUtils.split(arg.trim(), "extends", 2);
+            String[] split = StringUtils.splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
             typeParameters.add(TypeVariableName.get(split[0].trim()));
         }
 
@@ -611,7 +648,7 @@ public class Module {
 
     private void processMethodGenericSignature(MethodSpec.Builder builder, String genericSignature) {
         for (String arg : StringUtils.split(genericSignature, ",")) {
-            String[] split = StringUtils.splitByWholeSeparator(arg.trim(), "extends", 2);
+            String[] split = StringUtils.splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
 
             if (split.length > 1) {
                 List<String> strings = expandTypes(split[1].trim());
@@ -639,6 +676,8 @@ public class Module {
                 continue;
             } else if (is(itr, JSDOC_TOKEN, null)) {
                 javaDoc = renderMarkdown(context.resolveJsdoc(itr.next()));
+            } else if (is(itr, "private")) {
+                upto(itr, ";");
             } else if (is(itr, "readonly", SQUARE_TOKEN, null, ":")) {
                 processIndexer(itr, anInterface, true);
             } else if (is(itr, SQUARE_TOKEN, null, ":")) {
@@ -651,6 +690,9 @@ public class Module {
                 processConstructor(itr, anInterface);
             } else if (is(itr, "new")) {
                 processNew(itr, anInterface);
+            } else if (is(itr, ROUND_TOKEN, null, ":")) {
+                itr.previous();
+                processMethod(itr, anInterface, false);
             } else if (is(itr, null, ROUND_TOKEN, null, ":")
                     || is(itr, null, "?", ROUND_TOKEN, null, ":")
                     || is(itr, null, ANGLE_TOKEN, null, ROUND_TOKEN, null, ":")
@@ -671,17 +713,19 @@ public class Module {
         ListIterator<String> itr = tokens.listIterator();
 
         while (itr.hasNext()) {
-            if (skipToken(itr, ";")) {
+            if (skipToken(itr, ";") || skipToken(itr, "export")) {
                 continue;
             } else if (is(itr, JSDOC_TOKEN, null)) {
                 javaDoc = renderMarkdown(context.resolveJsdoc(itr.next()));
+            } else if (is(itr, "type")) {
+                upto(itr, ";",",");
             } else if (is(itr, "declare", "class") || is(itr, "class") || is(itr, "declare", "interface") || is(itr, "interface")) {
                 processClass(itr);
             } else if (is(itr, "declare", "namespace") || is(itr, "namespace")) {
                 processNamespace(itr, anInterface);
             } else if (is(itr, "declare", "function") || is(itr, "function")) {
                 processStaticFunction(itr, true, anInterface);
-            } else if (is(itr, "declare", "const")) {
+            } else if (is(itr, "declare", "const") || is(itr, "const")) {
                 processStaticConst(itr, false, anInterface);
             } else if (is(itr, "readonly", null, ":") || is(itr, "readonly", null, "?", ":")) {
                 processProperty(itr, anInterface, true);
@@ -728,6 +772,17 @@ public class Module {
             }
 
             processMethod(anInterface, functionName, genericSignature, arguments, returnType, jsMethodName, jsMethodName, true, false, false);
+        } else if (context.getExports().containsKey("?" + anInterface.getJsClassName())) {
+            // Ok to import
+            anInterface.getSymbols().add("?" + anInterface.getJsClassName());
+
+            String jsMethodName = anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName() + "." + functionName;
+
+            if (SourceVersion.isKeyword(functionName)) {
+                functionName = "do" + StringUtils.capitalize(functionName);
+            }
+
+            processMethod(anInterface, functionName, genericSignature, arguments, returnType, jsMethodName, jsMethodName, true, false, false);
         }
     }
 
@@ -738,6 +793,16 @@ public class Module {
             if (context.getExports().containsKey(anInterface.getJsClassName())) {
                 // Ok to import
                 anInterface.getSymbols().add(anInterface.getJsClassName());
+
+                String jsMethodName = "new " + anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName();
+                String jsMethodNameVarg = anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName();
+
+                String arguments = context.resolve(itr.next());
+
+                processMethod(anInterface, "create", "", arguments, anInterface.getJsClassName(), jsMethodName, jsMethodNameVarg, true, false, false);
+            } else if (context.getExports().containsKey("?" + anInterface.getJsClassName())) {
+                // Ok to import
+                anInterface.getSymbols().add("?" + anInterface.getJsClassName());
 
                 String jsMethodName = "new " + anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName();
                 String jsMethodNameVarg = anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName();
@@ -774,6 +839,19 @@ public class Module {
                 String returnType = upto(itr, ";");
 
                 processMethod(anInterface, "create", signature, arguments, returnType, jsMethodName, jsMethodNameVarg, true, false, false);
+            } else if (context.getExports().containsKey("?" + anInterface.getJsClassName())) {
+                // Ok to import
+                anInterface.getSymbols().add("?" + anInterface.getJsClassName());
+
+                String jsMethodName = "new " + anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName();
+                String jsMethodNameVarg = anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName();
+
+                String arguments = context.resolve(itr.next());
+
+                skipToken(itr, ":");
+                String returnType = upto(itr, ";");
+
+                processMethod(anInterface, "create", signature, arguments, returnType, jsMethodName, jsMethodNameVarg, true, false, false);
             } else {
                 upto(itr, ";");
             }
@@ -784,6 +862,10 @@ public class Module {
 
     private void processMethod(ListIterator<String> itr, Interface anInterface, boolean noVariants) {
         String methodName = itr.next();
+        if (methodName.equals(ROUND_TOKEN)) {
+            itr.previous();
+            methodName = "apply";
+        }
         is(itr, "?"); // IGNORE
         String signature = "";
         if (is(itr, ANGLE_TOKEN)) {
@@ -852,6 +934,13 @@ public class Module {
         if (context.getExports().containsKey(functionName)) {
             // Ok to import
             iface.getSymbols().add(functionName);
+
+            String jsMethodName = iface.getClassName().simpleName() + "_" + functionName;
+
+            processMethod(iface, functionName, genericSignature, arguments, returnType, jsMethodName, jsMethodName, true, false, false);
+        } else if (context.getExports().containsKey("?" + functionName)) {
+            // Ok to import
+            iface.getSymbols().add("?" + functionName);
 
             String jsMethodName = iface.getClassName().simpleName() + "_" + functionName;
 
@@ -1138,6 +1227,13 @@ public class Module {
             return;
         }
 
+        if (type.startsWith(ROUND_TOKEN) && type.contains(ARROW_TOKEN)) {
+            String[] split = StringUtils.split(type, ARROW_TOKEN, 2);
+            String args = context.resolve(split[0].substring(2).trim());
+            String returnType = split[1].trim();
+            processMethod(anInterface, propertyName, "", args, returnType, propertyName, propertyName, false, false, false);
+        }
+
         String savedJavaDoc = javaDoc;
         javaDoc = "";
 
@@ -1222,94 +1318,99 @@ public class Module {
     private void processIndexer(ListIterator<String> itr, Interface anInterface, boolean isReadonly) {
         String indexer = context.resolve(itr.next());
 
-        String[] indexerParts = StringUtils.split(indexer, ":");
+        String[] indexerParts = StringUtils.split(StringUtils.replace(indexer, " in ", " : "), ":");
         String indexerName = indexerParts[0].trim();
 
         String savedJavaDoc = javaDoc;
         javaDoc = "";
 
-        TypeName indexerType = resolve(indexerParts[1].trim(), StringUtils.capitalize(indexerName), anInterface);
-
+        List<String> keyTypes = expandTypes(indexerParts[1].trim());
         skipToken(itr, ":");
         String type = upto(itr, ";", ",");
-        List<String> expandedTypes = expandTypes(type);
-        boolean optional = expandedTypes.contains("null") || expandedTypes.contains("undefined");
-        expandedTypes.remove("null");
-        expandedTypes.remove("undefined");
 
-        TypeName getterType = ClassName.get(Unknown.class);
-        if (expandedTypes.size() == 1) {
-            getterType = resolve(expandedTypes.get(0), "Value", anInterface);
-        }
+        for (String keyType : keyTypes) {
+            TypeName indexerType = resolve(keyType, StringUtils.capitalize(indexerName), anInterface);
 
-        MethodSpec.Builder getter = MethodSpec.methodBuilder("get")
-                .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                .addAnnotation(AnnotationSpec.builder(JSIndexer.class).build())
-                .addParameter(indexerType, indexerName)
-                .returns(getterType);
+            List<String> expandedTypes = expandTypes(type);
+            boolean optional = expandedTypes.contains("null") || expandedTypes.contains("undefined");
+            expandedTypes.remove("null");
+            expandedTypes.remove("undefined");
 
-        if (!savedJavaDoc.isEmpty()) {
-            getter.addJavadoc("$L", savedJavaDoc);
-        }
+            TypeName getterType = ClassName.get(Unknown.class);
+            if (expandedTypes.size() == 1) {
+                getterType = resolve(expandedTypes.get(0), "Value", anInterface);
+            }
+
+            MethodSpec.Builder getter = MethodSpec.methodBuilder("get")
+                    .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                    .addAnnotation(AnnotationSpec.builder(JSIndexer.class).build())
+                    .addParameter(indexerType, indexerName)
+                    .returns(getterType);
+
+            if (!savedJavaDoc.isEmpty()) {
+                getter.addJavadoc("$L", savedJavaDoc);
+            }
 
 
-        if (optional && !getterType.isPrimitive()) {
-            getter.addAnnotation(Nullable.class);
-        }
+            if (optional && !getterType.isPrimitive()) {
+                getter.addAnnotation(Nullable.class);
+            }
 
-        anInterface.getBuilder().addMethod(getter.build());
+            anInterface.getBuilder().addMethod(getter.build());
 
-        if (!isReadonly) {
-            for (String expandedType : expandedTypes) {
-                TypeName resolve = resolve(expandedType, "Value", anInterface);
-                if (optional && !(resolve instanceof ArrayTypeName) &&(!resolve.isPrimitive())) {
-                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set")
-                            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                            .addAnnotation(AnnotationSpec.builder(JSIndexer.class).build())
-                            .addParameter(indexerType, indexerName)
-                            .addParameter(resolve.annotated(AnnotationSpec.builder(Nullable.class).build()), "value");
-                    MethodSpec.Builder builder = MethodSpec.methodBuilder("set")
-                            .addModifiers(Modifier.PUBLIC)
-                            .returns(anInterface.getClassName().nestedClass("Builder"))
-                            .addParameter(indexerType, indexerName)
-                            .addParameter(resolve.annotated(AnnotationSpec.builder(Nullable.class).build()), "value")
-                            .addStatement("object.set($L, value)", indexerName)
-                            .addStatement("return this");
+            if (!isReadonly) {
+                for (String expandedType : expandedTypes) {
+                    TypeName resolve = resolve(expandedType, "Value", anInterface);
+                    if (optional && !(resolve instanceof ArrayTypeName) &&(!resolve.isPrimitive())) {
+                        MethodSpec.Builder setter = MethodSpec.methodBuilder("set")
+                                .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                                .addAnnotation(AnnotationSpec.builder(JSIndexer.class).build())
+                                .addParameter(indexerType, indexerName)
+                                .addParameter(resolve.annotated(AnnotationSpec.builder(Nullable.class).build()), "value");
+                        MethodSpec.Builder builder = MethodSpec.methodBuilder("set")
+                                .addModifiers(Modifier.PUBLIC)
+                                .returns(anInterface.getClassName().nestedClass("Builder"))
+                                .addParameter(indexerType, indexerName)
+                                .addParameter(resolve.annotated(AnnotationSpec.builder(Nullable.class).build()), "value")
+                                .addStatement("object.set($L, value)", indexerName)
+                                .addStatement("return this");
 
-                    if (!savedJavaDoc.isEmpty()) {
-                        setter.addJavadoc("$L", savedJavaDoc);
-                        builder.addJavadoc("$L", savedJavaDoc);
+                        if (!savedJavaDoc.isEmpty()) {
+                            setter.addJavadoc("$L", savedJavaDoc);
+                            builder.addJavadoc("$L", savedJavaDoc);
+                        }
+
+                        anInterface.getBuilder().addMethod(setter
+                                .build());
+                        anInterface.getBuilderBuilder().addMethod(builder
+                                .build());
+                    } else {
+                        MethodSpec.Builder setter = MethodSpec.methodBuilder("set")
+                                .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                                .addAnnotation(AnnotationSpec.builder(JSIndexer.class).build())
+                                .addParameter(indexerType, indexerName)
+                                .addParameter(resolve, "value");
+                        MethodSpec.Builder builder = MethodSpec.methodBuilder("set")
+                                .addModifiers(Modifier.PUBLIC)
+                                .returns(anInterface.getBuilderClassName())
+                                .addParameter(indexerType, indexerName)
+                                .addParameter(resolve, "value")
+                                .addStatement("object.set($L, value)", indexerName)
+                                .addStatement("return this");
+
+                        if (!savedJavaDoc.isEmpty()) {
+                            setter.addJavadoc("$L", savedJavaDoc);
+                            builder.addJavadoc("$L", savedJavaDoc);
+                        }
+
+                        anInterface.getBuilder().addMethod(setter
+                                .build());
+                        anInterface.getBuilderBuilder().addMethod(builder
+                                .build());
                     }
-
-                    anInterface.getBuilder().addMethod(setter
-                            .build());
-                    anInterface.getBuilderBuilder().addMethod(builder
-                            .build());
-                } else {
-                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set")
-                            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                            .addAnnotation(AnnotationSpec.builder(JSIndexer.class).build())
-                            .addParameter(indexerType, indexerName)
-                            .addParameter(resolve, "value");
-                    MethodSpec.Builder builder = MethodSpec.methodBuilder("set")
-                            .addModifiers(Modifier.PUBLIC)
-                            .returns(anInterface.getBuilderClassName())
-                            .addParameter(indexerType, indexerName)
-                            .addParameter(resolve, "value")
-                            .addStatement("object.set($L, value)", indexerName)
-                            .addStatement("return this");
-
-                    if (!savedJavaDoc.isEmpty()) {
-                        setter.addJavadoc("$L", savedJavaDoc);
-                        builder.addJavadoc("$L", savedJavaDoc);
-                    }
-
-                    anInterface.getBuilder().addMethod(setter
-                            .build());
-                    anInterface.getBuilderBuilder().addMethod(builder
-                            .build());
                 }
             }
+
         }
 
         javaDoc = "";
@@ -1321,7 +1422,17 @@ public class Module {
         List<String> tokens = new ArrayList<>(Arrays.asList(StringUtils.split(type, " ")));
         ListIterator<String> itr = tokens.listIterator();
         while (itr.hasNext()) {
-            if (is(itr, ROUND_TOKEN, null, ARROW_TOKEN, null)) {
+            if (is(itr, "Array", ANGLE_TOKEN, null)) {
+                for (String expandType : expandTypes(context.resolve(itr.next()))) {
+                    if ("null".equals(expandType) || "undefined".equals(expandType)) {
+                        // skip intermediate.add(expandType);
+                    } else {
+                        intermediate.add(expandType + " " + SQUARE_TOKEN + " " + context.emptyToken());
+                    }
+                }
+                upto(itr,"|");
+                skipToken(itr, "|");
+            } else if (is(itr, ROUND_TOKEN, null, ARROW_TOKEN, null)) {
                 itr.previous();
                 intermediate.add(upto(itr, "|").trim());
                 skipToken(itr, "|");
@@ -1334,10 +1445,15 @@ public class Module {
             } else {
                 String rawType = itr.next();
                 if (!context.getInterfaces().containsKey(rawType) && context.getUnions().containsKey(rawType)) {
+                    List<String> rest = Arrays.asList(StringUtils.split(upto(itr, "|"), " "));
                     // expand the type
+                    upto(itr, "|");
                     List<String> replacement = new ArrayList<>();
                     for (String single : context.getUnions().get(rawType)) {
                         replacement.addAll(Arrays.asList(StringUtils.split(single, " ")));
+                        //if (!replacement.isEmpty() && !"null".equals(single.trim()) && !"undefined".equals(single.trim())) {
+                            replacement.addAll(rest);
+                        //}
                         replacement.add("|");
                     }
                     if (!replacement.isEmpty()) {
@@ -1369,7 +1485,7 @@ public class Module {
 
                 List<String> signatureParts = Arrays.asList(StringUtils.split(genericSignature, ","));
                 List<List<String>> types = signatureParts.stream()
-                        .map(t -> expandTypes(t.trim()))
+                        .map(t -> expandTypes(t.trim()).stream().filter(s -> !s.equals("null") && !s.equals("undefined")).collect(Collectors.toList()))
                         .collect(Collectors.toList());
                 Deque<List<List<String>>> expansionQueue = new ArrayDeque<>();
                 expansionQueue.push(types);
@@ -1431,7 +1547,7 @@ public class Module {
             if (type.startsWith("new ")) {
                 return ClassName.get(JsFunction.class);
             }
-            return processLambda(parent, suggestedName, type);
+            return processLambda(parent, suggestedName+"Fn", type);
         }
 
         if (type.contains(SQUARE_TOKEN)) {
@@ -1443,11 +1559,24 @@ public class Module {
         }
 
         if (type.contains("&") || type.startsWith("new ")) {
+            log.warn("Unknown type: '"+type +"' for "+suggestedName+" in "+parent.getClassName().simpleName());
             return ClassName.get(Any.class);
         }
 
         try {
             Class<?> aClass = Class.forName("js.web.dom." + type);
+            return ClassName.get(aClass);
+        } catch (ClassNotFoundException e) {
+            // ignore
+        }
+        try {
+            Class<?> aClass = Class.forName("js.lang." + type);
+            return ClassName.get(aClass);
+        } catch (ClassNotFoundException e) {
+            // ignore
+        }
+        try {
+            Class<?> aClass = Class.forName("js.util." + type);
             return ClassName.get(aClass);
         } catch (ClassNotFoundException e) {
             // ignore
@@ -1500,14 +1629,31 @@ public class Module {
                 return null;
 
         }
-        return ClassName.bestGuess(type);
+        try {
+            return ClassName.bestGuess(type);
+        } catch (IllegalArgumentException e) {
+            log.warn("Unknown type: '"+type +"' for "+suggestedName+" in "+parent.getClassName().simpleName());
+            return ClassName.get(Unknown.class);
+        }
     }
 
     private void injectTokenContent(ListIterator<String> itr) {
         String index = itr.next();
-        String[] newTokens = StringUtils.split(context.resolve(index), " ");
-        for (int i = newTokens.length - 1; i >= 0; i--) {
-            itr.add(newTokens[i]);
+        List<String> rest = Arrays.asList(StringUtils.split(upto(itr, "|"), " "));
+
+        List<String> replacement = new ArrayList<>();
+        for (String single : StringUtils.split(context.resolve(index), "|")) {
+            replacement.addAll(Arrays.asList(StringUtils.split(single, " ")));
+            //if (!replacement.isEmpty() && !"null".equals(single.trim()) && !"undefined".equals(single.trim())) {
+            replacement.addAll(rest);
+            //}
+            replacement.add("|");
+        }
+        if (!replacement.isEmpty()) {
+            replacement.remove(replacement.size() - 1);
+        }
+        for (int i = replacement.size() - 1; i >= 0; i--) {
+            itr.add(replacement.get(i));
             itr.previous();
         }
     }

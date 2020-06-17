@@ -265,12 +265,27 @@ public class GlobalContext {
 
         if (!iface.getSymbols().isEmpty()) {
             String importedSymbols = iface.getSymbols().stream()
+                    .filter(s -> !s.startsWith("?"))
                     .map(s -> "\"" + s + " as " + iface.getClassName().simpleName()+"_"+s + "\"")
                     .collect(Collectors.joining(", "));
-            iface.getBuilder().addAnnotation(AnnotationSpec.builder(Import.class)
-                    .addMember("symbols", "{$L}", importedSymbols)
-                    .addMember("module", "$S", importName)
-                    .build());
+            if (!importedSymbols.isEmpty()) {
+                iface.getBuilder().addAnnotation(AnnotationSpec.builder(Import.class)
+                        .addMember("symbols", "{$L}", importedSymbols)
+                        .addMember("module", "$S", importName)
+                        .build());
+            }
+            iface.getSymbols().stream()
+                    .filter(s ->s.startsWith("?"))
+                    .map(s -> s.substring(1))
+                    .findFirst()
+                    .ifPresent(s -> {
+                        iface.getBuilder().addAnnotation(AnnotationSpec.builder(Import.class)
+                                .addMember("symbols", "$S", iface.getClassName().simpleName()+"_"+s)
+                                .addMember("module", "$S", importName)
+                                .addMember("defaultExport", "true")
+                                .build());
+                    });
+
         } else if (iface.getParent() == null){
             iface.getBuilder().addAnnotation(AnnotationSpec.builder(Import.class)
                     .addMember("module", "$S", importName)
@@ -288,6 +303,16 @@ public class GlobalContext {
         }
 
         iface.setRendered(true);
+    }
+
+    public String emptyToken() {
+        if (tokens.contains("")) {
+            return Integer.toString(tokens.indexOf(""));
+        } else {
+            tokens.add("");
+            return Integer.toString(tokens.size()-1);
+        }
+
     }
 
     public String resolve(String index) {

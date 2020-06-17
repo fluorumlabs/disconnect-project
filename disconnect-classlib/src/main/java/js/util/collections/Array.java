@@ -96,6 +96,14 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
     int push(T... items);
 
     /**
+     * Appends new element to an array, and returns the new length of the array.
+     *
+     * @param item New element of the Array.
+     */
+    @JSBody(params = "item", script = "return this.push(item)")
+    int push(T item);
+
+    /**
      * Reverses the elements in an Array.
      */
     Array<T> reverse();

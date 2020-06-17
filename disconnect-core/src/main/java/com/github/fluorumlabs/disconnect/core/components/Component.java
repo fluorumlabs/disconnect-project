@@ -43,6 +43,8 @@ public class Component<X extends Element> extends LazyEventInitializer<X> implem
 
         element.<ComponentReferenceHolder>cast().set(this);
         children = new ParentNodeBackedComponentList<>(element);
+
+        initializer();
     }
 
     public ComponentList<Component<?>> query(String selector) {
@@ -831,6 +833,10 @@ public class Component<X extends Element> extends LazyEventInitializer<X> implem
     @Override
     public void forEach(Consumer<? super Component<?>> action) {
         children.forEach(action);
+    }
+
+    protected void initializer() {
+
     }
 
     public static void async(Runnable action) {

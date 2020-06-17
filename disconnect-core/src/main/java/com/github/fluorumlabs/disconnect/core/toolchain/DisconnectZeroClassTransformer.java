@@ -9,6 +9,7 @@ import com.github.fluorumlabs.disconnect.core.containers.SlotComponentList;
 import com.github.fluorumlabs.disconnect.core.internals.CustomElementRegistration;
 import com.github.fluorumlabs.disconnect.core.internals.TagRegistry;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
+import com.github.fluorumlabs.disconnect.core.router.Router;
 import com.github.fluorumlabs.disconnect.core.utils.Styler;
 import com.github.fluorumlabs.disconnect.core.utils.Templater;
 import js.web.dom.Element;
@@ -74,11 +75,16 @@ public class DisconnectZeroClassTransformer implements ClassHolderTransformer {
 
     @Override
     public void transformClass(ClassHolder cls, ClassHolderTransformerContext context) {
-        if (!CustomElementComponent.class.getName().equals(cls.getName()) && descendsFrom(cls, context.getHierarchy().getClassSource(), Component.class)) {
+        boolean isComponent = descendsFrom(cls, context.getHierarchy().getClassSource(), Component.class);
+        if (isComponent) {
+            addInitialization(cls, context);
+        }
+        if (!CustomElementComponent.class.getName().equals(cls.getName()) && isComponent) {
             addRegistration(cls, context);
         } else {
             addStyles(cls, context);
         }
+
     }
 
     // Signature: Unknown $$serialize$$()
@@ -150,6 +156,17 @@ public class DisconnectZeroClassTransformer implements ClassHolderTransformer {
             // Initialize Attribute observers
             implementConstructor(javaClass, cls, context);
         }
+    }
+
+    private void addInitialization(ClassHolder cls, ClassHolderTransformerContext context) {
+        Class<?> javaClass = getJavaClass(cls, context);
+
+        if (javaClass == null) {
+            return;
+        }
+
+        // Initialize Route parameters
+        implementInitializer(javaClass, cls, context);
     }
 
     private void addStyles(ClassHolder cls, ClassHolderTransformerContext context) {
@@ -287,6 +304,45 @@ public class DisconnectZeroClassTransformer implements ClassHolderTransformer {
         $.exit();
 
         cls.addMethod(constructor);
+    }
+
+    private static void implementInitializer(Class<?> componentClass, ClassHolder cls, ClassHolderTransformerContext context) {
+        MethodHolder initializer = new MethodHolder("initializer", ValueType.VOID);
+        initializer.setLevel(AccessLevel.PUBLIC);
+
+        ProgramEmitter $ = ProgramEmitter.create(initializer, context.getHierarchy());
+        ValueEmitter that = $.var(0, componentClass);
+
+        that.invokeSpecial(componentClass.getSuperclass(), "initializer");
+
+        if (componentClass.getAnnotation(Route.class) != null) {
+            for (Field field : componentClass.getDeclaredFields()) {
+                RouteParameter attribute = field.getAnnotation(RouteParameter.class);
+                if (attribute != null) {
+                    String attributeName = StringUtils.defaultIfEmpty(attribute.name(), toKebabCase(field.getName()));
+                    String defaultValue = attribute.defaultValue();
+
+                    if (field.getType().equals(String.class)) {
+                        that.setField(field.getName(), that.invokeSpecial(Router.class.getName(), "getStringParameter", ValueType.object(String.class.getName()), $.constant(attributeName), $.constant(defaultValue)));
+                    } else if (field.getType().equals(int.class)) {
+                        that.setField(field.getName(), that.invokeSpecial(Router.class.getName(), "getIntParameter", ValueType.INTEGER, $.constant(attributeName), $.constant(defaultValue)));
+                    } else if (field.getType().equals(boolean.class)) {
+                        that.setField(field.getName(), that.invokeSpecial(Router.class.getName(), "getBooleanParameter", ValueType.BOOLEAN, $.constant(attributeName), $.constant(defaultValue)));
+                    } else if (field.getType().equals(List.class)) {
+                        Type[] actualTypeArguments = ((ParameterizedType) (field.getGenericType())).getActualTypeArguments();
+                        if (actualTypeArguments.length == 1) {
+                            if (actualTypeArguments[0].equals(String.class)) {
+                                that.setField(field.getName(), that.invokeSpecial(Router.class.getName(), "getStringArrayParameter", ValueType.object(List.class.getName()), $.constant(attributeName), $.constant(defaultValue)));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $.exit();
+
+        cls.addMethod(initializer);
     }
 
     private Set<String> collectTemplates(ClassReader classHolder, Class<?> javaClass, ClassReaderSource classSource, ProgramEmitter $) {
