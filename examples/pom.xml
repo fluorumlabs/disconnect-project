@@ -11,5 +11,6 @@
 
     <modules>
         <module>basic</module>
+        <module>basic-routing</module>
     </modules>
 </project>

@@ -142,8 +142,8 @@ public interface Router extends Resolver {
    * </code></pre>
    */
   @JSBody(
-      params = {"outlet", "options"},
-      script = "return new Router_Router(outlet, options)"
+      params = {"outlet"},
+      script = "return new Router_Router(outlet)"
   )
   static Router create(@Nullable Node outlet) {
     throw new UnsupportedOperationException("Available only in JavaScript");
@@ -159,8 +159,8 @@ public interface Router extends Resolver {
    * </code></pre>
    */
   @JSBody(
-      params = {"outlet", "options"},
-      script = "return new Router_Router(outlet, options)"
+      params = {},
+      script = "return new Router_Router()"
   )
   static Router create() {
     throw new UnsupportedOperationException("Available only in JavaScript");

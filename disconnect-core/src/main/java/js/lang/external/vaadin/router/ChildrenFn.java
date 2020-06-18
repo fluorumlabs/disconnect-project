@@ -4,6 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
 import js.lang.Unknown;
+import org.teavm.jso.JSFunctor;
 
 @NpmPackage(
     name = "@vaadin/router",
@@ -12,6 +13,8 @@ import js.lang.Unknown;
 @Import(
     module = "@vaadin/router/dist/vaadin-router.js"
 )
+@JSFunctor
+@FunctionalInterface
 public interface ChildrenFn extends Any {
   Unknown apply();
 }

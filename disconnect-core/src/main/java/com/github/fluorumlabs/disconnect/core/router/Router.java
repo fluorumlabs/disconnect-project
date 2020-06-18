@@ -15,6 +15,8 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -131,8 +133,8 @@ public class Router extends Div {
         return currentParams != null ? currentParams.get(name).stringValue() : defaultValue;
     }
 
-    static String[] getStringArrayParameter(String name, String defaultValue) {
-        return currentParams != null ? currentParams.get(name).stringArrayValue() : StringUtils.split(defaultValue, "/");
+    static List<String> getStringArrayParameter(String name, String defaultValue) {
+        return currentParams != null ? Arrays.asList(currentParams.get(name).stringArrayValue()) : Arrays.asList(StringUtils.split(defaultValue, "/"));
     }
 
     static int getIntParameter(String name, String defaultValue) {

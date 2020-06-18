@@ -76,7 +76,7 @@ public class DisconnectZeroClassTransformer implements ClassHolderTransformer {
     @Override
     public void transformClass(ClassHolder cls, ClassHolderTransformerContext context) {
         boolean isComponent = descendsFrom(cls, context.getHierarchy().getClassSource(), Component.class);
-        if (isComponent) {
+        if (!Component.class.getName().equals(cls.getName()) && isComponent) {
             addInitialization(cls, context);
         }
         if (!CustomElementComponent.class.getName().equals(cls.getName()) && isComponent) {

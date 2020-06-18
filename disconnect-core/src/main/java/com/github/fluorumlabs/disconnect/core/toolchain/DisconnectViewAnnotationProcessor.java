@@ -2,7 +2,6 @@ package com.github.fluorumlabs.disconnect.core.toolchain;
 
 import com.github.fluorumlabs.disconnect.core.annotations.ErrorView;
 import com.github.fluorumlabs.disconnect.core.annotations.Route;
-import com.github.fluorumlabs.disconnect.core.internals.CustomElementRegistration;
 import com.github.fluorumlabs.disconnect.core.internals.RouteRegistration;
 import com.github.fluorumlabs.disconnect.core.router.Router;
 import com.google.auto.service.AutoService;
@@ -131,10 +130,13 @@ public class DisconnectViewAnnotationProcessor extends AbstractProcessor {
                                         ClassName.get(String.class)))
                                 .addStatement("return $T.emptyList()", Collections.class)
                                 .build();
+
+
                     } else {
                         String routesAsString = routes.stream()
                                 .map(s -> "\"" + StringEscapeUtils.escapeJava(s) + "\"")
                                 .collect(Collectors.joining(", "));
+
 
                         getRoutes = MethodSpec.methodBuilder("getRoutes")
                                 .addModifiers(Modifier.PUBLIC)
@@ -142,12 +144,13 @@ public class DisconnectViewAnnotationProcessor extends AbstractProcessor {
                                         ClassName.get(String.class)))
                                 .addStatement("return $T.asList($L)", Arrays.class, routesAsString)
                                 .build();
+
                     }
 
-                    TypeSpec customElementRegistration =
+                    TypeSpec routeRegistration =
                             TypeSpec.classBuilder(routeTarget.getSimpleName() + "RouteRegistration")
                                     .addModifiers(Modifier.PUBLIC)
-                                    .addSuperinterface(CustomElementRegistration.class)
+                                    .addSuperinterface(RouteRegistration.class)
                                     .addMethod(getTarget)
                                     .addMethod(getOutlet)
                                     .addMethod(getParent)
@@ -156,7 +159,7 @@ public class DisconnectViewAnnotationProcessor extends AbstractProcessor {
                                     .addAnnotation(AnnotationSpec.builder(AutoService.class).addMember("value", "$T.class", RouteRegistration.class).build())
                                     .build();
 
-                    JavaFile javaFile = JavaFile.builder(targetPackage, customElementRegistration).build();
+                    JavaFile javaFile = JavaFile.builder(targetPackage, routeRegistration).build();
                     javaFile.writeTo(processingEnv.getFiler());
                 }
             }

@@ -65,6 +65,10 @@ public final class RouterInternals {
     }
 
     private static Value<Array<Route>> collectRoutes(Class<?> parent, Value<Router> outlet, Map<Class<?>, Map<String, Class<?>>> routes, Map<Class<?>, Set<String>> namedRoutes) {
+        if (!routes.containsKey(parent)) {
+            return emit(() -> Array.create());
+        }
+
         List<String> orderedRoutes = routes.get(parent).keySet().stream()
                 .sorted(Comparator.comparingInt(RouterInternals::getParamCount).thenComparingInt(String::length))
                 .collect(Collectors.toList());

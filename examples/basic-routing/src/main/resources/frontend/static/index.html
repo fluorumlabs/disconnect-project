@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic example</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#227aef">
+
+    <!--link rel="manifest" href="manifest.json"-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2A3443">
+
+    <script>
+        // Compute RPC host location from document location
+        var currentLocation = document.location.protocol + '//' + document.location.host + document.location.pathname;
+        if (currentLocation[currentLocation.length-1]==='/') {
+            currentLocation = currentLocation.substring(0, currentLocation.length-1);
+        }
+        window.Disconnect = {
+            RpcHost: currentLocation
+        }
+    </script>
+</head>
+<body>
+<script src="bin/app.js?t=${BUILD_TIMESTAMP}" itemType="module"></script>
+</body>
+</html>

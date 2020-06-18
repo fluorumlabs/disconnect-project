@@ -30,8 +30,8 @@ public interface Resolver extends Any {
    *
    */
   @JSBody(
-      params = {"routes", "options"},
-      script = "return new Resolver_Resolver(routes, options)"
+      params = {"routes"},
+      script = "return new Resolver_Resolver(routes)"
   )
   static Resolver create(Any routes) {
     throw new UnsupportedOperationException("Available only in JavaScript");
