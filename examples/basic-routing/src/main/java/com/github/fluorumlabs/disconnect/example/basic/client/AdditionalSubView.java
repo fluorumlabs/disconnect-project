@@ -6,9 +6,9 @@ import com.github.fluorumlabs.disconnect.core.components.html.text.block.Div;
 /**
  * Created by Artem Godin on 6/17/2020.
  */
-@Route("/")
-public class DefaultView extends Div {
-    {
-        add("This is the root view");
+@Route(value = "/extra", parent = AdditionalRoot.class)
+public class AdditionalSubView extends Div {
+    public AdditionalSubView() {
+        add("This is a subview");
     }
 }

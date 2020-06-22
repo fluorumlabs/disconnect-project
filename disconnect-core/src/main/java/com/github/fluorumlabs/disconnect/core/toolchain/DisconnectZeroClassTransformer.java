@@ -323,16 +323,16 @@ public class DisconnectZeroClassTransformer implements ClassHolderTransformer {
                     String defaultValue = attribute.defaultValue();
 
                     if (field.getType().equals(String.class)) {
-                        that.setField(field.getName(), that.invokeSpecial(Router.class.getName(), "getStringParameter", ValueType.object(String.class.getName()), $.constant(attributeName), $.constant(defaultValue)));
+                        that.setField(field.getName(), $.invoke(Router.class.getName(), "getStringParameter", ValueType.object(String.class.getName()), $.constant(attributeName), $.constant(defaultValue)));
                     } else if (field.getType().equals(int.class)) {
-                        that.setField(field.getName(), that.invokeSpecial(Router.class.getName(), "getIntParameter", ValueType.INTEGER, $.constant(attributeName), $.constant(defaultValue)));
+                        that.setField(field.getName(), $.invoke(Router.class.getName(), "getIntParameter", ValueType.INTEGER, $.constant(attributeName), $.constant(defaultValue)));
                     } else if (field.getType().equals(boolean.class)) {
-                        that.setField(field.getName(), that.invokeSpecial(Router.class.getName(), "getBooleanParameter", ValueType.BOOLEAN, $.constant(attributeName), $.constant(defaultValue)));
+                        that.setField(field.getName(), $.invoke(Router.class.getName(), "getBooleanParameter", ValueType.BOOLEAN, $.constant(attributeName), $.constant(defaultValue)));
                     } else if (field.getType().equals(List.class)) {
                         Type[] actualTypeArguments = ((ParameterizedType) (field.getGenericType())).getActualTypeArguments();
                         if (actualTypeArguments.length == 1) {
                             if (actualTypeArguments[0].equals(String.class)) {
-                                that.setField(field.getName(), that.invokeSpecial(Router.class.getName(), "getStringArrayParameter", ValueType.object(List.class.getName()), $.constant(attributeName), $.constant(defaultValue)));
+                                that.setField(field.getName(), $.invoke(Router.class.getName(), "getStringArrayParameter", ValueType.object(List.class.getName()), $.constant(attributeName), $.constant(defaultValue)));
                             }
                         }
                     }

@@ -3,7 +3,7 @@ package com.github.fluorumlabs.disconnect.core.toolchain;
 import com.github.fluorumlabs.disconnect.core.annotations.ErrorView;
 import com.github.fluorumlabs.disconnect.core.annotations.Route;
 import com.github.fluorumlabs.disconnect.core.internals.RouteRegistration;
-import com.github.fluorumlabs.disconnect.core.router.Router;
+import com.github.fluorumlabs.disconnect.core.router.RouterOutlet;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.*;
 import org.apache.commons.text.StringEscapeUtils;
@@ -47,8 +47,8 @@ public class DisconnectViewAnnotationProcessor extends AbstractProcessor {
                     ErrorView mainErrorView = routeTarget.getAnnotation(ErrorView.class);
 
                     if (mainView != null) {
-                        outletClass = getAnnotationClassValue(mainView::outlet, Router.class);
-                        parentClass = getAnnotationClassValue(mainView::parent, Router.class);
+                        outletClass = getAnnotationClassValue(mainView::outlet, RouterOutlet.class);
+                        parentClass = getAnnotationClassValue(mainView::parent, RouterOutlet.class);
 
                         routes.add(mainView.value());
 
@@ -58,8 +58,8 @@ public class DisconnectViewAnnotationProcessor extends AbstractProcessor {
                             }
                         }
                     } else {
-                        outletClass = getAnnotationClassValue(mainErrorView::outlet, Router.class);
-                        parentClass = ClassName.get(Router.class);
+                        outletClass = getAnnotationClassValue(mainErrorView::outlet, RouterOutlet.class);
+                        parentClass = ClassName.get(RouterOutlet.class);
 
                         exceptions.add(getAnnotationClassValue(mainErrorView::value, UnsupportedOperationException.class));
 

@@ -1,0 +1,6 @@
+a[active] {
+    background-color: #eee;
+}
+a[selected] {
+    background-color: aquamarine;
+}

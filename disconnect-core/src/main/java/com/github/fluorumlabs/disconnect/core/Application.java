@@ -3,8 +3,6 @@ package com.github.fluorumlabs.disconnect.core;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
-import com.github.fluorumlabs.disconnect.core.router.LocationParams;
-import com.github.fluorumlabs.disconnect.core.router.Router;
 import js.lang.Unknown;
 import js.util.collections.WeakMap;
 import js.util.function.JsRunnable;

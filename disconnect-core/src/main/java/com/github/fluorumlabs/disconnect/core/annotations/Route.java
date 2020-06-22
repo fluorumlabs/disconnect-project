@@ -1,6 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.annotations;
 
-import com.github.fluorumlabs.disconnect.core.router.Router;
+import com.github.fluorumlabs.disconnect.core.router.RouterOutlet;
 
 import java.lang.annotation.*;
 
@@ -12,9 +12,9 @@ import java.lang.annotation.*;
 public @interface Route {
     String value();
 
-    Class<?> outlet() default Router.class;
+    Class<?> outlet() default RouterOutlet.class;
 
-    Class<?> parent() default Router.class;
+    Class<?> parent() default RouterOutlet.class;
 
     @Target({ElementType.TYPE})
     @Retention(RetentionPolicy.RUNTIME)

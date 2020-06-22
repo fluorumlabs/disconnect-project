@@ -6,9 +6,9 @@ import com.github.fluorumlabs.disconnect.core.components.html.text.block.Div;
 /**
  * Created by Artem Godin on 6/17/2020.
  */
-@Route("/")
-public class DefaultView extends Div {
+@Route("/some")
+public class SomeView extends Div {
     {
-        add("This is the root view");
+        add("This is some view");
     }
 }

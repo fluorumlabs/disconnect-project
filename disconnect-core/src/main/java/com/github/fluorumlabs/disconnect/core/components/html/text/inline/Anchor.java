@@ -3,6 +3,8 @@ package com.github.fluorumlabs.disconnect.core.components.html.text.inline;
 import com.github.fluorumlabs.disconnect.core.annotations.Tag;
 import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
+import com.github.fluorumlabs.disconnect.core.router.LocationParams;
+import com.github.fluorumlabs.disconnect.core.router.Router;
 import js.web.dom.DOMTokenList;
 import js.web.dom.HTMLAnchorElement;
 import js.web.dom.HTMLHyperlinkElementUtils;
@@ -19,9 +21,46 @@ public class Anchor extends HtmlComponent<HTMLAnchorElement> {
     public Anchor(String textContent) {
         super(textContent);
     }
-
     public Anchor(Component<?>... components) {
         super(components);
+    }
+
+    public Anchor(String url, String textContent) {
+        super(textContent);
+        getHyperlink().setHref(url);
+    }
+
+    public Anchor(String url, Component<?>... components) {
+        super(components);
+        getHyperlink().setHref(url);
+    }
+
+    public Anchor(Class<?> target) {
+        super();
+        getHyperlink().setHref(Router.getUrlForTarget(target));
+    }
+    public Anchor(Class<?> target, String textContent) {
+        super(textContent);
+        getHyperlink().setHref(Router.getUrlForTarget(target));
+    }
+
+    public Anchor(Class<?> target, Component<?>... components) {
+        super(components);
+        getHyperlink().setHref(Router.getUrlForTarget(target));
+    }
+
+    public Anchor(Class<?> target, LocationParams params) {
+        super();
+        getHyperlink().setHref(Router.getUrlForTarget(target, params));
+    }
+    public Anchor(Class<?> target, LocationParams params, String textContent) {
+        super(textContent);
+        getHyperlink().setHref(Router.getUrlForTarget(target, params));
+    }
+
+    public Anchor(Class<?> target, LocationParams params, Component<?>... components) {
+        super(components);
+        getHyperlink().setHref(Router.getUrlForTarget(target, params));
     }
 
     public HTMLHyperlinkElementUtils getHyperlink() {

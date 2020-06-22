@@ -13,6 +13,7 @@ import com.github.fluorumlabs.disconnect.core.router.NotFoundException;
 public class DefaultErrorView extends Div implements HasErrorParameter {
     @Override
     public void setErrorParameter(Exception exception) {
+        add("Exception happened: ");
         add(exception.getClass().getName() + ": " + exception.getMessage());
     }
 }
