@@ -60,6 +60,8 @@
         <selenium.version>3.141.59</selenium.version>
         <lombok.version>1.18.10</lombok.version>
         <jsr305.version>3.0.2</jsr305.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <hibernate-validator.version>6.0.18.Final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>
@@ -186,6 +188,16 @@
                 <groupId>com.google.auto.service</groupId>
                 <artifactId>auto-service</artifactId>
                 <version>${auto-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

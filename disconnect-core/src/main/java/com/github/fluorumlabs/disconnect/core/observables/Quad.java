@@ -15,7 +15,7 @@ public class Quad<A ,B ,C ,D > extends Triplet<A, B, C> {
         return new Quad<>(a,b,c,d);
     }
 
-    protected D getValueD() {
+    public D getValueD() {
         return valueD;
     }
 

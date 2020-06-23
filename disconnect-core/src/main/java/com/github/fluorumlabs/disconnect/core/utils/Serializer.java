@@ -1,12 +1,9 @@
 package com.github.fluorumlabs.disconnect.core.utils;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.Record;
 import js.util.collections.Array;
-import org.apache.commons.lang3.StringUtils;
 import org.teavm.metaprogramming.CompileTime;
 import org.teavm.metaprogramming.Meta;
 import org.teavm.metaprogramming.ReflectClass;
@@ -15,7 +12,6 @@ import org.teavm.metaprogramming.reflect.ReflectField;
 import org.teavm.metaprogramming.reflect.ReflectMethod;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static org.teavm.metaprogramming.Metaprogramming.*;
@@ -126,95 +122,28 @@ final class Serializer {
     }
 
     private static Value<Any> serializeObject(ReflectClass<?> clazz, Value<Object> value) {
-        Map<String, Property> properties = new HashMap<>();
-
-        for (ReflectField field : clazz.getFields()) {
-            if (Modifier.isStatic(field.getModifiers()) || !Modifier.isPublic(field.getModifiers()) || Modifier.isTransient(field.getModifiers())) {
-                continue;
-            }
-            if (field.getAnnotation(JsonIgnore.class) != null) {
-                continue;
-            }
-
-            // get property name
-            String fieldName = field.getName();
-
-            JsonProperty annotation = field.getAnnotation(JsonProperty.class);
-            if (annotation != null) {
-                if (annotation.access() == JsonProperty.Access.WRITE_ONLY) {
-                    continue;
-                }
-                if (!annotation.value().isEmpty()) {
-                    fieldName = annotation.value();
-                }
-            }
-
-            Property property = properties.computeIfAbsent(fieldName, name -> new Property());
-            property.field = field;
-            property.type = field.getType();
-        }
-
-        for (ReflectMethod method : clazz.getMethods()) {
-            if (Modifier.isStatic(method.getModifiers()) || !Modifier.isPublic(method.getModifiers()) || method.getParameterCount() > 0) {
-                continue;
-            }
-            if (!StringUtils.startsWithAny(method.getName(), "get", "is")) {
-                continue;
-            }
-            String fieldName = method.getName();
-            if (fieldName.startsWith("get")) {
-                fieldName = fieldName.substring(3);
-            } else if (fieldName.startsWith("is")) {
-                fieldName = fieldName.substring(2);
-            }
-            if (fieldName.isEmpty() || fieldName.charAt(0) < 'A' || fieldName.charAt(0) > 'Z') {
-                continue;
-            }
-            if (method.getAnnotation(JsonIgnore.class) != null) {
-                continue;
-            }
-            fieldName = StringUtils.uncapitalize(fieldName);
-
-            JsonProperty annotation = method.getAnnotation(JsonProperty.class);
-            if (annotation != null) {
-                if (annotation.access() == JsonProperty.Access.WRITE_ONLY) {
-                    continue;
-                }
-                if (!annotation.value().isEmpty()) {
-                    fieldName = annotation.value();
-                }
-            }
-
-            Property property = properties.computeIfAbsent(fieldName, name -> new Property());
-            property.field = null;
-            property.getter = method;
-            property.type = method.getReturnType();
-        }
-
-        List<String> propertyNames = new ArrayList<>(properties.keySet());
-        propertyNames.sort(String::compareTo);
+        List<BeanProperties.CompileTimeDescriptor> propertyDescriptors = BeanProperties.getCompileTimePropertyDescriptors(clazz);
 
         Value<Record<Any>> result = emit(() -> Any.empty());
 
-        for (String propertyName : propertyNames) {
-            if (propertyName.equals("class")) {
-                continue;
-            }
-            Property property = properties.get(propertyName);
-            if (property.getter != null) {
-                ReflectMethod getter = property.getter;
-                Value<Object> propertyValue = emit(() -> getter.invoke(value.get()));
-                Value<Any> serializedValue = serializeFieldValue(property.type, propertyValue);
-                emit(() -> {
-                    result.get().set(propertyName, serializedValue.get());
-                });
-            } else {
-                ReflectField field = property.field;
-                Value<Object> propertyValue = emit(() -> field.get(value.get()));
-                Value<Any> serializedValue = serializeFieldValue(property.type, propertyValue);
-                emit(() -> {
-                    result.get().set(propertyName, serializedValue.get());
-                });
+        for (BeanProperties.CompileTimeDescriptor property : propertyDescriptors) {
+            if (property.isSerializable() && property.isReadable()) {
+                String jsonName = property.getJsonName();
+                if (property.getGetter() != null) {
+                    ReflectMethod getter = property.getGetter();
+                    Value<Object> propertyValue = emit(() -> getter.invoke(value.get()));
+                    Value<Any> serializedValue = serializeFieldValue(property.getType(), propertyValue);
+                    emit(() -> {
+                        result.get().set(jsonName, serializedValue.get());
+                    });
+                } else {
+                    ReflectField field = property.getField();
+                    Value<Object> propertyValue = emit(() -> field.get(value.get()));
+                    Value<Any> serializedValue = serializeFieldValue(property.getType(), propertyValue);
+                    emit(() -> {
+                        result.get().set(jsonName, serializedValue.get());
+                    });
+                }
             }
         }
 

@@ -1,13 +1,10 @@
 package com.github.fluorumlabs.disconnect.core.utils;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import js.lang.Any;
 import js.lang.JsObject;
 import js.lang.Unknown;
 import js.util.Record;
 import js.util.collections.Array;
-import org.apache.commons.lang3.StringUtils;
 import org.teavm.metaprogramming.CompileTime;
 import org.teavm.metaprogramming.Meta;
 import org.teavm.metaprogramming.ReflectClass;
@@ -17,7 +14,8 @@ import org.teavm.metaprogramming.reflect.ReflectMethod;
 
 import javax.annotation.Nullable;
 import java.io.Serializable;
-import java.lang.reflect.*;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.*;
 
 import static org.teavm.metaprogramming.Metaprogramming.*;
@@ -166,91 +164,7 @@ final class Deserializer {
     }
 
     private static Value<Object> deserializeObject(ReflectClass<?> clazz, Value<Any> value) {
-        Map<String, Property> properties = new HashMap<>();
-
-        for (ReflectField field : clazz.getFields()) {
-            if (Modifier.isStatic(field.getModifiers()) || !Modifier.isPublic(field.getModifiers()) || Modifier.isTransient(field.getModifiers())) {
-                continue;
-            }
-            if (field.getAnnotation(JsonIgnore.class) != null) {
-                continue;
-            }
-
-            // get property name
-            String fieldName = field.getName();
-
-            JsonProperty annotation = field.getAnnotation(JsonProperty.class);
-            if (annotation != null) {
-                if (annotation.access() == JsonProperty.Access.READ_ONLY) {
-                    continue;
-                }
-                if (!annotation.value().isEmpty()) {
-                    fieldName = annotation.value();
-                }
-            }
-
-            Property property = properties.computeIfAbsent(fieldName, name -> new Property());
-            property.field = field;
-            property.type = field.getType();
-
-            try {
-                Class<?> realClass = Class.forName(clazz.getName(), false, getClassLoader());
-                Field realField = realClass.getField(field.getName());
-
-                Type genericType = realField.getGenericType();
-                extractTypeArguments(property, genericType);
-            } catch (ClassNotFoundException | NoSuchFieldException ignore) {
-                // ignore
-            }
-        }
-
-        for (ReflectMethod method : clazz.getMethods()) {
-            if (Modifier.isStatic(method.getModifiers()) || !Modifier.isPublic(method.getModifiers()) || method.getParameterCount() != 1) {
-                continue;
-            }
-            if (!method.getName().startsWith( "set")) {
-                continue;
-            }
-            String fieldName = method.getName().substring(3);
-            if (fieldName.isEmpty() || fieldName.charAt(0) < 'A' || fieldName.charAt(0) > 'Z') {
-                continue;
-            }
-            if (method.getAnnotation(JsonIgnore.class) != null) {
-                continue;
-            }
-            fieldName = StringUtils.uncapitalize(fieldName);
-
-            JsonProperty annotation = method.getAnnotation(JsonProperty.class);
-            if (annotation != null) {
-                if (annotation.access() == JsonProperty.Access.READ_ONLY) {
-                    continue;
-                }
-                if (!annotation.value().isEmpty()) {
-                    fieldName = annotation.value();
-                }
-            }
-
-            Property property = properties.computeIfAbsent(fieldName, name -> new Property());
-            property.field = null;
-            property.setter = method;
-            property.type = method.getParameterType(0);
-
-            if (!property.type.isPrimitive() && !property.type.isArray()) {
-                try {
-                    Class<?> parameter = Class.forName(property.type.getName(), false, getClassLoader());
-                    Class<?> realClass = Class.forName(clazz.getName(), false, getClassLoader());
-                    Method realMethod = realClass.getMethod(method.getName(), parameter);
-
-                    Type genericType = realMethod.getGenericParameterTypes()[0];
-                    extractTypeArguments(property, genericType);
-                } catch (ClassNotFoundException | NoSuchMethodException ignore) {
-                    // ignore
-                }
-            }
-        }
-
-        List<String> propertyNames = new ArrayList<>(properties.keySet());
-        propertyNames.sort(String::compareTo);
+        List<BeanProperties.CompileTimeDescriptor> propertyDescriptors = BeanProperties.getCompileTimePropertyDescriptors(clazz);
 
         Value<Object> result = emit(() -> {
             try {
@@ -260,50 +174,54 @@ final class Deserializer {
             }
         });
 
-        for (String propertyName : propertyNames) {
-            Property property = properties.get(propertyName);
-            Value<Object> finalDeserializedValue = deserializeGenericValue(clazz, value, propertyName, property);
-            if (property.setter != null) {
-                ReflectMethod setter = property.setter;
-                emit(() -> setter.invoke(result.get(), finalDeserializedValue.get()));
-            } else {
-                ReflectField field = property.field;
-                emit(() -> field.set(result.get(), finalDeserializedValue.get()));
+        for (BeanProperties.CompileTimeDescriptor property : propertyDescriptors) {
+            if (property.isSerializable() && property.isWritable()) {
+                Value<Object> finalDeserializedValue = deserializeGenericValue(clazz, value, property);
+                if (property.getSetter() != null) {
+                    ReflectMethod setter = property.getSetter();
+                    emit(() -> setter.invoke(result.get(), finalDeserializedValue.get()));
+                } else {
+                    ReflectField field = property.getField();
+                    emit(() -> field.set(result.get(), finalDeserializedValue.get()));
+                }
             }
         }
 
         return emit(() -> result.get());
     }
 
-    private static Value<Object> deserializeGenericValue(ReflectClass<?> clazz, Value<Any> value, String propertyName, Property property) {
-        Value<Any> serializedValue = emit(() -> value.get().<Record<Any>>cast().get(propertyName));
+    private static Value<Object> deserializeGenericValue(ReflectClass<?> clazz, Value<Any> value, BeanProperties.CompileTimeDescriptor property) {
+        String jsonName = property.getJsonName();
+        Value<Any> serializedValue = emit(() -> value.get().<Record<Any>>cast().get(jsonName));
 
         Value<Object> deserializedValue;
 
-        if (property.typeParameters != null && property.typeParameters.length > 0) {
-            ReflectClass<?> typeParameter = property.typeParameters[0];
+        if (property.getTypeParameters() != null && property.getTypeParameters().length > 0) {
+            ReflectClass<?> typeParameter = property.getTypeParameters()[0];
             if (typeParameter != null) {
-                if (findClass(List.class).isAssignableFrom(property.type) && findClass(Serializable.class).isAssignableFrom(typeParameter)) {
+                if (findClass(List.class).isAssignableFrom(property.getType()) && findClass(Serializable.class).isAssignableFrom(typeParameter)) {
                     deserializedValue = deserializeList(serializedValue, typeParameter);
-                } else if (findClass(EnumSet.class).isAssignableFrom(property.type)) {
+                } else if (findClass(Optional.class).isAssignableFrom(property.getType()) && findClass(Serializable.class).isAssignableFrom(typeParameter)) {
+                    deserializedValue = deserializeOptional(serializedValue, typeParameter);
+                } else if (findClass(EnumSet.class).isAssignableFrom(property.getType())) {
                     deserializedValue = deserializeEnumSet(serializedValue, typeParameter);
-                } else if (findClass(Set.class).isAssignableFrom(property.type) && findClass(Serializable.class).isAssignableFrom(typeParameter)) {
+                } else if (findClass(Set.class).isAssignableFrom(property.getType()) && findClass(Serializable.class).isAssignableFrom(typeParameter)) {
                     deserializedValue = deserializeSet(serializedValue, typeParameter);
-                } else if (findClass(Map.class).isAssignableFrom(property.type) && property.typeParameters.length > 1 && property.typeParameters[1] != null && findClass(Serializable.class).isAssignableFrom(property.typeParameters[1])) {
-                    ReflectClass<?> mapTypeParameter = property.typeParameters[1];
+                } else if (findClass(Map.class).isAssignableFrom(property.getType()) && property.getTypeParameters().length > 1 && property.getTypeParameters()[1] != null && findClass(Serializable.class).isAssignableFrom(property.getTypeParameters()[1])) {
+                    ReflectClass<?> mapTypeParameter = property.getTypeParameters()[1];
                     deserializedValue = deserializeMap(serializedValue, mapTypeParameter);
                 } else {
                     deserializedValue = emit(() -> {
-                        throw new UnsupportedOperationException("Unsupported generic argument for "+clazz.asJavaClass().getName()+"."+propertyName);
+                        throw new UnsupportedOperationException("Unsupported generic argument for "+clazz.asJavaClass().getName()+"."+property.getName());
                     });
                 }
             } else {
                 deserializedValue = emit(() -> {
-                    throw new UnsupportedOperationException("Unsupported generic argument for "+clazz.asJavaClass().getName()+"."+propertyName);
+                    throw new UnsupportedOperationException("Unsupported generic argument for "+clazz.asJavaClass().getName()+"."+property.getName());
                 });
             }
         } else {
-            deserializedValue = deserializeFieldValue(property.type, serializedValue);
+            deserializedValue = deserializeFieldValue(property.getType(), serializedValue);
         }
 
         return deserializedValue;
@@ -329,6 +247,16 @@ final class Deserializer {
             }
 
             return result;
+        });
+    }
+
+    private static Value<Object> deserializeOptional(Value<Any> value, ReflectClass<?> typeParameter) {
+        return emit(() -> {
+            if (value.get() == null) {
+                return Optional.empty();
+            }
+
+            return Optional.ofNullable(deserialize((Class<? extends Serializable>) typeParameter.asJavaClass(), value.get()));
         });
     }
 

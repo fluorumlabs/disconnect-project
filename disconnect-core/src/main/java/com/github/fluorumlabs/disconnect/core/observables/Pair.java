@@ -21,11 +21,11 @@ public class Pair<A ,B > implements Serializable {
         return new Triplet<>(valueA, valueB, c);
     }
 
-    protected A getValueA() {
+    public A getValueA() {
         return valueA;
     }
 
-    protected B getValueB() {
+    public B getValueB() {
         return valueB;
     }
 

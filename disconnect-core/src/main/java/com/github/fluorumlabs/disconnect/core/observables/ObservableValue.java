@@ -1,7 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.observables;
 
 
-import java.io.Serializable;
 import java.util.function.Function;
 
 public class ObservableValue<VALUE > extends Observable<VALUE> {
@@ -21,8 +20,8 @@ public class ObservableValue<VALUE > extends Observable<VALUE> {
         pushNewValue(newValue);
     }
 
-    public void markAsDirty() {
-        super.markAsDirty();
+    public void refresh() {
+        pushNewValue(getCurrentValue());
     }
 
     public <NEW_VALUE > ObservableValue<NEW_VALUE> map(Function<VALUE, NEW_VALUE> mapper, Function<NEW_VALUE,VALUE> reverseMapper) {

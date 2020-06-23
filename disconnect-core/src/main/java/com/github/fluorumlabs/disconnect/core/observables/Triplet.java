@@ -15,7 +15,7 @@ public class Triplet<A ,B ,C > extends Pair<A, B> {
         return new Triplet<>(a,b,c);
     }
 
-    protected C getValueC() {
+    public C getValueC() {
         return valueC;
     }
 
