@@ -32,7 +32,7 @@ public interface Binding extends Any {
   Unknown getParts();
 
   @JSProperty("parts")
-  void setParts(LiteralBindingPart value);
+  void setParts(LiteralBindingPart[] value);
 
   @JSProperty("parts")
   void setParts(ExpressionBindingPart[] value);
@@ -80,7 +80,7 @@ public interface Binding extends Any {
       return this;
     }
 
-    public Builder parts(LiteralBindingPart value) {
+    public Builder parts(LiteralBindingPart[] value) {
       object.setParts(value);
       return this;
     }

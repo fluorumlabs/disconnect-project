@@ -72,11 +72,11 @@ public interface PolymerElementPropertiesMeta extends Any {
   void setObserver(@Nullable String value);
 
   @JSProperty("observer")
-  void setObserver(@Nullable Observer value);
+  void setObserver(@Nullable ObserverFn value);
 
   @FunctionalInterface
   @JSFunctor
-  interface Observer extends Any {
+  interface ObserverFn extends Any {
     void apply(Any val, Any old);
   }
 
@@ -128,7 +128,7 @@ public interface PolymerElementPropertiesMeta extends Any {
       return this;
     }
 
-    public Builder observer(@Nullable Observer value) {
+    public Builder observer(@Nullable ObserverFn value) {
       object.setObserver(value);
       return this;
     }

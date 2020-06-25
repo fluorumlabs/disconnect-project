@@ -3,6 +3,7 @@ package com.github.fluorumlabs.disconnect;
 import com.squareup.javapoet.*;
 import js.extras.JsEnum;
 import js.lang.*;
+import js.util.collections.Array;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -20,6 +21,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.github.fluorumlabs.disconnect.GlobalContext.*;
+import static org.apache.commons.lang3.StringUtils.*;
 
 /**
  * Created by Artem Godin on 6/2/2020.
@@ -35,12 +37,13 @@ public class Module {
     private final Path definition;
     private final Path npmRoot;
     private final String javaPackage;
+    private final String moduleName;
     private final String rootClassName;
     private final List<String> exportedSymbols = new ArrayList<>();
     private String content;
     private String javaDoc = "";
 
-    public Module(GlobalContext context, String npmPackage, String npmVersion, Path npmRoot, Path definition, Path module, String content) {
+    public Module(GlobalContext context, String npmPackage, String npmVersion, Path npmRoot, Path definition, Path module, Path realModule, String content) {
         this.context = context;
         this.npmPackage = npmPackage;
         this.npmVersion = npmVersion;
@@ -49,33 +52,35 @@ public class Module {
         this.npmRoot = npmRoot;
 
         String rootAsString = npmRoot.toString();
-        String npmImportAsString = StringUtils.replace(module.toString(), ".d.ts", ".js");
+        String npmImportAsString = replace(module.toString(), ".d.ts", ".js");
         String npmParentAsString = module.getParent().toString();
-        npmImport = StringUtils.replaceChars(StringUtils.removeStart(npmImportAsString, rootAsString), "/\\", "//");
+        npmImport = replaceChars(removeStart(npmImportAsString, rootAsString), "/\\", "//");
 
-        String npmParent = StringUtils.replaceChars(StringUtils.removeStart(npmParentAsString, rootAsString), "/\\", "//");
-        String[] split = StringUtils.split(npmPackage + npmParent, "@/");
+        String npmParent = replaceChars(removeStart(realModule.getParent().toString(), rootAsString), "/\\", "//");
+        String[] split = split(npmPackage + npmParent, "@/");
         for (int i = 0; i < split.length; i++) {
-            split[i] = StringUtils.replaceChars(split[i].toLowerCase(), "-", "_");
+            split[i] = replaceChars(split[i].toLowerCase(), "-", "_");
         }
 
-        List<String> packageParts = new ArrayList<>(Arrays.asList(StringUtils.split(context.getGlobalPackage(), ".")));
-        for (String s : split) {
+        List<String> packageParts = new ArrayList<>(Arrays.asList(split(context.getGlobalPackage(), ".")));
+        for (int i = 0; i < split.length; i++) {
+            String s = split[i];
             if (!packageParts.contains(s) && !"src".equals(s) && !"dist".equals(s) && !"lib".equals(s)) {
                 packageParts.add(s);
             }
         }
 
         javaPackage = String.join(".", packageParts);
-
-        String fileName = StringUtils.split(module.getFileName().toString(), ".")[0];
-        rootClassName = StringUtils.capitalize(toCamelCase(fileName));
+        moduleName = capitalize(toCamelCase(split(definition.getFileName().toString(), ".")[0]));
+        
+        String fileName = split(module.getFileName().toString(), ".")[0];
+        rootClassName = capitalize(toCamelCase(fileName));
 
         this.content = context.reduce(content);
     }
 
     public void registerSubmodules() {
-        List<String> tokens = Arrays.asList(StringUtils.split(content, " "));
+        List<String> tokens = Arrays.asList(split(content));
         ListIterator<String> itr = tokens.listIterator();
         while (itr.hasNext()) {
             if (is(itr, "declare", "module", GlobalContext.STRING_TOKEN, null, FIGURE_TOKEN, null)) {
@@ -84,7 +89,8 @@ public class Module {
                 itr.next(); // skip {
                 String content = context.resolve(itr.next());
 
-                context.registerModule(new Module(context, npmPackage, npmVersion, npmRoot, definition, definition.getParent().resolve(moduleName).normalize(), content));
+                this.content = this.content + " " + content;
+                //context.registerModule(new Module(context, npmPackage, npmVersion, npmRoot, definition, definition.getParent().resolve(moduleName).normalize(), content));
             } else {
                 itr.next();
             }
@@ -92,25 +98,31 @@ public class Module {
     }
 
     public void registerExports() {
-        List<String> tokens = Arrays.asList(StringUtils.split(content, " "));
+        List<String> tokens = Arrays.asList(split(content));
         ListIterator<String> itr = tokens.listIterator();
         while (itr.hasNext()) {
             if (is(itr, "export", FIGURE_TOKEN, null)) {
                 // We're at string constant
-                for (String value : StringUtils.split(context.resolve(itr.next()), ",")) {
+                for (String value : split(context.resolve(itr.next()), ",")) {
                     context.getExports().put(value.trim(), this);
                 }
-            } if (is(itr, "export", "default")) {
+            } if (is(itr, "export", "default") || is(itr, "export", "=")) {
                 String symbol = itr.next();
                 context.getExports().put("?" + symbol, this);
             } else if (is(itr, "export", "declare", "function", null)
             || is(itr, "export", "declare", "class", null)
+            || is(itr, "export", "as", "namespace", null)
+            || is(itr, "export", "declare", "abstract", "class", null)
             || is(itr, "export", "declare", "interface", null)
             || is(itr, "export", "declare", "const", null)
+            || is(itr, "export", "declare", "var", null)
             || is(itr, "export", "function", null)
+            || is(itr, "export", "abstract", "class", null)
             || is(itr, "export", "class", null)
             || is(itr, "export", "interface", null)
-            || is(itr,"export","const",null)) {
+            || is(itr, "export", "const", null)
+            || is(itr,"export","var",null)
+            || is(itr,"export","let",null)) {
                 context.getExports().put(itr.next(), this);
             } else {
                 itr.next();
@@ -120,17 +132,36 @@ public class Module {
     }
 
     private void preprocessScope(String scope) {
-        List<String> tokens = new ArrayList<>(Arrays.asList(StringUtils.split(scope, " ")));
-        ListIterator<String> itr = tokens.listIterator();
-        while (itr.hasNext()) {
-            if (is(itr, "class") || is(itr, "interface") || is(itr, "namespace")) {
-                preprocessScopeDefinition(itr);
-            } else if (is(itr, "type")) {
-                preprocessTypeDefinition(itr);
-            } else {
-                itr.next();
-            }
+        if (content.contains("export as namespace ")) {
+            String nameSpaceName = split(substringAfter(content, "export as namespace "), " ;")[0];
+            context.getTokens().add(content);
+            content = "export namespace "+nameSpaceName+" "+FIGURE_TOKEN+" "+ (context.getTokens().size() - 1);
         }
+            List<String> tokens = new ArrayList<>(Arrays.asList(split(scope)));
+            ListIterator<String> itr = tokens.listIterator();
+            while (itr.hasNext()) {
+                if (is(itr, "class") || is(itr, "interface") || is(itr, "namespace")) {
+                    preprocessScopeDefinition(itr);
+                } else if (is(itr, "type", null, "=", ROUND_TOKEN, null, ARROW_TOKEN) || is(itr, "type", null, ANGLE_TOKEN, null, "=", ROUND_TOKEN, null, ARROW_TOKEN)) {
+                    String typeName = upto(itr, "=");
+                    skipToken(itr, "=");
+                    String methodSignature = upto(itr, ARROW_TOKEN);
+                    skipToken(itr, ARROW_TOKEN);
+                    String returnType = upto(itr, ";");
+                    String classBody = "// apply "+methodSignature+" : "+returnType+" ;";
+                    context.getTokens().add(classBody);
+                    String id = Integer.toString(context.getTokens().size()-1);
+
+                    String classDef = typeName+" "+FIGURE_TOKEN+" "+id;
+                    List<String> fakeClass = new ArrayList<>(Arrays.asList(split(classDef)));
+                    preprocessScopeDefinition(fakeClass.listIterator());
+                    processClass(fakeClass.listIterator());
+                } else if (is(itr, "type")) {
+                    preprocessTypeDefinition(itr);
+                } else {
+                    itr.next();
+                }
+            }
     }
 
     private void preprocessTypeDefinition(ListIterator<String> itr) {
@@ -144,7 +175,7 @@ public class Module {
                     if (";".equals(next2)) {
                         String trim = sb.toString().trim();
 
-                        List<String> variants = Arrays.asList(StringUtils.split(trim, "|"));
+                        List<String> variants = Arrays.asList(split(trim, "|"));
                         boolean hasNumbers = false;
                         boolean hasStrings = false;
                         boolean hasOthers = false;
@@ -179,49 +210,63 @@ public class Module {
     }
 
     private TypeName processEnum(Interface parent, String typeName, List<String> variants) {
-        Interface enumClass = new Interface();
-        enumClass.setParentModule(this);
-        enumClass.setClassName(parent == null ? ClassName.get(javaPackage, typeName) : parent.getClassName().nestedClass(typeName));
-        enumClass.setRequiresConstructor(false);
-        enumClass.setBuildable(false);
+        Interface enumClass = null;
 
-        TypeSpec.Builder builder = TypeSpec.classBuilder(enumClass.getClassName());
-        enumClass.setBuilder(builder);
+        if (parent != null) {
+            for (Interface innerInterface : parent.getInnerInterfaces()) {
+                if (innerInterface.getJsClassName().equals(typeName)) {
+                    enumClass = innerInterface;
+                    break;
+                }
+            }
+        }
 
-        builder.addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.ABSTRACT);
-        builder.superclass(JsEnum.class);
-        enumClass.setSuperInterfaces(Collections.singleton("*"));
+        if (enumClass == null) {
+            enumClass = new Interface();
+            enumClass.setParentModule(this);
+            enumClass.setClassName(ClassName.get("", typeName));
+            enumClass.setJsClassName(typeName);
+            enumClass.setRequiresConstructor(false);
+            enumClass.setBuildable(false);
+
+            TypeSpec.Builder builder = TypeSpec.classBuilder(enumClass.getClassName());
+            enumClass.setBuilder(builder);
+
+            builder.addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT);
+            builder.superclass(JsEnum.class);
+            enumClass.setSuperInterfaces(Collections.singleton(ClassName.get("","*")));
+        }
 
         for (String variant : variants) {
             String value = variant.trim();
             if (StringUtils.isNumeric(value)) {
                 String rawValue = value.startsWith("-") ? "MINUS_" + value.substring(1) : value;
-                builder.addField(FieldSpec.builder(enumClass.getClassName(), "VALUE_" + rawValue.toUpperCase().replaceAll("[-/:*%!@#^&+()<>\\[\\]={},.?\"';|\\\\]", "_"))
+                enumClass.getBuilder().addField(FieldSpec.builder(enumClass.getClassName(), "VALUE_" + rawValue.toUpperCase().replaceAll("[-/:*%!@#^&+()<>\\[\\]={},.?\"';|\\\\]", "_"))
                         .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                         .initializer("$T.of($L)", JsEnum.class, value)
                         .build());
             } else if (value.startsWith(STRING_TOKEN)) {
-                String rawValue = context.resolve(value.substring(2));
-                builder.addField(FieldSpec.builder(enumClass.getClassName(), rawValue.toUpperCase().replaceAll("[-/:*%!@#^&+()<>\\[\\]={},.?\"';|\\\\]", "_"))
+                String rawValue = context.resolve(split(value)[1]);
+                enumClass.getBuilder().addField(FieldSpec.builder(enumClass.getClassName(), defaultIfEmpty(rawValue.toUpperCase().replaceAll("[-/:*%!@#^&+()<>\\[\\]={},.?\"';|\\\\]", "_"), "EMPTY_VALUE"))
                         .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                         .initializer("$T.of($S)", JsEnum.class, rawValue)
                         .build());
             } else if ("string".equals(value)) {
-                builder.addMethod(MethodSpec.methodBuilder("of")
+                enumClass.getBuilder().addMethod(MethodSpec.methodBuilder("of")
                         .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(enumClass.getClassName())
                         .addParameter(String.class, "value")
                         .addStatement("return $T.of(value)", JsEnum.class)
                         .build());
             } else if ("number".equals(value)) {
-                builder.addMethod(MethodSpec.methodBuilder("of")
+                enumClass.getBuilder().addMethod(MethodSpec.methodBuilder("of")
                         .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(enumClass.getClassName())
                         .addParameter(int.class, "value")
                         .addStatement("return $T.of(value)", JsEnum.class)
                         .build());
             } else if ("boolean".equals(value)) {
-                builder.addMethod(MethodSpec.methodBuilder("of")
+                enumClass.getBuilder().addMethod(MethodSpec.methodBuilder("of")
                         .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                         .returns(enumClass.getClassName())
                         .addParameter(boolean.class, "value")
@@ -231,8 +276,9 @@ public class Module {
         }
 
         if (parent == null) {
-            context.getInterfaces().put(typeName, enumClass);
+            context.getInterfaces().put(typeName.toUpperCase(), enumClass);
         } else {
+            enumClass.setParent(parent);
             parent.getInnerInterfaces().add(enumClass);
         }
 
@@ -241,22 +287,49 @@ public class Module {
 
     private void preprocessScopeDefinition(ListIterator<String> itr) {
         String className = itr.next();
-        Interface iface = context.getInterfaces().computeIfAbsent(className, cn -> {
-            Interface anInterface = new Interface();
-            anInterface.setParentModule(this);
-            return anInterface;
-        });
-        context.getInterfaces().put(className, iface);
-        if (iface.getClassName() == null) {
-            iface.setJsClassName(className);
-            iface.setClassName(ClassName.get(javaPackage, StringUtils.capitalize(className)));
+
+        Interface iface = context.getInterfaces().get((moduleName + className).toUpperCase());
+        if (iface == null) {
+            iface = context.getInterfaces().get(className.toUpperCase());
+            if (iface == null) {
+                iface = new Interface();
+                iface.setParentModule(this);
+                iface.setJsClassName(className);
+                iface.setClassName(ClassName.get(javaPackage, capitalize(className)));
+                iface.setExtendedClassName(null);
+                context.getInterfaces().put(className.toUpperCase(), iface);
+            } else if (!iface.getParentModule().moduleName.equals(moduleName)){
+                Interface newIface = new Interface();
+                newIface.setParentModule(this);
+                newIface.setJsClassName(className);
+                newIface.setClassName(ClassName.get(javaPackage, moduleName+StringUtils.capitalize(className)));
+                newIface.setExtendedClassName(iface.getClassName());
+                newIface.setBuildable(false);
+                iface = newIface;
+                context.getInterfaces().put((moduleName+className).toUpperCase(), iface);
+            }
         }
 
         upto(itr, "extends", "implements", FIGURE_TOKEN);
         while (itr.hasNext()) {
             String superIface = upto(itr, "extends", "implements", ",", ROUND_TOKEN, FIGURE_TOKEN);
             if (!superIface.isEmpty()) {
-                iface.getSuperInterfaces().add(superIface);
+                List<String> expandedTypes = expandTypes(superIface);
+
+                if (!expandedTypes.isEmpty()) {
+                    TypeName resolvedType = resolve(expandedTypes.get(0), null, null);
+                    if (resolvedType.isPrimitive() || resolvedType.toString().equals(String.class.getName())) {
+                        resolvedType = unknown(expandedTypes.get(0));
+                    } else if (resolvedType instanceof ArrayTypeName) {
+                        try {
+                            resolvedType = ParameterizedTypeName.get(ClassName.get(Array.class), ((ArrayTypeName) resolvedType).componentType);
+                        } catch (IllegalArgumentException e) {
+                            resolvedType = ParameterizedTypeName.get(ClassName.get(Array.class), unknown(((ArrayTypeName) resolvedType).componentType.toString()));
+                        }
+                    }
+
+                    iface.getSuperInterfaces().add(resolvedType);
+                }
             }
 
             if (is(itr, ROUND_TOKEN)) {
@@ -277,7 +350,7 @@ public class Module {
 
     public void processModule() {
         // Extract known classnames and type aliases
-        List<String> tokens = Arrays.asList(StringUtils.split(content, " "));
+        List<String> tokens = new ArrayList<>(Arrays.asList(split(content)));
         ListIterator<String> itr = tokens.listIterator();
         while (itr.hasNext()) {
             if (skipToken(itr, ";")
@@ -285,6 +358,7 @@ public class Module {
                     || skipToken(itr, "declare", "module", STRING_TOKEN, null, FIGURE_TOKEN, null)
                     || skipToken(itr, "export", FIGURE_TOKEN, null, "from", STRING_TOKEN, null)
                     || skipToken(itr, "export", FIGURE_TOKEN, null)
+                    || skipToken(itr, "export", "*", "from", STRING_TOKEN, null)
                     || skipToken(itr, "import", FIGURE_TOKEN, null, "from", STRING_TOKEN, null)
                     || skipToken(itr, "import", "*", "as", null, "from", STRING_TOKEN, null)) {
                 continue;
@@ -294,6 +368,10 @@ public class Module {
                     || is(itr, "export", "declare", "class")
                     || is(itr, "export", "class")
                     || is(itr, "class")
+                    || is(itr, "declare", "abstract", "class")
+                    || is(itr, "export", "declare", "abstract", "class")
+                    || is(itr, "export", "abstract", "class")
+                    || is(itr, "abstract", "class")
                     || is(itr, "export", "declare", "interface")
                     || is(itr, "declare", "interface")
                     || is(itr, "export", "interface")
@@ -303,20 +381,22 @@ public class Module {
                     || is(itr, "export", "type")
                     || is(itr, "export", "declare", "type")
                     || is(itr, "export", "default")
+                    || is(itr, "export", "=")
+                    || is(itr, "export", "as", "namespace")
                     || is(itr, "import")
                     || is(itr, "type")) {
                 upto(itr, ";");
             } else if (is(itr, "declare", "namespace")
                     || is(itr, "export", "namespace")
                     || is(itr, "namespace")) {
-                Interface iface = context.getInterfaces().computeIfAbsent(rootClassName, cn -> {
+                Interface iface = context.getInterfaces().computeIfAbsent(rootClassName.toUpperCase(), cn -> {
                     Interface anInterface = new Interface();
                     anInterface.setParentModule(this);
                     return anInterface;
                 });
-                context.getInterfaces().put(rootClassName, iface);
+                context.getInterfaces().put(rootClassName.toUpperCase(), iface);
                 if (iface.getClassName() == null) {
-                    iface.setClassName(ClassName.get(javaPackage, StringUtils.capitalize(rootClassName)));
+                    iface.setClassName(ClassName.get(javaPackage, capitalize(rootClassName)));
                 }
 
                 TypeSpec.Builder builder = iface.getBuilder();
@@ -336,7 +416,16 @@ public class Module {
                     || is(itr, "export", "function")
                     || is(itr, "function")) {
                 processStaticFunction(itr, false, null);
-            } else if (is(itr, "declare", "const")) {
+            } else if (is(itr, "declare", "const")
+                    || is(itr, "export", "declare", "const")
+                    || is(itr, "export", "const")
+                    || is(itr, "const")
+                    || is(itr, "declare", "var")
+                    || is(itr, "export", "declare", "var")
+                    || is(itr, "export", "var")
+                    || is(itr, "var")
+                    || is(itr, "export", "let")
+                    || is(itr, "let")) {
                 processStaticConst(itr, false, null);
             } else {
                 fail(itr);
@@ -345,15 +434,15 @@ public class Module {
     }
 
     private void processStaticConst(ListIterator<String> itr, boolean ignoreExport, Interface parent) {
-        Interface iface = parent == null ? context.getInterfaces().computeIfAbsent(rootClassName, cn -> {
+        Interface iface = parent == null ? context.getInterfaces().computeIfAbsent(rootClassName.toUpperCase(), cn -> {
             Interface anInterface = new Interface();
             anInterface.setParentModule(this);
             return anInterface;
         }) : parent;
         if ( parent == null ) {
-            context.getInterfaces().put(rootClassName, iface);
+            context.getInterfaces().put(rootClassName.toUpperCase(), iface);
             if (iface.getClassName() == null) {
-                iface.setClassName(ClassName.get(javaPackage, StringUtils.capitalize(rootClassName)));
+                iface.setClassName(ClassName.get(javaPackage, capitalize(rootClassName)));
             }
         }
 
@@ -373,7 +462,22 @@ public class Module {
 
         String propertyName = itr.next();
         skipToken(itr, ":");
+        skipToken(itr, "=");
         String type = upto(itr, ";");
+
+        // Check if it's a method and mutate
+        if (type.contains(ARROW_TOKEN)) {
+            String[] replacement = split(type);
+            for (int i = replacement.length - 1; i >= 0; i--) {
+                itr.add(replacement[i]);
+                itr.previous();
+            }
+            itr.add(propertyName);
+            itr.previous();
+            javaDoc = savedJavaDoc;
+            processStaticFunction(itr, ignoreExport, parent);
+            return;
+        }
 
         if (propertyName.startsWith("_")) {
             return;
@@ -381,9 +485,9 @@ public class Module {
 
         List<String> expandedTypes = expandTypes(type);
 
-        TypeName getterType = ClassName.get(Unknown.class);
+        TypeName getterType = unknown(type);
         if (expandedTypes.size() == 1) {
-            getterType = resolve(expandedTypes.get(0), StringUtils.replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"), iface);
+            getterType = resolve(expandedTypes.get(0), replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"), iface);
         }
 
         if (context.getExports().containsKey(propertyName)) {
@@ -451,9 +555,23 @@ public class Module {
 
     }
 
+    private boolean has(String className) {
+        return get(className) != null;
+    }
+
+    private Interface get(String className) {
+        Interface anInterface = context.getInterfaces().get((moduleName + className).toUpperCase());
+        if (anInterface == null) {
+            anInterface = context.getInterfaces().get(className.toUpperCase());
+        }
+        return anInterface;
+    }
+
     private void processClass(ListIterator<String> itr) {
         String className = itr.next();
-        Interface anInterface = context.getInterfaces().get(className);
+
+        Interface anInterface = get(className);
+
         TypeSpec.Builder builder = anInterface.getBuilder();
         if (builder == null) {
             builder = TypeSpec.interfaceBuilder(anInterface.getClassName());
@@ -466,8 +584,8 @@ public class Module {
             if (is(itr, ANGLE_TOKEN)) {
                 builderBuilder = createBuilderBuilder(anInterface);
                 String genericSignature = context.resolve(itr.next());
-                processClassGenericSignature(anInterface.getBuilder(), genericSignature);
-                processClassGenericSignature(anInterface.getBuilderBuilder(), genericSignature);
+                processClassGenericSignature(anInterface.getBuilder(), genericSignature, anInterface);
+                processClassGenericSignature(anInterface.getBuilderBuilder(), genericSignature, anInterface);
                 anInterface.setBuilderClassName(getBuilderType(anInterface.getClassName().nestedClass("Builder"), genericSignature));
                 populateBuilderBuilder(anInterface, genericSignature);
             } else {
@@ -477,7 +595,6 @@ public class Module {
 
             if (!javaDoc.isEmpty()) {
                 builder.addJavadoc("$L", javaDoc);
-                builderBuilder.addJavadoc("$L", javaDoc);
                 javaDoc = "";
             }
         }
@@ -515,7 +632,7 @@ public class Module {
     private TypeName processAnonymousClass(Interface parent, String className, String body) {
         Interface anonymous = new Interface();
         anonymous.setParentModule(this);
-        anonymous.setClassName(parent.getClassName().nestedClass(className));
+        anonymous.setClassName(ClassName.get("",className));
         anonymous.setRequiresConstructor(true);
         anonymous.setBuildable(true);
         anonymous.setJsClassName(className);
@@ -528,6 +645,7 @@ public class Module {
         createBuilderBuilder(anonymous);
         populateBuilderBuilder(anonymous, "");
 
+        anonymous.setParent(parent);
         parent.getInnerInterfaces().add(anonymous);
 
         processClassBody(anonymous, body);
@@ -536,9 +654,15 @@ public class Module {
     }
 
     private TypeName processLambda(Interface parent, String className, String type) {
+        for (Interface innerInterface : parent.getInnerInterfaces()) {
+            if (innerInterface.getClassName().simpleName().equals(className)) {
+                return innerInterface.getClassName();
+            }
+        }
+
         Interface anonymous = new Interface();
         anonymous.setParentModule(this);
-        anonymous.setClassName(parent.getClassName().nestedClass(className));
+        anonymous.setClassName(ClassName.get("",className));
         anonymous.setRequiresConstructor(false);
         anonymous.setBuildable(false);
         anonymous.setJsClassName(className);
@@ -550,9 +674,12 @@ public class Module {
         builder.addAnnotation(FunctionalInterface.class);
         builder.addAnnotation(JSFunctor.class);
 
+        anonymous.setParent(parent);
         parent.getInnerInterfaces().add(anonymous);
 
-        List<String> tokens = Arrays.asList(StringUtils.split("apply " + StringUtils.replace(type, ARROW_TOKEN, ":"), " "));
+        String reducedType = context.reduce(type);
+
+        List<String> tokens = Arrays.asList(split("apply " + replace(reducedType, ARROW_TOKEN, ":")));
         ListIterator<String> itr = tokens.listIterator();
 
         processMethod(itr, anonymous, true);
@@ -607,21 +734,78 @@ public class Module {
         }*/
         upto(itr, FIGURE_TOKEN);
         if (is(itr, FIGURE_TOKEN)) {
-            processNamespaceBody(parent, context.resolve(itr.next()));
+            processClassBody(parent, context.resolve(itr.next()) + " ; export as namespace "+namespaceName+" ;");
         }
     }
 
-    private void processClassGenericSignature(TypeSpec.Builder builder, String genericSignature) {
-        for (String arg : StringUtils.split(genericSignature, ",")) {
-            String[] split = StringUtils.splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
+    private TypeName unknown(String type) {
+        return commented("Unknown", type);
+    }
+
+    private TypeName any(String type) {
+        return commented("Any", type);
+    }
+
+    private TypeName commented(String clazz, String type) {
+        String intermediate = type;
+        boolean shouldContinue;
+        do {
+            List<String> newIntermediate = new ArrayList<>();
+            Iterator<String> itr = Arrays.asList(split(intermediate)).iterator();
+            while (itr.hasNext()) {
+                String token = itr.next();
+                switch (token) {
+                    case ANGLE_TOKEN:
+                        newIntermediate.add("<");
+                        newIntermediate.add(context.resolve(itr.next()));
+                        newIntermediate.add(">");
+                        break;
+                    case STRING_TOKEN:
+                        newIntermediate.add("'" + context.resolve(itr.next()) + "'");
+                        break;
+                    case SQUARE_TOKEN:
+                        newIntermediate.add("[");
+                        newIntermediate.add(context.resolve(itr.next()));
+                        newIntermediate.add("]");
+                        break;
+                    case FIGURE_TOKEN:
+                        newIntermediate.add("{");
+                        newIntermediate.add(context.resolve(itr.next()));
+                        newIntermediate.add("}");
+                        break;
+                    case ROUND_TOKEN:
+                        newIntermediate.add("(");
+                        newIntermediate.add(context.resolve(itr.next()));
+                        newIntermediate.add(")");
+                        break;
+                    case ARROW_TOKEN:
+                        newIntermediate.add("=>");
+                        break;
+                    default:
+                        newIntermediate.add(token);
+                }
+            }
+
+            String newIntermediateResult = String.join(" ",newIntermediate);
+            shouldContinue = !newIntermediateResult.equals(intermediate);
+                intermediate = newIntermediateResult;
+        } while (shouldContinue);
+
+
+        return ClassName.get("js.lang", clazz + " /* " + intermediate + " */");
+    }
+
+    private void processClassGenericSignature(TypeSpec.Builder builder, String genericSignature, Interface anInterface) {
+        for (String arg : split(genericSignature, ",")) {
+            String[] split = splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
             if (split.length > 1) {
                 List<String> strings = expandTypes(split[1].trim());
                 if (strings.size() > 1) {
                     builder.addTypeVariable(TypeVariableName.get(split[0].trim(), ClassName.get(Any.class)));
                 } else {
-                    TypeName resolve = resolve(strings.get(0), null, null);
-                    if (resolve.equals(ClassName.get(Unknown.class))) {
-                        resolve = ClassName.get(Any.class);
+                    TypeName resolve = resolve(strings.get(0), "AnonymousClass", anInterface);
+                    if (resolve.toString().contains("js.lang.Unknown")) {
+                        resolve = any(strings.get(0));
                     }
                     builder.addTypeVariable(TypeVariableName.get(split[0].trim(), resolve));
                 }
@@ -634,8 +818,8 @@ public class Module {
     private TypeName getBuilderType(ClassName builder, String genericSignature) {
         List<TypeName> typeParameters = new ArrayList<>();
 
-        for (String arg : StringUtils.split(genericSignature, ",")) {
-            String[] split = StringUtils.splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
+        for (String arg : split(genericSignature, ",")) {
+            String[] split = splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
             typeParameters.add(TypeVariableName.get(split[0].trim()));
         }
 
@@ -646,18 +830,18 @@ public class Module {
         }
     }
 
-    private void processMethodGenericSignature(MethodSpec.Builder builder, String genericSignature) {
-        for (String arg : StringUtils.split(genericSignature, ",")) {
-            String[] split = StringUtils.splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
+    private void processMethodGenericSignature(MethodSpec.Builder builder, String genericSignature, Interface anInterface) {
+        for (String arg : split(genericSignature, ",")) {
+            String[] split = splitByWholeSeparator(StringUtils.substringBefore(arg,"=").trim(), "extends", 2);
 
             if (split.length > 1) {
                 List<String> strings = expandTypes(split[1].trim());
                 if (strings.size() > 1) {
                     builder.addTypeVariable(TypeVariableName.get(split[0].trim(), ClassName.get(Any.class)));
                 } else {
-                    TypeName resolve = resolve(strings.get(0), null, null);
-                    if (resolve.equals(ClassName.get(Unknown.class))) {
-                        resolve = ClassName.get(Any.class);
+                    TypeName resolve = resolve(strings.get(0), "Parameter", anInterface);
+                    if (resolve.toString().contains("js.lang.Unknown")) {
+                        resolve = any(strings.get(0));
                     }
                     builder.addTypeVariable(TypeVariableName.get(split[0].trim(), resolve));
                 }
@@ -668,24 +852,54 @@ public class Module {
     }
 
     private void processClassBody(Interface anInterface, String resolve) {
-        List<String> tokens = Arrays.asList(StringUtils.split(resolve, " "));
+        List<String> tokens = Arrays.asList(split(resolve));
         ListIterator<String> itr = tokens.listIterator();
 
         while (itr.hasNext()) {
-            if (skipToken(itr, ";") || skipToken(itr, ",")) {
+            if (is(itr,"export","as","namespace",null)) {
+                processNamespaceExport(itr, anInterface);
+            } else if (is(itr,"declare","global",FIGURE_TOKEN,null)) {
+                itr.next();
+            } else if (skipToken(itr, ";") || skipToken(itr, ",")|| skipToken(itr, "export")|| skipToken(itr, "declare")) {
                 continue;
             } else if (is(itr, JSDOC_TOKEN, null)) {
                 javaDoc = renderMarkdown(context.resolveJsdoc(itr.next()));
-            } else if (is(itr, "private")) {
+            } else if (is(itr, "type") || is(itr,"import")) {
+                upto(itr, ";",",");
+            } else if (is(itr, "class") || is(itr, "interface")) {
+                processClass(itr);
+            } else if (is(itr, "namespace")) {
+                processNamespace(itr, anInterface);
+            } else if (is(itr, "private") || is(itr, "protected") || is(itr,"import")) {
                 upto(itr, ";");
             } else if (is(itr, "readonly", SQUARE_TOKEN, null, ":")) {
                 processIndexer(itr, anInterface, true);
             } else if (is(itr, SQUARE_TOKEN, null, ":")) {
                 processIndexer(itr, anInterface, false);
-            } else if (is(itr, "readonly", null, ":") || is(itr, "readonly", null, "?", ":")) {
-                processProperty(itr, anInterface, true);
+            } else if (is(itr, "get", null, ROUND_TOKEN, null, ":")) {
+                processProperty(itr, anInterface, true, false);
+            } else if (is(itr, "readonly", null, ":") || is(itr, "readonly", null, "?", ":") || is(itr,"const") || is(itr,"var") || is(itr,"let")) {
+                processProperty(itr, anInterface, true, false);
             } else if (is(itr, null, ":") || is(itr, null, "?", ":")) {
-                processProperty(itr, anInterface, false);
+                processProperty(itr, anInterface, false, false);
+            } else if (is(itr, "static", "get", null, ROUND_TOKEN, null, ":")) {
+                processProperty(itr, anInterface, true, true);
+            } else if (is(itr, "static", "readonly", null, ":") || is(itr, "static", "readonly", null, "?", ":")) {
+                processProperty(itr, anInterface, true, true);
+            } else if (is(itr, "static", null, ":") || is(itr, "static", null, "?", ":")) {
+                processProperty(itr, anInterface, false, true);
+            } else if (is(itr, "get", STRING_TOKEN, null, ROUND_TOKEN, null, ":")) {
+                processStringKeyedProperty(itr, anInterface, true, false);
+            } else if (is(itr, "readonly", STRING_TOKEN, null, ":") || is(itr, "readonly", STRING_TOKEN, null, "?", ":")) {
+                processStringKeyedProperty(itr, anInterface, true, false);
+            } else if (is(itr, STRING_TOKEN, null, ":") || is(itr, STRING_TOKEN, null, "?", ":")) {
+                processStringKeyedProperty(itr, anInterface, false, false);
+            } else if (is(itr, "static", "get", STRING_TOKEN, null, ROUND_TOKEN, null, ":")) {
+                processStringKeyedProperty(itr, anInterface, true, true);
+            } else if (is(itr, "static", "readonly", STRING_TOKEN, null, ":") || is(itr, "static", "readonly", STRING_TOKEN, null, "?", ":")) {
+                processStringKeyedProperty(itr, anInterface, true, true);
+            } else if (is(itr, "static", STRING_TOKEN, null, ":") || is(itr, "static", STRING_TOKEN, null, "?", ":")) {
+                processStringKeyedProperty(itr, anInterface, false, true);
             } else if (is(itr, "constructor")) {
                 processConstructor(itr, anInterface);
             } else if (is(itr, "new")) {
@@ -698,8 +912,16 @@ public class Module {
                     || is(itr, null, ANGLE_TOKEN, null, ROUND_TOKEN, null, ":")
                     || is(itr, null, "?", ANGLE_TOKEN, null, ROUND_TOKEN, null, ":")) {
                 processMethod(itr, anInterface, false);
+            } else if (is(itr, "//", null, ROUND_TOKEN, null, ":")
+                    || is(itr, "//", null, ANGLE_TOKEN, null, ROUND_TOKEN, null, ":")) {
+                processMethod(itr, anInterface, true);
+                anInterface.getBuilder()
+                        .addAnnotation(FunctionalInterface.class)
+                        .addAnnotation(JSFunctor.class);
             } else if (is(itr, "static", null, ROUND_TOKEN, null, ":") || is(itr, "static", null, ANGLE_TOKEN, null, ROUND_TOKEN, null, ":")) {
                 processStaticMethod(itr, anInterface);
+            } else if (is(itr, "function", null, ROUND_TOKEN, null, ":") || is(itr, "function", null, ANGLE_TOKEN, null, ROUND_TOKEN, null, ":")) {
+                processMethod(itr, anInterface, false);
             } else {
                 fail(itr);
                 return;
@@ -708,16 +930,37 @@ public class Module {
 
     }
 
+    private void processNamespaceExport(ListIterator<String> itr, Interface anInterface) {
+        itr.next();
+
+        if (!anInterface.getSymbols().contains(anInterface.getJsClassName())) {
+            anInterface.getSymbols().add(anInterface.getJsClassName());
+            MethodSpec instance = MethodSpec.methodBuilder("INSTANCE")
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .addAnnotation(AnnotationSpec.builder(JSBody.class).addMember("script", "$S", "return " + anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName()).build())
+                    .addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only" +
+                            " " +
+                            "in " +
+                            "JavaScript")
+                    .returns(anInterface.getClassName())
+                    .build();
+
+            anInterface.getBuilder().addMethod(instance);
+        }
+    }
+
     private void processNamespaceBody(Interface anInterface, String resolve) {
-        List<String> tokens = Arrays.asList(StringUtils.split(resolve, " "));
+        List<String> tokens = Arrays.asList(split(resolve));
         ListIterator<String> itr = tokens.listIterator();
 
         while (itr.hasNext()) {
-            if (skipToken(itr, ";") || skipToken(itr, "export")) {
+            if (is(itr,"export","as","namespace")) {
+                upto(itr, ";");
+            } else if (skipToken(itr, ";") || skipToken(itr, "export")) {
                 continue;
             } else if (is(itr, JSDOC_TOKEN, null)) {
                 javaDoc = renderMarkdown(context.resolveJsdoc(itr.next()));
-            } else if (is(itr, "type")) {
+            } else if (is(itr, "type") || is(itr,"import")) {
                 upto(itr, ";",",");
             } else if (is(itr, "declare", "class") || is(itr, "class") || is(itr, "declare", "interface") || is(itr, "interface")) {
                 processClass(itr);
@@ -728,9 +971,9 @@ public class Module {
             } else if (is(itr, "declare", "const") || is(itr, "const")) {
                 processStaticConst(itr, false, anInterface);
             } else if (is(itr, "readonly", null, ":") || is(itr, "readonly", null, "?", ":")) {
-                processProperty(itr, anInterface, true);
+                processProperty(itr, anInterface, true, false);
             } else if (is(itr, null, ":") || is(itr, null, "?", ":")) {
-                processProperty(itr, anInterface, false);
+                processProperty(itr, anInterface, false, false);
             } else if (is(itr, null, ROUND_TOKEN, null, ":") || is(itr, null, ANGLE_TOKEN, null, ROUND_TOKEN, null, ":")) {
                 processMethod(itr, anInterface, false);
             } else {
@@ -768,7 +1011,7 @@ public class Module {
             String jsMethodName = anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName() + "." + functionName;
 
             if (SourceVersion.isKeyword(functionName)) {
-                functionName = "do" + StringUtils.capitalize(functionName);
+                functionName = "do" + capitalize(functionName);
             }
 
             processMethod(anInterface, functionName, genericSignature, arguments, returnType, jsMethodName, jsMethodName, true, false, false);
@@ -779,7 +1022,7 @@ public class Module {
             String jsMethodName = anInterface.getClassName().simpleName() + "_" + anInterface.getJsClassName() + "." + functionName;
 
             if (SourceVersion.isKeyword(functionName)) {
-                functionName = "do" + StringUtils.capitalize(functionName);
+                functionName = "do" + capitalize(functionName);
             }
 
             processMethod(anInterface, functionName, genericSignature, arguments, returnType, jsMethodName, jsMethodName, true, false, false);
@@ -882,7 +1125,7 @@ public class Module {
             String returnType = upto(itr, ";");
 
             if (SourceVersion.isKeyword(methodName)) {
-                methodName = "do" + StringUtils.capitalize(methodName);
+                methodName = "do" + capitalize(methodName);
             }
 
             processMethod(anInterface, methodName, signature, arguments, returnType, jsMethodName, jsMethodName, false, false, noVariants);
@@ -892,15 +1135,15 @@ public class Module {
     }
 
     private void processStaticFunction(ListIterator<String> itr, boolean ignoreExport, Interface parent) {
-        Interface iface = parent == null ? context.getInterfaces().computeIfAbsent(rootClassName, cn -> {
+        Interface iface = parent == null ? context.getInterfaces().computeIfAbsent(rootClassName.toUpperCase(), cn -> {
             Interface anInterface = new Interface();
             anInterface.setParentModule(this);
             return anInterface;
         }) : parent;
         if (parent == null) {
-            context.getInterfaces().put(rootClassName, iface);
+            context.getInterfaces().put(rootClassName.toUpperCase(), iface);
             if (iface.getClassName() == null) {
-                iface.setClassName(ClassName.get(javaPackage, StringUtils.capitalize(rootClassName)));
+                iface.setClassName(ClassName.get(javaPackage, capitalize(rootClassName)));
             }
         }
 
@@ -927,7 +1170,9 @@ public class Module {
         String index = itr.next();
         String arguments = context.resolve(index);
 
-        is(itr, ":");
+        if (!is(itr, ":")) {
+            is(itr, ARROW_TOKEN);
+        };
 
         String returnType = upto(itr, ";");
 
@@ -953,12 +1198,17 @@ public class Module {
     }
 
     private void processMethod(Interface anInterface, String methodName, String genericSignature, String args, String returnType, String jsMethodName, String jsMethodNameVarg, boolean isStatic, boolean isPrivate, boolean noVariants) {
+        String savedJavaDoc = javaDoc;
+        javaDoc = "";
+
         if (methodName.startsWith("_")) {
             return;
         }
+        if ("constructor".equals(methodName) || "connectedCallback".equals(methodName) || "disconnectedCallback".equals(methodName) || "attributeChangedCallback".equals(methodName)
+                || "adoptedCallback".equals(methodName)) {
+            return;
+        }
 
-        String savedJavaDoc = javaDoc;
-        javaDoc = "";
 
         List<String> expandedTypes = expandTypes(returnType);
         boolean optional = expandedTypes.contains("null") || expandedTypes.contains("undefined");
@@ -971,10 +1221,21 @@ public class Module {
 
         boolean hasVarArgs = false;
 
-        TypeName returns = expandedTypes.size() == 1 ? resolve(expandedTypes.get(0), StringUtils.capitalize(methodName) + "Result", anInterface) : ClassName.get(Unknown.class);
+        Set<TypeName> resolvedTypes = new HashSet<>();
+        for (String expandedType : expandedTypes) {
+            resolvedTypes.add(resolve(expandedType, capitalize(methodName) + "Result", anInterface));
+        }
 
-        for (String arg : StringUtils.split(args, ",")) {
-            String[] split = StringUtils.split(arg.trim(), ":", 2);
+        TypeName returns = unknown(returnType);
+        if (resolvedTypes.size() == 1) {
+            returns = resolvedTypes.iterator().next();
+        }
+
+        for (String arg : split(args, ",")) {
+            String[] split = split(arg.trim(), ":", 2);
+            if (split[0].trim().equals("this")) {
+                continue;
+            }
             if (split[0].contains("...")) {
                 hasVarArgs = true;
             }
@@ -1033,7 +1294,11 @@ public class Module {
                     }
                 }
 
+                Set<String> visited = new HashSet<>();
+
                 for (List<String> argumentTypes : result) {
+                    List<String> realNamesLocal = realNames.subList(0, argumentTypes.size());
+
                     MethodSpec.Builder method = MethodSpec.methodBuilder(StringUtils.defaultString(methodName,
                             "apply"))
                             .addModifiers(isPrivate ? Modifier.PRIVATE : Modifier.PUBLIC)
@@ -1046,7 +1311,7 @@ public class Module {
 
                     method.varargs(hasVarArgs);
 
-                    processMethodGenericSignature(method, genericSignature);
+                    processMethodGenericSignature(method, genericSignature, anInterface);
 
                     if (isStatic || hasVarArgs) {
                         AnnotationSpec.Builder jsbodyBuilder = AnnotationSpec.builder(JSBody.class);
@@ -1057,7 +1322,7 @@ public class Module {
                         }
 
                         jsbodyBuilder.addMember("params", "{$L}",
-                                realNames.stream().map(s -> "\"" + StringUtils.removeStart(s, "...") + "\"").collect(Collectors.joining(
+                                realNamesLocal.stream().map(s -> "\"" + removeStart(s, "...") + "\"").collect(Collectors.joining(
                                         ", ")));
 
                         StringBuilder jsBodyBuilder = new StringBuilder();
@@ -1078,7 +1343,7 @@ public class Module {
 
                         boolean shouldAddComma = false;
                         String lastParameter = argumentTypes.isEmpty() ? null : realNames.get(argumentTypes.size() - 1);
-                        for (String parameter : realNames) {
+                        for (String parameter : realNamesLocal) {
                             if (shouldAddComma) {
                                 if (hasVarArgs && parameter.equals(lastParameter)) {
                                     jsBodyBuilder.append("].concat(");
@@ -1086,7 +1351,7 @@ public class Module {
                                     jsBodyBuilder.append(", ");
                                 }
                             }
-                            jsBodyBuilder.append(StringUtils.removeStart(parameter, "...").trim());
+                            jsBodyBuilder.append(removeStart(parameter, "...").trim());
 
                             shouldAddComma = true;
                         }
@@ -1112,12 +1377,21 @@ public class Module {
                         method.addModifiers(Modifier.ABSTRACT);
                     }
 
+                    StringBuilder signature = new StringBuilder();
+
                     for (int i = 0; i < argumentTypes.size(); i++) {
-                        TypeName resolve = resolve(argumentTypes.get(i), StringUtils.capitalize(methodName) + StringUtils.capitalize(realNames.get(i)), anInterface);
-                        if (names.get(i).contains("?") && !(resolve instanceof ArrayTypeName) && !(resolve.isPrimitive())) {
-                            method.addParameter(resolve.annotated(AnnotationSpec.builder(Nullable.class).build()), StringUtils.removeStart(realNames.get(i), "..."));
+                        TypeName resolve = resolve(argumentTypes.get(i), capitalize(methodName) + capitalize(realNames.get(i)), anInterface);
+
+                        if (resolve instanceof ParameterizedTypeName) {
+                            signature.append(((ParameterizedTypeName)resolve).rawType).append("::");
                         } else {
-                            method.addParameter(resolve, StringUtils.removeStart(realNames.get(i), "..."));
+                            signature.append(resolve).append("::");
+                        }
+
+                        if (names.get(i).contains("?") && !(resolve instanceof ArrayTypeName) && !(resolve.isPrimitive())) {
+                            method.addParameter(resolve.annotated(AnnotationSpec.builder(Nullable.class).build()), removeStart(realNames.get(i), "..."));
+                        } else {
+                            method.addParameter(resolve, removeStart(realNames.get(i), "..."));
                         }
                     }
 
@@ -1125,7 +1399,9 @@ public class Module {
                         method.addAnnotation(Nullable.class);
                     }
 
-                    anInterface.getBuilder().addMethod(method.build());
+                    if (visited.add(signature.toString())) {
+                        anInterface.getBuilder().addMethod(method.build());
+                    }
 
                 }
                 if (types.isEmpty() || noVariants) {
@@ -1136,7 +1412,7 @@ public class Module {
 
                 List<String> newJavaDoc = new ArrayList<>();
                 for (String partial : savedJavaDoc.split("@")) {
-                    String[] split = StringUtils.split(partial);
+                    String[] split = split(partial);
                     if (split.length<2 || !"param".equals(split[0]) || !split[1].equals(paramToRemove)) {
                         newJavaDoc.add(partial);
                     }
@@ -1159,7 +1435,7 @@ public class Module {
             }
 
 
-            processMethodGenericSignature(method, genericSignature);
+            processMethodGenericSignature(method, genericSignature, anInterface);
 
             if (isStatic) {
                 AnnotationSpec.Builder jsbodyBuilder = AnnotationSpec.builder(JSBody.class);
@@ -1206,13 +1482,20 @@ public class Module {
         throw illegalStateException;
     }
 
-    private void processProperty(ListIterator<String> itr, Interface anInterface, boolean isReadonly) {
+    private void processProperty(ListIterator<String> itr, Interface anInterface, boolean isReadonly, boolean isStatic) {
         if (anInterface.getBuilderBuilder() == null ) {
             createBuilderBuilder(anInterface);
             populateBuilderBuilder(anInterface, "");
         }
 
         String propertyName = itr.next();
+
+        if (StringUtils.isNumeric(propertyName)) {
+            itr.previous();
+            processNumberKeyedProperty(itr, anInterface, isReadonly, isStatic);
+            return;
+        }
+
         String jsPropertyName = propertyName;
 
         if (SourceVersion.isKeyword(propertyName)) {
@@ -1227,11 +1510,24 @@ public class Module {
             return;
         }
 
-        if (type.startsWith(ROUND_TOKEN) && type.contains(ARROW_TOKEN)) {
-            String[] split = StringUtils.split(type, ARROW_TOKEN, 2);
-            String args = context.resolve(split[0].substring(2).trim());
+        if ((type.startsWith(ROUND_TOKEN) || type.startsWith(ANGLE_TOKEN)) && type.contains(ARROW_TOKEN)) {
+            String[] split = split(type, ARROW_TOKEN, 2);
+
+            List<String> lhs = Arrays.asList(split(split[0]));
+            String genericSignature = "";
+
+            if (lhs.get(0).equals(ANGLE_TOKEN)) {
+                genericSignature = context.resolve(lhs.get(1));
+                lhs = lhs.subList(2, lhs.size());
+            }
+            String args = context.resolve(lhs.get(1));
             String returnType = split[1].trim();
-            processMethod(anInterface, propertyName, "", args, returnType, propertyName, propertyName, false, false, false);
+            processMethod(anInterface, propertyName, genericSignature, args, returnType, propertyName, propertyName, isStatic, false, false);
+
+            if (isReadonly || !optional) {
+                javaDoc = "";
+                return; // do not create properties if that was a readonly or non-optional
+            }
         }
 
         String savedJavaDoc = javaDoc;
@@ -1242,21 +1538,32 @@ public class Module {
         expandedTypes.remove("null");
         expandedTypes.remove("undefined");
 
-        List<TypeName> resolvedTypes = new ArrayList<>();
+        Set<TypeName> resolvedTypes = new HashSet<>();
         for (String expandedType : expandedTypes) {
-            resolvedTypes.add(resolve(expandedType, StringUtils.replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"), anInterface));
+            resolvedTypes.add(resolve(expandedType, replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"), anInterface));
         }
 
-
-        TypeName getterType = ClassName.get(Unknown.class);
+        TypeName getterType = unknown(type);
         if (resolvedTypes.size() == 1) {
-            getterType = resolvedTypes.get(0);
+            getterType = resolvedTypes.iterator().next();
         }
 
-        MethodSpec.Builder getter = MethodSpec.methodBuilder("get" + StringUtils.replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
-                .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                .addAnnotation(AnnotationSpec.builder(JSProperty.class).addMember("value", "$S", jsPropertyName).build())
-                .returns(getterType);
+        MethodSpec.Builder getter;
+        if (isStatic) {
+            getter = MethodSpec.methodBuilder("get" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .addAnnotation(AnnotationSpec.builder(JSBody.class).addMember("script", "$S", "return " + anInterface.getJsClassName()+"."+jsPropertyName).build())
+                    .addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only" +
+                            " " +
+                            "in " +
+                            "JavaScript")
+                    .returns(getterType);
+        } else {
+            getter = MethodSpec.methodBuilder("get" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                    .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                    .addAnnotation(AnnotationSpec.builder(JSProperty.class).addMember("value", "$S", jsPropertyName).build())
+                    .returns(getterType);
+        }
 
         if (!savedJavaDoc.isEmpty()) {
             getter.addJavadoc("$L", savedJavaDoc);
@@ -1268,10 +1575,10 @@ public class Module {
 
         anInterface.getBuilder().addMethod(getter.build());
 
-        if (!isReadonly) {
+        if (!isReadonly && !isStatic) {
             for (TypeName resolvedType : resolvedTypes) {
                 if (optional && !(resolvedType instanceof ArrayTypeName) && (!resolvedType.isPrimitive())) {
-                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + StringUtils.replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
                             .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                             .addAnnotation(AnnotationSpec.builder(JSProperty.class).addMember("value", "$S",
                                     jsPropertyName).build())
@@ -1280,7 +1587,7 @@ public class Module {
                             .addModifiers(Modifier.PUBLIC)
                             .returns(anInterface.getBuilderClassName())
                             .addParameter(resolvedType.annotated(AnnotationSpec.builder(Nullable.class).build()), "value")
-                            .addStatement("object.set$L(value)", StringUtils.replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
                             .addStatement("return this");
                     if (!savedJavaDoc.isEmpty()) {
                         setter.addJavadoc("$L", savedJavaDoc);
@@ -1289,7 +1596,7 @@ public class Module {
                     anInterface.getBuilder().addMethod(setter.build());
                     anInterface.getBuilderBuilder().addMethod(builder.build());
                 } else {
-                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + StringUtils.replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
                             .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                             .addAnnotation(AnnotationSpec.builder(JSProperty.class).addMember("value", "$S",
                                     jsPropertyName).build())
@@ -1298,7 +1605,279 @@ public class Module {
                             .addModifiers(Modifier.PUBLIC)
                             .returns(anInterface.getBuilderClassName())
                             .addParameter(resolvedType, "value")
-                            .addStatement("object.set$L(value)", StringUtils.replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addStatement("return this");
+
+                    if (!savedJavaDoc.isEmpty()) {
+                        setter.addJavadoc("$L", savedJavaDoc);
+                        builder.addJavadoc("$L", savedJavaDoc);
+                    }
+
+                    anInterface.getBuilder().addMethod(setter.build());
+                    anInterface.getBuilderBuilder().addMethod(builder.build());
+                }
+            }
+        }
+
+        javaDoc = "";
+    }
+
+    private void processStringKeyedProperty(ListIterator<String> itr, Interface anInterface, boolean isReadonly, boolean isStatic) {
+        if (anInterface.getBuilderBuilder() == null ) {
+            createBuilderBuilder(anInterface);
+            populateBuilderBuilder(anInterface, "");
+        }
+
+        String propertyName = context.resolve(itr.next());
+        String jsPropertyName = propertyName;
+        propertyName = toCamelCase(propertyName).replaceAll("[-/:*%!@#^&+()<>\\[\\]={},.?\"';|\\\\]", "_");
+
+        if (SourceVersion.isKeyword(propertyName)) {
+            propertyName = propertyName + "Value";
+        }
+
+        boolean optional = is(itr, "?");
+        skipToken(itr, ":");
+        String type = upto(itr, ";", ",");
+
+        if (propertyName.startsWith("_")) {
+            return;
+        }
+
+        if ((type.startsWith(ROUND_TOKEN) || type.startsWith(ANGLE_TOKEN)) && type.contains(ARROW_TOKEN)) {
+            String[] split = split(type, ARROW_TOKEN, 2);
+
+            List<String> lhs = Arrays.asList(split(split[0]));
+            String genericSignature = "";
+
+            if (lhs.get(0).equals(ANGLE_TOKEN)) {
+                genericSignature = context.resolve(lhs.get(1));
+                lhs = lhs.subList(2, lhs.size());
+            }
+            String args = context.resolve(lhs.get(1));
+            String returnType = split[1].trim();
+            processMethod(anInterface, propertyName, genericSignature, args, returnType, propertyName, propertyName, isStatic, false, false);
+
+            if (isReadonly || !optional) {
+                javaDoc = "";
+                return; // do not create properties if that was a readonly or non-optional
+            }
+        }
+
+        String savedJavaDoc = javaDoc;
+        javaDoc = "";
+
+        List<String> expandedTypes = expandTypes(type);
+        optional |= expandedTypes.contains("null") || expandedTypes.contains("undefined");
+        expandedTypes.remove("null");
+        expandedTypes.remove("undefined");
+
+        Set<TypeName> resolvedTypes = new HashSet<>();
+        for (String expandedType : expandedTypes) {
+            resolvedTypes.add(resolve(expandedType, replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"), anInterface));
+        }
+
+        TypeName getterType = unknown(type);
+        if (resolvedTypes.size() == 1) {
+            getterType = resolvedTypes.iterator().next();
+        }
+
+        MethodSpec.Builder getter;
+        if (isStatic) {
+            getter = MethodSpec.methodBuilder("get" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .addAnnotation(AnnotationSpec.builder(JSBody.class).addMember("script", "$S", "return " + anInterface.getJsClassName() + "['" + jsPropertyName + "']").build())
+                    .addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only" +
+                            " " +
+                            "in " +
+                            "JavaScript")
+                    .returns(getterType);
+        } else {
+            getter = MethodSpec.methodBuilder("get" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                    .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                    .addAnnotation(AnnotationSpec.builder(JSBody.class).addMember("script", "$S", "return this['"+jsPropertyName+"']").build())
+                    .returns(getterType);
+        }
+
+        if (!savedJavaDoc.isEmpty()) {
+            getter.addJavadoc("$L", savedJavaDoc);
+        }
+
+        if (optional && !getterType.isPrimitive()) {
+            getter.addAnnotation(Nullable.class);
+        }
+
+        anInterface.getBuilder().addMethod(getter.build());
+
+        if (!isReadonly && !isStatic) {
+            for (TypeName resolvedType : resolvedTypes) {
+                if (optional && !(resolvedType instanceof ArrayTypeName) && (!resolvedType.isPrimitive())) {
+                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                            .addAnnotation(AnnotationSpec.builder(JSBody.class)
+                                    .addMember("params","$S","value")
+                                    .addMember("script", "$S", "this['"+jsPropertyName+"'] = value").build())
+                            .addParameter(resolvedType.annotated(AnnotationSpec.builder(Nullable.class).build()), "value");
+                    MethodSpec.Builder builder = MethodSpec.methodBuilder(StringUtils.replaceChars(propertyName, "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC)
+                            .returns(anInterface.getBuilderClassName())
+                            .addParameter(resolvedType.annotated(AnnotationSpec.builder(Nullable.class).build()), "value")
+                            .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addStatement("return this");
+                    if (!savedJavaDoc.isEmpty()) {
+                        setter.addJavadoc("$L", savedJavaDoc);
+                        builder.addJavadoc("$L", savedJavaDoc);
+                    }
+                    anInterface.getBuilder().addMethod(setter.build());
+                    anInterface.getBuilderBuilder().addMethod(builder.build());
+                } else {
+                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                            .addAnnotation(AnnotationSpec.builder(JSBody.class)
+                                    .addMember("params","$S","value")
+                                    .addMember("script", "$S", "this['"+jsPropertyName+"'] = value").build())
+                            .addParameter(resolvedType, "value");
+                    MethodSpec.Builder builder = MethodSpec.methodBuilder(StringUtils.replaceChars(propertyName, "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC)
+                            .returns(anInterface.getBuilderClassName())
+                            .addParameter(resolvedType, "value")
+                            .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addStatement("return this");
+
+                    if (!savedJavaDoc.isEmpty()) {
+                        setter.addJavadoc("$L", savedJavaDoc);
+                        builder.addJavadoc("$L", savedJavaDoc);
+                    }
+
+                    anInterface.getBuilder().addMethod(setter.build());
+                    anInterface.getBuilderBuilder().addMethod(builder.build());
+                }
+            }
+        }
+
+        javaDoc = "";
+    }
+
+    private void processNumberKeyedProperty(ListIterator<String> itr, Interface anInterface, boolean isReadonly, boolean isStatic) {
+        if (anInterface.getBuilderBuilder() == null ) {
+            createBuilderBuilder(anInterface);
+            populateBuilderBuilder(anInterface, "");
+        }
+
+        String propertyName = itr.next();
+        String jsPropertyName = propertyName;
+        propertyName = "value" + propertyName;
+
+        if (SourceVersion.isKeyword(propertyName)) {
+            propertyName = propertyName + "Value";
+        }
+
+        boolean optional = is(itr, "?");
+        skipToken(itr, ":");
+        String type = upto(itr, ";", ",");
+
+        if (propertyName.startsWith("_")) {
+            return;
+        }
+
+        if ((type.startsWith(ROUND_TOKEN) || type.startsWith(ANGLE_TOKEN)) && type.contains(ARROW_TOKEN)) {
+            String[] split = split(type, ARROW_TOKEN, 2);
+
+            List<String> lhs = Arrays.asList(split(split[0]));
+            String genericSignature = "";
+
+            if (lhs.get(0).equals(ANGLE_TOKEN)) {
+                genericSignature = context.resolve(lhs.get(1));
+                lhs = lhs.subList(2, lhs.size());
+            }
+            String args = context.resolve(lhs.get(1));
+            String returnType = split[1].trim();
+            processMethod(anInterface, propertyName, genericSignature, args, returnType, propertyName, propertyName, isStatic, false, false);
+
+            if (isReadonly || !optional) {
+                javaDoc = "";
+                return; // do not create properties if that was a readonly or non-optional
+            }
+        }
+
+        String savedJavaDoc = javaDoc;
+        javaDoc = "";
+
+        List<String> expandedTypes = expandTypes(type);
+        optional |= expandedTypes.contains("null") || expandedTypes.contains("undefined");
+        expandedTypes.remove("null");
+        expandedTypes.remove("undefined");
+
+        Set<TypeName> resolvedTypes = new HashSet<>();
+        for (String expandedType : expandedTypes) {
+            resolvedTypes.add(resolve(expandedType, replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"), anInterface));
+        }
+
+        TypeName getterType = unknown(type);
+        if (resolvedTypes.size() == 1) {
+            getterType = resolvedTypes.iterator().next();
+        }
+
+        MethodSpec.Builder getter;
+        if (isStatic) {
+            getter = MethodSpec.methodBuilder("get" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .addAnnotation(AnnotationSpec.builder(JSBody.class).addMember("script", "$S", "return " + anInterface.getJsClassName()+"["+jsPropertyName+"]").build())
+                    .addStatement("throw new $T($S)", UnsupportedOperationException.class, "Available only" +
+                            " " +
+                            "in " +
+                            "JavaScript")
+                    .returns(getterType);
+        } else {
+            getter = MethodSpec.methodBuilder("get" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                    .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                    .addAnnotation(AnnotationSpec.builder(JSBody.class).addMember("script", "$S", "return this["+jsPropertyName+"]").build())
+                    .returns(getterType);
+        }
+
+        if (!savedJavaDoc.isEmpty()) {
+            getter.addJavadoc("$L", savedJavaDoc);
+        }
+
+        if (optional && !getterType.isPrimitive()) {
+            getter.addAnnotation(Nullable.class);
+        }
+
+        anInterface.getBuilder().addMethod(getter.build());
+
+        if (!isReadonly && !isStatic) {
+            for (TypeName resolvedType : resolvedTypes) {
+                if (optional && !(resolvedType instanceof ArrayTypeName) && (!resolvedType.isPrimitive())) {
+                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                            .addAnnotation(AnnotationSpec.builder(JSBody.class)
+                                    .addMember("params","$S","value")
+                                    .addMember("script", "$S", "this["+jsPropertyName+"] = value").build())
+                            .addParameter(resolvedType.annotated(AnnotationSpec.builder(Nullable.class).build()), "value");
+                    MethodSpec.Builder builder = MethodSpec.methodBuilder(StringUtils.replaceChars(propertyName, "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC)
+                            .returns(anInterface.getBuilderClassName())
+                            .addParameter(resolvedType.annotated(AnnotationSpec.builder(Nullable.class).build()), "value")
+                            .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addStatement("return this");
+                    if (!savedJavaDoc.isEmpty()) {
+                        setter.addJavadoc("$L", savedJavaDoc);
+                        builder.addJavadoc("$L", savedJavaDoc);
+                    }
+                    anInterface.getBuilder().addMethod(setter.build());
+                    anInterface.getBuilderBuilder().addMethod(builder.build());
+                } else {
+                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                            .addAnnotation(AnnotationSpec.builder(JSBody.class)
+                                    .addMember("params","$S","value")
+                                    .addMember("script", "$S", "this["+jsPropertyName+"] = value").build())
+                            .addParameter(resolvedType, "value");
+                    MethodSpec.Builder builder = MethodSpec.methodBuilder(StringUtils.replaceChars(propertyName, "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC)
+                            .returns(anInterface.getBuilderClassName())
+                            .addParameter(resolvedType, "value")
+                            .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
                             .addStatement("return this");
 
                     if (!savedJavaDoc.isEmpty()) {
@@ -1318,7 +1897,7 @@ public class Module {
     private void processIndexer(ListIterator<String> itr, Interface anInterface, boolean isReadonly) {
         String indexer = context.resolve(itr.next());
 
-        String[] indexerParts = StringUtils.split(StringUtils.replace(indexer, " in ", " : "), ":");
+        String[] indexerParts = split(StringUtils.replace(indexer, " in ", " : "), ":");
         String indexerName = indexerParts[0].trim();
 
         String savedJavaDoc = javaDoc;
@@ -1329,14 +1908,14 @@ public class Module {
         String type = upto(itr, ";", ",");
 
         for (String keyType : keyTypes) {
-            TypeName indexerType = resolve(keyType, StringUtils.capitalize(indexerName), anInterface);
+            TypeName indexerType = resolve(keyType, capitalize(indexerName), anInterface);
 
             List<String> expandedTypes = expandTypes(type);
             boolean optional = expandedTypes.contains("null") || expandedTypes.contains("undefined");
             expandedTypes.remove("null");
             expandedTypes.remove("undefined");
 
-            TypeName getterType = ClassName.get(Unknown.class);
+            TypeName getterType = unknown(type);
             if (expandedTypes.size() == 1) {
                 getterType = resolve(expandedTypes.get(0), "Value", anInterface);
             }
@@ -1419,7 +1998,7 @@ public class Module {
     private List<String> expandTypes(String type) {
         List<String> intermediate = new ArrayList<>();
 
-        List<String> tokens = new ArrayList<>(Arrays.asList(StringUtils.split(type, " ")));
+        List<String> tokens = new ArrayList<>(Arrays.asList(split(type)));
         ListIterator<String> itr = tokens.listIterator();
         while (itr.hasNext()) {
             if (is(itr, "Array", ANGLE_TOKEN, null)) {
@@ -1439,18 +2018,20 @@ public class Module {
                 continue;
             } else if (is(itr, ROUND_TOKEN)) {
                 injectTokenContent(itr);
+                skipToken(itr, "|");
             } else if (is(itr, STRING_TOKEN, null)) {
                 // string
                 intermediate.add(STRING_TOKEN + " " + itr.next());
+                skipToken(itr, "|");
             } else {
                 String rawType = itr.next();
-                if (!context.getInterfaces().containsKey(rawType) && context.getUnions().containsKey(rawType)) {
-                    List<String> rest = Arrays.asList(StringUtils.split(upto(itr, "|"), " "));
+                if (!has(rawType) && context.getUnions().containsKey(rawType)) {
+                    List<String> rest = Arrays.asList(split(upto(itr, "|")));
                     // expand the type
                     upto(itr, "|");
                     List<String> replacement = new ArrayList<>();
                     for (String single : context.getUnions().get(rawType)) {
-                        replacement.addAll(Arrays.asList(StringUtils.split(single, " ")));
+                        replacement.addAll(Arrays.asList(split(single)));
                         //if (!replacement.isEmpty() && !"null".equals(single.trim()) && !"undefined".equals(single.trim())) {
                             replacement.addAll(rest);
                         //}
@@ -1475,7 +2056,7 @@ public class Module {
 
         for (String someType : intermediate) {
             if (someType.contains(ANGLE_TOKEN)) {
-                List<String> typeTokens = Arrays.asList(StringUtils.split(someType, " "));
+                List<String> typeTokens = Arrays.asList(split(someType));
                 ListIterator<String> itr2 = typeTokens.listIterator();
 
                 upto(itr2, ANGLE_TOKEN);
@@ -1483,7 +2064,7 @@ public class Module {
                 String index = itr2.next();
                 String genericSignature = context.resolve(index);
 
-                List<String> signatureParts = Arrays.asList(StringUtils.split(genericSignature, ","));
+                List<String> signatureParts = Arrays.asList(split(genericSignature, ","));
                 List<List<String>> types = signatureParts.stream()
                         .map(t -> expandTypes(t.trim()).stream().filter(s -> !s.equals("null") && !s.equals("undefined")).collect(Collectors.toList()))
                         .collect(Collectors.toList());
@@ -1515,8 +2096,8 @@ public class Module {
                                 .map(strings -> strings.get(0))
                                 .collect(Collectors.joining(" , "));
 
-                        String newType = StringUtils.replace(someType, ANGLE_TOKEN + " " + index, " < " + singleSignature + " > ");
-                        result.add(String.join(" ", StringUtils.split(newType, " ")));
+                        String newType = replace(someType, ANGLE_TOKEN + " " + index, " < " + singleSignature + " > ");
+                        result.add(String.join(" ", split(newType)));
                     }
                 }
             } else {
@@ -1529,38 +2110,46 @@ public class Module {
 
     @Nullable
     private TypeName resolve(String type, String suggestedName, Interface parent) {
-        type = type.trim();
+        type = removeStart(type.trim(), "readonly ");
+        type = removeStart(type.trim(), "typeof ");
 
-        if (type.startsWith(FIGURE_TOKEN)) {
-            return processAnonymousClass(parent, suggestedName, context.resolve(StringUtils.split(type, " ")[1]));
-        }
+        if ( type.contains("<") && (!type.contains(ARROW_TOKEN) || type.indexOf(ARROW_TOKEN) > type.indexOf("<"))) {
+            // this thing has generic type
+            String signature = substringBeforeLast(substringAfter(type, "<"),">");
+            String typeWithoutSignature = substringBefore(type, "<").trim();
 
-        if (type.startsWith(STRING_TOKEN)) {
-            return processEnum(parent, suggestedName, Collections.singletonList(type));
-        }
-
-        if (StringUtils.isNumeric(type)) {
-            return processEnum(parent, suggestedName, Collections.singletonList(type));
-        }
-
-        if (type.contains(ARROW_TOKEN)) {
-            if (type.startsWith("new ")) {
-                return ClassName.get(JsFunction.class);
+            switch (typeWithoutSignature) {
+                case "Partial":
+                case "Readonly":
+                case "Required":
+                    return resolve(signature, suggestedName, parent);
             }
-            return processLambda(parent, suggestedName+"Fn", type);
-        }
 
-        if (type.contains(SQUARE_TOKEN)) {
-            return ArrayTypeName.of(resolve(StringUtils.split(type, SQUARE_TOKEN)[0], suggestedName, parent));
-        }
+            TypeName resolvedType = resolve(typeWithoutSignature, suggestedName, parent);
 
-        if (context.getInterfaces().containsKey(type)) {
-            return context.getInterfaces().get(type).getClassName();
-        }
+            if (resolvedType.isPrimitive() || resolvedType.isBoxedPrimitive() || resolvedType.toString().equals(String.class.getName()) || !(resolvedType instanceof ClassName)) {
+                return resolvedType;
+            }
 
-        if (type.contains("&") || type.startsWith("new ")) {
-            log.warn("Unknown type: '"+type +"' for "+suggestedName+" in "+parent.getClassName().simpleName());
-            return ClassName.get(Any.class);
+            List<TypeName> parameters = new ArrayList<>();
+
+            int index = 1;
+
+            for (String param : split(signature, ",")) {
+                TypeName parameterType = resolve(param.trim(), suggestedName + "Param" + (index > 1 ? index : ""), parent);
+                if (parameterType.isPrimitive() || parameterType.toString().equals(String.class.getName())) {
+                    parameterType = unknown(param.trim());
+                } else if (parameterType instanceof ArrayTypeName) {
+                    try {
+                        parameterType = ParameterizedTypeName.get(ClassName.get(Array.class), ((ArrayTypeName) resolvedType).componentType);
+                    } catch (IllegalArgumentException e) {
+                        parameterType = ParameterizedTypeName.get(ClassName.get(Array.class), unknown(((ArrayTypeName) resolvedType).componentType.toString()));
+                    }
+                }
+                parameters.add(parameterType);
+                index++;
+            }
+            return ParameterizedTypeName.get((ClassName) resolvedType, parameters.toArray(new TypeName[]{}));
         }
 
         try {
@@ -1594,6 +2183,63 @@ public class Module {
             // ignore
         }
 
+        String[] typeParts = split(type);
+        if (type.startsWith(SQUARE_TOKEN)) {
+            String resolvedObject = context.resolve(typeParts[1]);
+            if (resolvedObject.isEmpty()) {
+                return unknown(type);
+            }
+            List<String> syntheticType = new ArrayList<>();
+            int index = 0;
+            for (String s : split(resolvedObject, ",")) {
+                syntheticType.add(Integer.toString(index));
+                syntheticType.add(":");
+                syntheticType.addAll(Arrays.asList(split(context.reduce(s))));
+                syntheticType.add(";");
+                index++;
+            }
+            if (typeParts.length > 2 && typeParts[typeParts.length-2].equals(SQUARE_TOKEN)) {
+                return ArrayTypeName.of(processAnonymousClass(parent, suggestedName + index, String.join(" ", syntheticType)));
+            } else {
+                return processAnonymousClass(parent, suggestedName + index, String.join(" ", syntheticType));
+            }
+        }
+
+        if (type.startsWith(FIGURE_TOKEN)) {
+            String resolvedObject = context.resolve(typeParts[1]);
+            if (resolvedObject.isEmpty()) {
+                return any(type);
+            }
+            return processAnonymousClass(parent, suggestedName, resolvedObject);
+        }
+
+        if (type.startsWith(STRING_TOKEN)) {
+            return processEnum(parent, suggestedName, Collections.singletonList(type));
+        }
+
+        if (StringUtils.isNumeric(type)) {
+            return processEnum(parent, suggestedName, Collections.singletonList(type));
+        }
+
+        if (type.contains(ARROW_TOKEN)) {
+            if (type.startsWith("new ")) {
+                return ClassName.get(JsFunction.class);
+            }
+            return processLambda(parent, suggestedName+"Function", type);
+        }
+
+        if (type.contains(SQUARE_TOKEN)) {
+            return ArrayTypeName.of(resolve(split(type, SQUARE_TOKEN)[0], suggestedName, parent));
+        }
+
+        if (has(type)) {
+            return get(type).getClassName();
+        }
+
+        if (type.contains("&") || type.startsWith("new ")) {
+            log.warn("Unknown type: '"+type +"' for "+suggestedName+" in "+parent.getClassName().simpleName());
+            return ClassName.get(Any.class);
+        }
 
         switch (type) {
             case "Array < string >":
@@ -1614,11 +2260,13 @@ public class Module {
             case "void":
                 return TypeName.VOID;
             case "number":
-                return TypeName.INT;
+                return TypeName.DOUBLE;
             case "any":
             case "Object":
             case "object":
                 return ClassName.get(Any.class);
+            case "Date":
+                return ClassName.get(JsDate.class);
             case "Function":
                 return ClassName.get(JsFunction.class);
             case "never":
@@ -1627,23 +2275,22 @@ public class Module {
             case "null":
             case "undefined":
                 return null;
-
         }
         try {
             return ClassName.bestGuess(type);
         } catch (IllegalArgumentException e) {
             log.warn("Unknown type: '"+type +"' for "+suggestedName+" in "+parent.getClassName().simpleName());
-            return ClassName.get(Unknown.class);
+            return unknown(type);
         }
     }
 
     private void injectTokenContent(ListIterator<String> itr) {
         String index = itr.next();
-        List<String> rest = Arrays.asList(StringUtils.split(upto(itr, "|"), " "));
+        List<String> rest = Arrays.asList(split(upto(itr, "|")));
 
         List<String> replacement = new ArrayList<>();
-        for (String single : StringUtils.split(context.resolve(index), "|")) {
-            replacement.addAll(Arrays.asList(StringUtils.split(single, " ")));
+        for (String single : split(context.resolve(index), "|")) {
+            replacement.addAll(Arrays.asList(split(single)));
             //if (!replacement.isEmpty() && !"null".equals(single.trim()) && !"undefined".equals(single.trim())) {
             replacement.addAll(rest);
             //}

@@ -2,12 +2,11 @@ package js.lang.external.polymer;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import java.lang.String;
+import javax.annotation.Nullable;
 import js.lang.Any;
 import js.lang.Unknown;
-import js.util.collections.Array;
 import org.teavm.jso.JSProperty;
-
-import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@polymer/polymer",
@@ -39,10 +38,10 @@ public interface ExpressionBindingPart extends Any {
   Unknown getDependencies();
 
   @JSProperty("dependencies")
-  void setDependencies(String[] value);
+  void setDependencies(MethodArg[] value);
 
   @JSProperty("dependencies")
-  void setDependencies(Array< MethodArg > value);
+  void setDependencies(String[] value);
 
   @JSProperty("customEvent")
   boolean getCustomEvent();
@@ -85,12 +84,12 @@ public interface ExpressionBindingPart extends Any {
       return this;
     }
 
-    public Builder dependencies(String[] value) {
+    public Builder dependencies(MethodArg[] value) {
       object.setDependencies(value);
       return this;
     }
 
-    public Builder dependencies(Array < MethodArg > value) {
+    public Builder dependencies(String[] value) {
       object.setDependencies(value);
       return this;
     }

@@ -2,13 +2,12 @@ package js.lang.external.polymer;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import java.lang.String;
+import javax.annotation.Nullable;
 import js.lang.Any;
-import js.web.dom.DocumentFragment;
 import js.web.dom.Node;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
-
-import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@polymer/polymer",

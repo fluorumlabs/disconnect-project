@@ -2,10 +2,12 @@ package com.github.fluorumlabs.disconnect;
 
 import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.argparse4j.ArgumentParsers;
+import net.sourceforge.argparse4j.impl.Arguments;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -14,6 +16,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Hello world!
@@ -26,9 +31,17 @@ public class App {
      *
      */
     public static void main(String[] args) throws IOException, InterruptedException {
-        ArgumentParser parser = ArgumentParsers.newFor("Disconnect JS Binding Generator").build()
+        ArgumentParser parser = ArgumentParsers.newFor("Disconnect Binding Generator").build()
                 .defaultHelp(true)
                 .description("Generate Disconnect JS bindings from TypeScript definition files.");
+
+        parser.addArgument("-s", "--src")
+                .action(Arguments.storeTrue())
+                .help("Use .src.d.ts for definitions");
+
+        parser.addArgument("-e", "--esroot")
+                .setDefault("")
+                .help("Relative path for ES2017 module imports");
 
         parser.addArgument("-p", "--package")
                 .required(true)
@@ -53,6 +66,8 @@ public class App {
         String rootPackage = ns.getString("package");
         String targetPath = ns.getString("out");
         String sourcePath = ns.getString("in");
+        boolean src = ns.getBoolean("src");
+        String relativeESMPath = ns.getString("esroot");
 
         GlobalContext context = new GlobalContext(Paths.get(sourcePath), rootPackage);
 
@@ -69,15 +84,34 @@ public class App {
                 String npmVersion = "^" + jsonObject.getString("version");
 
                 log.info("Processing " + npmPackage);
-                for (File listFile : FileUtils.listFiles(in.getParentFile(), new String[]{"d.ts"}, true)) {
+
+                File mainModule = new File(in.getParentFile(), StringUtils.replace(npmModule, ".js", "."+(src?"src.d.ts":"d.ts")));
+
+                List<File> files = FileUtils.listFiles(in.getParentFile(), new String[]{(src?"src.d.ts":"d.ts")}, true)
+                        .stream()
+                        .filter(f -> !mainModule.equals(f))
+                        .sorted(Comparator.comparingInt(f -> StringUtils.split(f.getPath(), "/\\").length))
+                        .collect(Collectors.toList());
+
+                files.add(0, mainModule);
+
+                for (File listFile : files) {
                     Path modulePath = listFile.toPath();
+                    Path realModulePath = modulePath;
+
+                    if (relativeESMPath == null || !relativeESMPath.isEmpty()) {
+                        Path relativize = in.getParentFile().toPath().relativize(modulePath);
+                        modulePath = in.getParentFile().toPath().resolve(relativeESMPath).resolve(relativize);
+                    }
+
                     String content = String.join("\n", Files.readAllLines(listFile.toPath()));
 
                     if (modulePath.endsWith("interfaces.d.ts")) {
                         modulePath = in.getParentFile().toPath().resolve(npmModule);
+                        realModulePath = modulePath;
                     }
 
-                    context.registerModule(new Module(context, npmPackage, npmVersion, in.toPath().getParent(), listFile.toPath(), modulePath, content));
+                    context.registerModule(new Module(context, npmPackage, npmVersion, in.toPath().getParent(), listFile.toPath(), modulePath, realModulePath, content));
                 }
             }
         }

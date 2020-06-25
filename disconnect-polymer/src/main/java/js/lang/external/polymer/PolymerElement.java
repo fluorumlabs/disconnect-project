@@ -3,8 +3,7 @@ package js.lang.external.polymer;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
-import js.lang.external.polymer.lib.mixins.ElementMixin;
-import js.web.dom.HTMLElement;
+import js.lang.external.polymer.mixins.ElementMixin;
 
 /**
  * Base class that provides the core API for Polymer's meta-programming

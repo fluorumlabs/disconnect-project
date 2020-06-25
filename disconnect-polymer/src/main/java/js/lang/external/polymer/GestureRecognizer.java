@@ -2,13 +2,12 @@ package js.lang.external.polymer;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import java.lang.FunctionalInterface;
+import javax.annotation.Nullable;
 import js.lang.Any;
 import js.web.dom.MouseEvent;
-import js.web.touchevents.TouchEvent;
 import org.teavm.jso.JSFunctor;
 import org.teavm.jso.JSProperty;
-
-import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@polymer/polymer",
@@ -18,106 +17,122 @@ import javax.annotation.Nullable;
     module = "@polymer/polymer/polymer-element.js"
 )
 public interface GestureRecognizer extends Any {
-  @JSProperty("reset")
-  Reset getReset();
+  void reset();
 
   @JSProperty("reset")
-  void setReset(Reset value);
+  ResetFn getReset();
+
+  @JSProperty("reset")
+  void setReset(ResetFn value);
+
+  void mousedown(MouseEvent e);
 
   @JSProperty("mousedown")
   @Nullable
-  Mousedown getMousedown();
+  MousedownFn getMousedown();
 
   @JSProperty("mousedown")
-  void setMousedown(@Nullable Mousedown value);
+  void setMousedown(@Nullable MousedownFn value);
+
+  void mousemove(MouseEvent e);
 
   @JSProperty("mousemove")
   @Nullable
-  Mousemove getMousemove();
+  MousemoveFn getMousemove();
 
   @JSProperty("mousemove")
-  void setMousemove(@Nullable Mousemove value);
+  void setMousemove(@Nullable MousemoveFn value);
+
+  void mouseup(MouseEvent e);
 
   @JSProperty("mouseup")
   @Nullable
-  Mouseup getMouseup();
+  MouseupFn getMouseup();
 
   @JSProperty("mouseup")
-  void setMouseup(@Nullable Mouseup value);
+  void setMouseup(@Nullable MouseupFn value);
+
+  void touchstart(TouchEvent e);
 
   @JSProperty("touchstart")
   @Nullable
-  Touchstart getTouchstart();
+  TouchstartFn getTouchstart();
 
   @JSProperty("touchstart")
-  void setTouchstart(@Nullable Touchstart value);
+  void setTouchstart(@Nullable TouchstartFn value);
+
+  void touchmove(TouchEvent e);
 
   @JSProperty("touchmove")
   @Nullable
-  Touchmove getTouchmove();
+  TouchmoveFn getTouchmove();
 
   @JSProperty("touchmove")
-  void setTouchmove(@Nullable Touchmove value);
+  void setTouchmove(@Nullable TouchmoveFn value);
+
+  void touchend(TouchEvent e);
 
   @JSProperty("touchend")
   @Nullable
-  Touchend getTouchend();
+  TouchendFn getTouchend();
 
   @JSProperty("touchend")
-  void setTouchend(@Nullable Touchend value);
+  void setTouchend(@Nullable TouchendFn value);
+
+  void click(MouseEvent e);
 
   @JSProperty("click")
   @Nullable
-  Click getClick();
+  ClickFn getClick();
 
   @JSProperty("click")
-  void setClick(@Nullable Click value);
+  void setClick(@Nullable ClickFn value);
 
   @FunctionalInterface
   @JSFunctor
-  interface Reset extends Any {
+  interface ResetFn extends Any {
     void apply();
   }
 
   @FunctionalInterface
   @JSFunctor
-  interface Mousedown extends Any {
+  interface MousedownFn extends Any {
     void apply(MouseEvent e);
   }
 
   @FunctionalInterface
   @JSFunctor
-  interface Mousemove extends Any {
+  interface MousemoveFn extends Any {
     void apply(MouseEvent e);
   }
 
   @FunctionalInterface
   @JSFunctor
-  interface Mouseup extends Any {
+  interface MouseupFn extends Any {
     void apply(MouseEvent e);
   }
 
   @FunctionalInterface
   @JSFunctor
-  interface Touchstart extends Any {
+  interface TouchstartFn extends Any {
     void apply(TouchEvent e);
   }
 
   @FunctionalInterface
   @JSFunctor
-  interface Touchmove extends Any {
+  interface TouchmoveFn extends Any {
     void apply(TouchEvent e);
   }
 
   @FunctionalInterface
   @JSFunctor
-  interface Touchend extends Any {
+  interface TouchendFn extends Any {
     void apply(TouchEvent e);
   }
 
   @FunctionalInterface
   @JSFunctor
-  interface Click extends Any {
+  interface ClickFn extends Any {
     void apply(MouseEvent e);
   }
 
@@ -128,42 +143,42 @@ public interface GestureRecognizer extends Any {
       return object;
     }
 
-    public Builder reset(Reset value) {
+    public Builder reset(ResetFn value) {
       object.setReset(value);
       return this;
     }
 
-    public Builder mousedown(@Nullable Mousedown value) {
+    public Builder mousedown(@Nullable MousedownFn value) {
       object.setMousedown(value);
       return this;
     }
 
-    public Builder mousemove(@Nullable Mousemove value) {
+    public Builder mousemove(@Nullable MousemoveFn value) {
       object.setMousemove(value);
       return this;
     }
 
-    public Builder mouseup(@Nullable Mouseup value) {
+    public Builder mouseup(@Nullable MouseupFn value) {
       object.setMouseup(value);
       return this;
     }
 
-    public Builder touchstart(@Nullable Touchstart value) {
+    public Builder touchstart(@Nullable TouchstartFn value) {
       object.setTouchstart(value);
       return this;
     }
 
-    public Builder touchmove(@Nullable Touchmove value) {
+    public Builder touchmove(@Nullable TouchmoveFn value) {
       object.setTouchmove(value);
       return this;
     }
 
-    public Builder touchend(@Nullable Touchend value) {
+    public Builder touchend(@Nullable TouchendFn value) {
       object.setTouchend(value);
       return this;
     }
 
-    public Builder click(@Nullable Click value) {
+    public Builder click(@Nullable ClickFn value) {
       object.setClick(value);
       return this;
     }

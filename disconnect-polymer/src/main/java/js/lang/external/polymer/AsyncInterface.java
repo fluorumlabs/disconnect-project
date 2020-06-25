@@ -16,27 +16,36 @@ import org.teavm.jso.JSProperty;
     module = "@polymer/polymer/polymer-element.js"
 )
 public interface AsyncInterface extends Any {
-  @JSProperty("run")
-  Run getRun();
+  int run(JsFunction fn, int delay);
+
+  /**
+   *
+   */
+  int run(JsFunction fn);
 
   @JSProperty("run")
-  void setRun(Run value);
+  RunFn getRun();
+
+  @JSProperty("run")
+  void setRun(RunFn value);
+
+  void cancel(int handle);
 
   @JSProperty("cancel")
-  Cancel getCancel();
+  CancelFn getCancel();
 
   @JSProperty("cancel")
-  void setCancel(Cancel value);
+  void setCancel(CancelFn value);
 
   @FunctionalInterface
   @JSFunctor
-  interface Run extends Any {
+  interface RunFn extends Any {
     int apply(JsFunction fn, int delay);
   }
 
   @FunctionalInterface
   @JSFunctor
-  interface Cancel extends Any {
+  interface CancelFn extends Any {
     void apply(int handle);
   }
 
@@ -47,12 +56,12 @@ public interface AsyncInterface extends Any {
       return object;
     }
 
-    public Builder run(Run value) {
+    public Builder run(RunFn value) {
       object.setRun(value);
       return this;
     }
 
-    public Builder cancel(Cancel value) {
+    public Builder cancel(CancelFn value) {
       object.setCancel(value);
       return this;
     }

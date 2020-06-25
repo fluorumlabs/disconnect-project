@@ -3,8 +3,8 @@ package com.github.fluorumlabs.disconnect;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.squareup.javapoet.AnnotationSpec;
-import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.TypeName;
 import com.vladsch.flexmark.Extension;
 import com.vladsch.flexmark.ext.autolink.AutolinkExtension;
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension;
@@ -16,6 +16,7 @@ import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.options.MutableDataSet;
 import js.lang.Any;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -44,8 +45,9 @@ public class GlobalContext {
     public static final String STRING_TOKEN = "\uf006";
     public static final String ARROW_TOKEN = "\uf007";
 
-    private static final Pattern COMMENT = Pattern.compile("\\/\\/.*?\\n");
+    private static final Pattern COMMENT = Pattern.compile("(\\/\\/.*?\\n)|(\\/\\/.*?$)");
     private static final Pattern JSDOC = Pattern.compile("(\\/\\*\\*(.*?)\\*\\/)", Pattern.MULTILINE | Pattern.DOTALL);
+    private static final Pattern MULTILINE_COMMENT = Pattern.compile("(\\/\\*(.*?)\\*\\/)", Pattern.MULTILINE | Pattern.DOTALL);
     private static final Pattern ROUND_BRACKETS = Pattern.compile("(\\(([^(\\[{<'\"]*?)\\))", Pattern.MULTILINE | Pattern.DOTALL);
     private static final Pattern SQUARE_BRACKETS = Pattern.compile("(\\[([^(\\[{<'\"]*?)\\])", Pattern.MULTILINE | Pattern.DOTALL);
     private static final Pattern ANGLE_BRACKETS = Pattern.compile("(<([^(\\[{<'\"]*?)>)", Pattern.MULTILINE | Pattern.DOTALL);
@@ -71,11 +73,15 @@ public class GlobalContext {
         formatter = Formatter.builder(flexmarkOptions).extensions(extensionList).build();
     }
 
+    @Setter
+    @Getter
+    private boolean enableES2017 = true;
+
     private final Path globalRoot;
     private final String globalPackage;
     private final List<String> tokens = new ArrayList<>();
     private final List<String> jsdocTokens = new ArrayList<>();
-    private final Set<Module> modules = new HashSet<>();
+    private final List<Module> modules = new ArrayList<>();
     private final Map<String, Module> exports = new HashMap<>();
     private final Map<String, Interface> interfaces = new HashMap<>();
     private final Map<String, List<String>> unions = new HashMap<>();
@@ -224,9 +230,35 @@ public class GlobalContext {
                 .sorted(Comparator.comparing((Interface i) -> i.getInnerInterfaces().size()).reversed())
                 .collect(Collectors.toList());
 
+        Map<String, List<Interface>> duplicates = new HashMap<>();
+        for (Interface anInterface : dedupe) {
+            for (Interface innerInterface : anInterface.getInnerInterfaces()) {
+                String key = innerInterface.getClassName().packageName() + "::" + innerInterface.getBuilder().build();
+                duplicates.computeIfAbsent(key, k -> new ArrayList<>()).add(innerInterface);
+            }
+        }
+
+        for (List<Interface> copies : duplicates.values().stream()
+                .filter(l -> l.size() > 1)
+                .collect(Collectors.toList())) {
+            if (interfaces.containsKey(copies.get(0).getClassName().simpleName().toUpperCase())) {
+                continue;
+            }
+
+            for (Interface copy : copies) {
+                copy.getParent().getInnerInterfaces().remove(copy);
+                copy.setParent(null);
+            }
+            dedupe.add(copies.iterator().next());
+            interfaces.put(copies.get(0).getClassName().simpleName().toUpperCase(), copies.get(0));
+        }
+
         for (Interface iface : dedupe) {
             render(iface);
 
+            if (iface.getBuilder() == null) {
+                continue;
+            }
             JavaFile file = JavaFile.builder(iface.getParentModule().getJavaPackage(), iface.getBuilder().build())
                     .build();
             file.writeTo(Paths.get(targetPath, "src", "main", "java"));
@@ -234,23 +266,24 @@ public class GlobalContext {
     }
 
     private void render(Interface iface) throws IOException {
-        if (iface.isRendered()) {
+        if (iface.isRendered() || iface.getBuilder() == null) {
             return;
         }
 
+        if (iface.getExtendedClassName() != null) {
+            iface.getBuilder().addSuperinterface(iface.getExtendedClassName());
+        }
+
         if (iface.getSuperInterfaces().isEmpty()) {
-            iface.getBuilder().addSuperinterface(Any.class);
+            if (iface.getExtendedClassName() == null) {
+                iface.getBuilder().addSuperinterface(Any.class);
+            }
         } else {
-            for (String superInterface : iface.getSuperInterfaces()) {
-                if ("*".equals(superInterface)) {
+            for (TypeName superInterface : iface.getSuperInterfaces()) {
+                if ("*".equals(superInterface.toString())) {
                     break;
                 }
-                Interface superIface = interfaces.get(superInterface);
-                if (superIface == null) {
-                    iface.getBuilder().addSuperinterface(ClassName.bestGuess(superInterface));
-                } else {
-                    iface.getBuilder().addSuperinterface(superIface.getClassName());
-                }
+                iface.getBuilder().addSuperinterface(superInterface);
             }
         }
 
@@ -286,7 +319,8 @@ public class GlobalContext {
                                 .build());
                     });
 
-        } else if (iface.getParent() == null){
+        }
+        if (iface.getParent() == null){
             iface.getBuilder().addAnnotation(AnnotationSpec.builder(Import.class)
                     .addMember("module", "$S", importName)
                     .build());
@@ -333,13 +367,19 @@ public class GlobalContext {
 
     public String reduce(String source) {
         String original = source;
-        String processed = COMMENT.matcher(original).replaceAll("");
+        String processed = original;
         do {
             original = processed;
             processed = reduceJsDoc(processed);
         } while (!processed.equals(original));
 
+        processed = MULTILINE_COMMENT.matcher(original).replaceAll("");
+        processed = COMMENT.matcher(processed).replaceAll("");
+
+        processed = String.join(" ", StringUtils.split(processed));
+
         processed = StringUtils.replace(processed, "\n", " ");
+        processed = StringUtils.replace(processed, "\u00A0", " ");
         processed = StringUtils.replace(processed, "\t", " ");
         processed = StringUtils.replace(processed, ";", " ; ");
         processed = StringUtils.replace(processed, ":", " : ");
@@ -362,7 +402,7 @@ public class GlobalContext {
 
         // Collapse whitespaces
         for (int i = 0; i < tokens.size(); i++) {
-            tokens.set(i, String.join(" ", StringUtils.split(tokens.get(i), " ")));
+            tokens.set(i, String.join(" ", StringUtils.split(tokens.get(i))));
         }
 
         return processed;
@@ -398,6 +438,16 @@ public class GlobalContext {
             jsdocTokens.add(JSDOC_REMOVE_STARTING_STAR.matcher(value).replaceAll("$1"));
 
             matcher.appendReplacement(sb, " " + token + " ");
+            matcher.appendTail(sb);
+            return sb.toString();
+        }
+        return source;
+    }
+
+    private String reduceMultilineComments(String source) {
+        Matcher matcher = MULTILINE_COMMENT.matcher(source);
+        if (matcher.find()) {
+            StringBuffer sb = new StringBuffer(source.length());
             matcher.appendTail(sb);
             return sb.toString();
         }

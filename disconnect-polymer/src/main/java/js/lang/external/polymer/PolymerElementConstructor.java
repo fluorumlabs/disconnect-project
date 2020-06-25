@@ -2,23 +2,33 @@ package js.lang.external.polymer;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import js.lang.JsFunction;
 import js.lang.Unknown;
+import js.web.dom.HTMLElement;
 import js.web.webcomponents.HTMLTemplateElement;
+import org.teavm.jso.JSBody;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@polymer/polymer",
     version = "^3.4.1"
 )
 @Import(
+    symbols = {"PolymerElementConstructor as PolymerElementConstructor_PolymerElementConstructor"},
     module = "@polymer/polymer/polymer-element.js"
 )
 public interface PolymerElementConstructor extends Any {
+  @JSBody(
+      script = "return new PolymerElementConstructor_PolymerElementConstructor()"
+  )
+  static HTMLElement create() {
+    throw new UnsupportedOperationException("Available only in JavaScript");
+  }
+
   @JSProperty("is")
   @Nullable
   String getIs();

@@ -2,13 +2,13 @@ package js.lang.external.polymer;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import java.lang.String;
+import javax.annotation.Nullable;
 import js.lang.Any;
 import js.lang.JsFunction;
 import js.lang.Unknown;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
-
-import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@polymer/polymer",
@@ -64,7 +64,22 @@ public interface PolymerInit extends Any {
   Unknown getBehaviors();
 
   @JSProperty("behaviors")
-  void setBehaviors(@Nullable Any value);
+  void setBehaviors(@Nullable Pick < PolymerInit , Exclude < keyof PolymerInit ,  178 > > value);
+
+  @JSProperty("behaviors")
+  void setBehaviors(@Nullable Pick < PolymerInit , Exclude < keyof PolymerInit , |  182 > > value);
+
+  @JSProperty("behaviors")
+  void setBehaviors(@Nullable Pick < PolymerInit , Exclude < keyof PolymerInit ,  185 > > value);
+
+  @JSProperty("behaviors")
+  void setBehaviors(Pick < PolymerInit , Exclude < keyof PolymerInit ,  178 > >[] value);
+
+  @JSProperty("behaviors")
+  void setBehaviors(Pick < PolymerInit , Exclude < keyof PolymerInit , |  182 > >[] value);
+
+  @JSProperty("behaviors")
+  void setBehaviors(Pick < PolymerInit , Exclude < keyof PolymerInit ,  185 > >[] value);
 
   void registered();
 

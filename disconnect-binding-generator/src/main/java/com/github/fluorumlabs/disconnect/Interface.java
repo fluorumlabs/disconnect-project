@@ -4,6 +4,8 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -19,10 +21,13 @@ public class Interface {
     private TypeName builderClassName;
     private TypeSpec.Builder builder;
     private TypeSpec.Builder builderBuilder;
+    private ClassName extendedClassName;
 
     private Set<Interface> innerInterfaces = new LinkedHashSet<>();
-    private Set<String> superInterfaces = new HashSet<>();
+    private Set<TypeName> superInterfaces = new HashSet<>();
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Interface parent;
     private Module parentModule;
 

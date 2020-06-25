@@ -3,7 +3,6 @@ package js.lang.external.polymer;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
-import js.util.collections.Array;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -21,10 +20,10 @@ import org.teavm.jso.JSProperty;
 )
 public interface PolymerSpliceChange<T extends Any> extends Any {
   @JSProperty("indexSplices")
-  Array< PolymerSplice < T > > getIndexSplices();
+  PolymerSplice < T >[] getIndexSplices();
 
   @JSProperty("indexSplices")
-  void setIndexSplices(Array < PolymerSplice < T > > value);
+  void setIndexSplices(PolymerSplice < T >[] value);
 
   /**
    * The object passed to &quot;.splices&quot; observers. A set of mutations made to the
@@ -39,7 +38,7 @@ public interface PolymerSpliceChange<T extends Any> extends Any {
       return object;
     }
 
-    public Builder<T> indexSplices(Array < PolymerSplice < T > > value) {
+    public Builder<T> indexSplices(PolymerSplice < T >[] value) {
       object.setIndexSplices(value);
       return this;
     }

@@ -2,6 +2,7 @@ package js.lang.external.polymer;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import java.lang.String;
 import js.lang.Any;
 import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
@@ -61,14 +62,14 @@ public interface PolymerDeepPropertyChange<B extends Any, V extends Any> extends
    *
    */
   @JSProperty("value")
-  void setValueB(B value);
+  void setValue(B value);
 
   /**
    * New value of the path that changed.
    *
    */
   @JSProperty("value")
-  void setValueV(V value);
+  void setValue(V value);
 
   /**
    * The object passed to &quot;.*&quot; wildcard obsevers. A record of a change made to an
@@ -106,8 +107,8 @@ public interface PolymerDeepPropertyChange<B extends Any, V extends Any> extends
      * New value of the path that changed.
      *
      */
-    public Builder<B, V> valueB(B value) {
-      object.setValueB(value);
+    public Builder<B, V> value(B value) {
+      object.setValue(value);
       return this;
     }
 
@@ -115,8 +116,8 @@ public interface PolymerDeepPropertyChange<B extends Any, V extends Any> extends
      * New value of the path that changed.
      *
      */
-    public Builder<B, V> valueV(V value) {
-      object.setValueV(value);
+    public Builder<B, V> value(V value) {
+      object.setValue(value);
       return this;
     }
   }
