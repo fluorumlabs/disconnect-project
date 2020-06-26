@@ -52,9 +52,9 @@ echo ===[ Vaadin ]===
 :call import.bat @vaadin/vaadin-progress-bar
 :call import.bat @vaadin/vaadin-radio-button
 :call import.bat @vaadin/vaadin-rich-text-editor
-call import.bat @vaadin/vaadin-date-picker
+:call import.bat @vaadin/vaadin-date-picker
+call import.bat @vaadin/vaadin-time-picker
 :call import.bat @vaadin/vaadin-date-time-picker
-:call import.bat @vaadin/vaadin-time-picker
 :call import.bat @vaadin/vaadin-form-layout
 :call import.bat @vaadin/vaadin-grid
 :call import.bat @vaadin/vaadin-grid-pro
