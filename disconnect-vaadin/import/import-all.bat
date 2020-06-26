@@ -30,7 +30,7 @@ echo ===[ Vaadin ]===
 
 :call import.bat @vaadin/vaadin-item
 :call import.bat @vaadin/vaadin-overlay
-call import.bat @vaadin/vaadin-dialog
+:call import.bat @vaadin/vaadin-dialog
 
 :call import.bat @vaadin/vaadin-details
 :call import.bat @vaadin/vaadin-accordion
@@ -41,7 +41,7 @@ call import.bat @vaadin/vaadin-dialog
 :call import.bat @vaadin/vaadin-checkbox
 :call import.bat @vaadin/vaadin-combo-box
 :call import.bat @vaadin/vaadin-text-field
-:call import.bat @vaadin/vaadin-confirm-dialog
+call import.bat @vaadin/vaadin-confirm-dialog
 :call import.bat @vaadin/vaadin-context-menu
 :call import.bat @vaadin/vaadin-cookie-consent
 :call import.bat @vaadin/vaadin-crud
