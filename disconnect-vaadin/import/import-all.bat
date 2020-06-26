@@ -58,8 +58,8 @@ echo ===[ Vaadin ]===
 :call import.bat @vaadin/vaadin-ordered-layout
 :call import.bat @vaadin/vaadin-split-layout
 :call import.bat @vaadin/vaadin-form-layout
-call import.bat @vaadin/vaadin-tabs
-:call import.bat @vaadin/vaadin-upload
+:call import.bat @vaadin/vaadin-tabs
+call import.bat @vaadin/vaadin-upload
 :call import.bat @vaadin/vaadin-notification
 :call import.bat @vaadin/vaadin-icons
 :call import.bat @vaadin/vaadin-grid
