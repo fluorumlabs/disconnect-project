@@ -27,7 +27,12 @@ echo ===[ Vaadin ]===
 :call import.bat @vaadin/vaadin-element-mixin
 :call import.bat @vaadin/vaadin-list-mixin
 :call import.bat @vaadin/vaadin-themable-mixin
+
 :call import.bat @vaadin/vaadin-item
+call import.bat @vaadin/vaadin-overlay
+:call import.bat @vaadin/vaadin-dialog
+
+:call import.bat @vaadin/vaadin-details
 :call import.bat @vaadin/vaadin-accordion
 :call import.bat @vaadin/vaadin-app-layout
 :call import.bat @vaadin/vaadin-board
@@ -35,7 +40,7 @@ echo ===[ Vaadin ]===
 :call import.bat @vaadin/vaadin-charts
 :call import.bat @vaadin/vaadin-checkbox
 :call import.bat @vaadin/vaadin-combo-box
-call import.bat @vaadin/vaadin-text-field
+:call import.bat @vaadin/vaadin-text-field
 :call import.bat @vaadin/vaadin-confirm-dialog
 :call import.bat @vaadin/vaadin-context-menu
 :call import.bat @vaadin/vaadin-cookie-consent
@@ -43,8 +48,6 @@ call import.bat @vaadin/vaadin-text-field
 :call import.bat @vaadin/vaadin-custom-field
 :call import.bat @vaadin/vaadin-date-picker
 :call import.bat @vaadin/vaadin-date-time-picker
-:call import.bat @vaadin/vaadin-details
-:call import.bat @vaadin/vaadin-dialog
 :call import.bat @vaadin/vaadin-form-layout
 :call import.bat @vaadin/vaadin-grid
 :call import.bat @vaadin/vaadin-grid-pro
@@ -54,7 +57,6 @@ call import.bat @vaadin/vaadin-text-field
 :call import.bat @vaadin/vaadin-menu-bar
 :call import.bat @vaadin/vaadin-notification
 :call import.bat @vaadin/vaadin-ordered-layout
-:call import.bat @vaadin/vaadin-overlay
 :call import.bat @vaadin/vaadin-progress-bar
 :call import.bat @vaadin/vaadin-radio-button
 :call import.bat @vaadin/vaadin-rich-text-editor
