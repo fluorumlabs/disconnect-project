@@ -8,14 +8,6 @@ import java.lang.UnsupportedOperationException;
 import javax.annotation.Nullable;
 import js.lang.Any;
 import js.lang.JsFunction;
-import js.lang.external.polymer.mixins.DirMixin;
-import js.lang.external.polymer.mixins.ElementMixin;
-import js.lang.external.polymer.mixins.GestureEventListeners;
-import js.lang.external.polymer.mixins.PropertiesChanged;
-import js.lang.external.polymer.mixins.PropertiesMixin;
-import js.lang.external.polymer.mixins.PropertyAccessors;
-import js.lang.external.polymer.mixins.PropertyEffects;
-import js.lang.external.polymer.mixins.TemplateStamp;
 import js.web.dom.DocumentFragment;
 import js.web.dom.Element;
 import js.web.dom.Event;
@@ -34,6 +26,9 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
     symbols = {"LegacyElementMixin as LegacyElementMixin_LegacyElementMixin"},
+    module = "@polymer/polymer/lib/legacy/legacy-element-mixin.js"
+)
+@Import(
     module = "@polymer/polymer/lib/legacy/legacy-element-mixin.js"
 )
 public interface LegacyElementMixin extends GestureEventListeners, DirMixin, TemplateStamp, PropertiesMixin, PropertyEffects, ElementMixin, PropertyAccessors, PropertiesChanged {
@@ -80,60 +75,6 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    *
    */
   void ready();
-
-  /**
-   * Provides an override implementation of <code>attributeChangedCallback</code>
-   * which adds the Polymer legacy API's <code>attributeChanged</code> method.
-   *
-   * @param name Name of attribute.
-   * @param old Old value of attribute.
-   * @param value Current value of attribute.
-   * @param namespace Attribute namespace.
-   *
-   */
-  void attributeChangedCallback(String name, @Nullable String old, @Nullable String value,
-      @Nullable String namespace);
-
-  /**
-   * Provides an override implementation of <code>attributeChangedCallback</code>
-   * which adds the Polymer legacy API's <code>attributeChanged</code> method.
-   *
-   * @param name Name of attribute.
-   * @param old Old value of attribute.
-   * @param value Current value of attribute.
-   */
-  void attributeChangedCallback(String name, @Nullable String old, @Nullable String value);
-
-  /**
-   * Provides an override implementation of <code>attributeChangedCallback</code>
-   * which adds the Polymer legacy API's <code>attributeChanged</code> method.
-   *
-   * @param name Name of attribute.
-   * @param old Old value of attribute.
-   */
-  void attributeChangedCallback(String name, @Nullable String old);
-
-  /**
-   * Provides an override implementation of <code>attributeChangedCallback</code>
-   * which adds the Polymer legacy API's <code>attributeChanged</code> method.
-   *
-   * @param name Name of attribute.
-   */
-  void attributeChangedCallback(String name);
-
-  /**
-   * Provides an implementation of <code>connectedCallback</code>
-   * which adds Polymer legacy API's <code>attached</code> method.
-   *
-   */
-  void connectedCallback();
-
-  /**
-   * Provides an implementation of <code>disconnectedCallback</code>
-   * which adds Polymer legacy API's <code>detached</code> method.
-   *
-   */
-  void disconnectedCallback();
 
   /**
    * Legacy callback called during the <code>constructor</code>, for overriding
@@ -717,7 +658,8 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * at microtask timing (guaranteed before paint).
    *
    * <pre><code> debouncedClickAction(e) {
-   *       *       this.debounce('click', function() {
+   *    // will not call `processClick` more than once per 100ms
+   *    this.debounce('click', function() {
    *     this.processClick();
    *    } 100);
    *  }
@@ -734,7 +676,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * is active.
    *
    */
-  Any debounce(String jobName, DebounceCallbackFn callback, int wait);
+  Any debounce(String jobName, DebounceCallbackFunction callback, double wait);
 
   /**
    * Call <code>debounce</code> to collapse multiple requests for a named task into
@@ -743,7 +685,8 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * at microtask timing (guaranteed before paint).
    *
    * <pre><code> debouncedClickAction(e) {
-   *       *       this.debounce('click', function() {
+   *    // will not call `processClick` more than once per 100ms
+   *    this.debounce('click', function() {
    *     this.processClick();
    *    } 100);
    *  }
@@ -758,7 +701,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * is active.
    *
    */
-  Any debounce(String jobName, DebounceCallbackFn callback);
+  Any debounce(String jobName, DebounceCallbackFunction callback);
 
   /**
    * Returns whether a named debouncer is active.
@@ -799,7 +742,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @return Handle that may be used to cancel the async job.
    *
    */
-  int async(JsFunction callback, int waitTime);
+  double async(JsFunction callback, double waitTime);
 
   /**
    * Runs a callback function asynchronously.
@@ -812,7 +755,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @return Handle that may be used to cancel the async job.
    *
    */
-  int async(JsFunction callback);
+  double async(JsFunction callback);
 
   /**
    * Cancels an async operation started with <code>async</code>.
@@ -821,7 +764,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * cancel.
    *
    */
-  void cancelAsync(int handle);
+  void cancelAsync(double handle);
 
   /**
    * Convenience method for creating an element and configuring it.
@@ -952,7 +895,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * Defaults to <code>this</code>.
    *
    */
-  void translate3d(String x, String y, int z, @Nullable Element node);
+  void translate3d(String x, String y, double z, @Nullable Element node);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -965,7 +908,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * Defaults to <code>this</code>.
    *
    */
-  void translate3d(String x, int y, String z, @Nullable Element node);
+  void translate3d(String x, double y, String z, @Nullable Element node);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -978,7 +921,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * Defaults to <code>this</code>.
    *
    */
-  void translate3d(String x, int y, int z, @Nullable Element node);
+  void translate3d(String x, double y, double z, @Nullable Element node);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -991,7 +934,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * Defaults to <code>this</code>.
    *
    */
-  void translate3d(int x, String y, String z, @Nullable Element node);
+  void translate3d(double x, String y, String z, @Nullable Element node);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1004,7 +947,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * Defaults to <code>this</code>.
    *
    */
-  void translate3d(int x, String y, int z, @Nullable Element node);
+  void translate3d(double x, String y, double z, @Nullable Element node);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1017,7 +960,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * Defaults to <code>this</code>.
    *
    */
-  void translate3d(int x, int y, String z, @Nullable Element node);
+  void translate3d(double x, double y, String z, @Nullable Element node);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1030,7 +973,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * Defaults to <code>this</code>.
    *
    */
-  void translate3d(int x, int y, int z, @Nullable Element node);
+  void translate3d(double x, double y, double z, @Nullable Element node);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1050,7 +993,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @param y Y offset.
    * @param z Z offset.
    */
-  void translate3d(String x, String y, int z);
+  void translate3d(String x, String y, double z);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1060,7 +1003,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @param y Y offset.
    * @param z Z offset.
    */
-  void translate3d(String x, int y, String z);
+  void translate3d(String x, double y, String z);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1070,7 +1013,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @param y Y offset.
    * @param z Z offset.
    */
-  void translate3d(String x, int y, int z);
+  void translate3d(String x, double y, double z);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1080,7 +1023,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @param y Y offset.
    * @param z Z offset.
    */
-  void translate3d(int x, String y, String z);
+  void translate3d(double x, String y, String z);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1090,7 +1033,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @param y Y offset.
    * @param z Z offset.
    */
-  void translate3d(int x, String y, int z);
+  void translate3d(double x, String y, double z);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1100,7 +1043,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @param y Y offset.
    * @param z Z offset.
    */
-  void translate3d(int x, int y, String z);
+  void translate3d(double x, double y, String z);
 
   /**
    * Cross-platform helper for setting an element's CSS <code>translate3d</code>
@@ -1110,7 +1053,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    * @param y Y offset.
    * @param z Z offset.
    */
-  void translate3d(int x, int y, int z);
+  void translate3d(double x, double y, double z);
 
   /**
    * Removes an item from an array, if it exists.
@@ -1150,7 +1093,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
    *
    */
   @Nullable
-  Any[] arrayDelete(int[] arrayOrPath, Any item);
+  Any[] arrayDelete(double[] arrayOrPath, Any item);
 
   /**
    * Removes an item from an array, if it exists.
@@ -1198,17 +1141,17 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
         return object;
       }
 
-      public Builder bubbles(boolean value) {
+      public FireOptions.Builder bubbles(boolean value) {
         object.setBubbles(value);
         return this;
       }
 
-      public Builder cancelable(boolean value) {
+      public FireOptions.Builder cancelable(boolean value) {
         object.setCancelable(value);
         return this;
       }
 
-      public Builder composed(boolean value) {
+      public FireOptions.Builder composed(boolean value) {
         object.setComposed(value);
         return this;
       }
@@ -1217,13 +1160,7 @@ public interface LegacyElementMixin extends GestureEventListeners, DirMixin, Tem
 
   @FunctionalInterface
   @JSFunctor
-  interface DebounceCallbackFn extends Any {
-    void apply();
-  }
-
-  @FunctionalInterface
-  @JSFunctor
-  interface DebounceCallbackFn extends Any {
+  interface DebounceCallbackFunction extends Any {
     void apply();
   }
 }

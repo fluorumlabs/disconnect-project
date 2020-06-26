@@ -4,9 +4,9 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
-import js.lang.JsFunction;
-import js.lang.Unknown;
+import js.lang.Unknown /* keyof PolymerInit */;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
 
@@ -61,25 +61,11 @@ public interface PolymerInit extends Any {
 
   @JSProperty("behaviors")
   @Nullable
-  Unknown getBehaviors();
+  Pick<PolymerInit, Exclude<Unknown /* keyof PolymerInit */>, BehaviorsParam3> getBehaviors();
 
   @JSProperty("behaviors")
-  void setBehaviors(@Nullable Pick < PolymerInit , Exclude < keyof PolymerInit ,  178 > > value);
-
-  @JSProperty("behaviors")
-  void setBehaviors(@Nullable Pick < PolymerInit , Exclude < keyof PolymerInit , |  182 > > value);
-
-  @JSProperty("behaviors")
-  void setBehaviors(@Nullable Pick < PolymerInit , Exclude < keyof PolymerInit ,  185 > > value);
-
-  @JSProperty("behaviors")
-  void setBehaviors(Pick < PolymerInit , Exclude < keyof PolymerInit ,  178 > >[] value);
-
-  @JSProperty("behaviors")
-  void setBehaviors(Pick < PolymerInit , Exclude < keyof PolymerInit , |  182 > >[] value);
-
-  @JSProperty("behaviors")
-  void setBehaviors(Pick < PolymerInit , Exclude < keyof PolymerInit ,  185 > >[] value);
+  void setBehaviors(
+      @Nullable Pick<PolymerInit, Exclude<Unknown /* keyof PolymerInit */>, BehaviorsParam3> value);
 
   void registered();
 
@@ -109,35 +95,6 @@ public interface PolymerInit extends Any {
   @JSIndexer
   void set(String others, Any value);
 
-  interface Properties extends Any {
-    @JSIndexer
-    Unknown get(String key);
-
-    @JSIndexer
-    void set(String key, PolymerElementPropertiesMeta value);
-
-    @JSIndexer
-    void set(String key, JsFunction value);
-
-    class Builder {
-      private final Properties object = Any.empty();
-
-      public Properties build() {
-        return object;
-      }
-
-      public Builder set(String key, PolymerElementPropertiesMeta value) {
-        object.set(key, value);
-        return this;
-      }
-
-      public Builder set(String key, JsFunction value) {
-        object.set(key, value);
-        return this;
-      }
-    }
-  }
-
   interface HostAttributes extends Any {
     @JSIndexer
     Any get(String key);
@@ -152,7 +109,7 @@ public interface PolymerInit extends Any {
         return object;
       }
 
-      public Builder set(String key, Any value) {
+      public HostAttributes.Builder set(String key, Any value) {
         object.set(key, value);
         return this;
       }
@@ -173,10 +130,24 @@ public interface PolymerInit extends Any {
         return object;
       }
 
-      public Builder set(String key, String value) {
+      public Listeners.Builder set(String key, String value) {
         object.set(key, value);
         return this;
       }
     }
+  }
+
+  abstract class BehaviorsParam3 extends JsEnum {
+    public static final BehaviorsParam3 IS = JsEnum.of("is");
+
+    public static final BehaviorsParam3 EXTENDS = JsEnum.of("extends");
+
+    public static final BehaviorsParam3 _TEMPLATE = JsEnum.of("_template");
+
+    public static final BehaviorsParam3 IS = JsEnum.of("is");
+
+    public static final BehaviorsParam3 EXTENDS = JsEnum.of("extends");
+
+    public static final BehaviorsParam3 _TEMPLATE = JsEnum.of("_template");
   }
 }

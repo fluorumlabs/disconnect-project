@@ -5,12 +5,13 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.external.polymer.legacy.LegacyElementMixin;
+import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
 
 /**
  * <code>iron-meta</code> is a generic element you can use for sharing information across the
- * DOM tree. It uses [monostate pattern](http: * such that any instance of iron-meta has access to the shared information. You
+ * DOM tree. It uses <a href="http://c2.com/cgi/wiki?MonostatePattern">monostate pattern</a>
+ * such that any instance of iron-meta has access to the shared information. You
  * can use <code>iron-meta</code> to share whatever you want (or create an extension [like
  * x-meta] for enhancements).
  *
@@ -51,22 +52,6 @@ import org.teavm.jso.JSProperty;
     module = "@polymer/iron-meta/iron-meta.js"
 )
 public interface IronMetaElement extends HTMLElement, LegacyElementMixin {
-  /**
-   * The type of meta-data.  All meta-data of the same type is stored
-   * together.
-   *
-   */
-  @JSProperty("type")
-  String getType();
-
-  /**
-   * The type of meta-data.  All meta-data of the same type is stored
-   * together.
-   *
-   */
-  @JSProperty("type")
-  void setType(String value);
-
   /**
    * The key used to store <code>value</code> under the <code>type</code> namespace.
    *

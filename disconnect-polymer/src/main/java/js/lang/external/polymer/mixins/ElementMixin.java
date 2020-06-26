@@ -7,7 +7,7 @@ import java.lang.UnsupportedOperationException;
 import javax.annotation.Nullable;
 import js.lang.Any;
 import js.lang.JsFunction;
-import js.lang.Unknown;
+import js.lang.Unknown /* StampedTemplate | HTMLElement | ShadowRoot | null */;
 import js.lang.external.polymer.StampedTemplate;
 import js.web.dom.Element;
 import js.web.dom.HTMLElement;
@@ -22,6 +22,9 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
     symbols = {"updateStyles as ElementMixin_updateStyles", "ElementMixin as ElementMixin_ElementMixin"},
+    module = "@polymer/polymer/lib/mixins/element-mixin.js"
+)
+@Import(
     module = "@polymer/polymer/lib/mixins/element-mixin.js"
 )
 public interface ElementMixin extends TemplateStamp, PropertiesMixin, PropertyEffects, PropertyAccessors, PropertiesChanged {
@@ -117,16 +120,16 @@ public interface ElementMixin extends TemplateStamp, PropertiesMixin, PropertyEf
 
   @JSProperty("root")
   @Nullable
-  Unknown getRoot();
+  Unknown /* StampedTemplate | HTMLElement | ShadowRoot | null */ getRoot();
 
   @JSProperty("root")
-  void setRoot(@Nullable StampedTemplate value);
+  void setRoot(@Nullable ShadowRoot value);
 
   @JSProperty("root")
   void setRoot(@Nullable HTMLElement value);
 
   @JSProperty("root")
-  void setRoot(@Nullable ShadowRoot value);
+  void setRoot(@Nullable StampedTemplate value);
 
   @JSProperty("$")
   $ get$();
@@ -139,17 +142,6 @@ public interface ElementMixin extends TemplateStamp, PropertiesMixin, PropertyEf
    *
    */
   void ready();
-
-  /**
-   * Provides a default implementation of the standard Custom Elements
-   * <code>connectedCallback</code>.
-   *
-   * The default implementation enables the property effects system and
-   * flushes any pending properties, and updates shimmed CSS properties
-   * when using the ShadyCSS scoping/custom properties polyfill.
-   *
-   */
-  void connectedCallback();
 
   /**
    * When using the ShadyCSS scoping and custom property shim, causes all
@@ -263,8 +255,8 @@ public interface ElementMixin extends TemplateStamp, PropertiesMixin, PropertyEf
    *
    */
   @JSBody(
-      params = {"props"},
-      script = "ElementMixin_updateStyles(props)"
+      params = {},
+      script = "ElementMixin_updateStyles()"
   )
   static void updateStyles() {
     throw new UnsupportedOperationException("Available only in JavaScript");
@@ -284,7 +276,7 @@ public interface ElementMixin extends TemplateStamp, PropertiesMixin, PropertyEf
         return object;
       }
 
-      public Builder set(String key, Element value) {
+      public $.Builder set(String key, Element value) {
         object.set(key, value);
         return this;
       }

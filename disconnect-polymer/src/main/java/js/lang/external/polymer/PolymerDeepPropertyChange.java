@@ -4,7 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import js.lang.Any;
-import js.lang.Unknown;
+import js.lang.Unknown /* B | V */;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -55,7 +55,7 @@ public interface PolymerDeepPropertyChange<B extends Any, V extends Any> extends
    *
    */
   @JSProperty("value")
-  Unknown getValue();
+  Unknown /* B | V */ getValue();
 
   /**
    * New value of the path that changed.
@@ -71,13 +71,6 @@ public interface PolymerDeepPropertyChange<B extends Any, V extends Any> extends
   @JSProperty("value")
   void setValue(V value);
 
-  /**
-   * The object passed to &quot;.*&quot; wildcard obsevers. A record of a change made to an
-   * object.
-   * @template B The object matching the non-wildcard portion of the path.
-   * @template V Additional types that could be set at the path.
-   *
-   */
   class Builder<B extends Any, V extends Any> {
     private final PolymerDeepPropertyChange<B, V> object = Any.empty();
 

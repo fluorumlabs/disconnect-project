@@ -5,7 +5,6 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.UnsupportedOperationException;
 import js.lang.Any;
 import js.lang.external.polymer.iron_fit_behavior.IronFitBehavior;
-import js.lang.external.polymer.iron_resizable_behavior.IronResizableBehavior;
 import org.teavm.jso.JSBody;
 
 @NpmPackage(
@@ -16,7 +15,10 @@ import org.teavm.jso.JSBody;
     symbols = {"IronOverlayBehaviorImpl as IronOverlayBehavior_IronOverlayBehaviorImpl", "IronOverlayBehavior as IronOverlayBehavior_IronOverlayBehavior"},
     module = "@polymer/iron-overlay-behavior/iron-overlay-behavior.js"
 )
-public interface IronOverlayBehavior extends IronOverlayBehaviorImpl, IronFitBehavior, IronResizableBehavior {
+@Import(
+    module = "@polymer/iron-overlay-behavior/iron-overlay-behavior.js"
+)
+public interface IronOverlayBehavior extends IronResizableBehavior, IronOverlayBehaviorImpl, IronFitBehavior {
   @JSBody(
       script = "return IronOverlayBehavior_IronOverlayBehaviorImpl"
   )

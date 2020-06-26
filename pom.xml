@@ -16,6 +16,7 @@
         <module>disconnect-binding-generator</module>
         <module>disconnect-spring-integration</module>
         <module>disconnect-highcharts</module>
+        <module>disconnect-vaadin</module>
         <!--module>disconnect-zero</module-->
         <!--module>disconnect-polymer</module>
         <module>disconnect-vaadin</module>

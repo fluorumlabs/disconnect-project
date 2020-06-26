@@ -17,6 +17,9 @@ import org.teavm.jso.JSFunctor;
     symbols = {"mixinBehaviors as Class_mixinBehaviors", "Class as Class_Class"},
     module = "@polymer/polymer/lib/legacy/class.js"
 )
+@Import(
+    module = "@polymer/polymer/lib/legacy/class.js"
+)
 public interface Class extends Any {
   /**
    * Applies a &quot;legacy&quot; behavior or array of behaviors to the provided class.
@@ -130,7 +133,7 @@ public interface Class extends Any {
       params = {"info", "mixin"},
       script = "return Class_Class(info, mixin)"
   )
-  static <T extends Any> ClassResult Class(PolymerInit info, ClassMixinFn mixin) {
+  static <T extends Any> ClassResult Class(PolymerInit info, ClassMixinFunction mixin) {
     throw new UnsupportedOperationException("Available only in JavaScript");
   }
 
@@ -145,7 +148,7 @@ public interface Class extends Any {
 
   @FunctionalInterface
   @JSFunctor
-  interface ClassMixinFn extends Any {
+  interface ClassMixinFunction extends Any {
     T apply(T p0);
   }
 }

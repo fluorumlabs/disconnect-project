@@ -8,6 +8,7 @@ import js.lang.Any;
 import js.lang.external.polymer.StampedTemplate;
 import js.lang.external.polymer.mixins.PropertyEffects;
 import js.web.dom.Event;
+import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
 
 @NpmPackage(
@@ -17,7 +18,7 @@ import org.teavm.jso.JSProperty;
 @Import(
     module = "@polymer/polymer/lib/utils/templatize.js"
 )
-public interface TemplateInstanceBase extends HTMLElement, PropertyEffects {
+public interface TemplateInstanceBase extends PropertyEffects, HTMLElement {
   @JSProperty("root")
   StampedTemplate getRoot();
 

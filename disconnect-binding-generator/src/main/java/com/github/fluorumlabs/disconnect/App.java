@@ -93,7 +93,9 @@ public class App {
                         .sorted(Comparator.comparingInt(f -> StringUtils.split(f.getPath(), "/\\").length))
                         .collect(Collectors.toList());
 
-                files.add(0, mainModule);
+                if (mainModule.exists()) {
+                    files.add(0, mainModule);
+                }
 
                 for (File listFile : files) {
                     Path modulePath = listFile.toPath();

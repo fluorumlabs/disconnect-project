@@ -4,6 +4,7 @@ import com.squareup.javapoet.*;
 import js.extras.JsEnum;
 import js.lang.*;
 import js.util.collections.Array;
+import js.util.collections.ReadonlyArray;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -933,7 +934,7 @@ public class Module {
     private void processNamespaceExport(ListIterator<String> itr, Interface anInterface) {
         itr.next();
 
-        if (!anInterface.getSymbols().contains(anInterface.getJsClassName())) {
+        if (anInterface.getJsClassName() != null && !anInterface.getSymbols().contains(anInterface.getJsClassName())) {
             anInterface.getSymbols().add(anInterface.getJsClassName());
             MethodSpec instance = MethodSpec.methodBuilder("INSTANCE")
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
@@ -2113,9 +2114,9 @@ public class Module {
         type = removeStart(type.trim(), "readonly ");
         type = removeStart(type.trim(), "typeof ");
 
-        if ( type.contains("<") && (!type.contains(ARROW_TOKEN) || type.indexOf(ARROW_TOKEN) > type.indexOf("<"))) {
+        if ( type.contains("<") && !type.startsWith("<") && (!type.contains(ARROW_TOKEN) || type.indexOf(ARROW_TOKEN) > type.indexOf("<"))) {
             // this thing has generic type
-            String signature = substringBeforeLast(substringAfter(type, "<"),">");
+            String signature = substringBeforeLast(substringAfter(type, "<"),">").trim();
             String typeWithoutSignature = substringBefore(type, "<").trim();
 
             switch (typeWithoutSignature) {
@@ -2123,6 +2124,22 @@ public class Module {
                 case "Readonly":
                 case "Required":
                     return resolve(signature, suggestedName, parent);
+                case "ReadonlyArray": {
+                    TypeName resolve = resolve(signature, suggestedName, parent);
+                    if (resolve.isPrimitive() || resolve.toString().equals(String.class.getName())) {
+                        return ArrayTypeName.of(resolve);
+                    } else {
+                        return ParameterizedTypeName.get(ClassName.get(Array.class), resolve(signature, suggestedName, parent));
+                    }
+                }
+                case "Array": {
+                    TypeName resolve = resolve(signature, suggestedName, parent);
+                    if (resolve.isPrimitive() || resolve.toString().equals(String.class.getName())) {
+                        return ArrayTypeName.of(resolve);
+                    } else {
+                        return ParameterizedTypeName.get(ClassName.get(ReadonlyArray.class), resolve(signature, suggestedName, parent));
+                    }
+                }
             }
 
             TypeName resolvedType = resolve(typeWithoutSignature, suggestedName, parent);
@@ -2137,7 +2154,7 @@ public class Module {
 
             for (String param : split(signature, ",")) {
                 TypeName parameterType = resolve(param.trim(), suggestedName + "Param" + (index > 1 ? index : ""), parent);
-                if (parameterType.isPrimitive() || parameterType.toString().equals(String.class.getName())) {
+                if (parameterType.isPrimitive() || parameterType.toString().equals(String.class.getName()) || parameterType.toString().equals("void")) {
                     parameterType = unknown(param.trim());
                 } else if (parameterType instanceof ArrayTypeName) {
                     try {
@@ -2205,6 +2222,10 @@ public class Module {
             }
         }
 
+        if (type.contains(SQUARE_TOKEN)) {
+            return ArrayTypeName.of(resolve(split(type, SQUARE_TOKEN)[0], suggestedName, parent));
+        }
+
         if (type.startsWith(FIGURE_TOKEN)) {
             String resolvedObject = context.resolve(typeParts[1]);
             if (resolvedObject.isEmpty()) {
@@ -2226,10 +2247,6 @@ public class Module {
                 return ClassName.get(JsFunction.class);
             }
             return processLambda(parent, suggestedName+"Function", type);
-        }
-
-        if (type.contains(SQUARE_TOKEN)) {
-            return ArrayTypeName.of(resolve(split(type, SQUARE_TOKEN)[0], suggestedName, parent));
         }
 
         if (has(type)) {
@@ -2271,10 +2288,9 @@ public class Module {
                 return ClassName.get(JsFunction.class);
             case "never":
             case "unknown":
-                return ClassName.get(Unknown.class);
             case "null":
             case "undefined":
-                return null;
+                return unknown(type);
         }
         try {
             return ClassName.bestGuess(type);

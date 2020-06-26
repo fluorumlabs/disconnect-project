@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import js.lang.Any;
 import js.lang.JsFunction;
 import js.lang.external.polymer.PolymerElement;
-import js.lang.external.polymer.mixins.OptionalMutableData;
 import js.lang.external.polymer.utils.TemplateInstanceBase;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
@@ -107,7 +106,7 @@ import org.teavm.jso.JSProperty;
 @Import(
     module = "@polymer/polymer/lib/elements/dom-repeat.js"
 )
-public interface DomRepeat extends PolymerElement, OptionalMutableData {
+public interface DomRepeat extends OptionalMutableData, PolymerElement {
   /**
    * An array containing items determining how many instances of the template
    * to stamp and that that each template instance should bind to.
@@ -262,7 +261,7 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
    *
    */
   @JSProperty("delay")
-  int getDelay();
+  double getDelay();
 
   /**
    * When using a <code>filter</code> or <code>sort</code> function, the <code>delay</code> property
@@ -273,7 +272,7 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
    *
    */
   @JSProperty("delay")
-  void setDelay(int value);
+  void setDelay(double value);
 
   /**
    * Count of currently rendered items after <code>filter</code> (if any) has been applied.
@@ -282,7 +281,7 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
    *
    */
   @JSProperty("renderedItemCount")
-  int getRenderedItemCount();
+  double getRenderedItemCount();
 
   /**
    * When greater than zero, defines an initial count of template instances
@@ -294,7 +293,7 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
    *
    */
   @JSProperty("initialCount")
-  int getInitialCount();
+  double getInitialCount();
 
   /**
    * When greater than zero, defines an initial count of template instances
@@ -306,7 +305,7 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
    *
    */
   @JSProperty("initialCount")
-  void setInitialCount(int value);
+  void setInitialCount(double value);
 
   /**
    * When <code>initialCount</code> is used, this property defines a frame rate (in
@@ -322,7 +321,7 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
    *
    */
   @JSProperty("targetFramerate")
-  int getTargetFramerate();
+  double getTargetFramerate();
 
   /**
    * When <code>initialCount</code> is used, this property defines a frame rate (in
@@ -338,7 +337,7 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
    *
    */
   @JSProperty("targetFramerate")
-  void setTargetFramerate(int value);
+  void setTargetFramerate(double value);
 
   /**
    * When the global <code>suppressTemplateNotifications</code> setting is used, setting
@@ -396,10 +395,6 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
   @JSProperty("reuseChunkedInstances")
   void setReuseChunkedInstances(boolean value);
 
-  void connectedCallback();
-
-  void disconnectedCallback();
-
   /**
    * Forces the element to render its content. Normally rendering is
    * asynchronous to a provoking change. This is done for efficiency so
@@ -434,7 +429,7 @@ public interface DomRepeat extends PolymerElement, OptionalMutableData {
    * not correspond to the array index if a user <code>sort</code> is applied).
    *
    */
-  int indexForElement(HTMLElement el);
+  double indexForElement(HTMLElement el);
 
   /**
    * Returns the template &quot;model&quot; associated with a given element, which

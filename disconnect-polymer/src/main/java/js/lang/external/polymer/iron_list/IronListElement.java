@@ -5,11 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.external.polymer.iron_resizable_behavior.IronResizableBehavior;
-import js.lang.external.polymer.iron_scroll_target_behavior.IronScrollTargetBehavior;
-import js.lang.external.polymer.legacy.LegacyElementMixin;
-import js.lang.external.polymer.legacy.OptionalMutableDataBehavior;
-import js.lang.external.polymer.legacy.Templatizer;
+import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -31,7 +27,7 @@ import org.teavm.jso.JSProperty;
  * explicit CSS <code>height</code> property set via a class or inline style, or else is sized
  * by other layout means (e.g. the <code>flex</code> or <code>fit</code> classes).
  *
- * <h4>Flexbox - [jsbin](https: *</h4>
+ * <h4>Flexbox - <a href="https://jsbin.com/vejoni/edit?html,output">jsbin</a></h4>
  * <pre><code class="language-html">&lt;template is=&quot;x-list&quot;&gt;
  *   &lt;style&gt;
  *     :host {
@@ -55,30 +51,31 @@ import org.teavm.jso.JSProperty;
  *   &lt;/iron-list&gt;
  * &lt;/template&gt;
  * </code></pre>
- * <h4>Explicit size - [jsbin](https: * ```html</h4>
- *  <template is="x-list">
- *    <style>
- *      :host {
- *        display: block;
- *      }
- * <pre><code> iron-list {
- *    height: 100vh; /* don't use % values unless the parent element is sized.
- * </code></pre>
- * /
- * }
- * </style>
- * <iron-list items="[[items]]">
- * <template>
- * <div>
- * ...
- * </div>
- * </template>
- * </iron-list>
- * </template>
+ * <h4>Explicit size - <a href="https://jsbin.com/vopucus/edit?html,output">jsbin</a></h4>
+ * <pre><code class="language-html">&lt;template is=&quot;x-list&quot;&gt;
+ *   &lt;style&gt;
+ *     :host {
+ *       display: block;
+ *     }
  *
- * <pre><code>#### Main document scrolling -
- * [jsbin](https: * ```html
- * &lt;head&gt;
+ *     iron-list {
+ *       height: 100vh; /* don't use % values unless the parent element is sized.
+ * \/
+ *     }
+ *   &lt;/style&gt;
+ *   &lt;iron-list items=&quot;[[items]]&quot;&gt;
+ *     &lt;template&gt;
+ *       &lt;div&gt;
+ *         ...
+ *       &lt;/div&gt;
+ *     &lt;/template&gt;
+ *   &lt;/iron-list&gt;
+ * &lt;/template&gt;
+ * </code></pre>
+ * <h4>Main document scrolling -</h4>
+ * <a href="https://jsbin.com/wevirow/edit?html,output">jsbin</a>
+ *
+ * <pre><code class="language-html">&lt;head&gt;
  *   &lt;style&gt;
  *     body {
  *       height: 100vh;
@@ -119,7 +116,11 @@ import org.teavm.jso.JSProperty;
  * List item templates should bind to template models of the following structure:
  *
  * <pre><code class="language-js">{
- *   index: 0,         *   selected: false,  *   tabIndex: -1,     *   item: {}          * }
+ *   index: 0,        // index in the item array
+ *   selected: false, // true if the current item is selected
+ *   tabIndex: -1,    // a dynamically generated tabIndex for focus management
+ *   item: {}         // user data corresponding to items[index]
+ * }
  * </code></pre>
  * Alternatively, you can change the property name used as data index by changing
  * the <code>indexAs</code> property. The <code>as</code> property defines the name of the variable to
@@ -391,7 +392,7 @@ public interface IronListElement extends OptionalMutableDataBehavior, HTMLElemen
    *
    */
   @JSProperty("scrollOffset")
-  int getScrollOffset();
+  double getScrollOffset();
 
   /**
    * The offset top from the scrolling element to the iron-list element.
@@ -405,7 +406,7 @@ public interface IronListElement extends OptionalMutableDataBehavior, HTMLElemen
    *
    */
   @JSProperty("scrollOffset")
-  void setScrollOffset(int value);
+  void setScrollOffset(double value);
 
   /**
    * Gets the index of the first visible item in the viewport.
@@ -425,10 +426,6 @@ public interface IronListElement extends OptionalMutableDataBehavior, HTMLElemen
 
   void detached();
 
-  /**
-   * Recycles the physical items when needed.
-   *
-   */
   void ready();
 
   /**
@@ -461,7 +458,7 @@ public interface IronListElement extends OptionalMutableDataBehavior, HTMLElemen
    * @param idx The index of the item
    *
    */
-  void scrollToIndex(int idx);
+  void scrollToIndex(double idx);
 
   /**
    * Selects the given item.
@@ -483,7 +480,7 @@ public interface IronListElement extends OptionalMutableDataBehavior, HTMLElemen
    * @param index The index of the item in the items array.
    *
    */
-  void selectIndex(int index);
+  void selectIndex(double index);
 
   /**
    * Deselects the given item.
@@ -505,7 +502,7 @@ public interface IronListElement extends OptionalMutableDataBehavior, HTMLElemen
    * @param index The index of the item in the items array.
    *
    */
-  void deselectIndex(int index);
+  void deselectIndex(double index);
 
   /**
    * Selects or deselects a given item depending on whether the item
@@ -530,7 +527,7 @@ public interface IronListElement extends OptionalMutableDataBehavior, HTMLElemen
    * @param index The index of the item in the items array.
    *
    */
-  void toggleSelectionForIndex(int index);
+  void toggleSelectionForIndex(double index);
 
   /**
    * Clears the current selection in the list.
@@ -558,12 +555,7 @@ public interface IronListElement extends OptionalMutableDataBehavior, HTMLElemen
    * @param index The index of the item in the items array.
    *
    */
-  Any updateSizeForIndex(int index);
+  Any updateSizeForIndex(double index);
 
-  /**
-   * Converts a random index to the index of the item that completes it's row.
-   * Allows for better order and fill computation when grid == true.
-   *
-   */
   void focusItem(Any idx);
 }

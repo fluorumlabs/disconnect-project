@@ -2,7 +2,7 @@ package js.lang.external.polymer.iron_overlay_behavior;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import js.lang.external.polymer.legacy.LegacyElementMixin;
+import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
 
 /**

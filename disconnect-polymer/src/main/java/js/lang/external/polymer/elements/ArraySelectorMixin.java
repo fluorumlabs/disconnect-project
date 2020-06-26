@@ -4,13 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown;
-import js.lang.external.polymer.mixins.ElementMixin;
-import js.lang.external.polymer.mixins.PropertiesChanged;
-import js.lang.external.polymer.mixins.PropertiesMixin;
-import js.lang.external.polymer.mixins.PropertyAccessors;
-import js.lang.external.polymer.mixins.PropertyEffects;
-import js.lang.external.polymer.mixins.TemplateStamp;
+import js.lang.Unknown /* object | object [ ] | null */;
 import org.teavm.jso.JSProperty;
 
 @NpmPackage(
@@ -62,16 +56,7 @@ public interface ArraySelectorMixin extends TemplateStamp, PropertiesMixin, Prop
    */
   @JSProperty("selected")
   @Nullable
-  Unknown getSelected();
-
-  /**
-   * When <code>multi</code> is true, this is an array that contains any selected.
-   * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
-   * if no item is selected.
-   *
-   */
-  @JSProperty("selected")
-  void setSelected(@Nullable Any value);
+  Unknown /* object | object [ ] | null */ getSelected();
 
   /**
    * When <code>multi</code> is true, this is an array that contains any selected.
@@ -81,6 +66,15 @@ public interface ArraySelectorMixin extends TemplateStamp, PropertiesMixin, Prop
    */
   @JSProperty("selected")
   void setSelected(Any[] value);
+
+  /**
+   * When <code>multi</code> is true, this is an array that contains any selected.
+   * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
+   * if no item is selected.
+   *
+   */
+  @JSProperty("selected")
+  void setSelected(@Nullable Any value);
 
   /**
    * When <code>multi</code> is false, this is the currently selected item, or <code>null</code>
@@ -137,7 +131,7 @@ public interface ArraySelectorMixin extends TemplateStamp, PropertiesMixin, Prop
    * @return Whether the item is selected
    *
    */
-  boolean isIndexSelected(int idx);
+  boolean isIndexSelected(double idx);
 
   /**
    * Deselects the given item if it is already selected.
@@ -153,7 +147,7 @@ public interface ArraySelectorMixin extends TemplateStamp, PropertiesMixin, Prop
    * @param idx Index from <code>items</code> array to deselect
    *
    */
-  void deselectIndex(int idx);
+  void deselectIndex(double idx);
 
   /**
    * Selects the given item.  When <code>toggle</code> is true, this will automatically
@@ -171,5 +165,5 @@ public interface ArraySelectorMixin extends TemplateStamp, PropertiesMixin, Prop
    * @param idx Index from <code>items</code> array to select
    *
    */
-  void selectIndex(int idx);
+  void selectIndex(double idx);
 }

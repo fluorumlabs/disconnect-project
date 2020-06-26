@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.external.polymer.legacy.LegacyElementMixin;
+import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
 
 /**

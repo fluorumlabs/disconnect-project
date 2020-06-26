@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import js.lang.Any;
 import js.lang.JsFunction;
 import js.lang.external.polymer.AsyncInterface;
-import js.lang.external.polymer.IdleDeadline;
 import org.teavm.jso.JSFunctor;
 
 @NpmPackage(
@@ -25,7 +24,7 @@ public interface Async extends Any {
    * @return An async timeout interface
    *
    */
-  AsyncInterface after(int delay);
+  AsyncInterface after(double delay);
 
   /**
    * Returns a sub-module with the async interface providing the provided
@@ -42,7 +41,7 @@ public interface Async extends Any {
    * @return Handle used for canceling task
    *
    */
-  int run(JsFunction fn, int delay);
+  double run(JsFunction fn, double delay);
 
   /**
    * Enqueues a function called in the next task.
@@ -50,13 +49,13 @@ public interface Async extends Any {
    * @return Handle used for canceling task
    *
    */
-  int run(JsFunction fn);
+  double run(JsFunction fn);
 
   /**
    * Cancels a previously enqueued <code>timeOut</code> callback.
    *
    */
-  void cancel(int handle);
+  void cancel(double handle);
 
   /**
    * Enqueues a function called at <code>requestAnimationFrame</code> timing.
@@ -64,13 +63,13 @@ public interface Async extends Any {
    * @return Handle used for canceling task
    *
    */
-  int run(RunFnFn fn);
+  double run(RunFnFunction fn);
 
   /**
    * Cancels a previously enqueued <code>animationFrame</code> callback.
    *
    */
-  void cancel(int handle);
+  void cancel(double handle);
 
   /**
    * Enqueues a function called at <code>requestIdleCallback</code> timing.
@@ -78,13 +77,13 @@ public interface Async extends Any {
    * @return Handle used for canceling task
    *
    */
-  int run(RunFnFn fn);
+  double run(RunFnFunction fn);
 
   /**
    * Cancels a previously enqueued <code>idlePeriod</code> callback.
    *
    */
-  void cancel(int handle);
+  void cancel(double handle);
 
   /**
    * Enqueues a function called at microtask timing.
@@ -92,7 +91,7 @@ public interface Async extends Any {
    * @return Handle used for canceling task
    *
    */
-  int run(@Nullable JsFunction callback);
+  double run(@Nullable JsFunction callback);
 
   /**
    * Enqueues a function called at microtask timing.
@@ -100,23 +99,17 @@ public interface Async extends Any {
    * @return Handle used for canceling task
    *
    */
-  int run();
+  double run();
 
   /**
    * Cancels a previously enqueued <code>microTask</code> callback.
    *
    */
-  void cancel(int handle);
+  void cancel(double handle);
 
   @FunctionalInterface
   @JSFunctor
-  interface RunFnFn extends Any {
-    void apply(int p0);
-  }
-
-  @FunctionalInterface
-  @JSFunctor
-  interface RunFnFn extends Any {
-    void apply(IdleDeadline p0);
+  interface RunFnFunction extends Any {
+    void apply(double p0);
   }
 }

@@ -3,11 +3,13 @@ package js.lang.external.polymer.elements;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.web.dom.HTMLElement;
 import js.web.dom.HTMLStyleElement;
 
 /**
  * Custom element for defining styles in the main document that can take
- * advantage of [shady DOM](https: * for style encapsulation, custom properties, and custom mixins.
+ * advantage of <a href="https://github.com/webcomponents/shadycss">shady DOM</a> shims
+ * for style encapsulation, custom properties, and custom mixins.
  *
  * <ul>
  * <li>Document styles defined in a <code>&lt;custom-style&gt;</code> are shimmed to ensure they
@@ -16,7 +18,8 @@ import js.web.dom.HTMLStyleElement;
  * <li>Custom properties can be defined in a <code>&lt;custom-style&gt;</code>. Use the <code>html</code> selector
  * to define custom properties that apply to all custom elements.</li>
  * <li>Custom mixins can be defined in a <code>&lt;custom-style&gt;</code>, if you import the optional
- * [apply shim](https: *   (<code>shadycss/apply-shim.html</code>).</li>
+ * <a href="https://github.com/webcomponents/shadycss#about-applyshim">apply shim</a>
+ * (<code>shadycss/apply-shim.html</code>).</li>
  * </ul>
  * To use:
  *
