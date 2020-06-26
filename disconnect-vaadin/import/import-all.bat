@@ -48,8 +48,8 @@ echo ===[ Vaadin ]===
 :call import.bat @vaadin/vaadin-cookie-consent
 :call import.bat @vaadin/vaadin-login
 :call import.bat @vaadin/vaadin-select
-call import.bat @vaadin/vaadin-custom-field
-:call import.bat @vaadin/vaadin-progress-bar
+:call import.bat @vaadin/vaadin-custom-field
+call import.bat @vaadin/vaadin-progress-bar
 :call import.bat @vaadin/vaadin-radio-button
 :call import.bat @vaadin/vaadin-rich-text-editor
 :call import.bat @vaadin/vaadin-date-picker
