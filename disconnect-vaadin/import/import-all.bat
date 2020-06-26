@@ -41,7 +41,8 @@ echo ===[ Vaadin ]===
 :call import.bat @vaadin/vaadin-checkbox
 :call import.bat @vaadin/vaadin-combo-box
 :call import.bat @vaadin/vaadin-text-field
-call import.bat @vaadin/vaadin-confirm-dialog
+:call import.bat @vaadin/vaadin-confirm-dialog
+call import.bat @vaadin/vaadin-menu-bar
 :call import.bat @vaadin/vaadin-context-menu
 :call import.bat @vaadin/vaadin-cookie-consent
 :call import.bat @vaadin/vaadin-crud
@@ -54,7 +55,6 @@ call import.bat @vaadin/vaadin-confirm-dialog
 :call import.bat @vaadin/vaadin-icons
 :call import.bat @vaadin/vaadin-list-box
 :call import.bat @vaadin/vaadin-login
-:call import.bat @vaadin/vaadin-menu-bar
 :call import.bat @vaadin/vaadin-notification
 :call import.bat @vaadin/vaadin-ordered-layout
 :call import.bat @vaadin/vaadin-progress-bar
