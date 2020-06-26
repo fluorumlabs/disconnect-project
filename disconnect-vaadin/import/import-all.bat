@@ -61,6 +61,6 @@ echo ===[ Vaadin ]===
 :call import.bat @vaadin/vaadin-tabs
 :call import.bat @vaadin/vaadin-upload
 :call import.bat @vaadin/vaadin-notification
-call import.bat @vaadin/vaadin-grid
+:call import.bat @vaadin/vaadin-grid
 :call import.bat @vaadin/vaadin-grid-pro
-:call import.bat @vaadin/vaadin-crud
+call import.bat @vaadin/vaadin-crud
