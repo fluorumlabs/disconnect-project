@@ -29,8 +29,8 @@ echo ===[ Vaadin ]===
 :call import.bat @vaadin/vaadin-themable-mixin
 
 :call import.bat @vaadin/vaadin-item
-call import.bat @vaadin/vaadin-overlay
-:call import.bat @vaadin/vaadin-dialog
+:call import.bat @vaadin/vaadin-overlay
+call import.bat @vaadin/vaadin-dialog
 
 :call import.bat @vaadin/vaadin-details
 :call import.bat @vaadin/vaadin-accordion
