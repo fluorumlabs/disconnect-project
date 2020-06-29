@@ -46,7 +46,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -845,7 +845,7 @@ public interface PlotStreamgraphOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotStreamgraphDataLabelsOptions[] value);
+  void setDataLabels(PlotStreamgraphDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -1233,7 +1233,7 @@ public interface PlotStreamgraphOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts, Highstock) An array specifying which option maps to which
@@ -1252,7 +1252,7 @@ public interface PlotStreamgraphOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1975,10 +1975,13 @@ public interface PlotStreamgraphOptions extends Any {
   /**
    * (Highcharts, Highstock) Whether to stack the values of each series on top
    * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-   * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-   * sorted in ascending X order. A special stacking option is with the
-   * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-   * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+   * stack by value or <code>&quot;percent&quot;</code>.
+   *
+   * When stacking is enabled, data must be sorted in ascending X order.
+   *
+   * Some stacking options are related to specific series types. In the
+   * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+   * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
    *
    */
   @JSProperty("stacking")
@@ -1988,10 +1991,13 @@ public interface PlotStreamgraphOptions extends Any {
   /**
    * (Highcharts, Highstock) Whether to stack the values of each series on top
    * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-   * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-   * sorted in ascending X order. A special stacking option is with the
-   * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-   * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+   * stack by value or <code>&quot;percent&quot;</code>.
+   *
+   * When stacking is enabled, data must be sorted in ascending X order.
+   *
+   * Some stacking options are related to specific series types. In the
+   * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+   * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
    *
    */
   @JSProperty("stacking")
@@ -2055,7 +2061,7 @@ public interface PlotStreamgraphOptions extends Any {
    * </li>
    * <li>
    * If <code>Infinity</code> or <code>-Infinity</code>, the area between the graph and the
-   * corresponing Y axis extreme is filled (since v6.1.0).
+   * corresponding Y axis extreme is filled (since v6.1.0).
    *
    * </li>
    * </ul>
@@ -2080,7 +2086,7 @@ public interface PlotStreamgraphOptions extends Any {
    * </li>
    * <li>
    * If <code>Infinity</code> or <code>-Infinity</code>, the area between the graph and the
-   * corresponing Y axis extreme is filled (since v6.1.0).
+   * corresponding Y axis extreme is filled (since v6.1.0).
    *
    * </li>
    * </ul>
@@ -2223,10 +2229,17 @@ public interface PlotStreamgraphOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotStreamgraphOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotStreamgraphOptions build() {
       return object;
@@ -2747,7 +2760,7 @@ public interface PlotStreamgraphOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotStreamgraphDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotStreamgraphDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -3005,7 +3018,7 @@ public interface PlotStreamgraphOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -3016,7 +3029,7 @@ public interface PlotStreamgraphOptions extends Any {
      * unstructured data arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }
@@ -3502,10 +3515,13 @@ public interface PlotStreamgraphOptions extends Any {
     /**
      * (Highcharts, Highstock) Whether to stack the values of each series on top
      * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-     * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-     * sorted in ascending X order. A special stacking option is with the
-     * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-     * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+     * stack by value or <code>&quot;percent&quot;</code>.
+     *
+     * When stacking is enabled, data must be sorted in ascending X order.
+     *
+     * Some stacking options are related to specific series types. In the
+     * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+     * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
      *
      */
     public Builder stacking(@Nullable Stacking value) {
@@ -3554,7 +3570,7 @@ public interface PlotStreamgraphOptions extends Any {
      * </li>
      * <li>
      * If <code>Infinity</code> or <code>-Infinity</code>, the area between the graph and the
-     * corresponing Y axis extreme is filled (since v6.1.0).
+     * corresponding Y axis extreme is filled (since v6.1.0).
      *
      * </li>
      * </ul>
@@ -3640,7 +3656,7 @@ public interface PlotStreamgraphOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

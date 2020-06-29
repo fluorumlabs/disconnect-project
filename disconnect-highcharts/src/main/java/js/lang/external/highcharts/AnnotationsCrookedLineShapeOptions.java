@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -157,6 +157,21 @@ public interface AnnotationsCrookedLineShapeOptions extends Any {
   void setStrokeWidth(double value);
 
   /**
+   * (Highstock) The type of the shape, e.g. circle or rectangle.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  /**
+   * (Highstock) The type of the shape, e.g. circle or rectangle.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
+  /**
    * (Highstock) The width of the shape.
    *
    */
@@ -170,8 +185,15 @@ public interface AnnotationsCrookedLineShapeOptions extends Any {
   @JSProperty("width")
   void setWidth(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsCrookedLineShapeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsCrookedLineShapeOptions build() {
       return object;
@@ -266,6 +288,15 @@ public interface AnnotationsCrookedLineShapeOptions extends Any {
      */
     public Builder strokeWidth(double value) {
       object.setStrokeWidth(value);
+      return this;
+    }
+
+    /**
+     * (Highstock) The type of the shape, e.g. circle or rectangle.
+     *
+     */
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
 

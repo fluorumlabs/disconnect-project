@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -36,7 +36,7 @@ public interface ChartParallelAxesResizeControlledAxisOptions extends Any {
    *
    */
   @JSProperty("next")
-  void setNext(double[] value);
+  void setNext(double... value);
 
   /**
    * (Highstock) Array of axes that should move out of the way of resizing
@@ -44,7 +44,7 @@ public interface ChartParallelAxesResizeControlledAxisOptions extends Any {
    *
    */
   @JSProperty("next")
-  void setNext(String[] value);
+  void setNext(String... value);
 
   /**
    * (Highstock) Array of axes that should move with the current axis while
@@ -61,7 +61,7 @@ public interface ChartParallelAxesResizeControlledAxisOptions extends Any {
    *
    */
   @JSProperty("prev")
-  void setPrev(double[] value);
+  void setPrev(double... value);
 
   /**
    * (Highstock) Array of axes that should move with the current axis while
@@ -69,10 +69,17 @@ public interface ChartParallelAxesResizeControlledAxisOptions extends Any {
    *
    */
   @JSProperty("prev")
-  void setPrev(String[] value);
+  void setPrev(String... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ChartParallelAxesResizeControlledAxisOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ChartParallelAxesResizeControlledAxisOptions build() {
       return object;
@@ -83,7 +90,7 @@ public interface ChartParallelAxesResizeControlledAxisOptions extends Any {
      * being done for the current axis. If not set, the next axis will be used.
      *
      */
-    public Builder next(double[] value) {
+    public Builder next(double... value) {
       object.setNext(value);
       return this;
     }
@@ -93,7 +100,7 @@ public interface ChartParallelAxesResizeControlledAxisOptions extends Any {
      * being done for the current axis. If not set, the next axis will be used.
      *
      */
-    public Builder next(String[] value) {
+    public Builder next(String... value) {
       object.setNext(value);
       return this;
     }
@@ -103,7 +110,7 @@ public interface ChartParallelAxesResizeControlledAxisOptions extends Any {
      * resizing.
      *
      */
-    public Builder prev(double[] value) {
+    public Builder prev(double... value) {
       object.setPrev(value);
       return this;
     }
@@ -113,7 +120,7 @@ public interface ChartParallelAxesResizeControlledAxisOptions extends Any {
      * resizing.
      *
      */
-    public Builder prev(String[] value) {
+    public Builder prev(String... value) {
       object.setPrev(value);
       return this;
     }

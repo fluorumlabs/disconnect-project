@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/sonification.src.js"
@@ -54,7 +54,7 @@ public interface PointSonifyOptionsObject extends Any {
    *
    */
   @JSProperty("instruments")
-  void setInstruments(PointInstrumentObject[] value);
+  void setInstruments(PointInstrumentObject... value);
 
   /**
    * Callback called when the sonification has finished.
@@ -71,8 +71,15 @@ public interface PointSonifyOptionsObject extends Any {
   @JSProperty("onEnd")
   void setOnEnd(@Nullable JsFunction value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PointSonifyOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public PointSonifyOptionsObject build() {
       return object;
@@ -95,7 +102,7 @@ public interface PointSonifyOptionsObject extends Any {
      * The instrument definitions for this point.
      *
      */
-    public Builder instruments(PointInstrumentObject[] value) {
+    public Builder instruments(PointInstrumentObject... value) {
       object.setInstruments(value);
       return this;
     }

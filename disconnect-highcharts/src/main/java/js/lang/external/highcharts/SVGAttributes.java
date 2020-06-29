@@ -5,6 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown;
+import org.teavm.jso.JSBody;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
 
@@ -20,7 +21,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -37,10 +38,7 @@ public interface SVGAttributes extends Any {
   Unknown /* ( string | SVGPathArray ) */ getD();
 
   @JSProperty("d")
-  void setD(double[] value);
-
-  @JSProperty("d")
-  void setD(@Nullable D value);
+  void setD(D8... value);
 
   @JSProperty("d")
   void setD(@Nullable String value);
@@ -69,7 +67,7 @@ public interface SVGAttributes extends Any {
   double[] getMatrix();
 
   @JSProperty("matrix")
-  void setMatrix(double[] value);
+  void setMatrix(double... value);
 
   @JSProperty("rotation")
   double getRotation();
@@ -142,50 +140,202 @@ public interface SVGAttributes extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  abstract class D extends JsEnum {
-    public static final D A = JsEnum.of("a");
-
-    public static final D C = JsEnum.of("c");
-
-    public static final D H = JsEnum.of("h");
-
-    public static final D L = JsEnum.of("l");
-
-    public static final D M = JsEnum.of("m");
-
-    public static final D Q = JsEnum.of("q");
-
-    public static final D S = JsEnum.of("s");
-
-    public static final D T = JsEnum.of("t");
-
-    public static final D V = JsEnum.of("v");
-
-    public static final D Z = JsEnum.of("z");
-
-    public static final D CAPITAL_A = JsEnum.of("A");
-
-    public static final D CAPITAL_C = JsEnum.of("C");
-
-    public static final D CAPITAL_H = JsEnum.of("H");
-
-    public static final D CAPITAL_L = JsEnum.of("L");
-
-    public static final D CAPITAL_M = JsEnum.of("M");
-
-    public static final D CAPITAL_Q = JsEnum.of("Q");
-
-    public static final D CAPITAL_S = JsEnum.of("S");
-
-    public static final D CAPITAL_T = JsEnum.of("T");
-
-    public static final D CAPITAL_V = JsEnum.of("V");
-
-    public static final D CAPITAL_Z = JsEnum.of("Z");
+  static Builder builder() {
+    return new Builder();
   }
 
-  class Builder {
+  interface D8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
+
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
+
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
+
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
+
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
+
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
+
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
+
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
+
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
+
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
+
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
+
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
+
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
+
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
+
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
+
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
+
+    static D8.Builder builder() {
+      return new D8.Builder();
+    }
+
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
+
+      public static final Value0 C = JsEnum.of("c");
+
+      public static final Value0 H = JsEnum.of("h");
+
+      public static final Value0 L = JsEnum.of("l");
+
+      public static final Value0 M = JsEnum.of("m");
+
+      public static final Value0 Q = JsEnum.of("q");
+
+      public static final Value0 S = JsEnum.of("s");
+
+      public static final Value0 T = JsEnum.of("t");
+
+      public static final Value0 V = JsEnum.of("v");
+
+      public static final Value0 Z = JsEnum.of("z");
+
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
+
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
+
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
+
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
+
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
+
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
+
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
+
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
+
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
+
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
+
+    final class Builder {
+      private final D8 object = Any.empty();
+
+      private Builder() {
+      }
+
+      public D8 build() {
+        return object;
+      }
+
+      public D8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public D8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public D8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public D8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public D8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public D8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public D8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public D8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
+  }
+
+  final class Builder {
     private final SVGAttributes object = Any.empty();
+
+    private Builder() {
+    }
 
     public SVGAttributes build() {
       return object;
@@ -196,12 +346,7 @@ public interface SVGAttributes extends Any {
       return this;
     }
 
-    public Builder d(double[] value) {
-      object.setD(value);
-      return this;
-    }
-
-    public Builder d(@Nullable D value) {
+    public Builder d(D8... value) {
       object.setD(value);
       return this;
     }
@@ -231,7 +376,7 @@ public interface SVGAttributes extends Any {
       return this;
     }
 
-    public Builder matrix(double[] value) {
+    public Builder matrix(double... value) {
       object.setMatrix(value);
       return this;
     }

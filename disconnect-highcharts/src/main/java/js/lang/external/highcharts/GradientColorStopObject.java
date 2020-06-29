@@ -12,7 +12,7 @@ import org.teavm.jso.JSBody;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -40,8 +40,15 @@ public interface GradientColorStopObject extends Any {
   )
   void setValue1(String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final GradientColorStopObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public GradientColorStopObject build() {
       return object;

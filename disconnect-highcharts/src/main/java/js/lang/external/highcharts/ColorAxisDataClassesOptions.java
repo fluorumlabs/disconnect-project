@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -130,8 +130,15 @@ public interface ColorAxisDataClassesOptions extends Any {
   @JSProperty("to")
   void setTo(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ColorAxisDataClassesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ColorAxisDataClassesOptions build() {
       return object;

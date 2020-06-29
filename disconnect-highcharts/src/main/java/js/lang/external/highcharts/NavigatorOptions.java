@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -268,7 +268,7 @@ public interface NavigatorOptions extends Any {
    *
    */
   @JSProperty("series")
-  void setSeries(NavigatorSeriesOptions[] value);
+  void setSeries(NavigatorSeriesOptions... value);
 
   /**
    * (Highstock, Gantt) Options for the navigator series. Available options
@@ -282,7 +282,7 @@ public interface NavigatorOptions extends Any {
    *
    */
   @JSProperty("series")
-  void setSeries(SeriesOptionsRegistry[] value);
+  void setSeries(SeriesOptionsRegistry... value);
 
   /**
    * (Highstock, Gantt) Options for the navigator X axis. Default series
@@ -310,7 +310,7 @@ public interface NavigatorOptions extends Any {
    *
    */
   @JSProperty("xAxis")
-  void setXAxis(NavigatorXAxisOptions[] value);
+  void setXAxis(NavigatorXAxisOptions... value);
 
   /**
    * (Highstock, Gantt) Options for the navigator Y axis. Default series
@@ -338,10 +338,17 @@ public interface NavigatorOptions extends Any {
    *
    */
   @JSProperty("yAxis")
-  void setYAxis(NavigatorYAxisOptions[] value);
+  void setYAxis(NavigatorYAxisOptions... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigatorOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigatorOptions build() {
       return object;
@@ -518,7 +525,7 @@ public interface NavigatorOptions extends Any {
      * documentation for example)
      *
      */
-    public Builder series(NavigatorSeriesOptions[] value) {
+    public Builder series(NavigatorSeriesOptions... value) {
       object.setSeries(value);
       return this;
     }
@@ -534,7 +541,7 @@ public interface NavigatorOptions extends Any {
      * documentation for example)
      *
      */
-    public Builder series(SeriesOptionsRegistry[] value) {
+    public Builder series(SeriesOptionsRegistry... value) {
       object.setSeries(value);
       return this;
     }
@@ -556,7 +563,7 @@ public interface NavigatorOptions extends Any {
      * example)
      *
      */
-    public Builder xAxis(NavigatorXAxisOptions[] value) {
+    public Builder xAxis(NavigatorXAxisOptions... value) {
       object.setXAxis(value);
       return this;
     }
@@ -578,7 +585,7 @@ public interface NavigatorOptions extends Any {
      * example)
      *
      */
-    public Builder yAxis(NavigatorYAxisOptions[] value) {
+    public Builder yAxis(NavigatorYAxisOptions... value) {
       object.setYAxis(value);
       return this;
     }

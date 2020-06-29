@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -146,7 +146,7 @@ public interface PlotSunburstLevelsOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesSunburstDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesSunburstDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts) Can set a <code>levelSize</code> on all points which lies on the same
@@ -198,8 +198,15 @@ public interface PlotSunburstLevelsOptions extends Any {
   @JSProperty("rotationMode")
   void setRotationMode(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotSunburstLevelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotSunburstLevelsOptions build() {
       return object;
@@ -290,7 +297,7 @@ public interface PlotSunburstLevelsOptions extends Any {
      * points which lies on the same level.
      *
      */
-    public Builder dataLabels(SeriesSunburstDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesSunburstDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }

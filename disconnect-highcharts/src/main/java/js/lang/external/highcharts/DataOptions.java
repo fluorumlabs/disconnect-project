@@ -25,7 +25,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -69,7 +69,7 @@ public interface DataOptions extends Any {
    *
    */
   @JSProperty("columns")
-  void setColumns(double[] value);
+  void setColumns(double... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) A two-dimensional array
@@ -80,7 +80,7 @@ public interface DataOptions extends Any {
    *
    */
   @JSProperty("columns")
-  void setColumns(String[] value);
+  void setColumns(String... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) A URL to a remote JSON dataset,
@@ -451,7 +451,7 @@ public interface DataOptions extends Any {
    *
    */
   @JSProperty("rows")
-  void setRows(double[] value);
+  void setRows(double... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The same as the columns input
@@ -459,7 +459,7 @@ public interface DataOptions extends Any {
    *
    */
   @JSProperty("rows")
-  void setRows(String[] value);
+  void setRows(String... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) A URL to a remote JSON dataset,
@@ -577,6 +577,10 @@ public interface DataOptions extends Any {
   @JSProperty("table")
   void setTable(@Nullable String value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class DateFormat extends JsEnum {
     public static final DateFormat DD_MM_YY = JsEnum.of("dd/mm/YY");
 
@@ -589,8 +593,11 @@ public interface DataOptions extends Any {
     public static final DateFormat YYYY_MM_DD = JsEnum.of("YYYY/mm/dd");
   }
 
-  class Builder {
+  final class Builder {
     private final DataOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public DataOptions build() {
       return object;
@@ -614,7 +621,7 @@ public interface DataOptions extends Any {
      * columns are interpreted as series.
      *
      */
-    public Builder columns(double[] value) {
+    public Builder columns(double... value) {
       object.setColumns(value);
       return this;
     }
@@ -627,7 +634,7 @@ public interface DataOptions extends Any {
      * columns are interpreted as series.
      *
      */
-    public Builder columns(String[] value) {
+    public Builder columns(String... value) {
       object.setColumns(value);
       return this;
     }
@@ -842,7 +849,7 @@ public interface DataOptions extends Any {
      * option, but defining rows intead of columns.
      *
      */
-    public Builder rows(double[] value) {
+    public Builder rows(double... value) {
       object.setRows(value);
       return this;
     }
@@ -852,7 +859,7 @@ public interface DataOptions extends Any {
      * option, but defining rows intead of columns.
      *
      */
-    public Builder rows(String[] value) {
+    public Builder rows(String... value) {
       object.setRows(value);
       return this;
     }

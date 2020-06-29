@@ -4,11 +4,12 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import js.lang.Any;
+import js.lang.Unknown /* ( number | string ) */;
 import org.teavm.jso.JSBody;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -17,7 +18,13 @@ public interface Data2 extends Any {
   @JSBody(
       script = "return this[0]"
   )
-  String getValue0();
+  Unknown /* ( number | string ) */ getValue0();
+
+  @JSBody(
+      params = "value",
+      script = "this[0] = value"
+  )
+  void setValue0(double value);
 
   @JSBody(
       params = "value",
@@ -36,11 +43,23 @@ public interface Data2 extends Any {
   )
   void setValue1(double value);
 
-  class Builder {
+  static Data2.Builder builder() {
+    return new Data2.Builder();
+  }
+
+  final class Builder {
     private final Data2 object = Any.empty();
+
+    private Builder() {
+    }
 
     public Data2 build() {
       return object;
+    }
+
+    public Data2.Builder value0(double value) {
+      object.setValue0(value);
+      return this;
     }
 
     public Data2.Builder value0(String value) {

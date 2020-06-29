@@ -10,7 +10,7 @@ import org.teavm.jso.JSBody;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"factory as CurrentDateIndicator_factory", "Highcharts as CurrentDateIndicator_Highcharts"},

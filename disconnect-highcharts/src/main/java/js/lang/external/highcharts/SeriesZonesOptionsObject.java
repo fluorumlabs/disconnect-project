@@ -20,7 +20,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -136,8 +136,15 @@ public interface SeriesZonesOptionsObject extends Any {
   @JSProperty("value")
   void setValue(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesZonesOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesZonesOptionsObject build() {
       return object;

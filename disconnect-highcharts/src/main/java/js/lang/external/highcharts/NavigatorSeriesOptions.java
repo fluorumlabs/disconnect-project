@@ -23,7 +23,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -81,7 +81,7 @@ public interface NavigatorSeriesOptions extends Any {
    *
    */
   @JSProperty("data")
-  void setData(double[] value);
+  void setData(double... value);
 
   /**
    * (Highstock) Unless data is explicitly defined, the data is borrowed from
@@ -89,7 +89,7 @@ public interface NavigatorSeriesOptions extends Any {
    *
    */
   @JSProperty("data")
-  void setData(Any[] value);
+  void setData(Any... value);
 
   /**
    * (Highstock) Unless data is explicitly defined, the data is borrowed from
@@ -97,7 +97,7 @@ public interface NavigatorSeriesOptions extends Any {
    *
    */
   @JSProperty("data")
-  void setData(String[] value);
+  void setData(String... value);
 
   /**
    * (Highstock) Data grouping options for the navigator series.
@@ -141,7 +141,7 @@ public interface NavigatorSeriesOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(NavigatorSeriesDataLabelsOptions[] value);
+  void setDataLabels(NavigatorSeriesDataLabelsOptions... value);
 
   /**
    * (Highstock, Gantt) The fill opacity of the navigator series.
@@ -238,8 +238,38 @@ public interface NavigatorSeriesOptions extends Any {
   @JSProperty("threshold")
   void setThreshold(double value);
 
-  class Builder {
+  /**
+   * (Highstock, Gantt) The type of the navigator series. Defaults to
+   * <code>areaspline</code> if defined, otherwise <code>line</code>.
+   *
+   * Heads up: In column-type navigator, zooming is limited to at least one
+   * point with its <code>pointRange</code>.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  /**
+   * (Highstock, Gantt) The type of the navigator series. Defaults to
+   * <code>areaspline</code> if defined, otherwise <code>line</code>.
+   *
+   * Heads up: In column-type navigator, zooming is limited to at least one
+   * point with its <code>pointRange</code>.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigatorSeriesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigatorSeriesOptions build() {
       return object;
@@ -282,7 +312,7 @@ public interface NavigatorSeriesOptions extends Any {
      * the first series in the chart.
      *
      */
-    public Builder data(double[] value) {
+    public Builder data(double... value) {
       object.setData(value);
       return this;
     }
@@ -292,7 +322,7 @@ public interface NavigatorSeriesOptions extends Any {
      * the first series in the chart.
      *
      */
-    public Builder data(Any[] value) {
+    public Builder data(Any... value) {
       object.setData(value);
       return this;
     }
@@ -302,7 +332,7 @@ public interface NavigatorSeriesOptions extends Any {
      * the first series in the chart.
      *
      */
-    public Builder data(String[] value) {
+    public Builder data(String... value) {
       object.setData(value);
       return this;
     }
@@ -333,7 +363,7 @@ public interface NavigatorSeriesOptions extends Any {
      * series.
      *
      */
-    public Builder dataLabels(NavigatorSeriesDataLabelsOptions[] value) {
+    public Builder dataLabels(NavigatorSeriesDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -395,6 +425,19 @@ public interface NavigatorSeriesOptions extends Any {
      */
     public Builder threshold(double value) {
       object.setThreshold(value);
+      return this;
+    }
+
+    /**
+     * (Highstock, Gantt) The type of the navigator series. Defaults to
+     * <code>areaspline</code> if defined, otherwise <code>line</code>.
+     *
+     * Heads up: In column-type navigator, zooming is limited to at least one
+     * point with its <code>pointRange</code>.
+     *
+     */
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
   }

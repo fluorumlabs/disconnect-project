@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -116,7 +116,7 @@ public interface PlotDependencywheelLevelsOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesSankeyDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesSankeyDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Can set <code>dataLabels</code> on all
@@ -175,8 +175,15 @@ public interface PlotDependencywheelLevelsOptions extends Any {
   @JSProperty("states")
   void setStates(@Nullable SeriesStatesOptionsObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotDependencywheelLevelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotDependencywheelLevelsOptions build() {
       return object;
@@ -244,7 +251,7 @@ public interface PlotDependencywheelLevelsOptions extends Any {
      * points which lay on the same level.
      *
      */
-    public Builder dataLabels(SeriesSankeyDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesSankeyDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }

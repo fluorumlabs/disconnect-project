@@ -3,6 +3,7 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown /* ( PointOptionsObject | Array < ( object | any [ ] | number ) > ) */;
 import js.lang.Unknown /* undefined */;
@@ -40,7 +41,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -71,7 +72,7 @@ public interface SeriesNetworkgraphOptions extends SeriesOptions, PlotNetworkgra
    *
    */
   @JSProperty("data")
-  void setData(double[] value);
+  void setData(double... value);
 
   /**
    * (Highcharts) An array of data points for the series. For the
@@ -97,7 +98,7 @@ public interface SeriesNetworkgraphOptions extends SeriesOptions, PlotNetworkgra
    *
    */
   @JSProperty("data")
-  void setData(Any[] value);
+  void setData(Any... value);
 
   /**
    * (Highcharts) A collection of options for the individual nodes. The nodes
@@ -118,7 +119,7 @@ public interface SeriesNetworkgraphOptions extends SeriesOptions, PlotNetworkgra
    *
    */
   @JSProperty("nodes")
-  void setNodes(SeriesNetworkgraphNodesOptions[] value);
+  void setNodes(SeriesNetworkgraphNodesOptions... value);
 
   /**
    * Not available
@@ -127,6 +128,24 @@ public interface SeriesNetworkgraphOptions extends SeriesOptions, PlotNetworkgra
   @JSProperty("stack")
   @Nullable
   Unknown /* undefined */ getStack();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
 
   /**
    * Not available
@@ -144,8 +163,19 @@ public interface SeriesNetworkgraphOptions extends SeriesOptions, PlotNetworkgra
   @Nullable
   Unknown /* undefined */ getYAxis();
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type NETWORKGRAPH = JsEnum.of("networkgraph");
+  }
+
+  final class Builder {
     private final SeriesNetworkgraphOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesNetworkgraphOptions build() {
       return object;
@@ -161,7 +191,7 @@ public interface SeriesNetworkgraphOptions extends SeriesOptions, PlotNetworkgra
      * available. (see online documentation for example)
      *
      */
-    public Builder data(double[] value) {
+    public Builder data(double... value) {
       object.setData(value);
       return this;
     }
@@ -191,7 +221,7 @@ public interface SeriesNetworkgraphOptions extends SeriesOptions, PlotNetworkgra
      * available. (see online documentation for example)
      *
      */
-    public Builder data(Any[] value) {
+    public Builder data(Any... value) {
       object.setData(value);
       return this;
     }
@@ -203,8 +233,19 @@ public interface SeriesNetworkgraphOptions extends SeriesOptions, PlotNetworkgra
      * <code>id</code>.
      *
      */
-    public Builder nodes(SeriesNetworkgraphNodesOptions[] value) {
+    public Builder nodes(SeriesNetworkgraphNodesOptions... value) {
       object.setNodes(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+     * TypeScript non-optional and might be <code>undefined</code> in series objects from
+     * unknown sources.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

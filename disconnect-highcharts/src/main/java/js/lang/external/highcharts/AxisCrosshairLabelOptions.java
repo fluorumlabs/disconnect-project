@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
+import js.lang.Unknown /* ColorType */;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -17,7 +17,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -49,7 +49,7 @@ public interface AxisCrosshairLabelOptions extends Any {
    */
   @JSProperty("backgroundColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getBackgroundColor();
+  Unknown /* ColorType */ getBackgroundColor();
 
   /**
    * (Highstock) The background color for the label. Defaults to the related
@@ -81,7 +81,7 @@ public interface AxisCrosshairLabelOptions extends Any {
    */
   @JSProperty("borderColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getBorderColor();
+  Unknown /* ColorType */ getBorderColor();
 
   /**
    * (Highstock) The border color for the crosshair label
@@ -222,8 +222,15 @@ public interface AxisCrosshairLabelOptions extends Any {
   @JSProperty("style")
   void setStyle(@Nullable CSSObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AxisCrosshairLabelOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AxisCrosshairLabelOptions build() {
       return object;

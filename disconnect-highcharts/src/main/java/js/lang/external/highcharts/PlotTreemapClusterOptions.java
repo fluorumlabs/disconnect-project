@@ -22,7 +22,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -196,10 +196,17 @@ public interface PlotTreemapClusterOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(PlotTreemapClusterZonesOptions[] value);
+  void setZones(PlotTreemapClusterZonesOptions... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotTreemapClusterOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotTreemapClusterOptions build() {
       return object;
@@ -309,7 +316,7 @@ public interface PlotTreemapClusterOptions extends Any {
      * <code>className</code> option.
      *
      */
-    public Builder zones(PlotTreemapClusterZonesOptions[] value) {
+    public Builder zones(PlotTreemapClusterZonesOptions... value) {
       object.setZones(value);
       return this;
     }

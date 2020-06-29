@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -141,7 +141,7 @@ public interface ExportingButtonsOptionsObject extends Any {
    *
    */
   @JSProperty("menuItems")
-  void setMenuItems(String[] value);
+  void setMenuItems(String... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) A click handler callback to use
@@ -414,6 +414,10 @@ public interface ExportingButtonsOptionsObject extends Any {
   @JSProperty("y")
   void setY(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Symbol extends JsEnum {
     public static final Symbol MENU = JsEnum.of("menu");
 
@@ -436,8 +440,11 @@ public interface ExportingButtonsOptionsObject extends Any {
     public static final Symbol TRIANGLE_DOWN = JsEnum.of("triangle-down");
   }
 
-  class Builder {
+  final class Builder {
     private final ExportingButtonsOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public ExportingButtonsOptionsObject build() {
       return object;
@@ -509,7 +516,7 @@ public interface ExportingButtonsOptionsObject extends Any {
      * plus one menu item for each of the available export types.
      *
      */
-    public Builder menuItems(String[] value) {
+    public Builder menuItems(String... value) {
       object.setMenuItems(value);
       return this;
     }

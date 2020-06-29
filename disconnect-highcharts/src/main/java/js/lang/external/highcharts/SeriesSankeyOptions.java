@@ -3,6 +3,7 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown /* undefined */;
 import org.teavm.jso.JSProperty;
@@ -38,7 +39,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -77,7 +78,7 @@ public interface SeriesSankeyOptions extends SeriesOptions, PlotSankeyOptions {
    *
    */
   @JSProperty("data")
-  void setData(SeriesSankeyPointOptionsObject[] value);
+  void setData(SeriesSankeyPointOptionsObject... value);
 
   /**
    * Not available
@@ -168,7 +169,7 @@ public interface SeriesSankeyOptions extends SeriesOptions, PlotSankeyOptions {
    *
    */
   @JSProperty("nodes")
-  void setNodes(SeriesSankeyNodesOptionsObject[] value);
+  void setNodes(SeriesSankeyNodesOptionsObject... value);
 
   /**
    * Not available
@@ -186,8 +187,37 @@ public interface SeriesSankeyOptions extends SeriesOptions, PlotSankeyOptions {
   @Nullable
   Unknown /* undefined */ getPointWidth();
 
-  class Builder {
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type SANKEY = JsEnum.of("sankey");
+  }
+
+  final class Builder {
     private final SeriesSankeyOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesSankeyOptions build() {
       return object;
@@ -203,7 +233,7 @@ public interface SeriesSankeyOptions extends SeriesOptions, PlotSankeyOptions {
      * available. (see online documentation for example)
      *
      */
-    public Builder data(SeriesSankeyPointOptionsObject[] value) {
+    public Builder data(SeriesSankeyPointOptionsObject... value) {
       object.setData(value);
       return this;
     }
@@ -214,8 +244,19 @@ public interface SeriesSankeyOptions extends SeriesOptions, PlotSankeyOptions {
      * but options can be applied here and linked by the <code>id</code>.
      *
      */
-    public Builder nodes(SeriesSankeyNodesOptionsObject[] value) {
+    public Builder nodes(SeriesSankeyNodesOptionsObject... value) {
       object.setNodes(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+     * TypeScript non-optional and might be <code>undefined</code> in series objects from
+     * unknown sources.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

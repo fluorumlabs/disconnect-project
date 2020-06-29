@@ -21,7 +21,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -157,7 +157,7 @@ public interface SeriesSankeyPointOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesSankeyDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesSankeyDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts) Individual data label for each point. The options are the
@@ -181,7 +181,7 @@ public interface SeriesSankeyPointOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesOrganizationDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesOrganizationDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts) Individual data label for each point. The options are the
@@ -351,8 +351,15 @@ public interface SeriesSankeyPointOptionsObject extends Any {
   @JSProperty("weight")
   void setWeight(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesSankeyPointOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesSankeyPointOptionsObject build() {
       return object;
@@ -442,7 +449,7 @@ public interface SeriesSankeyPointOptionsObject extends Any {
      * same as the ones for plotOptions.series.dataLabels.
      *
      */
-    public Builder dataLabels(SeriesSankeyDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesSankeyDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -472,7 +479,7 @@ public interface SeriesSankeyPointOptionsObject extends Any {
      * same as the ones for plotOptions.series.dataLabels.
      *
      */
-    public Builder dataLabels(SeriesOrganizationDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesOrganizationDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }

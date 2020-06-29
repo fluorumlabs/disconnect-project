@@ -3,6 +3,7 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown /* Array < ( number | [ number , ( number | null ) ] | null | SeriesMappointDataOptions ) > */;
 import js.lang.Unknown /* undefined */;
@@ -40,7 +41,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -112,7 +113,7 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
    * </ol>
    */
   @JSProperty("data")
-  void setData(double[] value);
+  void setData(double... value);
 
   /**
    * (Highmaps) An array of data points for the series. For the <code>mappoint</code>
@@ -145,7 +146,7 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
    * </ol>
    */
   @JSProperty("data")
-  void setData(Data2[] value);
+  void setData(Data2... value);
 
   /**
    * (Highmaps) An array of data points for the series. For the <code>mappoint</code>
@@ -178,7 +179,7 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
    * </ol>
    */
   @JSProperty("data")
-  void setData(SeriesMappointDataOptions[] value);
+  void setData(SeriesMappointDataOptions... value);
 
   /**
    * Not available
@@ -195,6 +196,28 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
   @JSProperty("dataURL")
   @Nullable
   Unknown /* undefined */ getDataURL();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
 
   interface Data2 extends Any {
     @JSBody(
@@ -219,8 +242,15 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
     )
     void setValue1(double value);
 
-    class Builder {
+    static Data2.Builder builder() {
+      return new Data2.Builder();
+    }
+
+    final class Builder {
       private final Data2 object = Any.empty();
+
+      private Builder() {
+      }
 
       public Data2 build() {
         return object;
@@ -238,8 +268,15 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
     }
   }
 
-  class Builder {
+  abstract class Type extends JsEnum {
+    public static final Type MAPPOINT = JsEnum.of("mappoint");
+  }
+
+  final class Builder {
     private final SeriesMappointOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesMappointOptions build() {
       return object;
@@ -275,7 +312,7 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
      * </li>
      * </ol>
      */
-    public Builder data(double[] value) {
+    public Builder data(double... value) {
       object.setData(value);
       return this;
     }
@@ -310,7 +347,7 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
      * </li>
      * </ol>
      */
-    public Builder data(Data2[] value) {
+    public Builder data(Data2... value) {
       object.setData(value);
       return this;
     }
@@ -345,8 +382,19 @@ public interface SeriesMappointOptions extends SeriesOptions, PlotMappointOption
      * </li>
      * </ol>
      */
-    public Builder data(SeriesMappointDataOptions[] value) {
+    public Builder data(SeriesMappointDataOptions... value) {
       object.setData(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+     * TypeScript non-optional and might be <code>undefined</code> in series objects from
+     * unknown sources.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

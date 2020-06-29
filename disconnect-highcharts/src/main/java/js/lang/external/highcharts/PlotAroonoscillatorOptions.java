@@ -44,7 +44,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -740,7 +740,7 @@ public interface PlotAroonoscillatorOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotAroonoscillatorDataLabelsOptions[] value);
+  void setDataLabels(PlotAroonoscillatorDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -1565,10 +1565,17 @@ public interface PlotAroonoscillatorOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotAroonoscillatorOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotAroonoscillatorOptions build() {
       return object;
@@ -2015,7 +2022,7 @@ public interface PlotAroonoscillatorOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotAroonoscillatorDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotAroonoscillatorDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2534,7 +2541,7 @@ public interface PlotAroonoscillatorOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

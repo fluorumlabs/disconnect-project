@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"Tick as Tick_Tick"},
@@ -218,4 +218,18 @@ public interface Tick extends Any {
    */
   @JSProperty("tickmarkOffset")
   void setTickmarkOffset(double value);
+
+  /**
+   * The tick type, which can be <code>&quot;minor&quot;</code>, or an empty string.
+   *
+   */
+  @JSProperty("type")
+  String getType();
+
+  /**
+   * The tick type, which can be <code>&quot;minor&quot;</code>, or an empty string.
+   *
+   */
+  @JSProperty("type")
+  void setType(String value);
 }

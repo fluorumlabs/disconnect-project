@@ -2,12 +2,11 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
-import js.lang.Unknown /* ( number | string ) */;
+import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * Configuration hash for the data label and tooltip formatters.
@@ -15,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -182,8 +181,15 @@ public interface PointLabelObject extends Any {
   @JSProperty("y")
   void setY(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PointLabelObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public PointLabelObject build() {
       return object;

@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/data.src.js"
@@ -39,8 +39,15 @@ public interface DataDateFormatObject extends Any {
   @JSProperty("regex")
   void setRegex(RegExp value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final DataDateFormatObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public DataDateFormatObject build() {
       return object;

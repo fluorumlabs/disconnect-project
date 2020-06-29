@@ -7,7 +7,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -19,8 +19,15 @@ public interface ConnectorsAnimationOptionsObject extends Any {
   @JSProperty("reversed")
   void setReversed(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ConnectorsAnimationOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public ConnectorsAnimationOptionsObject build() {
       return object;

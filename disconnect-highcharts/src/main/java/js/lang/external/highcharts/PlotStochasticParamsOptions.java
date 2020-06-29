@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -33,6 +33,10 @@ public interface PlotStochasticParamsOptions extends Any {
    */
   @JSProperty("periods")
   void setPeriods(@Nullable Periods2 value);
+
+  static Builder builder() {
+    return new Builder();
+  }
 
   interface Periods2 extends Any {
     @JSBody(
@@ -57,8 +61,15 @@ public interface PlotStochasticParamsOptions extends Any {
     )
     void setValue1(double value);
 
-    class Builder {
+    static Periods2.Builder builder() {
+      return new Periods2.Builder();
+    }
+
+    final class Builder {
       private final Periods2 object = Any.empty();
+
+      private Builder() {
+      }
 
       public Periods2 build() {
         return object;
@@ -76,8 +87,11 @@ public interface PlotStochasticParamsOptions extends Any {
     }
   }
 
-  class Builder {
+  final class Builder {
     private final PlotStochasticParamsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotStochasticParamsOptions build() {
       return object;

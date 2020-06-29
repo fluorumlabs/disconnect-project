@@ -2117,6 +2117,7 @@ public class Module {
     private TypeName resolve(String type, String suggestedName, Interface parent) {
         type = removeStart(type.trim(), "readonly ");
         type = removeStart(type.trim(), "typeof ");
+        type = removeEnd(type.trim(), " ?");
 
         if ( type.contains("<") && !type.startsWith("<") && (!type.contains(ARROW_TOKEN) || type.indexOf(ARROW_TOKEN) > type.indexOf("<"))) {
             // this thing has generic type

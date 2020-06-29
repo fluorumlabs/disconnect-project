@@ -2,9 +2,10 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * (Highcharts, Highstock, Highmaps, Gantt) Options for announcing new data to
@@ -17,7 +18,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -124,8 +125,15 @@ public interface AccessibilityAnnounceNewDataOptionsObject extends Any {
   @JSProperty("minAnnounceInterval")
   void setMinAnnounceInterval(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AccessibilityAnnounceNewDataOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public AccessibilityAnnounceNewDataOptionsObject build() {
       return object;

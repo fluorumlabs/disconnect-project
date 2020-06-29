@@ -13,7 +13,7 @@ import js.lang.Unknown /* ( boolean | AnimationOptionsObject ) */;
 import js.lang.Unknown /* ( boolean | CSSObject ) */;
 import js.lang.Unknown /* ( number | Array < number > ) */;
 import js.lang.Unknown /* ( number | string | null ) */;
-import js.lang.Unknown /* ( string | Array < any > ) */;
+import js.lang.Unknown /* ( string | GeoJSON | Array < any > ) */;
 import js.lang.Unknown /* ( string | HTMLDOMElement ) */;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
@@ -24,7 +24,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -422,7 +422,7 @@ public interface ChartOptions extends Any {
    */
   @JSProperty("map")
   @Nullable
-  Unknown /* ( string | Array < any > ) */ getMap();
+  Unknown /* ( string | GeoJSON | Array < any > ) */ getMap();
 
   /**
    * (Highmaps) Default <code>mapData</code> for all series. If set to a string, it
@@ -431,7 +431,7 @@ public interface ChartOptions extends Any {
    *
    */
   @JSProperty("map")
-  void setMap(Any[] value);
+  void setMap(Any... value);
 
   /**
    * (Highmaps) Default <code>mapData</code> for all series. If set to a string, it
@@ -441,6 +441,15 @@ public interface ChartOptions extends Any {
    */
   @JSProperty("map")
   void setMap(@Nullable String value);
+
+  /**
+   * (Highmaps) Default <code>mapData</code> for all series. If set to a string, it
+   * functions as an index into the <code>Highcharts.maps</code> array. Otherwise it is
+   * interpreted as map data.
+   *
+   */
+  @JSProperty("map")
+  void setMap(@Nullable GeoJSON value);
 
   /**
    * (Highmaps) Set lat/lon transformation definitions for the chart. If not
@@ -490,7 +499,7 @@ public interface ChartOptions extends Any {
    *
    */
   @JSProperty("margin")
-  void setMargin(double[] value);
+  void setMargin(double... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The margin between the outer
@@ -706,7 +715,7 @@ public interface ChartOptions extends Any {
    *
    */
   @JSProperty("parallelAxes")
-  void setParallelAxes(ChartParallelAxesOptions[] value);
+  void setParallelAxes(ChartParallelAxesOptions... value);
 
   /**
    * (Highcharts) Flag to render charts as a parallel coordinates plot. In a
@@ -1133,7 +1142,7 @@ public interface ChartOptions extends Any {
    *
    */
   @JSProperty("spacing")
-  void setSpacing(double[] value);
+  void setSpacing(double... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The space between the bottom
@@ -1251,6 +1260,31 @@ public interface ChartOptions extends Any {
   void setStyledMode(boolean value);
 
   /**
+   * (Highcharts, Highstock, Highmaps, Gantt) The default series type for the
+   * chart. Can be any of the chart types listed under plotOptions and series
+   * or can be a series provided by an additional module.
+   *
+   * In TypeScript this option has no effect in sense of typing and instead
+   * the <code>type</code> option must always be set in the series.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) The default series type for the
+   * chart. Can be any of the chart types listed under plotOptions and series
+   * or can be a series provided by an additional module.
+   *
+   * In TypeScript this option has no effect in sense of typing and instead
+   * the <code>type</code> option must always be set in the series.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
+  /**
    * (Highcharts, Highstock, Highmaps, Gantt) An explicit width for the chart.
    * By default (when <code>null</code>) the width is calculated from the offset width of
    * the containing element.
@@ -1314,6 +1348,10 @@ public interface ChartOptions extends Any {
   @JSProperty("zoomType")
   void setZoomType(@Nullable ZoomType value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class PanKey extends JsEnum {
     public static final PanKey ALT = JsEnum.of("alt");
 
@@ -1350,8 +1388,11 @@ public interface ChartOptions extends Any {
     public static final ZoomType Y = JsEnum.of("y");
   }
 
-  class Builder {
+  final class Builder {
     private final ChartOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ChartOptions build() {
       return object;
@@ -1629,7 +1670,7 @@ public interface ChartOptions extends Any {
      * interpreted as map data.
      *
      */
-    public Builder map(Any[] value) {
+    public Builder map(Any... value) {
       object.setMap(value);
       return this;
     }
@@ -1641,6 +1682,17 @@ public interface ChartOptions extends Any {
      *
      */
     public Builder map(@Nullable String value) {
+      object.setMap(value);
+      return this;
+    }
+
+    /**
+     * (Highmaps) Default <code>mapData</code> for all series. If set to a string, it
+     * functions as an index into the <code>Highcharts.maps</code> array. Otherwise it is
+     * interpreted as map data.
+     *
+     */
+    public Builder map(@Nullable GeoJSON value) {
       object.setMap(value);
       return this;
     }
@@ -1668,7 +1720,7 @@ public interface ChartOptions extends Any {
      * <code>spacingLeft</code> options.
      *
      */
-    public Builder margin(double[] value) {
+    public Builder margin(double... value) {
       object.setMargin(value);
       return this;
     }
@@ -1809,7 +1861,7 @@ public interface ChartOptions extends Any {
      * The default options are: (see online documentation for example)
      *
      */
-    public Builder parallelAxes(ChartParallelAxesOptions[] value) {
+    public Builder parallelAxes(ChartParallelAxesOptions... value) {
       object.setParallelAxes(value);
       return this;
     }
@@ -2108,7 +2160,7 @@ public interface ChartOptions extends Any {
      * option.
      *
      */
-    public Builder spacing(double[] value) {
+    public Builder spacing(double... value) {
       object.setSpacing(value);
       return this;
     }
@@ -2179,6 +2231,20 @@ public interface ChartOptions extends Any {
      */
     public Builder styledMode(boolean value) {
       object.setStyledMode(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) The default series type for the
+     * chart. Can be any of the chart types listed under plotOptions and series
+     * or can be a series provided by an additional module.
+     *
+     * In TypeScript this option has no effect in sense of typing and instead
+     * the <code>type</code> option must always be set in the series.
+     *
+     */
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
 

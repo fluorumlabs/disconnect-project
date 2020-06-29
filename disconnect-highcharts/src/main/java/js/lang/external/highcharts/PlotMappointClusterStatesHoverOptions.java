@@ -10,7 +10,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -53,8 +53,15 @@ public interface PlotMappointClusterStatesHoverOptions extends Any {
   @JSProperty("fillColor")
   void setFillColor(@Nullable GradientColorObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotMappointClusterStatesHoverOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotMappointClusterStatesHoverOptions build() {
       return object;

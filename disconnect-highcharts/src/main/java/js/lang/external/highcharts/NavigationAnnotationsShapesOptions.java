@@ -18,7 +18,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -170,7 +170,7 @@ public interface NavigationAnnotationsShapesOptions extends Any {
    *
    */
   @JSProperty("points")
-  void setPoints(AnnotationMockPointOptionsObject[] value);
+  void setPoints(AnnotationMockPointOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) An array of points for the
@@ -179,7 +179,7 @@ public interface NavigationAnnotationsShapesOptions extends Any {
    *
    */
   @JSProperty("points")
-  void setPoints(String[] value);
+  void setPoints(String... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The radius of the shape.
@@ -260,6 +260,23 @@ public interface NavigationAnnotationsShapesOptions extends Any {
   void setStrokeWidth(double value);
 
   /**
+   * (Highcharts, Highstock, Highmaps, Gantt) The type of the shape, e.g.
+   * circle or rectangle.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) The type of the shape, e.g.
+   * circle or rectangle.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
+  /**
    * (Highcharts, Highstock, Highmaps, Gantt) The width of the shape.
    *
    */
@@ -273,8 +290,15 @@ public interface NavigationAnnotationsShapesOptions extends Any {
   @JSProperty("width")
   void setWidth(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigationAnnotationsShapesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigationAnnotationsShapesOptions build() {
       return object;
@@ -378,7 +402,7 @@ public interface NavigationAnnotationsShapesOptions extends Any {
      * such as path. A point can be either a point object or a point's id.
      *
      */
-    public Builder points(AnnotationMockPointOptionsObject[] value) {
+    public Builder points(AnnotationMockPointOptionsObject... value) {
       object.setPoints(value);
       return this;
     }
@@ -389,7 +413,7 @@ public interface NavigationAnnotationsShapesOptions extends Any {
      * such as path. A point can be either a point object or a point's id.
      *
      */
-    public Builder points(String[] value) {
+    public Builder points(String... value) {
       object.setPoints(value);
       return this;
     }
@@ -439,6 +463,16 @@ public interface NavigationAnnotationsShapesOptions extends Any {
      */
     public Builder strokeWidth(double value) {
       object.setStrokeWidth(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) The type of the shape, e.g.
+     * circle or rectangle.
+     *
+     */
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
 

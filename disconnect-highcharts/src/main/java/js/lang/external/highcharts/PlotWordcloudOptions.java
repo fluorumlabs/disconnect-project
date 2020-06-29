@@ -39,7 +39,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -314,6 +314,24 @@ public interface PlotWordcloudOptions extends Any {
   void setBorderWidth(double value);
 
   /**
+   * (Highcharts, Highstock, Gantt) When <code>true</code>, the columns will center in
+   * the category, ignoring null or missing points. When <code>false</code>, space will
+   * be reserved for null or missing points.
+   *
+   */
+  @JSProperty("centerInCategory")
+  boolean getCenterInCategory();
+
+  /**
+   * (Highcharts, Highstock, Gantt) When <code>true</code>, the columns will center in
+   * the category, ignoring null or missing points. When <code>false</code>, space will
+   * be reserved for null or missing points.
+   *
+   */
+  @JSProperty("centerInCategory")
+  void setCenterInCategory(boolean value);
+
+  /**
    * (Highcharts) An additional class name to apply to the series' graphical
    * elements. This option does not replace default class names of the
    * graphical element.
@@ -487,7 +505,7 @@ public interface PlotWordcloudOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(GradientColorObject[] value);
+  void setColors(GradientColorObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) A series specific or series type specific
@@ -496,7 +514,7 @@ public interface PlotWordcloudOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(PatternObject[] value);
+  void setColors(PatternObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) A series specific or series type specific
@@ -505,7 +523,7 @@ public interface PlotWordcloudOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(String[] value);
+  void setColors(String... value);
 
   /**
    * (Highstock) Defines if comparison should start from the first point
@@ -764,7 +782,7 @@ public interface PlotWordcloudOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1182,8 +1200,15 @@ public interface PlotWordcloudOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotWordcloudOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotWordcloudOptions build() {
       return object;
@@ -1370,6 +1395,17 @@ public interface PlotWordcloudOptions extends Any {
     }
 
     /**
+     * (Highcharts, Highstock, Gantt) When <code>true</code>, the columns will center in
+     * the category, ignoring null or missing points. When <code>false</code>, space will
+     * be reserved for null or missing points.
+     *
+     */
+    public Builder centerInCategory(boolean value) {
+      object.setCenterInCategory(value);
+      return this;
+    }
+
+    /**
      * (Highcharts) An additional class name to apply to the series' graphical
      * elements. This option does not replace default class names of the
      * graphical element.
@@ -1484,7 +1520,7 @@ public interface PlotWordcloudOptions extends Any {
      * true.
      *
      */
-    public Builder colors(GradientColorObject[] value) {
+    public Builder colors(GradientColorObject... value) {
       object.setColors(value);
       return this;
     }
@@ -1495,7 +1531,7 @@ public interface PlotWordcloudOptions extends Any {
      * true.
      *
      */
-    public Builder colors(PatternObject[] value) {
+    public Builder colors(PatternObject... value) {
       object.setColors(value);
       return this;
     }
@@ -1506,7 +1542,7 @@ public interface PlotWordcloudOptions extends Any {
      * true.
      *
      */
-    public Builder colors(String[] value) {
+    public Builder colors(String... value) {
       object.setColors(value);
       return this;
     }
@@ -1664,7 +1700,7 @@ public interface PlotWordcloudOptions extends Any {
      * arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }

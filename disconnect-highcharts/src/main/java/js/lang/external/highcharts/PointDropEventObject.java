@@ -4,6 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.JsFunction;
 import org.teavm.jso.JSProperty;
@@ -14,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -120,8 +121,33 @@ public interface PointDropEventObject extends Any {
   @JSProperty("target")
   void setTarget(Point value);
 
-  class Builder {
+  /**
+   * Event type.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * Event type.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type DROP = JsEnum.of("drop");
+  }
+
+  final class Builder {
     private final PointDropEventObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public PointDropEventObject build() {
       return object;
@@ -187,6 +213,15 @@ public interface PointDropEventObject extends Any {
      */
     public Builder target(Point value) {
       object.setTarget(value);
+      return this;
+    }
+
+    /**
+     * Event type.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

@@ -25,7 +25,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -491,44 +491,18 @@ public interface SeriesPackedBubbleDataLabelsOptionsObject extends Any {
   @JSProperty("parentNodeFormat")
   void setParentNodeFormat(@Nullable String value);
 
-  /**
-   * (Highcharts, Highstock, Highmaps, Gantt) Callback to format data labels
-   * for <em>parentNodes</em>. The <code>parentNodeFormat</code> option takes precedence over
-   * the <code>parentNodeFormatter</code>.
-   *
-   */
   @JSProperty("parentNodeFormatter")
   @Nullable
   SeriesPackedBubbleDataLabelsFormatterCallbackFunction getParentNodeFormatter();
 
-  /**
-   * (Highcharts, Highstock, Highmaps, Gantt) Callback to format data labels
-   * for <em>parentNodes</em>. The <code>parentNodeFormat</code> option takes precedence over
-   * the <code>parentNodeFormatter</code>.
-   *
-   */
   @JSProperty("parentNodeFormatter")
   void setParentNodeFormatter(
       @Nullable SeriesPackedBubbleDataLabelsFormatterCallbackFunction value);
 
-  /**
-   * (Highcharts, Highstock, Highmaps, Gantt) Options for a <em>parentNode</em> label
-   * text.
-   *
-   * <strong>Note:</strong> Only SVG-based renderer supports this option.
-   *
-   */
   @JSProperty("parentNodeTextPath")
   @Nullable
   SeriesPackedBubbleDataLabelsTextPathOptionsObject getParentNodeTextPath();
 
-  /**
-   * (Highcharts, Highstock, Highmaps, Gantt) Options for a <em>parentNode</em> label
-   * text.
-   *
-   * <strong>Note:</strong> Only SVG-based renderer supports this option.
-   *
-   */
   @JSProperty("parentNodeTextPath")
   void setParentNodeTextPath(@Nullable SeriesPackedBubbleDataLabelsTextPathOptionsObject value);
 
@@ -804,8 +778,15 @@ public interface SeriesPackedBubbleDataLabelsOptionsObject extends Any {
   @JSProperty("z")
   void setZ(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesPackedBubbleDataLabelsOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesPackedBubbleDataLabelsOptionsObject build() {
       return object;
@@ -1125,25 +1106,12 @@ public interface SeriesPackedBubbleDataLabelsOptionsObject extends Any {
       return this;
     }
 
-    /**
-     * (Highcharts, Highstock, Highmaps, Gantt) Callback to format data labels
-     * for <em>parentNodes</em>. The <code>parentNodeFormat</code> option takes precedence over
-     * the <code>parentNodeFormatter</code>.
-     *
-     */
     public Builder parentNodeFormatter(
         @Nullable SeriesPackedBubbleDataLabelsFormatterCallbackFunction value) {
       object.setParentNodeFormatter(value);
       return this;
     }
 
-    /**
-     * (Highcharts, Highstock, Highmaps, Gantt) Options for a <em>parentNode</em> label
-     * text.
-     *
-     * <strong>Note:</strong> Only SVG-based renderer supports this option.
-     *
-     */
     public Builder parentNodeTextPath(
         @Nullable SeriesPackedBubbleDataLabelsTextPathOptionsObject value) {
       object.setParentNodeTextPath(value);

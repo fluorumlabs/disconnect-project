@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -21,8 +21,15 @@ public interface PlotVectorClusterStatesOptions extends Any {
   @JSProperty("hover")
   void setHover(@Nullable PlotVectorClusterStatesHoverOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotVectorClusterStatesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotVectorClusterStatesOptions build() {
       return object;

@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -30,10 +30,17 @@ public interface ExportDataEventObject extends Any {
    *
    */
   @JSProperty("dataRows")
-  void setDataRows(String[] value);
+  void setDataRows(String... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ExportDataEventObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public ExportDataEventObject build() {
       return object;
@@ -43,7 +50,7 @@ public interface ExportDataEventObject extends Any {
      * Contains the data rows for the current export task and can be modified.
      *
      */
-    public Builder dataRows(String[] value) {
+    public Builder dataRows(String... value) {
       object.setDataRows(value);
       return this;
     }

@@ -43,7 +43,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -591,7 +591,7 @@ public interface PlotTreemapOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(GradientColorObject[] value);
+  void setColors(GradientColorObject... value);
 
   /**
    * (Highcharts) A series specific or series type specific color set to apply
@@ -599,7 +599,7 @@ public interface PlotTreemapOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(PatternObject[] value);
+  void setColors(PatternObject... value);
 
   /**
    * (Highcharts) A series specific or series type specific color set to apply
@@ -607,7 +607,7 @@ public interface PlotTreemapOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(String[] value);
+  void setColors(String... value);
 
   /**
    * (Highstock) Compare the values of the series against the first non-null,
@@ -926,7 +926,7 @@ public interface PlotTreemapOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotTreemapDataLabelsOptions[] value);
+  void setDataLabels(PlotTreemapDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -1234,7 +1234,7 @@ public interface PlotTreemapOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts) An array specifying which option maps to which key in the
@@ -1253,7 +1253,7 @@ public interface PlotTreemapOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1381,7 +1381,7 @@ public interface PlotTreemapOptions extends Any {
    *
    */
   @JSProperty("levels")
-  void setLevels(PlotTreemapLevelsOptions[] value);
+  void setLevels(PlotTreemapLevelsOptions... value);
 
   /**
    * (Highcharts, Highstock) The SVG value used for the <code>stroke-linecap</code> and
@@ -1818,10 +1818,13 @@ public interface PlotTreemapOptions extends Any {
   /**
    * (Highcharts, Highstock) Whether to stack the values of each series on top
    * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-   * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-   * sorted in ascending X order. A special stacking option is with the
-   * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-   * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+   * stack by value or <code>&quot;percent&quot;</code>.
+   *
+   * When stacking is enabled, data must be sorted in ascending X order.
+   *
+   * Some stacking options are related to specific series types. In the
+   * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+   * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
    *
    */
   @JSProperty("stacking")
@@ -1831,10 +1834,13 @@ public interface PlotTreemapOptions extends Any {
   /**
    * (Highcharts, Highstock) Whether to stack the values of each series on top
    * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-   * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-   * sorted in ascending X order. A special stacking option is with the
-   * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-   * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+   * stack by value or <code>&quot;percent&quot;</code>.
+   *
+   * When stacking is enabled, data must be sorted in ascending X order.
+   *
+   * Some stacking options are related to specific series types. In the
+   * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+   * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
    *
    */
   @JSProperty("stacking")
@@ -2060,10 +2066,17 @@ public interface PlotTreemapOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotTreemapOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotTreemapOptions build() {
       return object;
@@ -2424,7 +2437,7 @@ public interface PlotTreemapOptions extends Any {
      * instead of the global colors when colorByPoint is true.
      *
      */
-    public Builder colors(GradientColorObject[] value) {
+    public Builder colors(GradientColorObject... value) {
       object.setColors(value);
       return this;
     }
@@ -2434,7 +2447,7 @@ public interface PlotTreemapOptions extends Any {
      * instead of the global colors when colorByPoint is true.
      *
      */
-    public Builder colors(PatternObject[] value) {
+    public Builder colors(PatternObject... value) {
       object.setColors(value);
       return this;
     }
@@ -2444,7 +2457,7 @@ public interface PlotTreemapOptions extends Any {
      * instead of the global colors when colorByPoint is true.
      *
      */
-    public Builder colors(String[] value) {
+    public Builder colors(String... value) {
       object.setColors(value);
       return this;
     }
@@ -2633,7 +2646,7 @@ public interface PlotTreemapOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotTreemapDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotTreemapDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2828,7 +2841,7 @@ public interface PlotTreemapOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -2839,7 +2852,7 @@ public interface PlotTreemapOptions extends Any {
      * arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }
@@ -2914,7 +2927,7 @@ public interface PlotTreemapOptions extends Any {
      * options, but not point options.
      *
      */
-    public Builder levels(PlotTreemapLevelsOptions[] value) {
+    public Builder levels(PlotTreemapLevelsOptions... value) {
       object.setLevels(value);
       return this;
     }
@@ -3193,10 +3206,13 @@ public interface PlotTreemapOptions extends Any {
     /**
      * (Highcharts, Highstock) Whether to stack the values of each series on top
      * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-     * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-     * sorted in ascending X order. A special stacking option is with the
-     * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-     * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+     * stack by value or <code>&quot;percent&quot;</code>.
+     *
+     * When stacking is enabled, data must be sorted in ascending X order.
+     *
+     * Some stacking options are related to specific series types. In the
+     * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+     * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
      *
      */
     public Builder stacking(@Nullable Stacking value) {
@@ -3329,7 +3345,7 @@ public interface PlotTreemapOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

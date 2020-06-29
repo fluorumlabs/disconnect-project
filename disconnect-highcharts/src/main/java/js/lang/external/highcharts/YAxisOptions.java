@@ -4,11 +4,12 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
 import js.lang.Unknown /* ( boolean | AxisCrosshairOptions ) */;
 import js.lang.Unknown /* ( number | string ) */;
 import js.lang.Unknown /* ( number | string | null ) */;
+import js.lang.Unknown /* ColorType */;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -22,7 +23,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -107,7 +108,7 @@ public interface YAxisOptions extends Any {
    */
   @JSProperty("alternateGridColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getAlternateGridColor();
+  Unknown /* ColorType */ getAlternateGridColor();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) When using an alternate grid
@@ -175,7 +176,7 @@ public interface YAxisOptions extends Any {
    *
    */
   @JSProperty("breaks")
-  void setBreaks(YAxisBreaksOptions[] value);
+  void setBreaks(YAxisBreaksOptions... value);
 
   /**
    * (Highcharts, Gantt) If categories are present for the xAxis, names are
@@ -204,7 +205,7 @@ public interface YAxisOptions extends Any {
    *
    */
   @JSProperty("categories")
-  void setCategories(String[] value);
+  void setCategories(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) The highest allowed value for
@@ -381,7 +382,7 @@ public interface YAxisOptions extends Any {
    */
   @JSProperty("gridLineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getGridLineColor();
+  Unknown /* ColorType */ getGridLineColor();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Color of the grid lines
@@ -607,7 +608,7 @@ public interface YAxisOptions extends Any {
    */
   @JSProperty("lineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getLineColor();
+  Unknown /* ColorType */ getLineColor();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The color of the line marking
@@ -741,7 +742,7 @@ public interface YAxisOptions extends Any {
    */
   @JSProperty("maxColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMaxColor();
+  Unknown /* ColorType */ getMaxColor();
 
   /**
    * (Highcharts) Solid gauge only. Unless stops are set, the color to
@@ -877,7 +878,7 @@ public interface YAxisOptions extends Any {
    */
   @JSProperty("minColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinColor();
+  Unknown /* ColorType */ getMinColor();
 
   /**
    * (Highcharts) Solid gauge only. Unless stops are set, the color to
@@ -938,7 +939,7 @@ public interface YAxisOptions extends Any {
    */
   @JSProperty("minorGridLineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinorGridLineColor();
+  Unknown /* ColorType */ getMinorGridLineColor();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Color of the minor, secondary
@@ -1018,7 +1019,7 @@ public interface YAxisOptions extends Any {
    */
   @JSProperty("minorTickColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinorTickColor();
+  Unknown /* ColorType */ getMinorTickColor();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Color for the minor tick marks.
@@ -1221,7 +1222,7 @@ public interface YAxisOptions extends Any {
    * minRange of 1 means that the axis can be zoomed to 10-100, 100-1000,
    * 1000-10000 etc.
    *
-   * Note that the <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
+   * <strong>Note</strong>: The <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
    * settings also affect how the extremes of the axis are computed.
    *
    */
@@ -1242,7 +1243,7 @@ public interface YAxisOptions extends Any {
    * minRange of 1 means that the axis can be zoomed to 10-100, 100-1000,
    * 1000-10000 etc.
    *
-   * Note that the <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
+   * <strong>Note</strong>: The <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
    * settings also affect how the extremes of the axis are computed.
    *
    */
@@ -1352,7 +1353,7 @@ public interface YAxisOptions extends Any {
    *
    */
   @JSProperty("plotBands")
-  void setPlotBands(YAxisPlotBandsOptions[] value);
+  void setPlotBands(YAxisPlotBandsOptions... value);
 
   /**
    * (Highcharts, Highstock, Gantt) An array of lines stretching across the
@@ -1375,7 +1376,7 @@ public interface YAxisOptions extends Any {
    *
    */
   @JSProperty("plotLines")
-  void setPlotLines(YAxisPlotLinesOptions[] value);
+  void setPlotLines(YAxisPlotLinesOptions... value);
 
   /**
    * (Highstock) The zoomed range to display when only defining one or none of
@@ -1683,7 +1684,7 @@ public interface YAxisOptions extends Any {
    *
    */
   @JSProperty("stops")
-  void setStops(GradientColorStopObject[] value);
+  void setStops(GradientColorStopObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) The amount of ticks to draw on the axis.
@@ -1717,7 +1718,7 @@ public interface YAxisOptions extends Any {
    */
   @JSProperty("tickColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getTickColor();
+  Unknown /* ColorType */ getTickColor();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Color for the main tick marks.
@@ -1912,7 +1913,7 @@ public interface YAxisOptions extends Any {
    *
    */
   @JSProperty("tickPositions")
-  void setTickPositions(double[] value);
+  void setTickPositions(double... value);
 
   /**
    * (Highcharts, Highstock, Gantt) The pixel width of the major tick marks.
@@ -2039,6 +2040,35 @@ public interface YAxisOptions extends Any {
   void setTop(@Nullable String value);
 
   /**
+   * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+   * <code>logarithmic</code>, <code>datetime</code>, <code>category</code> or <code>treegrid</code>. Defaults to
+   * <code>treegrid</code> for Gantt charts, <code>linear</code> for other chart types.
+   *
+   * In a datetime axis, the numbers are given in milliseconds, and tick marks
+   * are placed on appropriate values, like full hours or days. In a category
+   * or treegrid axis, the point names of the chart's series are used for
+   * categories, if a categories array is not defined.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Type getType();
+
+  /**
+   * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+   * <code>logarithmic</code>, <code>datetime</code>, <code>category</code> or <code>treegrid</code>. Defaults to
+   * <code>treegrid</code> for Gantt charts, <code>linear</code> for other chart types.
+   *
+   * In a datetime axis, the numbers are given in milliseconds, and tick marks
+   * are placed on appropriate values, like full hours or days. In a category
+   * or treegrid axis, the point names of the chart's series are used for
+   * categories, if a categories array is not defined.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
+
+  /**
    * (Highcharts, Gantt) Applies only when the axis <code>type</code> is <code>category</code>. When
    * <code>uniqueNames</code> is true, points are placed on the X axis according to their
    * names. If the same point name is repeated in the same or another series,
@@ -2087,7 +2117,7 @@ public interface YAxisOptions extends Any {
    *
    */
   @JSProperty("units")
-  void setUnits(Units2[] value);
+  void setUnits(Units2... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Whether axis, including axis title, line,
@@ -2157,8 +2187,27 @@ public interface YAxisOptions extends Any {
   @JSProperty("zoomEnabled")
   void setZoomEnabled(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type CATEGORY = JsEnum.of("category");
+
+    public static final Type DATETIME = JsEnum.of("datetime");
+
+    public static final Type LINEAR = JsEnum.of("linear");
+
+    public static final Type LOGARITHMIC = JsEnum.of("logarithmic");
+
+    public static final Type TREEGRID = JsEnum.of("treegrid");
+  }
+
+  final class Builder {
     private final YAxisOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public YAxisOptions build() {
       return object;
@@ -2257,7 +2306,7 @@ public interface YAxisOptions extends Any {
      * each other.
      *
      */
-    public Builder breaks(YAxisBreaksOptions[] value) {
+    public Builder breaks(YAxisBreaksOptions... value) {
       object.setBreaks(value);
       return this;
     }
@@ -2273,7 +2322,7 @@ public interface YAxisOptions extends Any {
      * Example: <code>categories: ['Apples', 'Bananas', 'Oranges']</code>
      *
      */
-    public Builder categories(String[] value) {
+    public Builder categories(String... value) {
       object.setCategories(value);
       return this;
     }
@@ -2984,7 +3033,7 @@ public interface YAxisOptions extends Any {
      * minRange of 1 means that the axis can be zoomed to 10-100, 100-1000,
      * 1000-10000 etc.
      *
-     * Note that the <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
+     * <strong>Note</strong>: The <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
      * settings also affect how the extremes of the axis are computed.
      *
      */
@@ -3050,7 +3099,7 @@ public interface YAxisOptions extends Any {
      * class in addition to the <code>className</code> option.
      *
      */
-    public Builder plotBands(YAxisPlotBandsOptions[] value) {
+    public Builder plotBands(YAxisPlotBandsOptions... value) {
       object.setPlotBands(value);
       return this;
     }
@@ -3063,7 +3112,7 @@ public interface YAxisOptions extends Any {
      * class in addition to the <code>className</code> option.
      *
      */
-    public Builder plotLines(YAxisPlotLinesOptions[] value) {
+    public Builder plotLines(YAxisPlotLinesOptions... value) {
       object.setPlotLines(value);
       return this;
     }
@@ -3245,7 +3294,7 @@ public interface YAxisOptions extends Any {
      * from the Highmaps color axis.
      *
      */
-    public Builder stops(GradientColorStopObject[] value) {
+    public Builder stops(GradientColorStopObject... value) {
       object.setStops(value);
       return this;
     }
@@ -3388,7 +3437,7 @@ public interface YAxisOptions extends Any {
      * tickPixelInterval and tickInterval.
      *
      */
-    public Builder tickPositions(double[] value) {
+    public Builder tickPositions(double... value) {
       object.setTickPositions(value);
       return this;
     }
@@ -3470,6 +3519,22 @@ public interface YAxisOptions extends Any {
     }
 
     /**
+     * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+     * <code>logarithmic</code>, <code>datetime</code>, <code>category</code> or <code>treegrid</code>. Defaults to
+     * <code>treegrid</code> for Gantt charts, <code>linear</code> for other chart types.
+     *
+     * In a datetime axis, the numbers are given in milliseconds, and tick marks
+     * are placed on appropriate values, like full hours or days. In a category
+     * or treegrid axis, the point names of the chart's series are used for
+     * categories, if a categories array is not defined.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
+      return this;
+    }
+
+    /**
      * (Highcharts, Gantt) Applies only when the axis <code>type</code> is <code>category</code>. When
      * <code>uniqueNames</code> is true, points are placed on the X axis according to their
      * names. If the same point name is repeated in the same or another series,
@@ -3493,7 +3558,7 @@ public interface YAxisOptions extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder units(Units2[] value) {
+    public Builder units(Units2... value) {
       object.setUnits(value);
       return this;
     }

@@ -11,7 +11,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -38,6 +38,16 @@ public interface AxisSetExtremesEventObject extends ExtremesObject {
   @JSProperty("trigger")
   void setTrigger(String value);
 
+  @JSProperty("type")
+  Type getType();
+
+  @JSProperty("type")
+  void setType(Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Trigger extends JsEnum {
     public static final Trigger NAVIGATOR = JsEnum.of("navigator");
 
@@ -54,8 +64,15 @@ public interface AxisSetExtremesEventObject extends ExtremesObject {
     public static final Trigger TRAVERSEUPBUTTON = JsEnum.of("traverseUpButton");
   }
 
-  class Builder {
+  abstract class Type extends JsEnum {
+    public static final Type SETEXTREMES = JsEnum.of("setExtremes");
+  }
+
+  final class Builder {
     private final AxisSetExtremesEventObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public AxisSetExtremesEventObject build() {
       return object;
@@ -78,6 +95,11 @@ public interface AxisSetExtremesEventObject extends ExtremesObject {
 
     public Builder trigger(String value) {
       object.setTrigger(value);
+      return this;
+    }
+
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -35,7 +35,7 @@ public interface PaneOptions extends Any {
    *
    */
   @JSProperty("background")
-  void setBackground(PaneBackgroundOptions[] value);
+  void setBackground(PaneBackgroundOptions... value);
 
   /**
    * (Highcharts) The center of a polar chart or angular gauge, given as an
@@ -54,7 +54,7 @@ public interface PaneOptions extends Any {
    *
    */
   @JSProperty("center")
-  void setCenter(double[] value);
+  void setCenter(double... value);
 
   /**
    * (Highcharts) The center of a polar chart or angular gauge, given as an
@@ -63,7 +63,7 @@ public interface PaneOptions extends Any {
    *
    */
   @JSProperty("center")
-  void setCenter(String[] value);
+  void setCenter(String... value);
 
   /**
    * (Highcharts) The end angle of the polar X axis or gauge value axis, given
@@ -164,8 +164,15 @@ public interface PaneOptions extends Any {
   @JSProperty("startAngle")
   void setStartAngle(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PaneOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PaneOptions build() {
       return object;
@@ -175,7 +182,7 @@ public interface PaneOptions extends Any {
      * (Highcharts) An array of background items for the pane.
      *
      */
-    public Builder background(PaneBackgroundOptions[] value) {
+    public Builder background(PaneBackgroundOptions... value) {
       object.setBackground(value);
       return this;
     }
@@ -186,7 +193,7 @@ public interface PaneOptions extends Any {
      * transform to pixels, or as percentages of the plot area size.
      *
      */
-    public Builder center(double[] value) {
+    public Builder center(double... value) {
       object.setCenter(value);
       return this;
     }
@@ -197,7 +204,7 @@ public interface PaneOptions extends Any {
      * transform to pixels, or as percentages of the plot area size.
      *
      */
-    public Builder center(String[] value) {
+    public Builder center(String... value) {
       object.setCenter(value);
       return this;
     }

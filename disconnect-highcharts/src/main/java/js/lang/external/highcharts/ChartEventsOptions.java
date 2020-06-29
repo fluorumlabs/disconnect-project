@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -135,7 +135,7 @@ public interface ChartEventsOptions extends Any {
    * </li>
    * <li>
    * <code>points</code>: If a category label was clicked, this array holds all points
-   * corresponing to the category.
+   * corresponding to the category.
    *
    * </li>
    * <li>
@@ -173,7 +173,7 @@ public interface ChartEventsOptions extends Any {
    * </li>
    * <li>
    * <code>points</code>: If a category label was clicked, this array holds all points
-   * corresponing to the category.
+   * corresponding to the category.
    *
    * </li>
    * <li>
@@ -340,8 +340,15 @@ public interface ChartEventsOptions extends Any {
   @JSProperty("selection")
   void setSelection(@Nullable ChartSelectionCallbackFunction value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ChartEventsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ChartEventsOptions build() {
       return object;
@@ -424,7 +431,7 @@ public interface ChartEventsOptions extends Any {
      * </li>
      * <li>
      * <code>points</code>: If a category label was clicked, this array holds all points
-     * corresponing to the category.
+     * corresponding to the category.
      *
      * </li>
      * <li>

@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -33,7 +33,7 @@ public interface PlotChaikinParamsOptions extends Any {
    *
    */
   @JSProperty("periods")
-  void setPeriods(double[] value);
+  void setPeriods(double... value);
 
   /**
    * (Highstock) The id of volume series which is mandatory. For example using
@@ -54,8 +54,15 @@ public interface PlotChaikinParamsOptions extends Any {
   @JSProperty("volumeSeriesID")
   void setVolumeSeriesID(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotChaikinParamsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotChaikinParamsOptions build() {
       return object;
@@ -65,7 +72,7 @@ public interface PlotChaikinParamsOptions extends Any {
      * (Highstock) Periods for Chaikin Oscillator calculations.
      *
      */
-    public Builder periods(double[] value) {
+    public Builder periods(double... value) {
       object.setPeriods(value);
       return this;
     }

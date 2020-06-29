@@ -31,7 +31,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -44,8 +44,15 @@ public interface PlotPackedbubbleDataLabelsStyleOptions extends Any {
   @JSProperty("transition")
   void setTransition(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotPackedbubbleDataLabelsStyleOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotPackedbubbleDataLabelsStyleOptions build() {
       return object;

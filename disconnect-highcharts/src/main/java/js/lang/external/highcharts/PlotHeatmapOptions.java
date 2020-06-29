@@ -41,7 +41,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -684,7 +684,7 @@ public interface PlotHeatmapOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotHeatmapDataLabelsOptions[] value);
+  void setDataLabels(PlotHeatmapDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -950,7 +950,7 @@ public interface PlotHeatmapOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts, Highmaps) An array specifying which option maps to which key
@@ -969,7 +969,7 @@ public interface PlotHeatmapOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1507,10 +1507,17 @@ public interface PlotHeatmapOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotHeatmapOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotHeatmapOptions build() {
       return object;
@@ -1927,7 +1934,7 @@ public interface PlotHeatmapOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotHeatmapDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotHeatmapDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2102,7 +2109,7 @@ public interface PlotHeatmapOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -2113,7 +2120,7 @@ public interface PlotHeatmapOptions extends Any {
      * unstructured data arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }
@@ -2453,7 +2460,7 @@ public interface PlotHeatmapOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

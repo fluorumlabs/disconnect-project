@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -25,8 +25,15 @@ public interface PlotIkhSenkouSpanBOptions extends Any {
   @JSProperty("styles")
   void setStyles(@Nullable PlotIkhSenkouSpanBStylesOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotIkhSenkouSpanBOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotIkhSenkouSpanBOptions build() {
       return object;

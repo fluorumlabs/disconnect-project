@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -151,7 +151,7 @@ public interface XrangePointOptionsObject extends Any {
    *
    */
   @JSProperty("connect")
-  void setConnect(XrangePointConnectorsOptionsObject[] value);
+  void setConnect(XrangePointConnectorsOptionsObject... value);
 
   /**
    * (Gantt) Connect to a point. This option can be either a string, referring
@@ -169,7 +169,7 @@ public interface XrangePointOptionsObject extends Any {
    *
    */
   @JSProperty("connect")
-  void setConnect(String[] value);
+  void setConnect(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) A reserved subspace to store options and
@@ -213,7 +213,7 @@ public interface XrangePointOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(DataLabelsOptions[] value);
+  void setDataLabels(DataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Gantt) A description of the point to add to the
@@ -429,8 +429,15 @@ public interface XrangePointOptionsObject extends Any {
   @JSProperty("y")
   void setY(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final XrangePointOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public XrangePointOptionsObject build() {
       return object;
@@ -524,7 +531,7 @@ public interface XrangePointOptionsObject extends Any {
      * option is an array, each element defines a connection.
      *
      */
-    public Builder connect(XrangePointConnectorsOptionsObject[] value) {
+    public Builder connect(XrangePointConnectorsOptionsObject... value) {
       object.setConnect(value);
       return this;
     }
@@ -546,7 +553,7 @@ public interface XrangePointOptionsObject extends Any {
      * option is an array, each element defines a connection.
      *
      */
-    public Builder connect(String[] value) {
+    public Builder connect(String... value) {
       object.setConnect(value);
       return this;
     }
@@ -577,7 +584,7 @@ public interface XrangePointOptionsObject extends Any {
      * options are the same as the ones for plotOptions.series.dataLabels.
      *
      */
-    public Builder dataLabels(DataLabelsOptions[] value) {
+    public Builder dataLabels(DataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }

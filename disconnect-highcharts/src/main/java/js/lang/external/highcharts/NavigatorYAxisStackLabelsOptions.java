@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
+import js.lang.Unknown /* ColorType */;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -18,7 +18,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -65,7 +65,7 @@ public interface NavigatorYAxisStackLabelsOptions extends Any {
    */
   @JSProperty("backgroundColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getBackgroundColor();
+  Unknown /* ColorType */ getBackgroundColor();
 
   /**
    * (Highcharts) The background color or gradient for the stack label.
@@ -95,7 +95,7 @@ public interface NavigatorYAxisStackLabelsOptions extends Any {
    */
   @JSProperty("borderColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getBorderColor();
+  Unknown /* ColorType */ getBorderColor();
 
   /**
    * (Highcharts) The border color for the stack label. Defaults to
@@ -369,8 +369,15 @@ public interface NavigatorYAxisStackLabelsOptions extends Any {
   @JSProperty("y")
   void setY(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigatorYAxisStackLabelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigatorYAxisStackLabelsOptions build() {
       return object;

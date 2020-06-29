@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -210,8 +210,15 @@ public interface SeriesEventsOptionsObject extends Any {
   @JSProperty("show")
   void setShow(@Nullable SeriesShowCallbackFunction value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesEventsOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesEventsOptionsObject build() {
       return object;

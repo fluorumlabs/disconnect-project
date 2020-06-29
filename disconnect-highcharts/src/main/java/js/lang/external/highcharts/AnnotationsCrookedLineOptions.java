@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -78,8 +78,15 @@ public interface AnnotationsCrookedLineOptions extends Any {
   @JSProperty("typeOptions")
   void setTypeOptions(@Nullable AnnotationsCrookedLineTypeOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsCrookedLineOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsCrookedLineOptions build() {
       return object;

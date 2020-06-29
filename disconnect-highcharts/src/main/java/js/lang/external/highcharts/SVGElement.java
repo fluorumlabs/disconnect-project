@@ -2,16 +2,16 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.JsFunction;
-import js.lang.Unknown /* ( HTMLDOMElement | SVGDOMElement ) */;
-import js.lang.Unknown /* ( number | string ) */;
+import js.lang.Unknown;
 import js.util.RegExp;
 import js.web.dom.HTMLElement;
+import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * The SVGElement prototype is a JavaScript wrapper for SVG elements used in the
@@ -27,7 +27,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -274,43 +274,7 @@ public interface SVGElement extends Any {
    */
   SVGElement animate(SVGAttributes params);
 
-  /**
-   * Apply native and custom attributes to the SVG elements.
-   *
-   * In order to set the rotation center for rotation, set x and y to 0 and
-   * use <code>translateX</code> and <code>translateY</code> attributes to position the element
-   * instead.
-   *
-   * Attributes frequently used in Highcharts are <code>fill</code>, <code>stroke</code>,
-   * <code>stroke-width</code>.
-   *
-   * @param hash
-   * The native and custom SVG attributes.
-   *
-   * @param val
-   * If the type of the first argument is <code>string</code>, the second can be a
-   * value, which will serve as a single attribute setter. If the first
-   * argument is a string and the second is undefined, the function
-   * serves as a getter and the current value of the property is
-   * returned.
-   *
-   * @param complete
-   * A callback function to execute after setting the attributes. This
-   * makes the function compliant and interchangeable with the
-   * SVGElement#animate function.
-   *
-   * @param continueAnimation
-   * Used internally when <code>.attr</code> is called as part of an animation
-   * step. Otherwise, calling <code>.attr</code> for an attribute will stop
-   * animation for that attribute.
-   *
-   * @return If used as a setter, it returns the current Highcharts.SVGElement
-   * so the calls can be chained. If used as a getter, the current
-   * value of the attribute is returned.
-   *
-   */
-  SVGElement attr(@Nullable SVGAttributes hash, @Nullable AttrVal val,
-      @Nullable JsFunction complete, boolean continueAnimation);
+  Unknown /* ( number | string ) */ attr(String key);
 
   /**
    * Apply native and custom attributes to the SVG elements.
@@ -347,7 +311,7 @@ public interface SVGElement extends Any {
    * value of the attribute is returned.
    *
    */
-  SVGElement attr(@Nullable SVGAttributes hash, double[] val, @Nullable JsFunction complete,
+  SVGElement attr(@Nullable SVGAttributes hash, AttrVal8[] val, @Nullable JsFunction complete,
       boolean continueAnimation);
 
   /**
@@ -461,45 +425,7 @@ public interface SVGElement extends Any {
    * value of the attribute is returned.
    *
    */
-  SVGElement attr(@Nullable String hash, @Nullable AttrVal val, @Nullable JsFunction complete,
-      boolean continueAnimation);
-
-  /**
-   * Apply native and custom attributes to the SVG elements.
-   *
-   * In order to set the rotation center for rotation, set x and y to 0 and
-   * use <code>translateX</code> and <code>translateY</code> attributes to position the element
-   * instead.
-   *
-   * Attributes frequently used in Highcharts are <code>fill</code>, <code>stroke</code>,
-   * <code>stroke-width</code>.
-   *
-   * @param hash
-   * The native and custom SVG attributes.
-   *
-   * @param val
-   * If the type of the first argument is <code>string</code>, the second can be a
-   * value, which will serve as a single attribute setter. If the first
-   * argument is a string and the second is undefined, the function
-   * serves as a getter and the current value of the property is
-   * returned.
-   *
-   * @param complete
-   * A callback function to execute after setting the attributes. This
-   * makes the function compliant and interchangeable with the
-   * SVGElement#animate function.
-   *
-   * @param continueAnimation
-   * Used internally when <code>.attr</code> is called as part of an animation
-   * step. Otherwise, calling <code>.attr</code> for an attribute will stop
-   * animation for that attribute.
-   *
-   * @return If used as a setter, it returns the current Highcharts.SVGElement
-   * so the calls can be chained. If used as a getter, the current
-   * value of the attribute is returned.
-   *
-   */
-  SVGElement attr(@Nullable String hash, double[] val, @Nullable JsFunction complete,
+  SVGElement attr(@Nullable String hash, AttrVal8[] val, @Nullable JsFunction complete,
       boolean continueAnimation);
 
   /**
@@ -608,40 +534,7 @@ public interface SVGElement extends Any {
    * value of the attribute is returned.
    *
    */
-  SVGElement attr(@Nullable SVGAttributes hash, @Nullable AttrVal val,
-      @Nullable JsFunction complete);
-
-  /**
-   * Apply native and custom attributes to the SVG elements.
-   *
-   * In order to set the rotation center for rotation, set x and y to 0 and
-   * use <code>translateX</code> and <code>translateY</code> attributes to position the element
-   * instead.
-   *
-   * Attributes frequently used in Highcharts are <code>fill</code>, <code>stroke</code>,
-   * <code>stroke-width</code>.
-   *
-   * @param hash
-   * The native and custom SVG attributes.
-   *
-   * @param val
-   * If the type of the first argument is <code>string</code>, the second can be a
-   * value, which will serve as a single attribute setter. If the first
-   * argument is a string and the second is undefined, the function
-   * serves as a getter and the current value of the property is
-   * returned.
-   *
-   * @param complete
-   * A callback function to execute after setting the attributes. This
-   * makes the function compliant and interchangeable with the
-   * SVGElement#animate function.
-   *
-   * @return If used as a setter, it returns the current Highcharts.SVGElement
-   * so the calls can be chained. If used as a getter, the current
-   * value of the attribute is returned.
-   *
-   */
-  SVGElement attr(@Nullable SVGAttributes hash, double[] val, @Nullable JsFunction complete);
+  SVGElement attr(@Nullable SVGAttributes hash, AttrVal8[] val, @Nullable JsFunction complete);
 
   /**
    * Apply native and custom attributes to the SVG elements.
@@ -738,39 +631,7 @@ public interface SVGElement extends Any {
    * value of the attribute is returned.
    *
    */
-  SVGElement attr(@Nullable String hash, @Nullable AttrVal val, @Nullable JsFunction complete);
-
-  /**
-   * Apply native and custom attributes to the SVG elements.
-   *
-   * In order to set the rotation center for rotation, set x and y to 0 and
-   * use <code>translateX</code> and <code>translateY</code> attributes to position the element
-   * instead.
-   *
-   * Attributes frequently used in Highcharts are <code>fill</code>, <code>stroke</code>,
-   * <code>stroke-width</code>.
-   *
-   * @param hash
-   * The native and custom SVG attributes.
-   *
-   * @param val
-   * If the type of the first argument is <code>string</code>, the second can be a
-   * value, which will serve as a single attribute setter. If the first
-   * argument is a string and the second is undefined, the function
-   * serves as a getter and the current value of the property is
-   * returned.
-   *
-   * @param complete
-   * A callback function to execute after setting the attributes. This
-   * makes the function compliant and interchangeable with the
-   * SVGElement#animate function.
-   *
-   * @return If used as a setter, it returns the current Highcharts.SVGElement
-   * so the calls can be chained. If used as a getter, the current
-   * value of the attribute is returned.
-   *
-   */
-  SVGElement attr(@Nullable String hash, double[] val, @Nullable JsFunction complete);
+  SVGElement attr(@Nullable String hash, AttrVal8[] val, @Nullable JsFunction complete);
 
   /**
    * Apply native and custom attributes to the SVG elements.
@@ -861,34 +722,7 @@ public interface SVGElement extends Any {
    * value of the attribute is returned.
    *
    */
-  SVGElement attr(@Nullable SVGAttributes hash, @Nullable AttrVal val);
-
-  /**
-   * Apply native and custom attributes to the SVG elements.
-   *
-   * In order to set the rotation center for rotation, set x and y to 0 and
-   * use <code>translateX</code> and <code>translateY</code> attributes to position the element
-   * instead.
-   *
-   * Attributes frequently used in Highcharts are <code>fill</code>, <code>stroke</code>,
-   * <code>stroke-width</code>.
-   *
-   * @param hash
-   * The native and custom SVG attributes.
-   *
-   * @param val
-   * If the type of the first argument is <code>string</code>, the second can be a
-   * value, which will serve as a single attribute setter. If the first
-   * argument is a string and the second is undefined, the function
-   * serves as a getter and the current value of the property is
-   * returned.
-   *
-   * @return If used as a setter, it returns the current Highcharts.SVGElement
-   * so the calls can be chained. If used as a getter, the current
-   * value of the attribute is returned.
-   *
-   */
-  SVGElement attr(@Nullable SVGAttributes hash, double[] val);
+  SVGElement attr(@Nullable SVGAttributes hash, AttrVal8[] val);
 
   /**
    * Apply native and custom attributes to the SVG elements.
@@ -969,34 +803,7 @@ public interface SVGElement extends Any {
    * value of the attribute is returned.
    *
    */
-  SVGElement attr(@Nullable String hash, @Nullable AttrVal val);
-
-  /**
-   * Apply native and custom attributes to the SVG elements.
-   *
-   * In order to set the rotation center for rotation, set x and y to 0 and
-   * use <code>translateX</code> and <code>translateY</code> attributes to position the element
-   * instead.
-   *
-   * Attributes frequently used in Highcharts are <code>fill</code>, <code>stroke</code>,
-   * <code>stroke-width</code>.
-   *
-   * @param hash
-   * The native and custom SVG attributes.
-   *
-   * @param val
-   * If the type of the first argument is <code>string</code>, the second can be a
-   * value, which will serve as a single attribute setter. If the first
-   * argument is a string and the second is undefined, the function
-   * serves as a getter and the current value of the property is
-   * returned.
-   *
-   * @return If used as a setter, it returns the current Highcharts.SVGElement
-   * so the calls can be chained. If used as a getter, the current
-   * value of the attribute is returned.
-   *
-   */
-  SVGElement attr(@Nullable String hash, double[] val);
+  SVGElement attr(@Nullable String hash, AttrVal8[] val);
 
   /**
    * Apply native and custom attributes to the SVG elements.
@@ -1071,26 +878,6 @@ public interface SVGElement extends Any {
    *
    */
   SVGElement attr(@Nullable SVGAttributes hash);
-
-  /**
-   * Apply native and custom attributes to the SVG elements.
-   *
-   * In order to set the rotation center for rotation, set x and y to 0 and
-   * use <code>translateX</code> and <code>translateY</code> attributes to position the element
-   * instead.
-   *
-   * Attributes frequently used in Highcharts are <code>fill</code>, <code>stroke</code>,
-   * <code>stroke-width</code>.
-   *
-   * @param hash
-   * The native and custom SVG attributes.
-   *
-   * @return If used as a setter, it returns the current Highcharts.SVGElement
-   * so the calls can be chained. If used as a getter, the current
-   * value of the attribute is returned.
-   *
-   */
-  SVGElement attr(@Nullable String hash);
 
   /**
    * Apply native and custom attributes to the SVG elements.
@@ -1565,45 +1352,191 @@ public interface SVGElement extends Any {
    */
   SVGElement translate(double x, double y);
 
-  abstract class AttrVal extends JsEnum {
-    public static final AttrVal Z_CAPITAL = JsEnum.of("Z");
+  interface AttrVal8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
 
-    public static final AttrVal V_CAPITAL = JsEnum.of("V");
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
 
-    public static final AttrVal T_CAPITAL = JsEnum.of("T");
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
 
-    public static final AttrVal S_CAPITAL = JsEnum.of("S");
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
 
-    public static final AttrVal Q_CAPITAL = JsEnum.of("Q");
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
 
-    public static final AttrVal M_CAPITAL = JsEnum.of("M");
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
 
-    public static final AttrVal L_CAPITAL = JsEnum.of("L");
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
 
-    public static final AttrVal H_CAPITAL = JsEnum.of("H");
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
 
-    public static final AttrVal C_CAPITAL = JsEnum.of("C");
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
 
-    public static final AttrVal A_CAPITAL = JsEnum.of("A");
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
 
-    public static final AttrVal Z = JsEnum.of("z");
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
 
-    public static final AttrVal V = JsEnum.of("v");
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
 
-    public static final AttrVal T = JsEnum.of("t");
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
 
-    public static final AttrVal S = JsEnum.of("s");
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
 
-    public static final AttrVal Q = JsEnum.of("q");
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
 
-    public static final AttrVal M = JsEnum.of("m");
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
 
-    public static final AttrVal L = JsEnum.of("l");
+    static AttrVal8.Builder builder() {
+      return new AttrVal8.Builder();
+    }
 
-    public static final AttrVal H = JsEnum.of("h");
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
 
-    public static final AttrVal C = JsEnum.of("c");
+      public static final Value0 C = JsEnum.of("c");
 
-    public static final AttrVal A = JsEnum.of("a");
+      public static final Value0 H = JsEnum.of("h");
+
+      public static final Value0 L = JsEnum.of("l");
+
+      public static final Value0 M = JsEnum.of("m");
+
+      public static final Value0 Q = JsEnum.of("q");
+
+      public static final Value0 S = JsEnum.of("s");
+
+      public static final Value0 T = JsEnum.of("t");
+
+      public static final Value0 V = JsEnum.of("v");
+
+      public static final Value0 Z = JsEnum.of("z");
+
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
+
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
+
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
+
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
+
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
+
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
+
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
+
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
+
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
+
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
+
+    final class Builder {
+      private final AttrVal8 object = Any.empty();
+
+      private Builder() {
+      }
+
+      public AttrVal8 build() {
+        return object;
+      }
+
+      public AttrVal8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public AttrVal8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public AttrVal8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public AttrVal8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public AttrVal8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public AttrVal8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public AttrVal8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public AttrVal8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
   }
+
 }

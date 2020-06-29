@@ -41,7 +41,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -609,7 +609,7 @@ public interface PlotGaugeOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotGaugeDataLabelsOptions[] value);
+  void setDataLabels(PlotGaugeDataLabelsOptions... value);
 
   /**
    * (Highcharts) A description of the series to add to the screen reader
@@ -836,7 +836,7 @@ public interface PlotGaugeOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts) An array specifying which option maps to which key in the
@@ -855,7 +855,7 @@ public interface PlotGaugeOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1419,8 +1419,15 @@ public interface PlotGaugeOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotGaugeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotGaugeOptions build() {
       return object;
@@ -1799,7 +1806,7 @@ public interface PlotGaugeOptions extends Any {
      * enabled by default and shown in a bordered box below the point.
      *
      */
-    public Builder dataLabels(PlotGaugeDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotGaugeDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1938,7 +1945,7 @@ public interface PlotGaugeOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -1949,7 +1956,7 @@ public interface PlotGaugeOptions extends Any {
      * arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }

@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -31,7 +31,7 @@ public interface ChartClickEventObject extends PointerEventObject {
    *
    */
   @JSProperty("xAxis")
-  void setXAxis(ChartClickEventAxisObject[] value);
+  void setXAxis(ChartClickEventAxisObject... value);
 
   /**
    * Information about the y-axis on the clicked spot.
@@ -45,7 +45,7 @@ public interface ChartClickEventObject extends PointerEventObject {
    *
    */
   @JSProperty("yAxis")
-  void setYAxis(ChartClickEventAxisObject[] value);
+  void setYAxis(ChartClickEventAxisObject... value);
 
   /**
    * Information about the z-axis on the clicked spot.
@@ -60,10 +60,17 @@ public interface ChartClickEventObject extends PointerEventObject {
    *
    */
   @JSProperty("zAxis")
-  void setZAxis(ChartClickEventAxisObject[] value);
+  void setZAxis(ChartClickEventAxisObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ChartClickEventObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public ChartClickEventObject build() {
       return object;
@@ -73,7 +80,7 @@ public interface ChartClickEventObject extends PointerEventObject {
      * Information about the x-axis on the clicked spot.
      *
      */
-    public Builder xAxis(ChartClickEventAxisObject[] value) {
+    public Builder xAxis(ChartClickEventAxisObject... value) {
       object.setXAxis(value);
       return this;
     }
@@ -82,7 +89,7 @@ public interface ChartClickEventObject extends PointerEventObject {
      * Information about the y-axis on the clicked spot.
      *
      */
-    public Builder yAxis(ChartClickEventAxisObject[] value) {
+    public Builder yAxis(ChartClickEventAxisObject... value) {
       object.setYAxis(value);
       return this;
     }
@@ -91,7 +98,7 @@ public interface ChartClickEventObject extends PointerEventObject {
      * Information about the z-axis on the clicked spot.
      *
      */
-    public Builder zAxis(ChartClickEventAxisObject[] value) {
+    public Builder zAxis(ChartClickEventAxisObject... value) {
       object.setZAxis(value);
       return this;
     }

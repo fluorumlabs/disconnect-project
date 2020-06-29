@@ -18,7 +18,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -86,7 +86,7 @@ public interface NavigatorYAxisLabelsOptions extends Any {
    *
    */
   @JSProperty("autoRotation")
-  void setAutoRotation(double[] value);
+  void setAutoRotation(double... value);
 
   /**
    * (Highcharts, Gantt) When each category width is more than this many
@@ -185,7 +185,7 @@ public interface NavigatorYAxisLabelsOptions extends Any {
    */
   @JSProperty("formatter")
   @Nullable
-  FormatterCallbackFunction<AxisLabelsFormatterContextObject> getFormatter();
+  AxisLabelsFormatterCallbackFunction getFormatter();
 
   /**
    * (Highstock, Gantt) Callback JavaScript function to format the label. The
@@ -198,7 +198,7 @@ public interface NavigatorYAxisLabelsOptions extends Any {
    *
    */
   @JSProperty("formatter")
-  void setFormatter(@Nullable FormatterCallbackFunction<AxisLabelsFormatterContextObject> value);
+  void setFormatter(@Nullable AxisLabelsFormatterCallbackFunction value);
 
   /**
    * (Gantt) The number of pixels to indent the labels per level in a treegrid
@@ -231,7 +231,7 @@ public interface NavigatorYAxisLabelsOptions extends Any {
    *
    */
   @JSProperty("levels")
-  void setLevels(NavigatorYAxisLabelsLevelsOptions[] value);
+  void setLevels(NavigatorYAxisLabelsLevelsOptions... value);
 
   /**
    * (Highstock, Gantt) How to handle overflowing labels on horizontal axis.
@@ -575,8 +575,15 @@ public interface NavigatorYAxisLabelsOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigatorYAxisLabelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigatorYAxisLabelsOptions build() {
       return object;
@@ -620,7 +627,7 @@ public interface NavigatorYAxisLabelsOptions extends Any {
      * rotation, which will cause the labels to word-wrap if possible.
      *
      */
-    public Builder autoRotation(double[] value) {
+    public Builder autoRotation(double... value) {
       object.setAutoRotation(value);
       return this;
     }
@@ -692,8 +699,7 @@ public interface NavigatorYAxisLabelsOptions extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder formatter(
-        @Nullable FormatterCallbackFunction<AxisLabelsFormatterContextObject> value) {
+    public Builder formatter(@Nullable AxisLabelsFormatterCallbackFunction value) {
       object.setFormatter(value);
       return this;
     }
@@ -713,7 +719,7 @@ public interface NavigatorYAxisLabelsOptions extends Any {
      * precedence over labels options.
      *
      */
-    public Builder levels(NavigatorYAxisLabelsLevelsOptions[] value) {
+    public Builder levels(NavigatorYAxisLabelsLevelsOptions... value) {
       object.setLevels(value);
       return this;
     }

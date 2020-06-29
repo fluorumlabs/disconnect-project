@@ -4,7 +4,9 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
+import js.lang.Unknown /* PathfinderTypeValue */;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -15,7 +17,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -135,8 +137,105 @@ public interface XrangePointConnectorsOptionsObject extends Any {
   @JSProperty("to")
   void setTo(@Nullable String value);
 
-  class Builder {
+  /**
+   * (Gantt) Set the default pathfinder algorithm to use for this chart. It is
+   * possible to define your own algorithms by adding them to the
+   * Highcharts.Pathfinder.prototype.algorithms object before the chart has
+   * been created.
+   *
+   * The default algorithms are as follows:
+   *
+   * <code>straight</code>: Draws a straight line between the connecting points. Does not
+   * avoid other points when drawing.
+   *
+   * <code>simpleConnect</code>: Finds a path between the points using right angles only.
+   * Takes only starting/ending points into account, and will not avoid other
+   * points.
+   *
+   * <code>fastAvoid</code>: Finds a path between the points using right angles only.
+   * Will attempt to avoid other points, but its focus is performance over
+   * accuracy. Works well with less dense datasets.
+   *
+   * Default value: <code>straight</code> is used as default for most series types, while
+   * <code>simpleConnect</code> is used as default for Gantt series, to show dependencies
+   * between points.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Unknown /* PathfinderTypeValue */ getType();
+
+  /**
+   * (Gantt) Set the default pathfinder algorithm to use for this chart. It is
+   * possible to define your own algorithms by adding them to the
+   * Highcharts.Pathfinder.prototype.algorithms object before the chart has
+   * been created.
+   *
+   * The default algorithms are as follows:
+   *
+   * <code>straight</code>: Draws a straight line between the connecting points. Does not
+   * avoid other points when drawing.
+   *
+   * <code>simpleConnect</code>: Finds a path between the points using right angles only.
+   * Takes only starting/ending points into account, and will not avoid other
+   * points.
+   *
+   * <code>fastAvoid</code>: Finds a path between the points using right angles only.
+   * Will attempt to avoid other points, but its focus is performance over
+   * accuracy. Works well with less dense datasets.
+   *
+   * Default value: <code>straight</code> is used as default for most series types, while
+   * <code>simpleConnect</code> is used as default for Gantt series, to show dependencies
+   * between points.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
+
+  /**
+   * (Gantt) Set the default pathfinder algorithm to use for this chart. It is
+   * possible to define your own algorithms by adding them to the
+   * Highcharts.Pathfinder.prototype.algorithms object before the chart has
+   * been created.
+   *
+   * The default algorithms are as follows:
+   *
+   * <code>straight</code>: Draws a straight line between the connecting points. Does not
+   * avoid other points when drawing.
+   *
+   * <code>simpleConnect</code>: Finds a path between the points using right angles only.
+   * Takes only starting/ending points into account, and will not avoid other
+   * points.
+   *
+   * <code>fastAvoid</code>: Finds a path between the points using right angles only.
+   * Will attempt to avoid other points, but its focus is performance over
+   * accuracy. Works well with less dense datasets.
+   *
+   * Default value: <code>straight</code> is used as default for most series types, while
+   * <code>simpleConnect</code> is used as default for Gantt series, to show dependencies
+   * between points.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type STRAIGHT = JsEnum.of("straight");
+
+    public static final Type FASTAVOID = JsEnum.of("fastAvoid");
+
+    public static final Type SIMPLECONNECT = JsEnum.of("simpleConnect");
+  }
+
+  final class Builder {
     private final XrangePointConnectorsOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public XrangePointConnectorsOptionsObject build() {
       return object;
@@ -207,6 +306,64 @@ public interface XrangePointConnectorsOptionsObject extends Any {
      */
     public Builder to(@Nullable String value) {
       object.setTo(value);
+      return this;
+    }
+
+    /**
+     * (Gantt) Set the default pathfinder algorithm to use for this chart. It is
+     * possible to define your own algorithms by adding them to the
+     * Highcharts.Pathfinder.prototype.algorithms object before the chart has
+     * been created.
+     *
+     * The default algorithms are as follows:
+     *
+     * <code>straight</code>: Draws a straight line between the connecting points. Does not
+     * avoid other points when drawing.
+     *
+     * <code>simpleConnect</code>: Finds a path between the points using right angles only.
+     * Takes only starting/ending points into account, and will not avoid other
+     * points.
+     *
+     * <code>fastAvoid</code>: Finds a path between the points using right angles only.
+     * Will attempt to avoid other points, but its focus is performance over
+     * accuracy. Works well with less dense datasets.
+     *
+     * Default value: <code>straight</code> is used as default for most series types, while
+     * <code>simpleConnect</code> is used as default for Gantt series, to show dependencies
+     * between points.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
+      return this;
+    }
+
+    /**
+     * (Gantt) Set the default pathfinder algorithm to use for this chart. It is
+     * possible to define your own algorithms by adding them to the
+     * Highcharts.Pathfinder.prototype.algorithms object before the chart has
+     * been created.
+     *
+     * The default algorithms are as follows:
+     *
+     * <code>straight</code>: Draws a straight line between the connecting points. Does not
+     * avoid other points when drawing.
+     *
+     * <code>simpleConnect</code>: Finds a path between the points using right angles only.
+     * Takes only starting/ending points into account, and will not avoid other
+     * points.
+     *
+     * <code>fastAvoid</code>: Finds a path between the points using right angles only.
+     * Will attempt to avoid other points, but its focus is performance over
+     * accuracy. Works well with less dense datasets.
+     *
+     * Default value: <code>straight</code> is used as default for most series types, while
+     * <code>simpleConnect</code> is used as default for Gantt series, to show dependencies
+     * between points.
+     *
+     */
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
   }

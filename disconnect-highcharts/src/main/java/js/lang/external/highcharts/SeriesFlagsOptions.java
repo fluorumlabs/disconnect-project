@@ -3,6 +3,7 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown /* undefined */;
 import org.teavm.jso.JSProperty;
@@ -38,7 +39,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -87,7 +88,7 @@ public interface SeriesFlagsOptions extends PlotFlagsOptions, SeriesOptions {
    * </ol>
    */
   @JSProperty("data")
-  void setData(PointOptionsObject[] value);
+  void setData(PointOptionsObject... value);
 
   /**
    * Not available
@@ -122,6 +123,24 @@ public interface SeriesFlagsOptions extends PlotFlagsOptions, SeriesOptions {
   Unknown /* undefined */ getPointWidth();
 
   /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  /**
    * Not available
    *
    */
@@ -129,8 +148,19 @@ public interface SeriesFlagsOptions extends PlotFlagsOptions, SeriesOptions {
   @Nullable
   Unknown /* undefined */ getUseOhlcData();
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type FLAGS = JsEnum.of("flags");
+  }
+
+  final class Builder {
     private final SeriesFlagsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesFlagsOptions build() {
       return object;
@@ -147,8 +177,19 @@ public interface SeriesFlagsOptions extends PlotFlagsOptions, SeriesOptions {
      * not available. (see online documentation for example)</li>
      * </ol>
      */
-    public Builder data(PointOptionsObject[] value) {
+    public Builder data(PointOptionsObject... value) {
       object.setData(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+     * TypeScript non-optional and might be <code>undefined</code> in series objects from
+     * unknown sources.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

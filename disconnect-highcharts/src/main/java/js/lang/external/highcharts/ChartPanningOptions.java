@@ -2,6 +2,8 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
@@ -16,7 +18,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -36,8 +38,40 @@ public interface ChartPanningOptions extends Any {
   @JSProperty("enabled")
   void setEnabled(boolean value);
 
-  class Builder {
+  /**
+   * (Highcharts, Highstock, Gantt) Decides in what dimensions the user can
+   * pan the chart. Can be one of <code>x</code>, <code>y</code>, or <code>xy</code>.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Gantt) Decides in what dimensions the user can
+   * pan the chart. Can be one of <code>x</code>, <code>y</code>, or <code>xy</code>.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type X = JsEnum.of("x");
+
+    public static final Type XY = JsEnum.of("xy");
+
+    public static final Type Y = JsEnum.of("y");
+  }
+
+  final class Builder {
     private final ChartPanningOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ChartPanningOptions build() {
       return object;
@@ -49,6 +83,16 @@ public interface ChartPanningOptions extends Any {
      */
     public Builder enabled(boolean value) {
       object.setEnabled(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Gantt) Decides in what dimensions the user can
+     * pan the chart. Can be one of <code>x</code>, <code>y</code>, or <code>xy</code>.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
       return this;
     }
   }

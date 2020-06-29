@@ -24,7 +24,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -652,7 +652,7 @@ public interface PlotFunnel3dDataLabelsOptions extends Any {
    */
   @JSProperty("verticalAlign")
   @Nullable
-  VerticalAlign getVerticalAlign();
+  String getVerticalAlign();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The vertical alignment of a data
@@ -662,7 +662,7 @@ public interface PlotFunnel3dDataLabelsOptions extends Any {
    *
    */
   @JSProperty("verticalAlign")
-  void setVerticalAlign(@Nullable VerticalAlign value);
+  void setVerticalAlign(@Nullable String value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The x position offset of the
@@ -714,8 +714,15 @@ public interface PlotFunnel3dDataLabelsOptions extends Any {
   @JSProperty("z")
   void setZ(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotFunnel3dDataLabelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotFunnel3dDataLabelsOptions build() {
       return object;
@@ -1133,7 +1140,7 @@ public interface PlotFunnel3dDataLabelsOptions extends Any {
      * positive values and below negative values.
      *
      */
-    public Builder verticalAlign(@Nullable VerticalAlign value) {
+    public Builder verticalAlign(@Nullable String value) {
       object.setVerticalAlign(value);
       return this;
     }

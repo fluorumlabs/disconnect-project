@@ -43,7 +43,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -657,7 +657,7 @@ public interface PlotParetoOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotParetoDataLabelsOptions[] value);
+  void setDataLabels(PlotParetoDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock) Options for the series data sorting.
@@ -836,7 +836,7 @@ public interface PlotParetoOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1288,8 +1288,15 @@ public interface PlotParetoOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotParetoOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotParetoOptions build() {
       return object;
@@ -1684,7 +1691,7 @@ public interface PlotParetoOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotParetoDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotParetoDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1803,7 +1810,7 @@ public interface PlotParetoOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }

@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -36,10 +36,17 @@ public interface AnnotationControllable extends Any {
   Point[] getPoints();
 
   @JSProperty("points")
-  void setPoints(Point[] value);
+  void setPoints(Point... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationControllable object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationControllable build() {
       return object;
@@ -60,7 +67,7 @@ public interface AnnotationControllable extends Any {
       return this;
     }
 
-    public Builder points(Point[] value) {
+    public Builder points(Point... value) {
       object.setPoints(value);
       return this;
     }

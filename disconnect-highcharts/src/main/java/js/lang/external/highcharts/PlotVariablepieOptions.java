@@ -50,7 +50,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -526,7 +526,7 @@ public interface PlotVariablepieOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(GradientColorObject[] value);
+  void setColors(GradientColorObject... value);
 
   /**
    * (Highcharts) A series specific or series type specific color set to use
@@ -534,7 +534,7 @@ public interface PlotVariablepieOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(PatternObject[] value);
+  void setColors(PatternObject... value);
 
   /**
    * (Highcharts) A series specific or series type specific color set to use
@@ -542,7 +542,7 @@ public interface PlotVariablepieOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(String[] value);
+  void setColors(String... value);
 
   /**
    * (Highstock) Compare the values of the series against the first non-null,
@@ -776,7 +776,7 @@ public interface PlotVariablepieOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesPieDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesPieDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -1126,7 +1126,7 @@ public interface PlotVariablepieOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts) An array specifying which option maps to which key in the
@@ -1145,7 +1145,7 @@ public interface PlotVariablepieOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highstock) The line marks the last price from all points.
@@ -1760,14 +1760,21 @@ public interface PlotVariablepieOptions extends Any {
   @JSProperty("zMin")
   void setZMin(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class SizeBy extends JsEnum {
     public static final SizeBy AREA = JsEnum.of("area");
 
     public static final SizeBy RADIUS = JsEnum.of("radius");
   }
 
-  class Builder {
+  final class Builder {
     private final PlotVariablepieOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotVariablepieOptions build() {
       return object;
@@ -2098,7 +2105,7 @@ public interface PlotVariablepieOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(GradientColorObject[] value) {
+    public Builder colors(GradientColorObject... value) {
       object.setColors(value);
       return this;
     }
@@ -2108,7 +2115,7 @@ public interface PlotVariablepieOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(PatternObject[] value) {
+    public Builder colors(PatternObject... value) {
       object.setColors(value);
       return this;
     }
@@ -2118,7 +2125,7 @@ public interface PlotVariablepieOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(String[] value) {
+    public Builder colors(String... value) {
       object.setColors(value);
       return this;
     }
@@ -2257,7 +2264,7 @@ public interface PlotVariablepieOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(SeriesPieDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesPieDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2496,7 +2503,7 @@ public interface PlotVariablepieOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -2507,7 +2514,7 @@ public interface PlotVariablepieOptions extends Any {
      * arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }

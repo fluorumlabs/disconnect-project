@@ -43,7 +43,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -780,7 +780,7 @@ public interface PlotApoOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotApoDataLabelsOptions[] value);
+  void setDataLabels(PlotApoDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -1604,10 +1604,17 @@ public interface PlotApoOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotApoOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotApoOptions build() {
       return object;
@@ -2078,7 +2085,7 @@ public interface PlotApoOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotApoDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotApoDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2597,7 +2604,7 @@ public interface PlotApoOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

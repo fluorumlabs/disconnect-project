@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -43,8 +43,15 @@ public interface SeriesStatesNormalOptionsObject extends Any {
   @JSProperty("animation")
   void setAnimation(@Nullable AnimationOptionsObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesStatesNormalOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesStatesNormalOptionsObject build() {
       return object;

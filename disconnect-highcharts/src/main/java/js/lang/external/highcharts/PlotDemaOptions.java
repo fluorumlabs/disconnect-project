@@ -43,7 +43,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -753,7 +753,7 @@ public interface PlotDemaOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotDemaDataLabelsOptions[] value);
+  void setDataLabels(PlotDemaDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock) Options for the series data sorting.
@@ -1560,10 +1560,17 @@ public interface PlotDemaOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotDemaOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotDemaOptions build() {
       return object;
@@ -2027,7 +2034,7 @@ public interface PlotDemaOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotDemaDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotDemaDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2528,7 +2535,7 @@ public interface PlotDemaOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

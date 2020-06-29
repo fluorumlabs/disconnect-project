@@ -42,7 +42,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -779,7 +779,7 @@ public interface PlotCciOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotCciDataLabelsOptions[] value);
+  void setDataLabels(PlotCciDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -1601,10 +1601,17 @@ public interface PlotCciOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotCciOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotCciOptions build() {
       return object;
@@ -2075,7 +2082,7 @@ public interface PlotCciOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotCciDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotCciDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2593,7 +2600,7 @@ public interface PlotCciOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -68,10 +68,17 @@ public interface GradientColorObject extends Any {
    *
    */
   @JSProperty("stops")
-  void setStops(GradientColorStopObject[] value);
+  void setStops(GradientColorStopObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final GradientColorObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public GradientColorObject build() {
       return object;
@@ -103,7 +110,7 @@ public interface GradientColorObject extends Any {
      * color can also be given in the rgba format.
      *
      */
-    public Builder stops(GradientColorStopObject[] value) {
+    public Builder stops(GradientColorStopObject... value) {
       object.setStops(value);
       return this;
     }

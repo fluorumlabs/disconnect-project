@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/sonification.src.js"
@@ -80,8 +80,15 @@ public interface SonificationObject extends Any {
   @JSProperty("instruments")
   void setInstruments(SonificationObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SonificationObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SonificationObject build() {
       return object;

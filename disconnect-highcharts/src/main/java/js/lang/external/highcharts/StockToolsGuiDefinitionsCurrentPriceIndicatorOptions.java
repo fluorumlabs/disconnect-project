@@ -9,7 +9,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -30,8 +30,15 @@ public interface StockToolsGuiDefinitionsCurrentPriceIndicatorOptions extends An
   @JSProperty("symbol")
   void setSymbol(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final StockToolsGuiDefinitionsCurrentPriceIndicatorOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public StockToolsGuiDefinitionsCurrentPriceIndicatorOptions build() {
       return object;

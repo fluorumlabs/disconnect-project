@@ -11,7 +11,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -107,8 +107,15 @@ public interface SymbolOptionsObject extends Any {
   @JSProperty("start")
   void setStart(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SymbolOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SymbolOptionsObject build() {
       return object;

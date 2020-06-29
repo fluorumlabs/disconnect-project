@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -319,7 +319,11 @@ public interface DataGroupingOptionsObject extends Any {
    *
    */
   @JSProperty("units")
-  void setUnits(Units2[] value);
+  void setUnits(Units2... value);
+
+  static Builder builder() {
+    return new Builder();
+  }
 
   abstract class Approximation extends JsEnum {
     public static final Approximation AVERAGE = JsEnum.of("average");
@@ -337,8 +341,11 @@ public interface DataGroupingOptionsObject extends Any {
     public static final Approximation SUM = JsEnum.of("sum");
   }
 
-  class Builder {
+  final class Builder {
     private final DataGroupingOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public DataGroupingOptionsObject build() {
       return object;
@@ -539,7 +546,7 @@ public interface DataGroupingOptionsObject extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder units(Units2[] value) {
+    public Builder units(Units2... value) {
       object.setUnits(value);
       return this;
     }

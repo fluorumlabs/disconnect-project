@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -82,14 +82,21 @@ public interface AnnotationsMeasureTypeCrosshairYOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class MarkerEnd extends JsEnum {
     public static final MarkerEnd ARROW = JsEnum.of("arrow");
 
     public static final MarkerEnd NONE = JsEnum.of("none");
   }
 
-  class Builder {
+  final class Builder {
     private final AnnotationsMeasureTypeCrosshairYOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsMeasureTypeCrosshairYOptions build() {
       return object;

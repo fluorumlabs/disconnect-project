@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -71,7 +71,7 @@ public interface KeyboardNavigationOptionsObject extends Any {
    *
    */
   @JSProperty("order")
-  void setOrder(String[] value);
+  void setOrder(String... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the keyboard
@@ -108,8 +108,15 @@ public interface KeyboardNavigationOptionsObject extends Any {
   @JSProperty("wrapAround")
   void setWrapAround(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final KeyboardNavigationOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public KeyboardNavigationOptionsObject build() {
       return object;
@@ -142,7 +149,7 @@ public interface KeyboardNavigationOptionsObject extends Any {
      * addition, any custom components can be added here.
      *
      */
-    public Builder order(String[] value) {
+    public Builder order(String... value) {
       object.setOrder(value);
       return this;
     }

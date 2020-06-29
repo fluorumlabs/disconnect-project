@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -38,7 +38,7 @@ public interface AnnotationsCrookedLineTypeOptions extends Any {
   AnnotationsCrookedLineTypePointsOptions[] getPoints();
 
   @JSProperty("points")
-  void setPoints(AnnotationsCrookedLineTypePointsOptions[] value);
+  void setPoints(AnnotationsCrookedLineTypePointsOptions... value);
 
   /**
    * (Highstock) This number defines which xAxis the point is connected to. It
@@ -72,8 +72,15 @@ public interface AnnotationsCrookedLineTypeOptions extends Any {
   @JSProperty("yAxis")
   void setYAxis(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsCrookedLineTypeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsCrookedLineTypeOptions build() {
       return object;
@@ -88,7 +95,7 @@ public interface AnnotationsCrookedLineTypeOptions extends Any {
       return this;
     }
 
-    public Builder points(AnnotationsCrookedLineTypePointsOptions[] value) {
+    public Builder points(AnnotationsCrookedLineTypePointsOptions... value) {
       object.setPoints(value);
       return this;
     }

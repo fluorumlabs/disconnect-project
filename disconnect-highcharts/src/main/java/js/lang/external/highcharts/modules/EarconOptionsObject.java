@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/sonification.src.js"
@@ -47,7 +47,7 @@ public interface EarconOptionsObject extends Any {
    *
    */
   @JSProperty("instruments")
-  void setInstruments(EarconInstrument[] value);
+  void setInstruments(EarconInstrument... value);
 
   /**
    * Callback function to call when earcon has finished playing.
@@ -102,8 +102,15 @@ public interface EarconOptionsObject extends Any {
   @JSProperty("volume")
   void setVolume(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final EarconOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public EarconOptionsObject build() {
       return object;
@@ -122,7 +129,7 @@ public interface EarconOptionsObject extends Any {
      * The instruments and their options defining this earcon.
      *
      */
-    public Builder instruments(EarconInstrument[] value) {
+    public Builder instruments(EarconInstrument... value) {
       object.setInstruments(value);
       return this;
     }

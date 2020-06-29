@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -33,7 +33,7 @@ public interface ChartSelectionContextObject extends Event {
    *
    */
   @JSProperty("xAxis")
-  void setXAxis(ChartSelectionAxisContextObject[] value);
+  void setXAxis(ChartSelectionAxisContextObject... value);
 
   /**
    * Arrays containing the axes of each dimension and each axis' min and max
@@ -49,10 +49,17 @@ public interface ChartSelectionContextObject extends Event {
    *
    */
   @JSProperty("yAxis")
-  void setYAxis(ChartSelectionAxisContextObject[] value);
+  void setYAxis(ChartSelectionAxisContextObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ChartSelectionContextObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public ChartSelectionContextObject build() {
       return object;
@@ -63,7 +70,7 @@ public interface ChartSelectionContextObject extends Event {
      * values.
      *
      */
-    public Builder xAxis(ChartSelectionAxisContextObject[] value) {
+    public Builder xAxis(ChartSelectionAxisContextObject... value) {
       object.setXAxis(value);
       return this;
     }
@@ -73,7 +80,7 @@ public interface ChartSelectionContextObject extends Event {
      * values.
      *
      */
-    public Builder yAxis(ChartSelectionAxisContextObject[] value) {
+    public Builder yAxis(ChartSelectionAxisContextObject... value) {
       object.setYAxis(value);
       return this;
     }

@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -436,7 +436,7 @@ public interface LegendOptions extends Any {
    *
    */
   @JSProperty("labelFormatter")
-  void setLabelFormatter(@Nullable FormatterCallbackFunction<Unknown> value);
+  void setLabelFormatter(@Nullable FormatterCallbackFunction<? extends Any> value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The layout of the legend items.
@@ -834,6 +834,10 @@ public interface LegendOptions extends Any {
   @JSProperty("y")
   void setY(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Layout extends JsEnum {
     public static final Layout HORIZONTAL = JsEnum.of("horizontal");
 
@@ -842,8 +846,11 @@ public interface LegendOptions extends Any {
     public static final Layout VERTICAL = JsEnum.of("vertical");
   }
 
-  class Builder {
+  final class Builder {
     private final LegendOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public LegendOptions build() {
       return object;
@@ -1108,7 +1115,19 @@ public interface LegendOptions extends Any {
      * name is printed.
      *
      */
-    public Builder labelFormatter(@Nullable FormatterCallbackFunction<Unknown> value) {
+    public Builder pointLabelFormatter(@Nullable FormatterCallbackFunction<Point> value) {
+      object.setLabelFormatter(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) Callback function to format each
+     * of the series' labels. The <code>this</code> keyword refers to the series object, or
+     * the point object in case of pie charts. By default the series or point
+     * name is printed.
+     *
+     */
+    public Builder seriesLabelFormatter(@Nullable FormatterCallbackFunction<Series> value) {
       object.setLabelFormatter(value);
       return this;
     }

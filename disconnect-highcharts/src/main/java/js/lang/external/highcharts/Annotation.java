@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"Annotation as Annotation_Annotation"},
@@ -44,20 +44,6 @@ public interface Annotation extends Any {
   static Annotation create(Chart chart, AnnotationsOptions userOptions) {
     throw new UnsupportedOperationException("Available only in JavaScript");
   }
-
-  /**
-   * The chart that the annotation belongs to.
-   *
-   */
-  @JSProperty("chart")
-  Chart getChart();
-
-  /**
-   * The chart that the annotation belongs to.
-   *
-   */
-  @JSProperty("chart")
-  void setChart(Chart value);
 
   /**
    * The group svg element.
@@ -100,20 +86,6 @@ public interface Annotation extends Any {
    */
   @JSProperty("options")
   void setOptions(AnnotationsOptions value);
-
-  /**
-   * The array of points which defines the annotation.
-   *
-   */
-  @JSProperty("points")
-  Point[] getPoints();
-
-  /**
-   * The array of points which defines the annotation.
-   *
-   */
-  @JSProperty("points")
-  void setPoints(Point[] value);
 
   /**
    * The group svg element of the annotation's shapes.

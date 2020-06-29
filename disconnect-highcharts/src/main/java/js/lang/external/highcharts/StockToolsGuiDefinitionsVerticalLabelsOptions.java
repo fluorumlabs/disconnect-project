@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -29,7 +29,7 @@ public interface StockToolsGuiDefinitionsVerticalLabelsOptions extends Any {
    *
    */
   @JSProperty("items")
-  void setItems(Any[] value);
+  void setItems(Any... value);
 
   @JSProperty("verticalArrow")
   @Nullable
@@ -53,8 +53,15 @@ public interface StockToolsGuiDefinitionsVerticalLabelsOptions extends Any {
   @JSProperty("verticalLabel")
   void setVerticalLabel(@Nullable StockToolsGuiDefinitionsVerticalLabelsVerticalLabelOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final StockToolsGuiDefinitionsVerticalLabelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public StockToolsGuiDefinitionsVerticalLabelsOptions build() {
       return object;
@@ -65,7 +72,7 @@ public interface StockToolsGuiDefinitionsVerticalLabelsOptions extends Any {
      * items.
      *
      */
-    public Builder items(Any[] value) {
+    public Builder items(Any... value) {
       object.setItems(value);
       return this;
     }

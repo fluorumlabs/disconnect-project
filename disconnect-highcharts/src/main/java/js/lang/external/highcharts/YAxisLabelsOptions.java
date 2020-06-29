@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -87,7 +87,7 @@ public interface YAxisLabelsOptions extends Any {
    *
    */
   @JSProperty("autoRotation")
-  void setAutoRotation(double[] value);
+  void setAutoRotation(double... value);
 
   /**
    * (Highcharts, Gantt) When each category width is more than this many
@@ -190,7 +190,7 @@ public interface YAxisLabelsOptions extends Any {
    */
   @JSProperty("formatter")
   @Nullable
-  FormatterCallbackFunction<AxisLabelsFormatterContextObject> getFormatter();
+  AxisLabelsFormatterCallbackFunction getFormatter();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Callback JavaScript function to
@@ -203,7 +203,7 @@ public interface YAxisLabelsOptions extends Any {
    *
    */
   @JSProperty("formatter")
-  void setFormatter(@Nullable FormatterCallbackFunction<AxisLabelsFormatterContextObject> value);
+  void setFormatter(@Nullable AxisLabelsFormatterCallbackFunction value);
 
   /**
    * (Gantt) The number of pixels to indent the labels per level in a treegrid
@@ -236,7 +236,7 @@ public interface YAxisLabelsOptions extends Any {
    *
    */
   @JSProperty("levels")
-  void setLevels(YAxisLabelsLevelsOptions[] value);
+  void setLevels(YAxisLabelsLevelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) How to handle overflowing labels
@@ -586,8 +586,15 @@ public interface YAxisLabelsOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final YAxisLabelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public YAxisLabelsOptions build() {
       return object;
@@ -631,7 +638,7 @@ public interface YAxisLabelsOptions extends Any {
      * rotation, which will cause the labels to word-wrap if possible.
      *
      */
-    public Builder autoRotation(double[] value) {
+    public Builder autoRotation(double... value) {
       object.setAutoRotation(value);
       return this;
     }
@@ -705,8 +712,7 @@ public interface YAxisLabelsOptions extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder formatter(
-        @Nullable FormatterCallbackFunction<AxisLabelsFormatterContextObject> value) {
+    public Builder formatter(@Nullable AxisLabelsFormatterCallbackFunction value) {
       object.setFormatter(value);
       return this;
     }
@@ -726,7 +732,7 @@ public interface YAxisLabelsOptions extends Any {
      * precedence over labels options.
      *
      */
-    public Builder levels(YAxisLabelsLevelsOptions[] value) {
+    public Builder levels(YAxisLabelsLevelsOptions... value) {
       object.setLevels(value);
       return this;
     }

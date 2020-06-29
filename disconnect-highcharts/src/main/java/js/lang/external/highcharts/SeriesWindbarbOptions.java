@@ -3,6 +3,7 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown /* Array < ( [ ( number | string ) , number , number ] | PointOptionsObject ) > */;
 import js.lang.Unknown /* undefined */;
@@ -39,7 +40,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -93,7 +94,7 @@ public interface SeriesWindbarbOptions extends SeriesOptions, PlotWindbarbOption
    * </ol>
    */
   @JSProperty("data")
-  void setData(PointOptionsObject[] value);
+  void setData(PointOptionsObject... value);
 
   /**
    * (Highcharts, Highstock) An array of data points for the series. For the
@@ -117,7 +118,7 @@ public interface SeriesWindbarbOptions extends SeriesOptions, PlotWindbarbOption
    * </ol>
    */
   @JSProperty("data")
-  void setData(Data3[] value);
+  void setData(Data3... value);
 
   /**
    * Not available
@@ -135,8 +136,37 @@ public interface SeriesWindbarbOptions extends SeriesOptions, PlotWindbarbOption
   @Nullable
   Unknown /* undefined */ getDataURL();
 
-  class Builder {
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type WINDBARB = JsEnum.of("windbarb");
+  }
+
+  final class Builder {
     private final SeriesWindbarbOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesWindbarbOptions build() {
       return object;
@@ -163,7 +193,7 @@ public interface SeriesWindbarbOptions extends SeriesOptions, PlotWindbarbOption
      * </li>
      * </ol>
      */
-    public Builder data(PointOptionsObject[] value) {
+    public Builder data(PointOptionsObject... value) {
       object.setData(value);
       return this;
     }
@@ -189,8 +219,19 @@ public interface SeriesWindbarbOptions extends SeriesOptions, PlotWindbarbOption
      * </li>
      * </ol>
      */
-    public Builder data(Data3[] value) {
+    public Builder data(Data3... value) {
       object.setData(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+     * TypeScript non-optional and might be <code>undefined</code> in series objects from
+     * unknown sources.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

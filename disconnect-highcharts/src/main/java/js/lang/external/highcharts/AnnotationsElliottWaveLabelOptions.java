@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -317,6 +317,13 @@ public interface AnnotationsElliottWaveLabelOptions extends Any {
   @JSProperty("text")
   void setText(@Nullable String value);
 
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
   /**
    * (Highstock) Whether to use HTML to render the annotation's label.
    *
@@ -382,8 +389,15 @@ public interface AnnotationsElliottWaveLabelOptions extends Any {
   @JSProperty("y")
   void setY(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsElliottWaveLabelOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsElliottWaveLabelOptions build() {
       return object;
@@ -570,6 +584,11 @@ public interface AnnotationsElliottWaveLabelOptions extends Any {
      */
     public Builder text(@Nullable String value) {
       object.setText(value);
+      return this;
+    }
+
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
 

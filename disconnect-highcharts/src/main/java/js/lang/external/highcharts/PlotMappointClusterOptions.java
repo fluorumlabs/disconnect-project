@@ -22,7 +22,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -196,10 +196,17 @@ public interface PlotMappointClusterOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(PlotMappointClusterZonesOptions[] value);
+  void setZones(PlotMappointClusterZonesOptions... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotMappointClusterOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotMappointClusterOptions build() {
       return object;
@@ -309,7 +316,7 @@ public interface PlotMappointClusterOptions extends Any {
      * <code>className</code> option.
      *
      */
-    public Builder zones(PlotMappointClusterZonesOptions[] value) {
+    public Builder zones(PlotMappointClusterZonesOptions... value) {
       object.setZones(value);
       return this;
     }

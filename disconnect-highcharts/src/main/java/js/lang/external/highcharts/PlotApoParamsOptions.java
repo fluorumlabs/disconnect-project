@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -58,10 +58,17 @@ public interface PlotApoParamsOptions extends Any {
    *
    */
   @JSProperty("periods")
-  void setPeriods(double[] value);
+  void setPeriods(double... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotApoParamsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotApoParamsOptions build() {
       return object;
@@ -86,7 +93,7 @@ public interface PlotApoParamsOptions extends Any {
      * (Highstock) Periods for Absolute Price Oscillator calculations.
      *
      */
-    public Builder periods(double[] value) {
+    public Builder periods(double... value) {
       object.setPeriods(value);
       return this;
     }

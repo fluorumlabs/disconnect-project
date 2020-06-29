@@ -2,6 +2,7 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
@@ -11,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -34,14 +35,21 @@ public interface YAxisLabelsSymbolOptions extends Any {
    * <code>Highcharts.Renderer.symbols</code> collection.
    *
    */
-  @JSProperty("width")
-  double getWidth();
+  @JSProperty("type")
+  @Nullable
+  Type getType();
 
   /**
    * (Gantt) The symbol type. Points to a definition function in the
    * <code>Highcharts.Renderer.symbols</code> collection.
    *
    */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
+
+  @JSProperty("width")
+  double getWidth();
+
   @JSProperty("width")
   void setWidth(double value);
 
@@ -57,8 +65,15 @@ public interface YAxisLabelsSymbolOptions extends Any {
   @JSProperty("y")
   void setY(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final YAxisLabelsSymbolOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public YAxisLabelsSymbolOptions build() {
       return object;
@@ -79,6 +94,11 @@ public interface YAxisLabelsSymbolOptions extends Any {
      * <code>Highcharts.Renderer.symbols</code> collection.
      *
      */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
+      return this;
+    }
+
     public Builder width(double value) {
       object.setWidth(value);
       return this;

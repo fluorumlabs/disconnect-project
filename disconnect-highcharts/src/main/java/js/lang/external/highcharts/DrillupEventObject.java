@@ -3,6 +3,7 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.JsFunction;
 import org.teavm.jso.JSProperty;
@@ -13,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -46,7 +47,7 @@ public interface DrillupEventObject extends Any {
    *
    */
   @JSProperty("seriesOptions")
-  void setSeriesOptions(SeriesOptionsRegistry[] value);
+  void setSeriesOptions(SeriesOptionsRegistry... value);
 
   /**
    * The event target.
@@ -62,8 +63,33 @@ public interface DrillupEventObject extends Any {
   @JSProperty("target")
   void setTarget(Chart value);
 
-  class Builder {
+  /**
+   * The event type.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * The event type.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type DRILLUP = JsEnum.of("drillup");
+  }
+
+  final class Builder {
     private final DrillupEventObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public DrillupEventObject build() {
       return object;
@@ -82,7 +108,7 @@ public interface DrillupEventObject extends Any {
      * Options for the new series.
      *
      */
-    public Builder seriesOptions(SeriesOptionsRegistry[] value) {
+    public Builder seriesOptions(SeriesOptionsRegistry... value) {
       object.setSeriesOptions(value);
       return this;
     }
@@ -93,6 +119,15 @@ public interface DrillupEventObject extends Any {
      */
     public Builder target(Chart value) {
       object.setTarget(value);
+      return this;
+    }
+
+    /**
+     * The event type.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

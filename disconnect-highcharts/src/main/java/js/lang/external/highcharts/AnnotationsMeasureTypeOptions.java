@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -87,7 +87,7 @@ public interface AnnotationsMeasureTypeOptions extends Any {
   AnnotationsMeasureTypePointsOptions[] getPoints();
 
   @JSProperty("points")
-  void setPoints(AnnotationsMeasureTypePointsOptions[] value);
+  void setPoints(AnnotationsMeasureTypePointsOptions... value);
 
   /**
    * (Highstock) Decides in what dimensions the user can resize by dragging
@@ -138,8 +138,15 @@ public interface AnnotationsMeasureTypeOptions extends Any {
   @JSProperty("yAxis")
   void setYAxis(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsMeasureTypeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsMeasureTypeOptions build() {
       return object;
@@ -184,7 +191,7 @@ public interface AnnotationsMeasureTypeOptions extends Any {
       return this;
     }
 
-    public Builder points(AnnotationsMeasureTypePointsOptions[] value) {
+    public Builder points(AnnotationsMeasureTypePointsOptions... value) {
       object.setPoints(value);
       return this;
     }

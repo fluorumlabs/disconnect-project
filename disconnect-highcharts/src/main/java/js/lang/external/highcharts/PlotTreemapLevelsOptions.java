@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -146,7 +146,7 @@ public interface PlotTreemapLevelsOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotTreemapLevelsDataLabelsOptions[] value);
+  void setDataLabels(PlotTreemapLevelsDataLabelsOptions... value);
 
   /**
    * (Highcharts) Can set the options of dataLabels on each point which lies
@@ -204,8 +204,15 @@ public interface PlotTreemapLevelsOptions extends Any {
   @JSProperty("level")
   void setLevel(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotTreemapLevelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotTreemapLevelsOptions build() {
       return object;
@@ -289,7 +296,7 @@ public interface PlotTreemapLevelsOptions extends Any {
      * on the level. plotOptions.treemap.dataLabels for possible values.
      *
      */
-    public Builder dataLabels(PlotTreemapLevelsDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotTreemapLevelsDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }

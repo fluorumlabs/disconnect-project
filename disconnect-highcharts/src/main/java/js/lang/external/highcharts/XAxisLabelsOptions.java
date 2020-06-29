@@ -18,7 +18,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -82,7 +82,7 @@ public interface XAxisLabelsOptions extends Any {
    *
    */
   @JSProperty("autoRotation")
-  void setAutoRotation(double[] value);
+  void setAutoRotation(double... value);
 
   /**
    * (Highcharts, Gantt) When each category width is more than this many
@@ -167,7 +167,7 @@ public interface XAxisLabelsOptions extends Any {
    */
   @JSProperty("formatter")
   @Nullable
-  FormatterCallbackFunction<AxisLabelsFormatterContextObject> getFormatter();
+  AxisLabelsFormatterCallbackFunction getFormatter();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Callback JavaScript function to
@@ -180,7 +180,7 @@ public interface XAxisLabelsOptions extends Any {
    *
    */
   @JSProperty("formatter")
-  void setFormatter(@Nullable FormatterCallbackFunction<AxisLabelsFormatterContextObject> value);
+  void setFormatter(@Nullable AxisLabelsFormatterCallbackFunction value);
 
   /**
    * (Gantt) The number of pixels to indent the labels per level in a treegrid
@@ -531,8 +531,15 @@ public interface XAxisLabelsOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final XAxisLabelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public XAxisLabelsOptions build() {
       return object;
@@ -574,7 +581,7 @@ public interface XAxisLabelsOptions extends Any {
      * rotation, which will cause the labels to word-wrap if possible.
      *
      */
-    public Builder autoRotation(double[] value) {
+    public Builder autoRotation(double... value) {
       object.setAutoRotation(value);
       return this;
     }
@@ -632,8 +639,7 @@ public interface XAxisLabelsOptions extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder formatter(
-        @Nullable FormatterCallbackFunction<AxisLabelsFormatterContextObject> value) {
+    public Builder formatter(@Nullable AxisLabelsFormatterCallbackFunction value) {
       object.setFormatter(value);
       return this;
     }

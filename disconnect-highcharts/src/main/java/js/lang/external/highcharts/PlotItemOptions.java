@@ -50,7 +50,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -445,7 +445,7 @@ public interface PlotItemOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(GradientColorObject[] value);
+  void setColors(GradientColorObject... value);
 
   /**
    * (Highcharts) A series specific or series type specific color set to use
@@ -453,7 +453,7 @@ public interface PlotItemOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(PatternObject[] value);
+  void setColors(PatternObject... value);
 
   /**
    * (Highcharts) A series specific or series type specific color set to use
@@ -461,7 +461,7 @@ public interface PlotItemOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(String[] value);
+  void setColors(String... value);
 
   /**
    * (Highstock) Compare the values of the series against the first non-null,
@@ -695,7 +695,7 @@ public interface PlotItemOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesPieDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesPieDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -1041,7 +1041,7 @@ public interface PlotItemOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts) An array specifying which option maps to which key in the
@@ -1060,7 +1060,7 @@ public interface PlotItemOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highstock) The line marks the last price from all points.
@@ -1558,8 +1558,15 @@ public interface PlotItemOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotItemOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotItemOptions build() {
       return object;
@@ -1829,7 +1836,7 @@ public interface PlotItemOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(GradientColorObject[] value) {
+    public Builder colors(GradientColorObject... value) {
       object.setColors(value);
       return this;
     }
@@ -1839,7 +1846,7 @@ public interface PlotItemOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(PatternObject[] value) {
+    public Builder colors(PatternObject... value) {
       object.setColors(value);
       return this;
     }
@@ -1849,7 +1856,7 @@ public interface PlotItemOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(String[] value) {
+    public Builder colors(String... value) {
       object.setColors(value);
       return this;
     }
@@ -1988,7 +1995,7 @@ public interface PlotItemOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(SeriesPieDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesPieDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2224,7 +2231,7 @@ public interface PlotItemOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -2235,7 +2242,7 @@ public interface PlotItemOptions extends Any {
      * arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }

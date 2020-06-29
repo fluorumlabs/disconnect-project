@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -63,7 +63,7 @@ public interface AnnotationsFibonacciTypeOptions extends Any {
    *
    */
   @JSProperty("labels")
-  void setLabels(AnnotationsFibonacciTypeLabelsOptions[] value);
+  void setLabels(AnnotationsFibonacciTypeLabelsOptions... value);
 
   /**
    * (Highstock) Line options.
@@ -115,7 +115,7 @@ public interface AnnotationsFibonacciTypeOptions extends Any {
   AnnotationsFibonacciTypePointsOptions[] getPoints();
 
   @JSProperty("points")
-  void setPoints(AnnotationsFibonacciTypePointsOptions[] value);
+  void setPoints(AnnotationsFibonacciTypePointsOptions... value);
 
   /**
    * (Highstock) This number defines which xAxis the point is connected to. It
@@ -149,8 +149,15 @@ public interface AnnotationsFibonacciTypeOptions extends Any {
   @JSProperty("yAxis")
   void setYAxis(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsFibonacciTypeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsFibonacciTypeOptions build() {
       return object;
@@ -179,7 +186,7 @@ public interface AnnotationsFibonacciTypeOptions extends Any {
      * (Highstock) An array with options for the labels.
      *
      */
-    public Builder labels(AnnotationsFibonacciTypeLabelsOptions[] value) {
+    public Builder labels(AnnotationsFibonacciTypeLabelsOptions... value) {
       object.setLabels(value);
       return this;
     }
@@ -211,7 +218,7 @@ public interface AnnotationsFibonacciTypeOptions extends Any {
       return this;
     }
 
-    public Builder points(AnnotationsFibonacciTypePointsOptions[] value) {
+    public Builder points(AnnotationsFibonacciTypePointsOptions... value) {
       object.setPoints(value);
       return this;
     }

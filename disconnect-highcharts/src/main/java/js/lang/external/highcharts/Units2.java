@@ -9,7 +9,7 @@ import org.teavm.jso.JSBody;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -38,8 +38,15 @@ public interface Units2 extends Any {
   )
   void setValue1(double[] value);
 
-  class Builder {
+  static Units2.Builder builder() {
+    return new Units2.Builder();
+  }
+
+  final class Builder {
     private final Units2 object = Any.empty();
+
+    private Builder() {
+    }
 
     public Units2 build() {
       return object;

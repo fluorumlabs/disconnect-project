@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/sonification.src.js"
@@ -36,7 +36,7 @@ public interface InstrumentOptionsObject extends Any {
    *
    */
   @JSProperty("allowedFrequencies")
-  void setAllowedFrequencies(double[] value);
+  void setAllowedFrequencies(double... value);
 
   /**
    * The unique ID of the instrument. Generated if not supplied.
@@ -86,8 +86,32 @@ public interface InstrumentOptionsObject extends Any {
   @JSProperty("playCallbackInterval")
   void setPlayCallbackInterval(double value);
 
-  class Builder {
+  /**
+   * The type of instrument. Currently only <code>oscillator</code> is supported.
+   * Defaults to <code>oscillator</code>.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  /**
+   * The type of instrument. Currently only <code>oscillator</code> is supported.
+   * Defaults to <code>oscillator</code>.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final InstrumentOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public InstrumentOptionsObject build() {
       return object;
@@ -99,7 +123,7 @@ public interface InstrumentOptionsObject extends Any {
      * to <code>null</code> to allow all frequencies to be used. Defaults to <code>null</code>.
      *
      */
-    public Builder allowedFrequencies(double[] value) {
+    public Builder allowedFrequencies(double... value) {
       object.setAllowedFrequencies(value);
       return this;
     }
@@ -130,6 +154,16 @@ public interface InstrumentOptionsObject extends Any {
      */
     public Builder playCallbackInterval(double value) {
       object.setPlayCallbackInterval(value);
+      return this;
+    }
+
+    /**
+     * The type of instrument. Currently only <code>oscillator</code> is supported.
+     * Defaults to <code>oscillator</code>.
+     *
+     */
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
   }

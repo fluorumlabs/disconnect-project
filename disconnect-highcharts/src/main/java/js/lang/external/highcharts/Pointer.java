@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"Pointer as Pointer_Pointer"},
@@ -72,7 +72,7 @@ public interface Pointer extends Any {
    *
    */
   @Nullable
-  Point findNearestKDPoints(Series[] series, boolean shared, PointerEventObject e);
+  Point findNearestKDPoint(Series[] series, boolean shared, PointerEventObject e);
 
   /**
    * Return the cached chartPosition if it is available on the Pointer,

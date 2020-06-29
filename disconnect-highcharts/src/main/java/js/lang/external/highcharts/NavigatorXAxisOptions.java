@@ -4,12 +4,13 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
 import js.lang.Unknown /* ( boolean | AxisCrosshairOptions ) */;
 import js.lang.Unknown /* ( boolean | AxisCurrentDateIndicatorOptions ) */;
 import js.lang.Unknown /* ( number | string ) */;
 import js.lang.Unknown /* ( number | string | null ) */;
+import js.lang.Unknown /* ColorType */;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -19,7 +20,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -103,7 +104,7 @@ public interface NavigatorXAxisOptions extends Any {
    */
   @JSProperty("alternateGridColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getAlternateGridColor();
+  Unknown /* ColorType */ getAlternateGridColor();
 
   /**
    * (Highstock, Gantt) When using an alternate grid color, a band is painted
@@ -168,7 +169,7 @@ public interface NavigatorXAxisOptions extends Any {
    *
    */
   @JSProperty("breaks")
-  void setBreaks(NavigatorXAxisBreaksOptions[] value);
+  void setBreaks(NavigatorXAxisBreaksOptions... value);
 
   /**
    * (Highcharts, Gantt) If categories are present for the xAxis, names are
@@ -197,7 +198,7 @@ public interface NavigatorXAxisOptions extends Any {
    *
    */
   @JSProperty("categories")
-  void setCategories(String[] value);
+  void setCategories(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) The highest allowed value for
@@ -596,7 +597,7 @@ public interface NavigatorXAxisOptions extends Any {
    */
   @JSProperty("lineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getLineColor();
+  Unknown /* ColorType */ getLineColor();
 
   /**
    * (Highstock, Gantt) The color of the line marking the axis itself.
@@ -757,7 +758,7 @@ public interface NavigatorXAxisOptions extends Any {
    */
   @JSProperty("minorGridLineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinorGridLineColor();
+  Unknown /* ColorType */ getMinorGridLineColor();
 
   /**
    * (Highstock, Gantt) Color of the minor, secondary grid lines.
@@ -832,7 +833,7 @@ public interface NavigatorXAxisOptions extends Any {
    */
   @JSProperty("minorTickColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinorTickColor();
+  Unknown /* ColorType */ getMinorTickColor();
 
   /**
    * (Highstock, Gantt) Color for the minor tick marks.
@@ -1142,7 +1143,7 @@ public interface NavigatorXAxisOptions extends Any {
    *
    */
   @JSProperty("plotBands")
-  void setPlotBands(NavigatorXAxisPlotBandsOptions[] value);
+  void setPlotBands(NavigatorXAxisPlotBandsOptions... value);
 
   /**
    * (Highcharts, Highstock, Gantt) An array of lines stretching across the
@@ -1165,7 +1166,7 @@ public interface NavigatorXAxisOptions extends Any {
    *
    */
   @JSProperty("plotLines")
-  void setPlotLines(NavigatorXAxisPlotLinesOptions[] value);
+  void setPlotLines(NavigatorXAxisPlotLinesOptions... value);
 
   /**
    * (Highstock, Gantt) Whether to reverse the axis so that the highest number
@@ -1339,7 +1340,7 @@ public interface NavigatorXAxisOptions extends Any {
    */
   @JSProperty("tickColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getTickColor();
+  Unknown /* ColorType */ getTickColor();
 
   /**
    * (Highstock, Gantt) Color for the main tick marks.
@@ -1532,7 +1533,7 @@ public interface NavigatorXAxisOptions extends Any {
    *
    */
   @JSProperty("tickPositions")
-  void setTickPositions(double[] value);
+  void setTickPositions(double... value);
 
   /**
    * (Highstock, Gantt) The pixel width of the major tick marks. Defaults to 0
@@ -1608,6 +1609,31 @@ public interface NavigatorXAxisOptions extends Any {
   void setTop(@Nullable String value);
 
   /**
+   * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+   * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>. In a datetime axis, the numbers
+   * are given in milliseconds, and tick marks are placed on appropriate
+   * values like full hours or days. In a category axis, the point names of
+   * the chart's series are used for categories, if not a categories array is
+   * defined.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Type getType();
+
+  /**
+   * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+   * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>. In a datetime axis, the numbers
+   * are given in milliseconds, and tick marks are placed on appropriate
+   * values like full hours or days. In a category axis, the point names of
+   * the chart's series are used for categories, if not a categories array is
+   * defined.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
+
+  /**
    * (Highcharts, Gantt) Applies only when the axis <code>type</code> is <code>category</code>. When
    * <code>uniqueNames</code> is true, points are placed on the X axis according to their
    * names. If the same point name is repeated in the same or another series,
@@ -1656,7 +1682,7 @@ public interface NavigatorXAxisOptions extends Any {
    *
    */
   @JSProperty("units")
-  void setUnits(Units2[] value);
+  void setUnits(Units2... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Whether axis, including axis title, line,
@@ -1724,8 +1750,27 @@ public interface NavigatorXAxisOptions extends Any {
   @JSProperty("zoomEnabled")
   void setZoomEnabled(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type CATEGORY = JsEnum.of("category");
+
+    public static final Type DATETIME = JsEnum.of("datetime");
+
+    public static final Type LINEAR = JsEnum.of("linear");
+
+    public static final Type LOGARITHMIC = JsEnum.of("logarithmic");
+
+    public static final Type TREEGRID = JsEnum.of("treegrid");
+  }
+
+  final class Builder {
     private final NavigatorXAxisOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigatorXAxisOptions build() {
       return object;
@@ -1821,7 +1866,7 @@ public interface NavigatorXAxisOptions extends Any {
      * each other.
      *
      */
-    public Builder breaks(NavigatorXAxisBreaksOptions[] value) {
+    public Builder breaks(NavigatorXAxisBreaksOptions... value) {
       object.setBreaks(value);
       return this;
     }
@@ -1837,7 +1882,7 @@ public interface NavigatorXAxisOptions extends Any {
      * Example: <code>categories: ['Apples', 'Bananas', 'Oranges']</code>
      *
      */
-    public Builder categories(String[] value) {
+    public Builder categories(String... value) {
       object.setCategories(value);
       return this;
     }
@@ -2458,7 +2503,7 @@ public interface NavigatorXAxisOptions extends Any {
      * class in addition to the <code>className</code> option.
      *
      */
-    public Builder plotBands(NavigatorXAxisPlotBandsOptions[] value) {
+    public Builder plotBands(NavigatorXAxisPlotBandsOptions... value) {
       object.setPlotBands(value);
       return this;
     }
@@ -2471,7 +2516,7 @@ public interface NavigatorXAxisOptions extends Any {
      * class in addition to the <code>className</code> option.
      *
      */
-    public Builder plotLines(NavigatorXAxisPlotLinesOptions[] value) {
+    public Builder plotLines(NavigatorXAxisPlotLinesOptions... value) {
       object.setPlotLines(value);
       return this;
     }
@@ -2699,7 +2744,7 @@ public interface NavigatorXAxisOptions extends Any {
      * tickInterval.
      *
      */
-    public Builder tickPositions(double[] value) {
+    public Builder tickPositions(double... value) {
       object.setTickPositions(value);
       return this;
     }
@@ -2754,6 +2799,20 @@ public interface NavigatorXAxisOptions extends Any {
     }
 
     /**
+     * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+     * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>. In a datetime axis, the numbers
+     * are given in milliseconds, and tick marks are placed on appropriate
+     * values like full hours or days. In a category axis, the point names of
+     * the chart's series are used for categories, if not a categories array is
+     * defined.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
+      return this;
+    }
+
+    /**
      * (Highcharts, Gantt) Applies only when the axis <code>type</code> is <code>category</code>. When
      * <code>uniqueNames</code> is true, points are placed on the X axis according to their
      * names. If the same point name is repeated in the same or another series,
@@ -2777,7 +2836,7 @@ public interface NavigatorXAxisOptions extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder units(Units2[] value) {
+    public Builder units(Units2... value) {
       object.setUnits(value);
       return this;
     }

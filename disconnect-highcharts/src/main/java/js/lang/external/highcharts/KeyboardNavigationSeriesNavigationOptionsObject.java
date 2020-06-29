@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -101,14 +101,21 @@ public interface KeyboardNavigationSeriesNavigationOptionsObject extends Any {
   @JSProperty("skipNullPoints")
   void setSkipNullPoints(boolean value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Mode extends JsEnum {
     public static final Mode NORMAL = JsEnum.of("normal");
 
     public static final Mode SERIALIZE = JsEnum.of("serialize");
   }
 
-  class Builder {
+  final class Builder {
     private final KeyboardNavigationSeriesNavigationOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public KeyboardNavigationSeriesNavigationOptionsObject build() {
       return object;

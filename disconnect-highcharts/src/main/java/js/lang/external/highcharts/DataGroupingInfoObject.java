@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -25,7 +25,7 @@ public interface DataGroupingInfoObject extends Any {
   SeriesOptionsRegistry[] getOptions();
 
   @JSProperty("options")
-  void setOptions(SeriesOptionsRegistry[] value);
+  void setOptions(SeriesOptionsRegistry... value);
 
   @JSProperty("start")
   double getStart();
@@ -33,8 +33,15 @@ public interface DataGroupingInfoObject extends Any {
   @JSProperty("start")
   void setStart(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final DataGroupingInfoObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public DataGroupingInfoObject build() {
       return object;
@@ -45,7 +52,7 @@ public interface DataGroupingInfoObject extends Any {
       return this;
     }
 
-    public Builder options(SeriesOptionsRegistry[] value) {
+    public Builder options(SeriesOptionsRegistry... value) {
       object.setOptions(value);
       return this;
     }

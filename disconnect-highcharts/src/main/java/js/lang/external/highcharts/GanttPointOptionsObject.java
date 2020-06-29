@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -126,7 +126,7 @@ public interface GanttPointOptionsObject extends Any {
    *
    */
   @JSProperty("dependency")
-  void setDependency(XrangePointConnectorsOptionsObject[] value);
+  void setDependency(XrangePointConnectorsOptionsObject... value);
 
   /**
    * (Gantt) The ID of the point (task) that this point depends on in Gantt
@@ -146,7 +146,7 @@ public interface GanttPointOptionsObject extends Any {
    *
    */
   @JSProperty("dependency")
-  void setDependency(String[] value);
+  void setDependency(String... value);
 
   /**
    * (Gantt) A description of the point to add to the screen reader
@@ -212,6 +212,25 @@ public interface GanttPointOptionsObject extends Any {
    */
   @JSProperty("end")
   void setEnd(double value);
+
+  /**
+   * (Highcharts, Highstock, Gantt) An id for the point. This can be used
+   * after render time to get a pointer to the point object through
+   * <code>chart.get()</code>.
+   *
+   */
+  @JSProperty("id")
+  @Nullable
+  String getId();
+
+  /**
+   * (Highcharts, Highstock, Gantt) An id for the point. This can be used
+   * after render time to get a pointer to the point object through
+   * <code>chart.get()</code>.
+   *
+   */
+  @JSProperty("id")
+  void setId(@Nullable String value);
 
   /**
    * (Gantt) The rank for this point's data label in case of collision. If two
@@ -340,8 +359,15 @@ public interface GanttPointOptionsObject extends Any {
   @JSProperty("x2")
   void setX2(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final GanttPointOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public GanttPointOptionsObject build() {
       return object;
@@ -416,7 +442,7 @@ public interface GanttPointOptionsObject extends Any {
      * specified by providing an array.
      *
      */
-    public Builder dependency(XrangePointConnectorsOptionsObject[] value) {
+    public Builder dependency(XrangePointConnectorsOptionsObject... value) {
       object.setDependency(value);
       return this;
     }
@@ -440,7 +466,7 @@ public interface GanttPointOptionsObject extends Any {
      * specified by providing an array.
      *
      */
-    public Builder dependency(String[] value) {
+    public Builder dependency(String... value) {
       object.setDependency(value);
       return this;
     }
@@ -481,6 +507,17 @@ public interface GanttPointOptionsObject extends Any {
      */
     public Builder end(double value) {
       object.setEnd(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Gantt) An id for the point. This can be used
+     * after render time to get a pointer to the point object through
+     * <code>chart.get()</code>.
+     *
+     */
+    public Builder id(@Nullable String value) {
+      object.setId(value);
       return this;
     }
 

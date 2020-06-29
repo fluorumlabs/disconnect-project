@@ -2,13 +2,11 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
-import js.lang.Unknown /* ( number | string ) */;
 import js.lang.Unknown /* Array < ( [ ( number | string ) , number ] | [ ( number | string ) , number , number ] | PointOptionsObject ) > */;
 import js.lang.Unknown /* undefined */;
-import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -42,7 +40,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -106,7 +104,7 @@ public interface SeriesTilemapOptions extends SeriesOptions, PlotTilemapOptions 
    *
    */
   @JSProperty("data")
-  void setData(PointOptionsObject[] value);
+  void setData(PointOptionsObject... value);
 
   /**
    * (Highcharts, Highmaps) An array of data points for the series. For the
@@ -135,7 +133,7 @@ public interface SeriesTilemapOptions extends SeriesOptions, PlotTilemapOptions 
    *
    */
   @JSProperty("data")
-  void setData(Data3[] value);
+  void setData(Data3... value);
 
   /**
    * (Highcharts, Highmaps) An array of data points for the series. For the
@@ -164,7 +162,7 @@ public interface SeriesTilemapOptions extends SeriesOptions, PlotTilemapOptions 
    *
    */
   @JSProperty("data")
-  void setData(Data2[] value);
+  void setData(Data2... value);
 
   /**
    * Not available
@@ -198,61 +196,37 @@ public interface SeriesTilemapOptions extends SeriesOptions, PlotTilemapOptions 
   @Nullable
   Unknown /* undefined */ getStack();
 
-  interface Data2 extends Any {
-    @JSBody(
-        script = "return this[0]"
-    )
-    Unknown /* ( number | string ) */ getValue0();
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
 
-    @JSBody(
-        params = "value",
-        script = "this[0] = value"
-    )
-    void setValue0(double value);
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
 
-    @JSBody(
-        params = "value",
-        script = "this[0] = value"
-    )
-    void setValue0(String value);
-
-    @JSBody(
-        script = "return this[1]"
-    )
-    double getValue1();
-
-    @JSBody(
-        params = "value",
-        script = "this[1] = value"
-    )
-    void setValue1(double value);
-
-    class Builder {
-      private final Data2 object = Any.empty();
-
-      public Data2 build() {
-        return object;
-      }
-
-      public Data2.Builder value0(double value) {
-        object.setValue0(value);
-        return this;
-      }
-
-      public Data2.Builder value0(String value) {
-        object.setValue0(value);
-        return this;
-      }
-
-      public Data2.Builder value1(double value) {
-        object.setValue1(value);
-        return this;
-      }
-    }
+  static Builder builder() {
+    return new Builder();
   }
 
-  class Builder {
+  abstract class Type extends JsEnum {
+    public static final Type TILEMAP = JsEnum.of("tilemap");
+  }
+
+  final class Builder {
     private final SeriesTilemapOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesTilemapOptions build() {
       return object;
@@ -284,7 +258,7 @@ public interface SeriesTilemapOptions extends SeriesOptions, PlotTilemapOptions 
      * Note that for some tileShapes the grid coordinates are offset.
      *
      */
-    public Builder data(PointOptionsObject[] value) {
+    public Builder data(PointOptionsObject... value) {
       object.setData(value);
       return this;
     }
@@ -315,7 +289,7 @@ public interface SeriesTilemapOptions extends SeriesOptions, PlotTilemapOptions 
      * Note that for some tileShapes the grid coordinates are offset.
      *
      */
-    public Builder data(Data3[] value) {
+    public Builder data(Data3... value) {
       object.setData(value);
       return this;
     }
@@ -346,8 +320,19 @@ public interface SeriesTilemapOptions extends SeriesOptions, PlotTilemapOptions 
      * Note that for some tileShapes the grid coordinates are offset.
      *
      */
-    public Builder data(Data2[] value) {
+    public Builder data(Data2... value) {
       object.setData(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+     * TypeScript non-optional and might be <code>undefined</code> in series objects from
+     * unknown sources.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

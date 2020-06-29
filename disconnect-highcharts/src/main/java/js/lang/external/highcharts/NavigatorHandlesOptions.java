@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -157,7 +157,7 @@ public interface NavigatorHandlesOptions extends Any {
    *
    */
   @JSProperty("symbols")
-  void setSymbols(String[] value);
+  void setSymbols(String... value);
 
   /**
    * (Highstock, Gantt) Width for handles.
@@ -173,8 +173,15 @@ public interface NavigatorHandlesOptions extends Any {
   @JSProperty("width")
   void setWidth(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigatorHandlesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigatorHandlesOptions build() {
       return object;
@@ -278,7 +285,7 @@ public interface NavigatorHandlesOptions extends Any {
      * its method name, as shown in the demo.
      *
      */
-    public Builder symbols(String[] value) {
+    public Builder symbols(String... value) {
       object.setSymbols(value);
       return this;
     }

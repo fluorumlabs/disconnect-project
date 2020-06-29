@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -108,7 +108,7 @@ public interface SeriesSankeyNodesOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesSankeyDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesSankeyDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Individual data label for each
@@ -124,7 +124,7 @@ public interface SeriesSankeyNodesOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesOrganizationDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesOrganizationDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Individual data label for each
@@ -300,14 +300,21 @@ public interface SeriesSankeyNodesOptionsObject extends Any {
   @JSProperty("title")
   void setTitle(@Nullable String value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Layout extends JsEnum {
     public static final Layout HANGING = JsEnum.of("hanging");
 
     public static final Layout NORMAL = JsEnum.of("normal");
   }
 
-  class Builder {
+  final class Builder {
     private final SeriesSankeyNodesOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesSankeyNodesOptionsObject build() {
       return object;
@@ -368,7 +375,7 @@ public interface SeriesSankeyNodesOptionsObject extends Any {
      * node. The options are the same as the ones for series.sankey.dataLabels.
      *
      */
-    public Builder dataLabels(SeriesSankeyDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesSankeyDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -388,7 +395,7 @@ public interface SeriesSankeyNodesOptionsObject extends Any {
      * node. The options are the same as the ones for series.sankey.dataLabels.
      *
      */
-    public Builder dataLabels(SeriesOrganizationDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesOrganizationDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }

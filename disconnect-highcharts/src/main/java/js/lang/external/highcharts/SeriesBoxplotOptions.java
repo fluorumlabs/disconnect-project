@@ -4,6 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown /* ( number | string ) */;
 import js.lang.Unknown /* Array < ( [ ( number | string ) , number , number , number , number ] | [ ( number | string ) , number , number , number , number , number ] | PointOptionsObject ) > */;
@@ -42,7 +43,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -104,7 +105,7 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
    * </ol>
    */
   @JSProperty("data")
-  void setData(Data5[] value);
+  void setData(Data5... value);
 
   /**
    * (Highcharts) An array of data points for the series. For the <code>boxplot</code>
@@ -132,7 +133,7 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
    * </ol>
    */
   @JSProperty("data")
-  void setData(PointOptionsObject[] value);
+  void setData(PointOptionsObject... value);
 
   /**
    * (Highcharts) An array of data points for the series. For the <code>boxplot</code>
@@ -160,7 +161,7 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
    * </ol>
    */
   @JSProperty("data")
-  void setData(Data6[] value);
+  void setData(Data6... value);
 
   /**
    * Not available
@@ -185,6 +186,28 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
   @JSProperty("stack")
   @Nullable
   Unknown /* undefined */ getStack();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
 
   interface Data6 extends Any {
     @JSBody(
@@ -259,8 +282,15 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
     )
     void setValue5(double value);
 
-    class Builder {
+    static Data6.Builder builder() {
+      return new Data6.Builder();
+    }
+
+    final class Builder {
       private final Data6 object = Any.empty();
+
+      private Builder() {
+      }
 
       public Data6 build() {
         return object;
@@ -303,8 +333,15 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
     }
   }
 
-  class Builder {
+  abstract class Type extends JsEnum {
+    public static final Type BOXPLOT = JsEnum.of("boxplot");
+  }
+
+  final class Builder {
     private final SeriesBoxplotOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesBoxplotOptions build() {
       return object;
@@ -335,7 +372,7 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
      * </li>
      * </ol>
      */
-    public Builder data(Data5[] value) {
+    public Builder data(Data5... value) {
       object.setData(value);
       return this;
     }
@@ -365,7 +402,7 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
      * </li>
      * </ol>
      */
-    public Builder data(PointOptionsObject[] value) {
+    public Builder data(PointOptionsObject... value) {
       object.setData(value);
       return this;
     }
@@ -395,8 +432,19 @@ public interface SeriesBoxplotOptions extends PlotBoxplotOptions, SeriesOptions 
      * </li>
      * </ol>
      */
-    public Builder data(Data6[] value) {
+    public Builder data(Data6... value) {
       object.setData(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+     * TypeScript non-optional and might be <code>undefined</code> in series objects from
+     * unknown sources.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

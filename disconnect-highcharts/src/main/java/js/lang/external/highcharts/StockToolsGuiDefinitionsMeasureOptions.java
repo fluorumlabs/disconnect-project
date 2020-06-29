@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -29,7 +29,7 @@ public interface StockToolsGuiDefinitionsMeasureOptions extends Any {
    *
    */
   @JSProperty("items")
-  void setItems(Any[] value);
+  void setItems(Any... value);
 
   @JSProperty("measureX")
   @Nullable
@@ -52,8 +52,15 @@ public interface StockToolsGuiDefinitionsMeasureOptions extends Any {
   @JSProperty("measureY")
   void setMeasureY(@Nullable StockToolsGuiDefinitionsMeasureMeasureYOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final StockToolsGuiDefinitionsMeasureOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public StockToolsGuiDefinitionsMeasureOptions build() {
       return object;
@@ -64,7 +71,7 @@ public interface StockToolsGuiDefinitionsMeasureOptions extends Any {
      * items.
      *
      */
-    public Builder items(Any[] value) {
+    public Builder items(Any... value) {
       object.setItems(value);
       return this;
     }

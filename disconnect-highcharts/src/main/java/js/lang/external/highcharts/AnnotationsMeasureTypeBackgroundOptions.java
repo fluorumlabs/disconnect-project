@@ -9,7 +9,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -59,8 +59,15 @@ public interface AnnotationsMeasureTypeBackgroundOptions extends Any {
   @JSProperty("strokeWidth")
   void setStrokeWidth(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsMeasureTypeBackgroundOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsMeasureTypeBackgroundOptions build() {
       return object;

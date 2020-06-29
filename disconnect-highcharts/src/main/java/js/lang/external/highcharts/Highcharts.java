@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"Highcharts as Highcharts_Highcharts"},
@@ -2679,13 +2679,51 @@ public interface Highcharts extends Any {
   String uniqueKey();
 
   /**
-   * Wrap a method with extended functionality, preserving the original function.
+   * Activates a serial mode for element IDs provided by Highcharts.uniqueKey.
+   * This mode can be used in automated tests, where a simple comparison of two
+   * rendered SVG graphics is needed.
    *
-   * ' * @function Highcharts.wrap
+   * <strong>Note:</strong> This is only for testing purposes and will break functionality in
+   * webpages with multiple charts.
+   *
+   * @param mode
+   * Changes the state of serial mode.
+   *
+   * @return State of the serial mode.
    *
    */
-  @JSProperty("wrap")
-  Any getWrap();
+  boolean useSerialIds(boolean mode);
+
+  /**
+   * Activates a serial mode for element IDs provided by Highcharts.uniqueKey.
+   * This mode can be used in automated tests, where a simple comparison of two
+   * rendered SVG graphics is needed.
+   *
+   * <strong>Note:</strong> This is only for testing purposes and will break functionality in
+   * webpages with multiple charts.
+   *
+   * @return State of the serial mode.
+   *
+   */
+  boolean useSerialIds();
+
+  /**
+   * Wrap a method with extended functionality, preserving the original function.
+   *
+   * @param obj
+   * The context object that the method belongs to. In real cases, this is
+   * often a prototype.
+   *
+   * @param method
+   * The name of the method to extend.
+   *
+   * @param func
+   * A wrapper function callback. This function is called with the same
+   * arguments as the original function, except that the original function
+   * is unshifted and passed as the first argument.
+   *
+   */
+  void wrap(Any obj, String method, WrapProceedFunction func);
 
   @JSBody(
       script = "return Highcharts_Highcharts"

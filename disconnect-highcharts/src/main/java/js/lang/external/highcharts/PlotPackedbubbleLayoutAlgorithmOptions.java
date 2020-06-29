@@ -4,6 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.JsFunction;
 import js.lang.Unknown /* ( 'circle' | 'random' | Function ) */;
@@ -17,7 +18,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -315,8 +316,34 @@ public interface PlotPackedbubbleLayoutAlgorithmOptions extends Any {
   @JSProperty("splitSeries")
   void setSplitSeries(@Nullable String value);
 
-  class Builder {
+  /**
+   * (Highcharts) Type of the algorithm used when positioning nodes.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Type getType();
+
+  /**
+   * (Highcharts) Type of the algorithm used when positioning nodes.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type REINGOLD_FRUCHTERMAN = JsEnum.of("reingold-fruchterman");
+  }
+
+  final class Builder {
     private final PlotPackedbubbleLayoutAlgorithmOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotPackedbubbleLayoutAlgorithmOptions build() {
       return object;
@@ -501,6 +528,15 @@ public interface PlotPackedbubbleLayoutAlgorithmOptions extends Any {
      */
     public Builder splitSeries(@Nullable String value) {
       object.setSplitSeries(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts) Type of the algorithm used when positioning nodes.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
       return this;
     }
   }

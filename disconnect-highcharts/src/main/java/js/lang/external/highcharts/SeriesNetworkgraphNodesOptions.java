@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -77,7 +77,7 @@ public interface SeriesNetworkgraphNodesOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesNetworkgraphDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesNetworkgraphDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts) The id of the auto-generated node, refering to the <code>from</code> or
@@ -141,8 +141,15 @@ public interface SeriesNetworkgraphNodesOptions extends Any {
   @JSProperty("name")
   void setName(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesNetworkgraphNodesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesNetworkgraphNodesOptions build() {
       return object;
@@ -182,7 +189,7 @@ public interface SeriesNetworkgraphNodesOptions extends Any {
      * same as the ones for series.networkgraph.dataLabels.
      *
      */
-    public Builder dataLabels(SeriesNetworkgraphDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesNetworkgraphDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }

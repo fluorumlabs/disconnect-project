@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -161,6 +161,23 @@ public interface NavigationAnnotationsShapeOptions extends Any {
   void setStrokeWidth(double value);
 
   /**
+   * (Highcharts, Highstock, Highmaps, Gantt) The type of the shape, e.g.
+   * circle or rectangle.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) The type of the shape, e.g.
+   * circle or rectangle.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
+  /**
    * (Highcharts, Highstock, Highmaps, Gantt) The width of the shape.
    *
    */
@@ -174,8 +191,15 @@ public interface NavigationAnnotationsShapeOptions extends Any {
   @JSProperty("width")
   void setWidth(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigationAnnotationsShapeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigationAnnotationsShapeOptions build() {
       return object;
@@ -272,6 +296,16 @@ public interface NavigationAnnotationsShapeOptions extends Any {
      */
     public Builder strokeWidth(double value) {
       object.setStrokeWidth(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) The type of the shape, e.g.
+     * circle or rectangle.
+     *
+     */
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
 

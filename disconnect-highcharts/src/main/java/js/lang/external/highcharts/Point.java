@@ -5,6 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown;
+import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
@@ -18,7 +19,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -327,7 +328,7 @@ public interface Point extends Any {
    * @return The path definition.
    *
    */
-  Unknown /* SVGPathArray */ haloPath(double size);
+  HaloPathResult8[] haloPath(double size);
 
   /**
    * Initialize the point. Called internally based on the <code>series.data</code>
@@ -1266,45 +1267,190 @@ public interface Point extends Any {
    */
   void update();
 
-  abstract class HaloPathResult extends JsEnum {
-    public static final HaloPathResult A = JsEnum.of("a");
+  interface HaloPathResult8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
 
-    public static final HaloPathResult C = JsEnum.of("c");
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
 
-    public static final HaloPathResult H = JsEnum.of("h");
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
 
-    public static final HaloPathResult L = JsEnum.of("l");
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
 
-    public static final HaloPathResult M = JsEnum.of("m");
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
 
-    public static final HaloPathResult Q = JsEnum.of("q");
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
 
-    public static final HaloPathResult S = JsEnum.of("s");
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
 
-    public static final HaloPathResult T = JsEnum.of("t");
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
 
-    public static final HaloPathResult V = JsEnum.of("v");
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
 
-    public static final HaloPathResult Z = JsEnum.of("z");
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
 
-    public static final HaloPathResult CAPITAL_A = JsEnum.of("A");
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
 
-    public static final HaloPathResult CAPITAL_C = JsEnum.of("C");
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
 
-    public static final HaloPathResult CAPITAL_H = JsEnum.of("H");
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
 
-    public static final HaloPathResult CAPITAL_L = JsEnum.of("L");
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
 
-    public static final HaloPathResult CAPITAL_M = JsEnum.of("M");
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
 
-    public static final HaloPathResult CAPITAL_Q = JsEnum.of("Q");
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
 
-    public static final HaloPathResult CAPITAL_S = JsEnum.of("S");
+    static HaloPathResult8.Builder builder() {
+      return new HaloPathResult8.Builder();
+    }
 
-    public static final HaloPathResult CAPITAL_T = JsEnum.of("T");
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
 
-    public static final HaloPathResult CAPITAL_V = JsEnum.of("V");
+      public static final Value0 C = JsEnum.of("c");
 
-    public static final HaloPathResult CAPITAL_Z = JsEnum.of("Z");
+      public static final Value0 H = JsEnum.of("h");
+
+      public static final Value0 L = JsEnum.of("l");
+
+      public static final Value0 M = JsEnum.of("m");
+
+      public static final Value0 Q = JsEnum.of("q");
+
+      public static final Value0 S = JsEnum.of("s");
+
+      public static final Value0 T = JsEnum.of("t");
+
+      public static final Value0 V = JsEnum.of("v");
+
+      public static final Value0 Z = JsEnum.of("z");
+
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
+
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
+
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
+
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
+
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
+
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
+
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
+
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
+
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
+
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
+
+    final class Builder {
+      private final HaloPathResult8 object = Any.empty();
+
+      private Builder() {
+      }
+
+      public HaloPathResult8 build() {
+        return object;
+      }
+
+      public HaloPathResult8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public HaloPathResult8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public HaloPathResult8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public HaloPathResult8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public HaloPathResult8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public HaloPathResult8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public HaloPathResult8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public HaloPathResult8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
   }
 }

@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -56,8 +56,15 @@ public interface PlotVwapParamsOptions extends Any {
   @JSProperty("volumeSeriesID")
   void setVolumeSeriesID(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotVwapParamsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotVwapParamsOptions build() {
       return object;

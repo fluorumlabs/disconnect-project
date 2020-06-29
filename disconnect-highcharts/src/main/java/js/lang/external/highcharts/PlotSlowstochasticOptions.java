@@ -44,7 +44,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -797,7 +797,7 @@ public interface PlotSlowstochasticOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotSlowstochasticDataLabelsOptions[] value);
+  void setDataLabels(PlotSlowstochasticDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock) Options for the series data sorting.
@@ -1620,10 +1620,17 @@ public interface PlotSlowstochasticOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotSlowstochasticOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotSlowstochasticOptions build() {
       return object;
@@ -2111,7 +2118,7 @@ public interface PlotSlowstochasticOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotSlowstochasticDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotSlowstochasticDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2621,7 +2628,7 @@ public interface PlotSlowstochasticOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

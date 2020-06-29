@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -201,7 +201,7 @@ public interface AnnotationsOptions extends Any {
    *
    */
   @JSProperty("labels")
-  void setLabels(AnnotationsLabelsOptions[] value);
+  void setLabels(AnnotationsLabelsOptions... value);
 
   /**
    * (Highstock) A measure annotation.
@@ -269,7 +269,7 @@ public interface AnnotationsOptions extends Any {
    *
    */
   @JSProperty("shapes")
-  void setShapes(AnnotationsShapesOptions[] value);
+  void setShapes(AnnotationsShapesOptions... value);
 
   /**
    * (Highstock) A tunnel annotation.
@@ -331,8 +331,15 @@ public interface AnnotationsOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsOptions build() {
       return object;
@@ -445,7 +452,7 @@ public interface AnnotationsOptions extends Any {
      * to the labelOptions.
      *
      */
-    public Builder labels(AnnotationsLabelsOptions[] value) {
+    public Builder labels(AnnotationsLabelsOptions... value) {
       object.setLabels(value);
       return this;
     }
@@ -485,7 +492,7 @@ public interface AnnotationsOptions extends Any {
      * to the shapeOptions.
      *
      */
-    public Builder shapes(AnnotationsShapesOptions[] value) {
+    public Builder shapes(AnnotationsShapesOptions... value) {
       object.setShapes(value);
       return this;
     }

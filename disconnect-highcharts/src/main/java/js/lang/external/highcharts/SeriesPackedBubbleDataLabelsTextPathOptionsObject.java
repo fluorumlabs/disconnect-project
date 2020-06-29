@@ -5,16 +5,9 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
-/**
- * (Highcharts, Highstock, Highmaps, Gantt) Options for a <em>parentNode</em> label
- * text.
- *
- * <strong>Note:</strong> Only SVG-based renderer supports this option.
- *
- */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -36,8 +29,15 @@ public interface SeriesPackedBubbleDataLabelsTextPathOptionsObject extends Any {
   @JSProperty("enabled")
   void setEnabled(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesPackedBubbleDataLabelsTextPathOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesPackedBubbleDataLabelsTextPathOptionsObject build() {
       return object;

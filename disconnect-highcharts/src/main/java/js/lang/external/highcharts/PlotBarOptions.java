@@ -45,7 +45,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -352,6 +352,24 @@ public interface PlotBarOptions extends Any {
   void setBorderWidth(double value);
 
   /**
+   * (Highcharts, Highstock, Gantt) When <code>true</code>, the columns will center in
+   * the category, ignoring null or missing points. When <code>false</code>, space will
+   * be reserved for null or missing points.
+   *
+   */
+  @JSProperty("centerInCategory")
+  boolean getCenterInCategory();
+
+  /**
+   * (Highcharts, Highstock, Gantt) When <code>true</code>, the columns will center in
+   * the category, ignoring null or missing points. When <code>false</code>, space will
+   * be reserved for null or missing points.
+   *
+   */
+  @JSProperty("centerInCategory")
+  void setCenterInCategory(boolean value);
+
+  /**
    * (Highcharts) An additional class name to apply to the series' graphical
    * elements. This option does not replace default class names of the
    * graphical element.
@@ -596,7 +614,7 @@ public interface PlotBarOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(GradientColorObject[] value);
+  void setColors(GradientColorObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) A series specific or series type specific
@@ -605,7 +623,7 @@ public interface PlotBarOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(PatternObject[] value);
+  void setColors(PatternObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) A series specific or series type specific
@@ -614,7 +632,7 @@ public interface PlotBarOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(String[] value);
+  void setColors(String... value);
 
   /**
    * (Highstock) Compare the values of the series against the first non-null,
@@ -913,7 +931,7 @@ public interface PlotBarOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotBarDataLabelsOptions[] value);
+  void setDataLabels(PlotBarDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock) Options for the series data sorting.
@@ -1235,7 +1253,7 @@ public interface PlotBarOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts) An array specifying which option maps to which key in the
@@ -1254,7 +1272,7 @@ public interface PlotBarOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1882,10 +1900,13 @@ public interface PlotBarOptions extends Any {
   /**
    * (Highcharts, Highstock) Whether to stack the values of each series on top
    * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-   * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-   * sorted in ascending X order. A special stacking option is with the
-   * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-   * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+   * stack by value or <code>&quot;percent&quot;</code>.
+   *
+   * When stacking is enabled, data must be sorted in ascending X order.
+   *
+   * Some stacking options are related to specific series types. In the
+   * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+   * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
    *
    */
   @JSProperty("stacking")
@@ -1895,10 +1916,13 @@ public interface PlotBarOptions extends Any {
   /**
    * (Highcharts, Highstock) Whether to stack the values of each series on top
    * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-   * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-   * sorted in ascending X order. A special stacking option is with the
-   * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-   * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+   * stack by value or <code>&quot;percent&quot;</code>.
+   *
+   * When stacking is enabled, data must be sorted in ascending X order.
+   *
+   * Some stacking options are related to specific series types. In the
+   * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+   * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
    *
    */
   @JSProperty("stacking")
@@ -2082,10 +2106,17 @@ public interface PlotBarOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotBarOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotBarOptions build() {
       return object;
@@ -2290,6 +2321,17 @@ public interface PlotBarOptions extends Any {
     }
 
     /**
+     * (Highcharts, Highstock, Gantt) When <code>true</code>, the columns will center in
+     * the category, ignoring null or missing points. When <code>false</code>, space will
+     * be reserved for null or missing points.
+     *
+     */
+    public Builder centerInCategory(boolean value) {
+      object.setCenterInCategory(value);
+      return this;
+    }
+
+    /**
      * (Highcharts) An additional class name to apply to the series' graphical
      * elements. This option does not replace default class names of the
      * graphical element.
@@ -2459,7 +2501,7 @@ public interface PlotBarOptions extends Any {
      * true.
      *
      */
-    public Builder colors(GradientColorObject[] value) {
+    public Builder colors(GradientColorObject... value) {
       object.setColors(value);
       return this;
     }
@@ -2470,7 +2512,7 @@ public interface PlotBarOptions extends Any {
      * true.
      *
      */
-    public Builder colors(PatternObject[] value) {
+    public Builder colors(PatternObject... value) {
       object.setColors(value);
       return this;
     }
@@ -2481,7 +2523,7 @@ public interface PlotBarOptions extends Any {
      * true.
      *
      */
-    public Builder colors(String[] value) {
+    public Builder colors(String... value) {
       object.setColors(value);
       return this;
     }
@@ -2666,7 +2708,7 @@ public interface PlotBarOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotBarDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotBarDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2871,7 +2913,7 @@ public interface PlotBarOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -2882,7 +2924,7 @@ public interface PlotBarOptions extends Any {
      * arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }
@@ -3283,10 +3325,13 @@ public interface PlotBarOptions extends Any {
     /**
      * (Highcharts, Highstock) Whether to stack the values of each series on top
      * of each other. Possible values are <code>undefined</code> to disable, <code>&quot;normal&quot;</code> to
-     * stack by value or <code>&quot;percent&quot;</code>. When stacking is enabled, data must be
-     * sorted in ascending X order. A special stacking option is with the
-     * streamgraph series type, where the stacking option is set to <code>&quot;stream&quot;</code>.
-     * The second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
+     * stack by value or <code>&quot;percent&quot;</code>.
+     *
+     * When stacking is enabled, data must be sorted in ascending X order.
+     *
+     * Some stacking options are related to specific series types. In the
+     * streamgraph series type, the stacking option is set to <code>&quot;stream&quot;</code>. The
+     * second one is <code>&quot;overlap&quot;</code>, which only applies to waterfall series.
      *
      */
     public Builder stacking(@Nullable Stacking value) {
@@ -3395,7 +3440,7 @@ public interface PlotBarOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

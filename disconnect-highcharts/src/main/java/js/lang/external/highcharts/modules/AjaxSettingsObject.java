@@ -2,11 +2,10 @@ package js.lang.external.highcharts.modules;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.JsFunction;
-import js.lang.Unknown /* ( string | Dictionary < any > ) */;
-import js.lang.Unknown /* string */;
+import js.lang.Unknown;
 import js.lang.external.highcharts.Dictionary;
 import org.teavm.jso.JSProperty;
 
@@ -16,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/data.src.js"
@@ -100,6 +99,20 @@ public interface AjaxSettingsObject extends Any {
   void setSuccess(JsFunction value);
 
   /**
+   * The verb to use.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * The verb to use.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  /**
    * The URL to call.
    *
    */
@@ -113,8 +126,25 @@ public interface AjaxSettingsObject extends Any {
   @JSProperty("url")
   void setUrl(String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type DELETE = JsEnum.of("DELETE");
+
+    public static final Type GET = JsEnum.of("GET");
+
+    public static final Type POST = JsEnum.of("POST");
+
+    public static final Type UPDATE = JsEnum.of("UPDATE");
+  }
+
+  final class Builder {
     private final AjaxSettingsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public AjaxSettingsObject build() {
       return object;
@@ -171,6 +201,15 @@ public interface AjaxSettingsObject extends Any {
      */
     public Builder success(JsFunction value) {
       object.setSuccess(value);
+      return this;
+    }
+
+    /**
+     * The verb to use.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
 

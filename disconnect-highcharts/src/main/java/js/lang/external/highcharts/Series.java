@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"Series as Series_Series"},
@@ -278,7 +278,7 @@ public interface Series extends Any {
    *
    */
   @JSProperty("data")
-  void setData(Point[] value);
+  void setData(Point... value);
 
   /**
    * Contains the minimum value of the series' data point.
@@ -341,7 +341,7 @@ public interface Series extends Any {
    *
    */
   @JSProperty("options")
-  void setOptions(SeriesOptionsRegistry[] value);
+  void setOptions(SeriesOptionsRegistry... value);
 
   /**
    * An array containing all currently visible point objects. In case of
@@ -365,7 +365,7 @@ public interface Series extends Any {
    *
    */
   @JSProperty("points")
-  void setPoints(Point[] value);
+  void setPoints(Point... value);
 
   /**
    * Read only. The series' selected state as set by Highcharts.Series#select.
@@ -380,6 +380,36 @@ public interface Series extends Any {
    */
   @JSProperty("selected")
   void setSelected(boolean value);
+
+  /**
+   * Read only. The series' type, like &quot;line&quot;, &quot;area&quot;, &quot;column&quot; etc. The type
+   * in the series options anc can be altered using Series#update.
+   *
+   */
+  @JSProperty("type")
+  String getType();
+
+  /**
+   * Read only. The series' type, like &quot;line&quot;, &quot;area&quot;, &quot;column&quot; etc. The type
+   * in the series options anc can be altered using Series#update.
+   *
+   */
+  @JSProperty("type")
+  void setType(String value);
+
+  /**
+   * Contains series options by the user without defaults.
+   *
+   */
+  @JSProperty("userOptions")
+  SeriesOptionsRegistry[] getUserOptions();
+
+  /**
+   * Contains series options by the user without defaults.
+   *
+   */
+  @JSProperty("userOptions")
+  void setUserOptions(SeriesOptionsRegistry... value);
 
   /**
    * Read only. The series' visibility state as set by Series#show,

@@ -17,7 +17,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -302,7 +302,7 @@ public interface LegendBubbleLegendOptions extends Any {
    *
    */
   @JSProperty("ranges")
-  void setRanges(LegendBubbleLegendRangesOptions[] value);
+  void setRanges(LegendBubbleLegendRangesOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps) Whether the bubble legend range value
@@ -379,8 +379,15 @@ public interface LegendBubbleLegendOptions extends Any {
   @JSProperty("zThreshold")
   void setZThreshold(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final LegendBubbleLegendOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public LegendBubbleLegendOptions build() {
       return object;
@@ -582,7 +589,7 @@ public interface LegendBubbleLegendOptions extends Any {
      * consists of bubble, label and connector.
      *
      */
-    public Builder ranges(LegendBubbleLegendRangesOptions[] value) {
+    public Builder ranges(LegendBubbleLegendRangesOptions... value) {
       object.setRanges(value);
       return this;
     }

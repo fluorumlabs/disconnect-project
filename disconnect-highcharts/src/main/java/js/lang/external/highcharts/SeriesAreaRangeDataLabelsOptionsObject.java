@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -35,7 +35,7 @@ public interface SeriesAreaRangeDataLabelsOptionsObject extends Any {
    */
   @JSProperty("align")
   @Nullable
-  Align getAlign();
+  String getAlign();
 
   /**
    * (Highcharts, Highstock) The alignment of the data label compared to the
@@ -46,7 +46,7 @@ public interface SeriesAreaRangeDataLabelsOptionsObject extends Any {
    *
    */
   @JSProperty("align")
-  void setAlign(@Nullable Align value);
+  void setAlign(@Nullable String value);
 
   /**
    * (Highcharts, Highstock) Whether to allow data labels to overlap. To make
@@ -635,7 +635,7 @@ public interface SeriesAreaRangeDataLabelsOptionsObject extends Any {
    */
   @JSProperty("verticalAlign")
   @Nullable
-  VerticalAlign getVerticalAlign();
+  String getVerticalAlign();
 
   /**
    * (Highcharts, Highstock) The vertical alignment of a data label. Can be
@@ -645,7 +645,7 @@ public interface SeriesAreaRangeDataLabelsOptionsObject extends Any {
    *
    */
   @JSProperty("verticalAlign")
-  void setVerticalAlign(@Nullable VerticalAlign value);
+  void setVerticalAlign(@Nullable String value);
 
   /**
    * (Highcharts, Highstock) The x position offset of the label relative to
@@ -761,8 +761,15 @@ public interface SeriesAreaRangeDataLabelsOptionsObject extends Any {
   @JSProperty("z")
   void setZ(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesAreaRangeDataLabelsOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesAreaRangeDataLabelsOptionsObject build() {
       return object;
@@ -776,7 +783,7 @@ public interface SeriesAreaRangeDataLabelsOptionsObject extends Any {
      * Can be one of <code>left</code>, <code>center</code> or <code>right</code>.
      *
      */
-    public Builder align(@Nullable Align value) {
+    public Builder align(@Nullable String value) {
       object.setAlign(value);
       return this;
     }
@@ -1174,7 +1181,7 @@ public interface SeriesAreaRangeDataLabelsOptionsObject extends Any {
      * and below negative values.
      *
      */
-    public Builder verticalAlign(@Nullable VerticalAlign value) {
+    public Builder verticalAlign(@Nullable String value) {
       object.setVerticalAlign(value);
       return this;
     }

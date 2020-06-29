@@ -3,6 +3,7 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.JsFunction;
 import js.lang.Unknown /* ( boolean | Array < Point > ) */;
@@ -15,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -65,8 +66,8 @@ public interface DrilldownEventObject extends Any {
   void setPoint(Point value);
 
   /**
-   * If a category label was clicked, this array holds all points corresponing
-   * to the category. Otherwise it is set to false.
+   * If a category label was clicked, this array holds all points
+   * corresponding to the category. Otherwise it is set to false.
    *
    */
   @JSProperty("points")
@@ -74,20 +75,20 @@ public interface DrilldownEventObject extends Any {
   Unknown /* ( boolean | Array < Point > ) */ getPoints();
 
   /**
-   * If a category label was clicked, this array holds all points corresponing
-   * to the category. Otherwise it is set to false.
+   * If a category label was clicked, this array holds all points
+   * corresponding to the category. Otherwise it is set to false.
    *
    */
   @JSProperty("points")
   void setPoints(boolean value);
 
   /**
-   * If a category label was clicked, this array holds all points corresponing
-   * to the category. Otherwise it is set to false.
+   * If a category label was clicked, this array holds all points
+   * corresponding to the category. Otherwise it is set to false.
    *
    */
   @JSProperty("points")
-  void setPoints(Point[] value);
+  void setPoints(Point... value);
 
   /**
    * Prevents the default behaviour of the event.
@@ -118,7 +119,7 @@ public interface DrilldownEventObject extends Any {
    *
    */
   @JSProperty("seriesOptions")
-  void setSeriesOptions(SeriesOptionsRegistry[] value);
+  void setSeriesOptions(SeriesOptionsRegistry... value);
 
   /**
    * The event target.
@@ -134,8 +135,33 @@ public interface DrilldownEventObject extends Any {
   @JSProperty("target")
   void setTarget(Chart value);
 
-  class Builder {
+  /**
+   * The event type.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * The event type.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type DRILLDOWN = JsEnum.of("drilldown");
+  }
+
+  final class Builder {
     private final DrilldownEventObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public DrilldownEventObject build() {
       return object;
@@ -169,8 +195,8 @@ public interface DrilldownEventObject extends Any {
     }
 
     /**
-     * If a category label was clicked, this array holds all points corresponing
-     * to the category. Otherwise it is set to false.
+     * If a category label was clicked, this array holds all points
+     * corresponding to the category. Otherwise it is set to false.
      *
      */
     public Builder points(boolean value) {
@@ -179,11 +205,11 @@ public interface DrilldownEventObject extends Any {
     }
 
     /**
-     * If a category label was clicked, this array holds all points corresponing
-     * to the category. Otherwise it is set to false.
+     * If a category label was clicked, this array holds all points
+     * corresponding to the category. Otherwise it is set to false.
      *
      */
-    public Builder points(Point[] value) {
+    public Builder points(Point... value) {
       object.setPoints(value);
       return this;
     }
@@ -202,7 +228,7 @@ public interface DrilldownEventObject extends Any {
      * the seriesOptions are not added, but rather loaded async.
      *
      */
-    public Builder seriesOptions(SeriesOptionsRegistry[] value) {
+    public Builder seriesOptions(SeriesOptionsRegistry... value) {
       object.setSeriesOptions(value);
       return this;
     }
@@ -213,6 +239,15 @@ public interface DrilldownEventObject extends Any {
      */
     public Builder target(Chart value) {
       object.setTarget(value);
+      return this;
+    }
+
+    /**
+     * The event type.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

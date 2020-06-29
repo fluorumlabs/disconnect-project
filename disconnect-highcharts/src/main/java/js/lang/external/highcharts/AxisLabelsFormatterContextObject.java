@@ -7,12 +7,12 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
 )
-public interface AxisLabelsFormatterContextObject extends Any {
+public interface AxisLabelsFormatterContextObject<T extends Any> extends Any {
   @JSProperty("axis")
   Axis getAxis();
 
@@ -44,44 +44,51 @@ public interface AxisLabelsFormatterContextObject extends Any {
   void setPos(double value);
 
   @JSProperty("value")
-  double getValue();
+  T getValue();
 
   @JSProperty("value")
-  void setValue(double value);
+  void setValue(T value);
 
-  class Builder {
-    private final AxisLabelsFormatterContextObject object = Any.empty();
+  static <T extends Any> Builder<T> builder() {
+    return new Builder<T>();
+  }
 
-    public AxisLabelsFormatterContextObject build() {
+  final class Builder<T extends Any> {
+    private final AxisLabelsFormatterContextObject<T> object = Any.empty();
+
+    private Builder() {
+    }
+
+    public AxisLabelsFormatterContextObject<T> build() {
       return object;
     }
 
-    public Builder axis(Axis value) {
+    public Builder<T> axis(Axis value) {
       object.setAxis(value);
       return this;
     }
 
-    public Builder chart(Chart value) {
+    public Builder<T> chart(Chart value) {
       object.setChart(value);
       return this;
     }
 
-    public Builder isFirst(boolean value) {
+    public Builder<T> isFirst(boolean value) {
       object.setIsFirst(value);
       return this;
     }
 
-    public Builder isLast(boolean value) {
+    public Builder<T> isLast(boolean value) {
       object.setIsLast(value);
       return this;
     }
 
-    public Builder pos(double value) {
+    public Builder<T> pos(double value) {
       object.setPos(value);
       return this;
     }
 
-    public Builder value(double value) {
+    public Builder<T> value(T value) {
       object.setValue(value);
       return this;
     }

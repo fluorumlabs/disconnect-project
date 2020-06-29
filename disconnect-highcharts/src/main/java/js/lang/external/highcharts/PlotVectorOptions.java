@@ -44,7 +44,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -731,7 +731,7 @@ public interface PlotVectorOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotVectorDataLabelsOptions[] value);
+  void setDataLabels(PlotVectorDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock) Options for the series data sorting.
@@ -939,7 +939,7 @@ public interface PlotVectorOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts, Highstock) An array specifying which option maps to which
@@ -958,7 +958,7 @@ public interface PlotVectorOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1624,7 +1624,11 @@ public interface PlotVectorOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
+
+  static Builder builder() {
+    return new Builder();
+  }
 
   abstract class RotationOrigin extends JsEnum {
     public static final RotationOrigin CENTER = JsEnum.of("center");
@@ -1634,8 +1638,11 @@ public interface PlotVectorOptions extends Any {
     public static final RotationOrigin START = JsEnum.of("start");
   }
 
-  class Builder {
+  final class Builder {
     private final PlotVectorOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotVectorOptions build() {
       return object;
@@ -2100,7 +2107,7 @@ public interface PlotVectorOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotVectorDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotVectorDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2235,7 +2242,7 @@ public interface PlotVectorOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -2246,7 +2253,7 @@ public interface PlotVectorOptions extends Any {
      * unstructured data arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }
@@ -2648,7 +2655,7 @@ public interface PlotVectorOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

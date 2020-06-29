@@ -42,7 +42,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -616,7 +616,7 @@ public interface PlotSolidgaugeOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotSolidgaugeDataLabelsOptions[] value);
+  void setDataLabels(PlotSolidgaugeDataLabelsOptions... value);
 
   /**
    * (Highcharts) Data labels for the gauge. For gauges, the data labels are
@@ -857,7 +857,7 @@ public interface PlotSolidgaugeOptions extends Any {
    *
    */
   @JSProperty("joinBy")
-  void setJoinBy(String[] value);
+  void setJoinBy(String... value);
 
   /**
    * (Highcharts) An array specifying which option maps to which key in the
@@ -876,7 +876,7 @@ public interface PlotSolidgaugeOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1445,14 +1445,21 @@ public interface PlotSolidgaugeOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Linecap extends JsEnum {
     public static final Linecap ROUND = JsEnum.of("round");
 
     public static final Linecap SQUARE = JsEnum.of("square");
   }
 
-  class Builder {
+  final class Builder {
     private final PlotSolidgaugeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotSolidgaugeOptions build() {
       return object;
@@ -1830,7 +1837,7 @@ public interface PlotSolidgaugeOptions extends Any {
      * enabled by default and shown in a bordered box below the point.
      *
      */
-    public Builder dataLabels(PlotSolidgaugeDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotSolidgaugeDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1988,7 +1995,7 @@ public interface PlotSolidgaugeOptions extends Any {
      * array of the mapData.
      *
      */
-    public Builder joinBy(String[] value) {
+    public Builder joinBy(String... value) {
       object.setJoinBy(value);
       return this;
     }
@@ -1999,7 +2006,7 @@ public interface PlotSolidgaugeOptions extends Any {
      * arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }

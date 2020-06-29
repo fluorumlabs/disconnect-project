@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -289,7 +289,7 @@ public interface LangOptions extends Any {
    *
    */
   @JSProperty("months")
-  void setMonths(String[] value);
+  void setMonths(String... value);
 
   /**
    * (Highcharts, Highstock) Configure the Popup strings in the chart.
@@ -364,7 +364,7 @@ public interface LangOptions extends Any {
    *
    */
   @JSProperty("numericSymbols")
-  void setNumericSymbols(String[] value);
+  void setNumericSymbols(String... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Exporting module only. The text
@@ -483,7 +483,7 @@ public interface LangOptions extends Any {
    *
    */
   @JSProperty("shortMonths")
-  void setShortMonths(String[] value);
+  void setShortMonths(String... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Short week days, starting
@@ -502,7 +502,7 @@ public interface LangOptions extends Any {
    *
    */
   @JSProperty("shortWeekdays")
-  void setShortWeekdays(String[] value);
+  void setShortWeekdays(String... value);
 
   /**
    * (Highstock) Configure the stockTools GUI titles(hints) in the chart.
@@ -591,7 +591,7 @@ public interface LangOptions extends Any {
    *
    */
   @JSProperty("weekdays")
-  void setWeekdays(String[] value);
+  void setWeekdays(String... value);
 
   /**
    * (Highmaps) The title appearing on hovering the zoom in button. The text
@@ -627,8 +627,15 @@ public interface LangOptions extends Any {
   @JSProperty("zoomOut")
   void setZoomOut(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final LangOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public LangOptions build() {
       return object;
@@ -786,7 +793,7 @@ public interface LangOptions extends Any {
      * names. Corresponds to the <code>%B</code> format in <code>Highcharts.dateFormat()</code>.
      *
      */
-    public Builder months(String[] value) {
+    public Builder months(String... value) {
       object.setMonths(value);
       return this;
     }
@@ -830,7 +837,7 @@ public interface LangOptions extends Any {
      * disables shortening altogether.
      *
      */
-    public Builder numericSymbols(String[] value) {
+    public Builder numericSymbols(String... value) {
       object.setNumericSymbols(value);
       return this;
     }
@@ -900,7 +907,7 @@ public interface LangOptions extends Any {
      * <code>Highcharts.dateFormat()</code>.
      *
      */
-    public Builder shortMonths(String[] value) {
+    public Builder shortMonths(String... value) {
       object.setShortMonths(value);
       return this;
     }
@@ -911,7 +918,7 @@ public interface LangOptions extends Any {
      * <code>lang.weekdays</code> option.
      *
      */
-    public Builder shortWeekdays(String[] value) {
+    public Builder shortWeekdays(String... value) {
       object.setShortWeekdays(value);
       return this;
     }
@@ -963,7 +970,7 @@ public interface LangOptions extends Any {
      * names.
      *
      */
-    public Builder weekdays(String[] value) {
+    public Builder weekdays(String... value) {
       object.setWeekdays(value);
       return this;
     }

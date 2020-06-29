@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -396,6 +396,10 @@ public interface AccessibilityOptions extends Any {
   @JSProperty("typeDescription")
   void setTypeDescription(@Nullable String value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class LandmarkVerbosity extends JsEnum {
     public static final LandmarkVerbosity ALL = JsEnum.of("all");
 
@@ -404,8 +408,11 @@ public interface AccessibilityOptions extends Any {
     public static final LandmarkVerbosity ONE = JsEnum.of("one");
   }
 
-  class Builder {
+  final class Builder {
     private final AccessibilityOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AccessibilityOptions build() {
       return object;

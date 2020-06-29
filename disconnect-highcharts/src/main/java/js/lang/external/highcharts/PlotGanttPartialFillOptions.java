@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -54,8 +54,15 @@ public interface PlotGanttPartialFillOptions extends Any {
   @JSProperty("fill")
   void setFill(@Nullable GradientColorObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotGanttPartialFillOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotGanttPartialFillOptions build() {
       return object;

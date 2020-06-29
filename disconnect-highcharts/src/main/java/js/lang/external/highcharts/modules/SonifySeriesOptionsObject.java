@@ -17,7 +17,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/sonification.src.js"
@@ -77,7 +77,7 @@ public interface SonifySeriesOptionsObject extends Any {
    *
    */
   @JSProperty("earcons")
-  void setEarcons(EarconConfiguration[] value);
+  void setEarcons(EarconConfiguration... value);
 
   /**
    * The instrument definitions for the points in this series.
@@ -91,7 +91,7 @@ public interface SonifySeriesOptionsObject extends Any {
    *
    */
   @JSProperty("instruments")
-  void setInstruments(PointInstrumentObject[] value);
+  void setInstruments(PointInstrumentObject... value);
 
   /**
    * Callback after the series has played.
@@ -174,8 +174,15 @@ public interface SonifySeriesOptionsObject extends Any {
   @JSProperty("pointPlayTime")
   void setPointPlayTime(JsFunction value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SonifySeriesOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SonifySeriesOptionsObject build() {
       return object;
@@ -209,7 +216,7 @@ public interface SonifySeriesOptionsObject extends Any {
      * Earcons to add to the series.
      *
      */
-    public Builder earcons(EarconConfiguration[] value) {
+    public Builder earcons(EarconConfiguration... value) {
       object.setEarcons(value);
       return this;
     }
@@ -218,7 +225,7 @@ public interface SonifySeriesOptionsObject extends Any {
      * The instrument definitions for the points in this series.
      *
      */
-    public Builder instruments(PointInstrumentObject[] value) {
+    public Builder instruments(PointInstrumentObject... value) {
       object.setInstruments(value);
       return this;
     }

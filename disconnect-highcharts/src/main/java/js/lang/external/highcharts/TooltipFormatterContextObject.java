@@ -10,7 +10,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -57,7 +57,7 @@ public interface TooltipFormatterContextObject extends Any {
   TooltipFormatterContextObject[] getPoints();
 
   @JSProperty("points")
-  void setPoints(TooltipFormatterContextObject[] value);
+  void setPoints(TooltipFormatterContextObject... value);
 
   @JSProperty("series")
   Series getSeries();
@@ -83,8 +83,15 @@ public interface TooltipFormatterContextObject extends Any {
   @JSProperty("y")
   void setY(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final TooltipFormatterContextObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public TooltipFormatterContextObject build() {
       return object;
@@ -125,7 +132,7 @@ public interface TooltipFormatterContextObject extends Any {
       return this;
     }
 
-    public Builder points(TooltipFormatterContextObject[] value) {
+    public Builder points(TooltipFormatterContextObject... value) {
       object.setPoints(value);
       return this;
     }

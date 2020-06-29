@@ -42,7 +42,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -780,7 +780,7 @@ public interface PlotWilliamsrOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotWilliamsrDataLabelsOptions[] value);
+  void setDataLabels(PlotWilliamsrDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for the series data
@@ -1602,10 +1602,17 @@ public interface PlotWilliamsrOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotWilliamsrOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotWilliamsrOptions build() {
       return object;
@@ -2076,7 +2083,7 @@ public interface PlotWilliamsrOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotWilliamsrDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotWilliamsrDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2594,7 +2601,7 @@ public interface PlotWilliamsrOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

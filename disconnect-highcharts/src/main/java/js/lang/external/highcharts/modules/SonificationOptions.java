@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/sonification.src.js"
@@ -101,7 +101,7 @@ public interface SonificationOptions extends Any {
    *
    */
   @JSProperty("earcons")
-  void setEarcons(EarconConfiguration[] value);
+  void setEarcons(EarconConfiguration... value);
 
   /**
    * The instrument definitions for the points in this chart.
@@ -116,7 +116,7 @@ public interface SonificationOptions extends Any {
    *
    */
   @JSProperty("instruments")
-  void setInstruments(PointInstrumentObject[] value);
+  void setInstruments(PointInstrumentObject... value);
 
   /**
    * Callback after the chart has played.
@@ -194,7 +194,7 @@ public interface SonificationOptions extends Any {
    *
    */
   @JSProperty("order")
-  void setOrder(Earcon[] value);
+  void setOrder(Earcon... value);
 
   /**
    * Define the order to play the series in. This can be given as a
@@ -226,7 +226,7 @@ public interface SonificationOptions extends Any {
    *
    */
   @JSProperty("order")
-  void setOrder(String[] value);
+  void setOrder(String... value);
 
   /**
    * The axis to use for when to play the points. Can be a string with a
@@ -288,7 +288,7 @@ public interface SonificationOptions extends Any {
    *
    */
   @JSProperty("seriesOptions")
-  void setSeriesOptions(SonificationObject[] value);
+  void setSeriesOptions(SonificationObject... value);
 
   /**
    * Options as given to <code>series.sonify</code> to override options per series.
@@ -301,8 +301,15 @@ public interface SonificationOptions extends Any {
   @JSProperty("seriesOptions")
   void setSeriesOptions(@Nullable SonificationObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SonificationOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SonificationOptions build() {
       return object;
@@ -349,7 +356,7 @@ public interface SonificationOptions extends Any {
      * series using <code>seriesOptions</code>.
      *
      */
-    public Builder earcons(EarconConfiguration[] value) {
+    public Builder earcons(EarconConfiguration... value) {
       object.setEarcons(value);
       return this;
     }
@@ -358,7 +365,7 @@ public interface SonificationOptions extends Any {
      * The instrument definitions for the points in this chart.
      *
      */
-    public Builder instruments(PointInstrumentObject[] value) {
+    public Builder instruments(PointInstrumentObject... value) {
       object.setInstruments(value);
       return this;
     }
@@ -403,7 +410,7 @@ public interface SonificationOptions extends Any {
      * the elements in an array.
      *
      */
-    public Builder order(Earcon[] value) {
+    public Builder order(Earcon... value) {
       object.setOrder(value);
       return this;
     }
@@ -439,7 +446,7 @@ public interface SonificationOptions extends Any {
      * the elements in an array.
      *
      */
-    public Builder order(String[] value) {
+    public Builder order(String... value) {
       object.setOrder(value);
       return this;
     }
@@ -482,7 +489,7 @@ public interface SonificationOptions extends Any {
      * series.
      *
      */
-    public Builder seriesOptions(SonificationObject[] value) {
+    public Builder seriesOptions(SonificationObject... value) {
       object.setSeriesOptions(value);
       return this;
     }

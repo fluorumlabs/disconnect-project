@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -57,7 +57,7 @@ public interface StockToolsGuiDefinitionsLinesOptions extends Any {
    *
    */
   @JSProperty("items")
-  void setItems(Any[] value);
+  void setItems(Any... value);
 
   @JSProperty("line")
   @Nullable
@@ -87,8 +87,15 @@ public interface StockToolsGuiDefinitionsLinesOptions extends Any {
   @JSProperty("verticalLine")
   void setVerticalLine(@Nullable StockToolsGuiDefinitionsLinesVerticalLineOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final StockToolsGuiDefinitionsLinesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public StockToolsGuiDefinitionsLinesOptions build() {
       return object;
@@ -120,7 +127,7 @@ public interface StockToolsGuiDefinitionsLinesOptions extends Any {
      * items.
      *
      */
-    public Builder items(Any[] value) {
+    public Builder items(Any... value) {
       object.setItems(value);
       return this;
     }

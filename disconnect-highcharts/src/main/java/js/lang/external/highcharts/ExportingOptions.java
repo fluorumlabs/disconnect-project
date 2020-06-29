@@ -2,6 +2,7 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
@@ -15,7 +16,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -475,6 +476,27 @@ public interface ExportingOptions extends Any {
   void setTableCaption(@Nullable String value);
 
   /**
+   * (Highcharts, Highstock, Highmaps, Gantt) Default MIME type for exporting
+   * if <code>chart.exportChart()</code> is called without specifying a <code>type</code> option.
+   * Possible values are <code>image/png</code>, <code>image/jpeg</code>, <code>application/pdf</code> and
+   * <code>image/svg+xml</code>.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) Default MIME type for exporting
+   * if <code>chart.exportChart()</code> is called without specifying a <code>type</code> option.
+   * Possible values are <code>image/png</code>, <code>image/jpeg</code>, <code>application/pdf</code> and
+   * <code>image/svg+xml</code>.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
+
+  /**
    * (Highcharts, Highstock, Highmaps, Gantt) The URL for the server module
    * converting the SVG string to an image format. By default this points to
    * Highchart's free web service.
@@ -547,8 +569,25 @@ public interface ExportingOptions extends Any {
   @JSProperty("width")
   void setWidth(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type APPLICATION_PDF = JsEnum.of("application/pdf");
+
+    public static final Type IMAGE_JPEG = JsEnum.of("image/jpeg");
+
+    public static final Type IMAGE_PNG = JsEnum.of("image/png");
+
+    public static final Type IMAGE_SVG_XML = JsEnum.of("image/svg+xml");
+  }
+
+  final class Builder {
     private final ExportingOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ExportingOptions build() {
       return object;
@@ -699,7 +738,7 @@ public interface ExportingOptions extends Any {
      * set.
      *
      */
-    public Builder formAttributes(@Nullable Dictionary<Unknown /* boolean */> value) {
+    public Builder formAttributes(@Nullable Dictionary<Unknown> value) {
       object.setFormAttributes(value);
       return this;
     }
@@ -821,6 +860,18 @@ public interface ExportingOptions extends Any {
      */
     public Builder tableCaption(@Nullable String value) {
       object.setTableCaption(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) Default MIME type for exporting
+     * if <code>chart.exportChart()</code> is called without specifying a <code>type</code> option.
+     * Possible values are <code>image/png</code>, <code>image/jpeg</code>, <code>application/pdf</code> and
+     * <code>image/svg+xml</code>.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
       return this;
     }
 

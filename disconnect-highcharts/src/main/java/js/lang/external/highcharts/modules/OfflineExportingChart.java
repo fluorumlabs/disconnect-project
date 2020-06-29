@@ -9,7 +9,7 @@ import js.lang.external.highcharts.Options;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/offline-exporting.src.js"

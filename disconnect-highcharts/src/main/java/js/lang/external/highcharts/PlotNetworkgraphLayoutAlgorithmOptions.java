@@ -11,7 +11,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -340,14 +340,40 @@ public interface PlotNetworkgraphLayoutAlgorithmOptions extends Any {
   @JSProperty("theta")
   void setTheta(double value);
 
+  /**
+   * (Highcharts) Type of the algorithm used when positioning nodes.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Type getType();
+
+  /**
+   * (Highcharts) Type of the algorithm used when positioning nodes.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Approximation extends JsEnum {
     public static final Approximation BARNES_HUT = JsEnum.of("barnes-hut");
 
     public static final Approximation NONE = JsEnum.of("none");
   }
 
-  class Builder {
+  abstract class Type extends JsEnum {
+    public static final Type REINGOLD_FRUCHTERMAN = JsEnum.of("reingold-fruchterman");
+  }
+
+  final class Builder {
     private final PlotNetworkgraphLayoutAlgorithmOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotNetworkgraphLayoutAlgorithmOptions build() {
       return object;
@@ -542,6 +568,15 @@ public interface PlotNetworkgraphLayoutAlgorithmOptions extends Any {
      */
     public Builder theta(double value) {
       object.setTheta(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts) Type of the algorithm used when positioning nodes.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
       return this;
     }
   }

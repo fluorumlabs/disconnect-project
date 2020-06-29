@@ -11,7 +11,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -29,7 +29,7 @@ public interface PointerAxisCoordinatesObject extends Any {
    *
    */
   @JSProperty("xAxis")
-  void setXAxis(PointerAxisCoordinateObject[] value);
+  void setXAxis(PointerAxisCoordinateObject... value);
 
   /**
    * Positions on the y-axis.
@@ -43,10 +43,17 @@ public interface PointerAxisCoordinatesObject extends Any {
    *
    */
   @JSProperty("yAxis")
-  void setYAxis(PointerAxisCoordinateObject[] value);
+  void setYAxis(PointerAxisCoordinateObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PointerAxisCoordinatesObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public PointerAxisCoordinatesObject build() {
       return object;
@@ -56,7 +63,7 @@ public interface PointerAxisCoordinatesObject extends Any {
      * Positions on the x-axis.
      *
      */
-    public Builder xAxis(PointerAxisCoordinateObject[] value) {
+    public Builder xAxis(PointerAxisCoordinateObject... value) {
       object.setXAxis(value);
       return this;
     }
@@ -65,7 +72,7 @@ public interface PointerAxisCoordinatesObject extends Any {
      * Positions on the y-axis.
      *
      */
-    public Builder yAxis(PointerAxisCoordinateObject[] value) {
+    public Builder yAxis(PointerAxisCoordinateObject... value) {
       object.setYAxis(value);
       return this;
     }

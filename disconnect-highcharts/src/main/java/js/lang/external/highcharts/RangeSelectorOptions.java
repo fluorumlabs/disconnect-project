@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -74,7 +74,7 @@ public interface RangeSelectorOptions extends Any {
    *
    */
   @JSProperty("buttons")
-  void setButtons(RangeSelectorButtonsOptions[] value);
+  void setButtons(RangeSelectorButtonsOptions... value);
 
   /**
    * (Highstock, Gantt) The space in pixels between the buttons in the range
@@ -399,8 +399,15 @@ public interface RangeSelectorOptions extends Any {
   @JSProperty("y")
   void setY(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final RangeSelectorOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public RangeSelectorOptions build() {
       return object;
@@ -433,7 +440,7 @@ public interface RangeSelectorOptions extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder buttons(RangeSelectorButtonsOptions[] value) {
+    public Builder buttons(RangeSelectorButtonsOptions... value) {
       object.setButtons(value);
       return this;
     }

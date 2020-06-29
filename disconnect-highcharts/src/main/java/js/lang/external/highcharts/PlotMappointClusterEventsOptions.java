@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -35,8 +35,15 @@ public interface PlotMappointClusterEventsOptions extends Any {
   @JSProperty("drillToCluster")
   void setDrillToCluster(@Nullable MarkerClusterDrillCallbackFunction value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotMappointClusterEventsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotMappointClusterEventsOptions build() {
       return object;

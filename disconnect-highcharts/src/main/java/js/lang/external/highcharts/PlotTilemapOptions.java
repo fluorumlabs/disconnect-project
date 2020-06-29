@@ -40,7 +40,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -680,7 +680,7 @@ public interface PlotTilemapOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotTilemapDataLabelsOptions[] value);
+  void setDataLabels(PlotTilemapDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highmaps) A description of the series to add to the screen
@@ -867,7 +867,7 @@ public interface PlotTilemapOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Series labels are placed as close to the
@@ -1402,7 +1402,11 @@ public interface PlotTilemapOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
+
+  static Builder builder() {
+    return new Builder();
+  }
 
   abstract class TileShape extends JsEnum {
     public static final TileShape CIRCLE = JsEnum.of("circle");
@@ -1414,8 +1418,11 @@ public interface PlotTilemapOptions extends Any {
     public static final TileShape SQUARE = JsEnum.of("square");
   }
 
-  class Builder {
+  final class Builder {
     private final PlotTilemapOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotTilemapOptions build() {
       return object;
@@ -1838,7 +1845,7 @@ public interface PlotTilemapOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotTilemapDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotTilemapDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1945,7 +1952,7 @@ public interface PlotTilemapOptions extends Any {
      * unstructured data arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }
@@ -2285,7 +2292,7 @@ public interface PlotTilemapOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

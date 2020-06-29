@@ -9,7 +9,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -20,7 +20,7 @@ public interface DefsArrowOptions extends Any {
   DefsOptions[] getChildren();
 
   @JSProperty("children")
-  void setChildren(DefsOptions[] value);
+  void setChildren(DefsOptions... value);
 
   @JSProperty("id")
   @Nullable
@@ -66,14 +66,21 @@ public interface DefsArrowOptions extends Any {
   @JSProperty("tagName")
   void setTagName(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final DefsArrowOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public DefsArrowOptions build() {
       return object;
     }
 
-    public Builder children(DefsOptions[] value) {
+    public Builder children(DefsOptions... value) {
       object.setChildren(value);
       return this;
     }

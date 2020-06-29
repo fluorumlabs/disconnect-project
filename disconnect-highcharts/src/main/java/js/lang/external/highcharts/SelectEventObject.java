@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -28,16 +28,23 @@ public interface SelectEventObject extends Any {
   SelectDataObject[] getXAxis();
 
   @JSProperty("xAxis")
-  void setXAxis(SelectDataObject[] value);
+  void setXAxis(SelectDataObject... value);
 
   @JSProperty("yAxis")
   SelectDataObject[] getYAxis();
 
   @JSProperty("yAxis")
-  void setYAxis(SelectDataObject[] value);
+  void setYAxis(SelectDataObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SelectEventObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SelectEventObject build() {
       return object;
@@ -48,12 +55,12 @@ public interface SelectEventObject extends Any {
       return this;
     }
 
-    public Builder xAxis(SelectDataObject[] value) {
+    public Builder xAxis(SelectDataObject... value) {
       object.setXAxis(value);
       return this;
     }
 
-    public Builder yAxis(SelectDataObject[] value) {
+    public Builder yAxis(SelectDataObject... value) {
       object.setYAxis(value);
       return this;
     }

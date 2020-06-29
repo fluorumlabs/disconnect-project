@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -173,8 +173,15 @@ public interface AccessibilityScreenReaderSectionOptions extends Any {
   @JSProperty("onViewDataTableClick")
   void setOnViewDataTableClick(@Nullable ScreenReaderClickCallbackFunction value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AccessibilityScreenReaderSectionOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AccessibilityScreenReaderSectionOptions build() {
       return object;

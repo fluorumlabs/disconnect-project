@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -86,8 +86,15 @@ public interface SeriesStatesOptionsObject extends Any {
   @JSProperty("select")
   void setSelect(@Nullable SeriesStatesSelectOptionsObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesStatesOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesStatesOptionsObject build() {
       return object;

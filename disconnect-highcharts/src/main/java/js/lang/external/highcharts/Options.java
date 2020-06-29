@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -57,7 +57,7 @@ public interface Options extends Any {
    *
    */
   @JSProperty("annotations")
-  void setAnnotations(AnnotationsOptions[] value);
+  void setAnnotations(AnnotationsOptions... value);
 
   @JSProperty("boost")
   @Nullable
@@ -197,7 +197,7 @@ public interface Options extends Any {
    *
    */
   @JSProperty("colorAxis")
-  void setColorAxis(ColorAxisOptions[] value);
+  void setColorAxis(ColorAxisOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) An array containing the default
@@ -244,7 +244,7 @@ public interface Options extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(String[] value);
+  void setColors(String... value);
 
   /**
    * (Gantt) The Pathfinder module allows you to define connections between
@@ -674,7 +674,7 @@ public interface Options extends Any {
    *
    */
   @JSProperty("series")
-  void setSeries(SeriesOptionsRegistry[] value);
+  void setSeries(SeriesOptionsRegistry... value);
 
   /**
    * (Highstock) Configure the stockTools gui strings in the chart. Requires
@@ -820,7 +820,7 @@ public interface Options extends Any {
    *
    */
   @JSProperty("xAxis")
-  void setXAxis(XAxisOptions[] value);
+  void setXAxis(XAxisOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The Y axis or value axis.
@@ -857,7 +857,7 @@ public interface Options extends Any {
    *
    */
   @JSProperty("yAxis")
-  void setYAxis(YAxisOptions[] value);
+  void setYAxis(YAxisOptions... value);
 
   /**
    * (Highcharts) The Z axis or depth axis for 3D plots.
@@ -876,7 +876,7 @@ public interface Options extends Any {
    *
    */
   @JSProperty("zAxis")
-  void setZAxis(ZAxisOptions[] value);
+  void setZAxis(ZAxisOptions... value);
 
   /**
    * (Highcharts) The Z axis or depth axis for 3D plots.
@@ -887,8 +887,15 @@ public interface Options extends Any {
   @JSProperty("zAxis")
   void setZAxis(@Nullable ZAxisOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final Options object = Any.empty();
+
+    private Builder() {
+    }
 
     public Options build() {
       return object;
@@ -912,7 +919,7 @@ public interface Options extends Any {
      * points, axis coordinates or chart pixel coordinates.
      *
      */
-    public Builder annotations(AnnotationsOptions[] value) {
+    public Builder annotations(AnnotationsOptions... value) {
       object.setAnnotations(value);
       return this;
     }
@@ -1006,7 +1013,7 @@ public interface Options extends Any {
      * See the Axis object for programmatic access to the axis.
      *
      */
-    public Builder colorAxis(ColorAxisOptions[] value) {
+    public Builder colorAxis(ColorAxisOptions... value) {
       object.setColorAxis(value);
       return this;
     }
@@ -1031,7 +1038,7 @@ public interface Options extends Any {
      * example)
      *
      */
-    public Builder colors(String[] value) {
+    public Builder colors(String... value) {
       object.setColors(value);
       return this;
     }
@@ -1276,7 +1283,7 @@ public interface Options extends Any {
      * specific series types, to get all possible options for a series.
      *
      */
-    public Builder series(SeriesOptionsRegistry[] value) {
+    public Builder series(SeriesOptionsRegistry... value) {
       object.setSeries(value);
       return this;
     }
@@ -1366,7 +1373,7 @@ public interface Options extends Any {
      * See the Axis class for programmatic access to the axis.
      *
      */
-    public Builder xAxis(XAxisOptions[] value) {
+    public Builder xAxis(XAxisOptions... value) {
       object.setXAxis(value);
       return this;
     }
@@ -1394,7 +1401,7 @@ public interface Options extends Any {
      * See the Axis object for programmatic access to the axis.
      *
      */
-    public Builder yAxis(YAxisOptions[] value) {
+    public Builder yAxis(YAxisOptions... value) {
       object.setYAxis(value);
       return this;
     }
@@ -1405,7 +1412,7 @@ public interface Options extends Any {
      * See the Axis class for programmatic access to the axis.
      *
      */
-    public Builder zAxis(ZAxisOptions[] value) {
+    public Builder zAxis(ZAxisOptions... value) {
       object.setZAxis(value);
       return this;
     }

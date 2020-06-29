@@ -3,6 +3,7 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
 import js.lang.Unknown /* Array < ( number | null | PointOptionsObject ) > */;
 import js.lang.Unknown /* undefined */;
@@ -39,7 +40,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -90,7 +91,7 @@ public interface SeriesFunnelOptions extends PlotFunnelOptions, SeriesOptions {
    * </ol>
    */
   @JSProperty("data")
-  void setData(PointOptionsObject[] value);
+  void setData(PointOptionsObject... value);
 
   /**
    * (Highcharts) An array of data points for the series. For the <code>funnel</code>
@@ -113,7 +114,7 @@ public interface SeriesFunnelOptions extends PlotFunnelOptions, SeriesOptions {
    * </ol>
    */
   @JSProperty("data")
-  void setData(double[] value);
+  void setData(double... value);
 
   /**
    * Not available
@@ -140,6 +141,24 @@ public interface SeriesFunnelOptions extends PlotFunnelOptions, SeriesOptions {
   Unknown /* undefined */ getStack();
 
   /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+   * TypeScript non-optional and might be <code>undefined</code> in series objects from
+   * unknown sources.
+   *
+   */
+  @JSProperty("type")
+  void setType(Type value);
+
+  /**
    * Not available
    *
    */
@@ -155,8 +174,19 @@ public interface SeriesFunnelOptions extends PlotFunnelOptions, SeriesOptions {
   @Nullable
   Unknown /* undefined */ getYAxis();
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type FUNNEL = JsEnum.of("funnel");
+  }
+
+  final class Builder {
     private final SeriesFunnelOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesFunnelOptions build() {
       return object;
@@ -182,7 +212,7 @@ public interface SeriesFunnelOptions extends PlotFunnelOptions, SeriesOptions {
      * </li>
      * </ol>
      */
-    public Builder data(PointOptionsObject[] value) {
+    public Builder data(PointOptionsObject... value) {
       object.setData(value);
       return this;
     }
@@ -207,8 +237,19 @@ public interface SeriesFunnelOptions extends PlotFunnelOptions, SeriesOptions {
      * </li>
      * </ol>
      */
-    public Builder data(double[] value) {
+    public Builder data(double... value) {
       object.setData(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) This property is only in
+     * TypeScript non-optional and might be <code>undefined</code> in series objects from
+     * unknown sources.
+     *
+     */
+    public Builder type(Type value) {
+      object.setType(value);
       return this;
     }
   }

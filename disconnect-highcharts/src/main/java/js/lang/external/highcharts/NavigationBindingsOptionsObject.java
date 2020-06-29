@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -95,10 +95,17 @@ public interface NavigationBindingsOptionsObject extends Any {
    *
    */
   @JSProperty("steps")
-  void setSteps(JsFunction[] value);
+  void setSteps(JsFunction... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigationBindingsOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigationBindingsOptionsObject build() {
       return object;
@@ -145,7 +152,7 @@ public interface NavigationBindingsOptionsObject extends Any {
      * called sequentially after each user click.
      *
      */
-    public Builder steps(JsFunction[] value) {
+    public Builder steps(JsFunction... value) {
       object.setSteps(value);
       return this;
     }

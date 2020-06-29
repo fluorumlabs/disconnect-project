@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -35,10 +35,17 @@ public interface ResponsiveOptions extends Any {
    *
    */
   @JSProperty("rules")
-  void setRules(ResponsiveRulesOptions[] value);
+  void setRules(ResponsiveRulesOptions... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ResponsiveOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ResponsiveOptions build() {
       return object;
@@ -49,7 +56,7 @@ public interface ResponsiveOptions extends Any {
      * settings. The rules are executed from the top down.
      *
      */
-    public Builder rules(ResponsiveRulesOptions[] value) {
+    public Builder rules(ResponsiveRulesOptions... value) {
       object.setRules(value);
       return this;
     }

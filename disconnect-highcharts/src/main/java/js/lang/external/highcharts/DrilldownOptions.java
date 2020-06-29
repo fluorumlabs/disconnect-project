@@ -20,7 +20,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -226,10 +226,17 @@ public interface DrilldownOptions extends Any {
    *
    */
   @JSProperty("series")
-  void setSeries(SeriesOptionsRegistry[] value);
+  void setSeries(SeriesOptionsRegistry... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final DrilldownOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public DrilldownOptions build() {
       return object;
@@ -364,7 +371,7 @@ public interface DrilldownOptions extends Any {
      * is linked to the parent series' point by its <code>id</code>.
      *
      */
-    public Builder series(SeriesOptionsRegistry[] value) {
+    public Builder series(SeriesOptionsRegistry... value) {
       object.setSeries(value);
       return this;
     }

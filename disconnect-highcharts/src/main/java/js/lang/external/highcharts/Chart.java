@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"Chart as Chart_Chart"},
@@ -159,7 +159,7 @@ public interface Chart extends Any {
    *
    */
   @JSProperty("axes")
-  void setAxes(Axis[] value);
+  void setAxes(Axis... value);
 
   /**
    * The current pixel height of the chart.
@@ -267,7 +267,7 @@ public interface Chart extends Any {
    *
    */
   @JSProperty("hoverPoints")
-  void setHoverPoints(Point[] value);
+  void setHoverPoints(Point... value);
 
   /**
    * Contains the original hovered series.
@@ -453,7 +453,7 @@ public interface Chart extends Any {
    *
    */
   @JSProperty("propsRequireReflow")
-  void setPropsRequireReflow(Any[] value);
+  void setPropsRequireReflow(Any... value);
 
   /**
    * These properties cause all series to be updated when updating. Can be
@@ -499,7 +499,7 @@ public interface Chart extends Any {
    *
    */
   @JSProperty("series")
-  void setSeries(Series[] value);
+  void setSeries(Series... value);
 
   /**
    * Whether the chart is in styled mode, meaning all presentatinoal
@@ -609,7 +609,7 @@ public interface Chart extends Any {
    *
    */
   @JSProperty("xAxis")
-  void setXAxis(Axis[] value);
+  void setXAxis(Axis... value);
 
   /**
    * A collection of the Y axes in the chart.
@@ -623,7 +623,7 @@ public interface Chart extends Any {
    *
    */
   @JSProperty("yAxis")
-  void setYAxis(Axis[] value);
+  void setYAxis(Axis... value);
 
   /**
    * Add an axis to the chart after render time. Note that this method should
@@ -1017,7 +1017,13 @@ public interface Chart extends Any {
    * A configuration object for the new credits.
    *
    */
-  void addCredits(CreditsOptions credits);
+  void addCredits(@Nullable CreditsOptions credits);
+
+  /**
+   * Set a new credits label for the chart.
+   *
+   */
+  void addCredits();
 
   /**
    * Add a series to the chart after render time. Note that this method should
@@ -1320,6 +1326,9 @@ public interface Chart extends Any {
   /**
    * Set the chart container's class name, in addition to
    * <code>highcharts-container</code>.
+   *
+   * @param className
+   * The additional class name.
    *
    */
   void setClassName(@Nullable String className);

@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"SVGRenderer as SVGRenderer_SVGRenderer"},
@@ -667,6 +667,14 @@ public interface SVGRenderer extends Any {
   /**
    * Draw a circle, wraps the SVG <code>circle</code> element.
    *
+   * @return The generated wrapper element.
+   *
+   */
+  SVGElement circle();
+
+  /**
+   * Draw a circle, wraps the SVG <code>circle</code> element.
+   *
    * @param x
    * The center x position.
    *
@@ -705,14 +713,6 @@ public interface SVGRenderer extends Any {
    *
    */
   SVGElement circle(double x);
-
-  /**
-   * Draw a circle, wraps the SVG <code>circle</code> element.
-   *
-   * @return The generated wrapper element.
-   *
-   */
-  SVGElement circle();
 
   /**
    * Define a clipping rectangle. The clipping rectangle is later applied to
@@ -788,26 +788,7 @@ public interface SVGRenderer extends Any {
    * @return The original points array, but modified to render crisply.
    *
    */
-  Unknown /* SVGPathArray */ crispLine(CrispLinePoints points, double width,
-      String roundingFunction);
-
-  /**
-   * Make a straight line crisper by not spilling out to neighbour pixels.
-   *
-   * @param points
-   * The original points on the format <code>[['M', 0, 0], ['L', 100, 0]]</code>.
-   *
-   * @param width
-   * The width of the line.
-   *
-   * @param roundingFunction
-   * The rounding function name on the <code>Math</code> object, can be one of
-   * <code>round</code>, <code>floor</code> or <code>ceil</code>.
-   *
-   * @return The original points array, but modified to render crisply.
-   *
-   */
-  Unknown /* SVGPathArray */ crispLine(double[] points, double width, String roundingFunction);
+  CrispLineResult8[] crispLine(CrispLinePoints8[] points, double width, String roundingFunction);
 
   /**
    * General method for adding a definition to the SVG <code>defs</code> tag. Can be used
@@ -1483,18 +1464,15 @@ public interface SVGRenderer extends Any {
    * @return The generated wrapper element.
    *
    */
-  SVGElement path(@Nullable PathPath path);
+  SVGElement path(PathPath8[] path);
 
   /**
    * Draw a path, wraps the SVG <code>path</code> element.
    *
-   * @param path
-   * An SVG path definition in array form.
-   *
    * @return The generated wrapper element.
    *
    */
-  SVGElement path(double[] path);
+  SVGElement path();
 
   /**
    * Draw a path, wraps the SVG <code>path</code> element.
@@ -1508,27 +1486,6 @@ public interface SVGRenderer extends Any {
   SVGElement path(@Nullable SVGAttributes attribs);
 
   /**
-   * Draw a path, wraps the SVG <code>path</code> element.
-   *
-   * @return The generated wrapper element.
-   *
-   */
-  SVGElement path();
-
-  /**
-   * Compatibility function to convert the legacy one-dimensional path array
-   * into an array of segments.
-   *
-   * It is used in maps to parse the <code>path</code> option, and in SVGRenderer.dSetter
-   * to support legacy paths from demos.
-   *
-   * @param path
-   * @private
-   *
-   */
-  Unknown /* SVGPathArray */ pathToSegments(Any path);
-
-  /**
    * Draw and return a rectangle.
    *
    * @param attributes
@@ -1538,6 +1495,14 @@ public interface SVGRenderer extends Any {
    *
    */
   SVGElement rect(@Nullable SVGAttributes attributes);
+
+  /**
+   * Draw and return a rectangle.
+   *
+   * @return The generated wrapper element.
+   *
+   */
+  SVGElement rect();
 
   /**
    * Draw and return a rectangle.
@@ -1649,14 +1614,6 @@ public interface SVGRenderer extends Any {
    *
    */
   SVGElement rect(double x);
-
-  /**
-   * Draw and return a rectangle.
-   *
-   * @return The generated wrapper element.
-   *
-   */
-  SVGElement rect();
 
   /**
    * Resize the SVGRenderer#box and re-align all aligned child elements.
@@ -1922,171 +1879,564 @@ public interface SVGRenderer extends Any {
     public static final ButtonShape ARC = JsEnum.of("arc");
   }
 
-  abstract class CrispLineResult extends JsEnum {
-    public static final CrispLineResult A = JsEnum.of("a");
+  interface CrispLineResult8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
 
-    public static final CrispLineResult C = JsEnum.of("c");
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
 
-    public static final CrispLineResult H = JsEnum.of("h");
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
 
-    public static final CrispLineResult L = JsEnum.of("l");
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
 
-    public static final CrispLineResult M = JsEnum.of("m");
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
 
-    public static final CrispLineResult Q = JsEnum.of("q");
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
 
-    public static final CrispLineResult S = JsEnum.of("s");
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
 
-    public static final CrispLineResult T = JsEnum.of("t");
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
 
-    public static final CrispLineResult V = JsEnum.of("v");
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
 
-    public static final CrispLineResult Z = JsEnum.of("z");
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
 
-    public static final CrispLineResult CAPITAL_A = JsEnum.of("A");
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
 
-    public static final CrispLineResult CAPITAL_C = JsEnum.of("C");
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
 
-    public static final CrispLineResult CAPITAL_H = JsEnum.of("H");
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
 
-    public static final CrispLineResult CAPITAL_L = JsEnum.of("L");
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
 
-    public static final CrispLineResult CAPITAL_M = JsEnum.of("M");
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
 
-    public static final CrispLineResult CAPITAL_Q = JsEnum.of("Q");
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
 
-    public static final CrispLineResult CAPITAL_S = JsEnum.of("S");
+    static CrispLineResult8.Builder builder() {
+      return new CrispLineResult8.Builder();
+    }
 
-    public static final CrispLineResult CAPITAL_T = JsEnum.of("T");
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
 
-    public static final CrispLineResult CAPITAL_V = JsEnum.of("V");
+      public static final Value0 C = JsEnum.of("c");
 
-    public static final CrispLineResult CAPITAL_Z = JsEnum.of("Z");
+      public static final Value0 H = JsEnum.of("h");
+
+      public static final Value0 L = JsEnum.of("l");
+
+      public static final Value0 M = JsEnum.of("m");
+
+      public static final Value0 Q = JsEnum.of("q");
+
+      public static final Value0 S = JsEnum.of("s");
+
+      public static final Value0 T = JsEnum.of("t");
+
+      public static final Value0 V = JsEnum.of("v");
+
+      public static final Value0 Z = JsEnum.of("z");
+
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
+
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
+
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
+
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
+
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
+
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
+
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
+
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
+
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
+
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
+
+    final class Builder {
+      private final CrispLineResult8 object = Any.empty();
+
+      private Builder() {
+      }
+
+      public CrispLineResult8 build() {
+        return object;
+      }
+
+      public CrispLineResult8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public CrispLineResult8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public CrispLineResult8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public CrispLineResult8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public CrispLineResult8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public CrispLineResult8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public CrispLineResult8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public CrispLineResult8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
   }
 
-  abstract class CrispLinePoints extends JsEnum {
-    public static final CrispLinePoints CAPITAL_Z = JsEnum.of("Z");
+  interface CrispLinePoints8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
 
-    public static final CrispLinePoints CAPITAL_V = JsEnum.of("V");
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
 
-    public static final CrispLinePoints CAPITAL_T = JsEnum.of("T");
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
 
-    public static final CrispLinePoints CAPITAL_S = JsEnum.of("S");
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
 
-    public static final CrispLinePoints CAPITAL_Q = JsEnum.of("Q");
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
 
-    public static final CrispLinePoints CAPITAL_M = JsEnum.of("M");
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
 
-    public static final CrispLinePoints CAPITAL_L = JsEnum.of("L");
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
 
-    public static final CrispLinePoints CAPITAL_H = JsEnum.of("H");
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
 
-    public static final CrispLinePoints CAPITAL_C = JsEnum.of("C");
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
 
-    public static final CrispLinePoints CAPITAL_A = JsEnum.of("A");
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
 
-    public static final CrispLinePoints Z = JsEnum.of("z");
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
 
-    public static final CrispLinePoints V = JsEnum.of("v");
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
 
-    public static final CrispLinePoints T = JsEnum.of("t");
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
 
-    public static final CrispLinePoints S = JsEnum.of("s");
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
 
-    public static final CrispLinePoints Q = JsEnum.of("q");
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
 
-    public static final CrispLinePoints M = JsEnum.of("m");
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
 
-    public static final CrispLinePoints L = JsEnum.of("l");
+    static CrispLinePoints8.Builder builder() {
+      return new CrispLinePoints8.Builder();
+    }
 
-    public static final CrispLinePoints H = JsEnum.of("h");
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
 
-    public static final CrispLinePoints C = JsEnum.of("c");
+      public static final Value0 C = JsEnum.of("c");
 
-    public static final CrispLinePoints A = JsEnum.of("a");
+      public static final Value0 H = JsEnum.of("h");
+
+      public static final Value0 L = JsEnum.of("l");
+
+      public static final Value0 M = JsEnum.of("m");
+
+      public static final Value0 Q = JsEnum.of("q");
+
+      public static final Value0 S = JsEnum.of("s");
+
+      public static final Value0 T = JsEnum.of("t");
+
+      public static final Value0 V = JsEnum.of("v");
+
+      public static final Value0 Z = JsEnum.of("z");
+
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
+
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
+
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
+
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
+
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
+
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
+
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
+
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
+
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
+
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
+
+    final class Builder {
+      private final CrispLinePoints8 object = Any.empty();
+
+      private Builder() {
+      }
+
+      public CrispLinePoints8 build() {
+        return object;
+      }
+
+      public CrispLinePoints8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public CrispLinePoints8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public CrispLinePoints8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public CrispLinePoints8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public CrispLinePoints8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public CrispLinePoints8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public CrispLinePoints8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public CrispLinePoints8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
   }
 
-  abstract class PathPath extends JsEnum {
-    public static final PathPath CAPITAL_Z = JsEnum.of("Z");
+  interface PathPath8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
 
-    public static final PathPath CAPITAL_V = JsEnum.of("V");
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
 
-    public static final PathPath CAPITAL_T = JsEnum.of("T");
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
 
-    public static final PathPath CAPITAL_S = JsEnum.of("S");
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
 
-    public static final PathPath CAPITAL_Q = JsEnum.of("Q");
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
 
-    public static final PathPath CAPITAL_M = JsEnum.of("M");
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
 
-    public static final PathPath CAPITAL_L = JsEnum.of("L");
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
 
-    public static final PathPath CAPITAL_H = JsEnum.of("H");
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
 
-    public static final PathPath CAPITAL_C = JsEnum.of("C");
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
 
-    public static final PathPath CAPITAL_A = JsEnum.of("A");
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
 
-    public static final PathPath Z = JsEnum.of("z");
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
 
-    public static final PathPath V = JsEnum.of("v");
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
 
-    public static final PathPath T = JsEnum.of("t");
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
 
-    public static final PathPath S = JsEnum.of("s");
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
 
-    public static final PathPath Q = JsEnum.of("q");
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
 
-    public static final PathPath M = JsEnum.of("m");
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
 
-    public static final PathPath L = JsEnum.of("l");
+    static PathPath8.Builder builder() {
+      return new PathPath8.Builder();
+    }
 
-    public static final PathPath H = JsEnum.of("h");
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
 
-    public static final PathPath C = JsEnum.of("c");
+      public static final Value0 C = JsEnum.of("c");
 
-    public static final PathPath A = JsEnum.of("a");
-  }
+      public static final Value0 H = JsEnum.of("h");
 
-  abstract class PathToSegmentsResult extends JsEnum {
-    public static final PathToSegmentsResult A = JsEnum.of("a");
+      public static final Value0 L = JsEnum.of("l");
 
-    public static final PathToSegmentsResult C = JsEnum.of("c");
+      public static final Value0 M = JsEnum.of("m");
 
-    public static final PathToSegmentsResult H = JsEnum.of("h");
+      public static final Value0 Q = JsEnum.of("q");
 
-    public static final PathToSegmentsResult L = JsEnum.of("l");
+      public static final Value0 S = JsEnum.of("s");
 
-    public static final PathToSegmentsResult M = JsEnum.of("m");
+      public static final Value0 T = JsEnum.of("t");
 
-    public static final PathToSegmentsResult Q = JsEnum.of("q");
+      public static final Value0 V = JsEnum.of("v");
 
-    public static final PathToSegmentsResult S = JsEnum.of("s");
+      public static final Value0 Z = JsEnum.of("z");
 
-    public static final PathToSegmentsResult T = JsEnum.of("t");
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
 
-    public static final PathToSegmentsResult V = JsEnum.of("v");
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
 
-    public static final PathToSegmentsResult Z = JsEnum.of("z");
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
 
-    public static final PathToSegmentsResult CAPITAL_A = JsEnum.of("A");
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
 
-    public static final PathToSegmentsResult CAPITAL_C = JsEnum.of("C");
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
 
-    public static final PathToSegmentsResult CAPITAL_H = JsEnum.of("H");
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
 
-    public static final PathToSegmentsResult CAPITAL_L = JsEnum.of("L");
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
 
-    public static final PathToSegmentsResult CAPITAL_M = JsEnum.of("M");
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
 
-    public static final PathToSegmentsResult CAPITAL_Q = JsEnum.of("Q");
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
 
-    public static final PathToSegmentsResult CAPITAL_S = JsEnum.of("S");
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
 
-    public static final PathToSegmentsResult CAPITAL_T = JsEnum.of("T");
+    final class Builder {
+      private final PathPath8 object = Any.empty();
 
-    public static final PathToSegmentsResult CAPITAL_V = JsEnum.of("V");
+      private Builder() {
+      }
 
-    public static final PathToSegmentsResult CAPITAL_Z = JsEnum.of("Z");
+      public PathPath8 build() {
+        return object;
+      }
+
+      public PathPath8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public PathPath8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public PathPath8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public PathPath8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public PathPath8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public PathPath8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public PathPath8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public PathPath8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
   }
 }

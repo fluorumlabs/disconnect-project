@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"Axis as Axis_Axis"},
@@ -356,7 +356,7 @@ public interface Axis extends Any {
    *
    */
   @JSProperty("series")
-  void setSeries(Series[] value);
+  void setSeries(Series... value);
 
   /**
    * The side on which the axis is rendered. 0 is top, 1 is right, 2 is bottom
@@ -627,7 +627,7 @@ public interface Axis extends Any {
    * @return The SVG path definition in array form.
    *
    */
-  Unknown /* SVGPathArray */ getLinePath(double lineWidth);
+  GetLinePathResult8[] getLinePath(double lineWidth);
 
   /**
    * Resolve the new minorTicks/minorTickInterval options into the legacy
@@ -658,7 +658,7 @@ public interface Axis extends Any {
    * @return The SVG path definition in array form.
    *
    */
-  Unknown /* SVGPathArray */ getPlotBandPath(double from, double to);
+  GetPlotBandPathResult8[] getPlotBandPath(double from, double to);
 
   /**
    * Create the path for a plot line that goes from the given value on this
@@ -672,7 +672,7 @@ public interface Axis extends Any {
    *
    */
   @Nullable
-  Unknown /* ( SVGPathArray | null ) */ getPlotLinePath(AxisPlotLinePathOptionsObject options);
+  GetPlotLinePathResult8[] getPlotLinePath(AxisPlotLinePathOptionsObject options);
 
   /**
    * Get the zero plane either based on zero or on the min or max value. Used
@@ -1219,133 +1219,568 @@ public interface Axis extends Any {
    */
   void update(XAxisOptions options);
 
-  abstract class GetLinePathResult extends JsEnum {
-    public static final GetLinePathResult A = JsEnum.of("a");
+  interface GetLinePathResult8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
 
-    public static final GetLinePathResult C = JsEnum.of("c");
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
 
-    public static final GetLinePathResult H = JsEnum.of("h");
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
 
-    public static final GetLinePathResult L = JsEnum.of("l");
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
 
-    public static final GetLinePathResult M = JsEnum.of("m");
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
 
-    public static final GetLinePathResult Q = JsEnum.of("q");
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
 
-    public static final GetLinePathResult S = JsEnum.of("s");
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
 
-    public static final GetLinePathResult T = JsEnum.of("t");
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
 
-    public static final GetLinePathResult V = JsEnum.of("v");
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
 
-    public static final GetLinePathResult Z = JsEnum.of("z");
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
 
-    public static final GetLinePathResult CAPITAL_A = JsEnum.of("A");
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
 
-    public static final GetLinePathResult CAPITAL_C = JsEnum.of("C");
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
 
-    public static final GetLinePathResult CAPITAL_H = JsEnum.of("H");
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
 
-    public static final GetLinePathResult CAPITAL_L = JsEnum.of("L");
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
 
-    public static final GetLinePathResult CAPITAL_M = JsEnum.of("M");
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
 
-    public static final GetLinePathResult CAPITAL_Q = JsEnum.of("Q");
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
 
-    public static final GetLinePathResult CAPITAL_S = JsEnum.of("S");
+    static GetLinePathResult8.Builder builder() {
+      return new GetLinePathResult8.Builder();
+    }
 
-    public static final GetLinePathResult CAPITAL_T = JsEnum.of("T");
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
 
-    public static final GetLinePathResult CAPITAL_V = JsEnum.of("V");
+      public static final Value0 C = JsEnum.of("c");
 
-    public static final GetLinePathResult CAPITAL_Z = JsEnum.of("Z");
+      public static final Value0 H = JsEnum.of("h");
+
+      public static final Value0 L = JsEnum.of("l");
+
+      public static final Value0 M = JsEnum.of("m");
+
+      public static final Value0 Q = JsEnum.of("q");
+
+      public static final Value0 S = JsEnum.of("s");
+
+      public static final Value0 T = JsEnum.of("t");
+
+      public static final Value0 V = JsEnum.of("v");
+
+      public static final Value0 Z = JsEnum.of("z");
+
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
+
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
+
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
+
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
+
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
+
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
+
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
+
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
+
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
+
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
+
+    final class Builder {
+      private final GetLinePathResult8 object = Any.empty();
+
+      private Builder() {
+      }
+
+      public GetLinePathResult8 build() {
+        return object;
+      }
+
+      public GetLinePathResult8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public GetLinePathResult8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public GetLinePathResult8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public GetLinePathResult8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public GetLinePathResult8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public GetLinePathResult8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public GetLinePathResult8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public GetLinePathResult8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
   }
 
   abstract class GetMinorTickIntervalResult extends JsEnum {
     public static final GetMinorTickIntervalResult AUTO = JsEnum.of("auto");
   }
 
-  abstract class GetPlotBandPathResult extends JsEnum {
-    public static final GetPlotBandPathResult A = JsEnum.of("a");
+  interface GetPlotBandPathResult8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
 
-    public static final GetPlotBandPathResult C = JsEnum.of("c");
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
 
-    public static final GetPlotBandPathResult H = JsEnum.of("h");
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
 
-    public static final GetPlotBandPathResult L = JsEnum.of("l");
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
 
-    public static final GetPlotBandPathResult M = JsEnum.of("m");
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
 
-    public static final GetPlotBandPathResult Q = JsEnum.of("q");
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
 
-    public static final GetPlotBandPathResult S = JsEnum.of("s");
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
 
-    public static final GetPlotBandPathResult T = JsEnum.of("t");
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
 
-    public static final GetPlotBandPathResult V = JsEnum.of("v");
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
 
-    public static final GetPlotBandPathResult Z = JsEnum.of("z");
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
 
-    public static final GetPlotBandPathResult CAPITAL_A = JsEnum.of("A");
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
 
-    public static final GetPlotBandPathResult CAPITAL_C = JsEnum.of("C");
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
 
-    public static final GetPlotBandPathResult CAPITAL_H = JsEnum.of("H");
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
 
-    public static final GetPlotBandPathResult CAPITAL_L = JsEnum.of("L");
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
 
-    public static final GetPlotBandPathResult CAPITAL_M = JsEnum.of("M");
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
 
-    public static final GetPlotBandPathResult CAPITAL_Q = JsEnum.of("Q");
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
 
-    public static final GetPlotBandPathResult CAPITAL_S = JsEnum.of("S");
+    static GetPlotBandPathResult8.Builder builder() {
+      return new GetPlotBandPathResult8.Builder();
+    }
 
-    public static final GetPlotBandPathResult CAPITAL_T = JsEnum.of("T");
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
 
-    public static final GetPlotBandPathResult CAPITAL_V = JsEnum.of("V");
+      public static final Value0 C = JsEnum.of("c");
 
-    public static final GetPlotBandPathResult CAPITAL_Z = JsEnum.of("Z");
+      public static final Value0 H = JsEnum.of("h");
+
+      public static final Value0 L = JsEnum.of("l");
+
+      public static final Value0 M = JsEnum.of("m");
+
+      public static final Value0 Q = JsEnum.of("q");
+
+      public static final Value0 S = JsEnum.of("s");
+
+      public static final Value0 T = JsEnum.of("t");
+
+      public static final Value0 V = JsEnum.of("v");
+
+      public static final Value0 Z = JsEnum.of("z");
+
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
+
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
+
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
+
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
+
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
+
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
+
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
+
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
+
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
+
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
+
+    final class Builder {
+      private final GetPlotBandPathResult8 object = Any.empty();
+
+      private Builder() {
+      }
+
+      public GetPlotBandPathResult8 build() {
+        return object;
+      }
+
+      public GetPlotBandPathResult8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public GetPlotBandPathResult8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public GetPlotBandPathResult8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public GetPlotBandPathResult8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public GetPlotBandPathResult8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public GetPlotBandPathResult8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public GetPlotBandPathResult8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public GetPlotBandPathResult8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
   }
 
-  abstract class GetPlotLinePathResult extends JsEnum {
-    public static final GetPlotLinePathResult A = JsEnum.of("a");
+  interface GetPlotLinePathResult8 extends Any {
+    @JSBody(
+        script = "return this[0]"
+    )
+    Value0 getValue0();
 
-    public static final GetPlotLinePathResult C = JsEnum.of("c");
+    @JSBody(
+        params = "value",
+        script = "this[0] = value"
+    )
+    void setValue0(Value0 value);
 
-    public static final GetPlotLinePathResult H = JsEnum.of("h");
+    @JSBody(
+        script = "return this[1]"
+    )
+    double getValue1();
 
-    public static final GetPlotLinePathResult L = JsEnum.of("l");
+    @JSBody(
+        params = "value",
+        script = "this[1] = value"
+    )
+    void setValue1(double value);
 
-    public static final GetPlotLinePathResult M = JsEnum.of("m");
+    @JSBody(
+        script = "return this[2]"
+    )
+    double getValue2();
 
-    public static final GetPlotLinePathResult Q = JsEnum.of("q");
+    @JSBody(
+        params = "value",
+        script = "this[2] = value"
+    )
+    void setValue2(double value);
 
-    public static final GetPlotLinePathResult S = JsEnum.of("s");
+    @JSBody(
+        script = "return this[3]"
+    )
+    double getValue3();
 
-    public static final GetPlotLinePathResult T = JsEnum.of("t");
+    @JSBody(
+        params = "value",
+        script = "this[3] = value"
+    )
+    void setValue3(double value);
 
-    public static final GetPlotLinePathResult V = JsEnum.of("v");
+    @JSBody(
+        script = "return this[4]"
+    )
+    double getValue4();
 
-    public static final GetPlotLinePathResult Z = JsEnum.of("z");
+    @JSBody(
+        params = "value",
+        script = "this[4] = value"
+    )
+    void setValue4(double value);
 
-    public static final GetPlotLinePathResult CAPITAL_A = JsEnum.of("A");
+    @JSBody(
+        script = "return this[5]"
+    )
+    double getValue5();
 
-    public static final GetPlotLinePathResult CAPITAL_C = JsEnum.of("C");
+    @JSBody(
+        params = "value",
+        script = "this[5] = value"
+    )
+    void setValue5(double value);
 
-    public static final GetPlotLinePathResult CAPITAL_H = JsEnum.of("H");
+    @JSBody(
+        script = "return this[6]"
+    )
+    double getValue6();
 
-    public static final GetPlotLinePathResult CAPITAL_L = JsEnum.of("L");
+    @JSBody(
+        params = "value",
+        script = "this[6] = value"
+    )
+    void setValue6(double value);
 
-    public static final GetPlotLinePathResult CAPITAL_M = JsEnum.of("M");
+    @JSBody(
+        script = "return this[7]"
+    )
+    double getValue7();
 
-    public static final GetPlotLinePathResult CAPITAL_Q = JsEnum.of("Q");
+    @JSBody(
+        params = "value",
+        script = "this[7] = value"
+    )
+    void setValue7(double value);
 
-    public static final GetPlotLinePathResult CAPITAL_S = JsEnum.of("S");
+    static GetPlotLinePathResult8.Builder builder() {
+      return new GetPlotLinePathResult8.Builder();
+    }
 
-    public static final GetPlotLinePathResult CAPITAL_T = JsEnum.of("T");
+    abstract class Value0 extends JsEnum {
+      public static final Value0 A = JsEnum.of("a");
 
-    public static final GetPlotLinePathResult CAPITAL_V = JsEnum.of("V");
+      public static final Value0 C = JsEnum.of("c");
 
-    public static final GetPlotLinePathResult CAPITAL_Z = JsEnum.of("Z");
+      public static final Value0 H = JsEnum.of("h");
+
+      public static final Value0 L = JsEnum.of("l");
+
+      public static final Value0 M = JsEnum.of("m");
+
+      public static final Value0 Q = JsEnum.of("q");
+
+      public static final Value0 S = JsEnum.of("s");
+
+      public static final Value0 T = JsEnum.of("t");
+
+      public static final Value0 V = JsEnum.of("v");
+
+      public static final Value0 Z = JsEnum.of("z");
+
+      public static final Value0 CAPITAL_A = JsEnum.of("A");
+
+      public static final Value0 CAPITAL_C = JsEnum.of("C");
+
+      public static final Value0 CAPITAL_H = JsEnum.of("H");
+
+      public static final Value0 CAPITAL_L = JsEnum.of("L");
+
+      public static final Value0 CAPITAL_M = JsEnum.of("M");
+
+      public static final Value0 CAPITAL_Q = JsEnum.of("Q");
+
+      public static final Value0 CAPITAL_S = JsEnum.of("S");
+
+      public static final Value0 CAPITAL_T = JsEnum.of("T");
+
+      public static final Value0 CAPITAL_V = JsEnum.of("V");
+
+      public static final Value0 CAPITAL_Z = JsEnum.of("Z");
+    }
+
+    final class Builder {
+      private final GetPlotLinePathResult8 object = Any.empty();
+
+      private Builder() {
+      }
+
+      public GetPlotLinePathResult8 build() {
+        return object;
+      }
+
+      public GetPlotLinePathResult8.Builder value0(Value0 value) {
+        object.setValue0(value);
+        return this;
+      }
+
+      public GetPlotLinePathResult8.Builder value1(double value) {
+        object.setValue1(value);
+        return this;
+      }
+
+      public GetPlotLinePathResult8.Builder value2(double value) {
+        object.setValue2(value);
+        return this;
+      }
+
+      public GetPlotLinePathResult8.Builder value3(double value) {
+        object.setValue3(value);
+        return this;
+      }
+
+      public GetPlotLinePathResult8.Builder value4(double value) {
+        object.setValue4(value);
+        return this;
+      }
+
+      public GetPlotLinePathResult8.Builder value5(double value) {
+        object.setValue5(value);
+        return this;
+      }
+
+      public GetPlotLinePathResult8.Builder value6(double value) {
+        object.setValue6(value);
+        return this;
+      }
+
+      public GetPlotLinePathResult8.Builder value7(double value) {
+        object.setValue7(value);
+        return this;
+      }
+    }
   }
 }

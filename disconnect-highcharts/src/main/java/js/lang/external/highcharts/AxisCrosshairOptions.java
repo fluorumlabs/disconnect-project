@@ -5,7 +5,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
+import js.lang.Unknown /* ColorType */;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -18,7 +18,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -50,7 +50,7 @@ public interface AxisCrosshairOptions extends Any {
    */
   @JSProperty("color")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getColor();
+  Unknown /* ColorType */ getColor();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The color of the crosshair.
@@ -172,8 +172,15 @@ public interface AxisCrosshairOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AxisCrosshairOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AxisCrosshairOptions build() {
       return object;

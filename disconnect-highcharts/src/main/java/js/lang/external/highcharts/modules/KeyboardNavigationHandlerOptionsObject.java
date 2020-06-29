@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/modules/accessibility.src.js"
@@ -50,7 +50,7 @@ public interface KeyboardNavigationHandlerOptionsObject extends Any {
    *
    */
   @JSProperty("keyCodeMap")
-  void setKeyCodeMap(KeyCodeMap2[] value);
+  void setKeyCodeMap(KeyCodeMap2... value);
 
   /**
    * Function to run before moving to next/prev module. Receives moving
@@ -86,6 +86,10 @@ public interface KeyboardNavigationHandlerOptionsObject extends Any {
   @JSProperty("validate")
   void setValidate(@Nullable JsFunction value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   interface KeyCodeMap2 extends Any {
     @JSBody(
         script = "return this[0]"
@@ -109,8 +113,15 @@ public interface KeyboardNavigationHandlerOptionsObject extends Any {
     )
     void setValue1(JsFunction value);
 
-    class Builder {
+    static KeyCodeMap2.Builder builder() {
+      return new KeyCodeMap2.Builder();
+    }
+
+    final class Builder {
       private final KeyCodeMap2 object = Any.empty();
+
+      private Builder() {
+      }
 
       public KeyCodeMap2 build() {
         return object;
@@ -128,8 +139,11 @@ public interface KeyboardNavigationHandlerOptionsObject extends Any {
     }
   }
 
-  class Builder {
+  final class Builder {
     private final KeyboardNavigationHandlerOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public KeyboardNavigationHandlerOptionsObject build() {
       return object;
@@ -150,7 +164,7 @@ public interface KeyboardNavigationHandlerOptionsObject extends Any {
      * with the keycode as parameter.
      *
      */
-    public Builder keyCodeMap(KeyCodeMap2[] value) {
+    public Builder keyCodeMap(KeyCodeMap2... value) {
       object.setKeyCodeMap(value);
       return this;
     }

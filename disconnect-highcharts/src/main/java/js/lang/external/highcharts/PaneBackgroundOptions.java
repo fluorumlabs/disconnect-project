@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -178,6 +178,10 @@ public interface PaneBackgroundOptions extends Any {
   @JSProperty("shape")
   void setShape(@Nullable Shape value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Shape extends JsEnum {
     public static final Shape ARC = JsEnum.of("arc");
 
@@ -186,8 +190,11 @@ public interface PaneBackgroundOptions extends Any {
     public static final Shape SOLID = JsEnum.of("solid");
   }
 
-  class Builder {
+  final class Builder {
     private final PaneBackgroundOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PaneBackgroundOptions build() {
       return object;

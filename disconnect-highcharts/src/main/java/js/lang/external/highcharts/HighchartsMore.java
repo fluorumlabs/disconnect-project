@@ -9,7 +9,7 @@ import org.teavm.jso.JSBody;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"factory as HighchartsMore_factory", "Highcharts as HighchartsMore_Highcharts"},

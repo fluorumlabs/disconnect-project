@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -42,8 +42,15 @@ public interface ExportingButtonsOptions extends Any {
   @JSProperty("contextButton")
   void setContextButton(@Nullable ExportingButtonsOptionsObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ExportingButtonsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ExportingButtonsOptions build() {
       return object;

@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -84,6 +84,10 @@ public interface PlotSunburstLevelSizeOptions extends Any {
   @JSProperty("value")
   void setValue(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Unit extends JsEnum {
     public static final Unit PERCENTAGE = JsEnum.of("percentage");
 
@@ -92,8 +96,11 @@ public interface PlotSunburstLevelSizeOptions extends Any {
     public static final Unit WEIGHT = JsEnum.of("weight");
   }
 
-  class Builder {
+  final class Builder {
     private final PlotSunburstLevelSizeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotSunburstLevelSizeOptions build() {
       return object;

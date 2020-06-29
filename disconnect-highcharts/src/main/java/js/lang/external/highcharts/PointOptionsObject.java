@@ -20,7 +20,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -338,7 +338,7 @@ public interface PointOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesSunburstDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesSunburstDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Individual data label for each point. The
@@ -362,7 +362,7 @@ public interface PointOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesPackedBubbleDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesPackedBubbleDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Individual data label for each point. The
@@ -370,7 +370,7 @@ public interface PointOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(DataLabelsOptions[] value);
+  void setDataLabels(DataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Individual data label for each point. The
@@ -386,7 +386,7 @@ public interface PointOptionsObject extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesNetworkgraphDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesNetworkgraphDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Individual data label for each point. The
@@ -972,7 +972,7 @@ public interface PointOptionsObject extends Any {
    *
    */
   @JSProperty("sets")
-  void setSets(String[] value);
+  void setSets(String... value);
 
   /**
    * (Highcharts) Whether to display a slice offset from the center.
@@ -1172,8 +1172,15 @@ public interface PointOptionsObject extends Any {
   @JSProperty("z")
   void setZ(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PointOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public PointOptionsObject build() {
       return object;
@@ -1390,7 +1397,7 @@ public interface PointOptionsObject extends Any {
      * options are the same as the ones for plotOptions.series.dataLabels.
      *
      */
-    public Builder dataLabels(SeriesSunburstDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesSunburstDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1420,7 +1427,7 @@ public interface PointOptionsObject extends Any {
      * options are the same as the ones for plotOptions.series.dataLabels.
      *
      */
-    public Builder dataLabels(SeriesPackedBubbleDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesPackedBubbleDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1430,7 +1437,7 @@ public interface PointOptionsObject extends Any {
      * options are the same as the ones for plotOptions.series.dataLabels.
      *
      */
-    public Builder dataLabels(DataLabelsOptions[] value) {
+    public Builder dataLabels(DataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1450,7 +1457,7 @@ public interface PointOptionsObject extends Any {
      * options are the same as the ones for plotOptions.series.dataLabels.
      *
      */
-    public Builder dataLabels(SeriesNetworkgraphDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesNetworkgraphDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1846,7 +1853,7 @@ public interface PointOptionsObject extends Any {
      * array.
      *
      */
-    public Builder sets(String[] value) {
+    public Builder sets(String... value) {
       object.setSets(value);
       return this;
     }

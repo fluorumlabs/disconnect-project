@@ -14,7 +14,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -407,6 +407,10 @@ public interface ZAxisTitleOptions extends Any {
   @JSProperty("y")
   void setY(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Align extends JsEnum {
     public static final Align HIGH = JsEnum.of("high");
 
@@ -415,8 +419,11 @@ public interface ZAxisTitleOptions extends Any {
     public static final Align MIDDLE = JsEnum.of("middle");
   }
 
-  class Builder {
+  final class Builder {
     private final ZAxisTitleOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ZAxisTitleOptions build() {
       return object;

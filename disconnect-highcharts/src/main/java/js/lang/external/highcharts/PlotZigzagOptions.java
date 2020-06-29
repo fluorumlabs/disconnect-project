@@ -43,7 +43,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -796,7 +796,7 @@ public interface PlotZigzagOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(PlotZigzagDataLabelsOptions[] value);
+  void setDataLabels(PlotZigzagDataLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock) Options for the series data sorting.
@@ -1603,10 +1603,17 @@ public interface PlotZigzagOptions extends Any {
    *
    */
   @JSProperty("zones")
-  void setZones(SeriesZonesOptionsObject[] value);
+  void setZones(SeriesZonesOptionsObject... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotZigzagOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotZigzagOptions build() {
       return object;
@@ -2094,7 +2101,7 @@ public interface PlotZigzagOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(PlotZigzagDataLabelsOptions[] value) {
+    public Builder dataLabels(PlotZigzagDataLabelsOptions... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -2595,7 +2602,7 @@ public interface PlotZigzagOptions extends Any {
      * option (view live demo).
      *
      */
-    public Builder zones(SeriesZonesOptionsObject[] value) {
+    public Builder zones(SeriesZonesOptionsObject... value) {
       object.setZones(value);
       return this;
     }

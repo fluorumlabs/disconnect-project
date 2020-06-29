@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -78,8 +78,15 @@ public interface AnnotationsTunnelOptions extends Any {
   @JSProperty("typeOptions")
   void setTypeOptions(@Nullable AnnotationsTunnelTypeOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsTunnelOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsTunnelOptions build() {
       return object;

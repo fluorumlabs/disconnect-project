@@ -24,7 +24,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -40,7 +40,7 @@ public interface PlotCylinderDataLabelsOptions extends Any {
    */
   @JSProperty("align")
   @Nullable
-  Align getAlign();
+  String getAlign();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The alignment of the data label
@@ -51,7 +51,7 @@ public interface PlotCylinderDataLabelsOptions extends Any {
    *
    */
   @JSProperty("align")
-  void setAlign(@Nullable Align value);
+  void setAlign(@Nullable String value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Whether to allow data labels to
@@ -652,7 +652,7 @@ public interface PlotCylinderDataLabelsOptions extends Any {
    */
   @JSProperty("verticalAlign")
   @Nullable
-  VerticalAlign getVerticalAlign();
+  String getVerticalAlign();
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The vertical alignment of a data
@@ -662,7 +662,7 @@ public interface PlotCylinderDataLabelsOptions extends Any {
    *
    */
   @JSProperty("verticalAlign")
-  void setVerticalAlign(@Nullable VerticalAlign value);
+  void setVerticalAlign(@Nullable String value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) The x position offset of the
@@ -714,8 +714,15 @@ public interface PlotCylinderDataLabelsOptions extends Any {
   @JSProperty("z")
   void setZ(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotCylinderDataLabelsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotCylinderDataLabelsOptions build() {
       return object;
@@ -729,7 +736,7 @@ public interface PlotCylinderDataLabelsOptions extends Any {
      * the inside option. Can be one of <code>left</code>, <code>center</code> or <code>right</code>.
      *
      */
-    public Builder align(@Nullable Align value) {
+    public Builder align(@Nullable String value) {
       object.setAlign(value);
       return this;
     }
@@ -1133,7 +1140,7 @@ public interface PlotCylinderDataLabelsOptions extends Any {
      * positive values and below negative values.
      *
      */
-    public Builder verticalAlign(@Nullable VerticalAlign value) {
+    public Builder verticalAlign(@Nullable String value) {
       object.setVerticalAlign(value);
       return this;
     }

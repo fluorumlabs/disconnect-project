@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -81,7 +81,7 @@ public interface NavigatorXAxisGridOptions extends Any {
    *
    */
   @JSProperty("columns")
-  void setColumns(XAxisOptions[] value);
+  void setColumns(XAxisOptions... value);
 
   /**
    * (Gantt) Enable grid on the axis labels. Defaults to true for Gantt
@@ -99,8 +99,15 @@ public interface NavigatorXAxisGridOptions extends Any {
   @JSProperty("enabled")
   void setEnabled(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigatorXAxisGridOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigatorXAxisGridOptions build() {
       return object;
@@ -140,7 +147,7 @@ public interface NavigatorXAxisGridOptions extends Any {
      * can be set here.
      *
      */
-    public Builder columns(XAxisOptions[] value) {
+    public Builder columns(XAxisOptions... value) {
       object.setColumns(value);
       return this;
     }

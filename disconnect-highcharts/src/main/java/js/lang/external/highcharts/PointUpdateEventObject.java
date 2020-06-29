@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -34,7 +34,7 @@ public interface PointUpdateEventObject extends Event {
    *
    */
   @JSProperty("options")
-  void setOptions(double[] value);
+  void setOptions(double... value);
 
   /**
    * Options data of the update event.
@@ -62,10 +62,17 @@ public interface PointUpdateEventObject extends Event {
    *
    */
   @JSProperty("options")
-  void setOptions(String[] value);
+  void setOptions(String... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PointUpdateEventObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public PointUpdateEventObject build() {
       return object;
@@ -75,7 +82,7 @@ public interface PointUpdateEventObject extends Event {
      * Options data of the update event.
      *
      */
-    public Builder options(double[] value) {
+    public Builder options(double... value) {
       object.setOptions(value);
       return this;
     }
@@ -111,7 +118,7 @@ public interface PointUpdateEventObject extends Event {
      * Options data of the update event.
      *
      */
-    public Builder options(String[] value) {
+    public Builder options(String... value) {
       object.setOptions(value);
       return this;
     }

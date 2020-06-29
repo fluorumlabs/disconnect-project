@@ -15,7 +15,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -140,7 +140,7 @@ public interface NavigationAnnotationsOptions extends Any {
    *
    */
   @JSProperty("labels")
-  void setLabels(NavigationAnnotationsLabelsOptions[] value);
+  void setLabels(NavigationAnnotationsLabelsOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Options for annotation's shapes.
@@ -178,7 +178,7 @@ public interface NavigationAnnotationsOptions extends Any {
    *
    */
   @JSProperty("shapes")
-  void setShapes(NavigationAnnotationsShapesOptions[] value);
+  void setShapes(NavigationAnnotationsShapesOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps, Gantt) Whether the annotation is
@@ -210,8 +210,15 @@ public interface NavigationAnnotationsOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NavigationAnnotationsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public NavigationAnnotationsOptions build() {
       return object;
@@ -288,7 +295,7 @@ public interface NavigationAnnotationsOptions extends Any {
      * to the labelOptions.
      *
      */
-    public Builder labels(NavigationAnnotationsLabelsOptions[] value) {
+    public Builder labels(NavigationAnnotationsLabelsOptions... value) {
       object.setLabels(value);
       return this;
     }
@@ -310,7 +317,7 @@ public interface NavigationAnnotationsOptions extends Any {
      * to the shapeOptions.
      *
      */
-    public Builder shapes(NavigationAnnotationsShapesOptions[] value) {
+    public Builder shapes(NavigationAnnotationsShapesOptions... value) {
       object.setShapes(value);
       return this;
     }

@@ -9,6 +9,7 @@ import js.lang.Any;
 import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
 import js.lang.Unknown /* ( boolean | AxisCurrentDateIndicatorOptions ) */;
 import js.lang.Unknown /* ( number | string | null ) */;
+import js.lang.Unknown /* ColorType */;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
@@ -42,7 +43,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -203,7 +204,7 @@ public interface ColorAxisOptions extends Any {
    *
    */
   @JSProperty("dataClasses")
-  void setDataClasses(ColorAxisDataClassesOptions[] value);
+  void setDataClasses(ColorAxisDataClassesOptions... value);
 
   /**
    * (Highcharts, Highstock, Highmaps) Whether to force the axis to end on a
@@ -439,7 +440,7 @@ public interface ColorAxisOptions extends Any {
    */
   @JSProperty("lineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getLineColor();
+  Unknown /* ColorType */ getLineColor();
 
   /**
    * (Highcharts, Highstock, Highmaps) The color of the line marking the axis
@@ -693,7 +694,7 @@ public interface ColorAxisOptions extends Any {
    */
   @JSProperty("minorGridLineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinorGridLineColor();
+  Unknown /* ColorType */ getMinorGridLineColor();
 
   /**
    * (Highcharts, Highstock, Highmaps) Color of the minor, secondary grid
@@ -773,7 +774,7 @@ public interface ColorAxisOptions extends Any {
    */
   @JSProperty("minorTickColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinorTickColor();
+  Unknown /* ColorType */ getMinorTickColor();
 
   /**
    * (Highcharts, Highstock, Highmaps) Color for the minor tick marks.
@@ -1202,7 +1203,7 @@ public interface ColorAxisOptions extends Any {
    *
    */
   @JSProperty("stops")
-  void setStops(Stops2[] value);
+  void setStops(Stops2... value);
 
   /**
    * (Highcharts, Highstock, Gantt) The amount of ticks to draw on the axis.
@@ -1236,7 +1237,7 @@ public interface ColorAxisOptions extends Any {
    */
   @JSProperty("tickColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getTickColor();
+  Unknown /* ColorType */ getTickColor();
 
   /**
    * (Highcharts, Highstock, Highmaps) Color for the main tick marks.
@@ -1393,7 +1394,7 @@ public interface ColorAxisOptions extends Any {
    *
    */
   @JSProperty("tickPositions")
-  void setTickPositions(double[] value);
+  void setTickPositions(double... value);
 
   /**
    * (Highcharts, Highstock, Highmaps) The pixel width of the major tick
@@ -1418,6 +1419,23 @@ public interface ColorAxisOptions extends Any {
    */
   @JSProperty("tickWidth")
   void setTickWidth(double value);
+
+  /**
+   * (Highcharts, Highstock, Highmaps) The type of interpolation to use for
+   * the color axis. Can be <code>linear</code> or <code>logarithmic</code>.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Type getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps) The type of interpolation to use for
+   * the color axis. Can be <code>linear</code> or <code>logarithmic</code>.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
 
   /**
    * (Highcharts, Gantt) Applies only when the axis <code>type</code> is <code>category</code>. When
@@ -1468,7 +1486,7 @@ public interface ColorAxisOptions extends Any {
    *
    */
   @JSProperty("units")
-  void setUnits(Units2[] value);
+  void setUnits(Units2... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Whether axis, including axis title, line,
@@ -1485,6 +1503,10 @@ public interface ColorAxisOptions extends Any {
    */
   @JSProperty("visible")
   void setVisible(boolean value);
+
+  static Builder builder() {
+    return new Builder();
+  }
 
   abstract class DataClassColor extends JsEnum {
     public static final DataClassColor CATEGORY = JsEnum.of("category");
@@ -1515,8 +1537,15 @@ public interface ColorAxisOptions extends Any {
     )
     void setValue1(String value);
 
-    class Builder {
+    static Stops2.Builder builder() {
+      return new Stops2.Builder();
+    }
+
+    final class Builder {
       private final Stops2 object = Any.empty();
+
+      private Builder() {
+      }
 
       public Stops2 build() {
         return object;
@@ -1534,8 +1563,17 @@ public interface ColorAxisOptions extends Any {
     }
   }
 
-  class Builder {
+  abstract class Type extends JsEnum {
+    public static final Type LINEAR = JsEnum.of("linear");
+
+    public static final Type LOGARITHMIC = JsEnum.of("logarithmic");
+  }
+
+  final class Builder {
     private final ColorAxisOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ColorAxisOptions build() {
       return object;
@@ -1634,7 +1672,7 @@ public interface ColorAxisOptions extends Any {
      * are distributed as a gradient between the minimum and maximum colors.
      *
      */
-    public Builder dataClasses(ColorAxisDataClassesOptions[] value) {
+    public Builder dataClasses(ColorAxisDataClassesOptions... value) {
       object.setDataClasses(value);
       return this;
     }
@@ -2308,7 +2346,7 @@ public interface ColorAxisOptions extends Any {
      * relative position in the gradient, and the second item is the color.
      *
      */
-    public Builder stops(Stops2[] value) {
+    public Builder stops(Stops2... value) {
       object.setStops(value);
       return this;
     }
@@ -2432,7 +2470,7 @@ public interface ColorAxisOptions extends Any {
      * tickPixelInterval and tickInterval.
      *
      */
-    public Builder tickPositions(double[] value) {
+    public Builder tickPositions(double... value) {
       object.setTickPositions(value);
       return this;
     }
@@ -2448,6 +2486,16 @@ public interface ColorAxisOptions extends Any {
      */
     public Builder tickWidth(double value) {
       object.setTickWidth(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps) The type of interpolation to use for
+     * the color axis. Can be <code>linear</code> or <code>logarithmic</code>.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
       return this;
     }
 
@@ -2475,7 +2523,7 @@ public interface ColorAxisOptions extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder units(Units2[] value) {
+    public Builder units(Units2... value) {
       object.setUnits(value);
       return this;
     }

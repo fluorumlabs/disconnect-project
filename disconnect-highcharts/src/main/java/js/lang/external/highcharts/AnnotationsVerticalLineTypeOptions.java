@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -68,7 +68,7 @@ public interface AnnotationsVerticalLineTypeOptions extends Any {
   AnnotationsVerticalLineTypePointsOptions[] getPoints();
 
   @JSProperty("points")
-  void setPoints(AnnotationsVerticalLineTypePointsOptions[] value);
+  void setPoints(AnnotationsVerticalLineTypePointsOptions... value);
 
   /**
    * (Highstock) This number defines which xAxis the point is connected to. It
@@ -102,8 +102,15 @@ public interface AnnotationsVerticalLineTypeOptions extends Any {
   @JSProperty("yAxis")
   void setYAxis(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsVerticalLineTypeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsVerticalLineTypeOptions build() {
       return object;
@@ -136,7 +143,7 @@ public interface AnnotationsVerticalLineTypeOptions extends Any {
       return this;
     }
 
-    public Builder points(AnnotationsVerticalLineTypePointsOptions[] value) {
+    public Builder points(AnnotationsVerticalLineTypePointsOptions... value) {
       object.setPoints(value);
       return this;
     }

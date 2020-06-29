@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -68,7 +68,7 @@ public interface AnnotationsPitchforkTypeOptions extends Any {
   AnnotationsPitchforkTypePointsOptions[] getPoints();
 
   @JSProperty("points")
-  void setPoints(AnnotationsPitchforkTypePointsOptions[] value);
+  void setPoints(AnnotationsPitchforkTypePointsOptions... value);
 
   /**
    * (Highstock) This number defines which xAxis the point is connected to. It
@@ -102,8 +102,15 @@ public interface AnnotationsPitchforkTypeOptions extends Any {
   @JSProperty("yAxis")
   void setYAxis(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsPitchforkTypeOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsPitchforkTypeOptions build() {
       return object;
@@ -136,7 +143,7 @@ public interface AnnotationsPitchforkTypeOptions extends Any {
       return this;
     }
 
-    public Builder points(AnnotationsPitchforkTypePointsOptions[] value) {
+    public Builder points(AnnotationsPitchforkTypePointsOptions... value) {
       object.setPoints(value);
       return this;
     }

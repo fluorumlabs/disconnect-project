@@ -13,7 +13,7 @@ import org.teavm.jso.JSBody;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     symbols = {"AnnotationControlPoint as AnnotationControlPoint_AnnotationControlPoint"},

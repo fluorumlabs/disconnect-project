@@ -11,7 +11,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -34,12 +34,6 @@ public interface TooltipPositionerPointObject extends Any {
    */
   @JSProperty("isHeader")
   void setIsHeader(boolean value);
-
-  @JSProperty("negative")
-  boolean getNegative();
-
-  @JSProperty("negative")
-  void setNegative(boolean value);
 
   /**
    * The reference point relative to the plot area. Add chart.plotLeft to get
@@ -73,8 +67,15 @@ public interface TooltipPositionerPointObject extends Any {
   @JSProperty("plotY")
   void setPlotY(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final TooltipPositionerPointObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public TooltipPositionerPointObject build() {
       return object;
@@ -88,11 +89,6 @@ public interface TooltipPositionerPointObject extends Any {
      */
     public Builder isHeader(boolean value) {
       object.setIsHeader(value);
-      return this;
-    }
-
-    public Builder negative(boolean value) {
-      object.setNegative(value);
       return this;
     }
 

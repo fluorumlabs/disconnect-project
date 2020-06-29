@@ -12,7 +12,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -69,8 +69,15 @@ public interface AnnotationsEventsOptions extends Any {
   @JSProperty("remove")
   void setRemove(@Nullable EventCallbackFunction<Annotation> value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final AnnotationsEventsOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public AnnotationsEventsOptions build() {
       return object;

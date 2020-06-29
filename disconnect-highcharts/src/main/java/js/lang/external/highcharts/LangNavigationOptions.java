@@ -13,7 +13,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -34,8 +34,15 @@ public interface LangNavigationOptions extends Any {
   @JSProperty("popup")
   void setPopup(@Nullable LangNavigationPopupOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final LangNavigationOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public LangNavigationOptions build() {
       return object;

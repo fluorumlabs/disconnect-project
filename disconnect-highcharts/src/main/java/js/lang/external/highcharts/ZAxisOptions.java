@@ -4,10 +4,11 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import java.lang.String;
 import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
 import js.lang.Unknown /* ( boolean | AxisCurrentDateIndicatorOptions ) */;
 import js.lang.Unknown /* ( number | string | null ) */;
+import js.lang.Unknown /* ColorType */;
 import org.teavm.jso.JSProperty;
 
 /**
@@ -18,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -102,7 +103,7 @@ public interface ZAxisOptions extends Any {
    */
   @JSProperty("alternateGridColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getAlternateGridColor();
+  Unknown /* ColorType */ getAlternateGridColor();
 
   /**
    * (Highcharts) When using an alternate grid color, a band is painted across
@@ -177,7 +178,7 @@ public interface ZAxisOptions extends Any {
    *
    */
   @JSProperty("categories")
-  void setCategories(String[] value);
+  void setCategories(String... value);
 
   /**
    * (Highcharts, Highstock, Gantt) The highest allowed value for
@@ -339,7 +340,7 @@ public interface ZAxisOptions extends Any {
    */
   @JSProperty("gridLineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getGridLineColor();
+  Unknown /* ColorType */ getGridLineColor();
 
   /**
    * (Highcharts) Color of the grid lines extending the ticks across the plot
@@ -630,7 +631,7 @@ public interface ZAxisOptions extends Any {
    */
   @JSProperty("minorGridLineColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinorGridLineColor();
+  Unknown /* ColorType */ getMinorGridLineColor();
 
   /**
    * (Highcharts) Color of the minor, secondary grid lines.
@@ -705,7 +706,7 @@ public interface ZAxisOptions extends Any {
    */
   @JSProperty("minorTickColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getMinorTickColor();
+  Unknown /* ColorType */ getMinorTickColor();
 
   /**
    * (Highcharts) Color for the minor tick marks.
@@ -893,7 +894,7 @@ public interface ZAxisOptions extends Any {
    * minRange of 1 means that the axis can be zoomed to 10-100, 100-1000,
    * 1000-10000 etc.
    *
-   * Note that the <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
+   * <strong>Note</strong>: The <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
    * settings also affect how the extremes of the axis are computed.
    *
    */
@@ -913,7 +914,7 @@ public interface ZAxisOptions extends Any {
    * minRange of 1 means that the axis can be zoomed to 10-100, 100-1000,
    * 1000-10000 etc.
    *
-   * Note that the <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
+   * <strong>Note</strong>: The <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
    * settings also affect how the extremes of the axis are computed.
    *
    */
@@ -1073,7 +1074,7 @@ public interface ZAxisOptions extends Any {
    *
    */
   @JSProperty("plotBands")
-  void setPlotBands(ZAxisPlotBandsOptions[] value);
+  void setPlotBands(ZAxisPlotBandsOptions... value);
 
   /**
    * (Highcharts, Highstock, Gantt) An array of lines stretching across the
@@ -1096,7 +1097,7 @@ public interface ZAxisOptions extends Any {
    *
    */
   @JSProperty("plotLines")
-  void setPlotLines(ZAxisPlotLinesOptions[] value);
+  void setPlotLines(ZAxisPlotLinesOptions... value);
 
   /**
    * (Highstock) The zoomed range to display when only defining one or none of
@@ -1315,7 +1316,7 @@ public interface ZAxisOptions extends Any {
    */
   @JSProperty("tickColor")
   @Nullable
-  Unknown /* ( ColorString | GradientColorObject | PatternObject ) */ getTickColor();
+  Unknown /* ColorType */ getTickColor();
 
   /**
    * (Highcharts) Color for the main tick marks.
@@ -1506,7 +1507,7 @@ public interface ZAxisOptions extends Any {
    *
    */
   @JSProperty("tickPositions")
-  void setTickPositions(double[] value);
+  void setTickPositions(double... value);
 
   /**
    * (Highcharts) The pixel width of the major tick marks. Defaults to 0 on
@@ -1546,6 +1547,31 @@ public interface ZAxisOptions extends Any {
    */
   @JSProperty("title")
   void setTitle(@Nullable ZAxisTitleOptions value);
+
+  /**
+   * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+   * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>. In a datetime axis, the numbers
+   * are given in milliseconds, and tick marks are placed on appropriate
+   * values like full hours or days. In a category axis, the point names of
+   * the chart's series are used for categories, if not a categories array is
+   * defined.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  Type getType();
+
+  /**
+   * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+   * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>. In a datetime axis, the numbers
+   * are given in milliseconds, and tick marks are placed on appropriate
+   * values like full hours or days. In a category axis, the point names of
+   * the chart's series are used for categories, if not a categories array is
+   * defined.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable Type value);
 
   /**
    * (Highcharts, Gantt) Applies only when the axis <code>type</code> is <code>category</code>. When
@@ -1596,7 +1622,7 @@ public interface ZAxisOptions extends Any {
    *
    */
   @JSProperty("units")
-  void setUnits(Units2[] value);
+  void setUnits(Units2... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Whether axis, including axis title, line,
@@ -1630,8 +1656,27 @@ public interface ZAxisOptions extends Any {
   @JSProperty("zoomEnabled")
   void setZoomEnabled(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  abstract class Type extends JsEnum {
+    public static final Type CATEGORY = JsEnum.of("category");
+
+    public static final Type DATETIME = JsEnum.of("datetime");
+
+    public static final Type LINEAR = JsEnum.of("linear");
+
+    public static final Type LOGARITHMIC = JsEnum.of("logarithmic");
+
+    public static final Type TREEGRID = JsEnum.of("treegrid");
+  }
+
+  final class Builder {
     private final ZAxisOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public ZAxisOptions build() {
       return object;
@@ -1732,7 +1777,7 @@ public interface ZAxisOptions extends Any {
      * Example: <code>categories: ['Apples', 'Bananas', 'Oranges']</code>
      *
      */
-    public Builder categories(String[] value) {
+    public Builder categories(String... value) {
       object.setCategories(value);
       return this;
     }
@@ -2211,7 +2256,7 @@ public interface ZAxisOptions extends Any {
      * minRange of 1 means that the axis can be zoomed to 10-100, 100-1000,
      * 1000-10000 etc.
      *
-     * Note that the <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
+     * <strong>Note</strong>: The <code>minPadding</code>, <code>maxPadding</code>, <code>startOnTick</code> and <code>endOnTick</code>
      * settings also affect how the extremes of the axis are computed.
      *
      */
@@ -2306,7 +2351,7 @@ public interface ZAxisOptions extends Any {
      * class in addition to the <code>className</code> option.
      *
      */
-    public Builder plotBands(ZAxisPlotBandsOptions[] value) {
+    public Builder plotBands(ZAxisPlotBandsOptions... value) {
       object.setPlotBands(value);
       return this;
     }
@@ -2319,7 +2364,7 @@ public interface ZAxisOptions extends Any {
      * class in addition to the <code>className</code> option.
      *
      */
-    public Builder plotLines(ZAxisPlotLinesOptions[] value) {
+    public Builder plotLines(ZAxisPlotLinesOptions... value) {
       object.setPlotLines(value);
       return this;
     }
@@ -2572,7 +2617,7 @@ public interface ZAxisOptions extends Any {
      * tickInterval.
      *
      */
-    public Builder tickPositions(double[] value) {
+    public Builder tickPositions(double... value) {
       object.setTickPositions(value);
       return this;
     }
@@ -2601,6 +2646,20 @@ public interface ZAxisOptions extends Any {
     }
 
     /**
+     * (Highcharts, Gantt) The type of axis. Can be one of <code>linear</code>,
+     * <code>logarithmic</code>, <code>datetime</code> or <code>category</code>. In a datetime axis, the numbers
+     * are given in milliseconds, and tick marks are placed on appropriate
+     * values like full hours or days. In a category axis, the point names of
+     * the chart's series are used for categories, if not a categories array is
+     * defined.
+     *
+     */
+    public Builder type(@Nullable Type value) {
+      object.setType(value);
+      return this;
+    }
+
+    /**
      * (Highcharts, Gantt) Applies only when the axis <code>type</code> is <code>category</code>. When
      * <code>uniqueNames</code> is true, points are placed on the X axis according to their
      * names. If the same point name is repeated in the same or another series,
@@ -2624,7 +2683,7 @@ public interface ZAxisOptions extends Any {
      * Defaults to: (see online documentation for example)
      *
      */
-    public Builder units(Units2[] value) {
+    public Builder units(Units2... value) {
       object.setUnits(value);
       return this;
     }

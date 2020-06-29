@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -40,7 +40,7 @@ public interface SeriesLabelOptionsObject extends Any {
    *
    */
   @JSProperty("boxesToAvoid")
-  void setBoxesToAvoid(LabelIntersectBoxObject[] value);
+  void setBoxesToAvoid(LabelIntersectBoxObject... value);
 
   /**
    * (Highcharts, Highstock, Gantt) Allow labels to be placed distant to the
@@ -209,8 +209,15 @@ public interface SeriesLabelOptionsObject extends Any {
   @JSProperty("style")
   void setStyle(@Nullable CSSObject value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesLabelOptionsObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesLabelOptionsObject build() {
       return object;
@@ -221,7 +228,7 @@ public interface SeriesLabelOptionsObject extends Any {
      * the labels. Each item has a <code>left</code>, <code>right</code>, <code>top</code> and <code>bottom</code> property.
      *
      */
-    public Builder boxesToAvoid(LabelIntersectBoxObject[] value) {
+    public Builder boxesToAvoid(LabelIntersectBoxObject... value) {
       object.setBoxesToAvoid(value);
       return this;
     }

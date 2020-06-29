@@ -2,12 +2,12 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
+import js.extras.JsEnum;
 import js.lang.Any;
-import js.lang.Unknown /* ( Array < SeriesMapDataOptions > | any ) */;
-import js.lang.Unknown /* ( number | string ) */;
+import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * (Highcharts, Highstock, Highmaps, Gantt) Series options for specific data and
@@ -20,7 +20,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -96,7 +96,7 @@ public interface SeriesOptions extends Any {
    *
    */
   @JSProperty("mapData")
-  void setMapData(SeriesMapDataOptions[] value);
+  void setMapData(SeriesMapDataOptions... value);
 
   /**
    * (Highmaps) A map data object containing a <code>path</code> definition and
@@ -154,6 +154,26 @@ public interface SeriesOptions extends Any {
    */
   @JSProperty("stack")
   void setStack(@Nullable String value);
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) The type of series, for example
+   * <code>line</code> or <code>column</code>. By default, the series type is inherited from
+   * chart.type, so unless the chart is a combination of series types, there
+   * is no need to set it on the series level.
+   *
+   */
+  @JSProperty("type")
+  JsEnum getType();
+
+  /**
+   * (Highcharts, Highstock, Highmaps, Gantt) The type of series, for example
+   * <code>line</code> or <code>column</code>. By default, the series type is inherited from
+   * chart.type, so unless the chart is a combination of series types, there
+   * is no need to set it on the series level.
+   *
+   */
+  @JSProperty("type")
+  void setType(JsEnum value);
 
   /**
    * (Highcharts, Highstock) When using dual or multiple x axes, this number
@@ -231,8 +251,15 @@ public interface SeriesOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SeriesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public SeriesOptions build() {
       return object;
@@ -276,7 +303,7 @@ public interface SeriesOptions extends Any {
      * option.
      *
      */
-    public Builder mapData(SeriesMapDataOptions[] value) {
+    public Builder mapData(SeriesMapDataOptions... value) {
       object.setMapData(value);
       return this;
     }
@@ -323,6 +350,18 @@ public interface SeriesOptions extends Any {
      */
     public Builder stack(@Nullable String value) {
       object.setStack(value);
+      return this;
+    }
+
+    /**
+     * (Highcharts, Highstock, Highmaps, Gantt) The type of series, for example
+     * <code>line</code> or <code>column</code>. By default, the series type is inherited from
+     * chart.type, so unless the chart is a combination of series types, there
+     * is no need to set it on the series level.
+     *
+     */
+    public Builder type(JsEnum value) {
+      object.setType(value);
       return this;
     }
 

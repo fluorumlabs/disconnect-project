@@ -45,7 +45,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -298,7 +298,7 @@ public interface PlotSunburstOptions extends Any {
    *
    */
   @JSProperty("center")
-  void setCenter(double[] value);
+  void setCenter(double... value);
 
   /**
    * (Highcharts) The center of the sunburst chart relative to the plot area.
@@ -306,7 +306,7 @@ public interface PlotSunburstOptions extends Any {
    *
    */
   @JSProperty("center")
-  void setCenter(String[] value);
+  void setCenter(String... value);
 
   /**
    * (Highcharts) An additional class name to apply to the series' graphical
@@ -427,7 +427,7 @@ public interface PlotSunburstOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(GradientColorObject[] value);
+  void setColors(GradientColorObject... value);
 
   /**
    * (Highcharts) A series specific or series type specific color set to use
@@ -435,7 +435,7 @@ public interface PlotSunburstOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(PatternObject[] value);
+  void setColors(PatternObject... value);
 
   /**
    * (Highcharts) A series specific or series type specific color set to use
@@ -443,7 +443,7 @@ public interface PlotSunburstOptions extends Any {
    *
    */
   @JSProperty("colors")
-  void setColors(String[] value);
+  void setColors(String... value);
 
   /**
    * (Highstock) Defines if comparison should start from the first point
@@ -613,7 +613,7 @@ public interface PlotSunburstOptions extends Any {
    *
    */
   @JSProperty("dataLabels")
-  void setDataLabels(SeriesSunburstDataLabelsOptionsObject[] value);
+  void setDataLabels(SeriesSunburstDataLabelsOptionsObject... value);
 
   /**
    * (Highcharts) A description of the series to add to the screen reader
@@ -745,7 +745,7 @@ public interface PlotSunburstOptions extends Any {
    *
    */
   @JSProperty("keys")
-  void setKeys(String[] value);
+  void setKeys(String... value);
 
   /**
    * (Highstock) The line marks the last price from all points.
@@ -812,7 +812,7 @@ public interface PlotSunburstOptions extends Any {
    *
    */
   @JSProperty("levels")
-  void setLevels(PlotSunburstLevelsOptions[] value);
+  void setLevels(PlotSunburstLevelsOptions... value);
 
   /**
    * (Highcharts) Determines the width of the ring per level.
@@ -1218,8 +1218,15 @@ public interface PlotSunburstOptions extends Any {
   @JSProperty("zIndex")
   void setZIndex(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final PlotSunburstOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public PlotSunburstOptions build() {
       return object;
@@ -1390,7 +1397,7 @@ public interface PlotSunburstOptions extends Any {
      * Can be percentages or pixel values.
      *
      */
-    public Builder center(double[] value) {
+    public Builder center(double... value) {
       object.setCenter(value);
       return this;
     }
@@ -1400,7 +1407,7 @@ public interface PlotSunburstOptions extends Any {
      * Can be percentages or pixel values.
      *
      */
-    public Builder center(String[] value) {
+    public Builder center(String... value) {
       object.setCenter(value);
       return this;
     }
@@ -1488,7 +1495,7 @@ public interface PlotSunburstOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(GradientColorObject[] value) {
+    public Builder colors(GradientColorObject... value) {
       object.setColors(value);
       return this;
     }
@@ -1498,7 +1505,7 @@ public interface PlotSunburstOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(PatternObject[] value) {
+    public Builder colors(PatternObject... value) {
       object.setColors(value);
       return this;
     }
@@ -1508,7 +1515,7 @@ public interface PlotSunburstOptions extends Any {
      * instead of the global colors.
      *
      */
-    public Builder colors(String[] value) {
+    public Builder colors(String... value) {
       object.setColors(value);
       return this;
     }
@@ -1620,7 +1627,7 @@ public interface PlotSunburstOptions extends Any {
      * (see example).
      *
      */
-    public Builder dataLabels(SeriesSunburstDataLabelsOptionsObject[] value) {
+    public Builder dataLabels(SeriesSunburstDataLabelsOptionsObject... value) {
       object.setDataLabels(value);
       return this;
     }
@@ -1709,7 +1716,7 @@ public interface PlotSunburstOptions extends Any {
      * arrays from different sources.
      *
      */
-    public Builder keys(String[] value) {
+    public Builder keys(String... value) {
       object.setKeys(value);
       return this;
     }
@@ -1749,7 +1756,7 @@ public interface PlotSunburstOptions extends Any {
      * options, but not point options.
      *
      */
-    public Builder levels(PlotSunburstLevelsOptions[] value) {
+    public Builder levels(PlotSunburstLevelsOptions... value) {
       object.setLevels(value);
       return this;
     }

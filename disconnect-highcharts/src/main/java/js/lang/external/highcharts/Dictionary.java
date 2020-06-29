@@ -2,17 +2,16 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
 import org.teavm.jso.JSIndexer;
 
 /**
- * Generic dictionary in TypeScript notation.
+ * Generic dictionary in TypeScript notation. Use the native <code>Record&lt;string, any&gt;</code> instead.
  *
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -24,8 +23,15 @@ public interface Dictionary<T extends Any> extends Any {
   @JSIndexer
   void set(String key, T value);
 
-  class Builder<T extends Any> {
+  static <T extends Any> Builder<T> builder() {
+    return new Builder<T>();
+  }
+
+  final class Builder<T extends Any> {
     private final Dictionary<T> object = Any.empty();
+
+    private Builder() {
+    }
 
     public Dictionary<T> build() {
       return object;

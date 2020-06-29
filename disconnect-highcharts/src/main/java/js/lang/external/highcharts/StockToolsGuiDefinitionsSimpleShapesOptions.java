@@ -8,7 +8,7 @@ import org.teavm.jso.JSProperty;
 
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -36,7 +36,7 @@ public interface StockToolsGuiDefinitionsSimpleShapesOptions extends Any {
    *
    */
   @JSProperty("items")
-  void setItems(Any[] value);
+  void setItems(Any... value);
 
   @JSProperty("label")
   @Nullable
@@ -52,8 +52,15 @@ public interface StockToolsGuiDefinitionsSimpleShapesOptions extends Any {
   @JSProperty("rectangle")
   void setRectangle(@Nullable StockToolsGuiDefinitionsSimpleShapesRectangleOptions value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final StockToolsGuiDefinitionsSimpleShapesOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public StockToolsGuiDefinitionsSimpleShapesOptions build() {
       return object;
@@ -69,7 +76,7 @@ public interface StockToolsGuiDefinitionsSimpleShapesOptions extends Any {
      * items.
      *
      */
-    public Builder items(Any[] value) {
+    public Builder items(Any... value) {
       object.setItems(value);
       return this;
     }

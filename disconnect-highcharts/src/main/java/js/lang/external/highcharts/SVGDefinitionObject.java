@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
  */
 @NpmPackage(
     name = "highcharts",
-    version = "^8.1.0"
+    version = "^8.1.2"
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
@@ -44,7 +44,7 @@ public interface SVGDefinitionObject extends Any {
   SVGDefinitionObject[] getChildren();
 
   @JSProperty("children")
-  void setChildren(SVGDefinitionObject[] value);
+  void setChildren(SVGDefinitionObject... value);
 
   @JSProperty("tagName")
   @Nullable
@@ -60,8 +60,15 @@ public interface SVGDefinitionObject extends Any {
   @JSProperty("textContent")
   void setTextContent(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final SVGDefinitionObject object = Any.empty();
+
+    private Builder() {
+    }
 
     public SVGDefinitionObject build() {
       return object;
@@ -87,7 +94,7 @@ public interface SVGDefinitionObject extends Any {
       return this;
     }
 
-    public Builder children(SVGDefinitionObject[] value) {
+    public Builder children(SVGDefinitionObject... value) {
       object.setChildren(value);
       return this;
     }
