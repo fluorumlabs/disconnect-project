@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
     version = "^5.3.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-combo-box/vaadin-combo-box-light.js"
+    module = "@vaadin/vaadin-combo-box/src/vaadin-combo-box-light.js"
 )
 public interface ComboBoxLightElement extends PolymerElement, ComboBoxMixin, ThemableMixin, ComboBoxDataProviderMixin {
   @JSProperty("focused")
@@ -77,4 +77,6 @@ public interface ComboBoxLightElement extends PolymerElement, ComboBoxMixin, The
   @JSProperty("inputElement")
   @Nullable
   Element getInputElement();
+
+  void ready();
 }

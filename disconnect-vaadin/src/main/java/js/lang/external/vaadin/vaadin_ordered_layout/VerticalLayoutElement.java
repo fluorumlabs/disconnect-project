@@ -34,7 +34,21 @@ import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
     version = "^1.4.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-ordered-layout/vaadin-vertical-layout.js"
+    module = "@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js"
 )
 public interface VerticalLayoutElement extends PolymerElement, ThemableMixin, ElementMixin {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
+    private final VerticalLayoutElement object = Any.empty();
+
+    private Builder() {
+    }
+
+    public VerticalLayoutElement build() {
+      return object;
+    }
+  }
 }

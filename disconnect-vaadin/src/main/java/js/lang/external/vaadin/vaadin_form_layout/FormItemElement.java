@@ -2,6 +2,7 @@ package js.lang.external.vaadin.vaadin_form_layout;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import js.lang.Any;
 import js.lang.external.polymer.PolymerElement;
 import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
 
@@ -107,7 +108,21 @@ import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
     version = "^2.3.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-form-layout/vaadin-form-item.js"
+    module = "@vaadin/vaadin-form-layout/src/vaadin-form-item.js"
 )
 public interface FormItemElement extends PolymerElement, ThemableMixin {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
+    private final FormItemElement object = Any.empty();
+
+    private Builder() {
+    }
+
+    public FormItemElement build() {
+      return object;
+    }
+  }
 }

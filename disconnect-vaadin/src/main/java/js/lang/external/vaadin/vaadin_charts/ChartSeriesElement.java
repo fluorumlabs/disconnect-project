@@ -47,10 +47,10 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "@vaadin/vaadin-charts",
-    version = "^7.0.0-alpha6"
+    version = "^7.0.0-alpha7"
 )
 @Import(
-    module = "@vaadin/vaadin-charts/vaadin-chart-series.js"
+    module = "@vaadin/vaadin-charts/src/vaadin-chart-series.js"
 )
 public interface ChartSeriesElement extends PolymerElement {
   /**
@@ -97,7 +97,7 @@ public interface ChartSeriesElement extends PolymerElement {
    *
    */
   @JSProperty("values")
-  void setValues(PointOptionsObject[] value);
+  void setValues(PointOptionsObject... value);
 
   /**
    * An array of data used by the series.
@@ -116,7 +116,7 @@ public interface ChartSeriesElement extends PolymerElement {
    *
    */
   @JSProperty("values")
-  void setValues(double[] value);
+  void setValues(double... value);
 
   /**
    * Value-axis minimum-value.
@@ -156,20 +156,22 @@ public interface ChartSeriesElement extends PolymerElement {
 
   /**
    * A string with the type of the series.
-   * Defaults to `'line'` in case no type is set for the chart.
-   * Note that `'bar'`, `'gauge'` and `'solidgauge'` should be set as default series type on `<vaadin-chart>`.
+   * Defaults to <code>'line'</code> in case no type is set for the chart.
+   * Note that <code>'bar'</code>, <code>'gauge'</code> and <code>'solidgauge'</code> should be set as default series type on <code>&lt;vaadin-chart&gt;</code>.
+   *
    */
   @JSProperty("type")
+  @Nullable
   String getType();
 
   /**
    * A string with the type of the series.
-   * Defaults to `'line'` in case no type is set for the chart.
-   * Note that `'bar'`, `'gauge'` and `'solidgauge'` should be set as default series type on `<vaadin-chart>`.
+   * Defaults to <code>'line'</code> in case no type is set for the chart.
+   * Note that <code>'bar'</code>, <code>'gauge'</code> and <code>'solidgauge'</code> should be set as default series type on <code>&lt;vaadin-chart&gt;</code>.
+   *
    */
   @JSProperty("type")
-  void setType(String value);
-
+  void setType(@Nullable String value);
 
   /**
    * The name of the series as shown in the legend, tooltip etc.

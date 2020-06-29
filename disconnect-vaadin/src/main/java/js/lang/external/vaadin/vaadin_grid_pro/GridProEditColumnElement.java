@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
     version = "^2.2.0-alpha3"
 )
 @Import(
-    module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro-edit-column.js"
+    module = "@vaadin/vaadin-grid-pro/src/vaadin-grid-pro-edit-column.js"
 )
 public interface GridProEditColumnElement extends GridColumnElement {
   /**
@@ -104,7 +104,7 @@ public interface GridProEditColumnElement extends GridColumnElement {
    *
    */
   @JSProperty("editorOptions")
-  void setEditorOptions(String[] value);
+  void setEditorOptions(String... value);
 
   /**
    * Type of the cell editor component to be rendered. Allowed values:

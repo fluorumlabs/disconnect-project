@@ -51,7 +51,7 @@ import org.teavm.jso.JSProperty;
     version = "^3.2.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-tabs/vaadin-tabs.js"
+    module = "@vaadin/vaadin-tabs/src/vaadin-tabs.js"
 )
 public interface TabsElement extends PolymerElement, ThemableMixin, ListMixin, ElementMixin {
   /**
@@ -59,14 +59,14 @@ public interface TabsElement extends PolymerElement, ThemableMixin, ListMixin, E
    *
    */
   @JSProperty("selected")
-  int getSelected();
+  double getSelected();
 
   /**
    * The index of the selected tab.
    *
    */
   @JSProperty("selected")
-  void setSelected(int value);
+  void setSelected(double value);
 
   /**
    * Set tabs disposition. Possible values are <code>horizontal|vertical</code>

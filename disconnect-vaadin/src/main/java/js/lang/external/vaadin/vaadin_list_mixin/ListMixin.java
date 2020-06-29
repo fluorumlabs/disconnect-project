@@ -3,8 +3,6 @@ package js.lang.external.vaadin.vaadin_list_mixin;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
-import js.lang.external.vaadin.vaadin_item.ItemMixin;
-import js.util.collections.Array;
 import js.web.dom.Element;
 import org.teavm.jso.JSProperty;
 
@@ -28,7 +26,7 @@ public interface ListMixin extends Any {
    *
    */
   @JSProperty("selected")
-  int getSelected();
+  double getSelected();
 
   /**
    * The index of the item selected in the items array.
@@ -36,7 +34,7 @@ public interface ListMixin extends Any {
    *
    */
   @JSProperty("selected")
-  void setSelected(int value);
+  void setSelected(double value);
 
   /**
    * Define how items are disposed in the dom.
@@ -70,7 +68,7 @@ public interface ListMixin extends Any {
    */
   @JSProperty("items")
   @Nullable
-  Array<ItemMixin> getItems();
+  Element[] getItems();
 
   void ready();
 

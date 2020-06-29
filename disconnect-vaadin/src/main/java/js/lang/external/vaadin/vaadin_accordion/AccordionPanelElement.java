@@ -43,7 +43,7 @@ import js.lang.external.vaadin.vaadin_details.DetailsElement;
     version = "^1.2.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-accordion/vaadin-accordion-panel.js"
+    module = "@vaadin/vaadin-accordion/src/vaadin-accordion-panel.js"
 )
 public interface AccordionPanelElement extends DetailsElement {
 }

@@ -39,9 +39,11 @@ import js.lang.external.vaadin.vaadin_element_mixin.ElementMixin;
     version = "^2.2.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-board/vaadin-board-row.js"
+    module = "@vaadin/vaadin-board/src/vaadin-board-row.js"
 )
 public interface BoardRowElement extends PolymerElement, ElementMixin {
+  void ready();
+
   /**
    * Redraws the row, if necessary.
    *

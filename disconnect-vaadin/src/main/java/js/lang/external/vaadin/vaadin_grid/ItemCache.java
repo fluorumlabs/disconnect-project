@@ -2,16 +2,14 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import java.lang.UnsupportedOperationException;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* GridItem | undefined */;
-import js.lang.Unknown /* unknown */;
+import js.lang.Unknown;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * DO NOT EDIT
@@ -149,8 +147,15 @@ public interface ItemCache extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static ParentItem.Builder builder() {
+      return new ParentItem.Builder();
+    }
+
+    final class Builder {
       private final ParentItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public ParentItem build() {
         return object;
@@ -170,8 +175,15 @@ public interface ItemCache extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static CreateParentItem.Builder builder() {
+      return new CreateParentItem.Builder();
+    }
+
+    final class Builder {
       private final CreateParentItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public CreateParentItem build() {
         return object;
@@ -191,8 +203,15 @@ public interface ItemCache extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static GetItemForIndexResult.Builder builder() {
+      return new GetItemForIndexResult.Builder();
+    }
+
+    final class Builder {
       private final GetItemForIndexResult object = Any.empty();
+
+      private Builder() {
+      }
 
       public GetItemForIndexResult build() {
         return object;
@@ -218,8 +237,15 @@ public interface ItemCache extends Any {
     @JSProperty("scaledIndex")
     void setScaledIndex(double value);
 
-    class Builder {
+    static GetCacheAndIndexResult.Builder builder() {
+      return new GetCacheAndIndexResult.Builder();
+    }
+
+    final class Builder {
       private final GetCacheAndIndexResult object = Any.empty();
+
+      private Builder() {
+      }
 
       public GetCacheAndIndexResult build() {
         return object;

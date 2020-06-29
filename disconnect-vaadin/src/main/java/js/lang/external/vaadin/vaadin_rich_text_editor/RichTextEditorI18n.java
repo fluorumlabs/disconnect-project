@@ -2,7 +2,6 @@ package js.lang.external.vaadin.vaadin_rich_text_editor;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
@@ -164,8 +163,15 @@ public interface RichTextEditorI18n extends Any {
   @JSProperty("remove")
   void setRemove(String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final RichTextEditorI18n object = Any.empty();
+
+    private Builder() {
+    }
 
     public RichTextEditorI18n build() {
       return object;

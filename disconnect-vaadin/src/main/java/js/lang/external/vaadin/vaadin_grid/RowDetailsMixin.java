@@ -2,13 +2,12 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* Array < GridItem | null > | null | undefined */;
-import js.lang.Unknown /* unknown */;
+import js.lang.Unknown;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-grid",
@@ -31,14 +30,14 @@ public interface RowDetailsMixin extends Any {
    *
    */
   @JSProperty("detailsOpenedItems")
-  void setDetailsOpenedItems(DetailsOpenedItems[] value);
+  void setDetailsOpenedItems(DetailsOpenedItems... value);
 
   /**
    * An array containing references to items with open row details.
    *
    */
   @JSProperty("detailsOpenedItems")
-  void setDetailsOpenedItems(String[] value);
+  void setDetailsOpenedItems(String... value);
 
   /**
    * Custom function for rendering the content of the row details.
@@ -110,8 +109,15 @@ public interface RowDetailsMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static DetailsOpenedItems.Builder builder() {
+      return new DetailsOpenedItems.Builder();
+    }
+
+    final class Builder {
       private final DetailsOpenedItems object = Any.empty();
+
+      private Builder() {
+      }
 
       public DetailsOpenedItems build() {
         return object;
@@ -131,8 +137,15 @@ public interface RowDetailsMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static OpenItemDetailsItem.Builder builder() {
+      return new OpenItemDetailsItem.Builder();
+    }
+
+    final class Builder {
       private final OpenItemDetailsItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public OpenItemDetailsItem build() {
         return object;
@@ -152,8 +165,15 @@ public interface RowDetailsMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static CloseItemDetailsItem.Builder builder() {
+      return new CloseItemDetailsItem.Builder();
+    }
+
+    final class Builder {
       private final CloseItemDetailsItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public CloseItemDetailsItem build() {
         return object;

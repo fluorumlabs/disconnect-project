@@ -2,10 +2,10 @@ package js.lang.external.vaadin.vaadin_login;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-login",
@@ -41,6 +41,10 @@ public interface LoginI18n extends Any {
   @JSProperty("additionalInformation")
   void setAdditionalInformation(@Nullable String value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   interface Form extends Any {
     @JSProperty("title")
     String getTitle();
@@ -72,8 +76,15 @@ public interface LoginI18n extends Any {
     @JSProperty("forgotPassword")
     void setForgotPassword(String value);
 
-    class Builder {
+    static Form.Builder builder() {
+      return new Form.Builder();
+    }
+
+    final class Builder {
       private final Form object = Any.empty();
+
+      private Builder() {
+      }
 
       public Form build() {
         return object;
@@ -119,8 +130,15 @@ public interface LoginI18n extends Any {
     @JSProperty("message")
     void setMessage(String value);
 
-    class Builder {
+    static ErrorMessage.Builder builder() {
+      return new ErrorMessage.Builder();
+    }
+
+    final class Builder {
       private final ErrorMessage object = Any.empty();
+
+      private Builder() {
+      }
 
       public ErrorMessage build() {
         return object;
@@ -153,8 +171,15 @@ public interface LoginI18n extends Any {
     @JSProperty("description")
     void setDescription(@Nullable String value);
 
-    class Builder {
+    static Header.Builder builder() {
+      return new Header.Builder();
+    }
+
+    final class Builder {
       private final Header object = Any.empty();
+
+      private Builder() {
+      }
 
       public Header build() {
         return object;
@@ -172,8 +197,11 @@ public interface LoginI18n extends Any {
     }
   }
 
-  class Builder {
+  final class Builder {
     private final LoginI18n object = Any.empty();
+
+    private Builder() {
+    }
 
     public LoginI18n build() {
       return object;

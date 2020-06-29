@@ -2,13 +2,12 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* GridItem | null */;
-import js.lang.Unknown /* unknown */;
+import js.lang.Unknown;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-grid",
@@ -52,8 +51,15 @@ public interface ActiveItemMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static ActiveItem.Builder builder() {
+      return new ActiveItem.Builder();
+    }
+
+    final class Builder {
       private final ActiveItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public ActiveItem build() {
         return object;

@@ -2,10 +2,10 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * <code>&lt;vaadin-grid-sort-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code>
@@ -24,7 +24,7 @@ import org.teavm.jso.JSProperty;
     version = "^5.7.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-grid/vaadin-grid-sort-column.js"
+    module = "@vaadin/vaadin-grid/src/vaadin-grid-sort-column.js"
 )
 public interface GridSortColumnElement extends GridColumnElement {
   /**
@@ -61,8 +61,15 @@ public interface GridSortColumnElement extends GridColumnElement {
   @JSProperty("direction")
   void setDirection(@Nullable GridSorterDirection value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final GridSortColumnElement object = Any.empty();
+
+    private Builder() {
+    }
 
     public GridSortColumnElement build() {
       return object;

@@ -2,12 +2,10 @@ package js.lang.external.vaadin.vaadin_accordion;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import js.lang.Unknown;
 import js.lang.external.polymer.PolymerElement;
 import js.lang.external.vaadin.vaadin_element_mixin.ElementMixin;
 import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
-import js.util.collections.ArrayLike;
-import js.web.dom.HTMLElement;
+import js.web.dom.Element;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
@@ -54,12 +52,12 @@ import javax.annotation.Nullable;
     version = "^1.2.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-accordion/vaadin-accordion.js"
+    module = "@vaadin/vaadin-accordion/src/vaadin-accordion.js"
 )
 public interface AccordionElement extends PolymerElement, ThemableMixin, ElementMixin {
   @JSProperty("focused")
   @Nullable
-  HTMLElement getFocused();
+  Element getFocused();
 
   /**
    * The index of currently opened panel. First panel is opened by
@@ -68,8 +66,7 @@ public interface AccordionElement extends PolymerElement, ThemableMixin, Element
    *
    */
   @JSProperty("opened")
-  @Nullable
-  Unknown /* number | null */ getOpened();
+  double getOpened();
 
   /**
    * The index of currently opened panel. First panel is opened by
@@ -78,7 +75,7 @@ public interface AccordionElement extends PolymerElement, ThemableMixin, Element
    *
    */
   @JSProperty("opened")
-  void setOpened(@Nullable Unknown /* number | null */ value);
+  void setOpened(double value);
 
   /**
    * The list of <code>&lt;vaadin-accordion-panel&gt;</code> child elements.
@@ -87,6 +84,9 @@ public interface AccordionElement extends PolymerElement, ThemableMixin, Element
    *
    */
   @JSProperty("items")
-  ArrayLike<AccordionPanelElement> getItems();
+  AccordionPanelElement[] getItems();
 
+  void ready();
+
+  void focus();
 }

@@ -37,7 +37,7 @@ import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
     version = "^3.2.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-tabs/vaadin-tab.js"
+    module = "@vaadin/vaadin-tabs/src/vaadin-tab.js"
 )
 public interface TabElement extends PolymerElement, ThemableMixin, ElementMixin, ItemMixin {
   void ready();

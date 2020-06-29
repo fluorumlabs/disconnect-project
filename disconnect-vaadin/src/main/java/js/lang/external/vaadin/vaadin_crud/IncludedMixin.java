@@ -2,13 +2,12 @@ package js.lang.external.vaadin.vaadin_crud;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* string | RegExp | null */;
-import js.lang.Unknown /* string | string [ ] | undefined */;
+import js.lang.Unknown;
 import js.util.RegExp;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-crud",
@@ -78,10 +77,17 @@ public interface IncludedMixin extends Any {
    *
    */
   @JSProperty("include")
-  void setInclude(String[] value);
+  void setInclude(String... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final IncludedMixin object = Any.empty();
+
+    private Builder() {
+    }
 
     public IncludedMixin build() {
       return object;
@@ -130,7 +136,7 @@ public interface IncludedMixin extends Any {
      * When it is defined <a href="#/elements/vaadin-crud-form#property-exclude"><code>exclude</code></a> is ignored.
      *
      */
-    public Builder include(String[] value) {
+    public Builder include(String... value) {
       object.setInclude(value);
       return this;
     }

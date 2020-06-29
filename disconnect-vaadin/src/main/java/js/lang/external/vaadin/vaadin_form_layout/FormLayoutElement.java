@@ -104,7 +104,7 @@ import javax.annotation.Nullable;
     version = "^2.3.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-form-layout/vaadin-form-layout.js"
+    module = "@vaadin/vaadin-form-layout/src/vaadin-form-layout.js"
 )
 public interface FormLayoutElement extends PolymerElement, ThemableMixin, ElementMixin {
   /**
@@ -173,7 +173,7 @@ public interface FormLayoutElement extends PolymerElement, ThemableMixin, Elemen
    * </code></pre>
    */
   @JSProperty("responsiveSteps")
-  void setResponsiveSteps(ResponsiveSteps[] value);
+  void setResponsiveSteps(ResponsiveSteps... value);
 
   void ready();
 
@@ -213,12 +213,19 @@ public interface FormLayoutElement extends PolymerElement, ThemableMixin, Elemen
     @JSProperty("labelsPosition")
     void setLabelsPosition(@Nullable FormLayoutLabelsPosition value);
 
+    static ResponsiveSteps.Builder builder() {
+      return new ResponsiveSteps.Builder();
+    }
+
     abstract class MinWidth extends JsEnum {
       public static final MinWidth VALUE_0 = JsEnum.of(0);
     }
 
-    class Builder {
+    final class Builder {
       private final ResponsiveSteps object = Any.empty();
+
+      private Builder() {
+      }
 
       public ResponsiveSteps build() {
         return object;
@@ -253,8 +260,15 @@ public interface FormLayoutElement extends PolymerElement, ThemableMixin, Elemen
     @JSIndexer
     void set(String key, String value);
 
-    class Builder {
+    static UpdateStylesProperties.Builder builder() {
+      return new UpdateStylesProperties.Builder();
+    }
+
+    final class Builder {
       private final UpdateStylesProperties object = Any.empty();
+
+      private Builder() {
+      }
 
       public UpdateStylesProperties build() {
         return object;

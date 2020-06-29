@@ -2,9 +2,8 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
-import js.lang.Unknown /* GridItem */;
+import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
 
 @NpmPackage(
@@ -54,8 +53,15 @@ public interface GridItemModel extends Any {
   @JSProperty("detailsOpened")
   void setDetailsOpened(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final GridItemModel object = Any.empty();
+
+    private Builder() {
+    }
 
     public GridItemModel build() {
       return object;

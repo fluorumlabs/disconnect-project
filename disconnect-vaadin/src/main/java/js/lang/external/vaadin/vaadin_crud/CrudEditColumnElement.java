@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
     version = "^1.3.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-crud/vaadin-crud-edit-column.js"
+    module = "@vaadin/vaadin-crud/src/vaadin-crud-edit-column.js"
 )
 public interface CrudEditColumnElement extends GridColumnElement {
   /**
@@ -45,8 +45,15 @@ public interface CrudEditColumnElement extends GridColumnElement {
   @JSProperty("ariaLabel")
   void setAriaLabel(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final CrudEditColumnElement object = Any.empty();
+
+    private Builder() {
+    }
 
     public CrudEditColumnElement build() {
       return object;

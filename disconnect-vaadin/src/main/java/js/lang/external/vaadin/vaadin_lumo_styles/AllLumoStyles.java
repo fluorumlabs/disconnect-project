@@ -15,7 +15,4 @@ import js.web.dom.HTMLElement;
         module = "@vaadin/vaadin-lumo-styles/all-imports.js"
 )
 public interface AllLumoStyles extends HTMLElement {
-    static String TAGNAME() {
-        return "vaadin-lumo-styles";
-    }
 }

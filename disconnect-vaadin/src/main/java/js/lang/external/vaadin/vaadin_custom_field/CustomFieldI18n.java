@@ -25,8 +25,15 @@ public interface CustomFieldI18n extends Any {
   @JSProperty("formatValue")
   void setFormatValue(CustomFieldFormatValueFn value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final CustomFieldI18n object = Any.empty();
+
+    private Builder() {
+    }
 
     public CustomFieldI18n build() {
       return object;

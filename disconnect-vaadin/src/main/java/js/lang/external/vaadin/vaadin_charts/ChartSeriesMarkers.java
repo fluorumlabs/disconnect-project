@@ -6,7 +6,7 @@ import js.extras.JsEnum;
 
 @NpmPackage(
     name = "@vaadin/vaadin-charts",
-    version = "^7.0.0-alpha6"
+    version = "^7.0.0-alpha7"
 )
 @Import(
     module = "@vaadin/vaadin-charts/vaadin-chart.js"

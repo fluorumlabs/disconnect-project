@@ -2,14 +2,12 @@ package js.lang.external.vaadin.vaadin_combo_box;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* Array < ComboBoxItem | string > | undefined */;
-import js.lang.Unknown /* ComboBoxItem | string | null | undefined */;
-import js.lang.Unknown /* unknown */;
+import js.lang.Unknown;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-combo-box",
@@ -129,7 +127,7 @@ public interface ComboBoxMixin extends Any {
    *
    */
   @JSProperty("items")
-  void setItems(Items[] value);
+  void setItems(Items... value);
 
   /**
    * A full set of items to filter the visible options from.
@@ -137,7 +135,7 @@ public interface ComboBoxMixin extends Any {
    *
    */
   @JSProperty("items")
-  void setItems(String[] value);
+  void setItems(String... value);
 
   /**
    * If <code>true</code>, the user can input a value that is not present in the items list.
@@ -176,7 +174,7 @@ public interface ComboBoxMixin extends Any {
    *
    */
   @JSProperty("filteredItems")
-  void setFilteredItems(FilteredItems[] value);
+  void setFilteredItems(FilteredItems... value);
 
   /**
    * A subset of items, filtered based on the user input. Filtered items
@@ -185,7 +183,7 @@ public interface ComboBoxMixin extends Any {
    *
    */
   @JSProperty("filteredItems")
-  void setFilteredItems(String[] value);
+  void setFilteredItems(String... value);
 
   /**
    * The <code>String</code> value for the selected item of the combo box. Provides
@@ -416,8 +414,15 @@ public interface ComboBoxMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static Items.Builder builder() {
+      return new Items.Builder();
+    }
+
+    final class Builder {
       private final Items object = Any.empty();
+
+      private Builder() {
+      }
 
       public Items build() {
         return object;
@@ -437,8 +442,15 @@ public interface ComboBoxMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static FilteredItems.Builder builder() {
+      return new FilteredItems.Builder();
+    }
+
+    final class Builder {
       private final FilteredItems object = Any.empty();
+
+      private Builder() {
+      }
 
       public FilteredItems build() {
         return object;
@@ -458,8 +470,15 @@ public interface ComboBoxMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static SelectedItem.Builder builder() {
+      return new SelectedItem.Builder();
+    }
+
+    final class Builder {
       private final SelectedItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public SelectedItem build() {
         return object;

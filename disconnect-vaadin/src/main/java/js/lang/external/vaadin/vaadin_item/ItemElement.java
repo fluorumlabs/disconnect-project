@@ -53,7 +53,7 @@ import org.teavm.jso.JSProperty;
     version = "^2.3.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-item/vaadin-item.js"
+    module = "@vaadin/vaadin-item/src/vaadin-item.js"
 )
 public interface ItemElement extends DirMixin, PolymerElement, ItemMixin, ThemableMixin {
   /**
@@ -70,4 +70,27 @@ public interface ItemElement extends DirMixin, PolymerElement, ItemMixin, Themab
   @JSProperty("value")
   void setValue(String value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
+    private final ItemElement object = Any.empty();
+
+    private Builder() {
+    }
+
+    public ItemElement build() {
+      return object;
+    }
+
+    /**
+     * Submittable string value. The default value is the trimmed text content of the element.
+     *
+     */
+    public Builder value(String value) {
+      object.setValue(value);
+      return this;
+    }
+  }
 }

@@ -138,7 +138,7 @@ import org.teavm.jso.JSProperty;
     version = "^4.3.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-split-layout/vaadin-split-layout.js"
+    module = "@vaadin/vaadin-split-layout/src/vaadin-split-layout.js"
 )
 public interface SplitLayoutElement extends GestureEventListeners, PolymerElement, ThemableMixin, ElementMixin {
   /**

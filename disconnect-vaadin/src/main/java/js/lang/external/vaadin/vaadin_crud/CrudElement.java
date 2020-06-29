@@ -116,10 +116,10 @@ import javax.annotation.Nullable;
 )
 @Import(
     symbols = {"CrudElement as CrudElement_CrudElement"},
-    module = "@vaadin/vaadin-crud/vaadin-crud.js"
+    module = "@vaadin/vaadin-crud/src/vaadin-crud.js"
 )
 @Import(
-    module = "@vaadin/vaadin-crud/vaadin-crud.js"
+    module = "@vaadin/vaadin-crud/src/vaadin-crud.js"
 )
 public interface CrudElement extends PolymerElement, ThemableMixin, ElementMixin {
   /**
@@ -135,7 +135,7 @@ public interface CrudElement extends PolymerElement, ThemableMixin, ElementMixin
    *
    */
   @JSProperty("items")
-  void setItems(Items[] value);
+  void setItems(Items... value);
 
   /**
    * The item being edited in the dialog.
@@ -432,8 +432,15 @@ public interface CrudElement extends PolymerElement, ThemableMixin, ElementMixin
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static Items.Builder builder() {
+      return new Items.Builder();
+    }
+
+    final class Builder {
       private final Items object = Any.empty();
+
+      private Builder() {
+      }
 
       public Items build() {
         return object;
@@ -453,8 +460,15 @@ public interface CrudElement extends PolymerElement, ThemableMixin, ElementMixin
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static EditedItem.Builder builder() {
+      return new EditedItem.Builder();
+    }
+
+    final class Builder {
       private final EditedItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public EditedItem build() {
         return object;

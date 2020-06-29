@@ -17,7 +17,7 @@ import org.teavm.jso.JSProperty;
     version = "^1.6.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-notification/vaadin-notification.js"
+    module = "@vaadin/vaadin-notification/src/vaadin-notification.js"
 )
 public interface NotificationContainer extends PolymerElement, ThemableMixin, ElementMixin {
   /**
@@ -34,8 +34,15 @@ public interface NotificationContainer extends PolymerElement, ThemableMixin, El
   @JSProperty("opened")
   void setOpened(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final NotificationContainer object = Any.empty();
+
+    private Builder() {
+    }
 
     public NotificationContainer build() {
       return object;

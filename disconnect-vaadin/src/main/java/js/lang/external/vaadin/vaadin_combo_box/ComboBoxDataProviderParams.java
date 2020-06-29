@@ -2,7 +2,6 @@ package js.lang.external.vaadin.vaadin_combo_box;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
@@ -32,8 +31,15 @@ public interface ComboBoxDataProviderParams extends Any {
   @JSProperty("filter")
   void setFilter(String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ComboBoxDataProviderParams object = Any.empty();
+
+    private Builder() {
+    }
 
     public ComboBoxDataProviderParams build() {
       return object;

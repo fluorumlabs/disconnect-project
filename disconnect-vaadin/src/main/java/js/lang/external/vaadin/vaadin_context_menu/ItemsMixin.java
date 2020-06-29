@@ -2,9 +2,10 @@ package js.lang.external.vaadin.vaadin_context_menu;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-context-menu",
@@ -71,7 +72,7 @@ public interface ItemsMixin extends Any {
    * </code></pre>
    */
   @JSProperty("items")
-  void setItems(ContextMenuItem[] value);
+  void setItems(ContextMenuItem... value);
 
   void ready();
 }

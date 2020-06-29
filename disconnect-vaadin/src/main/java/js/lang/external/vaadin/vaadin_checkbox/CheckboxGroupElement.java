@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
     version = "^2.4.0-alpha3"
 )
 @Import(
-    module = "@vaadin/vaadin-checkbox/vaadin-checkbox-group.js"
+    module = "@vaadin/vaadin-checkbox/src/vaadin-checkbox-group.js"
 )
 public interface CheckboxGroupElement extends DirMixin, PolymerElement, ThemableMixin {
   /**
@@ -104,7 +104,7 @@ public interface CheckboxGroupElement extends DirMixin, PolymerElement, Themable
    *
    */
   @JSProperty("value")
-  void setValue(String[] value);
+  void setValue(String... value);
 
   /**
    * Error to show when the input value is invalid.
@@ -148,6 +148,8 @@ public interface CheckboxGroupElement extends DirMixin, PolymerElement, Themable
    */
   @JSProperty("invalid")
   void setInvalid(boolean value);
+
+  void ready();
 
   /**
    * Returns true if <code>value</code> is valid.

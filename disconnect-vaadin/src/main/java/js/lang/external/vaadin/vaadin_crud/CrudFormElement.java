@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
     version = "^1.3.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-crud/vaadin-crud-form.js"
+    module = "@vaadin/vaadin-crud/src/vaadin-crud-form.js"
 )
 public interface CrudFormElement extends IncludedMixin, FormLayoutElement {
   /**
@@ -48,8 +48,15 @@ public interface CrudFormElement extends IncludedMixin, FormLayoutElement {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static Item.Builder builder() {
+      return new Item.Builder();
+    }
+
+    final class Builder {
       private final Item object = Any.empty();
+
+      private Builder() {
+      }
 
       public Item build() {
         return object;

@@ -15,7 +15,8 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
     version = "^2.7.0-alpha5"
 )
 @Import(
-    module = "@vaadin/vaadin-text-field/vaadin-integer-field.js"
+    module = "@vaadin/vaadin-text-field/src/vaadin-integer-field.js"
 )
 public interface IntegerFieldElement extends NumberFieldElement {
+  void ready();
 }

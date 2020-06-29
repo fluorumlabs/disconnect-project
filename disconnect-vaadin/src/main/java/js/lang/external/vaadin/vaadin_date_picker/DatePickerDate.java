@@ -31,8 +31,15 @@ public interface DatePickerDate extends Any {
   @JSProperty("year")
   void setYear(double value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final DatePickerDate object = Any.empty();
+
+    private Builder() {
+    }
 
     public DatePickerDate build() {
       return object;

@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
     version = "^1.2.0-alpha3"
 )
 @Import(
-    module = "@vaadin/vaadin-custom-field/vaadin-custom-field.js"
+    module = "@vaadin/vaadin-custom-field/src/vaadin-custom-field.js"
 )
 public interface CustomFieldElement extends PolymerElement, ThemableMixin, ElementMixin, CustomFieldMixin {
   /**

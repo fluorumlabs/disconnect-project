@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
     version = "^1.6.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-notification/vaadin-notification.js"
+    module = "@vaadin/vaadin-notification/src/vaadin-notification.js"
 )
 public interface NotificationElement extends PolymerElement, ThemePropertyMixin, ElementMixin {
   /**

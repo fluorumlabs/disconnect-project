@@ -102,10 +102,10 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
     symbols = {"AppLayoutElement as AppLayoutElement_AppLayoutElement"},
-    module = "@vaadin/vaadin-app-layout/vaadin-app-layout.js"
+    module = "@vaadin/vaadin-app-layout/src/vaadin-app-layout.js"
 )
 @Import(
-    module = "@vaadin/vaadin-app-layout/vaadin-app-layout.js"
+    module = "@vaadin/vaadin-app-layout/src/vaadin-app-layout.js"
 )
 public interface AppLayoutElement extends PolymerElement, ThemableMixin, ElementMixin {
   /**

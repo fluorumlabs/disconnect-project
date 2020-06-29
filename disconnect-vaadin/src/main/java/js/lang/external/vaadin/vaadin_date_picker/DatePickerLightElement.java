@@ -61,7 +61,6 @@ import org.teavm.jso.JSProperty;
 @Import(
     module = "@vaadin/vaadin-date-picker/src/vaadin-date-picker-light.js"
 )
-@Deprecated
 public interface DatePickerLightElement extends PolymerElement, ThemableMixin, DatePickerMixin {
   /**
    * Name of the two-way data-bindable property representing the

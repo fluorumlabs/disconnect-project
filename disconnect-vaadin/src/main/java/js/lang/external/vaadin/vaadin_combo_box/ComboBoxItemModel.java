@@ -2,10 +2,8 @@ package js.lang.external.vaadin.vaadin_combo_box;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
-import js.lang.Unknown /* ComboBoxItem | string */;
-import js.lang.Unknown /* unknown */;
+import js.lang.Unknown;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
 
@@ -32,6 +30,10 @@ public interface ComboBoxItemModel extends Any {
   @JSProperty("item")
   void setItem(String value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   interface Item extends Any {
     @JSIndexer
     Unknown /* unknown */ get(String key);
@@ -39,8 +41,15 @@ public interface ComboBoxItemModel extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static Item.Builder builder() {
+      return new Item.Builder();
+    }
+
+    final class Builder {
       private final Item object = Any.empty();
+
+      private Builder() {
+      }
 
       public Item build() {
         return object;
@@ -53,8 +62,11 @@ public interface ComboBoxItemModel extends Any {
     }
   }
 
-  class Builder {
+  final class Builder {
     private final ComboBoxItemModel object = Any.empty();
+
+    private Builder() {
+    }
 
     public ComboBoxItemModel build() {
       return object;

@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
     version = "^4.4.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-upload/vaadin-upload.js"
+    module = "@vaadin/vaadin-upload/src/vaadin-upload.js"
 )
 public interface UploadElement extends PolymerElement, ThemableMixin, ElementMixin {
   /**
@@ -209,7 +209,7 @@ public interface UploadElement extends PolymerElement, ThemableMixin, ElementMix
    * </ul>
    */
   @JSProperty("files")
-  void setFiles(UploadFile[] value);
+  void setFiles(UploadFile... value);
 
   /**
    * Limit of files to upload, by default it is unlimited. If the value is

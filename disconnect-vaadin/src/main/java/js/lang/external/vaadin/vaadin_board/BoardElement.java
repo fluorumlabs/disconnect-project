@@ -29,10 +29,10 @@ import js.lang.external.vaadin.vaadin_element_mixin.ElementMixin;
 )
 @Import(
     symbols = {"BoardElement as BoardElement_BoardElement"},
-    module = "@vaadin/vaadin-board/vaadin-board.js"
+    module = "@vaadin/vaadin-board/src/vaadin-board.js"
 )
 @Import(
-    module = "@vaadin/vaadin-board/vaadin-board.js"
+    module = "@vaadin/vaadin-board/src/vaadin-board.js"
 )
 public interface BoardElement extends PolymerElement, ElementMixin {
   /**

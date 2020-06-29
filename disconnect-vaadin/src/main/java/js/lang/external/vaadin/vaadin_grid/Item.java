@@ -2,9 +2,8 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
-import js.lang.Unknown /* unknown */;
+import js.lang.Unknown;
 import org.teavm.jso.JSIndexer;
 
 @NpmPackage(
@@ -21,8 +20,15 @@ public interface Item extends Any {
   @JSIndexer
   void set(String key, Unknown /* unknown */ value);
 
-  class Builder {
+  static Item.Builder builder() {
+    return new Item.Builder();
+  }
+
+  final class Builder {
     private final Item object = Any.empty();
+
+    private Builder() {
+    }
 
     public Item build() {
       return object;

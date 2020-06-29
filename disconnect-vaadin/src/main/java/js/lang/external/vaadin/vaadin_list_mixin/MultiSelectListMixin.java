@@ -2,9 +2,9 @@ package js.lang.external.vaadin.vaadin_list_mixin;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-list-mixin",
@@ -43,7 +43,7 @@ public interface MultiSelectListMixin extends ListMixin {
    *
    */
   @JSProperty("selectedValues")
-  void setSelectedValues(String[] value);
+  void setSelectedValues(String... value);
 
   void ready();
 }

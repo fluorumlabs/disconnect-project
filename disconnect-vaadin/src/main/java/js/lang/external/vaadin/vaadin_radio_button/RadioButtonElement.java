@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
     version = "^1.4.0-alpha3"
 )
 @Import(
-    module = "@vaadin/vaadin-radio-button/vaadin-radio-button.js"
+    module = "@vaadin/vaadin-radio-button/src/vaadin-radio-button.js"
 )
 public interface RadioButtonElement extends GestureEventListeners, PolymerElement, ControlStateMixin, ThemableMixin, ElementMixin {
   @JSProperty("focusElement")

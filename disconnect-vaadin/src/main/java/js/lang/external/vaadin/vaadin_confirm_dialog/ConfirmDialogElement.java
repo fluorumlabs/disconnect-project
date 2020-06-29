@@ -55,10 +55,10 @@ import javax.annotation.Nullable;
 )
 @Import(
     symbols = {"ConfirmDialogElement as ConfirmDialogElement_ConfirmDialogElement"},
-    module = "@vaadin/vaadin-confirm-dialog/vaadin-confirm-dialog.js"
+    module = "@vaadin/vaadin-confirm-dialog/src/vaadin-confirm-dialog.js"
 )
 @Import(
-    module = "@vaadin/vaadin-confirm-dialog/vaadin-confirm-dialog.js"
+    module = "@vaadin/vaadin-confirm-dialog/src/vaadin-confirm-dialog.js"
 )
 public interface ConfirmDialogElement extends PolymerElement, ThemableMixin, ElementMixin {
   /**

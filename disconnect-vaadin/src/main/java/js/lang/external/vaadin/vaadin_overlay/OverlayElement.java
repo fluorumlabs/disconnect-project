@@ -112,7 +112,7 @@ import javax.annotation.Nullable;
     version = "^3.5.1"
 )
 @Import(
-    module = "@vaadin/vaadin-overlay/vaadin-overlay.js"
+    module = "@vaadin/vaadin-overlay/src/vaadin-overlay.js"
 )
 public interface OverlayElement extends PolymerElement, ThemableMixin {
   /**
@@ -306,6 +306,8 @@ public interface OverlayElement extends PolymerElement, ThemableMixin {
    */
   @JSProperty("restoreFocusOnClose")
   void setRestoreFocusOnClose(boolean value);
+
+  void ready();
 
   void close(@Nullable Event sourceEvent);
 

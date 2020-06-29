@@ -20,7 +20,8 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
     version = "^2.7.0-alpha5"
 )
 @Import(
-    module = "@vaadin/vaadin-text-field/vaadin-email-field.js"
+    module = "@vaadin/vaadin-text-field/src/vaadin-email-field.js"
 )
 public interface EmailFieldElement extends TextFieldElement {
+  void ready();
 }

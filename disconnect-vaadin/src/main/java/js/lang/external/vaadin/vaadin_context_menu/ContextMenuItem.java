@@ -2,12 +2,12 @@ package js.lang.external.vaadin.vaadin_context_menu;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* string | HTMLElement */;
+import js.lang.Unknown;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-context-menu",
@@ -51,10 +51,17 @@ public interface ContextMenuItem extends Any {
   ContextMenuItem[] getChildren();
 
   @JSProperty("children")
-  void setChildren(ContextMenuItem[] value);
+  void setChildren(ContextMenuItem... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ContextMenuItem object = Any.empty();
+
+    private Builder() {
+    }
 
     public ContextMenuItem build() {
       return object;
@@ -85,7 +92,7 @@ public interface ContextMenuItem extends Any {
       return this;
     }
 
-    public Builder children(ContextMenuItem[] value) {
+    public Builder children(ContextMenuItem... value) {
       object.setChildren(value);
       return this;
     }

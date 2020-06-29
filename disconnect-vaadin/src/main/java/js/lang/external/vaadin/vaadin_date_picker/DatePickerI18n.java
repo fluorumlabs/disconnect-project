@@ -2,10 +2,10 @@ package js.lang.external.vaadin.vaadin_date_picker;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-date-picker",
@@ -19,19 +19,19 @@ public interface DatePickerI18n extends Any {
   String[] getMonthNames();
 
   @JSProperty("monthNames")
-  void setMonthNames(String[] value);
+  void setMonthNames(String... value);
 
   @JSProperty("weekdays")
   String[] getWeekdays();
 
   @JSProperty("weekdays")
-  void setWeekdays(String[] value);
+  void setWeekdays(String... value);
 
   @JSProperty("weekdaysShort")
   String[] getWeekdaysShort();
 
   @JSProperty("weekdaysShort")
-  void setWeekdaysShort(String[] value);
+  void setWeekdaysShort(String... value);
 
   @JSProperty("firstDayOfWeek")
   double getFirstDayOfWeek();
@@ -76,24 +76,31 @@ public interface DatePickerI18n extends Any {
 
   String formatTitle(String monthName, double fullYear);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final DatePickerI18n object = Any.empty();
+
+    private Builder() {
+    }
 
     public DatePickerI18n build() {
       return object;
     }
 
-    public Builder monthNames(String[] value) {
+    public Builder monthNames(String... value) {
       object.setMonthNames(value);
       return this;
     }
 
-    public Builder weekdays(String[] value) {
+    public Builder weekdays(String... value) {
       object.setWeekdays(value);
       return this;
     }
 
-    public Builder weekdaysShort(String[] value) {
+    public Builder weekdaysShort(String... value) {
       object.setWeekdaysShort(value);
       return this;
     }

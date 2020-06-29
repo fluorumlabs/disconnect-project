@@ -20,10 +20,10 @@ import js.lang.external.vaadin.vaadin_grid.GridElement;
 )
 @Import(
     symbols = {"GridProElement as GridProElement_GridProElement"},
-    module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro.js"
+    module = "@vaadin/vaadin-grid-pro/src/vaadin-grid-pro.js"
 )
 @Import(
-    module = "@vaadin/vaadin-grid-pro/vaadin-grid-pro.js"
+    module = "@vaadin/vaadin-grid-pro/src/vaadin-grid-pro.js"
 )
 public interface GridProElement extends GridElement, InlineEditingMixin {
 }

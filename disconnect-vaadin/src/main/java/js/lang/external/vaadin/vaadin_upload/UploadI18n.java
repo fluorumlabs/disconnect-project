@@ -2,12 +2,11 @@ package js.lang.external.vaadin.vaadin_upload;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.FunctionalInterface;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSFunctor;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-upload",
@@ -71,6 +70,10 @@ public interface UploadI18n extends Any {
   @JSProperty("formatTime")
   void setFormatTime(@Nullable FormatTimeFunction value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   interface DropFiles extends Any {
     @JSProperty("one")
     String getOne();
@@ -84,8 +87,15 @@ public interface UploadI18n extends Any {
     @JSProperty("many")
     void setMany(String value);
 
-    class Builder {
+    static DropFiles.Builder builder() {
+      return new DropFiles.Builder();
+    }
+
+    final class Builder {
       private final DropFiles object = Any.empty();
+
+      private Builder() {
+      }
 
       public DropFiles build() {
         return object;
@@ -116,8 +126,15 @@ public interface UploadI18n extends Any {
     @JSProperty("many")
     void setMany(String value);
 
-    class Builder {
+    static AddFiles.Builder builder() {
+      return new AddFiles.Builder();
+    }
+
+    final class Builder {
       private final AddFiles object = Any.empty();
+
+      private Builder() {
+      }
 
       public AddFiles build() {
         return object;
@@ -154,8 +171,15 @@ public interface UploadI18n extends Any {
     @JSProperty("incorrectFileType")
     void setIncorrectFileType(String value);
 
-    class Builder {
+    static Error.Builder builder() {
+      return new Error.Builder();
+    }
+
+    final class Builder {
       private final Error object = Any.empty();
+
+      private Builder() {
+      }
 
       public Error build() {
         return object;
@@ -197,6 +221,10 @@ public interface UploadI18n extends Any {
     @JSProperty("error")
     void setError(Error value);
 
+    static Uploading.Builder builder() {
+      return new Uploading.Builder();
+    }
+
     interface Status extends Any {
       @JSProperty("connecting")
       String getConnecting();
@@ -222,8 +250,15 @@ public interface UploadI18n extends Any {
       @JSProperty("held")
       void setHeld(String value);
 
-      class Builder {
+      static Status.Builder builder() {
+        return new Status.Builder();
+      }
+
+      final class Builder {
         private final Status object = Any.empty();
+
+        private Builder() {
+        }
 
         public Status build() {
           return object;
@@ -264,8 +299,15 @@ public interface UploadI18n extends Any {
       @JSProperty("unknown")
       void setUnknown(String value);
 
-      class Builder {
+      static RemainingTime.Builder builder() {
+        return new RemainingTime.Builder();
+      }
+
+      final class Builder {
         private final RemainingTime object = Any.empty();
+
+        private Builder() {
+        }
 
         public RemainingTime build() {
           return object;
@@ -302,8 +344,15 @@ public interface UploadI18n extends Any {
       @JSProperty("forbidden")
       void setForbidden(String value);
 
-      class Builder {
+      static Error.Builder builder() {
+        return new Error.Builder();
+      }
+
+      final class Builder {
         private final Error object = Any.empty();
+
+        private Builder() {
+        }
 
         public Error build() {
           return object;
@@ -326,8 +375,11 @@ public interface UploadI18n extends Any {
       }
     }
 
-    class Builder {
+    final class Builder {
       private final Uploading object = Any.empty();
+
+      private Builder() {
+      }
 
       public Uploading build() {
         return object;
@@ -355,7 +407,7 @@ public interface UploadI18n extends Any {
     String[] getSize();
 
     @JSProperty("size")
-    void setSize(String[] value);
+    void setSize(String... value);
 
     @JSProperty("sizeBase")
     double getSizeBase();
@@ -363,14 +415,21 @@ public interface UploadI18n extends Any {
     @JSProperty("sizeBase")
     void setSizeBase(double value);
 
-    class Builder {
+    static Units.Builder builder() {
+      return new Units.Builder();
+    }
+
+    final class Builder {
       private final Units object = Any.empty();
+
+      private Builder() {
+      }
 
       public Units build() {
         return object;
       }
 
-      public Units.Builder size(String[] value) {
+      public Units.Builder size(String... value) {
         object.setSize(value);
         return this;
       }
@@ -394,8 +453,11 @@ public interface UploadI18n extends Any {
     String apply(double seconds, double[] units);
   }
 
-  class Builder {
+  final class Builder {
     private final UploadI18n object = Any.empty();
+
+    private Builder() {
+    }
 
     public UploadI18n build() {
       return object;

@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
     version = "^2.3.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-time-picker/vaadin-time-picker.js"
+    module = "@vaadin/vaadin-time-picker/src/vaadin-time-picker.js"
 )
 public interface TimePickerElement extends PolymerElement, ControlStateMixin, ThemableMixin, ElementMixin {
   /**

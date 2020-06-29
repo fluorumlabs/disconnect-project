@@ -2,10 +2,11 @@ package js.lang.external.vaadin.vaadin_context_menu;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-context-menu",
@@ -28,8 +29,15 @@ public interface ContextMenuRendererContext extends Any {
   @JSProperty("detail")
   void setDetail(@Nullable Any value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ContextMenuRendererContext object = Any.empty();
+
+    private Builder() {
+    }
 
     public ContextMenuRendererContext build() {
       return object;

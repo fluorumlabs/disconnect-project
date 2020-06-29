@@ -16,7 +16,7 @@ import org.teavm.jso.JSProperty;
     version = "^2.7.0-alpha5"
 )
 @Import(
-    module = "@vaadin/vaadin-text-field/vaadin-number-field.js"
+    module = "@vaadin/vaadin-text-field/src/vaadin-number-field.js"
 )
 public interface NumberFieldElement extends TextFieldElement {
   /**
@@ -74,6 +74,8 @@ public interface NumberFieldElement extends TextFieldElement {
    */
   @JSProperty("step")
   void setStep(double value);
+
+  void ready();
 
   boolean checkValidity();
 }

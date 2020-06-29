@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-charts",
-    version = "^7.0.0-alpha6"
+    version = "^7.0.0-alpha7"
 )
 @Import(
     module = "@vaadin/vaadin-charts/vaadin-chart.js"
@@ -22,10 +22,10 @@ public interface ChartSeriesConfig extends Any {
   Unknown /* ChartSeriesValues */ getData();
 
   @JSProperty("data")
-  void setData(PointOptionsObject[] value);
+  void setData(PointOptionsObject... value);
 
   @JSProperty("data")
-  void setData(double[] value);
+  void setData(double... value);
 
   @JSProperty("marker")
   @Nullable
@@ -64,6 +64,13 @@ public interface ChartSeriesConfig extends Any {
   @JSProperty("stack")
   void setStack(@Nullable String value);
 
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  @JSProperty("type")
+  void setType(@Nullable String value);
+
   @JSProperty("yAxis")
   @Nullable
   String getYAxis();
@@ -83,6 +90,10 @@ public interface ChartSeriesConfig extends Any {
   @JSProperty("yAxisValueMax")
   void setYAxisValueMax(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   interface Marker extends Any {
     @JSProperty("enabled")
     boolean getEnabled();
@@ -90,8 +101,15 @@ public interface ChartSeriesConfig extends Any {
     @JSProperty("enabled")
     void setEnabled(boolean value);
 
-    class Builder {
+    static Marker.Builder builder() {
+      return new Marker.Builder();
+    }
+
+    final class Builder {
       private final Marker object = Any.empty();
+
+      private Builder() {
+      }
 
       public Marker build() {
         return object;
@@ -104,19 +122,22 @@ public interface ChartSeriesConfig extends Any {
     }
   }
 
-  class Builder {
+  final class Builder {
     private final ChartSeriesConfig object = Any.empty();
+
+    private Builder() {
+    }
 
     public ChartSeriesConfig build() {
       return object;
     }
 
-    public Builder data(PointOptionsObject[] value) {
+    public Builder data(PointOptionsObject... value) {
       object.setData(value);
       return this;
     }
 
-    public Builder data(double[] value) {
+    public Builder data(double... value) {
       object.setData(value);
       return this;
     }
@@ -153,6 +174,11 @@ public interface ChartSeriesConfig extends Any {
 
     public Builder stack(@Nullable String value) {
       object.setStack(value);
+      return this;
+    }
+
+    public Builder type(@Nullable String value) {
+      object.setType(value);
       return this;
     }
 

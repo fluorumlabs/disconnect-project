@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
     version = "^2.4.0-alpha3"
 )
 @Import(
-    module = "@vaadin/vaadin-checkbox/vaadin-checkbox.js"
+    module = "@vaadin/vaadin-checkbox/src/vaadin-checkbox.js"
 )
 public interface CheckboxElement extends GestureEventListeners, PolymerElement, ControlStateMixin, ThemableMixin, ElementMixin {
   @JSProperty("focusElement")
@@ -119,4 +119,6 @@ public interface CheckboxElement extends GestureEventListeners, PolymerElement, 
    */
   @JSProperty("value")
   void setValue(@Nullable String value);
+
+  void ready();
 }

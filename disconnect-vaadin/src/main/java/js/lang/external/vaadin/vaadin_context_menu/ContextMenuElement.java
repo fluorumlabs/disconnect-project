@@ -204,7 +204,7 @@ import javax.annotation.Nullable;
     version = "^4.5.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-context-menu/vaadin-context-menu.js"
+    module = "@vaadin/vaadin-context-menu/src/vaadin-context-menu.js"
 )
 public interface ContextMenuElement extends GestureEventListeners, PolymerElement, ThemePropertyMixin, ElementMixin, ItemsMixin {
   /**

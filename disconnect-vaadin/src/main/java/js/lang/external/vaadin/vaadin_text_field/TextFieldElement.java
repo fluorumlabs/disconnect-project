@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
     version = "^2.7.0-alpha5"
 )
 @Import(
-    module = "@vaadin/vaadin-text-field/vaadin-text-field.js"
+    module = "@vaadin/vaadin-text-field/src/vaadin-text-field.js"
 )
 public interface TextFieldElement extends PolymerElement, TextFieldMixin, ControlStateMixin, ThemableMixin, ElementMixin {
   /**
@@ -128,8 +128,15 @@ public interface TextFieldElement extends PolymerElement, TextFieldMixin, Contro
   @JSProperty("title")
   void setTitle(String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final TextFieldElement object = Any.empty();
+
+    private Builder() {
+    }
 
     public TextFieldElement build() {
       return object;

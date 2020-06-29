@@ -54,10 +54,12 @@ import javax.annotation.Nullable;
     version = "^2.4.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-button/vaadin-button.js"
+    module = "@vaadin/vaadin-button/src/vaadin-button.js"
 )
 public interface ButtonElement extends GestureEventListeners, PolymerElement, ControlStateMixin, ThemableMixin, ElementMixin {
   @JSProperty("focusElement")
   @Nullable
   Element getFocusElement();
+
+  void ready();
 }

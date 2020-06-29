@@ -2,12 +2,12 @@ package js.lang.external.vaadin.vaadin_menu_bar;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* string | HTMLElement */;
+import js.lang.Unknown;
 import js.web.dom.HTMLElement;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-menu-bar",
@@ -45,10 +45,17 @@ public interface MenuBarItem extends Any {
   SubMenuItem[] getChildren();
 
   @JSProperty("children")
-  void setChildren(SubMenuItem[] value);
+  void setChildren(SubMenuItem... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final MenuBarItem object = Any.empty();
+
+    private Builder() {
+    }
 
     public MenuBarItem build() {
       return object;
@@ -74,7 +81,7 @@ public interface MenuBarItem extends Any {
       return this;
     }
 
-    public Builder children(SubMenuItem[] value) {
+    public Builder children(SubMenuItem... value) {
       object.setChildren(value);
       return this;
     }

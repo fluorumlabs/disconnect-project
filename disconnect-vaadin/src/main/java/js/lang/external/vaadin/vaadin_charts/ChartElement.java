@@ -190,14 +190,14 @@ import javax.annotation.Nullable;
  */
 @NpmPackage(
     name = "@vaadin/vaadin-charts",
-    version = "^7.0.0-alpha6"
+    version = "^7.0.0-alpha7"
 )
 @Import(
     symbols = {"ChartElement as ChartElement_ChartElement"},
-    module = "@vaadin/vaadin-charts/vaadin-chart.js"
+    module = "@vaadin/vaadin-charts/src/vaadin-chart.js"
 )
 @Import(
-    module = "@vaadin/vaadin-charts/vaadin-chart.js"
+    module = "@vaadin/vaadin-charts/src/vaadin-chart.js"
 )
 public interface ChartElement extends PolymerElement, ThemableMixin, ElementMixin {
   @JSProperty("options")
@@ -284,7 +284,7 @@ public interface ChartElement extends PolymerElement, ThemableMixin, ElementMixi
    *
    */
   @JSProperty("categories")
-  void setCategories(String[] value);
+  void setCategories(String... value);
 
   /**
    * Category-axis maximum value. Defaults to <code>undefined</code>.
@@ -402,7 +402,7 @@ public interface ChartElement extends PolymerElement, ThemableMixin, ElementMixi
    *
    */
   @JSProperty("title")
-  void setTitle(String title);
+  void setTitle(String value);
 
   /**
    * Whether or not to show tooltip when hovering data points.
@@ -417,6 +417,23 @@ public interface ChartElement extends PolymerElement, ThemableMixin, ElementMixi
    */
   @JSProperty("tooltip")
   void setTooltip(boolean value);
+
+  /**
+   * Sets the default series type of the chart.
+   * Note that <code>'bar'</code>, <code>'gauge'</code> and <code>'solidgauge'</code> should be set as default series type.
+   *
+   */
+  @JSProperty("type")
+  @Nullable
+  String getType();
+
+  /**
+   * Sets the default series type of the chart.
+   * Note that <code>'bar'</code>, <code>'gauge'</code> and <code>'solidgauge'</code> should be set as default series type.
+   *
+   */
+  @JSProperty("type")
+  void setType(@Nullable String value);
 
   /**
    * Represents the subtitle of the chart.
@@ -577,19 +594,26 @@ public interface ChartElement extends PolymerElement, ThemableMixin, ElementMixi
 
   interface Categories extends Any {
     @JSIndexer
-    String get(int key);
+    String get(double key);
 
     @JSIndexer
-    void set(int key, String value);
+    void set(double key, String value);
 
-    class Builder {
+    static Categories.Builder builder() {
+      return new Categories.Builder();
+    }
+
+    final class Builder {
       private final Categories object = Any.empty();
+
+      private Builder() {
+      }
 
       public Categories build() {
         return object;
       }
 
-      public Categories.Builder set(int key, String value) {
+      public Categories.Builder set(double key, String value) {
         object.set(key, value);
         return this;
       }

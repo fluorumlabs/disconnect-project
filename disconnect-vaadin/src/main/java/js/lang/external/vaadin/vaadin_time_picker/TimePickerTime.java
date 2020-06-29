@@ -2,11 +2,11 @@ package js.lang.external.vaadin.vaadin_time_picker;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* string | number */;
+import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-time-picker",
@@ -54,8 +54,15 @@ public interface TimePickerTime extends Any {
   @JSProperty("milliseconds")
   void setMilliseconds(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final TimePickerTime object = Any.empty();
+
+    private Builder() {
+    }
 
     public TimePickerTime build() {
       return object;

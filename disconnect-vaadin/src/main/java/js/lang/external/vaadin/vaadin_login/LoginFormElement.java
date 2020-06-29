@@ -27,7 +27,7 @@ import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
     version = "^1.2.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-login/vaadin-login-form.js"
+    module = "@vaadin/vaadin-login/src/vaadin-login-form.js"
 )
 public interface LoginFormElement extends PolymerElement, ThemableMixin, ElementMixin, LoginMixin {
   void submit();

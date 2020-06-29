@@ -19,7 +19,7 @@ import org.teavm.jso.JSProperty;
     version = "^1.3.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-crud/vaadin-crud-grid.js"
+    module = "@vaadin/vaadin-crud/src/vaadin-crud-grid.js"
 )
 public interface CrudGridElement extends GridElement, IncludedMixin {
   /**
@@ -64,8 +64,15 @@ public interface CrudGridElement extends GridElement, IncludedMixin {
   @JSProperty("noHead")
   void setNoHead(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final CrudGridElement object = Any.empty();
+
+    private Builder() {
+    }
 
     public CrudGridElement build() {
       return object;

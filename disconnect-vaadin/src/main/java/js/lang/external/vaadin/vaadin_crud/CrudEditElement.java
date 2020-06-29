@@ -19,7 +19,7 @@ import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
     version = "^1.3.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-crud/vaadin-crud-edit.js"
+    module = "@vaadin/vaadin-crud/src/vaadin-crud-edit.js"
 )
 public interface CrudEditElement extends PolymerElement, ThemableMixin {
   void ready();

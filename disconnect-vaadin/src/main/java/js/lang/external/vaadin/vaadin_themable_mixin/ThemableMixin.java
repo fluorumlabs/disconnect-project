@@ -12,8 +12,15 @@ import js.lang.Any;
     module = "@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js"
 )
 public interface ThemableMixin extends ThemePropertyMixin {
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final ThemableMixin object = Any.empty();
+
+    private Builder() {
+    }
 
     public ThemableMixin build() {
       return object;

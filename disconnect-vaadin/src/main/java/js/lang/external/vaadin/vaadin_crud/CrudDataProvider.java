@@ -37,16 +37,23 @@ public interface CrudDataProvider extends Any {
     GridFilter[] getFilters();
 
     @JSProperty("filters")
-    void setFilters(GridFilter[] value);
+    void setFilters(GridFilter... value);
 
     @JSProperty("sortOrders")
     GridSorter[] getSortOrders();
 
     @JSProperty("sortOrders")
-    void setSortOrders(GridSorter[] value);
+    void setSortOrders(GridSorter... value);
 
-    class Builder {
+    static ApplyParams.Builder builder() {
+      return new ApplyParams.Builder();
+    }
+
+    final class Builder {
       private final ApplyParams object = Any.empty();
+
+      private Builder() {
+      }
 
       public ApplyParams build() {
         return object;
@@ -62,12 +69,12 @@ public interface CrudDataProvider extends Any {
         return this;
       }
 
-      public ApplyParams.Builder filters(GridFilter[] value) {
+      public ApplyParams.Builder filters(GridFilter... value) {
         object.setFilters(value);
         return this;
       }
 
-      public ApplyParams.Builder sortOrders(GridSorter[] value) {
+      public ApplyParams.Builder sortOrders(GridSorter... value) {
         object.setSortOrders(value);
         return this;
       }

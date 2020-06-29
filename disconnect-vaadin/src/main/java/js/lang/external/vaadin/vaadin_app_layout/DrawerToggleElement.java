@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
     version = "^2.2.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js"
+    module = "@vaadin/vaadin-app-layout/src/vaadin-drawer-toggle.js"
 )
 public interface DrawerToggleElement extends ButtonElement {
   @JSProperty("ariaLabel")

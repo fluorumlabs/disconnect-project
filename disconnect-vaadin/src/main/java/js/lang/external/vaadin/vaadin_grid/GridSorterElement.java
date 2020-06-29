@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
     version = "^5.7.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-grid/vaadin-grid-sorter.js"
+    module = "@vaadin/vaadin-grid/src/vaadin-grid-sorter.js"
 )
 public interface GridSorterElement extends PolymerElement {
   /**

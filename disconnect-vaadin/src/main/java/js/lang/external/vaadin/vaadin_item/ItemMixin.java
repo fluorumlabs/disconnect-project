@@ -46,4 +46,6 @@ public interface ItemMixin extends Any {
    */
   @JSProperty("selected")
   void setSelected(boolean value);
+
+  void ready();
 }

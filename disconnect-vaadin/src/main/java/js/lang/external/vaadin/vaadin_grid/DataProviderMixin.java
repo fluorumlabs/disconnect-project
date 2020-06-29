@@ -2,14 +2,12 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* GridItem [ ] */;
-import js.lang.Unknown /* GridItem | unknown */;
-import js.lang.Unknown /* unknown */;
+import js.lang.Unknown;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-grid",
@@ -122,14 +120,14 @@ public interface DataProviderMixin extends Any {
    *
    */
   @JSProperty("expandedItems")
-  void setExpandedItems(ExpandedItems[] value);
+  void setExpandedItems(ExpandedItems... value);
 
   /**
    * An array that contains the expanded items.
    *
    */
   @JSProperty("expandedItems")
-  void setExpandedItems(String[] value);
+  void setExpandedItems(String... value);
 
   /**
    * Returns a value that identifies the item. Uses <code>itemIdPath</code> if available.
@@ -182,8 +180,15 @@ public interface DataProviderMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static ExpandedItems.Builder builder() {
+      return new ExpandedItems.Builder();
+    }
+
+    final class Builder {
       private final ExpandedItems object = Any.empty();
+
+      private Builder() {
+      }
 
       public ExpandedItems build() {
         return object;
@@ -203,8 +208,15 @@ public interface DataProviderMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static GetItemIdResult.Builder builder() {
+      return new GetItemIdResult.Builder();
+    }
+
+    final class Builder {
       private final GetItemIdResult object = Any.empty();
+
+      private Builder() {
+      }
 
       public GetItemIdResult build() {
         return object;
@@ -224,8 +236,15 @@ public interface DataProviderMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static GetItemIdItem.Builder builder() {
+      return new GetItemIdItem.Builder();
+    }
+
+    final class Builder {
       private final GetItemIdItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public GetItemIdItem build() {
         return object;
@@ -245,8 +264,15 @@ public interface DataProviderMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static ExpandItemItem.Builder builder() {
+      return new ExpandItemItem.Builder();
+    }
+
+    final class Builder {
       private final ExpandItemItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public ExpandItemItem build() {
         return object;
@@ -266,8 +292,15 @@ public interface DataProviderMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static CollapseItemItem.Builder builder() {
+      return new CollapseItemItem.Builder();
+    }
+
+    final class Builder {
       private final CollapseItemItem object = Any.empty();
+
+      private Builder() {
+      }
 
       public CollapseItemItem build() {
         return object;

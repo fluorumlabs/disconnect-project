@@ -2,12 +2,12 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.extras.JsEnum;
 import js.lang.Any;
-import js.lang.Unknown /* GridItem */;
+import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-grid",
@@ -70,6 +70,10 @@ public interface GridEventContext extends Any {
   @JSProperty("level")
   void setLevel(double value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   abstract class Section extends JsEnum {
     public static final Section BODY = JsEnum.of("body");
 
@@ -80,8 +84,11 @@ public interface GridEventContext extends Any {
     public static final Section DETAILS = JsEnum.of("details");
   }
 
-  class Builder {
+  final class Builder {
     private final GridEventContext object = Any.empty();
+
+    private Builder() {
+    }
 
     public GridEventContext build() {
       return object;

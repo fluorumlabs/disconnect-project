@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
     version = "^2.5.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-dialog/vaadin-dialog.js"
+    module = "@vaadin/vaadin-dialog/src/vaadin-dialog.js"
 )
 public interface DialogElement extends PolymerElement, DialogDraggableMixin, ThemePropertyMixin, DialogResizableMixin, ElementMixin {
   /**
@@ -185,7 +185,7 @@ public interface DialogElement extends PolymerElement, DialogDraggableMixin, The
    *
    */
   @JSProperty("draggable")
-  void setDraggable(boolean draggable);
+  void setDraggable(boolean value);
 
   /**
    * Set to true to enable resizing the dialog by dragging the corners and edges.
@@ -200,6 +200,8 @@ public interface DialogElement extends PolymerElement, DialogDraggableMixin, The
    */
   @JSProperty("resizable")
   void setResizable(boolean value);
+
+  void ready();
 
   /**
    * Manually invoke existing renderer.

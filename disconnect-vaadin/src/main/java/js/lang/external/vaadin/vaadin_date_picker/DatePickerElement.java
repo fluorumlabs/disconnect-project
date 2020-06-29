@@ -95,7 +95,7 @@ import javax.annotation.Nullable;
     version = "^4.3.0-alpha3"
 )
 @Import(
-    module = "@vaadin/vaadin-date-picker/vaadin-date-picker.js"
+    module = "@vaadin/vaadin-date-picker/src/vaadin-date-picker.js"
 )
 public interface DatePickerElement extends GestureEventListeners, DatePickerMixin, PolymerElement, ControlStateMixin, ThemableMixin, ElementMixin {
   /**

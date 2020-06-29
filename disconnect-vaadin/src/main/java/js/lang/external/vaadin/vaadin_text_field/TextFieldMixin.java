@@ -348,8 +348,15 @@ public interface TextFieldMixin extends Any {
     @JSProperty("clear")
     void setClear(String value);
 
-    class Builder {
+    static I18n.Builder builder() {
+      return new I18n.Builder();
+    }
+
+    final class Builder {
       private final I18n object = Any.empty();
+
+      private Builder() {
+      }
 
       public I18n build() {
         return object;

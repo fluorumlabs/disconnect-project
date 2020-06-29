@@ -2,7 +2,6 @@ package js.lang.external.vaadin.vaadin_crud;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
@@ -56,6 +55,10 @@ public interface CrudI18n extends Any {
   @JSProperty("confirm")
   void setConfirm(Confirm value);
 
+  static Builder builder() {
+    return new Builder();
+  }
+
   interface Confirm extends Any {
     @JSProperty("delete")
     Delete getDelete();
@@ -68,6 +71,10 @@ public interface CrudI18n extends Any {
 
     @JSProperty("cancel")
     void setCancel(Cancel value);
+
+    static Confirm.Builder builder() {
+      return new Confirm.Builder();
+    }
 
     interface Delete extends Any {
       @JSProperty("title")
@@ -88,6 +95,10 @@ public interface CrudI18n extends Any {
       @JSProperty("button")
       void setButton(Button value);
 
+      static Delete.Builder builder() {
+        return new Delete.Builder();
+      }
+
       interface Button extends Any {
         @JSProperty("confirm")
         String getConfirm();
@@ -101,8 +112,15 @@ public interface CrudI18n extends Any {
         @JSProperty("dismiss")
         void setDismiss(String value);
 
-        class Builder {
+        static Button.Builder builder() {
+          return new Button.Builder();
+        }
+
+        final class Builder {
           private final Button object = Any.empty();
+
+          private Builder() {
+          }
 
           public Button build() {
             return object;
@@ -120,8 +138,11 @@ public interface CrudI18n extends Any {
         }
       }
 
-      class Builder {
+      final class Builder {
         private final Delete object = Any.empty();
+
+        private Builder() {
+        }
 
         public Delete build() {
           return object;
@@ -163,6 +184,10 @@ public interface CrudI18n extends Any {
       @JSProperty("button")
       void setButton(Button value);
 
+      static Cancel.Builder builder() {
+        return new Cancel.Builder();
+      }
+
       interface Button extends Any {
         @JSProperty("confirm")
         String getConfirm();
@@ -176,8 +201,15 @@ public interface CrudI18n extends Any {
         @JSProperty("dismiss")
         void setDismiss(String value);
 
-        class Builder {
+        static Button.Builder builder() {
+          return new Button.Builder();
+        }
+
+        final class Builder {
           private final Button object = Any.empty();
+
+          private Builder() {
+          }
 
           public Button build() {
             return object;
@@ -195,8 +227,11 @@ public interface CrudI18n extends Any {
         }
       }
 
-      class Builder {
+      final class Builder {
         private final Cancel object = Any.empty();
+
+        private Builder() {
+        }
 
         public Cancel build() {
           return object;
@@ -219,8 +254,11 @@ public interface CrudI18n extends Any {
       }
     }
 
-    class Builder {
+    final class Builder {
       private final Confirm object = Any.empty();
+
+      private Builder() {
+      }
 
       public Confirm build() {
         return object;
@@ -238,8 +276,11 @@ public interface CrudI18n extends Any {
     }
   }
 
-  class Builder {
+  final class Builder {
     private final CrudI18n object = Any.empty();
+
+    private Builder() {
+    }
 
     public CrudI18n build() {
       return object;

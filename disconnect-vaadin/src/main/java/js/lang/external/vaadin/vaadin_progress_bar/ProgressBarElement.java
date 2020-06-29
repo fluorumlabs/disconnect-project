@@ -53,7 +53,21 @@ import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
     version = "^1.3.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-progress-bar/vaadin-progress-bar.js"
+    module = "@vaadin/vaadin-progress-bar/src/vaadin-progress-bar.js"
 )
 public interface ProgressBarElement extends PolymerElement, ProgressMixin, ThemableMixin, ElementMixin {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
+    private final ProgressBarElement object = Any.empty();
+
+    private Builder() {
+    }
+
+    public ProgressBarElement build() {
+      return object;
+    }
+  }
 }

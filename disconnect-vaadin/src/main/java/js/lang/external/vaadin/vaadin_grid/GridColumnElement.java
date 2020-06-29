@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
     version = "^5.7.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-grid/vaadin-grid-column.js"
+    module = "@vaadin/vaadin-grid/src/vaadin-grid-column.js"
 )
 public interface GridColumnElement extends PolymerElement, ColumnBaseMixin {
   /**
@@ -154,8 +154,15 @@ public interface GridColumnElement extends PolymerElement, ColumnBaseMixin {
   @JSProperty("autoWidth")
   void setAutoWidth(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final GridColumnElement object = Any.empty();
+
+    private Builder() {
+    }
 
     public GridColumnElement build() {
       return object;

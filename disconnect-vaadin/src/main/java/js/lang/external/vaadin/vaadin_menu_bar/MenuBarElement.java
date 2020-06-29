@@ -42,7 +42,7 @@ import org.teavm.jso.JSProperty;
     version = "^1.2.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-menu-bar/vaadin-menu-bar.js"
+    module = "@vaadin/vaadin-menu-bar/src/vaadin-menu-bar.js"
 )
 public interface MenuBarElement extends PolymerElement, InteractionsMixin, ThemableMixin, ElementMixin, ButtonsMixin {
   /**
@@ -101,10 +101,17 @@ public interface MenuBarElement extends PolymerElement, InteractionsMixin, Thema
    * </code></pre>
    */
   @JSProperty("items")
-  void setItems(MenuBarItem[] value);
+  void setItems(MenuBarItem... value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final MenuBarElement object = Any.empty();
+
+    private Builder() {
+    }
 
     public MenuBarElement build() {
       return object;
@@ -136,7 +143,7 @@ public interface MenuBarElement extends PolymerElement, InteractionsMixin, Thema
      * ];
      * </code></pre>
      */
-    public Builder items(MenuBarItem[] value) {
+    public Builder items(MenuBarItem... value) {
       object.setItems(value);
       return this;
     }

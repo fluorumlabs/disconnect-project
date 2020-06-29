@@ -2,7 +2,6 @@ package js.lang.external.vaadin.vaadin_upload;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
 import js.web.dom.File;
 import org.teavm.jso.JSProperty;
@@ -105,8 +104,15 @@ public interface UploadFile extends File {
   @JSProperty("uploading")
   void setUploading(boolean value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final UploadFile object = Any.empty();
+
+    private Builder() {
+    }
 
     public UploadFile build() {
       return object;

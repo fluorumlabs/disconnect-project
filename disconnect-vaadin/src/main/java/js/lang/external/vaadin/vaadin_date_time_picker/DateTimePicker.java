@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
     version = "^1.3.0-alpha3"
 )
 @Import(
-    module = "@vaadin/vaadin-date-time-picker/vaadin-date-time-picker.js"
+    module = "@vaadin/vaadin-date-time-picker/src/vaadin-date-time-picker.js"
 )
 public interface DateTimePicker extends PolymerElement, ThemableMixin, ElementMixin {
   /**

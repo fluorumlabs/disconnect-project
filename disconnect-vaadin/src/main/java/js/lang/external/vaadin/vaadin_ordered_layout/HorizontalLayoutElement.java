@@ -2,6 +2,7 @@ package js.lang.external.vaadin.vaadin_ordered_layout;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import js.lang.Any;
 import js.lang.external.polymer.PolymerElement;
 import js.lang.external.vaadin.vaadin_element_mixin.ElementMixin;
 import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
@@ -33,7 +34,21 @@ import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
     version = "^1.4.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-ordered-layout/vaadin-horizontal-layout.js"
+    module = "@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js"
 )
 public interface HorizontalLayoutElement extends PolymerElement, ThemableMixin, ElementMixin {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
+    private final HorizontalLayoutElement object = Any.empty();
+
+    private Builder() {
+    }
+
+    public HorizontalLayoutElement build() {
+      return object;
+    }
+  }
 }

@@ -25,7 +25,7 @@ import org.teavm.jso.JSProperty;
     version = "^1.2.0-alpha2"
 )
 @Import(
-    module = "@vaadin/vaadin-login/vaadin-login-overlay.js"
+    module = "@vaadin/vaadin-login/src/vaadin-login-overlay.js"
 )
 public interface LoginOverlayElement extends PolymerElement, LoginMixin, ThemableMixin, ElementMixin {
   /**

@@ -85,10 +85,10 @@ import javax.annotation.Nullable;
 )
 @Import(
     symbols = {"RichTextEditorElement as RichTextEditorElement_RichTextEditorElement"},
-    module = "@vaadin/vaadin-rich-text-editor/vaadin-rich-text-editor.js"
+    module = "@vaadin/vaadin-rich-text-editor/src/vaadin-rich-text-editor.js"
 )
 @Import(
-    module = "@vaadin/vaadin-rich-text-editor/vaadin-rich-text-editor.js"
+    module = "@vaadin/vaadin-rich-text-editor/src/vaadin-rich-text-editor.js"
 )
 public interface RichTextEditorElement extends PolymerElement, ThemableMixin, ElementMixin {
   /**

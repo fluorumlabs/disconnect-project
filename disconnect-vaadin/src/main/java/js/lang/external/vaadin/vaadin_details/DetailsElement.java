@@ -53,7 +53,7 @@ import org.teavm.jso.JSProperty;
     version = "^1.2.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-details/vaadin-details.js"
+    module = "@vaadin/vaadin-details/src/vaadin-details.js"
 )
 public interface DetailsElement extends PolymerElement, ControlStateMixin, ThemableMixin, ElementMixin {
   /**
@@ -76,4 +76,6 @@ public interface DetailsElement extends PolymerElement, ControlStateMixin, Thema
    */
   @JSProperty("opened")
   void setOpened(boolean value);
+
+  void ready();
 }

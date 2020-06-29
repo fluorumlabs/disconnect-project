@@ -62,7 +62,7 @@ import org.teavm.jso.JSProperty;
     version = "^5.7.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-grid/vaadin-grid-tree-toggle.js"
+    module = "@vaadin/vaadin-grid/src/vaadin-grid-tree-toggle.js"
 )
 public interface GridTreeToggleElement extends PolymerElement, ThemableMixin {
   /**

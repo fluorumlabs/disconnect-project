@@ -2,13 +2,12 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* GridItem [ ] | null | undefined */;
-import js.lang.Unknown /* unknown */;
+import js.lang.Unknown;
 import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/vaadin-grid",
@@ -33,7 +32,7 @@ public interface ArrayDataProviderMixin extends Any {
    *
    */
   @JSProperty("items")
-  void setItems(Items[] value);
+  void setItems(Items... value);
 
   /**
    * An array containing the items which will be stamped to the column template
@@ -41,7 +40,7 @@ public interface ArrayDataProviderMixin extends Any {
    *
    */
   @JSProperty("items")
-  void setItems(String[] value);
+  void setItems(String... value);
 
   interface Items extends Any {
     @JSIndexer
@@ -50,8 +49,15 @@ public interface ArrayDataProviderMixin extends Any {
     @JSIndexer
     void set(String key, Unknown /* unknown */ value);
 
-    class Builder {
+    static Items.Builder builder() {
+      return new Items.Builder();
+    }
+
+    final class Builder {
       private final Items object = Any.empty();
+
+      private Builder() {
+      }
 
       public Items build() {
         return object;

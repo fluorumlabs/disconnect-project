@@ -2,7 +2,6 @@ package js.lang.external.vaadin.vaadin_grid;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
 
@@ -26,8 +25,15 @@ public interface GridSorter extends Any {
   @JSProperty("direction")
   void setDirection(GridSorterDirection value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final GridSorter object = Any.empty();
+
+    private Builder() {
+    }
 
     public GridSorter build() {
       return object;

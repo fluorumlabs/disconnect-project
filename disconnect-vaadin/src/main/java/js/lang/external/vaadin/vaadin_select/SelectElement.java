@@ -115,7 +115,7 @@ import javax.annotation.Nullable;
     version = "^2.3.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-select/vaadin-select.js"
+    module = "@vaadin/vaadin-select/src/vaadin-select.js"
 )
 public interface SelectElement extends PolymerElement, ControlStateMixin, ThemableMixin, ElementMixin {
   @JSProperty("focusElement")

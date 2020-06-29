@@ -40,9 +40,12 @@ import javax.annotation.Nullable;
     version = "^1.4.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-list-box/vaadin-list-box.js"
+    module = "@vaadin/vaadin-list-box/src/vaadin-list-box.js"
 )
 public interface ListBoxElement extends PolymerElement, ThemableMixin, MultiSelectListMixin, ElementMixin {
+  @JSProperty("focused")
+  @Nullable
+  Element getFocused();
 
   @JSProperty("focused")
   void setFocused(@Nullable Element value);

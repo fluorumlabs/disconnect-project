@@ -175,7 +175,7 @@ import javax.annotation.Nullable;
     version = "^5.3.0-alpha4"
 )
 @Import(
-    module = "@vaadin/vaadin-combo-box/vaadin-combo-box.js"
+    module = "@vaadin/vaadin-combo-box/src/vaadin-combo-box.js"
 )
 public interface ComboBoxElement extends ComboBoxMixin, PolymerElement, ControlStateMixin, ThemableMixin, ElementMixin, ComboBoxDataProviderMixin {
   /**
@@ -184,6 +184,32 @@ public interface ComboBoxElement extends ComboBoxMixin, PolymerElement, ControlS
    */
   @JSProperty("focusElement")
   HTMLElement getFocusElement();
+
+  @JSProperty("autofocus")
+  boolean getAutofocus();
+
+  @JSProperty("autofocus")
+  void setAutofocus(boolean value);
+
+  /**
+   * Set to true to disable this input.
+   *
+   */
+  @JSProperty("disabled")
+  boolean getDisabled();
+
+  /**
+   * Set to true to disable this input.
+   *
+   */
+  @JSProperty("disabled")
+  void setDisabled(boolean value);
+
+  @JSProperty("readonly")
+  boolean getReadonly();
+
+  @JSProperty("readonly")
+  void setReadonly(boolean value);
 
   @JSProperty("inputElement")
   @Nullable
@@ -290,4 +316,5 @@ public interface ComboBoxElement extends ComboBoxMixin, PolymerElement, ControlS
   @JSProperty("clearButtonVisible")
   void setClearButtonVisible(boolean value);
 
+  void ready();
 }

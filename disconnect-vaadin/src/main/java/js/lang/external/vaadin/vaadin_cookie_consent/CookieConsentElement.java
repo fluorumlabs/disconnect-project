@@ -42,10 +42,10 @@ import org.teavm.jso.JSProperty;
 )
 @Import(
     symbols = {"CookieConsentElement as CookieConsentElement_CookieConsentElement"},
-    module = "@vaadin/vaadin-cookie-consent/vaadin-cookie-consent.js"
+    module = "@vaadin/vaadin-cookie-consent/src/vaadin-cookie-consent.js"
 )
 @Import(
-    module = "@vaadin/vaadin-cookie-consent/vaadin-cookie-consent.js"
+    module = "@vaadin/vaadin-cookie-consent/src/vaadin-cookie-consent.js"
 )
 public interface CookieConsentElement extends PolymerElement, ThemableMixin, ElementMixin {
   /**

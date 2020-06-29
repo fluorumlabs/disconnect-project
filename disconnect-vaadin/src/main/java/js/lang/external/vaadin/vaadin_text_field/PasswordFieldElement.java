@@ -41,7 +41,7 @@ import org.teavm.jso.JSProperty;
     version = "^2.7.0-alpha5"
 )
 @Import(
-    module = "@vaadin/vaadin-text-field/vaadin-password-field.js"
+    module = "@vaadin/vaadin-text-field/src/vaadin-password-field.js"
 )
 public interface PasswordFieldElement extends TextFieldElement {
   /**
@@ -64,4 +64,6 @@ public interface PasswordFieldElement extends TextFieldElement {
    */
   @JSProperty("passwordVisible")
   boolean getPasswordVisible();
+
+  void ready();
 }

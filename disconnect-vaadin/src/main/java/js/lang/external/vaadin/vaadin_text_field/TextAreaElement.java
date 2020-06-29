@@ -62,7 +62,8 @@ import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
     version = "^2.7.0-alpha5"
 )
 @Import(
-    module = "@vaadin/vaadin-text-field/vaadin-text-area.js"
+    module = "@vaadin/vaadin-text-field/src/vaadin-text-area.js"
 )
 public interface TextAreaElement extends PolymerElement, ControlStateMixin, ThemableMixin, TextFieldMixin, ElementMixin {
+  void ready();
 }

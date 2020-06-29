@@ -2,6 +2,7 @@ package js.lang.external.vaadin.vaadin_ordered_layout;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import js.lang.Any;
 import js.lang.external.polymer.PolymerElement;
 import js.lang.external.vaadin.vaadin_element_mixin.ElementMixin;
 import js.lang.external.vaadin.vaadin_themable_mixin.ThemableMixin;
@@ -20,7 +21,7 @@ import org.teavm.jso.JSProperty;
     version = "^1.4.0-alpha1"
 )
 @Import(
-    module = "@vaadin/vaadin-ordered-layout/vaadin-scroller.js"
+    module = "@vaadin/vaadin-ordered-layout/src/vaadin-scroller.js"
 )
 public interface ScrollerElement extends PolymerElement, ThemableMixin, ElementMixin {
   /**
@@ -38,4 +39,29 @@ public interface ScrollerElement extends PolymerElement, ThemableMixin, ElementM
    */
   @JSProperty("scrollDirection")
   void setScrollDirection(ScrollerScrollDirection value);
+
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
+    private final ScrollerElement object = Any.empty();
+
+    private Builder() {
+    }
+
+    public ScrollerElement build() {
+      return object;
+    }
+
+    /**
+     * This property indicates the scroll direction. Supported values are <code>vertical</code>, <code>horizontal</code>, <code>none</code>.
+     * When <code>scrollDirection</code> is undefined scrollbars will be shown in both directions.
+     *
+     */
+    public Builder scrollDirection(ScrollerScrollDirection value) {
+      object.setScrollDirection(value);
+      return this;
+    }
+  }
 }
