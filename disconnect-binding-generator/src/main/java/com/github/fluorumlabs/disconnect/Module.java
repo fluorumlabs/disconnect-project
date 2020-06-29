@@ -378,15 +378,6 @@ public class Module {
                     || is(itr, "export", "interface")
                     || is(itr, "interface")) {
                 processClass(itr);
-            } else if (is(itr, "declare", "type")
-                    || is(itr, "export", "type")
-                    || is(itr, "export", "declare", "type")
-                    || is(itr, "export", "default")
-                    || is(itr, "export", "=")
-                    || is(itr, "export", "as", "namespace")
-                    || is(itr, "import")
-                    || is(itr, "type")) {
-                upto(itr, ";");
             } else if (is(itr, "declare", "namespace")
                     || is(itr, "export", "namespace")
                     || is(itr, "namespace")) {
@@ -428,6 +419,15 @@ public class Module {
                     || is(itr, "export", "let")
                     || is(itr, "let")) {
                 processStaticConst(itr, false, null);
+            } else if (is(itr, "declare", "type")
+                    || is(itr, "export", "type")
+                    || is(itr, "export", "declare", "type")
+                    || is(itr, "export", "default")
+                    || is(itr, "export", "=")
+                    || is(itr, "export", "as", "namespace")
+                    || is(itr, "import")
+                    || is(itr, "type")) {
+                upto(itr, ";");
             } else {
                 fail(itr);
             }
@@ -611,6 +611,8 @@ public class Module {
         anInterface.setBuilderClassName(anInterface.getClassName().nestedClass("Builder"));
         TypeSpec.Builder builderBuilder = TypeSpec.classBuilder(anInterface.getClassName().nestedClass("Builder"))
                 .addModifiers(Modifier.STATIC, Modifier.PUBLIC);
+
+        builderBuilder.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PRIVATE).build());
 
         anInterface.setBuilderBuilder(builderBuilder);
 
@@ -865,8 +867,6 @@ public class Module {
                 continue;
             } else if (is(itr, JSDOC_TOKEN, null)) {
                 javaDoc = renderMarkdown(context.resolveJsdoc(itr.next()));
-            } else if (is(itr, "type") || is(itr,"import")) {
-                upto(itr, ";",",");
             } else if (is(itr, "class") || is(itr, "interface")) {
                 processClass(itr);
             } else if (is(itr, "namespace")) {
@@ -923,6 +923,8 @@ public class Module {
                 processStaticMethod(itr, anInterface);
             } else if (is(itr, "function", null, ROUND_TOKEN, null, ":") || is(itr, "function", null, ANGLE_TOKEN, null, ROUND_TOKEN, null, ":")) {
                 processMethod(itr, anInterface, false);
+            } else if (is(itr, "type") || is(itr,"import")) {
+                upto(itr, ";",",");
             } else {
                 fail(itr);
                 return;
@@ -1596,7 +1598,7 @@ public class Module {
                     }
                     anInterface.getBuilder().addMethod(setter.build());
                     anInterface.getBuilderBuilder().addMethod(builder.build());
-                } else {
+                } else if (!(resolvedType instanceof ArrayTypeName)) {
                     MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
                             .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                             .addAnnotation(AnnotationSpec.builder(JSProperty.class).addMember("value", "$S",
@@ -1606,6 +1608,28 @@ public class Module {
                             .addModifiers(Modifier.PUBLIC)
                             .returns(anInterface.getBuilderClassName())
                             .addParameter(resolvedType, "value")
+                            .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addStatement("return this");
+
+                    if (!savedJavaDoc.isEmpty()) {
+                        setter.addJavadoc("$L", savedJavaDoc);
+                        builder.addJavadoc("$L", savedJavaDoc);
+                    }
+
+                    anInterface.getBuilder().addMethod(setter.build());
+                    anInterface.getBuilderBuilder().addMethod(builder.build());
+                } else {
+                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                            .addAnnotation(AnnotationSpec.builder(JSProperty.class).addMember("value", "$S",
+                                    jsPropertyName).build())
+                            .varargs(true)
+                            .addParameter(((ArrayTypeName)resolvedType).componentType, "value");
+                    MethodSpec.Builder builder = MethodSpec.methodBuilder(StringUtils.replaceChars(propertyName, "-\"'", "_"))
+                            .addModifiers(Modifier.PUBLIC)
+                            .returns(anInterface.getBuilderClassName())
+                            .varargs(true)
+                            .addParameter(((ArrayTypeName)resolvedType).componentType, "value")
                             .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
                             .addStatement("return this");
 

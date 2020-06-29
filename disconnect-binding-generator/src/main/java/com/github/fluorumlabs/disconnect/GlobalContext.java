@@ -4,6 +4,7 @@ import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.vladsch.flexmark.Extension;
 import com.vladsch.flexmark.ext.autolink.AutolinkExtension;
@@ -334,6 +335,12 @@ public class GlobalContext {
 
         if (iface.isBuildable() && iface.getBuilderBuilder() != null) {
             iface.getBuilder().addType(iface.getBuilderBuilder().addModifiers(Modifier.STATIC).build());
+
+            iface.getBuilder().addMethod(MethodSpec.methodBuilder("builder")
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .returns(iface.getBuilderClassName())
+                    .addStatement("return new $T()", iface.getBuilderClassName())
+                    .build());
         }
 
         iface.setRendered(true);

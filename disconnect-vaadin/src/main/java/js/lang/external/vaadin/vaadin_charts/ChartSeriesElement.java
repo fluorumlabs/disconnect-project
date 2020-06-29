@@ -155,6 +155,23 @@ public interface ChartSeriesElement extends PolymerElement {
   void setValueMax(double value);
 
   /**
+   * A string with the type of the series.
+   * Defaults to `'line'` in case no type is set for the chart.
+   * Note that `'bar'`, `'gauge'` and `'solidgauge'` should be set as default series type on `<vaadin-chart>`.
+   */
+  @JSProperty("type")
+  String getType();
+
+  /**
+   * A string with the type of the series.
+   * Defaults to `'line'` in case no type is set for the chart.
+   * Note that `'bar'`, `'gauge'` and `'solidgauge'` should be set as default series type on `<vaadin-chart>`.
+   */
+  @JSProperty("type")
+  void setType(String value);
+
+
+  /**
    * The name of the series as shown in the legend, tooltip etc.
    *
    */

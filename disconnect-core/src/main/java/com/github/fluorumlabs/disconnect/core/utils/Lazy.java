@@ -6,17 +6,17 @@ import java.util.function.Supplier;
 /**
  * Created by Artem Godin on 6/24/2020.
  */
-public final class Memoized<VALUE> {
+public final class Lazy<VALUE> {
     @Nullable
     private VALUE computed = null;
     private final Supplier<VALUE> supplier;
 
-    private Memoized(Supplier<VALUE> supplier) {
+    private Lazy(Supplier<VALUE> supplier) {
         this.supplier = supplier;
     }
 
-    public static <VALUE> Memoized<VALUE> from(Supplier<VALUE> supplier) {
-        return new Memoized<>(supplier);
+    public static <VALUE> Lazy<VALUE> from(Supplier<VALUE> supplier) {
+        return new Lazy<>(supplier);
     }
 
     public VALUE get() {

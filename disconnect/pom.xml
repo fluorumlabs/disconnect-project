@@ -100,6 +100,16 @@
             </dependency>
             <dependency>
                 <groupId>com.github.fluorumlabs.disconnect</groupId>
+                <artifactId>disconnect-highcharts</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.fluorumlabs.disconnect</groupId>
+                <artifactId>disconnect-vaadin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.fluorumlabs.disconnect</groupId>
                 <artifactId>disconnect-spring-integration</artifactId>
                 <version>${project.version}</version>
             </dependency>

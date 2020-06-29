@@ -2,7 +2,6 @@ package js.lang.external.vaadin.vaadin_app_layout;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import js.lang.Any;
 import js.lang.external.vaadin.vaadin_button.ButtonElement;
 import org.teavm.jso.JSProperty;
 
@@ -30,17 +29,4 @@ public interface DrawerToggleElement extends ButtonElement {
 
   @JSProperty("ariaLabel")
   void setAriaLabel(@Nullable String value);
-
-  class Builder {
-    private final DrawerToggleElement object = Any.empty();
-
-    public DrawerToggleElement build() {
-      return object;
-    }
-
-    public Builder ariaLabel(@Nullable String value) {
-      object.setAriaLabel(value);
-      return this;
-    }
-  }
 }

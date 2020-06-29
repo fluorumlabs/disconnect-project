@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.core.observables;
 
 import com.github.fluorumlabs.disconnect.core.utils.BeanProperties;
-import com.github.fluorumlabs.disconnect.core.utils.Memoized;
+import com.github.fluorumlabs.disconnect.core.utils.Lazy;
 import com.github.fluorumlabs.disconnect.core.validation.Validation;
 import com.github.fluorumlabs.disconnect.core.validation.ValidationResult;
 
@@ -21,7 +21,7 @@ public class ObservableProperty<BEAN> extends ObservableValue<BEAN> {
     private final ObservableProperty<?> parentBean;
     @Nullable
     private final String propertyName;
-    private final Memoized<Validated<BEAN>> validatedObserver = Memoized.from(this::computeValidatedObservable);
+    private final Lazy<Validated<BEAN>> validatedObserver = Lazy.from(this::computeValidatedObservable);
 
     @Nullable
     private Validated<BEAN> validatedObservable = null;
