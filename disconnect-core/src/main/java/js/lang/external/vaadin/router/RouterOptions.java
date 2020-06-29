@@ -2,10 +2,10 @@ package js.lang.external.vaadin.router;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/router",
@@ -22,8 +22,15 @@ public interface RouterOptions extends Any {
   @JSProperty("baseUrl")
   void setBaseUrl(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final RouterOptions object = Any.empty();
+
+    private Builder() {
+    }
 
     public RouterOptions build() {
       return object;

@@ -610,7 +610,7 @@ public class Module {
     private TypeSpec.Builder createBuilderBuilder(Interface anInterface) {
         anInterface.setBuilderClassName(anInterface.getClassName().nestedClass("Builder"));
         TypeSpec.Builder builderBuilder = TypeSpec.classBuilder(anInterface.getClassName().nestedClass("Builder"))
-                .addModifiers(Modifier.STATIC, Modifier.PUBLIC);
+                .addModifiers(Modifier.STATIC, Modifier.PUBLIC, Modifier.FINAL);
 
         builderBuilder.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PRIVATE).build());
 

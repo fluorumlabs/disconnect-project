@@ -17,6 +17,9 @@ import javax.annotation.Nullable;
     symbols = {"Resolver as Resolver_Resolver"},
     module = "@vaadin/router/dist/vaadin-router.js"
 )
+@Import(
+    module = "@vaadin/router/dist/vaadin-router.js"
+)
 public interface Resolver extends Any {
   @JSBody(
       params = {"routes", "options"},
@@ -52,7 +55,7 @@ public interface Resolver extends Any {
    * (the array is shallow copied)
    *
    */
-  Any setRoutes(Route routes);
+  void setRoutes(Route routes);
 
   /**
    * Sets the routing config (replacing the existing one).
@@ -61,7 +64,7 @@ public interface Resolver extends Any {
    * (the array is shallow copied)
    *
    */
-  Any setRoutes(Route[] routes);
+  void setRoutes(Route[] routes);
 
   /**
    * Appends one or several routes to the routing config and returns the
@@ -106,7 +109,7 @@ public interface Resolver extends Any {
    * properties to pass to the route resolver functions.
    *
    */
-  Promise < Any > resolve(ResolvePathnameOrContext pathnameOrContext);
+  Promise<Any> resolve(ResolvePathnameOrContext pathnameOrContext);
 
   /**
    * Asynchronously resolves the given pathname, i.e. finds all routes matching
@@ -125,7 +128,7 @@ public interface Resolver extends Any {
    * properties to pass to the route resolver functions.
    *
    */
-  Promise < Any > resolve(String pathnameOrContext);
+  Promise<Any> resolve(String pathnameOrContext);
 
   interface ResolvePathnameOrContext extends Any {
     @JSProperty("pathname")
@@ -134,14 +137,21 @@ public interface Resolver extends Any {
     @JSProperty("pathname")
     void setPathname(String value);
 
-    class Builder {
+    static ResolvePathnameOrContext.Builder builder() {
+      return new ResolvePathnameOrContext.Builder();
+    }
+
+    final class Builder {
       private final ResolvePathnameOrContext object = Any.empty();
+
+      private Builder() {
+      }
 
       public ResolvePathnameOrContext build() {
         return object;
       }
 
-      public Builder pathname(String value) {
+      public ResolvePathnameOrContext.Builder pathname(String value) {
         object.setPathname(value);
         return this;
       }

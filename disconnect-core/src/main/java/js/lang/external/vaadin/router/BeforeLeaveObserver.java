@@ -3,9 +3,8 @@ package js.lang.external.vaadin.router;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
+import js.lang.Unknown;
 import org.teavm.jso.JSFunctor;
-
-import javax.annotation.Nullable;
 
 @NpmPackage(
     name = "@vaadin/router",
@@ -16,7 +15,7 @@ import javax.annotation.Nullable;
 )
 @JSFunctor
 @FunctionalInterface
-public interface ActionFn extends Any {
-  @Nullable
-  Any /* ActionResult | Promise < ActionResult > */ apply(Context context, Commands commands);
+public interface BeforeLeaveObserver extends Any {
+  Unknown /* void | Router.PreventResult | Promise < void | Router.PreventResult > */ onBeforeLeave(
+      RouterLocation location, PreventCommands commands, Router router);
 }

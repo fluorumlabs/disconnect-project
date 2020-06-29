@@ -16,5 +16,5 @@ import org.teavm.jso.JSFunctor;
 @JSFunctor
 @FunctionalInterface
 public interface ChildrenFn extends Any {
-  Unknown apply();
+  Unknown /* Route [ ] | Promise < Route [ ] > */ apply();
 }

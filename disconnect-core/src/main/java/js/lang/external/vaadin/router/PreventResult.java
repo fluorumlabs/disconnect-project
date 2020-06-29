@@ -12,11 +12,4 @@ import js.lang.Any;
     module = "@vaadin/router/dist/vaadin-router.js"
 )
 public interface PreventResult extends Any {
-  class Builder {
-    private final PreventResult object = Any.empty();
-
-    public PreventResult build() {
-      return object;
-    }
-  }
 }

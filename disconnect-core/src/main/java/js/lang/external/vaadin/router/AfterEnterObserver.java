@@ -5,8 +5,6 @@ import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
 import org.teavm.jso.JSFunctor;
 
-import javax.annotation.Nullable;
-
 @NpmPackage(
     name = "@vaadin/router",
     version = "^1.7.2"
@@ -16,7 +14,6 @@ import javax.annotation.Nullable;
 )
 @JSFunctor
 @FunctionalInterface
-public interface ActionFn extends Any {
-  @Nullable
-  Any /* ActionResult | Promise < ActionResult > */ apply(Context context, Commands commands);
+public interface AfterEnterObserver extends Any {
+  void onAfterEnter(RouterLocation location, EmptyCommands commands, Router router);
 }

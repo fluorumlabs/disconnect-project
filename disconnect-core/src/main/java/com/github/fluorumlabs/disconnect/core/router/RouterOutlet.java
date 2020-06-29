@@ -50,9 +50,9 @@ public class RouterOutlet extends Component<HTMLUnknownElement> {
             Array<Route> routes = routerConfiguration.getRoutes();
             // Add fallback route handler
             if (outletClass.getName().equals(RouterOutlet.class.getName())) {
-                routes.unshift(new Route.Builder().path("(.*)").action(this::locationChangeHandler).build());
+                routes.unshift(Route.builder().path("(.*)").action(this::locationChangeHandler).build());
             }
-            routes.push(new Route.Builder().path("(.*)").action(((context, commands) -> defaultFallbackHandler(context, commands, routerConfiguration))).build());
+            routes.push(Route.builder().path("(.*)").action(((context, commands) -> defaultFallbackHandler(context, commands, routerConfiguration))).build());
             newRouter.setRoutes(routes.asArray());
             return newRouter;
         });
@@ -232,7 +232,7 @@ public class RouterOutlet extends Component<HTMLUnknownElement> {
                     Class<?> target = registration.getTarget();
                     ReflectClass<?> reflectTarget = findClass(target);
 
-                    Value<Route.Builder> builder = emit(() -> new Route.Builder().path(route));
+                    Value<Route.Builder> builder = emit(() -> Route.builder().path(route));
                     if (registration.getRoutes().indexOf(route) == 0) {
                         String name = target.getName();
                         emit(() -> builder.get().name(name));
@@ -268,7 +268,7 @@ public class RouterOutlet extends Component<HTMLUnknownElement> {
                     Class<?> target = registration.getTarget();
                     ReflectClass<?> reflectTarget = findClass(target);
 
-                    Value<Route.Builder> builder = emit(() -> new Route.Builder().path(route));
+                    Value<Route.Builder> builder = emit(() -> Route.builder().path(route));
                     if (HasRouteAction.class.isAssignableFrom(target)) {
                         emit(() -> builder.get().action(routeAction(reflectTarget.asJavaClass(), routerValue.get())));
                     }
@@ -441,16 +441,16 @@ public class RouterOutlet extends Component<HTMLUnknownElement> {
 
     private interface LifecycleCallbacks extends Any {
         @JSProperty
-        void setOnBeforeEnter(OnBeforeEnterFn beforeEnter);
+        void setOnBeforeEnter(BeforeEnterObserver beforeEnter);
 
         @JSProperty
-        void setOnAfterEnter(OnAfterEnterFn afterEnter);
+        void setOnAfterEnter(AfterEnterObserver afterEnter);
 
         @JSProperty
-        void setOnBeforeLeave(OnBeforeLeaveFn beforeLeave);
+        void setOnBeforeLeave(BeforeLeaveObserver beforeLeave);
 
         @JSProperty
-        void setOnAfterLeave(OnAfterLeaveFn afterLeave);
+        void setOnAfterLeave(AfterLeaveObserver afterLeave);
     }
 
     private interface ExceptionOverlay extends Any {

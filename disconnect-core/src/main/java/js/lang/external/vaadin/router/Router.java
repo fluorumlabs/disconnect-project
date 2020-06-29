@@ -2,9 +2,12 @@ package js.lang.external.vaadin.router;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
+import js.lang.Any;
 import js.lang.Promise;
+import js.lang.Unknown;
 import js.web.dom.Node;
 import org.teavm.jso.JSBody;
+import org.teavm.jso.JSIndexer;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
@@ -56,6 +59,9 @@ import javax.annotation.Nullable;
     symbols = {"Router as Router_Router"},
     module = "@vaadin/router/dist/vaadin-router.js"
 )
+@Import(
+    module = "@vaadin/router/dist/vaadin-router.js"
+)
 public interface Router extends Resolver {
   /**
    * The base URL for all routes in the router instance. By default,
@@ -84,7 +90,7 @@ public interface Router extends Resolver {
    *
    */
   @JSProperty("ready")
-  Promise < RouterLocation > getReady();
+  Promise<RouterLocation> getReady();
 
   /**
    * A promise that is settled after the current render cycle completes. If
@@ -93,7 +99,7 @@ public interface Router extends Resolver {
    *
    */
   @JSProperty("ready")
-  void setReady(Promise < RouterLocation > value);
+  void setReady(Promise<RouterLocation> value);
 
   /**
    * Contains read-only information about the current router location:
@@ -205,7 +211,7 @@ public interface Router extends Resolver {
       params = {"path"},
       script = "return Router_Router.go(path)"
   )
-  static boolean go(UrlLike path) {
+  static boolean go(GoPath path) {
     throw new UnsupportedOperationException("Available only in JavaScript");
   }
 
@@ -237,7 +243,7 @@ public interface Router extends Resolver {
    * <ul>
    * <li>
    * <code>path</code> – the route path (relative to the parent route if any) in the
-   * [express.js syntax](https:   *
+   * <a href="https://expressjs.com/en/guide/routing.html#route-paths&quot;">express.js syntax</a>.
    *
    * </li>
    * <li>
@@ -351,7 +357,7 @@ public interface Router extends Resolver {
    * route corresponding to the current <code>window.location</code> values
    *
    */
-  Promise < Node > setRoutes(Route routes, boolean skipRender);
+  Promise<Node> setRoutes(Route routes, boolean skipRender);
 
   /**
    * Sets the routing config (replacing the existing one) and triggers a
@@ -363,7 +369,7 @@ public interface Router extends Resolver {
    * <ul>
    * <li>
    * <code>path</code> – the route path (relative to the parent route if any) in the
-   * [express.js syntax](https:   *
+   * <a href="https://expressjs.com/en/guide/routing.html#route-paths&quot;">express.js syntax</a>.
    *
    * </li>
    * <li>
@@ -477,253 +483,7 @@ public interface Router extends Resolver {
    * route corresponding to the current <code>window.location</code> values
    *
    */
-  Promise < Node > setRoutes(Route[] routes, boolean skipRender);
-
-  /**
-   * Sets the routing config (replacing the existing one) and triggers a
-   * navigation event so that the router outlet is refreshed according to the
-   * current <code>window.location</code> and the new routing config.
-   *
-   * Each route object may have the following properties, listed here in the processing order:
-   *
-   * <ul>
-   * <li>
-   * <code>path</code> – the route path (relative to the parent route if any) in the
-   * [express.js syntax](https:   *
-   *
-   * </li>
-   * <li>
-   * <code>children</code> – an array of nested routes or a function that provides this
-   * array at the render time. The function can be synchronous or asynchronous:
-   * in the latter case the render is delayed until the returned promise is
-   * resolved. The <code>children</code> function is executed every time when this route is
-   * being rendered. This allows for dynamic route structures (e.g. backend-defined),
-   * but it might have a performance impact as well. In order to avoid calling
-   * the function on subsequent renders, you can override the <code>children</code> property
-   * of the route object and save the calculated array there
-   * (via <code>context.route.children = [ route1, route2, ...];</code>).
-   * Parent routes are fully resolved before resolving the children. Children
-   * 'path' values are relative to the parent ones.
-   *
-   * </li>
-   * <li>
-   * <code>action</code> – the action that is executed before the route is resolved.
-   * The value for this property should be a function, accepting <code>context</code>
-   * and <code>commands</code> parameters described below. If present, this function is
-   * always invoked first, disregarding of the other properties' presence.
-   * The action can return a result directly or within a <code>Promise</code>, which
-   * resolves to the result. If the action result is an <code>HTMLElement</code> instance,
-   * a <code>commands.component(name)</code> result, a <code>commands.redirect(path)</code> result,
-   * or a <code>context.next()</code> result, the current route resolution is finished,
-   * and other route config properties are ignored.
-   * See also <strong>Route Actions</strong> section in <a href="#/classes/Router/demos/demo/index.html">Live Examples</a>.
-   *
-   * </li>
-   * <li>
-   * <code>redirect</code> – other route's path to redirect to. Passes all route parameters to the redirect target.
-   * The target route should also be defined.
-   * See also <strong>Redirects</strong> section in <a href="#/classes/Router/demos/demo/index.html">Live Examples</a>.
-   *
-   * </li>
-   * <li>
-   * <code>bundle</code> – string containing the path to <code>.js</code> or <code>.mjs</code> bundle to load before resolving the route,
-   * or the object with &quot;module&quot; and &quot;nomodule&quot; keys referring to different bundles.
-   * Each bundle is only loaded once. If &quot;module&quot; and &quot;nomodule&quot; are set, only one bundle is loaded,
-   * depending on whether the browser supports ES modules or not.
-   * The property is ignored when either an <code>action</code> returns the result or <code>redirect</code> property is present.
-   * Any error, e.g. 404 while loading bundle will cause route resolution to throw.
-   * See also <strong>Code Splitting</strong> section in <a href="#/classes/Router/demos/demo/index.html">Live Examples</a>.
-   *
-   * </li>
-   * <li>
-   * <code>component</code> – the tag name of the Web Component to resolve the route to.
-   * The property is ignored when either an <code>action</code> returns the result or <code>redirect</code> property is present.
-   * If route contains the <code>component</code> property (or an action that return a component)
-   * and its child route also contains the <code>component</code> property, child route's component
-   * will be rendered as a light dom child of a parent component.
-   *
-   * </li>
-   * <li>
-   * <code>name</code> – the string name of the route to use in the
-   * <a href="#/classes/Router#method-urlForName"><code>router.urlForName(name, params)</code></a>
-   * navigation helper method.
-   *
-   * </li>
-   * </ul>
-   * For any route function (<code>action</code>, <code>children</code>) defined, the corresponding <code>route</code> object is available inside the callback
-   * through the <code>this</code> reference. If you need to access it, make sure you define the callback as a non-arrow function
-   * because arrow functions do not have their own <code>this</code> reference.
-   *
-   * <code>context</code> object that is passed to <code>action</code> function holds the following properties:
-   *
-   * <ul>
-   * <li>
-   * <code>context.pathname</code> – string with the pathname being resolved
-   *
-   * </li>
-   * <li>
-   * <code>context.search</code> – search query string
-   *
-   * </li>
-   * <li>
-   * <code>context.hash</code> – hash string
-   *
-   * </li>
-   * <li>
-   * <code>context.params</code> – object with route parameters
-   *
-   * </li>
-   * <li>
-   * <code>context.route</code> – object that holds the route that is currently being rendered.
-   *
-   * </li>
-   * <li>
-   * <code>context.next()</code> – function for asynchronously getting the next route
-   * contents from the resolution chain (if any)
-   *
-   * </li>
-   * </ul>
-   * <code>commands</code> object that is passed to <code>action</code> function has
-   * the following methods:
-   *
-   * <ul>
-   * <li>
-   * <code>commands.redirect(path)</code> – function that creates a redirect data
-   * for the path specified.
-   *
-   * </li>
-   * <li>
-   * <code>commands.component(component)</code> – function that creates a new HTMLElement
-   * with current context. Note: the component created by this function is reused if visiting the same path twice in row.
-   *
-   * </li>
-   * </ul>
-   * @param routes a single route or an array of those
-   */
-  Promise < Node > setRoutes(Route routes);
-
-  /**
-   * Sets the routing config (replacing the existing one) and triggers a
-   * navigation event so that the router outlet is refreshed according to the
-   * current <code>window.location</code> and the new routing config.
-   *
-   * Each route object may have the following properties, listed here in the processing order:
-   *
-   * <ul>
-   * <li>
-   * <code>path</code> – the route path (relative to the parent route if any) in the
-   * [express.js syntax](https:   *
-   *
-   * </li>
-   * <li>
-   * <code>children</code> – an array of nested routes or a function that provides this
-   * array at the render time. The function can be synchronous or asynchronous:
-   * in the latter case the render is delayed until the returned promise is
-   * resolved. The <code>children</code> function is executed every time when this route is
-   * being rendered. This allows for dynamic route structures (e.g. backend-defined),
-   * but it might have a performance impact as well. In order to avoid calling
-   * the function on subsequent renders, you can override the <code>children</code> property
-   * of the route object and save the calculated array there
-   * (via <code>context.route.children = [ route1, route2, ...];</code>).
-   * Parent routes are fully resolved before resolving the children. Children
-   * 'path' values are relative to the parent ones.
-   *
-   * </li>
-   * <li>
-   * <code>action</code> – the action that is executed before the route is resolved.
-   * The value for this property should be a function, accepting <code>context</code>
-   * and <code>commands</code> parameters described below. If present, this function is
-   * always invoked first, disregarding of the other properties' presence.
-   * The action can return a result directly or within a <code>Promise</code>, which
-   * resolves to the result. If the action result is an <code>HTMLElement</code> instance,
-   * a <code>commands.component(name)</code> result, a <code>commands.redirect(path)</code> result,
-   * or a <code>context.next()</code> result, the current route resolution is finished,
-   * and other route config properties are ignored.
-   * See also <strong>Route Actions</strong> section in <a href="#/classes/Router/demos/demo/index.html">Live Examples</a>.
-   *
-   * </li>
-   * <li>
-   * <code>redirect</code> – other route's path to redirect to. Passes all route parameters to the redirect target.
-   * The target route should also be defined.
-   * See also <strong>Redirects</strong> section in <a href="#/classes/Router/demos/demo/index.html">Live Examples</a>.
-   *
-   * </li>
-   * <li>
-   * <code>bundle</code> – string containing the path to <code>.js</code> or <code>.mjs</code> bundle to load before resolving the route,
-   * or the object with &quot;module&quot; and &quot;nomodule&quot; keys referring to different bundles.
-   * Each bundle is only loaded once. If &quot;module&quot; and &quot;nomodule&quot; are set, only one bundle is loaded,
-   * depending on whether the browser supports ES modules or not.
-   * The property is ignored when either an <code>action</code> returns the result or <code>redirect</code> property is present.
-   * Any error, e.g. 404 while loading bundle will cause route resolution to throw.
-   * See also <strong>Code Splitting</strong> section in <a href="#/classes/Router/demos/demo/index.html">Live Examples</a>.
-   *
-   * </li>
-   * <li>
-   * <code>component</code> – the tag name of the Web Component to resolve the route to.
-   * The property is ignored when either an <code>action</code> returns the result or <code>redirect</code> property is present.
-   * If route contains the <code>component</code> property (or an action that return a component)
-   * and its child route also contains the <code>component</code> property, child route's component
-   * will be rendered as a light dom child of a parent component.
-   *
-   * </li>
-   * <li>
-   * <code>name</code> – the string name of the route to use in the
-   * <a href="#/classes/Router#method-urlForName"><code>router.urlForName(name, params)</code></a>
-   * navigation helper method.
-   *
-   * </li>
-   * </ul>
-   * For any route function (<code>action</code>, <code>children</code>) defined, the corresponding <code>route</code> object is available inside the callback
-   * through the <code>this</code> reference. If you need to access it, make sure you define the callback as a non-arrow function
-   * because arrow functions do not have their own <code>this</code> reference.
-   *
-   * <code>context</code> object that is passed to <code>action</code> function holds the following properties:
-   *
-   * <ul>
-   * <li>
-   * <code>context.pathname</code> – string with the pathname being resolved
-   *
-   * </li>
-   * <li>
-   * <code>context.search</code> – search query string
-   *
-   * </li>
-   * <li>
-   * <code>context.hash</code> – hash string
-   *
-   * </li>
-   * <li>
-   * <code>context.params</code> – object with route parameters
-   *
-   * </li>
-   * <li>
-   * <code>context.route</code> – object that holds the route that is currently being rendered.
-   *
-   * </li>
-   * <li>
-   * <code>context.next()</code> – function for asynchronously getting the next route
-   * contents from the resolution chain (if any)
-   *
-   * </li>
-   * </ul>
-   * <code>commands</code> object that is passed to <code>action</code> function has
-   * the following methods:
-   *
-   * <ul>
-   * <li>
-   * <code>commands.redirect(path)</code> – function that creates a redirect data
-   * for the path specified.
-   *
-   * </li>
-   * <li>
-   * <code>commands.component(component)</code> – function that creates a new HTMLElement
-   * with current context. Note: the component created by this function is reused if visiting the same path twice in row.
-   *
-   * </li>
-   * </ul>
-   * @param routes a single route or an array of those
-   */
-  Promise < Node > setRoutes(Route[] routes);
+  Promise<Node> setRoutes(Route[] routes, boolean skipRender);
 
   /**
    * Sets the router outlet (the DOM node where the content for the current
@@ -776,7 +536,7 @@ public interface Router extends Resolver {
    * @param shouldUpdateHistory update browser history with the rendered location
    *
    */
-  Promise < Node > render(UrlLike pathnameOrContext, boolean shouldUpdateHistory);
+  Promise<Node> render(RenderPathnameOrContext pathnameOrContext, boolean shouldUpdateHistory);
 
   /**
    * Asynchronously resolves the given pathname and renders the resolved route
@@ -797,7 +557,7 @@ public interface Router extends Resolver {
    * @param shouldUpdateHistory update browser history with the rendered location
    *
    */
-  Promise < Node > render(String pathnameOrContext, boolean shouldUpdateHistory);
+  Promise<Node> render(String pathnameOrContext, boolean shouldUpdateHistory);
 
   /**
    * Asynchronously resolves the given pathname and renders the resolved route
@@ -816,7 +576,7 @@ public interface Router extends Resolver {
    * optional <code>search</code> and <code>hash</code> properties, and other properties
    * to pass to the resolver.
    */
-  Promise < Node > render(UrlLike pathnameOrContext);
+  Promise<Node> render(RenderPathnameOrContext pathnameOrContext);
 
   /**
    * Asynchronously resolves the given pathname and renders the resolved route
@@ -835,7 +595,7 @@ public interface Router extends Resolver {
    * optional <code>search</code> and <code>hash</code> properties, and other properties
    * to pass to the resolver.
    */
-  Promise < Node > render(String pathnameOrContext);
+  Promise<Node> render(String pathnameOrContext);
 
   /**
    * Subscribes this instance to navigation events on the <code>window</code>.
@@ -910,7 +670,8 @@ public interface Router extends Resolver {
    * Generates a URL for the given route path, optionally performing
    * substitution of parameters.
    *
-   * @param path string route path declared in [express.js syntax](https:   * @param params Optional object with route path parameters.
+   * @param path string route path declared in <a href="https://expressjs.com/en/guide/routing.html#route-paths&quot;">express.js syntax</a>.
+   * @param params Optional object with route path parameters.
    * Named parameters are passed by name (<code>params[name] = value</code>), unnamed
    * parameters are passed by index (<code>params[index] = value</code>).
    *
@@ -921,7 +682,8 @@ public interface Router extends Resolver {
    * Generates a URL for the given route path, optionally performing
    * substitution of parameters.
    *
-   * @param path string route path declared in [express.js syntax](https:   * @param params Optional object with route path parameters.
+   * @param path string route path declared in <a href="https://expressjs.com/en/guide/routing.html#route-paths&quot;">express.js syntax</a>.
+   * @param params Optional object with route path parameters.
    * Named parameters are passed by name (<code>params[name] = value</code>), unnamed
    * parameters are passed by index (<code>params[index] = value</code>).
    *
@@ -932,8 +694,60 @@ public interface Router extends Resolver {
    * Generates a URL for the given route path, optionally performing
    * substitution of parameters.
    *
-   * @param path string route path declared in [express.js syntax](https:   * 
+   * @param path string route path declared in <a href="https://expressjs.com/en/guide/routing.html#route-paths&quot;">express.js syntax</a>.
    */
   String urlForPath(String path);
+
+  interface GoPath extends Any {
+    @JSProperty("pathname")
+    String getPathname();
+
+    @JSProperty("pathname")
+    void setPathname(String value);
+
+    @JSProperty("search")
+    @Nullable
+    String getSearch();
+
+    @JSProperty("search")
+    void setSearch(@Nullable String value);
+
+    @JSProperty("hash")
+    @Nullable
+    String getHash();
+
+    @JSProperty("hash")
+    void setHash(@Nullable String value);
+
+    static GoPath.Builder builder() {
+      return new GoPath.Builder();
+    }
+
+    final class Builder {
+      private final GoPath object = Any.empty();
+
+      private Builder() {
+      }
+
+      public GoPath build() {
+        return object;
+      }
+
+      public GoPath.Builder pathname(String value) {
+        object.setPathname(value);
+        return this;
+      }
+
+      public GoPath.Builder search(@Nullable String value) {
+        object.setSearch(value);
+        return this;
+      }
+
+      public GoPath.Builder hash(@Nullable String value) {
+        object.setHash(value);
+        return this;
+      }
+    }
+  }
 
 }

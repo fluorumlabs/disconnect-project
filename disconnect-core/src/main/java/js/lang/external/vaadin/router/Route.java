@@ -45,10 +45,10 @@ public interface Route extends Any {
 
   @JSProperty("children")
   @Nullable
-  Unknown getChildren();
+  Unknown /* Route [ ] | ChildrenFn */ getChildren();
 
   @JSProperty("children")
-  void setChildren(Route[] value);
+  void setChildren(Route... value);
 
   @JSProperty("children")
   void setChildren(@Nullable ChildrenFn value);
@@ -67,8 +67,15 @@ public interface Route extends Any {
   @JSProperty("redirect")
   void setRedirect(@Nullable String value);
 
-  class Builder {
+  static Builder builder() {
+    return new Builder();
+  }
+
+  final class Builder {
     private final Route object = Any.empty();
+
+    private Builder() {
+    }
 
     public Route build() {
       return object;
@@ -94,7 +101,7 @@ public interface Route extends Any {
       return this;
     }
 
-    public Builder children(Route[] value) {
+    public Builder children(Route... value) {
       object.setChildren(value);
       return this;
     }

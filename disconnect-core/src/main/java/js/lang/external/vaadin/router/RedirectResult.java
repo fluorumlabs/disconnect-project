@@ -12,11 +12,4 @@ import js.lang.Any;
     module = "@vaadin/router/dist/vaadin-router.js"
 )
 public interface RedirectResult extends Any {
-  class Builder {
-    private final RedirectResult object = Any.empty();
-
-    public RedirectResult build() {
-      return object;
-    }
-  }
 }
