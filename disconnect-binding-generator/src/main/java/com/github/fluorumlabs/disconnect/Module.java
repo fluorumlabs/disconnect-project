@@ -1598,38 +1598,18 @@ public class Module {
                     }
                     anInterface.getBuilder().addMethod(setter.build());
                     anInterface.getBuilderBuilder().addMethod(builder.build());
-                } else if (!(resolvedType instanceof ArrayTypeName)) {
-                    MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
-                            .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                            .addAnnotation(AnnotationSpec.builder(JSProperty.class).addMember("value", "$S",
-                                    jsPropertyName).build())
-                            .addParameter(resolvedType, "value");
-                    MethodSpec.Builder builder = MethodSpec.methodBuilder(StringUtils.replaceChars(propertyName, "-\"'", "_"))
-                            .addModifiers(Modifier.PUBLIC)
-                            .returns(anInterface.getBuilderClassName())
-                            .addParameter(resolvedType, "value")
-                            .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
-                            .addStatement("return this");
-
-                    if (!savedJavaDoc.isEmpty()) {
-                        setter.addJavadoc("$L", savedJavaDoc);
-                        builder.addJavadoc("$L", savedJavaDoc);
-                    }
-
-                    anInterface.getBuilder().addMethod(setter.build());
-                    anInterface.getBuilderBuilder().addMethod(builder.build());
                 } else {
                     MethodSpec.Builder setter = MethodSpec.methodBuilder("set" + replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
                             .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                             .addAnnotation(AnnotationSpec.builder(JSProperty.class).addMember("value", "$S",
                                     jsPropertyName).build())
-                            .varargs(true)
-                            .addParameter(((ArrayTypeName)resolvedType).componentType, "value");
+                            .varargs(resolvedType instanceof ArrayTypeName)
+                            .addParameter(resolvedType, "value");
                     MethodSpec.Builder builder = MethodSpec.methodBuilder(StringUtils.replaceChars(propertyName, "-\"'", "_"))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(anInterface.getBuilderClassName())
-                            .varargs(true)
-                            .addParameter(((ArrayTypeName)resolvedType).componentType, "value")
+                            .varargs(resolvedType instanceof ArrayTypeName)
+                            .addParameter(resolvedType, "value")
                             .addStatement("object.set$L(value)", replaceChars(StringUtils.capitalize(propertyName), "-\"'", "_"))
                             .addStatement("return this");
 
