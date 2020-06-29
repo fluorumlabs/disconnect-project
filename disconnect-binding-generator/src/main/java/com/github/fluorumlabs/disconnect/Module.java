@@ -2182,9 +2182,9 @@ public class Module {
                     parameterType = unknown(param.trim());
                 } else if (parameterType instanceof ArrayTypeName) {
                     try {
-                        parameterType = ParameterizedTypeName.get(ClassName.get(Array.class), ((ArrayTypeName) resolvedType).componentType);
+                        parameterType = ParameterizedTypeName.get(ClassName.get(Array.class), ((ArrayTypeName) parameterType).componentType);
                     } catch (IllegalArgumentException e) {
-                        parameterType = ParameterizedTypeName.get(ClassName.get(Array.class), unknown(((ArrayTypeName) resolvedType).componentType.toString()));
+                        parameterType = ParameterizedTypeName.get(ClassName.get(Array.class), unknown(((ArrayTypeName) parameterType).componentType.toString()));
                     }
                 }
                 parameters.add(parameterType);
