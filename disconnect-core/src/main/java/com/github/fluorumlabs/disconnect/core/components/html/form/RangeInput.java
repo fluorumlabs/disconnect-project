@@ -1,8 +1,8 @@
 package com.github.fluorumlabs.disconnect.core.components.html.form;
 
+import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
 import js.lang.Unknown;
-import js.web.dom.Autocomplete;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -27,12 +27,12 @@ public class RangeInput extends Input {
      * Specifies whether autocomplete is applied to an editable text field.
      */
     @Override
-    protected Autocomplete getAutocomplete() {
+    protected HtmlComponent.Autocomplete getAutocomplete() {
         return super.getAutocomplete();
     }
 
     @Override
-    protected void setAutocomplete(Autocomplete autocomplete) {
+    protected void setAutocomplete(HtmlComponent.Autocomplete autocomplete) {
         super.setAutocomplete(autocomplete);
     }
 

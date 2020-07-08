@@ -20,11 +20,10 @@ abstract class ObservableBase<VALUE> {
     private VALUE currentValue = null;
     @Nullable
     private Any currentValueCopy = null;
-    private boolean hasInitialValue = false;
 
     void acceptImpl(Consumer<VALUE> consumer) {
         acceptImplQuiet(consumer);
-        if (hasInitialValue) {
+        if (hasValue()) {
             consumer.accept(currentValue);
         }
     }
@@ -42,7 +41,7 @@ abstract class ObservableBase<VALUE> {
                 consumers.removeElement(x);
             }
         }
-        if (hasInitialValue) {
+        if (hasValue()) {
             VALUE value = currentValue;
             synchronized (consumers) {
                 for (WeakReference<Consumer<VALUE>> weakReference : consumers) {
@@ -58,13 +57,11 @@ abstract class ObservableBase<VALUE> {
     void clearValue() {
         this.currentValue = null;
         this.currentValueCopy = null;
-        this.hasInitialValue = true;
     }
 
     void setCurrentValue(VALUE value, Any serializedValue) {
         this.currentValue = value;
         this.currentValueCopy = serializedValue;
-        this.hasInitialValue = true;
     }
 
     void pushNewValue(VALUE value) {
@@ -73,10 +70,7 @@ abstract class ObservableBase<VALUE> {
 
     void pushNewValue(VALUE value, boolean forcePropagation) {
         Any serialized = SerDes.serialize(value);
-        if (forcePropagation) {
-            setCurrentValue(value, serialized);
-            markAsDirty();
-        } else if (!DisconnectUtils.deepEquals(currentValueCopy, serialized)) {
+        if (forcePropagation || !DisconnectUtils.deepEquals(currentValueCopy, serialized)) {
             setCurrentValue(value, serialized);
             markAsDirty();
         }

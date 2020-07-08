@@ -50,17 +50,6 @@ public class BiObservable<VALUE_A , VALUE_B > extends ObservableBase<Pair<VALUE_
         return forkedObserver;
     }
 
-    public BiObservable<VALUE_A, VALUE_B> nonNull() {
-        BiObservable<VALUE_A, VALUE_B> observable = new BiObservable<>();
-        acceptImpl(value -> {
-            if (value.getValueA() != null && value.getValueB() != null) {
-                observable.pushNewValue(value);
-            }
-        });
-        return observable;
-    }
-
-
     public BiObservable<VALUE_A, VALUE_B> filter(BiPredicate<VALUE_A, VALUE_B> predicate) {
         BiObservable<VALUE_A, VALUE_B> observable = new BiObservable<>();
         acceptImpl(value -> {
@@ -96,7 +85,7 @@ public class BiObservable<VALUE_A , VALUE_B > extends ObservableBase<Pair<VALUE_
     }
 
     public BiObservable<VALUE_A, VALUE_B> on(SimpleObservableEvent event) {
-        Delayed<VALUE_A, VALUE_B> observable = new Delayed<>();
+        Gated<VALUE_A, VALUE_B> observable = new Gated<>();
         acceptImpl(observable::setPendingValue);
         event.accept(observable::acceptPendingValue);
         return observable;
@@ -143,7 +132,7 @@ public class BiObservable<VALUE_A , VALUE_B > extends ObservableBase<Pair<VALUE_
         return getCurrentValue() != null && getCurrentValue().hasValue();
     }
 
-    public static class Delayed<LEFT_VALUE , RIGHT_VALUE > extends BiObservable<LEFT_VALUE, RIGHT_VALUE> {
+    public static class Gated<LEFT_VALUE , RIGHT_VALUE > extends BiObservable<LEFT_VALUE, RIGHT_VALUE> {
         private Pair<LEFT_VALUE, RIGHT_VALUE> pendingValue;
 
         private boolean hasPendingValue = false;

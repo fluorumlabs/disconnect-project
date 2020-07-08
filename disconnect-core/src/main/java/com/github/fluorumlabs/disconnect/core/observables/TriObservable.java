@@ -71,7 +71,7 @@ public class TriObservable<VALUE_A , VALUE_B , VALUE_C > extends ObservableBase<
 	}
 
 	public TriObservable<VALUE_A, VALUE_B, VALUE_C> on(SimpleObservableEvent event) {
-		Delayed<VALUE_A, VALUE_B, VALUE_C> observable = new Delayed<>();
+		Gated<VALUE_A, VALUE_B, VALUE_C> observable = new Gated<>();
 		acceptImpl(observable::setPendingValue);
 		event.accept(observable::acceptPendingValue);
 		return observable;
@@ -118,7 +118,7 @@ public class TriObservable<VALUE_A , VALUE_B , VALUE_C > extends ObservableBase<
 		return getCurrentValue() != null ? getCurrentValue().getValueC() : null;
 	}
 
-	public static class Delayed<VALUE_A , VALUE_B , VALUE_C > extends TriObservable<VALUE_A, VALUE_B, VALUE_C> {
+	public static class Gated<VALUE_A , VALUE_B , VALUE_C > extends TriObservable<VALUE_A, VALUE_B, VALUE_C> {
 		private Triplet<VALUE_A, VALUE_B, VALUE_C> pendingValue;
 
 		private boolean hasPendingValue = false;
@@ -239,5 +239,10 @@ public class TriObservable<VALUE_A , VALUE_B , VALUE_C > extends ObservableBase<
 		void pushNewValue(@Nonnull Quad<VALUE_A, VALUE_B, VALUE_C, Boolean> value) {
 			pushNewValue(value, true);
 		}
+	}
+
+	@Override
+	boolean hasValue() {
+		return getCurrentValue() != null && getCurrentValue().hasValue();
 	}
 }

@@ -292,5 +292,6 @@ public interface ReadonlyArray<T extends Any> extends ConcatArray<T>, RandomAcce
      */
     IterableIterator<T> values();
 
-
+    @JSBody(script = "return this")
+    T[] asArray();
 }

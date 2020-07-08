@@ -203,7 +203,7 @@ public abstract class ObjectMirror<T extends Serializable> implements Any {
 		setAdapterInternal(DisconnectUtils.asJsObject(target));
 	}
 
-	T getTarget() {
+	public T getTarget() {
 		return DisconnectUtils.asJavaObject(getTargetInternal());
 	}
 

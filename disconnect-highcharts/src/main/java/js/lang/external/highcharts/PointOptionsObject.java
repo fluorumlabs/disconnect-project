@@ -2,13 +2,11 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
-import js.lang.Unknown /* ( DataLabelsOptions | DataLabelsOptions | SeriesNetworkgraphDataLabelsOptionsObject | SeriesPackedBubbleDataLabelsOptionsObject | SeriesPieDataLabelsOptionsObject | SeriesSunburstDataLabelsOptionsObject | Array < DataLabelsOptions > | Array < SeriesNetworkgraphDataLabelsOptionsObject > | Array < SeriesPackedBubbleDataLabelsOptionsObject > | Array < SeriesSunburstDataLabelsOptionsObject > ) */;
-import js.lang.Unknown /* ( number | string ) */;
+import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * The generic point options for all series.

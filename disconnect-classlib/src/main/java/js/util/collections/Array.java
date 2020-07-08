@@ -3,9 +3,13 @@ package js.util.collections;
 import js.lang.Any;
 import js.util.function.JsComparator;
 import js.util.iterable.JsIterable;
-import org.teavm.jso.*;
+import org.teavm.jso.JSBody;
+import org.teavm.jso.JSFunctor;
+import org.teavm.jso.JSIndexer;
+import org.teavm.jso.JSObject;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 
 
 public interface Array<T extends Any> extends ReadonlyArray<T> {
@@ -78,6 +82,30 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      */
     @JSBody(params = "items", script = "return Array.of.apply(Array, items)")
     static <T extends Any> Array<T> of(T... items) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+    /**
+     * Returns a new array from a set of elements.
+     *
+     * @param items A set of elements to include in the new array object.
+     */
+    static <T extends Any> Array<T> of(Collection<T> items) {
+        Array<T> array = create();
+        for (T item : items) {
+            array.push(item);
+        }
+        return array;
+    }
+
+    /**
+     * If the value is an Array, true is returned; otherwise, false is.
+     *
+     * @param value The value to be checked.
+     * @return true if the value is an Array; otherwise, false.
+     */
+    @JSBody(params = "value", script = "return Array.isArray(value)")
+    static boolean isArray(Any value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -155,9 +183,6 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      */
     @JSBody(params = "items", script = "return this.unshift.apply(this, items)")
     int unshift(T... items);
-
-    @JSBody(script = "return this")
-    T[] asArray();
 
     @JSIndexer
     void set(int n, T value);

@@ -1,9 +1,13 @@
 package com.github.fluorumlabs.disconnect.core.components;
 
 import com.github.fluorumlabs.disconnect.core.internals.TagRegistry;
+import com.github.fluorumlabs.disconnect.core.utils.LowerCase;
 import js.lang.Any;
 import js.web.cssom.CSSStyleDeclaration;
-import js.web.dom.*;
+import js.web.dom.DOMRectReadOnly;
+import js.web.dom.DOMStringMap;
+import js.web.dom.FocusOptions;
+import js.web.dom.HTMLElement;
 
 import java.util.Optional;
 
@@ -61,19 +65,19 @@ public class HtmlComponent<X extends HTMLElement> extends Component<X> implement
     }
 
     public Autocapitalize getAutocapitalize() {
-        return getElement().getAutocapitalize();
+        return LowerCase.parse(Autocapitalize.class, getElement().getAutocapitalize());
     }
 
     public void setAutocapitalize(Autocapitalize autocapitalize) {
-        getElement().setAutocapitalize(autocapitalize);
+        getElement().setAutocapitalize(LowerCase.of(autocapitalize));
     }
 
     public Dir getDir() {
-        return getElement().getDir();
+        return LowerCase.parse(Dir.class, getElement().getDir());
     }
 
     public void setDir(Dir dir) {
-        getElement().setDir(dir);
+        getElement().setDir(LowerCase.of(dir));
     }
 
     public boolean isDraggable() {
@@ -149,6 +153,30 @@ public class HtmlComponent<X extends HTMLElement> extends Component<X> implement
         return getElement().getStyle();
     }
 
+    public void addClass(String className) {
+        getClassList().add(className);
+    }
+
+    public void addClass(String... classNames) {
+        getClassList().add(classNames);
+    }
+
+    public void removeClass(String className) {
+        getClassList().remove(className);
+    }
+
+    public void removeClass(String... classNames) {
+        getClassList().remove(classNames);
+    }
+
+    public void setClass(String className) {
+        getElement().setClassName(className);
+    }
+
+    public void setClass(String... className) {
+        getElement().setClassName(String.join(" ",className));
+    }
+
     /* FIXME
         @JSProperty
     String getContentEditable();
@@ -167,5 +195,81 @@ public class HtmlComponent<X extends HTMLElement> extends Component<X> implement
 
      */
 
+    public enum Dir {
+        LTR, RTL
+    }
 
+    public enum Autocapitalize {
+        ON, OFF, NONE, CHARACTERS, WORDS, SENTENCES
+    }
+
+    public enum Autocomplete {
+        OFF,
+        ON,
+        NAME,
+
+        HONORIFIC_PREFIX,
+        GIVEN_NAME,
+        ADDITIONAL_NAME,
+        FAMILY_NAME,
+        HONORIFIC_SUFFIX,
+        NICKNAME,
+
+        EMAIL,
+        USERNAME,
+
+        NEW_PASSWORD,
+        CURRENT_PASSWORD,
+        ONE_TIME_CODE,
+
+        ORGANIZATION_TITLE,
+        ORGANIZATION,
+        STREET_ADDRES,
+        ADDRESS_LINE_1,
+        ADDRESS_LINE_2,
+        ADDRESS_LINE_3,
+        ADDRESS_LEVEL_4,
+        ADDRESS_LEVEL_3,
+        ADDRESS_LEVEL_2,
+        ADDRESS_LEVEL_1,
+        COUNTRY,
+        COUNTRY_NAME,
+        POSTAL_CODE,
+
+        CC_NAME,
+        CC_GIVEN_NAME,
+        CC_ADDITIONAL_NAME,
+        CC_FAMILY_NAME,
+        CC_NUMBER,
+        CC_EXP,
+        CC_EXP_MONTH,
+        CC_EXP_YEAR,
+        CC_CSC,
+        CC_TYPE,
+
+        TRANSACTION_CURRENCY,
+        TRANSACTION_AMOUNT,
+        LANGUAGE,
+
+        BDAY,
+        BDAY_DAY,
+        BDAY_MONTH,
+        BDAY_YEAR,
+        SEX,
+
+        TEL,
+        TEL_COUNTRY_CODE,
+        TEL_NATIONAL,
+        TEL_AREA_CODE,
+        TEL_LOCAL,
+        TEL_EXTENSION,
+        IMPP,
+        URL,
+        PHOTO
+
+        }
+
+    public enum Autocorrect {
+        ON, OFF
+    }
 }

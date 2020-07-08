@@ -8,6 +8,6 @@ import org.teavm.jso.JSFunctor;
  */
 @JSFunctor
 @FunctionalInterface
-public interface JsPredicate<T extends Any>  extends Any{
+public interface JsPredicate<T extends Any>  extends Any {
     boolean test(T value);
 }

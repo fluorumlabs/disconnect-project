@@ -244,6 +244,7 @@ public class Observable<VALUE > extends ObservableBase<VALUE> implements Readabl
         void acceptPendingValue() {
             if (hasPendingValue) {
                 pushNewValue(pendingValue, true);
+                clearValue();
                 hasPendingValue = false;
             }
         }

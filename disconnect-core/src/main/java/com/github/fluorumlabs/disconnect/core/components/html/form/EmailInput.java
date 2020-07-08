@@ -1,7 +1,7 @@
 package com.github.fluorumlabs.disconnect.core.components.html.form;
 
+import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
-import js.web.dom.Autocomplete;
 
 import java.util.Optional;
 
@@ -25,12 +25,12 @@ public class EmailInput extends Input{
      * Specifies whether autocomplete is applied to an editable text field.
      */
     @Override
-    public Autocomplete getAutocomplete() {
+    public HtmlComponent.Autocomplete getAutocomplete() {
         return super.getAutocomplete();
     }
 
     @Override
-    public void setAutocomplete(Autocomplete autocomplete) {
+    public void setAutocomplete(HtmlComponent.Autocomplete autocomplete) {
         super.setAutocomplete(autocomplete);
     }
 

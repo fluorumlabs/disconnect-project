@@ -13,7 +13,6 @@ import org.teavm.metaprogramming.reflect.ReflectField;
 import org.teavm.metaprogramming.reflect.ReflectMethod;
 
 import javax.annotation.Nullable;
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -28,19 +27,36 @@ import static org.teavm.metaprogramming.Metaprogramming.*;
 final class Deserializer {
     private Deserializer() {}
 
-    @Meta
-    static native Serializable deserialize(Class<? extends Serializable> clazz, Any object);
+    static Object deserialize(Class<?> clazz, Any object) {
+        if (SerDes.MIRROR_MODE) {
+            return unmirror_(clazz, object);
+        } else {
+            return deserialize_(clazz, object);
+        }
+    }
 
-    private static void deserialize(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
+    @Meta
+    private static native Object deserialize_(Class<?> clazz, Any object);
+
+    private static void deserialize_(ReflectClass<?> clazz, Value<Any> value) {
         Value<Object> result = deserializeValue(clazz, value)
                 .orElseGet(() -> deserializeObject(clazz, value));
         exit(() -> result.get());
     }
 
     @Meta
-    static native List<Serializable> deserializeList(Class<? extends Serializable> clazz, Any object);
+    static native Object unmirror_(Class<?> clazz, Any object);
 
-    private static void deserializeList(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
+    private static void unmirror_(ReflectClass<?> clazz, Value<Any> value) {
+        Value<Object> result = deserializeValue(clazz, value)
+                .orElseGet(() -> unmirrorObject(clazz, value));
+        exit(() -> result.get());
+    }
+
+    @Meta
+    static native List<Object> deserializeList(Class<?> clazz, Any object);
+
+    private static void deserializeList(ReflectClass<?> clazz, Value<Any> value) {
         Value<Object> result = deserializeList(value, clazz);
         exit(() -> result.get());
     }
@@ -54,23 +70,25 @@ final class Deserializer {
     }
 
     @Meta
-    static native Set<Serializable> deserializeSet(Class<? extends Serializable> clazz, Any object);
+    static native Set<Object> deserializeSet(Class<?> clazz, Any object);
 
-    private static void deserializeSet(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
+    private static void deserializeSet(ReflectClass<?> clazz, Value<Any> value) {
         Value<Object> result = deserializeSet(value, clazz);
         exit(() -> result.get());
     }
 
     @Meta
-    static native Map<String, Serializable> deserializeMap(Class<? extends Serializable> clazz, Any object);
+    static native Map<String, Object> deserializeMap(Class<?> clazz, Any object);
 
-    private static void deserializeMap(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
+    private static void deserializeMap(ReflectClass<?> clazz, Value<Any> value) {
         Value<Object> result = deserializeMap(value, clazz);
         exit(() -> result.get());
     }
 
     private static Optional<Value<Object>> deserializeValue(ReflectClass<?> clazz, Value<Any> value) {
-        if (clazz.isEnum()) {
+        if (findClass(Any.class).isAssignableFrom(clazz)) {
+            return Optional.of(emit(() -> value.get()));
+        } else if (clazz.isEnum()) {
             return Optional.of(deserializeEnum(clazz, value));
         } else if (clazz.isArray()) {
             switch (clazz.getComponentType().getName()) {
@@ -143,7 +161,7 @@ final class Deserializer {
     private static Value<Object> deserializeFieldValue(ReflectClass<?> clazz, Value<Any> value) {
         return deserializeValue(clazz, value)
                 .orElseGet(() -> {
-            return emit(() -> value.get() == null ? null : deserialize((Class<? extends Serializable>) value.get().getClass(), value.get()));
+            return emit(() -> value.get() == null ? null : deserialize(value.get().getClass(), value.get().cast()));
         });
     }
 
@@ -167,6 +185,10 @@ final class Deserializer {
         List<BeanProperties.CompileTimeDescriptor> propertyDescriptors = BeanProperties.getCompileTimePropertyDescriptors(clazz);
 
         Value<Object> result = emit(() -> {
+            Object retrieve = SerDes.JAVA_REFERENCE.retrieve(value.get());
+            if (retrieve != null) {
+                return retrieve;
+            }
             try {
                 return clazz.asJavaClass().newInstance();
             } catch (InstantiationException | IllegalAccessException e) {
@@ -190,6 +212,10 @@ final class Deserializer {
         return emit(() -> result.get());
     }
 
+    private static Value<Object> unmirrorObject(ReflectClass<?> clazz, Value<Any> value) {
+        return emit(() -> SerDes.JAVA_REFERENCE.retrieve(value.get()));
+    }
+
     private static Value<Object> deserializeGenericValue(ReflectClass<?> clazz, Value<Any> value, BeanProperties.CompileTimeDescriptor property) {
         String jsonName = property.getJsonName();
         Value<Any> serializedValue = emit(() -> value.get().<Record<Any>>cast().get(jsonName));
@@ -199,15 +225,15 @@ final class Deserializer {
         if (property.getTypeParameters() != null && property.getTypeParameters().length > 0) {
             ReflectClass<?> typeParameter = property.getTypeParameters()[0];
             if (typeParameter != null) {
-                if (findClass(List.class).isAssignableFrom(property.getType()) && findClass(Serializable.class).isAssignableFrom(typeParameter)) {
+                if (findClass(List.class).isAssignableFrom(property.getType())) {
                     deserializedValue = deserializeList(serializedValue, typeParameter);
-                } else if (findClass(Optional.class).isAssignableFrom(property.getType()) && findClass(Serializable.class).isAssignableFrom(typeParameter)) {
+                } else if (findClass(Optional.class).isAssignableFrom(property.getType())) {
                     deserializedValue = deserializeOptional(serializedValue, typeParameter);
                 } else if (findClass(EnumSet.class).isAssignableFrom(property.getType())) {
                     deserializedValue = deserializeEnumSet(serializedValue, typeParameter);
-                } else if (findClass(Set.class).isAssignableFrom(property.getType()) && findClass(Serializable.class).isAssignableFrom(typeParameter)) {
+                } else if (findClass(Set.class).isAssignableFrom(property.getType())) {
                     deserializedValue = deserializeSet(serializedValue, typeParameter);
-                } else if (findClass(Map.class).isAssignableFrom(property.getType()) && property.getTypeParameters().length > 1 && property.getTypeParameters()[1] != null && findClass(Serializable.class).isAssignableFrom(property.getTypeParameters()[1])) {
+                } else if (findClass(Map.class).isAssignableFrom(property.getType()) && property.getTypeParameters().length > 1 && property.getTypeParameters()[1] != null) {
                     ReflectClass<?> mapTypeParameter = property.getTypeParameters()[1];
                     deserializedValue = deserializeMap(serializedValue, mapTypeParameter);
                 } else {
@@ -240,7 +266,7 @@ final class Deserializer {
             for (int i : array.keys().iterable()) {
                 Any serialized = array.get(i);
                 if (serialized != null) {
-                    result.set(i, deserialize((Class<? extends Serializable>) typeParameter.asJavaClass(), serialized));
+                    result.set(i, deserialize(typeParameter.asJavaClass(), serialized));
                 } else {
                     result.set(i, null);
                 }
@@ -256,7 +282,7 @@ final class Deserializer {
                 return Optional.empty();
             }
 
-            return Optional.ofNullable(deserialize((Class<? extends Serializable>) typeParameter.asJavaClass(), value.get()));
+            return Optional.ofNullable(deserialize(typeParameter.asJavaClass(), value.get().cast()));
         });
     }
 
@@ -272,7 +298,7 @@ final class Deserializer {
             for (int i = 0; i < array.getLength(); i++) {
                 Any serialized = array.get(i);
                 if (serialized != null) {
-                    result.add(SerDes.deserialize(serialized, typeParameter.asJavaClass()));
+                    result.add(deserialize(typeParameter.asJavaClass(), serialized.cast()));
                 } else {
                     result.add(null);
                 }
@@ -294,7 +320,7 @@ final class Deserializer {
             for (String key : JsObject.keys(record)) {
                 Any serialized = record.get(key);
                 if (serialized != null) {
-                    result.put(key, SerDes.deserialize(serialized, typeParameter.asJavaClass()));
+                    result.put(key, deserialize(typeParameter.asJavaClass(), serialized.cast()));
                 } else {
                     result.put(key, null);
                 }
@@ -316,7 +342,7 @@ final class Deserializer {
             for (int i = 0; i < array.getLength(); i++) {
                 Any serialized = array.get(i);
                 if (serialized != null) {
-                    result.add(SerDes.deserialize(serialized, typeParameter.asJavaClass()));
+                    result.add(deserialize(typeParameter.asJavaClass(), serialized));
                 } else {
                     result.add(null);
                 }
@@ -350,7 +376,7 @@ final class Deserializer {
             for (int i = 0; i < array.getLength(); i++) {
                 Any serialized = array.get(i);
                 if (serialized != null) {
-                    result[i] = deserialize((Class<? extends Serializable>) itemClass.asJavaClass(), serialized);
+                    result[i] = deserialize(itemClass.asJavaClass(), serialized);
                 } else {
                     result[i] = null;
                 }

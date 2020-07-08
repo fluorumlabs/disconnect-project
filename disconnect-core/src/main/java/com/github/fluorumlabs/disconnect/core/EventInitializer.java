@@ -6,7 +6,6 @@ import js.web.dom.Event;
 import js.web.dom.EventListener;
 import js.web.dom.EventTarget;
 
-import java.io.Serializable;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -22,19 +21,31 @@ public interface EventInitializer<X extends EventTarget> {
 	<T extends Event, E extends ObservableEvent<T>> E createEvent(BiConsumer<X, EventListener<T>> addEventListener,
                                                      BiConsumer<X, EventListener<T>>... addEventListeners);
 
-	<T extends Serializable, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter,
+	<T, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter,
 																				   Consumer<T> setter,
 																				   ObservableEvent<?> event);
 
-	default <T extends Serializable, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter,
+	default <T, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter,
 															  Consumer<T> setter,
 															  String event) {
 		return createObservableValue(getter, setter, createEvent(event));
 	}
 
-	default <T extends Serializable, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter,
+	default <T, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter,
                                                  Consumer<T> setter,
 															  String event, String... altEvents) {
 		return createObservableValue(getter, setter, createEvent(event, altEvents));
 	}
+
+	default <T, E extends ObservableValue<T>> E createObservable(Supplier<T> getter,
+															  String event) {
+		return createObservableValue(getter, (Consumer<T>)NOOP, createEvent(event));
+	}
+
+	default <T, E extends ObservableValue<T>> E createObservable(Supplier<T> getter,
+															  String event, String... altEvents) {
+		return createObservableValue(getter, (Consumer<T>)NOOP, createEvent(event, altEvents));
+	}
+
+	Consumer<?> NOOP = __ -> {};
 }

@@ -60,7 +60,7 @@ public class DisconnectCustomElementAnnotationProcessor extends AbstractProcesso
                             .addModifiers(Modifier.PUBLIC)
                             .returns(ParameterizedTypeName.get(ClassName.get(Class.class),
                                     WildcardTypeName.subtypeOf(Object.class)))
-                            .addStatement("return $T.class", customElement)
+                            .addStatement("return $T.class", ClassName.bestGuess(customElement.getQualifiedName().toString()))
                             .build();
 
                     TypeSpec customElementRegistration =

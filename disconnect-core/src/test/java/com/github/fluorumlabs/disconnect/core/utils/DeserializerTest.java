@@ -11,7 +11,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.Serializable;
 import java.util.*;
 import java.util.function.BiFunction;
 
@@ -23,22 +22,22 @@ public class DeserializerTest {
 
     @Test
     public void deserialize() {
-        verify(null,Integer.class, SerDes::deserialize);
+        verify((Integer)null,Integer.class, SerDes::deserialize);
         verify("Test",String.class, SerDes::deserialize);
         verify(new Primitives((byte)1,'a',3,(short)4,5,6,true,TestEnum.VALUE_A,"Test",new int[]{1,2,3}), Primitives.class, SerDes::deserialize);
     }
 
     @Test
     public void deserializeList() {
-        verify(null,Integer.class, SerDes::deserializeList);
-        verify(Collections.emptyList(),Integer.class, SerDes::deserializeList);
+        verify((List<Integer>)null,Integer.class, SerDes::deserializeList);
+        verify(Collections.<Integer>emptyList(),Integer.class, SerDes::deserializeList);
         verify(Collections.singletonList(1),Integer.class, SerDes::deserializeList);
         verify(Arrays.asList(1,2,3),Integer.class, SerDes::deserializeList);
     }
 
     @Test
     public void deserializeEnumSet() {
-        verify(null,TestEnum.class, SerDes::deserializeEnumSet);
+        verify((EnumSet<TestEnum>)null,TestEnum.class, SerDes::deserializeEnumSet);
         verify(EnumSet.noneOf(TestEnum.class),TestEnum.class, SerDes::deserializeEnumSet);
         verify(EnumSet.of(TestEnum.VALUE_A),TestEnum.class, SerDes::deserializeEnumSet);
         verify(EnumSet.allOf(TestEnum.class),TestEnum.class, SerDes::deserializeEnumSet);
@@ -51,8 +50,8 @@ public class DeserializerTest {
         testSet1.add(2);
         testSet1.add(1);
 
-        verify(null,Integer.class, SerDes::deserializeSet);
-        verify(Collections.emptySet(),Integer.class, SerDes::deserializeSet);
+        verify((Set<Integer>)null,Integer.class, SerDes::deserializeSet);
+        verify(Collections.<Integer>emptySet(),Integer.class, SerDes::deserializeSet);
         verify(Collections.singleton(1),Integer.class, SerDes::deserializeSet);
     }
 
@@ -65,8 +64,8 @@ public class DeserializerTest {
         testMap2.put("a",7);
         testMap2.put("b",9);
 
-        verify(null,Integer.class, SerDes::deserializeMap);
-        verify(Collections.emptyMap(),Integer.class, SerDes::deserializeMap);
+        verify((Map<String,Integer>)null,Integer.class, SerDes::deserializeMap);
+        verify(Collections.<String,Integer>emptyMap(),Integer.class, SerDes::deserializeMap);
         verify(testMap1,Integer.class, SerDes::deserializeMap);
         verify(testMap2,Integer.class, SerDes::deserializeMap);
     }
@@ -88,10 +87,10 @@ public class DeserializerTest {
         verify(new BeanWithMap(testMap),BeanWithMap.class, SerDes::deserialize);
     }
 
-    private <T, R> void verify(Object test, Class<T> type, BiFunction<Any,Class<T>,R> deserializer) {
+    private <T, R> void verify(R test, Class<T> type, BiFunction<Serialized<R>,Class<T>,R> deserializer) {
         Any serialized = SerDes.serialize(test);
         String serializedValue = JSON.stringify(serialized);
-        Object deserialized = deserializer.apply(serialized, type);
+        Object deserialized = deserializer.apply(serialized.cast(), type);
         String deserializedValue = JSON.stringify(SerDes.serialize(deserialized));
 
         Assert.assertThat("Value was not properly deserialized", deserializedValue, Is.is(serializedValue));
@@ -104,7 +103,7 @@ public class DeserializerTest {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class Primitives implements Serializable {
+    public static class Primitives {
         private byte aByte;
         private char aChar;
         private int anInt;
@@ -121,14 +120,14 @@ public class DeserializerTest {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class BeanWithList implements Serializable {
+    public static class BeanWithList {
         private List<String> values;
     }
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class BeanWithMap implements Serializable {
+    public static class BeanWithMap {
         private Map<String, String> values;
     }
 

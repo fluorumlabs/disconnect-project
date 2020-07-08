@@ -8,12 +8,13 @@ import com.github.fluorumlabs.disconnect.core.internals.ComponentReferenceHolder
 import com.github.fluorumlabs.disconnect.core.internals.TagRegistry;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableEvent;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
+import js.lang.Unknown;
+import js.util.collections.Array;
 import js.web.dom.Element;
 import js.web.dom.Event;
 import js.web.dom.EventListener;
 import js.web.dom.Window;
 
-import java.io.Serializable;
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.Stream;
@@ -28,7 +29,7 @@ public class Component<X extends Element> extends LazyEventInitializer<X> implem
         ElementApi<X>,
         ElementEvents<X> {
     private final X element;
-    private final ComponentList<Component<?>> children;
+    private ComponentList<Component<?>> children;
 
     @SuppressWarnings("unchecked")
     protected Component() {
@@ -45,6 +46,14 @@ public class Component<X extends Element> extends LazyEventInitializer<X> implem
         children = new ParentNodeBackedComponentList<>(element);
 
         initializer();
+    }
+
+    public ComponentList<Component<?>> getComponentList() {
+        return children;
+    }
+
+    protected void setComponentList(ComponentList<Component<?>> children) {
+        this.children = children;
     }
 
     public ComponentList<Component<?>> query(String selector) {
@@ -886,13 +895,24 @@ public class Component<X extends Element> extends LazyEventInitializer<X> implem
     }
 
     @Override
-    public <T extends Serializable, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter, Consumer<T> setter,
+    public <T, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter, Consumer<T> setter,
                                                                                           ObservableEvent<?> event) {
         return createObservableValue(event, () -> {
-            ObservableValue<T> observableValue = ObservableValue.of(getter.get());
-            observableValue.accept(setter);
+            // Prevent recursive updates
+            Array<Unknown> updateInProgress = Array.of(Unknown.of(false));
 
-            event.accept(evt -> observableValue.set(getter.get()));
+            ObservableValue<T> observableValue = ObservableValue.of(getter.get());
+            observableValue.accept(v -> {
+                if (!updateInProgress.get(0).booleanValue()) {
+                    setter.accept(v);
+                }
+            });
+
+            event.accept(evt -> {
+                updateInProgress.set(0, Unknown.of(true));
+                observableValue.set(getter.get());
+                updateInProgress.set(0, Unknown.of(false));
+            });
             return (E) observableValue;
         });
     }

@@ -19,8 +19,9 @@ import javax.annotation.Nullable;
     version = "^8.1.2"
 )
 @Import(
-    symbols = {"Highcharts as Highcharts_Highcharts"},
-    module = "highcharts/es-modules/masters/highcharts.src.js"
+    symbols = {"Highcharts_Highcharts"},
+    module = "highcharts/es-modules/masters/highcharts.src.js",
+    defaultExport = true
 )
 @Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"

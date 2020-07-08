@@ -20,6 +20,16 @@ public interface Unknown extends Any {
     }
 
 	@JSBody(params = "value", script = "return value")
+    static Unknown of(Any value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+	@JSBody(params = "value", script = "return value")
+    static Unknown of(Any[] value) {
+        throw new UnsupportedOperationException("Available only in JavaScript");
+    }
+
+	@JSBody(params = "value", script = "return value")
     static Unknown of(double[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
@@ -161,6 +171,9 @@ public interface Unknown extends Any {
 	@JSBody(script = "return !!this")
     boolean booleanValue();
 
+	@JSBody(script = "return this")
+	<T extends Any> T value();
+
 	/**
 	 * String value string.
 	 *
@@ -169,29 +182,32 @@ public interface Unknown extends Any {
 	@JSBody(script = "return ''+this")
     String stringValue();
 
-	@JSBody(script = "return this")
+	@JSBody(script = "return [].concat(this)")
     String[] stringArrayValue();
 
-	@JSBody(script = "return this")
+	@JSBody(script = "return [].concat(this)")
     boolean[] booleanArrayValue();
 
-	@JSBody(script = "return this")
+	@JSBody(script = "return [].concat(this)")
     byte[] byteArrayValue();
 
-	@JSBody(script = "return this")
+	@JSBody(script = "return [].concat(this)")
     char[] charArrayValue();
 
-	@JSBody(script = "return this")
+	@JSBody(script = "return [].concat(this)")
     float[] floatArrayValue();
 
-	@JSBody(script = "return this")
+	@JSBody(script = "return [].concat(this)")
     double[] doubleArrayValue();
 
-	@JSBody(script = "return this")
+	@JSBody(script = "return [].concat(this)")
     short[] shortArrayValue();
 
-	@JSBody(script = "return this")
+	@JSBody(script = "return [].concat(this)")
     int[] intArrayValue();
+
+	@JSBody(script = "return [].concat(this)")
+    <T extends Any> T[] arrayValue();
 
 	/**
 	 * Is string boolean.
@@ -216,6 +232,14 @@ public interface Unknown extends Any {
 	 */
 	@JSBody(script = "return typeof this === 'boolean'")
     boolean isBoolean();
+
+	/**
+	 * Is array boolean.
+	 *
+	 * @return the boolean
+	 */
+	@JSBody(script = "return Array.isArray(this)")
+    boolean isArray();
 
 	/**
 	 * Equals boolean.

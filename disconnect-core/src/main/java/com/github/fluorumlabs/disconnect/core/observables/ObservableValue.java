@@ -8,12 +8,15 @@ public class ObservableValue<VALUE > extends Observable<VALUE> {
         setCurrentValue(value);
     }
 
+    ObservableValue() {
+    }
+
     public static <VALUE > ObservableValue<VALUE> of(VALUE value) {
         return new ObservableValue<>(value);
     }
 
     public static <VALUE > ObservableValue<VALUE> empty() {
-        return new ObservableValue<>(null);
+        return new ObservableValue<>();
     }
 
     public void set(VALUE newValue) {

@@ -13,6 +13,7 @@
         <module>disconnect-maven-plugin</module>
         <module>disconnect-bom</module>
         <module>disconnect</module>
+        <module>disconnect-wca-binding-generator</module>
         <module>disconnect-binding-generator</module>
         <module>disconnect-spring-integration</module>
         <module>disconnect-highcharts</module>

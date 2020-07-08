@@ -8,7 +8,6 @@ import js.web.dom.Event;
 import js.web.dom.EventListener;
 import js.web.dom.Window;
 
-import java.io.Serializable;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -48,7 +47,7 @@ public class ApplicationWindow extends LazyEventInitializer<Window> implements
     }
 
     @Override
-    public <T extends Serializable, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter, Consumer<T> setter,
+    public <T, E extends ObservableValue<T>> E createObservableValue(Supplier<T> getter, Consumer<T> setter,
                                                                                           ObservableEvent<?> event) {
         return createObservableValue(event, () -> {
             ObservableValue<T> observableValue = ObservableValue.of(getter.get());

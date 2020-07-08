@@ -1,6 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.components.html.form;
 
-import js.web.dom.Autocomplete;
+import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 
 /**
  * Created by Artem Godin on 5/14/2020.
@@ -14,12 +14,12 @@ public class HiddenValue extends Input{
      * Specifies whether autocomplete is applied to an editable text field.
      */
     @Override
-    public Autocomplete getAutocomplete() {
+    public HtmlComponent.Autocomplete getAutocomplete() {
         return super.getAutocomplete();
     }
 
     @Override
-    public void setAutocomplete(Autocomplete autocomplete) {
+    public void setAutocomplete(HtmlComponent.Autocomplete autocomplete) {
         super.setAutocomplete(autocomplete);
     }
 }

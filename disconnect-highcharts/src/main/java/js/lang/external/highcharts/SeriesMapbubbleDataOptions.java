@@ -2,11 +2,11 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
-import js.lang.Unknown /* ( ColorString | GradientColorObject | PatternObject ) */;
+import js.lang.Unknown;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * (Highmaps) An array of data points for the series. For the <code>mapbubble</code> series

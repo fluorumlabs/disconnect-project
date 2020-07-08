@@ -2,10 +2,10 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * (Highcharts, Highstock) Options for the series data sorting.

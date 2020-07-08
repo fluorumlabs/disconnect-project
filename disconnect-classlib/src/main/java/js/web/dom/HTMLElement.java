@@ -31,16 +31,16 @@ public interface HTMLElement extends Element, DocumentAndElementEventHandlers, E
     String getAccessKeyLabel();
 
     @JSProperty
-    Autocapitalize getAutocapitalize();
+    String getAutocapitalize();
 
     @JSProperty
-    void setAutocapitalize(Autocapitalize autocapitalize);
+    void setAutocapitalize(String autocapitalize);
 
     @JSProperty
-    Dir getDir();
+    String getDir();
 
     @JSProperty
-    void setDir(Dir dir);
+    void setDir(String dir);
 
     @JSProperty
     boolean isDraggable();

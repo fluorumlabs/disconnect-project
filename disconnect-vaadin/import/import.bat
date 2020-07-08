@@ -1,3 +1,3 @@
 @echo off
-echo ---[ Importing %1 ]---
-call java -jar %cd%\..\..\disconnect-binding-generator\target\parse-dts.jar -i %cd%\node_modules\%1 -p js.lang.external -o %cd%\..
+call java -jar %cd%\..\..\disconnect-wca-binding-generator\target\parse-wca.jar -jp com.github.fluorumlabs.disconnect -jsp js.lang.external -i @vaadin/vaadin@next -o %cd%\.. -q
+

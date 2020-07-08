@@ -6,6 +6,7 @@ import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.containers.ArrayLikeBackedComponentList;
 import com.github.fluorumlabs.disconnect.core.containers.ComponentList;
 import com.github.fluorumlabs.disconnect.core.internals.TagRegistry;
+import com.github.fluorumlabs.disconnect.core.utils.LowerCase;
 import js.lang.JsDate;
 import js.lang.Unknown;
 import js.web.dom.*;
@@ -48,12 +49,12 @@ public class Input extends HtmlComponent<HTMLInputElement> {
     /**
      * Specifies whether autocomplete is applied to an editable text field.
      */
-    protected Autocomplete getAutocomplete() {
-        return getElement().getAutocomplete();
+    protected HtmlComponent.Autocomplete getAutocomplete() {
+        return LowerCase.parse(Autocomplete.class, getElement().getAutocomplete());
     }
 
-    protected void setAutocomplete(Autocomplete autocomplete) {
-        getElement().setAutocomplete(autocomplete);
+    protected void setAutocomplete(HtmlComponent.Autocomplete autocomplete) {
+        getElement().setAutocomplete(LowerCase.of(autocomplete));
     }
 
     /**

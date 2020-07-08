@@ -2,6 +2,7 @@ package com.github.fluorumlabs.disconnect.core.utils;
 
 import js.lang.Any;
 import js.lang.Unknown;
+import js.util.JS;
 import js.util.Record;
 import js.util.collections.Array;
 import org.teavm.metaprogramming.CompileTime;
@@ -34,7 +35,9 @@ final class Serializer {
     }
 
     private static Optional<Value<Any>> serializeValue(ReflectClass<?> clazz, Value<Object> value) {
-        if (clazz.isEnum()) {
+        if (findClass(Any.class).isAssignableFrom(clazz)) {
+            return Optional.of(emit(() -> (Any)value.get()));
+        } else if (clazz.isEnum()) {
             return Optional.of(serializeEnum(value));
         } else if (clazz.isArray()) {
             switch (clazz.getComponentType().getName()) {
@@ -76,7 +79,7 @@ final class Serializer {
             case "java.util.Date":
                 return Optional.of(emit(() -> value.get() == null ? null : Unknown.of(((Date)(value.get())).getTime())));
             case "java.util.Optional":
-                return Optional.of(emit(() -> value.get() == null ? null : ((Optional<Object>)value.get()).map(SerDes::serialize).orElse(null)));
+                return Optional.of(emit(() -> value.get() == null ? null : ((Optional<Object>)value.get()).map(v -> serialize(v.getClass(), v)).orElse(null)));
             case "~Z":
             case "boolean":
             case "java.lang.Boolean":
@@ -124,7 +127,20 @@ final class Serializer {
     private static Value<Any> serializeObject(ReflectClass<?> clazz, Value<Object> value) {
         List<BeanProperties.CompileTimeDescriptor> propertyDescriptors = BeanProperties.getCompileTimePropertyDescriptors(clazz);
 
-        Value<Record<Any>> result = emit(() -> Any.empty());
+        Value<Record<Any>> result = emit(() -> {
+            if (SerDes.MIRROR_MODE) {
+                Record<Any> retrieved = JS.nullify(SerDes.JS_REFERENCE.retrieve(value.get()));
+                if (retrieved != null) {
+                    return retrieved;
+                }
+                retrieved = Any.empty();
+                SerDes.JS_REFERENCE.store(value.get(), retrieved);
+                SerDes.JAVA_REFERENCE.store(retrieved, value.get());
+                return retrieved;
+            } else {
+                return Any.empty();
+            }
+        });
 
         for (BeanProperties.CompileTimeDescriptor property : propertyDescriptors) {
             if (property.isSerializable() && property.isReadable()) {
@@ -199,7 +215,7 @@ final class Serializer {
 
             Record<Any> result = Any.empty();
             for (Map.Entry<String, Object> entry : ((Map<String,Object>)value.get()).entrySet()) {
-                result.set(entry.getKey(), entry.getValue() == null ? null : SerDes.serialize(entry.getValue()));
+                result.set(entry.getKey(), entry.getValue() == null ? null : serialize(entry.getValue().getClass(), entry.getValue()));
             }
             return result;
         });

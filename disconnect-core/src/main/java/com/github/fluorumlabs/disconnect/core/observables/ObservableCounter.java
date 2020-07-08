@@ -14,7 +14,7 @@ public class ObservableCounter extends Observable<Integer> {
 
     private ObservableCounter(int initialValue) {
         this.initialValue = initialValue;
-        setCurrentValue(initialValue);
+        pushNewValue(initialValue);
 
         initialForked = Lazy.from(() -> when(v -> v == initialValue));
         greaterForked = Lazy.from(() -> when(v -> v > initialValue));

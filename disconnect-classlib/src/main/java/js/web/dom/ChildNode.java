@@ -1,7 +1,6 @@
 package js.web.dom;
 
 import org.teavm.jso.JSBody;
-import org.teavm.jso.JSByRef;
 
 
 public interface ChildNode extends Node {
@@ -37,9 +36,9 @@ public interface ChildNode extends Node {
      * <p>
      * Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
      */
-    @JSBody(params = "nodes", script = "return this.replaceWith().apply(this, nodes)")
+    @JSBody(params = "nodes", script = "return this.replaceWith.apply(this, nodes)")
     void replaceWith(String... nodes);
 
-    @JSBody(params = "nodes", script = "return this.replaceWith().apply(this, nodes)")
+    @JSBody(params = "nodes", script = "return this.replaceWith.apply(this, nodes)")
     void replaceWith(Node... nodes);
 }

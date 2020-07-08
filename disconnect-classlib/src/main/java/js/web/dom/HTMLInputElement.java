@@ -55,10 +55,10 @@ public interface HTMLInputElement extends HTMLElement {
      * Specifies whether autocomplete is applied to an editable text field.
      */
     @JSProperty
-    Autocomplete getAutocomplete();
+    String getAutocomplete();
 
     @JSProperty
-    void setAutocomplete(Autocomplete autocomplete);
+    void setAutocomplete(String autocomplete);
 
     /**
      * Provides a way to direct a user to a specific field when a document loads. This can provide both direction and convenience for a user, reducing the need to click or tab to a field when a page opens. This attribute is true when present on an element, and false when missing.
