@@ -160,6 +160,20 @@ public class SlotComponentList<E extends Element, T extends Component<? extends 
         return TagRegistry.recover(previous);
     }
 
+    @Override
+    public boolean remove(Object o) {
+        if (o instanceof HasElement) {
+            E element = ((T) o).getElement();
+            if (element.getParentNode()==root
+                    && slotName.equals(element.getSlot())) {
+                root.removeChild(element);
+                element.setSlot("");
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * {@inheritDoc}
      *

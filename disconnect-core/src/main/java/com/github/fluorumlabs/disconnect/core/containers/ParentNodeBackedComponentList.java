@@ -154,6 +154,18 @@ public class ParentNodeBackedComponentList<E extends Element, T extends Componen
         return TagRegistry.recover(previous);
     }
 
+    @Override
+    public boolean remove(Object o) {
+        if (o instanceof HasElement) {
+            E element = ((T) o).getElement();
+            if (element.getParentNode()==parentNode) {
+                parentNode.removeChild(element);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ComponentList<T> query(String selector) {
         return new ArrayLikeBackedComponentList<>(parentNode.querySelectorAll(selector));
     }

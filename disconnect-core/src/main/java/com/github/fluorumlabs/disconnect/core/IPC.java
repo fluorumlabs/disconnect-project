@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.core;
 
+import com.github.fluorumlabs.disconnect.core.internals.DisconnectConfig;
 import com.github.fluorumlabs.disconnect.core.utils.Mirrored;
 import com.github.fluorumlabs.disconnect.core.utils.SerDes;
 import com.github.fluorumlabs.disconnect.core.utils.Serialized;
@@ -75,7 +76,7 @@ public class IPC {
 		TASKS.put(id, callback);
 
 		Worker worker = WORKERS.computeIfAbsent(endpoint, key -> {
-			Worker newWorker = Worker.create("bin/" + endpoint);
+			Worker newWorker = Worker.create(DisconnectConfig.getWebHost()+"/bin/" + endpoint);
 			newWorker.addMessageEventListener(IPC::handleResponse);
 			return newWorker;
 		});
