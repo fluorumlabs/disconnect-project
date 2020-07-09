@@ -1,7 +1,0 @@
-{
-    "license": "UNLICENSED",
-    "private": "true",
-    "dependencies": {
-        "@vaadin/vaadin": "next"
-    }
-}
