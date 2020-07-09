@@ -1,8 +1,11 @@
 package com.github.fluorumlabs.disconnect.core;
 
-import com.github.fluorumlabs.disconnect.core.adapters.ObjectAdapter;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectConfig;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
+import com.github.fluorumlabs.disconnect.core.utils.BeanProperties;
+import com.github.fluorumlabs.disconnect.core.utils.Mirrored;
+import com.github.fluorumlabs.disconnect.core.utils.SerDes;
+import com.github.fluorumlabs.disconnect.core.utils.Serialized;
 import js.lang.Any;
 import js.lang.JsObject;
 import js.lang.Unknown;
@@ -23,7 +26,7 @@ public class RPC {
 	public static final String ENDPOINT = "/rpc";
 
 	public static void callPostIgnore(String endpoint, Serializable arguments) {
-		String payload = JSON.stringify(convertToArray(ObjectMirror.from(arguments)));
+		String payload = JSON.stringify(convertToArray(SerDes.serialize(arguments)));
 
 		try {
 			callPostBackend(endpoint, payload);
@@ -33,7 +36,7 @@ public class RPC {
 	}
 
 	public static void callGetIgnore(String endpoint, Serializable arguments) {
-		String payload = JSON.stringify(convertToArray(ObjectMirror.from(arguments)));
+		String payload = JSON.stringify(convertToArray(SerDes.serialize(arguments)));
 
 		try {
 			callGetBackend(endpoint, payload);
@@ -44,7 +47,7 @@ public class RPC {
 
 	public static <T extends Serializable> Stream<T> callSse(String endpoint, Serializable arguments,
 										 Serializable resultBuffer) {
-		String payload = DisconnectUtils.base64UrlEncode(JSON.stringify(convertToArray(ObjectMirror.from(arguments))));
+		String payload = DisconnectUtils.base64UrlEncode(JSON.stringify(convertToArray(SerDes.serialize(arguments))));
 		String url = DisconnectConfig.getRpcHost() + endpoint + "?payload=" + payload;
 
 		AsyncSpliterator<T> asyncSpliterator = new AsyncSpliterator<>();
@@ -55,16 +58,18 @@ public class RPC {
 			asyncSpliterator.completeExceptionally(new ConnectionClosedException());
 		});
 		eventSource.addMessageEventListener(evt -> {
-			RPCExceptionResult exceptionResult = new RPCExceptionResult();
 			Any returnValue = JSON.parse(evt.getData().stringValue());
-			JsObject.assign(ObjectMirror.from(exceptionResult), returnValue);
+			RPCExceptionResult exceptionResult = SerDes.deserialize(returnValue.cast(), RPCExceptionResult.class);
+
 			if (exceptionResult.exceptionClass != null) {
 				asyncSpliterator.completeExceptionally(new ServerSideException(exceptionResult.exceptionClass,
 						exceptionResult.exceptionMessage));
 				eventSource.close();
 			} else {
-				JsObject.assign(ObjectMirror.from(resultBuffer), returnValue);
-				asyncSpliterator.push(ObjectAdapter.readField(resultBuffer.getClass(), resultBuffer, "result"));
+				Mirrored<Serializable> mirror = SerDes.mirror(resultBuffer);
+				JsObject.assign(mirror, returnValue);
+				SerDes.deserialize(mirror.cast(), resultBuffer.getClass());
+				asyncSpliterator.push(BeanProperties.read(resultBuffer.getClass(), resultBuffer, "result"));
 			}
 		});
 
@@ -72,16 +77,17 @@ public class RPC {
 	}
 
 	public static <T extends Serializable> void callPost(String endpoint, Serializable arguments, Serializable result) {
-		String payload = JSON.stringify(convertToArray(ObjectMirror.from(arguments)));
+		String payload = JSON.stringify(convertToArray(SerDes.serialize(arguments)));
 
 		try {
-			RPCExceptionResult exceptionResult = new RPCExceptionResult();
 			Any returnValue = JSON.parse(callPostBackend(endpoint, payload));
-			JsObject.assign(ObjectMirror.from(exceptionResult), returnValue);
+			RPCExceptionResult exceptionResult = SerDes.deserialize(returnValue.cast(), RPCExceptionResult.class);
 			if (exceptionResult.exceptionClass != null) {
 				throw new ServerSideException(exceptionResult.exceptionClass, exceptionResult.exceptionMessage);
 			}
-			JsObject.assign(ObjectMirror.from(result), returnValue);
+			Mirrored<Serializable> mirror = SerDes.mirror(result);
+			JsObject.assign(mirror, returnValue);
+			SerDes.deserialize(mirror.cast(), result.getClass());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -89,12 +95,11 @@ public class RPC {
 
 	public static void callPost(String endpoint, Serializable arguments) {
 		RPCExceptionResult result = new RPCExceptionResult();
-		String payload = JSON.stringify(convertToArray(ObjectMirror.from(arguments)));
+		String payload = JSON.stringify(convertToArray(SerDes.serialize(arguments)));
 
 		try {
-			RPCExceptionResult exceptionResult = new RPCExceptionResult();
 			Any returnValue = JSON.parse(callPostBackend(endpoint, payload));
-			JsObject.assign(ObjectMirror.from(exceptionResult), returnValue);
+			RPCExceptionResult exceptionResult = SerDes.deserialize(returnValue.cast(), RPCExceptionResult.class);
 			if (exceptionResult.exceptionClass != null) {
 				throw new ServerSideException(exceptionResult.exceptionClass, exceptionResult.exceptionMessage);
 			}
@@ -127,28 +132,28 @@ public class RPC {
 
 	public static <T extends Serializable> void callGet(String endpoint, Serializable arguments,
 														Serializable result) {
-		String payload = DisconnectUtils.base64UrlEncode(JSON.stringify(convertToArray(ObjectMirror.from(arguments))));
+		String payload = DisconnectUtils.base64UrlEncode(JSON.stringify(convertToArray(SerDes.serialize(arguments))));
 
 		try {
-			RPCExceptionResult exceptionResult = new RPCExceptionResult();
 			Any returnValue = JSON.parse(callGetBackend(endpoint, payload));
-			JsObject.assign(ObjectMirror.from(exceptionResult), returnValue);
+			RPCExceptionResult exceptionResult = SerDes.deserialize(returnValue.cast(), RPCExceptionResult.class);
 			if (exceptionResult.exceptionClass != null) {
 				throw new ServerSideException(exceptionResult.exceptionClass, exceptionResult.exceptionMessage);
 			}
-			JsObject.assign(ObjectMirror.from(result), returnValue);
+			Mirrored<Serializable> mirror = SerDes.mirror(result);
+			JsObject.assign(mirror, returnValue);
+			SerDes.deserialize(mirror.cast(), result.getClass());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	public static void callGet(String endpoint, Serializable arguments) {
-		String payload = DisconnectUtils.base64UrlEncode(JSON.stringify(convertToArray(ObjectMirror.from(arguments))));
+		String payload = DisconnectUtils.base64UrlEncode(JSON.stringify(convertToArray(SerDes.serialize(arguments))));
 
 		try {
-			RPCExceptionResult exceptionResult = new RPCExceptionResult();
 			Any returnValue = JSON.parse(callGetBackend(endpoint, payload));
-			JsObject.assign(ObjectMirror.from(exceptionResult), returnValue);
+			RPCExceptionResult exceptionResult = SerDes.deserialize(returnValue.cast(), RPCExceptionResult.class);
 			if (exceptionResult.exceptionClass != null) {
 				throw new ServerSideException(exceptionResult.exceptionClass, exceptionResult.exceptionMessage);
 			}
@@ -181,5 +186,5 @@ public class RPC {
 	}
 
 	@JSBody(params = "x", script = "return Object.entries(x).reduce(function(ini,[k,v]) { ini[k]=v; return ini },[])")
-	private static native Unknown convertToArray(ObjectMirror<?> x);
+	private static native Unknown convertToArray(Serialized<?> x);
 }

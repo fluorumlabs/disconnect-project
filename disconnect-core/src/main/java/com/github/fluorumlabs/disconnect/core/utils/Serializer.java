@@ -1,5 +1,6 @@
 package com.github.fluorumlabs.disconnect.core.utils;
 
+import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.JS;
@@ -11,6 +12,7 @@ import org.teavm.metaprogramming.ReflectClass;
 import org.teavm.metaprogramming.Value;
 import org.teavm.metaprogramming.reflect.ReflectField;
 import org.teavm.metaprogramming.reflect.ReflectMethod;
+import org.teavm.platform.Platform;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -25,10 +27,17 @@ import static org.teavm.metaprogramming.Metaprogramming.*;
 final class Serializer {
     private Serializer() {}
 
-    @Meta
-    static native Any serialize(Class<?> clazz, Object object);
+    static Any serialize(Class<?> clazz, Object object) {
+        if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
+            return DisconnectUtils.deepCopy((Any) object).cast();
+        }
+        return serialize_(clazz, object);
+    }
 
-    private static void serialize(ReflectClass<?> clazz, Value<Object> value) {
+    @Meta
+    private static native Any serialize_(Class<?> clazz, Object object);
+
+    private static void serialize_(ReflectClass<?> clazz, Value<Object> value) {
         Value<Any> result = serializeValue(clazz, value)
                 .orElseGet(() -> serializeObject(clazz, value));
         exit(() -> result.get());

@@ -490,6 +490,11 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 		try {
 			for (File file : FileUtils.listFiles(destination, new String[]{"html", "json"}, true)) {
 				String content = FileUtils.readFileToString(file, "UTF-8");
+
+				for (String stringPropertyName : mavenProject.getProperties().stringPropertyNames()) {
+					content = StringUtils.replace(content, "${"+stringPropertyName+"}", mavenProject.getProperties().getProperty(stringPropertyName));
+				}
+
 				String replacedContent = StringUtils.replace(content, "${BUILD_TIMESTAMP}", getBuildTimestamp());
 				FileUtils.writeStringToFile(file, replacedContent, "UTF-8");
 			}

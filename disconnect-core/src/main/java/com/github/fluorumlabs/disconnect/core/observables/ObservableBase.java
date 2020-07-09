@@ -9,12 +9,13 @@ import javax.annotation.Nullable;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 
 abstract class ObservableBase<VALUE> {
-    private final Vector<WeakReference<Consumer<VALUE>>> consumers = new Vector<>(1);
+    private final List<WeakReference<Consumer<VALUE>>> consumers = new ArrayList<>(1);
     private final ReferenceQueue<Consumer<VALUE>> queue = new ReferenceQueue<>();
     @Nullable
     private VALUE currentValue = null;
@@ -29,28 +30,28 @@ abstract class ObservableBase<VALUE> {
     }
 
     void acceptImplQuiet(Consumer<VALUE> consumer) {
-        synchronized (consumers) {
+        //synchronized (consumers) {
             consumers.add(new WeakReference<>(consumer, queue));
-        }
+        //}
     }
 
     void markAsDirty() {
         // Cleanup first
         for (Reference<? extends Consumer<VALUE>> x; (x = queue.poll()) != null; ) {
-            synchronized (consumers) {
-                consumers.removeElement(x);
-            }
+            //synchronized (consumers) {
+                consumers.remove(x);
+            //}
         }
         if (hasValue()) {
             VALUE value = currentValue;
-            synchronized (consumers) {
+            //synchronized (consumers) {
                 for (WeakReference<Consumer<VALUE>> weakReference : consumers) {
                     Consumer<VALUE> consumer = weakReference.get();
                     if (consumer != null) {
                         consumer.accept(value);
                     }
                 }
-            }
+            //}
         }
     }
 

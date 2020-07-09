@@ -1,16 +1,16 @@
 package com.github.fluorumlabs.disconnect.core.utils;
 
+import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
 import js.lang.Any;
 import js.lang.JsObject;
 import js.lang.Unknown;
+import js.util.JS;
 import js.util.Record;
 import js.util.collections.Array;
-import org.teavm.metaprogramming.CompileTime;
-import org.teavm.metaprogramming.Meta;
-import org.teavm.metaprogramming.ReflectClass;
-import org.teavm.metaprogramming.Value;
+import org.teavm.metaprogramming.*;
 import org.teavm.metaprogramming.reflect.ReflectField;
 import org.teavm.metaprogramming.reflect.ReflectMethod;
+import org.teavm.platform.Platform;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.ParameterizedType;
@@ -29,8 +29,14 @@ final class Deserializer {
 
     static Object deserialize(Class<?> clazz, Any object) {
         if (SerDes.MIRROR_MODE) {
+            if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
+                return (Any) object;
+            }
             return unmirror_(clazz, object);
         } else {
+            if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
+                return DisconnectUtils.deepCopy((Any) object).cast();
+            }
             return deserialize_(clazz, object);
         }
     }
@@ -57,8 +63,8 @@ final class Deserializer {
     static native List<Object> deserializeList(Class<?> clazz, Any object);
 
     private static void deserializeList(ReflectClass<?> clazz, Value<Any> value) {
-        Value<Object> result = deserializeList(value, clazz);
-        exit(() -> result.get());
+        Value<Object> result = deserializeArray(value, clazz);
+        exit(() -> result.get()==null?null:Arrays.asList((Object[])result.get()));
     }
 
     @Meta
@@ -117,14 +123,14 @@ final class Deserializer {
                     return Optional.of(emit(() -> value.get() == null ? null : value.get().<Unknown>cast().doubleArrayValue()));
 
             }
-            return Optional.of(deserializeArray(clazz.getComponentType(), value));
+            return Optional.of(deserializeArray(value, clazz.getComponentType()));
         }
 
         switch (clazz.getName()) {
             case "java.lang.String":
                 return Optional.of(emit(() -> value.get() == null ? null : value.get().<Unknown>cast().stringValue()));
             case "java.util.Date":
-                return Optional.of(emit(() -> value.get() == null ? null : Unknown.of(((Date)(value.get())).getTime())));
+                return Optional.of(emit(() -> value.get() == null ? null : new Date(Math.round(value.get().<Unknown>cast().doubleValue()))));
             case "~Z":
             case "boolean":
             case "java.lang.Boolean":
@@ -161,7 +167,7 @@ final class Deserializer {
     private static Value<Object> deserializeFieldValue(ReflectClass<?> clazz, Value<Any> value) {
         return deserializeValue(clazz, value)
                 .orElseGet(() -> {
-            return emit(() -> value.get() == null ? null : deserialize(value.get().getClass(), value.get().cast()));
+            return emit(() -> value.get() == null ? null : deserialize(clazz.asJavaClass(), value.get().cast()));
         });
     }
 
@@ -218,15 +224,26 @@ final class Deserializer {
 
     private static Value<Object> deserializeGenericValue(ReflectClass<?> clazz, Value<Any> value, BeanProperties.CompileTimeDescriptor property) {
         String jsonName = property.getJsonName();
-        Value<Any> serializedValue = emit(() -> value.get().<Record<Any>>cast().get(jsonName));
+        Value<Any> serializedValue = emit(() -> {
+            Any any = value.get().<Record<Any>>cast().get(jsonName);
+            return JS.isUndefinedOrNull(any)?null:any;
+        });
+
+        if (findClass(Any.class).isAssignableFrom(property.getType())) {
+            return emit(() -> serializedValue.get());
+        }
 
         Value<Object> deserializedValue;
+
+        String propertyName = property.getName();
+        String className = clazz.getName();
 
         if (property.getTypeParameters() != null && property.getTypeParameters().length > 0) {
             ReflectClass<?> typeParameter = property.getTypeParameters()[0];
             if (typeParameter != null) {
                 if (findClass(List.class).isAssignableFrom(property.getType())) {
-                    deserializedValue = deserializeList(serializedValue, typeParameter);
+                    Value<Object> deserializedArray = deserializeArray(serializedValue, typeParameter);
+                    deserializedValue = emit(() -> deserializedArray.get()==null?null:Arrays.asList((Object[])deserializedArray.get()));
                 } else if (findClass(Optional.class).isAssignableFrom(property.getType())) {
                     deserializedValue = deserializeOptional(serializedValue, typeParameter);
                 } else if (findClass(EnumSet.class).isAssignableFrom(property.getType())) {
@@ -238,12 +255,12 @@ final class Deserializer {
                     deserializedValue = deserializeMap(serializedValue, mapTypeParameter);
                 } else {
                     deserializedValue = emit(() -> {
-                        throw new UnsupportedOperationException("Unsupported generic argument for "+clazz.asJavaClass().getName()+"."+property.getName());
+                        throw new UnsupportedOperationException("Unsupported generic argument for "+className+"."+propertyName);
                     });
                 }
             } else {
                 deserializedValue = emit(() -> {
-                    throw new UnsupportedOperationException("Unsupported generic argument for "+clazz.asJavaClass().getName()+"."+property.getName());
+                    throw new UnsupportedOperationException("Unsupported generic argument for "+className+"."+propertyName);
                 });
             }
         } else {
@@ -364,7 +381,7 @@ final class Deserializer {
         }
     }
 
-    private static Value<Object> deserializeArray(ReflectClass<?> itemClass, Value<Any> value) {
+    private static Value<Object> deserializeArray(Value<Any> value, ReflectClass<?> itemClass) {
         return emit(() -> {
             if (value.get() == null) {
                 return null;

@@ -1,15 +1,15 @@
 package com.github.fluorumlabs.disconnect.polymer.ironmeta;
 
-import com.github.fluorumlabs.disconnect.core.ObjectMirror;
 import com.github.fluorumlabs.disconnect.core.annotations.CustomElement;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.observables.Observable;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
+import com.github.fluorumlabs.disconnect.core.utils.Mirrored;
+import com.github.fluorumlabs.disconnect.core.utils.SerDes;
 import js.lang.external.polymer.ironmeta.IronMetaElement;
 import lombok.Setter;
 
 import javax.annotation.Nullable;
-import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -41,7 +41,7 @@ import java.util.Map;
  * </code></pre>
  */
 @CustomElement(tagName = "iron-meta", external = true)
-public class IronMeta<T extends Serializable> extends HtmlComponent<IronMetaElement<ObjectMirror<T>>> {
+public class IronMeta<T> extends HtmlComponent<IronMetaElement<Mirrored<T>>> {
 
     @Setter
     private Class<T> itemClass = null;
@@ -60,7 +60,7 @@ public class IronMeta<T extends Serializable> extends HtmlComponent<IronMetaElem
      * <strong>key</strong>: The key of the meta-data to be returned.
      */
     public T byKey(String key) {
-        return ObjectMirror.from(itemClass, getElement().byKey(key));
+        return SerDes.unmirror(getElement().byKey(key), itemClass);
     }
 
     // !wca! get hostAttributes: object | null
@@ -92,7 +92,7 @@ public class IronMeta<T extends Serializable> extends HtmlComponent<IronMetaElem
     /**
      */
     public Map<String, T> getList() {
-        return ObjectMirror.fromStringMap(itemClass, getElement().getList());
+        return SerDes.unmirrorMap(getElement().getList(), itemClass);
     }
 
     // !wca! observe list: ?
@@ -145,7 +145,7 @@ public class IronMeta<T extends Serializable> extends HtmlComponent<IronMetaElem
      * The meta-data to store or retrieve.
      */
     public T getValue() {
-        return ObjectMirror.from(itemClass, getElement().getValue());
+        return SerDes.unmirror(getElement().getValue(), itemClass);
     }
 
     // !wca! set value: ?
@@ -153,7 +153,7 @@ public class IronMeta<T extends Serializable> extends HtmlComponent<IronMetaElem
      * The meta-data to store or retrieve.
      */
     public void setValue(T value) {
-        getElement().setValue(ObjectMirror.from(value));
+        getElement().setValue(SerDes.mirror(value));
     }
 
     // !wca! observe value: ?

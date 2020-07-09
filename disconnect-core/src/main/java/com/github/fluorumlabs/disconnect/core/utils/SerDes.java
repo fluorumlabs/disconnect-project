@@ -32,12 +32,8 @@ public final class SerDes {
             return null;
         }
         Class<?> clazz = object.getClass();
-        if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
-            return DisconnectUtils.deepCopy((Any) object).cast();
-        } else {
-            MIRROR_MODE = false;
-            return Serializer.serialize(clazz, object).cast();
-        }
+        MIRROR_MODE = false;
+        return Serializer.serialize(clazz, object).cast();
     }
 
     @Nullable
@@ -46,21 +42,21 @@ public final class SerDes {
             return null;
         }
         Class<?> clazz = object.getClass();
-        if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
-            return DisconnectUtils.deepCopy((Any) object).cast();
-        } else {
-            MIRROR_MODE = true;
-            return Serializer.serialize(clazz, object).cast();
-        }
+        MIRROR_MODE = true;
+        return Serializer.serialize(clazz, object).cast();
     }
 
     @Nullable
     public static <T> T deserialize(@Nullable Serialized<T> object, Class<T> clazz) {
-        MIRROR_MODE = false;
-        if (object == null) {
-            return null;
+        if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
+            return DisconnectUtils.deepCopy((Any) object).cast();
         } else {
-            return (T) Deserializer.deserialize(clazz, object);
+            MIRROR_MODE = false;
+            if (object == null) {
+                return null;
+            } else {
+                return (T) Deserializer.deserialize(clazz, object);
+            }
         }
     }
 

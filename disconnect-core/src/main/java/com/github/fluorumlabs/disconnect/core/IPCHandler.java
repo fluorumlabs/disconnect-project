@@ -1,13 +1,13 @@
 package com.github.fluorumlabs.disconnect.core;
 
-import com.github.fluorumlabs.disconnect.core.adapters.ObjectAdapter;
+import com.github.fluorumlabs.disconnect.core.utils.BeanProperties;
+import com.github.fluorumlabs.disconnect.core.utils.SerDes;
+import com.github.fluorumlabs.disconnect.core.utils.Serialized;
 import js.lang.Any;
 import js.lang.Unknown;
 import js.util.JSON;
 import js.web.webworkers.DedicatedWorkerGlobalScope;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.teavm.jso.JSBody;
 import org.teavm.metaprogramming.*;
 import org.teavm.metaprogramming.reflect.ReflectMethod;
@@ -27,14 +27,11 @@ import static org.teavm.metaprogramming.Metaprogramming.lazy;
  */
 @CompileTime
 public final class IPCHandler {
-	private static final Logger log = LoggerFactory.getLogger(IPCHandler.class);
-
 	private IPCHandler() {
 	}
 
 	public static void setupIPC(Class<?> clazz, Object instance) {
 		DedicatedWorkerGlobalScope.SELF.addMessageEventListener(evt -> {
-			log.debug("Received IPC event: {}", evt.getData().stringValue());
 			handle(clazz, instance, evt.getData().stringValue());
 		});
 	}
@@ -66,25 +63,27 @@ public final class IPCHandler {
 
 			Value<Serializable> argumentValue =
 					lazy(() -> {
-						log.debug("Deserialization start");
-						Serializable serializable = ObjectMirror.from((Class<Serializable>) arguments.asJavaClass(),
-								convertToObject(JSON.parse(realPayload.get())));
-						log.debug("Deserialization end");
+						Serializable serializable = SerDes.deserialize(convertToObject(JSON.parse(realPayload.get())),(Class<Serializable>) arguments.asJavaClass());
 
 						return serializable;
 					});
 
-			Value<Serializable> resultValue = emit(() -> ObjectMirror.from((Class<Serializable>)result.asJavaClass(),
-					Any.empty()));
+			Value<Serializable> resultValue = emit(() -> {
+				try {
+					return (Serializable)result.asJavaClass().newInstance();
+				} catch (InstantiationException | IllegalAccessException e) {
+					throw new IllegalStateException("Cannot create instance of "+result.asJavaClass().getName(), e);
+				}
+			});
 			Value<Object[]> argumentArray = emit(() -> new Object[parameterCount]);
 
 			for (int i = 0; i < method.getParameterCount(); i++) {
 				int iFinal = i;
-				String argName = Integer.toString(i);
+				String argName = "arg"+i;
 				Value<Object[]> argumentArrayFinal = argumentArray;
 				argumentArray = lazy(() -> {
 					Object[] intermediate = argumentArrayFinal.get();
-					intermediate[iFinal] = ObjectAdapter.readField(arguments.asJavaClass(),
+					intermediate[iFinal] = BeanProperties.read(arguments.asJavaClass(),
 							argumentValue.get(), argName);
 					return intermediate;
 				});
@@ -102,9 +101,8 @@ public final class IPCHandler {
 			} else {
 				emit(() -> {
 					if (currentMethodName.equals(methodName.get())) {
-						ObjectAdapter.writeField(result.asJavaClass(), resultValue.get(), "result", callResult.get());
-						String returnedValue = idValue.get()+JSON.stringify(ObjectMirror.from(resultValue.get()));
-						log.debug("Sending back IPC result: {}", returnedValue);
+						BeanProperties.write(result.asJavaClass(), resultValue.get(), "result", callResult.get());
+						String returnedValue = idValue.get()+JSON.stringify(SerDes.serialize(resultValue.get()));
 						DedicatedWorkerGlobalScope.SELF.postMessage(Unknown.of(returnedValue));
 					}
 				});
@@ -113,6 +111,6 @@ public final class IPCHandler {
 	}
 
 	@JSBody(params = "x", script = "return Object.entries(x).reduce(function(ini,[k,v]) { ini[k]=v; return ini },{})")
-	private static native <T extends Serializable> ObjectMirror<T> convertToObject(Any x);
+	private static native <T extends Serializable> Serialized<T> convertToObject(Any x);
 
 }
