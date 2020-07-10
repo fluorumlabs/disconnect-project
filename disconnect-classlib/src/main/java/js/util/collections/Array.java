@@ -23,7 +23,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-    @JSBody(params = "arrayLength", script = "return Array.apply(null, items)")
+    @JSBody(params = "items", script = "return Array.apply(null, items)")
     static <T extends Any> Array<T> create(T... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }

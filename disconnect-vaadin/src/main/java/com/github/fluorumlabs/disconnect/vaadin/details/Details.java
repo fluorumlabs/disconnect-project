@@ -3,6 +3,8 @@ package com.github.fluorumlabs.disconnect.vaadin.details;
 import com.github.fluorumlabs.disconnect.core.annotations.CustomElement;
 import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
+import com.github.fluorumlabs.disconnect.core.containers.ComponentList;
+import com.github.fluorumlabs.disconnect.core.containers.SlotComponentList;
 import com.github.fluorumlabs.disconnect.core.observables.ObservableValue;
 import com.github.fluorumlabs.disconnect.vaadin.theme.Themable;
 import com.github.fluorumlabs.disconnect.vaadin.theme.ThemeVariant;
@@ -95,6 +97,27 @@ public class Details extends HtmlComponent<DetailsElement> implements Themable<D
         super(components);
     }
 
+    private final ComponentList<Component<?>> detailsSlot = new SlotComponentList<>(getElement(), "");
+
+    /**
+     * Default container for details
+     */
+    public ComponentList<Component<?>> detailsSlot() {
+        return detailsSlot;
+    }
+
+    private final ComponentList<Component<?>> summarySlot = new SlotComponentList<>(getElement(), "summary");
+
+    /**
+     * Container for summary
+     */
+    public ComponentList<Component<?>> summarySlot() {
+        return summarySlot;
+    }
+
+    private final ComponentList<Component<?>> drawerSlot = new SlotComponentList<>(getElement(), "drawer");
+
+
     // !wca! click: (): void
 
     // !wca! get autofocus: boolean | null | undefined
@@ -166,4 +189,6 @@ public class Details extends HtmlComponent<DetailsElement> implements Themable<D
         SMALL,
         REVERSE
     }
+
+
 }
