@@ -13,9 +13,9 @@ import com.github.fluorumlabs.disconnect.vaadin.theme.Themable;
 import js.lang.Any;
 import js.lang.external.vaadin.dialog.DialogOverlayElement;
 import js.web.dom.HTMLElement;
-import org.checkerframework.checker.units.qual.A;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * The overlay element.
@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> mixinBehaviors, ThemableMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-dialog-overlay", external = true)
-public class DialogOverlay<T> extends HtmlComponent<DialogOverlayElement<Any>> implements Themable<DialogOverlayElement<Any>> {
+public class DialogOverlay<T extends Serializable> extends HtmlComponent<DialogOverlayElement<Any>> implements Themable<DialogOverlayElement<Any>> {
 
     public DialogOverlay() {
     }

@@ -12,6 +12,7 @@ import js.lang.external.polymer.DomRepeatElement;
 import js.web.dom.Event;
 import js.web.dom.HTMLElement;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -81,7 +82,7 @@ import java.util.function.Predicate;
  * <strong>Mixins:</strong> OptionalMutableData, ElementMixin
  */
 @CustomElement(tagName = "dom-repeat", external = true)
-public class DomRepeat<T> extends HtmlComponentWithItem<T, DomRepeatElement<Mirrored<T>>> implements HasTemplate {
+public class DomRepeat<T extends Serializable> extends HtmlComponentWithItem<T, DomRepeatElement<Mirrored<T>>> implements HasTemplate {
     public DomRepeat() {
     }
 

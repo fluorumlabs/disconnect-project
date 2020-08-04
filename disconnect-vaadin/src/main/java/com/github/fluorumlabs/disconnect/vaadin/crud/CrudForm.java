@@ -4,6 +4,8 @@ import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.utils.Mirrored;
 import js.lang.external.vaadin.crud.CrudFormElement;
 
+import java.io.Serializable;
+
 /**
  * <code>&lt;vaadin-crud-form&gt;</code> is a
  *  <vaadin-form-layout>
@@ -14,7 +16,7 @@ import js.lang.external.vaadin.crud.CrudFormElement;
  *
  * <strong>Mixins:</strong> IncludedMixin, ElementMixin, ThemableMixin, ElementMixin
  */
-class CrudForm<T> extends HtmlComponent<CrudFormElement<Mirrored<T>>> {
+class CrudForm<T extends Serializable> extends HtmlComponent<CrudFormElement<Mirrored<T>>> {
 
     // !wca! get exclude: string | RegExp | null
 

@@ -12,6 +12,7 @@ import js.lang.external.vaadin.grid.GridSorterElement;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * <code>&lt;vaadin-grid-sorter&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code> that provides out-of-the-box UI controls, visual feedback, and handlers for sorting the grid data.
@@ -70,7 +71,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> ThemableMixin, DirMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-grid-sorter", external = true)
-public class GridSorter<T> extends HtmlComponentWithItem<T, GridSorterElement<Mirrored<T>>> implements Themable<GridSorterElement<Mirrored<T>>> {
+public class GridSorter<T extends Serializable> extends HtmlComponentWithItem<T, GridSorterElement<Mirrored<T>>> implements Themable<GridSorterElement<Mirrored<T>>> {
 
     public GridSorter() {
     }

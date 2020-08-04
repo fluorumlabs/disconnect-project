@@ -11,6 +11,7 @@ import com.github.fluorumlabs.disconnect.vaadin.ComponentRendererWithContext;
 import js.lang.external.vaadin.grid.GridTreeColumnElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * <code>&lt;vaadin-grid-tree-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code> that provides default template and functionality for toggling tree/hierarchical items.
@@ -25,7 +26,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> ColumnBaseMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-grid-tree-column", external = true)
-public class GridTreeColumn<T> extends HtmlComponentWithItem<T, GridTreeColumnElement<Mirrored<T>>> {
+public class GridTreeColumn<T extends Serializable> extends HtmlComponentWithItem<T, GridTreeColumnElement<Mirrored<T>>> {
 
     public GridTreeColumn() {
     }

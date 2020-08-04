@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class MirrorTest {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class Primitives {
+    public static class Primitives implements Serializable {
         private byte aByte;
         private char aChar;
         private int anInt;

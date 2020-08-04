@@ -11,6 +11,7 @@ import com.github.fluorumlabs.disconnect.vaadin.ComponentRendererWithContext;
 import js.lang.external.vaadin.grid.GridColumnElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * A <code>&lt;vaadin-grid-column&gt;</code> is used to configure how a column in <code>&lt;vaadin-grid&gt;</code> should look like.
@@ -20,7 +21,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> ColumnBaseMixin, DirMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-grid-column", external = true)
-public class GridColumn<T> extends HtmlComponentWithItem<T, GridColumnElement<Mirrored<T>>> {
+public class GridColumn<T extends Serializable> extends HtmlComponentWithItem<T, GridColumnElement<Mirrored<T>>> {
 
     public GridColumn() {
     }

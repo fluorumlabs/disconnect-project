@@ -5,11 +5,13 @@ import com.github.fluorumlabs.disconnect.core.utils.SerDes;
 import js.lang.external.vaadin.grid.GridItemModel;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 /**
  * Created by Artem Godin on 7/7/2020.
  */
 @Getter
-public class ItemModel<T> {
+public class ItemModel<T extends Serializable> implements Serializable {
     private final int index;
     private final T item;
 

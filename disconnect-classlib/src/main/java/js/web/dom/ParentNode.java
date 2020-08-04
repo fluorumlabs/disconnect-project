@@ -39,7 +39,7 @@ public interface ParentNode extends Node {
      * Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
      */
     @JSBody(params = "nodes", script = "this.append.apply(this, nodes)")
-    void append(Node... nodes);
+    void append(@JSByRef Node... nodes);
 
     void append(Array<Node> nodes);
 
@@ -52,7 +52,7 @@ public interface ParentNode extends Node {
      * Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
      */
     @JSBody(params = "nodes", script = "this.prepend.apply(this, nodes)")
-    void prepend(Node... nodes);
+    void prepend(@JSByRef Node... nodes);
 
     void prepend(Array<Node> nodes);
 

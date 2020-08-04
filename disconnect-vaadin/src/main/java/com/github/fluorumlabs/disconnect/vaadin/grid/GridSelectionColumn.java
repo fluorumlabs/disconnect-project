@@ -11,6 +11,7 @@ import com.github.fluorumlabs.disconnect.vaadin.ComponentRendererWithContext;
 import js.lang.external.vaadin.grid.GridSelectionColumnElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * <code>&lt;vaadin-grid-selection-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code> that provides default templates and functionality for item selection.
@@ -31,7 +32,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> ColumnBaseMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-grid-selection-column", external = true)
-public class GridSelectionColumn<T> extends HtmlComponentWithItem<T, GridSelectionColumnElement<Mirrored<T>>> {
+public class GridSelectionColumn<T extends Serializable> extends HtmlComponentWithItem<T, GridSelectionColumnElement<Mirrored<T>>> {
 
     public GridSelectionColumn() {
     }

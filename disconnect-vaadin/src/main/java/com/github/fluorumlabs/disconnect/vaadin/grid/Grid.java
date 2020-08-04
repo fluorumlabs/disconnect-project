@@ -14,11 +14,15 @@ import com.github.fluorumlabs.disconnect.vaadin.theme.Themable;
 import com.github.fluorumlabs.disconnect.vaadin.theme.ThemeVariant;
 import js.lang.Unknown;
 import js.lang.external.vaadin.DataProvider;
-import js.lang.external.vaadin.grid.*;
+import js.lang.external.vaadin.grid.GridDataProviderParams;
+import js.lang.external.vaadin.grid.GridElement;
+import js.lang.external.vaadin.grid.GridEventContext;
+import js.lang.external.vaadin.grid.GridItemModel;
 import js.util.function.JsPredicate;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.List;
 
 import static com.github.fluorumlabs.disconnect.core.utils.SerDes.*;
@@ -285,7 +289,7 @@ import static com.github.fluorumlabs.disconnect.core.utils.SerDes.*;
  * </code></pre>
  */
 @CustomElement(tagName = "vaadin-grid", external = true)
-public class Grid<T> extends HtmlComponentWithItem<T, GridElement<Mirrored<T>>> implements Themable<GridElement<Mirrored<T>>> {
+public class Grid<T extends Serializable> extends HtmlComponentWithItem<T, GridElement<Mirrored<T>>> implements Themable<GridElement<Mirrored<T>>> {
 
     public Grid() {
     }

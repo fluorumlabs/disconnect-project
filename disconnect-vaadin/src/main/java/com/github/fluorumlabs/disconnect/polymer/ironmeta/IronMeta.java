@@ -10,6 +10,7 @@ import js.lang.external.polymer.ironmeta.IronMetaElement;
 import lombok.Setter;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -41,7 +42,7 @@ import java.util.Map;
  * </code></pre>
  */
 @CustomElement(tagName = "iron-meta", external = true)
-public class IronMeta<T> extends HtmlComponent<IronMetaElement<Mirrored<T>>> {
+public class IronMeta<T extends Serializable> extends HtmlComponent<IronMetaElement<Mirrored<T>>> {
 
     @Setter
     private Class<T> itemClass = null;

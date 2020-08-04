@@ -15,6 +15,7 @@ import js.lang.external.vaadin.combobox.ComboBoxDataProviderParams;
 import js.lang.external.vaadin.combobox.ComboBoxLightElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -50,7 +51,7 @@ import java.util.List;
  * <strong>Mixins:</strong> ThemableMixin, ComboBoxDataProviderMixin, ComboBoxMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-combo-box-light", external = true)
-public class ComboBoxLight<T> extends HtmlComponentWithItem<T, ComboBoxLightElement<Mirrored<T>>> implements Themable<ComboBoxLightElement<Mirrored<T>>> {
+public class ComboBoxLight<T extends Serializable> extends HtmlComponentWithItem<T, ComboBoxLightElement<Mirrored<T>>> implements Themable<ComboBoxLightElement<Mirrored<T>>> {
 
     public ComboBoxLight() {
     }

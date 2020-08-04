@@ -1,9 +1,10 @@
 package com.github.fluorumlabs.disconnect.vaadin.crud;
 
-import com.github.fluorumlabs.disconnect.core.annotations.CustomElement;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
 import com.github.fluorumlabs.disconnect.core.utils.Mirrored;
 import js.lang.external.vaadin.crud.CrudEditColumnElement;
+
+import java.io.Serializable;
 
 /**
  * <code>&lt;vaadin-crud-edit-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code> that provides a clickable and themable edit icon.
@@ -19,7 +20,7 @@ import js.lang.external.vaadin.crud.CrudEditColumnElement;
  * </code></pre>
  * <strong>Mixins:</strong> ColumnBaseMixin, ElementMixin
  */
-class CrudEditColumn<T> extends HtmlComponent<CrudEditColumnElement<Mirrored<T>>> {
+class CrudEditColumn<T extends Serializable> extends HtmlComponent<CrudEditColumnElement<Mirrored<T>>> {
 
     // !wca! get ariaLabel: ?
 

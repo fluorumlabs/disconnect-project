@@ -13,6 +13,7 @@ import org.teavm.metaprogramming.reflect.ReflectMethod;
 import org.teavm.platform.Platform;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -27,7 +28,7 @@ import static org.teavm.metaprogramming.Metaprogramming.*;
 final class Deserializer {
     private Deserializer() {}
 
-    static Object deserialize(Class<?> clazz, Any object) {
+    static Object deserialize(Class<? extends Serializable> clazz, Any object) {
         if (SerDes.MIRROR_MODE) {
             if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
                 return (Any) object;
@@ -42,27 +43,27 @@ final class Deserializer {
     }
 
     @Meta
-    private static native Object deserialize_(Class<?> clazz, Any object);
+    private static native Serializable deserialize_(Class<? extends Serializable> clazz, Any object);
 
-    private static void deserialize_(ReflectClass<?> clazz, Value<Any> value) {
+    private static void deserialize_(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeValue(clazz, value)
                 .orElseGet(() -> deserializeObject(clazz, value));
         exit(() -> result.get());
     }
 
     @Meta
-    static native Object unmirror_(Class<?> clazz, Any object);
+    static native Serializable unmirror_(Class<? extends Serializable> clazz, Any object);
 
-    private static void unmirror_(ReflectClass<?> clazz, Value<Any> value) {
+    private static void unmirror_(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeValue(clazz, value)
                 .orElseGet(() -> unmirrorObject(clazz, value));
         exit(() -> result.get());
     }
 
     @Meta
-    static native List<Object> deserializeList(Class<?> clazz, Any object);
+    static native List<Serializable> deserializeList(Class<? extends Serializable> clazz, Any object);
 
-    private static void deserializeList(ReflectClass<?> clazz, Value<Any> value) {
+    private static void deserializeList(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeArray(value, clazz);
         exit(() -> result.get()==null?null:Arrays.asList((Object[])result.get()));
     }
@@ -76,17 +77,17 @@ final class Deserializer {
     }
 
     @Meta
-    static native Set<Object> deserializeSet(Class<?> clazz, Any object);
+    static native Set<Serializable> deserializeSet(Class<? extends Serializable> clazz, Any object);
 
-    private static void deserializeSet(ReflectClass<?> clazz, Value<Any> value) {
+    private static void deserializeSet(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeSet(value, clazz);
         exit(() -> result.get());
     }
 
     @Meta
-    static native Map<String, Object> deserializeMap(Class<?> clazz, Any object);
+    static native Map<String, Serializable> deserializeMap(Class<? extends Serializable> clazz, Any object);
 
-    private static void deserializeMap(ReflectClass<?> clazz, Value<Any> value) {
+    private static void deserializeMap(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         Value<Object> result = deserializeMap(value, clazz);
         exit(() -> result.get());
     }
@@ -123,7 +124,7 @@ final class Deserializer {
                     return Optional.of(emit(() -> value.get() == null ? null : value.get().<Unknown>cast().doubleArrayValue()));
 
             }
-            return Optional.of(deserializeArray(value, clazz.getComponentType()));
+            return Optional.of(deserializeArray(value, (ReflectClass<? extends Serializable>) clazz.getComponentType()));
         }
 
         switch (clazz.getName()) {
@@ -164,7 +165,7 @@ final class Deserializer {
         return Optional.empty();
     }
 
-    private static Value<Object> deserializeFieldValue(ReflectClass<?> clazz, Value<Any> value) {
+    private static Value<Object> deserializeFieldValue(ReflectClass<? extends Serializable> clazz, Value<Any> value) {
         return deserializeValue(clazz, value)
                 .orElseGet(() -> {
             return emit(() -> value.get() == null ? null : deserialize(clazz.asJavaClass(), value.get().cast()));
@@ -242,17 +243,17 @@ final class Deserializer {
             ReflectClass<?> typeParameter = property.getTypeParameters()[0];
             if (typeParameter != null) {
                 if (findClass(List.class).isAssignableFrom(property.getType())) {
-                    Value<Object> deserializedArray = deserializeArray(serializedValue, typeParameter);
+                    Value<Object> deserializedArray = deserializeArray(serializedValue, (ReflectClass<? extends Serializable>) typeParameter);
                     deserializedValue = emit(() -> deserializedArray.get()==null?null:Arrays.asList((Object[])deserializedArray.get()));
                 } else if (findClass(Optional.class).isAssignableFrom(property.getType())) {
-                    deserializedValue = deserializeOptional(serializedValue, typeParameter);
+                    deserializedValue = deserializeOptional(serializedValue, (ReflectClass<? extends Serializable>) typeParameter);
                 } else if (findClass(EnumSet.class).isAssignableFrom(property.getType())) {
-                    deserializedValue = deserializeEnumSet(serializedValue, typeParameter);
+                    deserializedValue = deserializeEnumSet(serializedValue, (ReflectClass<? extends Serializable>) typeParameter);
                 } else if (findClass(Set.class).isAssignableFrom(property.getType())) {
-                    deserializedValue = deserializeSet(serializedValue, typeParameter);
+                    deserializedValue = deserializeSet(serializedValue, (ReflectClass<? extends Serializable>) typeParameter);
                 } else if (findClass(Map.class).isAssignableFrom(property.getType()) && property.getTypeParameters().length > 1 && property.getTypeParameters()[1] != null) {
                     ReflectClass<?> mapTypeParameter = property.getTypeParameters()[1];
-                    deserializedValue = deserializeMap(serializedValue, mapTypeParameter);
+                    deserializedValue = deserializeMap(serializedValue, (ReflectClass<? extends Serializable>) mapTypeParameter);
                 } else {
                     deserializedValue = emit(() -> {
                         throw new UnsupportedOperationException("Unsupported generic argument for "+className+"."+propertyName);
@@ -264,13 +265,13 @@ final class Deserializer {
                 });
             }
         } else {
-            deserializedValue = deserializeFieldValue(property.getType(), serializedValue);
+            deserializedValue = deserializeFieldValue((ReflectClass<? extends Serializable>) property.getType(), serializedValue);
         }
 
         return deserializedValue;
     }
 
-    private static Value<Object> deserializeList(Value<Any> value, ReflectClass<?> typeParameter) {
+    private static Value<Object> deserializeList(Value<Any> value, ReflectClass<? extends Serializable> typeParameter) {
         return emit(() -> {
             if (value.get() == null) {
                 return null;
@@ -293,7 +294,7 @@ final class Deserializer {
         });
     }
 
-    private static Value<Object> deserializeOptional(Value<Any> value, ReflectClass<?> typeParameter) {
+    private static Value<Object> deserializeOptional(Value<Any> value, ReflectClass<? extends Serializable> typeParameter) {
         return emit(() -> {
             if (value.get() == null) {
                 return Optional.empty();
@@ -303,7 +304,7 @@ final class Deserializer {
         });
     }
 
-    private static Value<Object> deserializeEnumSet(Value<Any> value, ReflectClass<?> typeParameter) {
+    private static Value<Object> deserializeEnumSet(Value<Any> value, ReflectClass<? extends Serializable> typeParameter) {
         return emit(() -> {
             if (value.get() == null) {
                 return null;
@@ -325,7 +326,7 @@ final class Deserializer {
         });
     }
 
-    private static Value<Object> deserializeMap(Value<Any> value, ReflectClass<?> typeParameter) {
+    private static Value<Object> deserializeMap(Value<Any> value, ReflectClass<? extends Serializable> typeParameter) {
         return emit(() -> {
             if (value.get() == null) {
                 return null;
@@ -347,7 +348,7 @@ final class Deserializer {
         });
     }
 
-    private static Value<Object> deserializeSet(Value<Any> value, ReflectClass<?> typeParameter) {
+    private static Value<Object> deserializeSet(Value<Any> value, ReflectClass<? extends Serializable> typeParameter) {
         return emit(() -> {
             if (value.get() == null) {
                 return null;
@@ -381,7 +382,7 @@ final class Deserializer {
         }
     }
 
-    private static Value<Object> deserializeArray(Value<Any> value, ReflectClass<?> itemClass) {
+    private static Value<Object> deserializeArray(Value<Any> value, ReflectClass<? extends Serializable> itemClass) {
         return emit(() -> {
             if (value.get() == null) {
                 return null;

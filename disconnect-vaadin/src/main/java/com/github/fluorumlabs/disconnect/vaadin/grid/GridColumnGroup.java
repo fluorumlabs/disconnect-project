@@ -7,11 +7,10 @@ import com.github.fluorumlabs.disconnect.core.containers.ParentNodeBackedCompone
 import com.github.fluorumlabs.disconnect.core.utils.LowerCase;
 import com.github.fluorumlabs.disconnect.core.utils.Mirrored;
 import com.github.fluorumlabs.disconnect.vaadin.ComponentRenderer;
-import com.github.fluorumlabs.disconnect.vaadin.theme.Themable;
-import js.lang.external.vaadin.grid.GridColumnElement;
 import js.lang.external.vaadin.grid.GridColumnGroupElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * A <code>&lt;vaadin-grid-column-group&gt;</code> is used to make groups of columns in <code>&lt;vaadin-grid&gt;</code> and to configure additional headers and footers.
@@ -37,7 +36,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> ColumnBaseMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-grid-column-group", external = true)
-public class GridColumnGroup<T> extends HtmlComponentWithItem<T, GridColumnGroupElement<Mirrored<T>>> {
+public class GridColumnGroup<T extends Serializable> extends HtmlComponentWithItem<T, GridColumnGroupElement<Mirrored<T>>> {
 
     public GridColumnGroup() {
     }

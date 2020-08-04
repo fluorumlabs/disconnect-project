@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.function.BiFunction;
 
@@ -103,7 +104,7 @@ public class DeserializerTest {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class Primitives {
+    public static class Primitives implements Serializable {
         private byte aByte;
         private char aChar;
         private int anInt;
@@ -120,14 +121,14 @@ public class DeserializerTest {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class BeanWithList {
+    public static class BeanWithList implements Serializable {
         private List<String> values;
     }
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class BeanWithMap {
+    public static class BeanWithMap implements Serializable{
         private Map<String, String> values;
     }
 

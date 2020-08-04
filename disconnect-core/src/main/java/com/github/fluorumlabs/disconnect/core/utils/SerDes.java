@@ -8,6 +8,7 @@ import js.util.collections.Array;
 import org.teavm.platform.Platform;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> T deserialize(@Nullable Serialized<T> object, Class<T> clazz) {
+    public static <T extends Serializable> T deserialize(@Nullable Serialized<T> object, Class<T> clazz) {
         if (JS.isUndefinedOrNull(Platform.getPlatformObject(clazz).cast())) {
             return DisconnectUtils.deepCopy((Any) object).cast();
         } else {
@@ -61,7 +62,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> List<T> deserializeList(@Nullable Array<Serialized<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> List<T> deserializeList(@Nullable Array<Serialized<T>> object, Class<T> clazz) {
         MIRROR_MODE = false;
         if (object == null) {
             return null;
@@ -71,7 +72,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> List<T> deserializeList(@Nullable Serialized<List<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> List<T> deserializeList(@Nullable Serialized<List<T>> object, Class<T> clazz) {
         MIRROR_MODE = false;
         if (object == null) {
             return null;
@@ -101,7 +102,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> Set<T> deserializeSet(@Nullable Array<Serialized<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> Set<T> deserializeSet(@Nullable Array<Serialized<T>> object, Class<T> clazz) {
         MIRROR_MODE = false;
         if (object == null) {
             return null;
@@ -111,7 +112,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> Set<T> deserializeSet(@Nullable Serialized<Set<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> Set<T> deserializeSet(@Nullable Serialized<Set<T>> object, Class<T> clazz) {
         MIRROR_MODE = false;
         if (object == null) {
             return null;
@@ -121,7 +122,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> Map<String, T> deserializeMap(@Nullable Record<Serialized<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> Map<String, T> deserializeMap(@Nullable Record<Serialized<T>> object, Class<T> clazz) {
         MIRROR_MODE = false;
         if (object == null) {
             return null;
@@ -131,7 +132,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> Map<String, T> deserializeMap(@Nullable Serialized<Map<String,T>> object, Class<T> clazz) {
+    public static <T extends Serializable> Map<String, T> deserializeMap(@Nullable Serialized<Map<String,T>> object, Class<T> clazz) {
         MIRROR_MODE = false;
         if (object == null) {
             return null;
@@ -141,7 +142,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> T unmirror(@Nullable Mirrored<T> object, Class<T> clazz) {
+    public static <T extends Serializable> T unmirror(@Nullable Mirrored<T> object, Class<T> clazz) {
         MIRROR_MODE = true;
         if (object == null) {
             return null;
@@ -151,7 +152,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> List<T> unmirrorList(@Nullable Array<Mirrored<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> List<T> unmirrorList(@Nullable Array<Mirrored<T>> object, Class<T> clazz) {
         MIRROR_MODE = true;
         if (object == null) {
             return null;
@@ -161,7 +162,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> List<T> unmirrorList(@Nullable Mirrored<List<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> List<T> unmirrorList(@Nullable Mirrored<List<T>> object, Class<T> clazz) {
         MIRROR_MODE = true;
         if (object == null) {
             return null;
@@ -191,7 +192,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> Set<T> unmirrorSet(@Nullable Array<Mirrored<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> Set<T> unmirrorSet(@Nullable Array<Mirrored<T>> object, Class<T> clazz) {
         MIRROR_MODE = true;
         if (object == null) {
             return null;
@@ -201,7 +202,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> Set<T> unmirrorSet(@Nullable Mirrored<Set<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> Set<T> unmirrorSet(@Nullable Mirrored<Set<T>> object, Class<T> clazz) {
         MIRROR_MODE = true;
         if (object == null) {
             return null;
@@ -211,7 +212,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> Map<String, T> unmirrorMap(@Nullable Record<Mirrored<T>> object, Class<T> clazz) {
+    public static <T extends Serializable> Map<String, T> unmirrorMap(@Nullable Record<Mirrored<T>> object, Class<T> clazz) {
         MIRROR_MODE = true;
         if (object == null) {
             return null;
@@ -221,7 +222,7 @@ public final class SerDes {
     }
 
     @Nullable
-    public static <T> Map<String, T> unmirrorMap(@Nullable Mirrored<Map<String,T>> object, Class<T> clazz) {
+    public static <T extends Serializable> Map<String, T> unmirrorMap(@Nullable Mirrored<Map<String,T>> object, Class<T> clazz) {
         MIRROR_MODE = true;
         if (object == null) {
             return null;

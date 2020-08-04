@@ -15,6 +15,7 @@ import js.lang.external.vaadin.select.SelectElement;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -149,7 +150,7 @@ import java.util.List;
  * </code></pre>
  */
 @CustomElement(tagName = "vaadin-select", external = true)
-public class Select<T> extends HtmlComponent<SelectElement> implements Themable<SelectElement>, ComponentUpdater<Item, T> {
+public class Select<T extends Serializable> extends HtmlComponent<SelectElement> implements Themable<SelectElement>, ComponentUpdater<Item, T> {
 
     private final RenderingKeyedItemList<T, Item> items = new RenderingKeyedItemList<>(Item::new, this);
     private final ListBox listBox = new ListBox();

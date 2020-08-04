@@ -17,6 +17,7 @@ import js.web.dom.Event;
 import js.web.dom.HTMLElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * <code>&lt;vaadin-overlay&gt;</code> is a Web Component for creating overlays. The content of the overlay can be populated in two ways: imperatively by using renderer callback function and declaratively by using Polymer's Templates.
@@ -133,7 +134,7 @@ import javax.annotation.Nullable;
  * </code></pre>
  */
 @CustomElement(tagName = "vaadin-overlay", external = true)
-public class Overlay<T> extends HtmlComponent<OverlayElement<Any>> implements Themable<OverlayElement<Any>> {
+public class Overlay<T extends Serializable> extends HtmlComponent<OverlayElement<Any>> implements Themable<OverlayElement<Any>> {
 
     public Overlay() {
     }

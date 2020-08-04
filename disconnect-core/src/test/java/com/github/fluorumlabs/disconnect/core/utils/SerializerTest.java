@@ -144,7 +144,7 @@ public class SerializerTest {
         VALUE_A, VALUE_B;
     }
 
-    private static class BeanWithPrimitive {
+    private static class BeanWithPrimitive implements Serializable{
         private int x;
         private int[] y;
         private int[][] z;
@@ -162,7 +162,7 @@ public class SerializerTest {
         }
     }
 
-    private static class Pair<T> {
+    private static class Pair<T> implements Serializable{
         private final T key;
         private final String value;
 

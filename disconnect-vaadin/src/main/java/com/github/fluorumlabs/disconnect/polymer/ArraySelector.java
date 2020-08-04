@@ -9,6 +9,7 @@ import js.lang.Unknown;
 import js.lang.external.polymer.ArraySelectorElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,7 +71,7 @@ import java.util.List;
  * <strong>Mixins:</strong> ArraySelectorMixin, ElementMixin, ElementMixin
  */
 @CustomElement(tagName = "array-selector", external = true)
-public class ArraySelector<T> extends HtmlComponentWithItem<T, ArraySelectorElement<Mirrored<T>>> {
+public class ArraySelector<T extends Serializable> extends HtmlComponentWithItem<T, ArraySelectorElement<Mirrored<T>>> {
     public ArraySelector() {
     }
 

@@ -15,6 +15,7 @@ import js.lang.external.vaadin.combobox.ComboBoxDataProviderParams;
 import js.lang.external.vaadin.combobox.ComboBoxElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -229,7 +230,7 @@ import java.util.List;
  * </code></pre>
  */
 @CustomElement(tagName = "vaadin-combo-box", external = true)
-public class ComboBox<T> extends HtmlComponentWithItem<T, ComboBoxElement<Mirrored<T>>> implements HasTemplate, Themable<ComboBoxElement<Mirrored<T>>> {
+public class ComboBox<T extends Serializable> extends HtmlComponentWithItem<T, ComboBoxElement<Mirrored<T>>> implements HasTemplate, Themable<ComboBoxElement<Mirrored<T>>> {
 
     public ComboBox() {
     }

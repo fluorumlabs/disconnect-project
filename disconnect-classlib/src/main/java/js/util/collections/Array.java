@@ -3,10 +3,7 @@ package js.util.collections;
 import js.lang.Any;
 import js.util.function.JsComparator;
 import js.util.iterable.JsIterable;
-import org.teavm.jso.JSBody;
-import org.teavm.jso.JSFunctor;
-import org.teavm.jso.JSIndexer;
-import org.teavm.jso.JSObject;
+import org.teavm.jso.*;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -24,7 +21,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
     }
 
     @JSBody(params = "items", script = "return Array.apply(null, items)")
-    static <T extends Any> Array<T> create(T... items) {
+    static <T extends Any> Array<T> create(@JSByRef T... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -81,7 +78,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      * @param items A set of elements to include in the new array object.
      */
     @JSBody(params = "items", script = "return Array.of.apply(Array, items)")
-    static <T extends Any> Array<T> of(T... items) {
+    static <T extends Any> Array<T> of(@JSByRef T... items) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -121,7 +118,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      * @param items New elements of the Array.
      */
     @JSBody(params = "items", script = "return this.push.apply(this, items)")
-    int push(T... items);
+    int push(@JSByRef T... items);
 
     /**
      * Appends new element to an array, and returns the new length of the array.
@@ -182,7 +179,7 @@ public interface Array<T extends Any> extends ReadonlyArray<T> {
      * @param items Elements to insert at the start of the Array.
      */
     @JSBody(params = "items", script = "return this.unshift.apply(this, items)")
-    int unshift(T... items);
+    int unshift(@JSByRef T... items);
 
     @JSIndexer
     void set(int n, T value);

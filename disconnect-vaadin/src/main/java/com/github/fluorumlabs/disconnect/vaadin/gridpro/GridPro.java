@@ -24,6 +24,7 @@ import js.util.function.JsPredicate;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.List;
 
 import static com.github.fluorumlabs.disconnect.core.utils.SerDes.*;
@@ -42,7 +43,7 @@ import static com.github.fluorumlabs.disconnect.core.utils.SerDes.*;
  * </code></pre>
  */
 @CustomElement(tagName = "vaadin-grid-pro", external = true)
-public class GridPro<T> extends HtmlComponentWithItem<T, GridProElement<Mirrored<T>>> implements Themable<GridProElement<Mirrored<T>>> {
+public class GridPro<T extends Serializable> extends HtmlComponentWithItem<T, GridProElement<Mirrored<T>>> implements Themable<GridProElement<Mirrored<T>>> {
 
     public GridPro() {
     }

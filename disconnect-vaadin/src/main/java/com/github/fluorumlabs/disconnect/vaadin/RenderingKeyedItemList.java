@@ -5,6 +5,7 @@ import com.github.fluorumlabs.disconnect.core.containers.ComponentList;
 import com.github.fluorumlabs.disconnect.core.utils.SidebandReference;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -13,7 +14,7 @@ import java.util.function.Supplier;
 /**
  * Created by Artem Godin on 7/7/2020.
  */
-public class RenderingKeyedItemList<T, C extends Component<?>> extends KeyedItemList<T> implements ComponentRendererWithContext<T> {
+public class RenderingKeyedItemList<T extends Serializable, C extends Component<?>> extends KeyedItemList<T> implements ComponentRendererWithContext<T> {
     @Nullable
     private final Supplier<C> ctor;
     @Nullable

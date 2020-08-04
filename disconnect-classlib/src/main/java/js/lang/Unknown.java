@@ -1,6 +1,7 @@
 package js.lang;
 
 import org.teavm.jso.JSBody;
+import org.teavm.jso.JSByRef;
 
 
 /**
@@ -24,18 +25,18 @@ public interface Unknown extends Any {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-	@JSBody(params = "value", script = "return value")
-    static Unknown of(Any[] value) {
+	@JSBody(params = "value", script = "return Object.values(value)")
+    static Unknown of(@JSByRef Any[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-	@JSBody(params = "value", script = "return value")
-    static Unknown of(double[] value) {
+	@JSBody(params = "value", script = "return Object.values(value)")
+    static Unknown of(@JSByRef double[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-	@JSBody(params = "value", script = "return value")
-    static Unknown of(float[] value) {
+	@JSBody(params = "value", script = "return Object.values(value)")
+    static Unknown of(@JSByRef float[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -51,23 +52,23 @@ public interface Unknown extends Any {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-	@JSBody(params = "value", script = "return value")
-    static Unknown of(int[] value) {
+	@JSBody(params = "value", script = "return Object.values(value)")
+    static Unknown of(@JSByRef int[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-	@JSBody(params = "value", script = "return value")
-    static Unknown of(short[] value) {
+	@JSBody(params = "value", script = "return Object.values(value)")
+    static Unknown of(@JSByRef short[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-	@JSBody(params = "value", script = "return value")
-    static Unknown of(byte[] value) {
+	@JSBody(params = "value", script = "return Object.values(value)")
+    static Unknown of(@JSByRef byte[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
-	@JSBody(params = "value", script = "return value")
-    static Unknown of(char[] value) {
+	@JSBody(params = "value", script = "return Object.values(value)")
+    static Unknown of(@JSByRef char[] value) {
         throw new UnsupportedOperationException("Available only in JavaScript");
     }
 
@@ -183,31 +184,38 @@ public interface Unknown extends Any {
     String stringValue();
 
 	@JSBody(script = "return [].concat(this)")
-    String[] stringArrayValue();
+	String[] stringArrayValue();
 
 	@JSBody(script = "return [].concat(this)")
-    boolean[] booleanArrayValue();
+	boolean[] booleanArrayValue();
 
 	@JSBody(script = "return [].concat(this)")
-    byte[] byteArrayValue();
+	@JSByRef
+	byte[] byteArrayValue();
 
 	@JSBody(script = "return [].concat(this)")
-    char[] charArrayValue();
+	@JSByRef
+	char[] charArrayValue();
 
 	@JSBody(script = "return [].concat(this)")
-    float[] floatArrayValue();
+	@JSByRef
+	float[] floatArrayValue();
 
 	@JSBody(script = "return [].concat(this)")
-    double[] doubleArrayValue();
+	@JSByRef
+	double[] doubleArrayValue();
 
 	@JSBody(script = "return [].concat(this)")
-    short[] shortArrayValue();
+	@JSByRef
+	short[] shortArrayValue();
 
 	@JSBody(script = "return [].concat(this)")
-    int[] intArrayValue();
+	@JSByRef
+	int[] intArrayValue();
 
 	@JSBody(script = "return [].concat(this)")
-    <T extends Any> T[] arrayValue();
+	@JSByRef
+	<T extends Any> T[] arrayValue();
 
 	/**
 	 * Is string boolean.

@@ -17,6 +17,7 @@ import js.lang.external.vaadin.grid.GridDataProviderParams;
 import js.web.dom.Event;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -152,7 +153,7 @@ import java.util.List;
  * </code></pre>
  */
 @CustomElement(tagName = "vaadin-crud", external = true)
-public class Crud<T> extends HtmlComponentWithItem<T, CrudElement<Mirrored<T>>> implements Themable<CrudElement<Mirrored<T>>> {
+public class Crud<T extends Serializable> extends HtmlComponentWithItem<T, CrudElement<Mirrored<T>>> implements Themable<CrudElement<Mirrored<T>>> {
 
     public Crud() {
     }

@@ -2,13 +2,14 @@ package com.github.fluorumlabs.disconnect.vaadin;
 
 import com.github.fluorumlabs.disconnect.core.utils.SidebandReference;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.function.Function;
 
 /**
  * Created by Artem Godin on 7/7/2020.
  */
-public class KeyedItemList<T> extends AbstractList<T> implements RandomAccess {
+public class KeyedItemList<T extends Serializable> extends AbstractList<T> implements RandomAccess {
     private final SidebandReference<String> key = new SidebandReference<>();
     private final Map<String, T> reverseLookup = new HashMap<>();
     private final List<T> itemList = new ArrayList<>();

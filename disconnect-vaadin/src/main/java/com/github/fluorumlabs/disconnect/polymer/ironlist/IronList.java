@@ -13,6 +13,7 @@ import js.lang.external.polymer.ironlist.IronListElement;
 import js.web.dom.HTMLElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -174,7 +175,7 @@ import java.util.List;
  * However, having an <code>iron-list</code> does not mean that you can load all the data at once. Say you have a million records in the database, you want to split the data into pages so you can bring in a page at the time. The page could contain 500 items, and iron-list will only render 20.
  */
 @CustomElement(tagName = "iron-list", external = true)
-public class IronList<T> extends HtmlComponentWithItem<T, IronListElement<Mirrored<T>>> implements HasTemplate {
+public class IronList<T extends Serializable> extends HtmlComponentWithItem<T, IronListElement<Mirrored<T>>> implements HasTemplate {
     public IronList() {
     }
 

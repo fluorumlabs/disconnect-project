@@ -13,6 +13,7 @@ import com.github.fluorumlabs.disconnect.vaadin.grid.TextAlign;
 import js.lang.external.vaadin.gridpro.GridProEditColumnElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * <code>&lt;vaadin-grid-pro-edit-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid-pro&gt;</code> that provides default inline editing for the items.
@@ -29,7 +30,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> ColumnBaseMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-grid-pro-edit-column", external = true)
-public class GridProEditColumn<T> extends HtmlComponentWithItem<T, GridProEditColumnElement<Mirrored<T>>> {
+public class GridProEditColumn<T extends Serializable> extends HtmlComponentWithItem<T, GridProEditColumnElement<Mirrored<T>>> {
 
     public GridProEditColumn() {
     }

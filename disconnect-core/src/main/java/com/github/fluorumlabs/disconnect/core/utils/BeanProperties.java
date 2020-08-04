@@ -4,15 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
-import org.teavm.metaprogramming.CompileTime;
-import org.teavm.metaprogramming.Meta;
-import org.teavm.metaprogramming.ReflectClass;
-import org.teavm.metaprogramming.Value;
+import org.teavm.metaprogramming.*;
 import org.teavm.metaprogramming.reflect.ReflectAnnotatedElement;
 import org.teavm.metaprogramming.reflect.ReflectField;
 import org.teavm.metaprogramming.reflect.ReflectMethod;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -154,6 +152,10 @@ public final class BeanProperties {
 
     public static List<CompileTimeDescriptor> getCompileTimePropertyDescriptors(ReflectClass<?> clazz) {
         if (clazz.getName().equals(Class.class.getName())) {
+            return Collections.emptyList();
+        }
+
+        if (!findClass(Serializable.class).isAssignableFrom(clazz)) {
             return Collections.emptyList();
         }
 

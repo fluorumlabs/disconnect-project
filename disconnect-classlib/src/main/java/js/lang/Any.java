@@ -3,11 +3,13 @@ package js.lang;
 import org.teavm.jso.JSBody;
 import org.teavm.jso.JSObject;
 
+import java.io.Serializable;
+
 
 /**
  * The interface Any.
  */
-public interface Any extends JSObject {
+public interface Any extends JSObject, Serializable {
 	/**
 	 * Empty t.
 	 *

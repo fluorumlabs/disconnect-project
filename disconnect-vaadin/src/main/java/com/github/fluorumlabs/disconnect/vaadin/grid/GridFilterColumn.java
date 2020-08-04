@@ -11,6 +11,7 @@ import com.github.fluorumlabs.disconnect.vaadin.ComponentRendererWithContext;
 import js.lang.external.vaadin.grid.GridFilterColumnElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * <code>&lt;vaadin-grid-filter-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code> that provides default header template and functionality for filtering.
@@ -25,7 +26,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> ColumnBaseMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-grid-filter-column", external = true)
-public class GridFilterColumn<T> extends HtmlComponentWithItem<T, GridFilterColumnElement<Mirrored<T>>> {
+public class GridFilterColumn<T extends Serializable> extends HtmlComponentWithItem<T, GridFilterColumnElement<Mirrored<T>>> {
 
     public GridFilterColumn() {
     }

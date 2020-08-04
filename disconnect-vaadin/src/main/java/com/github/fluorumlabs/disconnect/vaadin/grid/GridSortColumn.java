@@ -12,6 +12,7 @@ import com.github.fluorumlabs.disconnect.vaadin.ComponentRendererWithContext;
 import js.lang.external.vaadin.grid.GridSortColumnElement;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 /**
  * <code>&lt;vaadin-grid-sort-column&gt;</code> is a helper element for the <code>&lt;vaadin-grid&gt;</code> that provides default header template and functionality for sorting.
@@ -26,7 +27,7 @@ import javax.annotation.Nullable;
  * <strong>Mixins:</strong> ColumnBaseMixin, ElementMixin
  */
 @CustomElement(tagName = "vaadin-grid-sort-column", external = true)
-public class GridSortColumn<T> extends HtmlComponentWithItem<T, GridSortColumnElement<Mirrored<T>>> {
+public class GridSortColumn<T extends Serializable> extends HtmlComponentWithItem<T, GridSortColumnElement<Mirrored<T>>> {
 
     public GridSortColumn() {
     }
