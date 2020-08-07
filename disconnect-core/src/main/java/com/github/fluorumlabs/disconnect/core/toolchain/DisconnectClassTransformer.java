@@ -573,7 +573,7 @@ public class DisconnectClassTransformer implements ClassHolderTransformer {
 			arguments.setField("arg" + i, $.var(i + 1, method.getParameterTypes()[i]));
 		}
 
-		String endPointName = toKebabCase(serviceName) + ".js?t=" + DisconnectTeaVMRendererListener.BUILD_TIMESTAMP;
+		String endPointName = toKebabCase(serviceName) + DisconnectTeaVMRendererListener.BUILD_TIMESTAMP + ".js";
 		String methodName = toKebabCase(method.getName());
 
 		ValueEmitter endPointValue = $.constant(endPointName);

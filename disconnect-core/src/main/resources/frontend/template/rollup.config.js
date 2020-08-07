@@ -25,7 +25,9 @@ const commonJsOptions = {
 
 const isProductionBuild = process.env.NODE_ENV === 'production';
 const isLiveBuild = process.env.NODE_ENV === 'live';
+const isTestBuild = process.env.NODE_ENV === 'test';
 const artifactId = process.env.NODE_CURRENT_ARTIFACT || '-unknown-artifact-';
+const buildId = process.env.NODE_BUILD_ID || '';
 
 function artifactSubstitution() {
     const replacementSettings = {
@@ -38,6 +40,7 @@ function artifactSubstitution() {
 function replaceSettings(mode) {
     return {
         'process.env.NODE_ENV': JSON.stringify(mode),
+        '${DISCONNECT_BUILD_ID}': buildId
     }
 };
 
@@ -97,13 +100,13 @@ compilationUnitConfig.forEach(compilationUnit => {
     for (let key in buildConfig.injectedSymbols) {
         if (buildConfig.injectedSymbols.hasOwnProperty(key)) {
             let ref = buildConfig.injectedSymbols[key];
-            if ( Array.isArray(ref)) {
-                if (ref[0].startsWith(artifactId+'-jar/frontend')) {
-                    buildConfig.injectedSymbols[key][0] = ref[0].replace(artifactId+'-jar/frontend', '..');
+            if (Array.isArray(ref)) {
+                if (ref[0].startsWith(artifactId + '-jar/frontend')) {
+                    buildConfig.injectedSymbols[key][0] = ref[0].replace(artifactId + '-jar/frontend', '..');
                 }
             } else {
-                if (ref.startsWith(artifactId+'-jar/frontend')) {
-                    buildConfig.injectedSymbols[key] = ref.replace(artifactId+'-jar/frontend', '..');
+                if (ref.startsWith(artifactId + '-jar/frontend')) {
+                    buildConfig.injectedSymbols[key] = ref.replace(artifactId + '-jar/frontend', '..');
                 }
             }
         }
@@ -113,7 +116,7 @@ compilationUnitConfig.forEach(compilationUnit => {
         context: 'window',
         input: (isLiveBuild && compilationUnit === 'app') ? `${compilationUnit}/bootstrap.live.js` : `${compilationUnit}/bootstrap.js`,
         output: {
-            file: `static/bin/${compilationUnit}.js`,
+            file: `static/bin/${compilationUnit}${buildId}.js`,
             format: 'esm',
             sourcemap: true
         },
@@ -124,7 +127,7 @@ compilationUnitConfig.forEach(compilationUnit => {
                 targets: [{
                     src: `${compilationUnit}/classes.js.teavmdbg`,
                     dest: 'static/bin',
-                    rename: `${compilationUnit}.js.teavmdbg`
+                    rename: `${compilationUnit}${buildId}.js.teavmdbg`
                 }]
             }),
         ]
