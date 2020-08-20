@@ -499,6 +499,16 @@ abstract class AbstractDisconnectMojo extends AbstractMojo {
 
     void injectBuildTimestamp(File destination) throws MojoExecutionException {
         resetBuildTimestamp();
+
+        String base = mavenProject.getProperties().getProperty("disconnect.base");
+        if (base == null) {
+            mavenProject.getProperties().setProperty("disconnect.base", "");
+        } else {
+            if (base.endsWith("/")) {
+                mavenProject.getProperties().setProperty("disconnect.base", StringUtils.removeEnd(base,"/"));
+            }
+        }
+
         try {
             for (File file : FileUtils.listFiles(destination, new String[]{"html", "json"}, true)) {
                 String content = FileUtils.readFileToString(file, "UTF-8");

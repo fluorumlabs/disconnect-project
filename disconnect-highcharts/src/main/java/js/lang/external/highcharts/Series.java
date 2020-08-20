@@ -3,7 +3,6 @@ package js.lang.external.highcharts;
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
 import js.lang.Any;
-import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
 
 import javax.annotation.Nullable;
@@ -68,157 +67,9 @@ import javax.annotation.Nullable;
     version = "^8.1.2"
 )
 @Import(
-    symbols = {"Series as Series_Series"},
-    module = "highcharts/es-modules/masters/highcharts.src.js"
-)
-@Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
 )
 public interface Series extends Any {
-  /**
-   * This is the base series prototype that all other series types inherit
-   * from. A new series is initialized either through the series option
-   * structure, or after the chart is initialized, through
-   * Highcharts.Chart#addSeries.
-   *
-   * The object can be accessed in a number of ways. All series and point
-   * event handlers give a reference to the <code>series</code> object. The chart object
-   * has a series property that is a collection of all the chart's series. The
-   * point objects and axis objects also have the same reference.
-   *
-   * Another way to reference the series programmatically is by <code>id</code>. Add an
-   * id in the series configuration options, and get the series object by
-   * Highcharts.Chart#get.
-   *
-   * Configuration options for the series are given in three levels. Options
-   * for all series in a chart are given in the plotOptions.series object.
-   * Then options for all series of a specific type are given in the
-   * plotOptions of that type, for example <code>plotOptions.line</code>. Next, options
-   * for one single series are given in the series array, or as arguments to
-   * <code>chart.addSeries</code>.
-   *
-   * The data in the series is stored in various arrays.
-   *
-   * <ul>
-   * <li>
-   * First, <code>series.options.data</code> contains all the original config options
-   * for each point whether added by options or methods like
-   * <code>series.addPoint</code>.
-   *
-   * </li>
-   * <li>
-   * Next, <code>series.data</code> contains those values converted to points, but in
-   * case the series data length exceeds the <code>cropThreshold</code>, or if the data
-   * is grouped, <code>series.data</code> doesn't contain all the points. It only
-   * contains the points that have been created on demand.
-   *
-   * </li>
-   * <li>
-   * Then there's <code>series.points</code> that contains all currently visible point
-   * objects. In case of cropping, the cropped-away points are not part of
-   * this array. The <code>series.points</code> array starts at <code>series.cropStart</code>
-   * compared to <code>series.data</code> and <code>series.options.data</code>. If however the
-   * series data is grouped, these can't be correlated one to one.
-   *
-   * </li>
-   * <li>
-   * <code>series.xData</code> and <code>series.processedXData</code> contain clean x values,
-   * equivalent to <code>series.data</code> and <code>series.points</code>.
-   *
-   * </li>
-   * <li>
-   * <code>series.yData</code> and <code>series.processedYData</code> contain clean y values,
-   * equivalent to <code>series.data</code> and <code>series.points</code>.
-   *
-   * </li>
-   * </ul>
-   * @param chart
-   * The chart instance.
-   *
-   * @param options
-   * The series options.
-   *
-   */
-  @JSBody(
-      params = {"chart", "options"},
-      script = "return new Series_Series(chart, options)"
-  )
-  static Series create(Chart chart, SeriesOptionsRegistry[] options) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-  }
-
-  /**
-   * This is the base series prototype that all other series types inherit
-   * from. A new series is initialized either through the series option
-   * structure, or after the chart is initialized, through
-   * Highcharts.Chart#addSeries.
-   *
-   * The object can be accessed in a number of ways. All series and point
-   * event handlers give a reference to the <code>series</code> object. The chart object
-   * has a series property that is a collection of all the chart's series. The
-   * point objects and axis objects also have the same reference.
-   *
-   * Another way to reference the series programmatically is by <code>id</code>. Add an
-   * id in the series configuration options, and get the series object by
-   * Highcharts.Chart#get.
-   *
-   * Configuration options for the series are given in three levels. Options
-   * for all series in a chart are given in the plotOptions.series object.
-   * Then options for all series of a specific type are given in the
-   * plotOptions of that type, for example <code>plotOptions.line</code>. Next, options
-   * for one single series are given in the series array, or as arguments to
-   * <code>chart.addSeries</code>.
-   *
-   * The data in the series is stored in various arrays.
-   *
-   * <ul>
-   * <li>
-   * First, <code>series.options.data</code> contains all the original config options
-   * for each point whether added by options or methods like
-   * <code>series.addPoint</code>.
-   *
-   * </li>
-   * <li>
-   * Next, <code>series.data</code> contains those values converted to points, but in
-   * case the series data length exceeds the <code>cropThreshold</code>, or if the data
-   * is grouped, <code>series.data</code> doesn't contain all the points. It only
-   * contains the points that have been created on demand.
-   *
-   * </li>
-   * <li>
-   * Then there's <code>series.points</code> that contains all currently visible point
-   * objects. In case of cropping, the cropped-away points are not part of
-   * this array. The <code>series.points</code> array starts at <code>series.cropStart</code>
-   * compared to <code>series.data</code> and <code>series.options.data</code>. If however the
-   * series data is grouped, these can't be correlated one to one.
-   *
-   * </li>
-   * <li>
-   * <code>series.xData</code> and <code>series.processedXData</code> contain clean x values,
-   * equivalent to <code>series.data</code> and <code>series.points</code>.
-   *
-   * </li>
-   * <li>
-   * <code>series.yData</code> and <code>series.processedYData</code> contain clean y values,
-   * equivalent to <code>series.data</code> and <code>series.points</code>.
-   *
-   * </li>
-   * </ul>
-   * @param chart
-   * The chart instance.
-   *
-   * @param options
-   * The series options.
-   *
-   */
-  @JSBody(
-      params = {"chart", "options"},
-      script = "return new Series_Series(chart, options)"
-  )
-  static Series create(Chart chart, Any options) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-  }
-
   /**
    * SVG element of area-based charts. Can be used for styling purposes. If
    * zones are configured, this element will be hidden and replaced by

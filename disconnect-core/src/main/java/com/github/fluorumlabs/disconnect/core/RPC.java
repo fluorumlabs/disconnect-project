@@ -2,6 +2,7 @@ package com.github.fluorumlabs.disconnect.core;
 
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectConfig;
 import com.github.fluorumlabs.disconnect.core.internals.DisconnectUtils;
+import com.github.fluorumlabs.disconnect.core.observables.ObservableCounter;
 import com.github.fluorumlabs.disconnect.core.utils.BeanProperties;
 import com.github.fluorumlabs.disconnect.core.utils.Mirrored;
 import com.github.fluorumlabs.disconnect.core.utils.SerDes;
@@ -23,6 +24,8 @@ import java.util.stream.StreamSupport;
 
 
 public class RPC {
+	public static final ObservableCounter ACTIVE_RPC_COUNT = ObservableCounter.zero();
+
 	public static final String ENDPOINT = "/rpc";
 
 	public static void callPostIgnore(String endpoint, Serializable arguments) {
@@ -112,6 +115,7 @@ public class RPC {
 	public static native String callPostBackend(String endpoint, String payload) throws IOException;
 
 	private static void callPostBackend(String endpoint, String payload, AsyncCallback<String> callback) {
+		ACTIVE_RPC_COUNT.increment();
 		XMLHttpRequest xhr = XMLHttpRequest.create();
 		xhr.open("post", DisconnectConfig.getRpcHost() + endpoint);
 		xhr.setOnreadystatechange((e) -> {
@@ -121,9 +125,11 @@ public class RPC {
 
 			int statusGroup = xhr.getStatus() / 100;
 			if (statusGroup != 2 && statusGroup != 3) {
+				ACTIVE_RPC_COUNT.decrement();
 				callback.error(new IOException("HTTP status: " +
 						xhr.getStatus() + " " + xhr.getStatusText()));
 			} else {
+				ACTIVE_RPC_COUNT.decrement();
 				callback.complete(xhr.getResponseText());
 			}
 		});
@@ -166,7 +172,7 @@ public class RPC {
 	public static native String callGetBackend(String endpoint, String payload) throws IOException;
 
 	private static void callGetBackend(String endpoint, String payload, AsyncCallback<String> callback) {
-
+		ACTIVE_RPC_COUNT.increment();
 		XMLHttpRequest xhr = XMLHttpRequest.create();
 		xhr.open("get", DisconnectConfig.getRpcHost() + endpoint + "?payload=" + payload);
 		xhr.setOnreadystatechange((e) -> {
@@ -176,9 +182,11 @@ public class RPC {
 
 			int statusGroup = xhr.getStatus() / 100;
 			if (statusGroup != 2 && statusGroup != 3) {
+				ACTIVE_RPC_COUNT.decrement();
 				callback.error(new IOException("HTTP status: " +
 						xhr.getStatus() + " " + xhr.getStatusText()));
 			} else {
+				ACTIVE_RPC_COUNT.decrement();
 				callback.complete(xhr.getResponseText());
 			}
 		});

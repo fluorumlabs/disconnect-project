@@ -2,16 +2,14 @@ package js.lang.external.highcharts;
 
 import com.github.fluorumlabs.disconnect.core.annotations.Import;
 import com.github.fluorumlabs.disconnect.core.annotations.NpmPackage;
-import java.lang.String;
-import java.lang.UnsupportedOperationException;
-import javax.annotation.Nullable;
 import js.lang.Any;
 import js.lang.JsFunction;
-import js.lang.Unknown /* ( Axis | Point | Series | undefined ) */;
+import js.lang.Unknown;
 import js.web.dom.Event;
 import js.web.dom.HTMLElement;
-import org.teavm.jso.JSBody;
 import org.teavm.jso.JSProperty;
+
+import javax.annotation.Nullable;
 
 /**
  * The Chart class. The recommended constructor is Highcharts#chart.
@@ -22,131 +20,9 @@ import org.teavm.jso.JSProperty;
     version = "^8.1.2"
 )
 @Import(
-    symbols = {"Chart as Chart_Chart"},
-    module = "highcharts/es-modules/masters/highcharts.src.js"
-)
-@Import(
     module = "highcharts/es-modules/masters/highcharts.src.js"
 )
 public interface Chart extends Any {
-  /**
-   * The Chart class. The recommended constructor is Highcharts#chart.
-   *
-   * @param options
-   * The chart options structure.
-   *
-   * @param callback
-   * Function to run when the chart has loaded and and all external
-   * images are loaded. Defining a chart.events.load handler is
-   * equivalent.
-   *
-   */
-  @JSBody(
-      params = {"options", "callback"},
-      script = "return new Chart_Chart(options, callback)"
-  )
-  static Chart create(Options options, @Nullable ChartCallbackFunction callback) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-  }
-
-  /**
-   * The Chart class. The recommended constructor is Highcharts#chart.
-   *
-   * @param options
-   * The chart options structure.
-   *
-   */
-  @JSBody(
-      params = {"options"},
-      script = "return new Chart_Chart(options)"
-  )
-  static Chart create(Options options) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-  }
-
-  /**
-   * The Chart class. The recommended constructor is Highcharts#chart.
-   *
-   * @param renderTo
-   * The DOM element to render to, or its id.
-   *
-   * @param options
-   * The chart options structure.
-   *
-   * @param callback
-   * Function to run when the chart has loaded and and all external
-   * images are loaded. Defining a chart.events.load handler is
-   * equivalent.
-   *
-   */
-  @JSBody(
-      params = {"renderTo", "options", "callback"},
-      script = "return new Chart_Chart(renderTo, options, callback)"
-  )
-  static Chart create(HTMLElement renderTo, Options options,
-      @Nullable ChartCallbackFunction callback) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-  }
-
-  /**
-   * The Chart class. The recommended constructor is Highcharts#chart.
-   *
-   * @param renderTo
-   * The DOM element to render to, or its id.
-   *
-   * @param options
-   * The chart options structure.
-   *
-   * @param callback
-   * Function to run when the chart has loaded and and all external
-   * images are loaded. Defining a chart.events.load handler is
-   * equivalent.
-   *
-   */
-  @JSBody(
-      params = {"renderTo", "options", "callback"},
-      script = "return new Chart_Chart(renderTo, options, callback)"
-  )
-  static Chart create(String renderTo, Options options, @Nullable ChartCallbackFunction callback) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-  }
-
-  /**
-   * The Chart class. The recommended constructor is Highcharts#chart.
-   *
-   * @param renderTo
-   * The DOM element to render to, or its id.
-   *
-   * @param options
-   * The chart options structure.
-   *
-   */
-  @JSBody(
-      params = {"renderTo", "options"},
-      script = "return new Chart_Chart(renderTo, options)"
-  )
-  static Chart create(HTMLElement renderTo, Options options) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-  }
-
-  /**
-   * The Chart class. The recommended constructor is Highcharts#chart.
-   *
-   * @param renderTo
-   * The DOM element to render to, or its id.
-   *
-   * @param options
-   * The chart options structure.
-   *
-   */
-  @JSBody(
-      params = {"renderTo", "options"},
-      script = "return new Chart_Chart(renderTo, options)"
-  )
-  static Chart create(String renderTo, Options options) {
-    throw new UnsupportedOperationException("Available only in JavaScript");
-  }
-
   /**
    * All the axes in the chart.
    *

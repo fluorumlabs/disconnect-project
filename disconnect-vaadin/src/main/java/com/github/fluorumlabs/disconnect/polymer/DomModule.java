@@ -3,6 +3,7 @@ package com.github.fluorumlabs.disconnect.polymer;
 import com.github.fluorumlabs.disconnect.core.annotations.CustomElement;
 import com.github.fluorumlabs.disconnect.core.components.Component;
 import com.github.fluorumlabs.disconnect.core.components.HtmlComponent;
+import com.github.fluorumlabs.disconnect.core.components.html.webcomponent.Template;
 import js.lang.external.polymer.DomModuleElement;
 
 import javax.annotation.Nullable;
@@ -30,11 +31,15 @@ public class DomModule extends HtmlComponent<DomModuleElement> {
     }
 
     public DomModule(String textContent) {
-        super(textContent);
+        Template template = new Template();
+        template.getContent().add(textContent);
+        add(template);
     }
 
     public DomModule(Component<?>... components) {
-        super(components);
+        Template template = new Template();
+        template.getContent().add(components);
+        add(template);
     }
 
     // !wca! register: (id?: string | undefined): void

@@ -105,7 +105,7 @@ public class DisconnectTeaVMRendererListener implements RendererListener {
 
 	@Override
 	public void complete() throws IOException {
-		sourceWriter.append("main();").newLine();
+		sourceWriter.append("self.Disconnect&&self.Disconnect.DeferInitialization?self.Disconnect.DeferInitialization.then(() => main()):main();").newLine();
 		if (!root.exists()) {
 			Files.createDirectory(root.toPath());
 		}

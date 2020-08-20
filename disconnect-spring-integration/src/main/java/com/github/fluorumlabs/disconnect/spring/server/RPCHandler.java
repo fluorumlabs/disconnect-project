@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +39,7 @@ public class RPCHandler {
         this.applicationContext = applicationContext;
     }
 
-    @GetMapping(value = RPC.ENDPOINT + "/{service}/{method}", produces = "application/json")
+    @GetMapping(value = RPC.ENDPOINT + "/{service}/{method}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void rpc(@PathVariable("service") String kebabService,
                     @PathVariable("method") String kebabMethod,
                     @RequestParam("payload") String payload,
@@ -49,7 +50,7 @@ public class RPCHandler {
         handleRpc(kebabService, kebabMethod, response, objectMapper, unparsedRequest);
     }
 
-    @PostMapping(value = RPC.ENDPOINT + "/{service}/{method}", produces = "application/json")
+    @PostMapping(value = RPC.ENDPOINT + "/{service}/{method}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void rpc(@PathVariable("service") String kebabService,
                     @PathVariable("method") String kebabMethod,
                     HttpServletRequest request,
@@ -94,6 +95,8 @@ public class RPCHandler {
             resultHolder.exceptionClass = e.getClass().getName();
             resultHolder.exceptionMessage = e.getMessage();
         }
+
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
         try (PrintWriter printWriter = response.getWriter()) {
             objectMapper.writeValue(printWriter, resultHolder);
