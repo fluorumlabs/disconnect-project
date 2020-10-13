@@ -55,7 +55,7 @@
         <jsoup.version>1.12.1</jsoup.version>
         <takes.version>1.18</takes.version>
         <commons-codec.version>1.11</commons-codec.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <webdrivermanager.version>3.8.1</webdrivermanager.version>
         <selenium.version>3.141.59</selenium.version>
         <lombok.version>1.18.10</lombok.version>
