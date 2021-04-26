@@ -47,7 +47,7 @@
         <teavm.version>0.7.0-dev-1105</teavm.version>
         <auto-service.version>1.0-rc6</auto-service.version>
         <commons-lang3.version>3.8.1</commons-lang3.version>
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-text.version>1.8</commons-text.version>
         <jackson-databind.version>2.10.1</jackson-databind.version>
         <slf4j.version>1.7.30</slf4j.version>
