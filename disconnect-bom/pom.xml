@@ -52,7 +52,7 @@
         <jackson-databind.version>2.10.1</jackson-databind.version>
         <slf4j.version>1.7.30</slf4j.version>
         <javapoet.version>1.11.1</javapoet.version>
-        <jsoup.version>1.12.1</jsoup.version>
+        <jsoup.version>1.14.2</jsoup.version>
         <takes.version>1.18</takes.version>
         <commons-codec.version>1.11</commons-codec.version>
         <junit.version>4.12</junit.version>
