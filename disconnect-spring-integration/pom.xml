@@ -23,7 +23,7 @@
     </licenses>
 
     <properties>
-        <spring.version>5.1.9.RELEASE</spring.version>
+        <spring.version>6.0.0</spring.version>
         <servlet-api.version>2.5</servlet-api.version>
     </properties>
 
